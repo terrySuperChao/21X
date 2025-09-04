@@ -117,14 +117,15 @@ public class GameView : MonoBehaviour
         Vector3 pos = parent.position;
         float count = parent.childCount;
         float index = count - 1;
-        float width = pokerObject.GetComponent<RectTransform>().rect.width * pokerObject.transform.localScale.x;
+        float scalex = pokerObject.transform.localScale.x;
+        float width = pokerObject.GetComponent<RectTransform>().rect.width * scalex;
         float maxWidth = parent.gameObject.GetComponent<RectTransform>().rect.width;
-        float offX = count <= 1 ? 30 : Math.Min((maxWidth - width * count) / (count - 1), 30);
-        float startX = pos.x - index * (width + offX) / 2;
+        float offX = count <= 1 ? 60 : Math.Min((maxWidth - width * count) / (count - 1), 60);
+        float startX = pos.x - index * (width * scalex + offX) / 2;
 
         for (int i = 0; i < count; i++)
         {
-            Vector3 localPos = new Vector3(startX + (width + offX) * i, pos.y, pos.z);
+            Vector3 localPos = new Vector3(startX + (width * scalex + offX) * i, pos.y, pos.z);
             iTween.MoveTo(parent.GetChild(i).gameObject, localPos, 0.5f);
         }
 
@@ -170,48 +171,44 @@ public class GameView : MonoBehaviour
         IUser user = (IUser)obj[0];
         IPoker poker = (IPoker)obj[1];
         int point = (int)obj[2];
-        int realPoint = 0;
-
+ 
         Transform transform;
         Text text;
-        GameObject tipsPanel;
 
         if (user.isNpc())
         {
             transform = npcTransform;
             text = npcPointText;
-            tipsPanel = npcTipsPanel;
-            realPoint = HandPokerMgr.Instance.getHandPokerPoint(user, false);
         }
         else {
             transform = userTransform;
             text = userPointText;
-            tipsPanel = userTipsPanel;
-            realPoint = point;
         }
         addPoker(user, poker, point, transform, text);
 
-        //获取真实的分数
-        if (realPoint == 21)
-        {
-            if (HandPokerMgr.Instance.isBlackJack(user)){
-                yield return new WaitForSeconds(0.5f);
+        if (!user.isNpc()) { 
+            //获取真实的分数
+            if (point == 21)
+            {
+                if (HandPokerMgr.Instance.isBlackJack(user)){
+                    yield return new WaitForSeconds(0.5f);
 
-                tipsPanel.SetActive(true);
-                Text tips = tipsPanel.GetComponentInChildren<Text>();
-                tips.text = "Blackack";
-                tips.color = new Color(255, 223, 0);
+                    userTipsPanel.SetActive(true);
+                    Text tips = userTipsPanel.GetComponentInChildren<Text>();
+                    tips.text = "Blackack";
+                    tips.color = new Color(255, 223, 0);
+                }
+            }
+            else if (point > 21)
+            {
+                yield return new WaitForSeconds(0.5f);
+                userTipsPanel.SetActive(true);
+                Text tips = userTipsPanel.GetComponentInChildren<Text>();
+                tips.text = "爆牌！！";
+                tips.color = Color.red;
             }
         }
-        else if (realPoint > 21)
-        {
-            yield return new WaitForSeconds(0.5f);
-            tipsPanel.SetActive(true);
-            Text tips = tipsPanel.GetComponentInChildren<Text>();
-            tips.text = "爆牌！！";
-            tips.color = Color.red;
-        }
-        
+
         yield return new WaitForSeconds(1.0f);
         GameCtrl.Instance.setHandleMessageComplete();
     }
@@ -258,17 +255,40 @@ public class GameView : MonoBehaviour
 
     private IEnumerator gameOverHandle(params System.Object[] obj) {
         setBtnInteractable(false);
-
         yield return new WaitForSeconds(0.5f);
+
         EventDispatcher.Instance.emit(GameConst.FLIPPOKER);
-
         yield return new WaitForSeconds(0.5f);
+
         List<IUser> list = PlayPokerMgr.Instance.getPlayers();
         for (int i = 0; i < list.Count; i++)
         {
-            int number = HandPokerMgr.Instance.getHandPokerPoint(list[i], false);
-            Text text = list[i].isNpc() ? npcPointText : userPointText;
-            text.text = number.ToString();
+            if (list[i].isNpc()) {
+                int point = HandPokerMgr.Instance.getHandPokerPoint(list[i], false);
+                npcPointText.text = point.ToString();
+
+                //获取真实的分数
+                if (point == 21)
+                {
+                    if (HandPokerMgr.Instance.isBlackJack(list[i]))
+                    {
+                        yield return new WaitForSeconds(0.5f);
+
+                        npcTipsPanel.SetActive(true);
+                        Text tips = npcTipsPanel.GetComponentInChildren<Text>();
+                        tips.text = "Blackack";
+                        tips.color = new Color(255, 223, 0);
+                    }
+                }
+                else if (point > 21)
+                {
+                    yield return new WaitForSeconds(0.5f);
+                    npcTipsPanel.SetActive(true);
+                    Text tips = npcTipsPanel.GetComponentInChildren<Text>();
+                    tips.text = "爆牌！！";
+                    tips.color = Color.red;
+                }
+            }
         }
 
         yield return new WaitForSeconds(1f);
@@ -337,10 +357,12 @@ public class GameView : MonoBehaviour
         npcTipsPanel.SetActive(false);
         Text textPanel1 = npcTipsPanel.GetComponentInChildren<Text>();
         textPanel1.text = "爆牌！！";
+        textPanel1.color = Color.red;
 
         userTipsPanel.SetActive(false);
         Text textPanel2 = userTipsPanel.GetComponentInChildren<Text>();
         textPanel2.text = "爆牌！！";
+        textPanel2.color = Color.red;
 
         List<Transform> child = new List<Transform>();
         for (int i = 0; i < userTransform.childCount; i++) {
@@ -396,8 +418,9 @@ public class GameView : MonoBehaviour
             {
                 child.Add(discardTransform.GetChild(i));
             }
-            for (int i = 0; i < child.Count; i++)
+            for (int i = child.Count-1; i > -1; i--)
             {
+                child[i].gameObject.GetComponent<Poker>().loadBackPoker();
                 iTween.MoveTo(child[i].gameObject, pokerPrefab.GetComponent<Transform>().position, 0.1f);
                 yield return new WaitForSeconds(0.15f);
                 Destroy(child[i].gameObject);

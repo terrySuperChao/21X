@@ -42,4 +42,13 @@ public class Poker : MonoBehaviour
             this.loadPokerRes(_poker);
         }
     }
+
+    public void loadBackPoker() {
+        Texture2D myTexture = Resources.Load<Texture2D>($"UI/pokers/blt_game_poker_00");
+        if (myTexture != null)
+        {
+            // 例如，将加载的纹理设置给UI Image组件
+            GetComponent<UnityEngine.UI.Image>().sprite = Sprite.Create(myTexture, new Rect(0.0f, 0.0f, myTexture.width, myTexture.height), new Vector2(0.5f, 0.5f));
+        }
+    }
 }
