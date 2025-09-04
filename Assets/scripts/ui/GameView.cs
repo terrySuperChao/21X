@@ -170,40 +170,48 @@ public class GameView : MonoBehaviour
         IUser user = (IUser)obj[0];
         IPoker poker = (IPoker)obj[1];
         int point = (int)obj[2];
+        int realPoint = 0;
 
         Transform transform;
         Text text;
-        
+        GameObject tipsPanel;
+
         if (user.isNpc())
         {
             transform = npcTransform;
             text = npcPointText;
+            tipsPanel = npcTipsPanel;
+            realPoint = HandPokerMgr.Instance.getHandPokerPoint(user, false);
         }
         else {
             transform = userTransform;
             text = userPointText;
-
-            if (point == 21)
-            {
-                if (HandPokerMgr.Instance.isBlackJack(user))
-                {
-                    userTipsPanel.SetActive(true);
-                    Text tips = userTipsPanel.GetComponentInChildren<Text>();
-                    tips.text = "Blackack";
-                    tips.color = new Color(255, 223, 0);
-                }
-            }
-            else if (point > 21)
-            {
-                userTipsPanel.SetActive(true);
-                Text tips = userTipsPanel.GetComponentInChildren<Text>();
-                tips.text = "爆牌！！";
-                tips.color = Color.red;
-            }
+            tipsPanel = userTipsPanel;
+            realPoint = point;
         }
         addPoker(user, poker, point, transform, text);
 
+        //获取真实的分数
+        if (realPoint == 21)
+        {
+            if (HandPokerMgr.Instance.isBlackJack(user)){
+                yield return new WaitForSeconds(0.5f);
 
+                tipsPanel.SetActive(true);
+                Text tips = tipsPanel.GetComponentInChildren<Text>();
+                tips.text = "Blackack";
+                tips.color = new Color(255, 223, 0);
+            }
+        }
+        else if (realPoint > 21)
+        {
+            yield return new WaitForSeconds(0.5f);
+            tipsPanel.SetActive(true);
+            Text tips = tipsPanel.GetComponentInChildren<Text>();
+            tips.text = "爆牌！！";
+            tips.color = Color.red;
+        }
+        
         yield return new WaitForSeconds(1.0f);
         GameCtrl.Instance.setHandleMessageComplete();
     }

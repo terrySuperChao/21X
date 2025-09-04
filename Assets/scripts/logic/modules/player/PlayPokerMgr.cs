@@ -63,9 +63,17 @@ public class PlayPokerMgr : Singleton<PlayPokerMgr>
                 GameCtrl.Instance.addMsg(GameConst.DEALPOKER, user, poker, number);
             }
         }
-        if (_players.Count > 0) {
-            _players[0].state = PlayState.play;
-            GameCtrl.Instance.addMsg(GameConst.PLAYERACTION, _players[0].user);
+
+        for (int j = 0; j < _players.Count; j++)
+        {
+            if (j == 0)
+            {
+                _players[j].state = PlayState.play;
+                GameCtrl.Instance.addMsg(GameConst.PLAYERACTION, _players[j].user);
+            }
+            else {
+                _players[j].state = PlayState.none;
+            }
         }
     }
 
