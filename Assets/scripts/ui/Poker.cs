@@ -19,7 +19,7 @@ public class Poker : MonoBehaviour
 
     private void OnDestroy()
     {
-        EventDispatcher.Instance.on(GameConst.FLIPPOKER, this.flipOver);
+        EventDispatcher.Instance.off(GameConst.FLIPPOKER, this.flipOver);
     }
 
     public void loadPokerRes(IPoker poker) {

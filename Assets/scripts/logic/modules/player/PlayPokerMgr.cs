@@ -5,9 +5,11 @@ using System.Collections.Generic;
 using System.Reflection;
 using Unity.VisualScripting;
 using UnityEngine;
+using static UnityEngine.UIElements.UxmlAttributeDescription;
 
 public class PlayPokerMgr : Singleton<PlayPokerMgr>
 {
+    
     private enum PlayState {
         none,
         play,
@@ -30,7 +32,12 @@ public class PlayPokerMgr : Singleton<PlayPokerMgr>
     }
 
     private List<PlayerState> _players = new List<PlayerState>();
-    private int _money = 100;
+    private IGameSettle _gameSettle;
+
+    public void setGameSettle(IGameSettle gameSettle) {
+        _gameSettle = gameSettle;
+    }
+
     public void addPlayer(IUser user) {
         PlayerState ps = new PlayerState();
         ps.user = user;
@@ -121,7 +128,6 @@ public class PlayPokerMgr : Singleton<PlayPokerMgr>
     }
 
     public void clearPlayer() {
-        _money = 100;
         _players.Clear();
     }
 
@@ -152,7 +158,6 @@ public class PlayPokerMgr : Singleton<PlayPokerMgr>
 
     private void gameOver() {
         int maxPoint = 99;//×î´óÖµ
-        int extraMoney = 0;
         List<SortItem> list = new List<SortItem>();
         for (int i = 0; i < _players.Count; i++) {
             if (_players[i].state == PlayState.end || _players[i].state == PlayState.none) {
@@ -169,59 +174,29 @@ public class PlayPokerMgr : Singleton<PlayPokerMgr>
         }
 
         list.Sort((x, y)=> { return x.point < y.point ? 1 : -1; });
+
         int index = -1;
-        if (list.Count == 1)
+        IUser user = null;  
+        bool isBack = false;
+        if (list.Count == 1 || list[0].point > list[1].point)
         {
             index = list[0].index;
-        }
-        else
-        {
-            if (list[0].point > list[1].point)
-            {
-                index = list[0].index;
-            }
+            isBack = list[0].point == maxPoint;
+            user = _players[index].user;
         }
 
-        if (index != -1 && list[0].point == maxPoint)
-        {
-            int number = 0;
-            for (int i = 0; i < _players.Count; i++)
-            {
-                if (index != i)
-                {
-                    number = _players[i].user.getMoney();
-                    break;
-                }
-            }
-            if (number >= _money / 2)
-            {
-                extraMoney = _money / 2;
-            }
-        }
-       
         for (int i = 0; i < _players.Count; i++)
         {
-                if (index == -1)
-                {
-                    _players[i].user.addMoney(_money);
-                } else {
-                    if (index == i)
-                    {
-                        _players[i].user.addMoney(_money * 2 + extraMoney);
-                        _players[i].user.addWins();
-                    }
-                    else {
-                        _players[i].user.addMoney(-extraMoney);
-                    }
+            if (index == i)
+            {
+                _players[i].user.addWins();
             }
             _players[i].user.addPlay();
         }
-        if (index == -1){
-            GameCtrl.Instance.addMsg(GameConst.GAMEOVER, null, _money + extraMoney);
-        }else {
-            GameCtrl.Instance.addMsg(GameConst.GAMEOVER, _players[index].user, _money + extraMoney);
-        }
-            
+
+        _gameSettle?.gameSettle(new GameSettlePara(this.getPlayers(), index, isBack));
+
+        GameCtrl.Instance.addMsg(GameConst.GAMEOVER, user);
     }
 
     private void nextPlayer(int index) {
@@ -236,19 +211,5 @@ public class PlayPokerMgr : Singleton<PlayPokerMgr>
                 break;
             }
         }
-    }
-
-    public int bettingMoney()
-    {
-        for (int i=0;i< _players.Count;i++)
-        {
-            _money = Math.Min(_players[i].user.getMoney(), _money);
-        }
-
-        for (int i = 0; i < _players.Count; i++)
-        {
-            _players[i].user.addMoney(-_money);
-        }
-        return _money;
     }
 }

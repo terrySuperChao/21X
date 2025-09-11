@@ -274,6 +274,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lobbyView: {fileID: 8105682527857957194, guid: 625aebfaa7e49bb47936b2278595e0c9, type: 3}
   gameView: {fileID: 6462848143466931906, guid: 68bc00e9b0e476f4da0a7e2b054bf2fb, type: 3}
+  fightView: {fileID: 6462848143466931906, guid: 3a4682b66f468aa49b87b6c20ae19139, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

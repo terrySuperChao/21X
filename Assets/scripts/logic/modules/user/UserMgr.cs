@@ -7,6 +7,9 @@ public class UserMgr : Singleton<UserMgr>
     public void init() {
         _user = new UserObject(false);
         _user.setMoney(ConfigMgr.INIT_MONEY_VALUE);
+        _user.setBlood(ConfigMgr.INIT_BLOOD_VALUE);
+        _user.setMaxBlood(ConfigMgr.INIT_BLOOD_VALUE);
+        _user.setMaxMagic(ConfigMgr.INIT_MAGIC_VALUE);
     }
 
     public IUser getUser() {

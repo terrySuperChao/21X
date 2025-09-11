@@ -14,3 +14,8 @@ public class GameConst
     public const string GAMEOVER        = "gameOver";
     public const string FLIPPOKER       = "flipPoker";
 }
+
+public enum GameMode { 
+    Common,
+    Fight
+}

@@ -4,26 +4,33 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class GameView : MonoBehaviour
+public class FightView : MonoBehaviour
 {
-    public Transform npcTransform;
-    public Text npcMoneyText;
+    public GameObject npcHeadImage;
+    public Transform npcTransform;    
     public Text npcPointText;
     public Text npcWinsText;
     public Text npcWinRateText;
+    public Text npcBloodText;
+    public Text npcAttackText;
+    public Text npcDefenseText;
+    public Text npcMagicText;
 
+    public GameObject userHeadImage;
     public Transform userTransform;
-    public Text userMoneyText;
     public Text userPointText;
     public Text userWinsText;
     public Text userWinRateText;
+    public Text userBloodText;
+    public Text userAttackText;
+    public Text userDefenseText;
+    public Text userMagicText;
 
     public Button stopPokerBtn;
     public Button dealPokerBtn;
 
     public GameObject pokerPrefab;
     public Transform rootTransform;
-    public Transform discardTransform;
 
     public GameObject resultPanel;
     public Text resultText;
@@ -31,7 +38,11 @@ public class GameView : MonoBehaviour
     public GameObject npcTipsPanel;
     public GameObject userTipsPanel;
 
-    private CommonSettle _gameSettle = new CommonSettle();
+    public GameObject effectImage;
+    public GameObject attackImage;
+    public Text attackText;
+    
+    private FightSettle _gameSettle = new FightSettle();
     // Start is called before the first frame update
     void Start()
     {
@@ -70,45 +81,30 @@ public class GameView : MonoBehaviour
             IUser user = list[i];
             if (user.isNpc())
             {
-                npcMoneyText.text = user.getMoney().ToString();
                 npcPointText.text = "0";
                 npcWinsText.text = user.getWins().ToString();
                 npcWinRateText.text = string.Format("{0:P1}", user.getWinRate());
+                npcBloodText.text = user.getBlood().ToString();
+                npcAttackText.text = user.getAttack().ToString();
+                npcDefenseText.text = user.getDefense().ToString();
+                npcMagicText.text = user.getMagic().ToString();
             }
             else
             {
-                userMoneyText.text = user.getMoney().ToString();
                 userPointText.text = "0";
                 userWinsText.text = user.getWins().ToString();
                 userWinRateText.text = string.Format("{0:P1}", user.getWinRate());
+                userBloodText.text = user.getBlood().ToString();
+                userAttackText.text = user.getAttack().ToString();
+                userDefenseText.text = user.getDefense().ToString();
+                userMagicText.text = user.getMagic().ToString();
             }
         }
     }
 
     private IEnumerator dealPokerAfterAction() {
         yield return new WaitForSeconds(1.0f);
-        int money = _gameSettle.bettingMoney(PlayPokerMgr.Instance.getPlayers());
-
-        Text text1 = Instantiate(npcMoneyText,rootTransform);
-        text1.gameObject.transform.position = npcMoneyText.gameObject.transform.position;
-        text1.alignment = TextAnchor.MiddleCenter;
-        text1.text = money.ToString();
-
-        Text text2 = Instantiate(userMoneyText,rootTransform);
-        text2.gameObject.transform.position = userMoneyText.gameObject.transform.position;
-        text2.alignment = TextAnchor.MiddleCenter;
-        text2.text = money.ToString();
-        yield return new WaitForSeconds(0.1f);
-
         updateUserInfo();
-
-        iTween.MoveTo(text1.gameObject, pokerPrefab.transform.position, 0.5f);
-        iTween.MoveTo(text2.gameObject, pokerPrefab.transform.position, 0.5f);
-        yield return new WaitForSeconds(0.5f);
-        Destroy(text1.gameObject);
-        Destroy(text2.gameObject);
-        yield return new WaitForSeconds(0.5f);
-
         GameCtrl.Instance.setHandleMessageComplete();
     }
 
@@ -295,64 +291,146 @@ public class GameView : MonoBehaviour
         }
 
         yield return new WaitForSeconds(1f);
-        int money = _gameSettle.getSettleMoney();
-
-        string str1 = "";
-        string str2 = "";
-        int pos1 = 0;
-        int pos2 = 0;
-        Color color1;
-        Color color2;
-
         IUser user = (IUser)obj[0];
-        if (user == null)
-        {
-            resultText.text = "平局";
-            str1 = "+" + money;
-            str2 = "+" + money;
-            pos1 = 30;
-            pos2 = 30;
-            color1 = Color.green;
-            color2 = Color.green;
+
+        Transform transform = null;
+        if (user == null) {
+            resultText.text = "本回合平局";
+            transform = null;
         }
         else {
-            if (user.isNpc())
-            {
-                str1 = "+" + money;
-                str2 = "-" + money;
-                pos1 = 30;
-                pos2 = -30;
-                color1 = Color.green;
-                color2 = Color.red;
-                resultText.text = "NPC获胜";
+            if (user.isNpc()) {
+                resultText.text = "本回合NPC获胜";
+                transform = npcTransform;
             }
             else {
-                str1 = "-" + money;
-                str2 = "+" + money;
-                pos1 = -30;
-                pos2 = 30;
-                color1 = Color.red;
-                color2 = Color.green;
-                resultText.text = "玩家获胜";
+
+                resultText.text = "本回合玩家获胜";
+                transform = userTransform;
             }
         }
         resultPanel.SetActive(true);
 
-        Text text1 = Instantiate(npcMoneyText, rootTransform);
-        text1.gameObject.transform.position = npcMoneyText.gameObject.transform.position;
-        text1.text = str1;
-        text1.color = color1;
-        iTween.MoveBy(text1.gameObject, new Vector3(0, pos1, 0), 0.5f);
-
-        Text text2 = Instantiate(userMoneyText, rootTransform);
-        text2.gameObject.transform.position = userMoneyText.gameObject.transform.position;
-        text2.text = str1;
-        text2.color = color2;
-        iTween.MoveBy(text2.gameObject, new Vector3(0, pos2, 0), 0.5f);
-        
         yield return new WaitForSeconds(0.5f);
-        Destroy(text1.gameObject);
-        Destroy(text2.gameObject);
+        if (transform)
+        {
+
+            Text text = null;
+            Text addText = null;
+            List <IPoker> pokers = HandPokerMgr.Instance.getHandPoker(user);
+            List<int> values = _gameSettle.getPokerValue(pokers);
+            for (int i = 0; i < pokers.Count; i++)
+            {
+                float addValue = values[i];
+                float finalValue = 0;
+                switch (pokers[i].getSuit())
+                {
+                    case 1: // 方
+                        addValue *= 0.5f;
+                        finalValue = user.getDefense();
+                        text = user.isNpc() ? npcDefenseText : userDefenseText;
+                        break;
+                    case 2: // 红
+                        addValue *= 0.5f;
+                        finalValue = user.getBlood();
+                        text = user.isNpc() ? npcBloodText : userBloodText;
+                        break;
+                    case 3: // 黑
+                        addValue *= 1.0f;
+                        finalValue = user.getAttack();
+                        text = user.isNpc() ? npcAttackText : userAttackText;
+                        break;
+                    case 4: // 梅
+                        addValue *= 1.0f;
+                        finalValue = user.getMagic();
+                        text = user.isNpc() ? npcMagicText : userMagicText;
+                        break;
+                    default:
+                        break;
+                }
+                if (addText == null) {
+                    addText = Instantiate(text, rootTransform);
+                }
+                addText.transform.position = transform.GetChild(i).transform.position;
+                addText.text = "+" + addValue;
+                iTween.MoveTo(addText.gameObject, text.transform.position, 1.0f);
+                yield return new WaitForSeconds(1.1f);
+                text.text = finalValue.ToString();
+            }
+            Destroy(addText.gameObject);
+
+            if (user.getAttack() > 0) { 
+                attackImage.SetActive(true);
+                if (user.isNpc())
+                {
+                    attackImage.transform.position = npcHeadImage.transform.position;
+                    effectImage.transform.position = userHeadImage.transform.position;
+                    iTween.MoveTo(attackImage, userHeadImage.transform.position, 1.0f);
+                }
+                else
+                {
+                    attackImage.transform.position = userHeadImage.transform.position;
+                    effectImage.transform.position = npcHeadImage.transform.position;
+                    iTween.MoveTo(attackImage, npcHeadImage.transform.position, 1.0f);
+                }
+                yield return new WaitForSeconds(1.0f);
+                attackImage.SetActive(false);
+                effectImage.SetActive(true);
+                attackText.text = "-" + user.getAttack().ToString();
+                yield return new WaitForSeconds(0.5f);
+                effectImage.SetActive(false);
+
+                for (int i = 0; i < list.Count; i++)
+                {
+                    if (list[i].isNpc())
+                    {
+                        npcBloodText.text = list[i].getBlood().ToString();
+                        npcDefenseText.text = list[i].getDefense().ToString();
+                    }
+                    else
+                    {
+                        userBloodText.text = list[i].getBlood().ToString();
+                        userDefenseText.text = list[i].getDefense().ToString();
+                    }
+                }
+            }
+            
+            if (user.getMagic() >= ConfigMgr.INIT_MAGIC_VALUE) {
+                yield return new WaitForSeconds(0.5f);
+                attackImage.SetActive(true);
+                if (user.isNpc())
+                {
+                    attackImage.transform.position = npcHeadImage.transform.position;
+                    effectImage.transform.position = userHeadImage.transform.position;
+                    iTween.MoveTo(attackImage, userHeadImage.transform.position, 1.0f);
+                }
+                else
+                {
+                    attackImage.transform.position = userHeadImage.transform.position;
+                    effectImage.transform.position = npcHeadImage.transform.position;
+                    iTween.MoveTo(attackImage, npcHeadImage.transform.position, 1.0f);
+                }
+                yield return new WaitForSeconds(1.0f);
+                attackImage.SetActive(false);
+                effectImage.SetActive(true);
+                attackText.text = "-50";
+                yield return new WaitForSeconds(0.5f);
+                effectImage.SetActive(false);
+
+                for (int i = 0; i < list.Count; i++)
+                {
+                    if (list[i].getUserId() == user.getUserId())
+                    {
+                        list[i].addMagic(-list[i].getMagic());
+                    }
+                    else
+                    {
+                        list[i].addBlood(-50);
+                    }
+                }
+            }
+        }
+
         updateUserInfo();
 
         yield return new WaitForSeconds(0.5f);
@@ -381,17 +459,21 @@ public class GameView : MonoBehaviour
         }
         for (int i = 0; i < child.Count; i++)
         {
-            iTween.MoveTo(child[i].gameObject, discardTransform.position, 0.5f);
-            child[i].SetParent(discardTransform);
+            child[i].gameObject.GetComponent<Poker>().loadBackPoker();
+            iTween.MoveTo(child[i].gameObject, pokerPrefab.transform.position, 0.5f);
         }
         yield return new WaitForSeconds(1.0f);
 
+        for (int i = 0; i < child.Count; i++)
+        {
+            Destroy(child[i].gameObject);
+        }
 
         //结算了
         bool isOver = false;
         for (int i = 0; i < list.Count; i++)
         {
-            if (list[i].getMoney() <= 0) {
+            if (list[i].getBlood() <= 0) {
                 isOver = true;
             }
         }
@@ -401,11 +483,11 @@ public class GameView : MonoBehaviour
             EventDispatcher.Instance.emit("returnToLobby");
         }
         else {
+            PokerPileMgr.Instance.shuffle();
             HandPokerMgr.Instance.resetHandPoker();
             PlayPokerMgr.Instance.startPlayPoker();
             StartCoroutine(dealPokerAfterAction());
         }
-            
     }
 
     private void setBtnInteractable(bool able) {
@@ -417,32 +499,7 @@ public class GameView : MonoBehaviour
     }
 
     private IEnumerator shufflePokerHandle(params System.Object[] obj) {
-        int number = (int)obj[0];
-        if (number == 0)
-        {
-            List<Transform> child = new List<Transform>();
-            for (int i = 0; i < discardTransform.childCount; i++)
-            {
-                child.Add(discardTransform.GetChild(i));
-            }
-            for (int i = child.Count-1; i > -1; i--)
-            {
-                child[i].gameObject.GetComponent<Poker>().loadBackPoker();
-                iTween.MoveTo(child[i].gameObject, pokerPrefab.GetComponent<Transform>().position, 0.1f);
-                yield return new WaitForSeconds(0.15f);
-                Destroy(child[i].gameObject);
-                if (i == 0)
-                {
-                    pokerPrefab.SetActive(true);
-                }
-            }
-            GameCtrl.Instance.setHandleMessageComplete();
-        }
-        else if (number == 1) {
-
-            GameCtrl.Instance.setHandleMessageComplete();
-            yield return new WaitForSeconds(0.1f);
-            pokerPrefab.SetActive(false);
-        }
+        GameCtrl.Instance.setHandleMessageComplete();
+        yield return new WaitForSeconds(0.1f);
     }
 }
