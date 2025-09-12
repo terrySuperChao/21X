@@ -212,7 +212,7 @@ public class GameView : MonoBehaviour
             }
         }
 
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSeconds(0.6f);
         GameCtrl.Instance.setHandleMessageComplete();
     }
 
@@ -240,7 +240,7 @@ public class GameView : MonoBehaviour
 
     private IEnumerator npcAutoDealPokerHandle(IUser user){
         System.Random rd = new System.Random();
-        yield return new WaitForSeconds(rd.Next(2, 5));
+        yield return new WaitForSeconds(rd.Next(1, 2));
         int number = HandPokerMgr.Instance.getHandPokerPoint(user, false);
         if (number >= 17)
         {

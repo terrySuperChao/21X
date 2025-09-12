@@ -130,7 +130,7 @@ public class HandPokerMgr : Singleton<HandPokerMgr>
             if(pokerJ > 0) number++;
             if(pokerQ > 0) number++;
             if(pokerK > 0) number++;
-            return number == 2;
+            return number == 1;
         }
         else {
             return false;

@@ -10,16 +10,23 @@ using UnityEngine;
 public class FightSettle : IGameSettle
 {
 
+    public float _settleAattck = 0;
+    public float _settleDefense = 0;
+
     public void gameSettle(IGameSettlePara para) {
-        float blood = 0;
-        float attack = 0;
-        float defense = 0;
-        float magic = 0;
+
+        _settleAattck = 0;
+        _settleDefense = 0;
 
         int winIndex = para.getWinIndex();
         List<IUser> users = para.getUsers();
         for (int i = 0; i < users.Count; i++) {
             if (i == winIndex) {
+                float blood = 0;
+                float attack = 0;
+                float defense = 0;
+                float magic = 0;
+
                 List<IPoker> pokers = HandPokerMgr.Instance.getHandPoker(users[i]);
                 List<int> values = getPokerValue(pokers);
                 for (int j = 0; j < pokers.Count; j++) {
@@ -42,7 +49,7 @@ public class FightSettle : IGameSettle
                     }
                 }
                 users[i].addBlood(blood);
-                users[i].addAttcak(attack);
+                users[i].addAttack(attack);
                 users[i].addDefense(defense);
                 users[i].addMagic(magic);
                 break;
@@ -51,16 +58,33 @@ public class FightSettle : IGameSettle
 
         for (int i = 0; i < users.Count; i++)
         {
-            if (i != winIndex)
+            if (i != winIndex && winIndex > -1)
             {
-                if (attack > users[i].getDefense()) {
-                    attack -= users[i].getDefense();
+                _settleAattck = users[winIndex].getAttack();
+                _settleDefense = users[i].getDefense();
+                float attack = _settleAattck;
+                float defense = _settleDefense;
+                float blood = users[i].getBlood();
+                if (attack > defense) {
+                    attack -= defense;
+                    defense = 0;
                 }
                 else {
                     attack = 0;
+                    defense -= attack;
                 }
-                users[i].addBlood(-attack);
-                users[i].addDefense(-users[i].getDefense());
+
+                if (blood > attack)
+                {
+                    blood -= attack;
+                }
+                else {
+                    blood = 0;
+                }
+                users[i].setBlood(blood);
+                users[i].setDefense(defense);
+                users[winIndex].setAttack(0);
+                break;
             }
         }
     }
@@ -114,4 +138,13 @@ public class FightSettle : IGameSettle
         return values;
     }
 
+
+    public float getSettleAttack() {
+        return _settleAattck;
+    }
+
+    public float getSettleDefense()
+    {
+        return _settleDefense;
+    }
 }

@@ -36,6 +36,8 @@ public class Root : MonoBehaviour
 
     private void onStart(params System.Object[] obj) {
         //每局开始处理
+        UserMgr.Instance.init();
+        NpcMgr.Instance.init();
         IUser user1 = UserMgr.Instance.getUser();
         IUser user2 = NpcMgr.Instance.getUser();
         PokerPileMgr.Instance.shuffle();
@@ -82,4 +84,6 @@ public class Root : MonoBehaviour
     {
         GameCtrl.Instance.handleMessage();
     }
+
+    
 }

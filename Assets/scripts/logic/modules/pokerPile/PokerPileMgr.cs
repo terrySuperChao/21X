@@ -45,6 +45,7 @@ public class PokerPileMgr : Singleton<PokerPileMgr>
         IPoker poker = null;
         if (_remainCards.Count > 0){
             poker = _remainCards[0];
+            poker.setBack(false);
             _playedTableCards.Add(poker);
             _remainCards.RemoveAt(0);
         }
