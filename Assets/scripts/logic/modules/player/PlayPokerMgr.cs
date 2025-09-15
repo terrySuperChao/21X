@@ -85,14 +85,7 @@ public class PlayPokerMgr : Singleton<PlayPokerMgr>
     }
 
     public void dealPoker() {
-        int index = -1;
-        for (int i = 0; i < _players.Count; i++) {
-            if (_players[i].state == PlayState.play) {
-                index = i;
-                break;
-            }
-        }
-
+        int index = getPlayingIndex();
         if (index == -1) {
             gameOver();
             return;
@@ -115,7 +108,13 @@ public class PlayPokerMgr : Singleton<PlayPokerMgr>
         else
         {
             _players[index].state = PlayState.death;
-            gameOver();
+            if (getPlayerStateNumber() == 0){
+                gameOver();
+            }
+            else {
+                nextPlayer(index);
+            }
+                
         }
     }
 
@@ -132,27 +131,22 @@ public class PlayPokerMgr : Singleton<PlayPokerMgr>
     }
 
     public void stopDealPoker() {
-        int number = 0;
-        for (int i = 0; i < _players.Count; i++)
+        int index = getPlayingIndex();
+        if (index == -1)
         {
-            if (_players[i].state == PlayState.none)
-            {
-                number++;
-            }
-        }
-
-        for (int i = 0; i < _players.Count; i++) {
-            if (_players[i].state == PlayState.play)
-            {
-                _players[i].state = PlayState.end;
-                GameCtrl.Instance.addMsg(GameConst.STOPDEALPOKER, _players[i].user);
-                nextPlayer(i);
-                break;
-            }
-        }
-
-        if (number == 0) {
             gameOver();
+            return;
+        }
+
+        _players[index].state = PlayState.end;
+        GameCtrl.Instance.addMsg(GameConst.STOPDEALPOKER, _players[index].user);
+        
+        if (getPlayerStateNumber() == 0)
+        {
+            gameOver();
+        }
+        else {
+            nextPlayer(index);
         }
     }
 
@@ -178,7 +172,7 @@ public class PlayPokerMgr : Singleton<PlayPokerMgr>
         int index = -1;
         IUser user = null;  
         bool isBack = false;
-        if (list.Count == 1 || list[0].point > list[1].point)
+        if (list.Count == 1 || (list.Count == 2 && list[0].point > list[1].point))
         {
             index = list[0].index;
             isBack = list[0].point == maxPoint;
@@ -211,5 +205,30 @@ public class PlayPokerMgr : Singleton<PlayPokerMgr>
                 break;
             }
         }
+    }
+
+    private int getPlayerStateNumber() {
+        int number = 0;
+        for (int i = 0; i < _players.Count; i++)
+        {
+            if (_players[i].state == PlayState.none)
+            {
+                number++;
+            }
+        }
+        return number;
+    }
+
+    private int getPlayingIndex() {
+        int index = -1;
+        for (int i = 0; i < _players.Count; i++)
+        {
+            if (_players[i].state == PlayState.play)
+            {
+                index = i;
+                break;
+            }
+        }
+        return index;
     }
 }

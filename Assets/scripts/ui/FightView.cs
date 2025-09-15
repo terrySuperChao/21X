@@ -422,12 +422,24 @@ public class FightView : MonoBehaviour
 
                 Text tempText = null;
                 if (defense > 0) {
-                    if(tempText == null)
+
+                    float value = 0;
+                    if (attack > defense)
+                    {
+                        value = defense;
+                        attack -= defense;
+                    }
+                    else {
+                        value = attack;
+                        attack = 0;
+                    }
+
+                    if (tempText == null)
                     {
                         tempText = Instantiate(defenseText, rootTransform);
                     }
                     tempText.transform.position = defenseText.transform.position;
-                    tempText.text = "-" + defense;
+                    tempText.text = "-" + value;
                     tempText.color = Color.red;
                     iTween.MoveBy(tempText.gameObject, new Vector3(0,-50,0), 0.5f);
                     yield return new WaitForSeconds(0.52f);
@@ -445,14 +457,14 @@ public class FightView : MonoBehaviour
                     }
                 }
 
-                if (attack > defense)
+                if (attack > 0)
                 {
                     if (tempText == null)
                     {
                         tempText = Instantiate(bloodText, rootTransform);
                     }
                     tempText.transform.position = bloodText.transform.position;
-                    tempText.text = "-" + (attack - defense);
+                    tempText.text = "-" + attack;
                     tempText.color = Color.red;
                     iTween.MoveBy(tempText.gameObject, new Vector3(0, -50, 0), 0.5f);
                     yield return new WaitForSeconds(0.52f);

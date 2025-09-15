@@ -5,6 +5,7 @@ public class NpcMgr : Singleton<NpcMgr>
 {
     private IUser _user = new UserObject(true);
     public void init() {
+        _user.reset();
         _user.setMoney(ConfigMgr.INIT_MONEY_VALUE);
         _user.setBlood(ConfigMgr.INIT_BLOOD_VALUE);
         _user.setMaxBlood(ConfigMgr.INIT_BLOOD_VALUE);

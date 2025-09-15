@@ -70,8 +70,8 @@ public class FightSettle : IGameSettle
                     defense = 0;
                 }
                 else {
-                    attack = 0;
                     defense -= attack;
+                    attack = 0;
                 }
 
                 if (blood > attack)
