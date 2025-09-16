@@ -351,8 +351,16 @@ public class FightView : MonoBehaviour
                 {
                     addText = Instantiate(text, rootTransform);
                 }
+                if (_gameSettle.isBackJock())
+                {
+                    addText.text = "+" + addValue + " X2";
+                    addValue *= 2;
+                }
+                else
+                {
+                    addText.text = "+" + addValue;
+                }
                 addText.transform.position = transform.GetChild(i).transform.position;
-                addText.text = "+" + addValue;
                 iTween.MoveTo(addText.gameObject, text.transform.position, 0.5f);
                 yield return new WaitForSeconds(0.6f);
 

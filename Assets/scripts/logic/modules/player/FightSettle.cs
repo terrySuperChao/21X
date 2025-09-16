@@ -10,14 +10,17 @@ using UnityEngine;
 public class FightSettle : IGameSettle
 {
 
-    public float _settleAattck = 0;
-    public float _settleDefense = 0;
+    private float _settleAattck = 0;
+    private float _settleDefense = 0;
+    private bool _isBackJock = false;
 
     public void gameSettle(IGameSettlePara para) {
 
         _settleAattck = 0;
         _settleDefense = 0;
+        _isBackJock = para.isBackJock();
 
+        int mult = para.isBackJock() ? 2 : 1;
         int winIndex = para.getWinIndex();
         List<IUser> users = para.getUsers();
         for (int i = 0; i < users.Count; i++) {
@@ -48,10 +51,10 @@ public class FightSettle : IGameSettle
                             break;
                     }
                 }
-                users[i].addBlood(blood);
-                users[i].addAttack(attack);
-                users[i].addDefense(defense);
-                users[i].addMagic(magic);
+                users[i].addBlood(blood * mult);
+                users[i].addAttack(attack * mult);
+                users[i].addDefense(defense * mult);
+                users[i].addMagic(magic * mult);
                 break;
             }
         }
@@ -146,5 +149,9 @@ public class FightSettle : IGameSettle
     public float getSettleDefense()
     {
         return _settleDefense;
+    }
+
+    public bool isBackJock() {
+        return _isBackJock;
     }
 }
