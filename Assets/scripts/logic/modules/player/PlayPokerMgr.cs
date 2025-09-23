@@ -32,7 +32,13 @@ public class PlayPokerMgr : Singleton<PlayPokerMgr>
     }
 
     private List<PlayerState> _players = new List<PlayerState>();
+    private IGameBegin _gameBegin;
     private IGameSettle _gameSettle;
+
+    public void setGameBegin(IGameBegin gameBegin)
+    {
+        _gameBegin = gameBegin;
+    }
 
     public void setGameSettle(IGameSettle gameSettle) {
         _gameSettle = gameSettle;
@@ -59,6 +65,14 @@ public class PlayPokerMgr : Singleton<PlayPokerMgr>
     }
 
     public void startPlayPoker() {
+        List<IUser> users = new List<IUser>();
+        for (int i = 0; i < _players.Count; i++)
+        {
+            users.Add(_players[i].user);
+        }
+        _gameBegin?.gameBegin(new GameBeginPara(users));
+
+
         for (int i = 0; i < 2; i++) {
             for (int j = 0; j < _players.Count; j++){
                 IUser user = _players[j].user;

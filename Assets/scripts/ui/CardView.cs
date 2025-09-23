@@ -4,8 +4,9 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using static UnityEngine.UIElements.UxmlAttributeDescription;
 
-public class FightView : MonoBehaviour
+public class CardView : MonoBehaviour
 {
     public GameObject npcHeadImage;
     public Transform npcTransform;    
@@ -42,22 +43,32 @@ public class FightView : MonoBehaviour
     public GameObject effectImage;
     public GameObject attackImage;
     public Text effectText;
+
+    public GameObject selectCard;
+    public GameObject cardPrefab;
+
+    public Transform npcCards;
+    public Transform userCards;
+
+    private CardBegin _gameBegin = new CardBegin();
+    private CardSettle _gameSettle = new CardSettle();
     
-    private FightSettle _gameSettle = new FightSettle();
     // Start is called before the first frame update
     void Start()
     {
         updateUserInfo();
         setBtnInteractable(false);
-
+        PlayPokerMgr.Instance.setGameBegin(_gameBegin);
         PlayPokerMgr.Instance.setGameSettle(_gameSettle);
         PlayPokerMgr.Instance.startPlayPoker();
-        
+
         EventDispatcher.Instance.on(GameConst.DEALPOKER, this.dealPoker);
         EventDispatcher.Instance.on(GameConst.STOPDEALPOKER, this.stopDealPoker);
         EventDispatcher.Instance.on(GameConst.PLAYERACTION, this.playerAction);
         EventDispatcher.Instance.on(GameConst.SHUFFLEPOKER, this.shufflePoker);
         EventDispatcher.Instance.on(GameConst.GAMEOVER, this.gameOver);
+        EventDispatcher.Instance.on(GameConst.DEALCARD, this.dealCard);
+        EventDispatcher.Instance.on(GameConst.SELECTFINSIHCARD, this.selectFinishCard);
 
         StartCoroutine(dealPokerAfterAction());
     }
@@ -69,6 +80,8 @@ public class FightView : MonoBehaviour
         EventDispatcher.Instance.off(GameConst.PLAYERACTION, this.playerAction);
         EventDispatcher.Instance.off(GameConst.SHUFFLEPOKER, this.shufflePoker);
         EventDispatcher.Instance.off(GameConst.GAMEOVER, this.gameOver);
+        EventDispatcher.Instance.off(GameConst.DEALCARD, this.dealCard);
+        EventDispatcher.Instance.off(GameConst.SELECTFINSIHCARD, this.selectFinishCard);
     }
 
     // Update is called once per frame
@@ -603,5 +616,55 @@ public class FightView : MonoBehaviour
     private IEnumerator shufflePokerHandle(params System.Object[] obj) {
         GameCtrl.Instance.setHandleMessageComplete();
         yield return new WaitForSeconds(0.1f);
+    }
+
+    public void dealCard(params System.Object[] obj) {
+        IUser user = (IUser)obj[0];
+        if (user == null) {
+            GameCtrl.Instance.setHandleMessageComplete();
+            return;
+        }
+
+        List <ICard> cards = (List<ICard>)obj[1];
+        if (cards == null) {
+            GameCtrl.Instance.setHandleMessageComplete();
+            return;
+        }
+
+        if (user.isNpc())
+        {
+
+        }
+        else {
+            selectCard.SetActive(true);
+            selectCard.GetComponent<SelectCardView>().initCards(user,cards);
+        }
+    }
+
+    public void selectFinishCard(params System.Object[] obj)
+    {
+        StartCoroutine(selectFinishCardHandle(obj));
+    }
+
+    private IEnumerator selectFinishCardHandle(params System.Object[] obj) {
+        IUser user = (IUser)obj[0];
+        ICard card = (ICard)obj[1];
+        Vector3 position = (Vector3)obj[2];
+        selectCard.SetActive(false);
+       
+        if (card != null) {
+            CardMgr.Instance.addCard(user, card);
+
+            GameObject cardObject = Instantiate(cardPrefab, rootTransform);
+            cardObject.GetComponent<Card>().loadCard(card);
+            cardObject.transform.position = position;
+
+            iTween.MoveTo(cardObject, cardObject.transform.position, 1.0f);
+            yield return new WaitForSeconds(1.1f);
+            Destroy(cardObject);
+        }
+
+        yield return new WaitForSeconds(0.1f);
+        GameCtrl.Instance.setHandleMessageComplete();
     }
 }

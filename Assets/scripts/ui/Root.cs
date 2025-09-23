@@ -9,6 +9,7 @@ public class Root : MonoBehaviour
     public GameObject lobbyView;
     public GameObject gameView;
     public GameObject fightView;
+    public GameObject cardView;
     // Start is called before the first frame update
     void Start()
     {
@@ -46,7 +47,6 @@ public class Root : MonoBehaviour
         PlayPokerMgr.Instance.clearPlayer();
         PlayPokerMgr.Instance.addPlayer(user1);
         PlayPokerMgr.Instance.addPlayer(user2);
-        PlayPokerMgr.Instance.startPlayPoker();
 
         deleteGameObject("LobbyView");
         onLoadGameView(obj);
@@ -60,8 +60,19 @@ public class Root : MonoBehaviour
     }
 
     private void onLoadGameView(params System.Object[] obj) {
+        GameObject gView = null;
         GameMode mode = (GameMode)obj[0];
-        GameObject gView = mode == GameMode.Common ? gameView : fightView;
+        switch (mode) {
+            case GameMode.Common:
+                gView = gameView;
+            break;
+            case GameMode.Fight:
+                gView = fightView;
+                break;
+            case GameMode.Card:
+                gView = cardView;
+                break;
+        }
         GameObject gvGameObject = Instantiate(gView, new Vector3(0, 0, 0), Quaternion.identity);
         gvGameObject.transform.parent = gameObject.transform;
         gvGameObject.name = "GameView";

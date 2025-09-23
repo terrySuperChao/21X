@@ -24,6 +24,11 @@ public class LobbyView : MonoBehaviour
         EventDispatcher.Instance.emit("startGame", GameMode.Fight);
     }
 
+    public void onCardClick()
+    {
+        EventDispatcher.Instance.emit("startGame", GameMode.Card);
+    }
+
     public void onCloseClick() { 
         
     }

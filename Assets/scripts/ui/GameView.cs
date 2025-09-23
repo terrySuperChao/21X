@@ -38,7 +38,8 @@ public class GameView : MonoBehaviour
         updateUserInfo();
         setBtnInteractable(false);
         PlayPokerMgr.Instance.setGameSettle(_gameSettle);
-
+        PlayPokerMgr.Instance.startPlayPoker();
+        
         EventDispatcher.Instance.on(GameConst.DEALPOKER, this.dealPoker);
         EventDispatcher.Instance.on(GameConst.STOPDEALPOKER, this.stopDealPoker);
         EventDispatcher.Instance.on(GameConst.PLAYERACTION, this.playerAction);

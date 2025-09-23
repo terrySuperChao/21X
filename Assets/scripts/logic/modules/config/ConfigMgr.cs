@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 
-public class ConfigMgr: Singleton<UserMgr>
+public class ConfigMgr: Singleton<ConfigMgr>
 {
     //初始化钱的数量
     public const int INIT_MONEY_VALUE = 500;
