@@ -39,6 +39,7 @@ public class Root : MonoBehaviour
         //每局开始处理
         UserMgr.Instance.init();
         NpcMgr.Instance.init();
+        CardMgr.Instance.init();
         IUser user1 = UserMgr.Instance.getUser();
         IUser user2 = NpcMgr.Instance.getUser();
         PokerPileMgr.Instance.shuffle();

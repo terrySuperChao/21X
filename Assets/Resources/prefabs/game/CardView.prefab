@@ -3763,7 +3763,7 @@ MonoBehaviour:
   userTipsPanel: {fileID: 1502038372075107540}
   effectImage: {fileID: 6919416927061789772}
   attackImage: {fileID: 372676740455656792}
-  effectText: {fileID: 0}
+  effectText: {fileID: 217055580405416807}
   selectCard: {fileID: 1943986815109357266}
   cardPrefab: {fileID: 5257655248267919920, guid: 0ef6c9186c75fa7468ddf0c91592aa9d, type: 3}
   npcCards: {fileID: 1840371479625847149}

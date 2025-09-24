@@ -6,10 +6,12 @@ using Unity.Collections.LowLevel.Unsafe;
 public class CardMgr: Singleton<CardMgr>
 {
     private const int MAXSLOT = 3;
+    private int _round = 1;
     private Dictionary<string, List<ICard>> _cardDic = new Dictionary<string, List<ICard>>();
     public void init()
     {
-
+        _round = 1;
+        _cardDic.Clear();
     }
 
     public void addCard(IUser user, ICard card)
@@ -125,5 +127,13 @@ public class CardMgr: Singleton<CardMgr>
         else {
             return _cardDic[user.getUserId()];
         }
+    }
+
+    public int getRound() {
+        return _round;
+    }
+
+    public void addRound() {
+        _round++;
     }
 }

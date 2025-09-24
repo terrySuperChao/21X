@@ -10,10 +10,14 @@ public class CardBegin : IGameBegin
 {
     public void gameBegin(IGameBeginPara para)
     {
-        List<IUser> users = para.getUsers();
-        for (int i = 0; i < users.Count; i++) {
-            List<ICard> cards = CardMgr.Instance.getRandomCard(users[i]);
-            GameCtrl.Instance.addMsg(GameConst.DEALCARD, users[i], cards);
+        if (CardMgr.Instance.getRound() % 2 == 1) {
+            List<IUser> users = para.getUsers();
+            for (int i = 0; i < users.Count; i++)
+            {
+                List<ICard> cards = CardMgr.Instance.getRandomCard(users[i]);
+                GameCtrl.Instance.addMsg(GameConst.DEALCARD, users[i], cards);
+            }
         }
+        CardMgr.Instance.addRound();
     }
 }
