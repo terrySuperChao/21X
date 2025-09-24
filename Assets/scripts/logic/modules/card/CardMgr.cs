@@ -18,7 +18,7 @@ public class CardMgr: Singleton<CardMgr>
             return;
         }
 
-        if (!_cardDic.ContainsKey(user.getUserId()))
+        if (_cardDic.ContainsKey(user.getUserId()))
         {
             List<ICard> list = _cardDic[user.getUserId()];
             for (int i = 0; i < list.Count; i++) {
@@ -38,15 +38,16 @@ public class CardMgr: Singleton<CardMgr>
     }
 
     public List<ICard> getRandomCard(IUser user) {
-        if (!_cardDic.ContainsKey(user.getUserId())) {
-            return null;
-        }
-
         List<ICard> config = CardConfig.getConfig();
         List<ICard> list0 = new List<ICard>();
         List<ICard> list1 = new List<ICard>();
         List<ICard> list2 = new List<ICard>();
-        List<ICard> userCards = _cardDic[user.getUserId()];
+        List<ICard> userCards = new List<ICard>();
+
+        if (_cardDic.ContainsKey(user.getUserId()))
+        {
+            userCards = _cardDic[user.getUserId()];
+        }
 
         for (int i = 0; i < config.Count; i++) {
             if (config[i].getLevel() == 1) {
@@ -92,7 +93,7 @@ public class CardMgr: Singleton<CardMgr>
         {
             for (int j = 0; j < list2.Count; j++)
             {
-                if (userCards[i].getType() == list2[j].getType())
+                if (list1[i].getType() == list2[j].getType())
                 {
                     list2.RemoveAt(j);
                     break;

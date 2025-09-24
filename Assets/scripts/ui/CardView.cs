@@ -58,6 +58,7 @@ public class CardView : MonoBehaviour
     {
         updateUserInfo();
         setBtnInteractable(false);
+        
         PlayPokerMgr.Instance.setGameBegin(_gameBegin);
         PlayPokerMgr.Instance.setGameSettle(_gameSettle);
         PlayPokerMgr.Instance.startPlayPoker();
@@ -620,20 +621,31 @@ public class CardView : MonoBehaviour
 
     public void dealCard(params System.Object[] obj) {
         IUser user = (IUser)obj[0];
+        
         if (user == null) {
             GameCtrl.Instance.setHandleMessageComplete();
             return;
         }
-
+        
         List <ICard> cards = (List<ICard>)obj[1];
         if (cards == null) {
             GameCtrl.Instance.setHandleMessageComplete();
             return;
         }
-
+        
         if (user.isNpc())
         {
+            int rd = new System.Random().Next(cards.Count - 1);
+            ICard card = cards[rd];
+            CardMgr.Instance.addCard(user, card);
+            int index = getCardPositionIndex(card, npcCards);
 
+            GameObject cardObject = Instantiate(cardPrefab, npcCards);
+            cardObject.GetComponent<Card>().loadCard(card);
+            cardObject.transform.position = npcCards.GetChild(index).position;
+            cardObject.transform.localScale = new Vector3(0.7f, 0.7f, 0.7f);
+            Destroy(npcCards.GetChild(index).gameObject);
+            GameCtrl.Instance.setHandleMessageComplete();
         }
         else {
             selectCard.SetActive(true);
@@ -649,7 +661,6 @@ public class CardView : MonoBehaviour
     private IEnumerator selectFinishCardHandle(params System.Object[] obj) {
         IUser user = (IUser)obj[0];
         ICard card = (ICard)obj[1];
-        Vector3 position = (Vector3)obj[2];
         selectCard.SetActive(false);
        
         if (card != null) {
@@ -657,14 +668,31 @@ public class CardView : MonoBehaviour
 
             GameObject cardObject = Instantiate(cardPrefab, rootTransform);
             cardObject.GetComponent<Card>().loadCard(card);
-            cardObject.transform.position = position;
+            cardObject.transform.position = (Vector3)obj[2];
 
-            iTween.MoveTo(cardObject, cardObject.transform.position, 1.0f);
-            yield return new WaitForSeconds(1.1f);
-            Destroy(cardObject);
+            int index = getCardPositionIndex(card, userCards);
+            iTween.MoveTo(cardObject, userCards.GetChild(index).position, 0.5f);
+            yield return new WaitForSeconds(0.6f);
+            Destroy(userCards.GetChild(index).gameObject);
+            cardObject.transform.parent = userCards;
+            cardObject.transform.localScale = new Vector3(0.7f, 0.7f, 0.7f);
         }
 
         yield return new WaitForSeconds(0.1f);
         GameCtrl.Instance.setHandleMessageComplete();
+    }
+
+    private int getCardPositionIndex(ICard card,Transform parent) {
+        int index = 0;
+        for (int i = 0; i < parent.childCount; i++)
+        {
+            Card cardComp = parent.GetChild(i).GetComponent<Card>();
+            if (cardComp != null && cardComp.getCard().getType() == card.getType())
+            {
+                index = i;
+                break;
+            }
+        }
+        return index;
     }
 }

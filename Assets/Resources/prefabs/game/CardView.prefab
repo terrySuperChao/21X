@@ -868,7 +868,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4685304450348450459}
   m_Layer: 5
-  m_Name: userCard
+  m_Name: userCards
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2150,8 +2150,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: FightView, Assembly-CSharp
+      - m_Target: {fileID: 4396149552600065088}
+        m_TargetAssemblyTypeName: CardView, Assembly-CSharp
         m_MethodName: onReturnClick
         m_Mode: 1
         m_Arguments:
@@ -2410,7 +2410,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 200, y: 250}
+  m_AnchoredPosition: {x: 200, y: 280}
   m_SizeDelta: {x: 300, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1000829405684360856
@@ -2884,7 +2884,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 200, y: -250}
+  m_AnchoredPosition: {x: 200, y: -280}
   m_SizeDelta: {x: 300, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &6607875825356309423
@@ -3597,8 +3597,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: FightView, Assembly-CSharp
+      - m_Target: {fileID: 4396149552600065088}
+        m_TargetAssemblyTypeName: CardView, Assembly-CSharp
         m_MethodName: onDealPokerClick
         m_Mode: 1
         m_Arguments:
@@ -3766,6 +3766,8 @@ MonoBehaviour:
   effectText: {fileID: 0}
   selectCard: {fileID: 1943986815109357266}
   cardPrefab: {fileID: 5257655248267919920, guid: 0ef6c9186c75fa7468ddf0c91592aa9d, type: 3}
+  npcCards: {fileID: 1840371479625847149}
+  userCards: {fileID: 4685304450348450459}
 --- !u!114 &1469827947446030597
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3998,8 +4000,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: FightView, Assembly-CSharp
+      - m_Target: {fileID: 4396149552600065088}
+        m_TargetAssemblyTypeName: CardView, Assembly-CSharp
         m_MethodName: onStopPokerClick
         m_Mode: 1
         m_Arguments:
@@ -4379,7 +4381,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1840371479625847149}
   m_Layer: 5
-  m_Name: npcCard
+  m_Name: npcCards
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4975,9 +4977,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: FightView, Assembly-CSharp
-        m_MethodName: onCloseClick
+      - m_Target: {fileID: 4396149552600065088}
+        m_TargetAssemblyTypeName: CardView, Assembly-CSharp
+        m_MethodName: onReturnClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5763,9 +5765,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6848413082883732129, guid: 39b466fd6dfde264daa302d14c520dc2, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 57.508507
+      objectReference: {fileID: 0}
     - target: {fileID: 7069827070764324579, guid: 39b466fd6dfde264daa302d14c520dc2, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 57.508507
       objectReference: {fileID: 0}
     - target: {fileID: 7339933208958215033, guid: 39b466fd6dfde264daa302d14c520dc2, type: 3}
       propertyPath: m_SizeDelta.x
@@ -5774,6 +5780,10 @@ PrefabInstance:
     - target: {fileID: 7709974655959353843, guid: 39b466fd6dfde264daa302d14c520dc2, type: 3}
       propertyPath: m_Name
       value: selectCard
+      objectReference: {fileID: 0}
+    - target: {fileID: 7709974655959353843, guid: 39b466fd6dfde264daa302d14c520dc2, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

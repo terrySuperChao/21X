@@ -50,4 +50,8 @@ public class Card : MonoBehaviour
     public bool isSelected() {
         return selectImage.activeSelf;
     }
+
+    public ICard getCard() {
+        return _card;
+    }
 }   
