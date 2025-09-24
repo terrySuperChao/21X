@@ -29,4 +29,15 @@ public class CardConfig
     public static List<ICard> getConfig() {
         return _config;
     }
+
+
+	private static List<ICardHandle> _handle = new List<ICardHandle> { 
+		new SpadeCardHandle(),
+    };
+
+    public static List<ICardHandle> getHandle()
+    {
+        return _handle;
+    }
+
 }

@@ -1,7 +1,6 @@
 //≈∆∂—
 using System;
 using System.Collections.Generic;
-using Unity.Collections.LowLevel.Unsafe;
 
 public class CardMgr: Singleton<CardMgr>
 {
@@ -52,7 +51,7 @@ public class CardMgr: Singleton<CardMgr>
         }
 
         //≈–∂œ¬˙≤€¡À
-        int slot = 3;
+        int slot = MAXSLOT;
         for (int i = 0; i < userCards.Count; i++) {
             if (userCards[i].getLevel() > 1) {
                 slot--;
@@ -145,5 +144,18 @@ public class CardMgr: Singleton<CardMgr>
 
     public void addRound() {
         _round++;
+    }
+
+    //
+    public void calculateCard(ICardHandlePara para) {
+        if (!_cardDic.ContainsKey(para.getAttackUser().getUserId())) return;
+        List<ICard> cards = _cardDic[para.getAttackUser().getUserId()];
+        List<ICardHandle> handles = CardConfig.getHandle();
+        for (int i = 0; i < cards.Count; i++) {
+            para.setCard(cards[i]);
+            for (int j = 0; j < handles.Count; j++) {
+                if (handles[j].handle(para)) break;
+            }
+        }
     }
 }

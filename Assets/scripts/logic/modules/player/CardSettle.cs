@@ -30,6 +30,7 @@ public class CardSettle : IGameSettle
                 float defense = 0;
                 float magic = 0;
 
+                ICardHandlePara handlePara = new CardHandleParaObject(users[i],null,null,null);
                 List<IPoker> pokers = HandPokerMgr.Instance.getHandPoker(users[i]);
                 List<int> values = getPokerValue(pokers);
                 for (int j = 0; j < pokers.Count; j++) {
@@ -50,6 +51,8 @@ public class CardSettle : IGameSettle
                         default:
                             break;
                     }
+                    handlePara.setPoker(pokers[j]);
+                    CardMgr.Instance.calculateCard(handlePara);
                 }
                 users[i].addBlood(blood * mult);
                 users[i].addAttack(attack * mult);
