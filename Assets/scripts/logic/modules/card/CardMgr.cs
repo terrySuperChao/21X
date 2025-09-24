@@ -51,6 +51,16 @@ public class CardMgr: Singleton<CardMgr>
             userCards = _cardDic[user.getUserId()];
         }
 
+        //еп╤обЗ╡шак
+        int slot = 3;
+        for (int i = 0; i < userCards.Count; i++) {
+            if (userCards[i].getLevel() > 1) {
+                slot--;
+            }
+        }
+        if (slot == 0) return list0;
+
+
         for (int i = 0; i < config.Count; i++) {
             if (config[i].getLevel() == 1) {
                 list1.Add(config[i]);

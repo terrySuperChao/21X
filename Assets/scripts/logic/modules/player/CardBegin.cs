@@ -15,7 +15,9 @@ public class CardBegin : IGameBegin
             for (int i = 0; i < users.Count; i++)
             {
                 List<ICard> cards = CardMgr.Instance.getRandomCard(users[i]);
-                GameCtrl.Instance.addMsg(GameConst.DEALCARD, users[i], cards);
+                if (cards.Count > 0) {
+                    GameCtrl.Instance.addMsg(GameConst.DEALCARD, users[i], cards);
+                }
             }
         }
         CardMgr.Instance.addRound();
