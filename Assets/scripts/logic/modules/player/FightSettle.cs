@@ -14,7 +14,7 @@ public class FightSettle : IGameSettle
     private float _settleDefense = 0;
     private bool _isBackJock = false;
 
-    public void gameSettle(IGameSettlePara para) {
+    public bool gameSettle(IGameSettlePara para) {
 
         _settleAattck = 0;
         _settleDefense = 0;
@@ -90,6 +90,18 @@ public class FightSettle : IGameSettle
                 break;
             }
         }
+
+        bool isGameOver = false;
+        for (int i = 0; i < users.Count; i++)
+        {
+            if (users[i].getBlood() <= 0)
+            {
+                isGameOver = true;
+                break;
+            }
+        }
+
+        return isGameOver;
     }
 
     public List<int> getPokerValue(List<IPoker> pokers)

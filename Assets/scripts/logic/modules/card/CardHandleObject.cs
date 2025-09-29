@@ -2,11 +2,21 @@ using System.Diagnostics;
 
 public abstract class CardHandleObject:ICardHandle
 {
-    public bool handle(ICardHandlePara para) {
-        return this._handle(para);
+    public void addValueHandle(ICardHandlePara para) {
+        this._addValueHandle(para);
     }
 
-    protected virtual bool _handle(ICardHandlePara para) {
-        return true;
+    public void penetrateHanle(ICardHandlePara para)
+    {
+        this._penetrateHanle(para);
+    }
+
+    protected virtual void _addValueHandle(ICardHandlePara para) {
+        
+    }
+
+    protected virtual void _penetrateHanle(ICardHandlePara para)
+    {
+
     }
 }

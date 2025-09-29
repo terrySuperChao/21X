@@ -19,22 +19,22 @@ public interface IUser
     public float getMaxBlood();
 
     public void setBlood(float value);
-    public void addBlood(float value);
+    public float addBlood(float value);
 
     public float getBlood();
 
     public void setAttack(float value);
-    public void addAttack(float value);
+    public float addAttack(float value);
     public float getAttack();
 
     public void setDefense(float value);
-    public void addDefense(float value);
+    public float addDefense(float value);
     public float getDefense();
 
     public void setMaxMagic(float value);
-
+    public void setMagic(float value);
     public float getMaxMagic();
-    public void addMagic(float value);
+    public float addMagic(float value);
 
     public float getMagic();
 

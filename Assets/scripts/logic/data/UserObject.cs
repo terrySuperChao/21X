@@ -75,7 +75,7 @@ public class UserObject : IUser
         return _maxBlood;
     }
 
-    public void addBlood(float value) {
+    public float addBlood(float value) {
         _blood += value;
         if (_blood > _maxBlood) {
             _blood = _maxBlood;
@@ -83,6 +83,7 @@ public class UserObject : IUser
         if (_blood < 0) {
             _blood = 0;
         }
+        return _blood;
     }
 
     public float getBlood() {
@@ -92,8 +93,9 @@ public class UserObject : IUser
     public void setAttack(float value) {
         _attack = value;
     }
-    public void addAttack(float value) {
+    public float addAttack(float value) {
         _attack += value;
+        return _attack;
     }
     public float getAttack() {
         return _attack;
@@ -103,8 +105,9 @@ public class UserObject : IUser
         _defense = value;
     }
 
-    public void addDefense(float value) {
+    public float addDefense(float value) {
         _defense += value;
+        return _defense;
     }
 
     public float getDefense() {
@@ -119,7 +122,7 @@ public class UserObject : IUser
         return _maxMagic;
     }
 
-    public void addMagic(float value) {
+    public float addMagic(float value) {
         _magic += value;
         if (_magic > _maxMagic) {
             _magic = _maxMagic;
@@ -128,6 +131,12 @@ public class UserObject : IUser
         {
             _magic = 0;
         }
+        return _magic;
+    }
+
+    public void setMagic(float value)
+    {
+        _magic = value;
     }
 
     public float getMagic() {

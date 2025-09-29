@@ -1,15 +1,14 @@
-//ºÚÌÒ´óÊ¦
-using UnityEngine;
-public class SpadeCardHandle:CardHandleObject
+//ºìÌÒ´óÊ¦
+public class HeartCardHandle: CardHandleObject
 {
     override
     protected void _addValueHandle(ICardHandlePara para) {
         PokerSuit suit = (PokerSuit)para.getPoker().getSuit();
-        if (suit != PokerSuit.spade)
-        { //ºÚÌÒ
+        if (suit != PokerSuit.heart)
+        { //ºìÌÒ
             return;
         }
-        
+
         float addValue = 1;
         float finalValue = para.getAttackUser().addAttack(addValue);
         IUICardHandlePara uiPara = new UICardHandleParaObject(para, addValue, finalValue);

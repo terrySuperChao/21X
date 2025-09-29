@@ -11,11 +11,17 @@ public class GameConst
     public const string STOPDEALPOKER   = "stopDealPoker";
     public const string PLAYERACTION    = "playerAction";
     public const string SHUFFLEPOKER    = "shufflePoker";
+    public const string GAMESETTLE      = "gameSettle";
+    public const string GAMENEXTROUND   = "gameNextRound";
     public const string GAMEOVER        = "gameOver";
     public const string FLIPPOKER       = "flipPoker";
     public const string DEALCARD        = "dealCard";
     public const string SELECTCARD      = "selectCard";
     public const string SELECTFINSIHCARD = "SELECTFINSIHCARD";
+    public const string ADDPOKERVALUE   = "addPokerValue";
+    public const string ADDCARDVALUE    = "addCardValue";
+    public const string COMMONATTACK    = "commonAttack";
+    public const string FLYFONT         = "flyFont";
 }
 
 public enum GameMode { 
@@ -35,4 +41,23 @@ public enum CardType {
     cardType8,//±¨≈∆÷Æ∂‹
     cardType9,// »—™øÒª∂
     cardType10,//√¸‘À¿°‘˘
+}
+
+public enum PokerSuit {
+    /**
+    * ∑ΩøÈ≈∆
+    */
+    diamond = 1,
+    /**
+     * ∫ÏÃ“≈∆
+     */
+    heart = 2,
+    /**
+     * ∫⁄Ã“≈∆
+     */
+    spade = 3,
+    /**
+     * √∑ª®≈∆
+     */
+    club = 4,
 }

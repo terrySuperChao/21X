@@ -1,3 +1,4 @@
+using System;
 public interface ICardHandlePara
 {
     public void setCard(ICard card);
@@ -8,4 +9,8 @@ public interface ICardHandlePara
 
     public IPoker getPoker();
     public void setPoker(IPoker poker);
+
+    public Object getExtralData();
+
+    public void setExtralData(Object obj);
 }

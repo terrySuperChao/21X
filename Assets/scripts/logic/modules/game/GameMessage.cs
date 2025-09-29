@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using UnityEngine;
 
-public class GameCtrl : Singleton<GameCtrl>
+public class GameMessage : Singleton<GameMessage>
 {
     private class ICacheMsg {
         string _key;

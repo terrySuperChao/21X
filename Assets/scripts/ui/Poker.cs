@@ -51,4 +51,8 @@ public class Poker : MonoBehaviour
             GetComponent<UnityEngine.UI.Image>().sprite = Sprite.Create(myTexture, new Rect(0.0f, 0.0f, myTexture.width, myTexture.height), new Vector2(0.5f, 0.5f));
         }
     }
+
+    public IPoker getPoker() {
+        return _poker;
+    }
 }

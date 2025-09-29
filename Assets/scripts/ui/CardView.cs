@@ -1,15 +1,14 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
+using Unity.VisualScripting.Antlr3.Runtime;
 using UnityEngine;
 using UnityEngine.UI;
-using static UnityEngine.UIElements.UxmlAttributeDescription;
 
 public class CardView : MonoBehaviour
 {
     public GameObject npcHeadImage;
-    public Transform npcTransform;    
+    public Transform npcPokers;
     public Text npcPointText;
     public Text npcWinsText;
     public Text npcWinRateText;
@@ -19,7 +18,7 @@ public class CardView : MonoBehaviour
     public Text npcMagicText;
 
     public GameObject userHeadImage;
-    public Transform userTransform;
+    public Transform userPokers;
     public Text userPointText;
     public Text userWinsText;
     public Text userWinRateText;
@@ -52,13 +51,13 @@ public class CardView : MonoBehaviour
 
     private CardBegin _gameBegin = new CardBegin();
     private CardSettle _gameSettle = new CardSettle();
-    
+
     // Start is called before the first frame update
     void Start()
     {
         updateUserInfo();
         setBtnInteractable(false);
-        
+
         PlayPokerMgr.Instance.setGameBegin(_gameBegin);
         PlayPokerMgr.Instance.setGameSettle(_gameSettle);
         PlayPokerMgr.Instance.startPlayPoker();
@@ -67,10 +66,15 @@ public class CardView : MonoBehaviour
         EventDispatcher.Instance.on(GameConst.STOPDEALPOKER, this.stopDealPoker);
         EventDispatcher.Instance.on(GameConst.PLAYERACTION, this.playerAction);
         EventDispatcher.Instance.on(GameConst.SHUFFLEPOKER, this.shufflePoker);
+        EventDispatcher.Instance.on(GameConst.GAMESETTLE, this.gameSettle);
         EventDispatcher.Instance.on(GameConst.GAMEOVER, this.gameOver);
         EventDispatcher.Instance.on(GameConst.DEALCARD, this.dealCard);
         EventDispatcher.Instance.on(GameConst.SELECTFINSIHCARD, this.selectFinishCard);
-
+        EventDispatcher.Instance.on(GameConst.ADDPOKERVALUE, this.addPokerValue);
+        EventDispatcher.Instance.on(GameConst.ADDCARDVALUE, this.addCardValue);
+        EventDispatcher.Instance.on(GameConst.COMMONATTACK, this.commonAttack);
+        EventDispatcher.Instance.on(GameConst.GAMENEXTROUND, this.gameNextRound);
+        EventDispatcher.Instance.on(GameConst.FLYFONT, this.flyFont);
         StartCoroutine(dealPokerAfterAction());
     }
 
@@ -80,9 +84,15 @@ public class CardView : MonoBehaviour
         EventDispatcher.Instance.off(GameConst.STOPDEALPOKER, this.stopDealPoker);
         EventDispatcher.Instance.off(GameConst.PLAYERACTION, this.playerAction);
         EventDispatcher.Instance.off(GameConst.SHUFFLEPOKER, this.shufflePoker);
+        EventDispatcher.Instance.off(GameConst.GAMESETTLE, this.gameSettle);
         EventDispatcher.Instance.off(GameConst.GAMEOVER, this.gameOver);
         EventDispatcher.Instance.off(GameConst.DEALCARD, this.dealCard);
         EventDispatcher.Instance.off(GameConst.SELECTFINSIHCARD, this.selectFinishCard);
+        EventDispatcher.Instance.off(GameConst.ADDPOKERVALUE, this.addPokerValue);
+        EventDispatcher.Instance.off(GameConst.ADDCARDVALUE, this.addCardValue);
+        EventDispatcher.Instance.off(GameConst.COMMONATTACK, this.commonAttack);
+        EventDispatcher.Instance.off(GameConst.GAMENEXTROUND, this.gameNextRound);
+        EventDispatcher.Instance.off(GameConst.FLYFONT, this.flyFont);
     }
 
     // Update is called once per frame
@@ -111,10 +121,10 @@ public class CardView : MonoBehaviour
                 userPointText.text = "0";
                 userWinsText.text = user.getWins().ToString();
                 userWinRateText.text = string.Format("{0:P1}", user.getWinRate());
-                userBloodText.text = user.getBlood() + "/"+user.getMaxBlood();
+                userBloodText.text = user.getBlood() + "/" + user.getMaxBlood();
                 userAttackText.text = user.getAttack().ToString();
                 userDefenseText.text = user.getDefense().ToString();
-                userMagicText.text = user.getMagic()+"/"+user.getMaxMagic();
+                userMagicText.text = user.getMagic() + "/" + user.getMaxMagic();
             }
         }
     }
@@ -122,10 +132,10 @@ public class CardView : MonoBehaviour
     private IEnumerator dealPokerAfterAction() {
         yield return new WaitForSeconds(1.0f);
         updateUserInfo();
-        GameCtrl.Instance.setHandleMessageComplete();
+        GameMessage.Instance.setHandleMessageComplete();
     }
 
-    private void addPoker(IUser user, IPoker poker,int point, Transform parent, Text text) {
+    private void addPoker(IUser user, IPoker poker, int point, Transform parent, Text text) {
         GameObject pokerObject = Instantiate(pokerPrefab, parent);
         pokerObject.GetComponent<Poker>().loadPokerRes(poker);
         pokerObject.transform.position = pokerPrefab.transform.position;
@@ -168,13 +178,13 @@ public class CardView : MonoBehaviour
     public void onDealPokerClick() {
         setBtnInteractable(false);
         PlayPokerMgr.Instance.dealPoker();
-        GameCtrl.Instance.setHandleMessageComplete();
+        GameMessage.Instance.setHandleMessageComplete();
     }
 
     public void onStopPokerClick() {
         setBtnInteractable(false);
         PlayPokerMgr.Instance.stopDealPoker();
-        GameCtrl.Instance.setHandleMessageComplete();
+        GameMessage.Instance.setHandleMessageComplete();
     }
 
     private void dealPoker(params System.Object[] obj)
@@ -187,26 +197,26 @@ public class CardView : MonoBehaviour
         IUser user = (IUser)obj[0];
         IPoker poker = (IPoker)obj[1];
         int point = (int)obj[2];
- 
+
         Transform transform;
         Text text;
 
         if (user.isNpc())
         {
-            transform = npcTransform;
+            transform = npcPokers;
             text = npcPointText;
         }
         else {
-            transform = userTransform;
+            transform = userPokers;
             text = userPointText;
         }
         addPoker(user, poker, point, transform, text);
 
-        if (!user.isNpc()) { 
-            //ªÒ»°’Ê µµƒ∑÷ ˝
+        if (!user.isNpc()) {
+            //Ëé∑ÂèñÁúüÂÆûÁöÑÂàÜÊï∞
             if (point == 21)
             {
-                if (HandPokerMgr.Instance.isBlackJack(user)){
+                if (HandPokerMgr.Instance.isBlackJack(user)) {
                     yield return new WaitForSeconds(0.5f);
 
                     userTipsPanel.SetActive(true);
@@ -220,13 +230,13 @@ public class CardView : MonoBehaviour
                 yield return new WaitForSeconds(0.5f);
                 userTipsPanel.SetActive(true);
                 Text tips = userTipsPanel.GetComponentInChildren<Text>();
-                tips.text = "±¨≈∆£°£°";
+                tips.text = "ÁàÜÁâåÔºÅÔºÅ";
                 tips.color = Color.red;
             }
         }
 
         yield return new WaitForSeconds(0.6f);
-        GameCtrl.Instance.setHandleMessageComplete();
+        GameMessage.Instance.setHandleMessageComplete();
     }
 
     private void stopDealPoker(params System.Object[] obj) {
@@ -235,8 +245,8 @@ public class CardView : MonoBehaviour
 
         panel.SetActive(true);
         Text text = panel.GetComponentInChildren<Text>();
-        text.text = "Õ£≈∆";
-        GameCtrl.Instance.setHandleMessageComplete();
+        text.text = "ÂÅúÁâå";
+        GameMessage.Instance.setHandleMessageComplete();
     }
 
     private void playerAction(params System.Object[] obj) {
@@ -245,15 +255,14 @@ public class CardView : MonoBehaviour
         {
             StartCoroutine(npcAutoDealPokerHandle(user));
         }
-        else { 
-            //”√ªß◊‘––≤Ÿ◊˜
+        else {
+            //Áî®Êà∑Ëá™Ë°åÊìç‰Ωú
         }
         setBtnInteractable(!user.isNpc());
     }
 
-    private IEnumerator npcAutoDealPokerHandle(IUser user){
-        System.Random rd = new System.Random();
-        yield return new WaitForSeconds(rd.Next(1, 2));
+    private IEnumerator npcAutoDealPokerHandle(IUser user) {
+        yield return new WaitForSeconds(RandomMgr.Instance.getRangeInt(1,3));
         int number = HandPokerMgr.Instance.getHandPokerPoint(user, false);
         if (number >= 17)
         {
@@ -262,14 +271,14 @@ public class CardView : MonoBehaviour
         else {
             PlayPokerMgr.Instance.dealPoker();
         }
-        GameCtrl.Instance.setHandleMessageComplete();
+        GameMessage.Instance.setHandleMessageComplete();
     }
 
-    private void gameOver(params System.Object[] obj) {
-        StartCoroutine(gameOverHandle(obj));
+    private void gameSettle(params System.Object[] obj) {
+        StartCoroutine(gameSettleHandle(obj));
     }
 
-    private IEnumerator gameOverHandle(params System.Object[] obj) {
+    private IEnumerator gameSettleHandle(params System.Object[] obj) {
         setBtnInteractable(false);
         yield return new WaitForSeconds(0.5f);
 
@@ -283,7 +292,7 @@ public class CardView : MonoBehaviour
                 int point = HandPokerMgr.Instance.getHandPokerPoint(list[i], false);
                 npcPointText.text = point.ToString();
 
-                //ªÒ»°’Ê µµƒ∑÷ ˝
+                //Ëé∑ÂèñÁúüÂÆûÁöÑÂàÜÊï∞
                 if (point == 21)
                 {
                     if (HandPokerMgr.Instance.isBlackJack(list[i]))
@@ -301,7 +310,7 @@ public class CardView : MonoBehaviour
                     yield return new WaitForSeconds(0.5f);
                     npcTipsPanel.SetActive(true);
                     Text tips = npcTipsPanel.GetComponentInChildren<Text>();
-                    tips.text = "±¨≈∆£°£°";
+                    tips.text = "ÁàÜÁâåÔºÅÔºÅ";
                     tips.color = Color.red;
                 }
             }
@@ -310,243 +319,287 @@ public class CardView : MonoBehaviour
         yield return new WaitForSeconds(1f);
         IUser user = (IUser)obj[0];
 
-        Transform transform = null;
         if (user == null) {
-            resultText.text = "±æªÿ∫œ∆Ωæ÷";
-            transform = null;
+            resultText.text = "Êú¨ÂõûÂêàÂπ≥Â±Ä";
         }
         else {
             if (user.isNpc()) {
-                resultText.text = "±æªÿ∫œNPCªÒ §";
-                transform = npcTransform;
+                resultText.text = "Êú¨ÂõûÂêàNPCËé∑ËÉú";
             }
             else {
-
-                resultText.text = "±æªÿ∫œÕÊº“ªÒ §";
-                transform = userTransform;
+                resultText.text = "Êú¨ÂõûÂêàÁé©ÂÆ∂Ëé∑ËÉú";
             }
         }
         resultPanel.SetActive(true);
 
         yield return new WaitForSeconds(0.5f);
-        if (transform)
-        {
-            Text text = null;
-            Text addText = null;
-            List <IPoker> pokers = HandPokerMgr.Instance.getHandPoker(user);
-            List<int> values = _gameSettle.getPokerValue(pokers);
-            for (int i = 0; i < pokers.Count; i++)
-            {
-                float addValue = values[i];
-                float maxValue = 999999;
-                switch (pokers[i].getSuit())
-                {
-                    case 1: // ∑Ω
-                        addValue *= 0.5f;
-                        text = user.isNpc() ? npcDefenseText : userDefenseText;
-                        break;
-                    case 2: // ∫Ï
-                        addValue *= 0.5f;
-                        text = user.isNpc() ? npcBloodText : userBloodText;
-                        maxValue = user.getMaxBlood();
-                        break;
-                    case 3: // ∫⁄
-                        addValue *= 1.0f;
-                        text = user.isNpc() ? npcAttackText : userAttackText;
-                        break;
-                    case 4: // √∑
-                        addValue *= 1.0f;
-                        text = user.isNpc() ? npcMagicText : userMagicText;
-                        maxValue = user.getMaxMagic();
-                        break;
-                    default:
-                        break;
-                }
+        resultPanel.SetActive(false);
+        GameMessage.Instance.setHandleMessageComplete();
+    }
 
-                if (addText == null)
-                {
-                    addText = Instantiate(text, rootTransform);
-                }
-                if (_gameSettle.isBackJock())
-                {
-                    addText.text = "+" + addValue + " X2";
-                    addValue *= 2;
-                }
-                else
-                {
-                    addText.text = "+" + addValue;
-                }
-                addText.transform.position = transform.GetChild(i).transform.position;
-                iTween.MoveTo(addText.gameObject, text.transform.position, 0.5f);
-                yield return new WaitForSeconds(0.6f);
+    private void gameOver(params System.Object[] obj)
+    {
+        EventDispatcher.Instance.emit("returnToLobby");
+    }
 
-                float oldValue = 0;
-                float.TryParse(text.text.Split("/")[0], out oldValue);
-                if (oldValue + addValue > maxValue)
-                {
-                    text.text = maxValue + "/" + maxValue;
-                }
-                else {
-                    if (maxValue != 999999)
-                    {
-                        text.text = (oldValue + addValue)+ "/" + maxValue;
-                    }
-                    else {
-                        text.text = (oldValue + addValue).ToString();
-                    }
-                }
-            }
+    private void setBtnInteractable(bool able) {
+        stopPokerBtn.interactable = dealPokerBtn.interactable = able;
+    }
 
-            if (addText != null) {
-                Destroy(addText.gameObject);
-            }
-            
-            float attack = _gameSettle.getSettleAttack();
-            float defense = _gameSettle.getSettleDefense();
-            if (attack > 0) { 
-                Text bloodText;
-                Text defenseText;
-                if (user.isNpc())
-                {
-                    bloodText = userBloodText;
-                    defenseText = userDefenseText;
+    private void shufflePoker(params System.Object[] obj) {
+        StartCoroutine(shufflePokerHandle(obj));
+    }
 
-                    attackImage.transform.position = npcHeadImage.transform.position;
-                    effectImage.transform.position = userHeadImage.transform.position;
-                    iTween.MoveTo(attackImage, userHeadImage.transform.position, 1.0f);
-                }
-                else
-                {
-                    bloodText = npcBloodText;
-                    defenseText = npcDefenseText;
-                    attackImage.transform.position = userHeadImage.transform.position;
-                    effectImage.transform.position = npcHeadImage.transform.position;
-                    iTween.MoveTo(attackImage, npcHeadImage.transform.position, 1.0f);
-                }
+    private IEnumerator shufflePokerHandle(params System.Object[] obj) {
+        yield return new WaitForSeconds(0.1f);
+        GameMessage.Instance.setHandleMessageComplete();
+    }
 
-                attackImage.SetActive(true);
-                yield return new WaitForSeconds(1.1f);
-                attackImage.SetActive(false);
-                effectImage.SetActive(true);
-                effectText.text = "-" + attack.ToString();
-                yield return new WaitForSeconds(0.5f);
-                effectImage.SetActive(false);
+    public void dealCard(params System.Object[] obj) {
+        IUser user = (IUser)obj[0];
 
-                for (int i = 0; i < list.Count; i++)
-                {
-                    if (list[i].isNpc())
-                    {
-                        npcAttackText.text = list[i].getAttack().ToString();
-                    }
-                    else
-                    {
-                        userAttackText.text = list[i].getAttack().ToString();
-                    }
-                }
-
-                Text tempText = null;
-                if (defense > 0) {
-
-                    float value = 0;
-                    if (attack > defense)
-                    {
-                        value = defense;
-                        attack -= defense;
-                    }
-                    else {
-                        value = attack;
-                        attack = 0;
-                    }
-
-                    if (tempText == null)
-                    {
-                        tempText = Instantiate(defenseText, rootTransform);
-                    }
-                    tempText.transform.position = defenseText.transform.position;
-                    tempText.text = "-" + value;
-                    tempText.color = Color.red;
-                    iTween.MoveBy(tempText.gameObject, new Vector3(0,-50,0), 0.5f);
-                    yield return new WaitForSeconds(0.52f);
-
-                    for (int i = 0; i < list.Count; i++)
-                    {
-                        if (list[i].isNpc())
-                        {
-                            npcDefenseText.text = list[i].getDefense().ToString();
-                        }
-                        else
-                        {
-                            userDefenseText.text = list[i].getDefense().ToString();
-                        }
-                    }
-                }
-
-                if (attack > 0)
-                {
-                    if (tempText == null)
-                    {
-                        tempText = Instantiate(bloodText, rootTransform);
-                    }
-                    tempText.transform.position = bloodText.transform.position;
-                    tempText.text = "-" + attack;
-                    tempText.color = Color.red;
-                    iTween.MoveBy(tempText.gameObject, new Vector3(0, -50, 0), 0.5f);
-                    yield return new WaitForSeconds(0.52f);
-
-                    for (int i = 0; i < list.Count; i++)
-                    {
-                        if (list[i].isNpc())
-                        {
-                            npcBloodText.text = list[i].getBlood().ToString();
-                        }
-                        else
-                        {
-                            userBloodText.text = list[i].getBlood().ToString();
-                        }
-                    }
-                }
-                if (tempText != null) {
-                    Destroy(tempText.gameObject);
-                }
-
-            }
-            
-            if (user.getMagic() >= ConfigMgr.INIT_MAGIC_VALUE) {
-                yield return new WaitForSeconds(0.5f);
-                attackImage.SetActive(true);
-                if (user.isNpc())
-                {
-                    attackImage.transform.position = npcHeadImage.transform.position;
-                    effectImage.transform.position = userHeadImage.transform.position;
-                    iTween.MoveTo(attackImage, userHeadImage.transform.position, 1.0f);
-                }
-                else
-                {
-                    attackImage.transform.position = userHeadImage.transform.position;
-                    effectImage.transform.position = npcHeadImage.transform.position;
-                    iTween.MoveTo(attackImage, npcHeadImage.transform.position, 1.0f);
-                }
-                yield return new WaitForSeconds(1.0f);
-                attackImage.SetActive(false);
-                effectImage.SetActive(true);
-                effectText.text = "-50";
-                yield return new WaitForSeconds(0.5f);
-                effectImage.SetActive(false);
-
-                for (int i = 0; i < list.Count; i++)
-                {
-                    if (list[i].getUserId() == user.getUserId())
-                    {
-                        list[i].addMagic(-list[i].getMagic());
-                    }
-                    else
-                    {
-                        list[i].addBlood(-50);
-                    }
-                }
-            }
+        if (user == null) {
+            GameMessage.Instance.setHandleMessageComplete();
+            return;
         }
 
+        List<ICard> cards = (List<ICard>)obj[1];
+        if (cards == null) {
+            GameMessage.Instance.setHandleMessageComplete();
+            return;
+        }
+
+        if (user.isNpc())
+        {
+            int rd = RandomMgr.Instance.getRangeInt(0,cards.Count);
+            ICard card = cards[rd];
+            CardMgr.Instance.addCard(user, card);
+            int index = getCardForTypeIndex(card, npcCards);
+
+            GameObject cardObject = Instantiate(cardPrefab, npcCards);
+            cardObject.GetComponent<Card>().loadCard(card);
+            cardObject.transform.position = npcCards.GetChild(index).position;
+            cardObject.transform.localScale = new Vector3(0.7f, 0.7f, 0.7f);
+            Destroy(npcCards.GetChild(index).gameObject);
+            GameMessage.Instance.setHandleMessageComplete();
+        }
+        else {
+            selectCard.SetActive(true);
+            selectCard.GetComponent<SelectCardView>().initCards(user, cards);
+        }
+    }
+
+    public void selectFinishCard(params System.Object[] obj)
+    {
+        StartCoroutine(selectFinishCardHandle(obj));
+    }
+
+    private IEnumerator selectFinishCardHandle(params System.Object[] obj) {
+        IUser user = (IUser)obj[0];
+        ICard card = (ICard)obj[1];
+        selectCard.SetActive(false);
+
+        if (card != null) {
+            CardMgr.Instance.addCard(user, card);
+
+            GameObject cardObject = Instantiate(cardPrefab, rootTransform);
+            cardObject.GetComponent<Card>().loadCard(card);
+            cardObject.transform.position = (Vector3)obj[2];
+
+            int index = getCardForTypeIndex(card, userCards);
+            iTween.MoveTo(cardObject, userCards.GetChild(index).position, 0.5f);
+            yield return new WaitForSeconds(0.6f);
+            Destroy(userCards.GetChild(index).gameObject);
+            cardObject.transform.parent = userCards;
+            cardObject.transform.localScale = new Vector3(0.7f, 0.7f, 0.7f);
+        }
+
+        yield return new WaitForSeconds(0.1f);
+        GameMessage.Instance.setHandleMessageComplete();
+    }
+
+    private int getCardForTypeIndex(ICard card, Transform parent) {
+        int index = 0;
+        for (int i = 0; i < parent.childCount; i++)
+        {
+            Card cardComp = parent.GetChild(i).GetComponent<Card>();
+            if (cardComp != null && cardComp.getCard().getType() == card.getType())
+            {
+                index = i;
+                break;
+            }
+        }
+        return index;
+    }
+
+    private Transform getPokerIdTransform(IUser user, IPoker poker)
+    {
+        Transform parent = user.isNpc() ? npcPokers : userPokers;
+        for (int i = 0; i < parent.childCount; i++)
+        {
+            Poker pokerComp = parent.GetChild(i).GetComponent<Poker>();
+            if (pokerComp != null && pokerComp.getPoker().getId() == poker.getId())
+            {
+                return parent.GetChild(i);
+            }
+        }
+        return null;
+    }
+
+    private Transform getCardIdTransform(IUser user, ICard card)
+    {
+        Transform parent = user.isNpc() ? npcCards : userCards;
+        for (int i = 0; i < parent.childCount; i++)
+        {
+            Card cardComp = parent.GetChild(i).GetComponent<Card>();
+            if (cardComp != null && cardComp.getCard().getId() == card.getId())
+            {
+                return parent.GetChild(i);
+            }
+        }
+        return null;
+    }
+
+
+    public void addPokerValue(params System.Object[] obj)
+    {
+        StartCoroutine(addPokerValueHandle(obj));
+    }
+    private IEnumerator addPokerValueHandle(params System.Object[] obj)
+    {
+        IUIPokerPara para = (IUIPokerPara)obj[0];
+        Text text = getText(para.getAttackUser(), para.getPoker());
+        Transform child = getPokerIdTransform(para.getAttackUser(), para.getPoker());
+        if (child != null && text != null)
+        {
+            Text addText = Instantiate(text, rootTransform);
+            addText.transform.position = child.position;
+            addText.text = "+" + para.getAddValue();
+            iTween.MoveTo(addText.gameObject, text.transform.position, 0.5f);
+            yield return new WaitForSeconds(0.6f);
+            Destroy(addText.gameObject);
+            text.text = para.getFinalValue().ToString();
+        }
+        GameMessage.Instance.setHandleMessageComplete();
+    }
+
+
+    public void addCardValue(params System.Object[] obj)
+    {
+        StartCoroutine(addCardValueHandle(obj));
+    }
+
+    private IEnumerator addCardValueHandle(params System.Object[] obj)
+    {
+        IUICardHandlePara para = (IUICardHandlePara)obj[0];
+
+        Text text = getText(para.getAttackUser(), para.getPoker());
+        Transform child = getCardIdTransform(para.getAttackUser(), para.getCard());
+        if (child != null && text != null) {
+            Text addText = Instantiate(text, rootTransform);
+            addText.transform.position = child.position;
+            addText.text = "+" + para.getAddValue();
+            iTween.MoveTo(addText.gameObject, text.transform.position, 0.5f);
+            iTween.ScaleTo(child.gameObject, new Vector3(0.6f, 0.6f, 0.6f), 0.5f);
+            yield return new WaitForSeconds(0.6f);
+            Destroy(addText.gameObject);
+            iTween.ScaleTo(child.gameObject, new Vector3(0.7f, 0.7f, 0.7f), 0.1f);
+            text.text = para.getFinalValue().ToString();
+        }
+        GameMessage.Instance.setHandleMessageComplete();
+    }
+
+    private Text getText(IUser user, IPoker poker) {
+        Text text = null;
+        PokerSuit suit = (PokerSuit)poker.getSuit();
+        switch (suit)
+        {
+            case PokerSuit.diamond: // Êñπ
+                text = user.isNpc() ? npcDefenseText : userDefenseText;
+                break;
+            case PokerSuit.heart: // Á∫¢
+                text = user.isNpc() ? npcBloodText : userBloodText;
+                break;
+            case PokerSuit.spade: // Èªë
+                text = user.isNpc() ? npcAttackText : userAttackText;
+                break;
+            case PokerSuit.club: // Ê¢Ö
+                text = user.isNpc() ? npcMagicText : userMagicText;
+                break;
+            default:
+                break;
+        }
+        return text;
+    }
+
+    public void commonAttack(params System.Object[] obj)
+    {
+        StartCoroutine(commonAttackHandle(obj));
+    }
+
+    private IEnumerator commonAttackHandle(params System.Object[] obj)
+    {
+        IUICommonAttackPara para = (IUICommonAttackPara)obj[0];
+
+        Text bloodText;
+        Text defenseText;
+        if (para.getAttackUser().isNpc())
+        {
+            bloodText = userBloodText;
+            defenseText = userDefenseText;
+
+            npcAttackText.text = "0";
+            attackImage.transform.position = npcHeadImage.transform.position;
+            effectImage.transform.position = userHeadImage.transform.position;
+            iTween.MoveTo(attackImage, userHeadImage.transform.position, 1.0f);
+        }
+        else
+        {
+            bloodText = npcBloodText;
+            defenseText = npcDefenseText;
+            userAttackText.text = "0";
+            attackImage.transform.position = userHeadImage.transform.position;
+            effectImage.transform.position = npcHeadImage.transform.position;
+            iTween.MoveTo(attackImage, npcHeadImage.transform.position, 1.0f);
+        }
+
+        attackImage.SetActive(true);
+        yield return new WaitForSeconds(1.1f);
+        attackImage.SetActive(false);
+        effectImage.SetActive(true);
+        effectText.text = "-" + para.getAttack().ToString();
+        yield return new WaitForSeconds(0.5f);
+        effectImage.SetActive(false);
+
+        Text tempText = Instantiate(defenseText, rootTransform);
+        if (para.getDefense() > 0)
+        {
+            tempText.transform.position = defenseText.transform.position;
+            tempText.text = "-" + para.getDefense();
+            tempText.color = Color.red;
+            iTween.MoveBy(tempText.gameObject, new Vector3(0, -50, 0), 0.5f);
+            yield return new WaitForSeconds(0.52f);
+            defenseText.text = para.getFinalDefense().ToString();
+        }
+        if (para.getBlood() > 0)
+        {
+            tempText.transform.position = bloodText.transform.position;
+            tempText.text = "-" + para.getBlood();
+            tempText.color = Color.red;
+            iTween.MoveBy(tempText.gameObject, new Vector3(0, -50, 0), 0.5f);
+            yield return new WaitForSeconds(0.52f);
+            bloodText.text = para.getFinalBlood().ToString();
+        }
+        Destroy(tempText.gameObject);
+
+        GameMessage.Instance.setHandleMessageComplete();
+    }
+
+    public void gameNextRound(params System.Object[] obj)
+    {
+        StartCoroutine(gameNextRoundHandle(obj));
+    }
+    private IEnumerator gameNextRoundHandle(params System.Object[] obj) {
         updateUserInfo();
 
         yield return new WaitForSeconds(0.5f);
@@ -554,24 +607,25 @@ public class CardView : MonoBehaviour
 
         npcTipsPanel.SetActive(false);
         Text textPanel1 = npcTipsPanel.GetComponentInChildren<Text>();
-        textPanel1.text = "±¨≈∆£°£°";
+        textPanel1.text = "ÁàÜÁâåÔºÅÔºÅ";
         textPanel1.color = Color.red;
 
         userTipsPanel.SetActive(false);
         Text textPanel2 = userTipsPanel.GetComponentInChildren<Text>();
-        textPanel2.text = "±¨≈∆£°£°";
+        textPanel2.text = "ÁàÜÁâåÔºÅÔºÅ";
         textPanel2.color = Color.red;
 
         userPointText.color = Color.white;
         npcPointText.color = Color.white;
 
         List<Transform> child = new List<Transform>();
-        for (int i = 0; i < userTransform.childCount; i++) {
-            child.Add(userTransform.GetChild(i));
-        }
-        for (int i = 0; i < npcTransform.childCount; i++)
+        for (int i = 0; i < userPokers.childCount; i++)
         {
-            child.Add(npcTransform.GetChild(i));
+            child.Add(userPokers.GetChild(i));
+        }
+        for (int i = 0; i < npcPokers.childCount; i++)
+        {
+            child.Add(npcPokers.GetChild(i));
         }
         for (int i = 0; i < child.Count; i++)
         {
@@ -585,114 +639,32 @@ public class CardView : MonoBehaviour
             Destroy(child[i].gameObject);
         }
 
-        //Ω·À„¡À
-        bool isOver = false;
-        for (int i = 0; i < list.Count; i++)
-        {
-            if (list[i].getBlood() <= 0) {
-                isOver = true;
-            }
-        }
-
-        if (isOver)
-        {
-            EventDispatcher.Instance.emit("returnToLobby");
-        }
-        else {
-            PokerPileMgr.Instance.shuffle();
-            HandPokerMgr.Instance.resetHandPoker();
-            PlayPokerMgr.Instance.startPlayPoker();
-            StartCoroutine(dealPokerAfterAction());
-        }
+        PokerPileMgr.Instance.shuffle();
+        HandPokerMgr.Instance.resetHandPoker();
+        PlayPokerMgr.Instance.startPlayPoker();
+        GameMessage.Instance.setHandleMessageComplete();
     }
 
-    private void setBtnInteractable(bool able) {
-        stopPokerBtn.interactable = dealPokerBtn.interactable = able;
-    }
-
-    private void shufflePoker(params System.Object[] obj) {
-        StartCoroutine(shufflePokerHandle(obj));
-    }
-
-    private IEnumerator shufflePokerHandle(params System.Object[] obj) {
-        GameCtrl.Instance.setHandleMessageComplete();
-        yield return new WaitForSeconds(0.1f);
-    }
-
-    public void dealCard(params System.Object[] obj) {
-        IUser user = (IUser)obj[0];
-        
-        if (user == null) {
-            GameCtrl.Instance.setHandleMessageComplete();
-            return;
-        }
-        
-        List <ICard> cards = (List<ICard>)obj[1];
-        if (cards == null) {
-            GameCtrl.Instance.setHandleMessageComplete();
-            return;
-        }
-        
-        if (user.isNpc())
-        {
-            int rd = new System.Random().Next(cards.Count - 1);
-            ICard card = cards[rd];
-            CardMgr.Instance.addCard(user, card);
-            int index = getCardPositionIndex(card, npcCards);
-
-            GameObject cardObject = Instantiate(cardPrefab, npcCards);
-            cardObject.GetComponent<Card>().loadCard(card);
-            cardObject.transform.position = npcCards.GetChild(index).position;
-            cardObject.transform.localScale = new Vector3(0.7f, 0.7f, 0.7f);
-            Destroy(npcCards.GetChild(index).gameObject);
-            GameCtrl.Instance.setHandleMessageComplete();
-        }
-        else {
-            selectCard.SetActive(true);
-            selectCard.GetComponent<SelectCardView>().initCards(user,cards);
-        }
-    }
-
-    public void selectFinishCard(params System.Object[] obj)
+    public void flyFont(params System.Object[] obj)
     {
-        StartCoroutine(selectFinishCardHandle(obj));
+        StartCoroutine(flyFontHandle(obj));
     }
 
-    private IEnumerator selectFinishCardHandle(params System.Object[] obj) {
-        IUser user = (IUser)obj[0];
-        ICard card = (ICard)obj[1];
-        selectCard.SetActive(false);
-       
-        if (card != null) {
-            CardMgr.Instance.addCard(user, card);
-
-            GameObject cardObject = Instantiate(cardPrefab, rootTransform);
-            cardObject.GetComponent<Card>().loadCard(card);
-            cardObject.transform.position = (Vector3)obj[2];
-
-            int index = getCardPositionIndex(card, userCards);
-            iTween.MoveTo(cardObject, userCards.GetChild(index).position, 0.5f);
-            yield return new WaitForSeconds(0.6f);
-            Destroy(userCards.GetChild(index).gameObject);
-            cardObject.transform.parent = userCards;
-            cardObject.transform.localScale = new Vector3(0.7f, 0.7f, 0.7f);
-        }
-
-        yield return new WaitForSeconds(0.1f);
-        GameCtrl.Instance.setHandleMessageComplete();
-    }
-
-    private int getCardPositionIndex(ICard card,Transform parent) {
-        int index = 0;
-        for (int i = 0; i < parent.childCount; i++)
+    private IEnumerator flyFontHandle(params System.Object[] obj)
+    {
+        IUICardHandlePara para = (IUICardHandlePara)obj[0];
+        Transform child = getCardIdTransform(para.getAttackUser(), para.getCard());
+        if (child != null)
         {
-            Card cardComp = parent.GetChild(i).GetComponent<Card>();
-            if (cardComp != null && cardComp.getCard().getType() == card.getType())
-            {
-                index = i;
-                break;
-            }
+            Text addText = Instantiate(userAttackText, rootTransform);
+            addText.transform.position = child.position;
+            addText.text = para.getExtralData().ToString();
+            iTween.MoveBy(addText.gameObject,new Vector3(0,100,0) , 0.5f);
+            iTween.ScaleTo(child.gameObject, new Vector3(0.6f, 0.6f, 0.6f), 0.5f);
+            yield return new WaitForSeconds(0.6f);
+            Destroy(addText.gameObject);
+            iTween.ScaleTo(child.gameObject, new Vector3(0.7f, 0.7f, 0.7f), 0.1f);
         }
-        return index;
+        GameMessage.Instance.setHandleMessageComplete();
     }
 }

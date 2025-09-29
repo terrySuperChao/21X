@@ -1,10 +1,20 @@
-public class CardHandleParaObject :ICardHandlePara
+using System;
+public class CardHandleParaObject : ICardHandlePara
 {
 
     private ICard _card;
     private IUser _attackUser;
     private IUser _defenseUser;
     private IPoker _poker;
+    private Object _object;
+    public CardHandleParaObject(ICardHandlePara para)
+    {
+        _attackUser = para.getAttackUser();
+        _defenseUser = para.getDefenseUser();
+        _card = para.getCard();
+        _poker = para.getPoker();
+    }
+
     public CardHandleParaObject(IUser attackUser, IUser defenseUser, ICard card, IPoker poker) {
         _attackUser = attackUser;
         _defenseUser = defenseUser;
@@ -32,5 +42,13 @@ public class CardHandleParaObject :ICardHandlePara
 
     public void setPoker(IPoker poker) {
         _poker = poker;
+    }
+
+    public Object getExtralData() {
+        return _object;
+    }
+
+    public void setExtralData(Object obj) {
+        _object = obj;
     }
 }

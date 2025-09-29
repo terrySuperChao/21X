@@ -1,63 +1,57 @@
 //ÅÆ¶Ñ
-using JetBrains.Annotations;
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Reflection;
-using Unity.VisualScripting;
-using UnityEngine;
 
 public class CardSettle : IGameSettle
 {
-
-    private float _settleAattck = 0;
-    private float _settleDefense = 0;
-    private bool _isBackJock = false;
-
-    public void gameSettle(IGameSettlePara para) {
-
-        _settleAattck = 0;
-        _settleDefense = 0;
-        _isBackJock = para.isBackJock();
-
-        int mult = para.isBackJock() ? 2 : 1;
+    public bool gameSettle(IGameSettlePara para) {
+        bool isPenetrate = false; //´©Í¸
+        bool isGameOver = false;
         int winIndex = para.getWinIndex();
         List<IUser> users = para.getUsers();
         for (int i = 0; i < users.Count; i++) {
             if (i == winIndex) {
-                float blood = 0;
-                float attack = 0;
-                float defense = 0;
-                float magic = 0;
-
-                ICardHandlePara handlePara = new CardHandleParaObject(users[i],null,null,null);
-                List<IPoker> pokers = HandPokerMgr.Instance.getHandPoker(users[i]);
+                IUser user = users[i];
+                ICardHandlePara handlePara = new CardHandleParaObject(user, null,null,null);
+                List<IPoker> pokers = HandPokerMgr.Instance.getHandPoker(user);
                 List<int> values = getPokerValue(pokers);
                 for (int j = 0; j < pokers.Count; j++) {
-                    int value = values[j];
-                    switch (pokers[j].getSuit()) {
-                        case 1: // ·½
-                            defense += value * 0.5f;
+                    IPoker poker = pokers[j];
+                    float addValue = values[j];
+                    float finalValue = 0;
+                    PokerSuit suit = (PokerSuit)poker.getSuit();
+                    switch (suit) {
+                        case PokerSuit.diamond: // ·½
+                            addValue *= 0.5f;
+                            finalValue = user.addDefense(addValue);
                             break;
-                        case 2: // ºì
-                            blood += value * 0.5f;
+                        case PokerSuit.heart: // ºì
+                            addValue *= 0.5f;
+                            finalValue = user.addBlood(addValue);
                             break;
-                        case 3: // ºÚ
-                            attack += value;
+                        case PokerSuit.spade: // ºÚ
+                            addValue *= 1.0f;
+                            finalValue = user.addAttack(addValue);
                             break;
-                        case 4: // Ã·
-                            magic += value;
+                        case PokerSuit.club: // Ã·
+                            addValue *= 1.0f;
+                            finalValue = user.addMagic(addValue);
                             break;
                         default:
                             break;
                     }
-                    handlePara.setPoker(pokers[j]);
-                    CardMgr.Instance.calculateCard(handlePara);
+                    IUIPokerPara pokerPara = new UIPokerPara(user, poker, addValue, finalValue, para.isBackJock());
+                    GameMessage.Instance.addMsg(GameConst.ADDPOKERVALUE, pokerPara);
+
+                    handlePara.setPoker(poker);
+                    CardMgr.Instance.addCardValue(handlePara);
                 }
-                users[i].addBlood(blood * mult);
-                users[i].addAttack(attack * mult);
-                users[i].addDefense(defense * mult);
-                users[i].addMagic(magic * mult);
+
+                //´©Í¸
+                CardMgr.Instance.penetrateValue(handlePara);
+                if (handlePara.getExtralData() != null && (int)handlePara.getExtralData() == 1)
+                {
+                    isPenetrate = true;
+                }
                 break;
             }
         }
@@ -66,33 +60,68 @@ public class CardSettle : IGameSettle
         {
             if (i != winIndex && winIndex > -1)
             {
-                _settleAattck = users[winIndex].getAttack();
-                _settleDefense = users[i].getDefense();
-                float attack = _settleAattck;
-                float defense = _settleDefense;
-                float blood = users[i].getBlood();
-                if (attack > defense) {
-                    attack -= defense;
-                    defense = 0;
+                IUser user = users[winIndex];
+                List<float> attacks = new List<float>();
+                if (user.getAttack() > 0) {
+                    attacks.Add(user.getAttack());
                 }
-                else {
-                    defense -= attack;
-                    attack = 0;
+                if (user.getMagic() >= user.getMaxMagic())
+                {
+                    attacks.Add(50); //Ö±½Ó¹¥»÷50
+                    user.setMagic(0);
                 }
 
-                if (blood > attack)
-                {
-                    blood -= attack;
+                for (int j = 0; j < attacks.Count; j++) {
+                    float attack = attacks[j];
+                    float defense = users[i].getDefense();
+                    float blood = users[i].getBlood();
+                    
+                    float attackValue = 0;
+                    float defenseValue = 0;
+                    float bloodValue = 0;
+
+                    attackValue = attack;
+                    if (i == 0 && !isPenetrate) {
+                        if (attack > defense)
+                        {
+                            defenseValue = defense;
+                            attack -= defense;
+                            defense = 0;
+                        }
+                        else
+                        {
+                            defense -= attack;
+                            attack = 0;
+                        }
+                    }
+
+                    if (blood > attack)
+                    {
+                        bloodValue = attack;
+                        blood -= attack;
+                    }
+                    else
+                    {
+                        bloodValue = blood;
+                        blood = 0;
+                    }
+
+                    users[i].setBlood(blood);
+                    users[i].setDefense(defense);
+                    user.setAttack(0);
+
+                    IUICommonAttackPara attackPara = new UICommonAttackParaObject(user, attackValue, bloodValue, blood,defenseValue,defense);
+                    GameMessage.Instance.addMsg(GameConst.COMMONATTACK, attackPara);
+
+                    if (blood <= 0) {
+                        isGameOver = true;
+                        break;
+                    }   
                 }
-                else {
-                    blood = 0;
-                }
-                users[i].setBlood(blood);
-                users[i].setDefense(defense);
-                users[winIndex].setAttack(0);
                 break;
             }
         }
+        return isGameOver;
     }
 
     public List<int> getPokerValue(List<IPoker> pokers)
@@ -142,19 +171,5 @@ public class CardSettle : IGameSettle
         }
 
         return values;
-    }
-
-
-    public float getSettleAttack() {
-        return _settleAattck;
-    }
-
-    public float getSettleDefense()
-    {
-        return _settleDefense;
-    }
-
-    public bool isBackJock() {
-        return _isBackJock;
     }
 }

@@ -7,11 +7,11 @@ using System.Reflection;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class CommonSettle : IGameSettle
+public class GameSettle : IGameSettle
 {
     private int _money = 100;
     private int _settleMoney = 0;
-    public void gameSettle(IGameSettlePara para)
+    public bool gameSettle(IGameSettlePara para)
     {
         int winIndex = para.getWinIndex();
         List<IUser> users = para.getUsers();
@@ -54,6 +54,16 @@ public class CommonSettle : IGameSettle
         }
 
         _settleMoney = _money + extraMoney;
+
+        bool isGameOver = false;
+        for (int i = 0; i < users.Count; i++) {
+            if (users[i].getMoney() <= 0) {
+                isGameOver = true;
+                break;
+            }
+        }
+
+        return isGameOver;
     }
 
     public int bettingMoney(List<IUser> users)

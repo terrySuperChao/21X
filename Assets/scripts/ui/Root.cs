@@ -44,7 +44,7 @@ public class Root : MonoBehaviour
         IUser user2 = NpcMgr.Instance.getUser();
         PokerPileMgr.Instance.shuffle();
         HandPokerMgr.Instance.resetHandPoker();
-        GameCtrl.Instance.clearCacheMessage();
+        GameMessage.Instance.clearCacheMessage();
         PlayPokerMgr.Instance.clearPlayer();
         PlayPokerMgr.Instance.addPlayer(user1);
         PlayPokerMgr.Instance.addPlayer(user2);
@@ -94,7 +94,7 @@ public class Root : MonoBehaviour
 
     private void repeatHandleMessage()
     {
-        GameCtrl.Instance.handleMessage();
+        GameMessage.Instance.handleMessage();
     }
 
     

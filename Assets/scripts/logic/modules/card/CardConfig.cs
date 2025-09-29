@@ -27,12 +27,19 @@ public class CardConfig
 		new CardObject(20,(int)CardType.cardType10,2,"命运馈赠+","对方每次要牌，有40%的几率额外获得2张手牌"),
 	};
     public static List<ICard> getConfig() {
-        return _config;
+		List<ICard> list = new List<ICard>();
+		for (int i = 0; i < _handle.Count; i++) {
+			list.Add(_config[i]);
+
+        }
+        return list;
+        //return _config;
     }
 
 
 	private static List<ICardHandle> _handle = new List<ICardHandle> { 
 		new SpadeCardHandle(),
+		new SpadeCardPlusHandle(),
     };
 
     public static List<ICardHandle> getHandle()

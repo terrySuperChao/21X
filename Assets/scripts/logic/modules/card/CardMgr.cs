@@ -1,5 +1,4 @@
-//ÅÆ¶Ñ
-using System;
+using UnityEngine;
 using System.Collections.Generic;
 
 public class CardMgr: Singleton<CardMgr>
@@ -50,7 +49,7 @@ public class CardMgr: Singleton<CardMgr>
             userCards = _cardDic[user.getUserId()];
         }
 
-        //ÅÐ¶ÏÂú²ÛÁË
+        //åˆ¤æ–­æ»¡æ§½äº†
         int slot = MAXSLOT;
         for (int i = 0; i < userCards.Count; i++) {
             if (userCards[i].getLevel() > 1) {
@@ -117,10 +116,9 @@ public class CardMgr: Singleton<CardMgr>
             list1.Add(list2[i]);
         }
         
-        Random rd = new Random();
         for (int i = 0; i < 3; i++) {
             if (list1.Count == 0) break;
-            int index = rd.Next(list1.Count - 1);
+            int index = RandomMgr.Instance.getRangeInt(0,list1.Count);
             ICard card = list1[index];
             list0.Add(card);
             list1.RemoveAt(index);
@@ -147,14 +145,32 @@ public class CardMgr: Singleton<CardMgr>
     }
 
     //
-    public void calculateCard(ICardHandlePara para) {
+    public void addCardValue(ICardHandlePara para) {
         if (!_cardDic.ContainsKey(para.getAttackUser().getUserId())) return;
         List<ICard> cards = _cardDic[para.getAttackUser().getUserId()];
         List<ICardHandle> handles = CardConfig.getHandle();
         for (int i = 0; i < cards.Count; i++) {
             para.setCard(cards[i]);
-            for (int j = 0; j < handles.Count; j++) {
-                if (handles[j].handle(para)) break;
+            int index = cards[i].getId() - 1;
+            Debug.Log("==============" + index);
+            if (handles.Count > index) {
+                handles[index].addValueHandle(para);
+            }
+        }
+    }
+
+    public void penetrateValue(ICardHandlePara para)
+    {
+        if (!_cardDic.ContainsKey(para.getAttackUser().getUserId())) return;
+        List<ICard> cards = _cardDic[para.getAttackUser().getUserId()];
+        List<ICardHandle> handles = CardConfig.getHandle();
+        for (int i = 0; i < cards.Count; i++)
+        {
+            para.setCard(cards[i]);
+            int index = cards[i].getId() - 1;
+            if (handles.Count > index)
+            {
+                handles[index].addValueHandle(para);
             }
         }
     }

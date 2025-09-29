@@ -8,5 +8,5 @@ public interface IGameSettlePara {
 
 public interface IGameSettle
 {
-    public void gameSettle(IGameSettlePara para);
+    public bool gameSettle(IGameSettlePara para);
 }

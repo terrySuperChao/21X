@@ -1,4 +1,8 @@
 public interface ICardHandle
 {
-    public bool handle(ICardHandlePara para);
+    //Ìí¼ÓÊôĞÔ
+    public void addValueHandle(ICardHandlePara para);
+
+    //´©Í¸
+    public void penetrateHanle(ICardHandlePara para);
 }

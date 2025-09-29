@@ -56,10 +56,10 @@ public class PlayPokerMgr : Singleton<PlayPokerMgr>
         if (number == 0)
         {
             PokerPileMgr.Instance.shuffle();
-            GameCtrl.Instance.addMsg(GameConst.SHUFFLEPOKER, number);
+            GameMessage.Instance.addMsg(GameConst.SHUFFLEPOKER, number);
         }
         else if (number == 1) {
-            GameCtrl.Instance.addMsg(GameConst.SHUFFLEPOKER, number);
+            GameMessage.Instance.addMsg(GameConst.SHUFFLEPOKER, number);
         }
         return PokerPileMgr.Instance.dealPoker();
     }
@@ -81,7 +81,7 @@ public class PlayPokerMgr : Singleton<PlayPokerMgr>
                 HandPokerMgr.Instance.addHandPoker(user, poker);
 
                 int number = HandPokerMgr.Instance.getHandPokerPoint(user, true);
-                GameCtrl.Instance.addMsg(GameConst.DEALPOKER, user, poker, number);
+                GameMessage.Instance.addMsg(GameConst.DEALPOKER, user, poker, number);
             }
         }
 
@@ -90,7 +90,7 @@ public class PlayPokerMgr : Singleton<PlayPokerMgr>
             if (j == 0)
             {
                 _players[j].state = PlayState.play;
-                GameCtrl.Instance.addMsg(GameConst.PLAYERACTION, _players[j].user);
+                GameMessage.Instance.addMsg(GameConst.PLAYERACTION, _players[j].user);
             }
             else {
                 _players[j].state = PlayState.none;
@@ -101,7 +101,7 @@ public class PlayPokerMgr : Singleton<PlayPokerMgr>
     public void dealPoker() {
         int index = getPlayingIndex();
         if (index == -1) {
-            gameOver();
+            gameSettle();
             return;
         }
 
@@ -110,7 +110,7 @@ public class PlayPokerMgr : Singleton<PlayPokerMgr>
         HandPokerMgr.Instance.addHandPoker(user, poker);
 
         int number = HandPokerMgr.Instance.getHandPokerPoint(user, true);
-        GameCtrl.Instance.addMsg(GameConst.DEALPOKER, user, poker, number);
+        GameMessage.Instance.addMsg(GameConst.DEALPOKER, user, poker, number);
 
         //最终的分数
         int number2 = HandPokerMgr.Instance.getHandPokerPoint(user, false);
@@ -123,7 +123,7 @@ public class PlayPokerMgr : Singleton<PlayPokerMgr>
         {
             _players[index].state = PlayState.death;
             if (getPlayerStateNumber() == 0){
-                gameOver();
+                gameSettle();
             }
             else {
                 nextPlayer(index);
@@ -148,23 +148,23 @@ public class PlayPokerMgr : Singleton<PlayPokerMgr>
         int index = getPlayingIndex();
         if (index == -1)
         {
-            gameOver();
+            gameSettle();
             return;
         }
 
         _players[index].state = PlayState.end;
-        GameCtrl.Instance.addMsg(GameConst.STOPDEALPOKER, _players[index].user);
+        GameMessage.Instance.addMsg(GameConst.STOPDEALPOKER, _players[index].user);
         
         if (getPlayerStateNumber() == 0)
         {
-            gameOver();
+            gameSettle();
         }
         else {
             nextPlayer(index);
         }
     }
 
-    private void gameOver() {
+    private void gameSettle() {
         int maxPoint = 99;//最大值
         List<SortItem> list = new List<SortItem>();
         for (int i = 0; i < _players.Count; i++) {
@@ -201,10 +201,11 @@ public class PlayPokerMgr : Singleton<PlayPokerMgr>
             }
             _players[i].user.addPlay();
         }
+        GameMessage.Instance.addMsg(GameConst.GAMESETTLE, user);
 
-        _gameSettle?.gameSettle(new GameSettlePara(this.getPlayers(), index, isBack));
+        bool isGameOver = _gameSettle.gameSettle(new GameSettlePara(this.getPlayers(), index, isBack));
 
-        GameCtrl.Instance.addMsg(GameConst.GAMEOVER, user);
+        GameMessage.Instance.addMsg(isGameOver ? GameConst.GAMEOVER : GameConst.GAMENEXTROUND);
     }
 
     private void nextPlayer(int index) {
@@ -215,7 +216,7 @@ public class PlayPokerMgr : Singleton<PlayPokerMgr>
             if (_players[idx].state == PlayState.none)
             {
                 _players[idx].state = PlayState.play;
-                GameCtrl.Instance.addMsg(GameConst.PLAYERACTION, _players[idx].user);
+                GameMessage.Instance.addMsg(GameConst.PLAYERACTION, _players[idx].user);
                 break;
             }
         }

@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -57,6 +56,8 @@ public class FightView : MonoBehaviour
         EventDispatcher.Instance.on(GameConst.STOPDEALPOKER, this.stopDealPoker);
         EventDispatcher.Instance.on(GameConst.PLAYERACTION, this.playerAction);
         EventDispatcher.Instance.on(GameConst.SHUFFLEPOKER, this.shufflePoker);
+        EventDispatcher.Instance.on(GameConst.GAMESETTLE, this.gameSettle);
+        EventDispatcher.Instance.on(GameConst.GAMENEXTROUND, this.gameNextRound);
         EventDispatcher.Instance.on(GameConst.GAMEOVER, this.gameOver);
 
         StartCoroutine(dealPokerAfterAction());
@@ -68,6 +69,8 @@ public class FightView : MonoBehaviour
         EventDispatcher.Instance.off(GameConst.STOPDEALPOKER, this.stopDealPoker);
         EventDispatcher.Instance.off(GameConst.PLAYERACTION, this.playerAction);
         EventDispatcher.Instance.off(GameConst.SHUFFLEPOKER, this.shufflePoker);
+        EventDispatcher.Instance.off(GameConst.GAMESETTLE, this.gameSettle);
+        EventDispatcher.Instance.off(GameConst.GAMENEXTROUND, this.gameNextRound);
         EventDispatcher.Instance.off(GameConst.GAMEOVER, this.gameOver);
     }
 
@@ -108,7 +111,7 @@ public class FightView : MonoBehaviour
     private IEnumerator dealPokerAfterAction() {
         yield return new WaitForSeconds(1.0f);
         updateUserInfo();
-        GameCtrl.Instance.setHandleMessageComplete();
+        GameMessage.Instance.setHandleMessageComplete();
     }
 
     private void addPoker(IUser user, IPoker poker,int point, Transform parent, Text text) {
@@ -154,13 +157,13 @@ public class FightView : MonoBehaviour
     public void onDealPokerClick() {
         setBtnInteractable(false);
         PlayPokerMgr.Instance.dealPoker();
-        GameCtrl.Instance.setHandleMessageComplete();
+        GameMessage.Instance.setHandleMessageComplete();
     }
 
     public void onStopPokerClick() {
         setBtnInteractable(false);
         PlayPokerMgr.Instance.stopDealPoker();
-        GameCtrl.Instance.setHandleMessageComplete();
+        GameMessage.Instance.setHandleMessageComplete();
     }
 
     private void dealPoker(params System.Object[] obj)
@@ -188,8 +191,8 @@ public class FightView : MonoBehaviour
         }
         addPoker(user, poker, point, transform, text);
 
-        if (!user.isNpc()) { 
-            //ªÒ»°’Ê µµƒ∑÷ ˝
+        if (!user.isNpc()) {
+            //Ëé∑ÂèñÁúüÂÆûÁöÑÂàÜÊï∞
             if (point == 21)
             {
                 if (HandPokerMgr.Instance.isBlackJack(user)){
@@ -206,13 +209,13 @@ public class FightView : MonoBehaviour
                 yield return new WaitForSeconds(0.5f);
                 userTipsPanel.SetActive(true);
                 Text tips = userTipsPanel.GetComponentInChildren<Text>();
-                tips.text = "±¨≈∆£°£°";
+                tips.text = "ÁàÜÁâåÔºÅÔºÅ";
                 tips.color = Color.red;
             }
         }
 
         yield return new WaitForSeconds(0.6f);
-        GameCtrl.Instance.setHandleMessageComplete();
+        GameMessage.Instance.setHandleMessageComplete();
     }
 
     private void stopDealPoker(params System.Object[] obj) {
@@ -221,8 +224,8 @@ public class FightView : MonoBehaviour
 
         panel.SetActive(true);
         Text text = panel.GetComponentInChildren<Text>();
-        text.text = "Õ£≈∆";
-        GameCtrl.Instance.setHandleMessageComplete();
+        text.text = "ÂÅúÁâå";
+        GameMessage.Instance.setHandleMessageComplete();
     }
 
     private void playerAction(params System.Object[] obj) {
@@ -231,15 +234,14 @@ public class FightView : MonoBehaviour
         {
             StartCoroutine(npcAutoDealPokerHandle(user));
         }
-        else { 
-            //”√ªß◊‘––≤Ÿ◊˜
+        else {
+            //Áî®Êà∑Ëá™Ë°åÊìç‰Ωú
         }
         setBtnInteractable(!user.isNpc());
     }
 
     private IEnumerator npcAutoDealPokerHandle(IUser user){
-        System.Random rd = new System.Random();
-        yield return new WaitForSeconds(rd.Next(1, 2));
+        yield return new WaitForSeconds(RandomMgr.Instance.getRangeInt(1,3));
         int number = HandPokerMgr.Instance.getHandPokerPoint(user, false);
         if (number >= 17)
         {
@@ -248,14 +250,14 @@ public class FightView : MonoBehaviour
         else {
             PlayPokerMgr.Instance.dealPoker();
         }
-        GameCtrl.Instance.setHandleMessageComplete();
+        GameMessage.Instance.setHandleMessageComplete();
     }
 
-    private void gameOver(params System.Object[] obj) {
-        StartCoroutine(gameOverHandle(obj));
+    private void gameSettle(params System.Object[] obj) {
+        StartCoroutine(gameSettleHandle(obj));
     }
 
-    private IEnumerator gameOverHandle(params System.Object[] obj) {
+    private IEnumerator gameSettleHandle(params System.Object[] obj) {
         setBtnInteractable(false);
         yield return new WaitForSeconds(0.5f);
 
@@ -269,7 +271,7 @@ public class FightView : MonoBehaviour
                 int point = HandPokerMgr.Instance.getHandPokerPoint(list[i], false);
                 npcPointText.text = point.ToString();
 
-                //ªÒ»°’Ê µµƒ∑÷ ˝
+                //Ëé∑ÂèñÁúüÂÆûÁöÑÂàÜÊï∞
                 if (point == 21)
                 {
                     if (HandPokerMgr.Instance.isBlackJack(list[i]))
@@ -287,7 +289,7 @@ public class FightView : MonoBehaviour
                     yield return new WaitForSeconds(0.5f);
                     npcTipsPanel.SetActive(true);
                     Text tips = npcTipsPanel.GetComponentInChildren<Text>();
-                    tips.text = "±¨≈∆£°£°";
+                    tips.text = "ÁàÜÁâåÔºÅÔºÅ";
                     tips.color = Color.red;
                 }
             }
@@ -296,19 +298,20 @@ public class FightView : MonoBehaviour
         yield return new WaitForSeconds(1f);
         IUser user = (IUser)obj[0];
 
+
         Transform transform = null;
         if (user == null) {
-            resultText.text = "±æªÿ∫œ∆Ωæ÷";
+            resultText.text = "Êú¨ÂõûÂêàÂπ≥Â±Ä";
             transform = null;
         }
         else {
             if (user.isNpc()) {
-                resultText.text = "±æªÿ∫œNPCªÒ §";
+                resultText.text = "Êú¨ÂõûÂêàNPCËé∑ËÉú";
                 transform = npcTransform;
             }
             else {
 
-                resultText.text = "±æªÿ∫œÕÊº“ªÒ §";
+                resultText.text = "Êú¨ÂõûÂêàÁé©ÂÆ∂Ëé∑ËÉú";
                 transform = userTransform;
             }
         }
@@ -327,20 +330,20 @@ public class FightView : MonoBehaviour
                 float maxValue = 999999;
                 switch (pokers[i].getSuit())
                 {
-                    case 1: // ∑Ω
+                    case 1: // Êñπ
                         addValue *= 0.5f;
                         text = user.isNpc() ? npcDefenseText : userDefenseText;
                         break;
-                    case 2: // ∫Ï
+                    case 2: // Á∫¢
                         addValue *= 0.5f;
                         text = user.isNpc() ? npcBloodText : userBloodText;
                         maxValue = user.getMaxBlood();
                         break;
-                    case 3: // ∫⁄
+                    case 3: // Èªë
                         addValue *= 1.0f;
                         text = user.isNpc() ? npcAttackText : userAttackText;
                         break;
-                    case 4: // √∑
+                    case 4: // Ê¢Ö
                         addValue *= 1.0f;
                         text = user.isNpc() ? npcMagicText : userMagicText;
                         maxValue = user.getMaxMagic();
@@ -540,12 +543,12 @@ public class FightView : MonoBehaviour
 
         npcTipsPanel.SetActive(false);
         Text textPanel1 = npcTipsPanel.GetComponentInChildren<Text>();
-        textPanel1.text = "±¨≈∆£°£°";
+        textPanel1.text = "ÁàÜÁâåÔºÅÔºÅ";
         textPanel1.color = Color.red;
 
         userTipsPanel.SetActive(false);
         Text textPanel2 = userTipsPanel.GetComponentInChildren<Text>();
-        textPanel2.text = "±¨≈∆£°£°";
+        textPanel2.text = "ÁàÜÁâåÔºÅÔºÅ";
         textPanel2.color = Color.red;
 
         userPointText.color = Color.white;
@@ -565,31 +568,36 @@ public class FightView : MonoBehaviour
             iTween.MoveTo(child[i].gameObject, pokerPrefab.transform.position, 0.5f);
         }
         yield return new WaitForSeconds(1.0f);
-
         for (int i = 0; i < child.Count; i++)
         {
             Destroy(child[i].gameObject);
         }
+    }
 
-        //Ω·À„¡À
-        bool isOver = false;
-        for (int i = 0; i < list.Count; i++)
-        {
-            if (list[i].getBlood() <= 0) {
-                isOver = true;
-            }
-        }
+    private void gameNextRound(params System.Object[] obj)
+    {
+        StartCoroutine(gameNextRoundHandle(obj));
+    }
 
-        if (isOver)
-        {
-            EventDispatcher.Instance.emit("returnToLobby");
-        }
-        else {
-            PokerPileMgr.Instance.shuffle();
-            HandPokerMgr.Instance.resetHandPoker();
-            PlayPokerMgr.Instance.startPlayPoker();
-            StartCoroutine(dealPokerAfterAction());
-        }
+    private IEnumerator gameNextRoundHandle(params System.Object[] obj)
+    {
+        yield return new WaitForSeconds(0.1f);
+        PokerPileMgr.Instance.shuffle();
+        HandPokerMgr.Instance.resetHandPoker();
+        PlayPokerMgr.Instance.startPlayPoker();
+        StartCoroutine(dealPokerAfterAction());
+    }
+
+    private void gameOver(params System.Object[] obj)
+    {
+        StartCoroutine(gameOverHandle(obj));
+    }
+
+    private IEnumerator gameOverHandle(params System.Object[] obj)
+    {
+        yield return new WaitForSeconds(0.1f);
+        EventDispatcher.Instance.emit("returnToLobby");
+        GameMessage.Instance.setHandleMessageComplete();
     }
 
     private void setBtnInteractable(bool able) {
@@ -601,7 +609,7 @@ public class FightView : MonoBehaviour
     }
 
     private IEnumerator shufflePokerHandle(params System.Object[] obj) {
-        GameCtrl.Instance.setHandleMessageComplete();
+        GameMessage.Instance.setHandleMessageComplete();
         yield return new WaitForSeconds(0.1f);
     }
 }

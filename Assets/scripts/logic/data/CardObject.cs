@@ -15,6 +15,7 @@ public class CardObject : ICard
         _name = name;
         _desc = desc;
     }
+
     public string getDescript()
     {
         return _desc;
