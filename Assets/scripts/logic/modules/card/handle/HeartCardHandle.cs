@@ -1,4 +1,6 @@
 //∫ÏÃ“¥Û ¶
+using System;
+
 public class HeartCardHandle: CardHandleObject
 {
     override
@@ -9,9 +11,9 @@ public class HeartCardHandle: CardHandleObject
             return;
         }
 
-        float addValue = 1;
-        float finalValue = para.getAttackUser().addAttack(addValue);
-        IUICardHandlePara uiPara = new UICardHandleParaObject(para, addValue, finalValue);
+        float addValue = getNumberDigits(para.getBaseValue() * 0.2f);
+        float finalValue = para.getAttackUser().addBlood(addValue);
+        IUICardHandlePara uiPara = new UICardHandleParaObject(para, addValue, finalValue, suit);
         GameMessage.Instance.addMsg(GameConst.ADDCARDVALUE, uiPara);
     }
 }

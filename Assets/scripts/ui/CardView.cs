@@ -468,17 +468,21 @@ public class CardView : MonoBehaviour
     private IEnumerator addPokerValueHandle(params System.Object[] obj)
     {
         IUIPokerPara para = (IUIPokerPara)obj[0];
-        Text text = getText(para.getAttackUser(), para.getPoker());
+        PokerSuit suit = (PokerSuit)para.getPoker().getSuit();
+        Text text = getText(para.getAttackUser(), suit);
         Transform child = getPokerIdTransform(para.getAttackUser(), para.getPoker());
         if (child != null && text != null)
         {
             Text addText = Instantiate(text, rootTransform);
-            addText.transform.position = child.position;
+            addText.transform.position = text.transform.position;
             addText.text = "+" + para.getAddValue();
-            iTween.MoveTo(addText.gameObject, text.transform.position, 0.5f);
+            addText.color = Color.green;
+            iTween.MoveBy(addText.gameObject, new Vector3(0,50,0), 0.5f);
+            iTween.ScaleTo(child.gameObject, new Vector3(0.5f, 0.5f, 0.5f), 0.5f);
             yield return new WaitForSeconds(0.6f);
+            iTween.ScaleTo(child.gameObject, new Vector3(0.6f, 0.6f, 0.6f), 0.1f);
             Destroy(addText.gameObject);
-            text.text = para.getFinalValue().ToString();
+            text.text = getFinalContent(para.getAttackUser(), suit, para.getFinalValue());
         }
         GameMessage.Instance.setHandleMessageComplete();
     }
@@ -493,25 +497,25 @@ public class CardView : MonoBehaviour
     {
         IUICardHandlePara para = (IUICardHandlePara)obj[0];
 
-        Text text = getText(para.getAttackUser(), para.getPoker());
+        Text text = getText(para.getAttackUser(), para.getPokerSuit());
         Transform child = getCardIdTransform(para.getAttackUser(), para.getCard());
         if (child != null && text != null) {
             Text addText = Instantiate(text, rootTransform);
-            addText.transform.position = child.position;
+            addText.transform.position = text.transform.position;
             addText.text = "+" + para.getAddValue();
-            iTween.MoveTo(addText.gameObject, text.transform.position, 0.5f);
+            addText.color = Color.green;
+            iTween.MoveBy(addText.gameObject, new Vector3(0,50,0), 0.5f);
             iTween.ScaleTo(child.gameObject, new Vector3(0.6f, 0.6f, 0.6f), 0.5f);
             yield return new WaitForSeconds(0.6f);
-            Destroy(addText.gameObject);
             iTween.ScaleTo(child.gameObject, new Vector3(0.7f, 0.7f, 0.7f), 0.1f);
-            text.text = para.getFinalValue().ToString();
+            Destroy(addText.gameObject);
+            text.text = getFinalContent(para.getAttackUser(), para.getPokerSuit(), para.getFinalValue());
         }
         GameMessage.Instance.setHandleMessageComplete();
     }
 
-    private Text getText(IUser user, IPoker poker) {
+    private Text getText(IUser user, PokerSuit suit) {
         Text text = null;
-        PokerSuit suit = (PokerSuit)poker.getSuit();
         switch (suit)
         {
             case PokerSuit.diamond: // 方
@@ -531,6 +535,32 @@ public class CardView : MonoBehaviour
         }
         return text;
     }
+    private string getFinalContent(IUser user, PokerSuit suit, float finalValue)
+    {
+        float maxValue = -1;
+        switch (suit)
+        {
+            case PokerSuit.diamond: // 方
+                break;
+            case PokerSuit.heart: // 红
+                maxValue = user.getMaxBlood();
+                break;
+            case PokerSuit.spade: // 黑
+                break;
+            case PokerSuit.club: // 梅
+                maxValue = user.getMaxMagic();
+                break;
+            default:
+                break;
+        }
+        if (maxValue == -1)
+        {
+            return finalValue.ToString();
+        }
+        else {
+            return finalValue + "/" + maxValue;
+        }
+    }
 
     public void commonAttack(params System.Object[] obj)
     {
@@ -548,7 +578,12 @@ public class CardView : MonoBehaviour
             bloodText = userBloodText;
             defenseText = userDefenseText;
 
-            npcAttackText.text = "0";
+            if (para.isMagicAttack()){
+                npcMagicText.text = "0"+para.getAttackUser().getMaxMagic();
+            }
+            else {
+                npcAttackText.text = "0";
+            }
             attackImage.transform.position = npcHeadImage.transform.position;
             effectImage.transform.position = userHeadImage.transform.position;
             iTween.MoveTo(attackImage, userHeadImage.transform.position, 1.0f);
@@ -557,7 +592,15 @@ public class CardView : MonoBehaviour
         {
             bloodText = npcBloodText;
             defenseText = npcDefenseText;
-            userAttackText.text = "0";
+
+            if (para.isMagicAttack())
+            {
+                userMagicText.text = "0" + para.getAttackUser().getMaxMagic();
+            }
+            else
+            {
+                userAttackText.text = "0";
+            }
             attackImage.transform.position = userHeadImage.transform.position;
             effectImage.transform.position = npcHeadImage.transform.position;
             iTween.MoveTo(attackImage, npcHeadImage.transform.position, 1.0f);
@@ -588,7 +631,7 @@ public class CardView : MonoBehaviour
             tempText.color = Color.red;
             iTween.MoveBy(tempText.gameObject, new Vector3(0, -50, 0), 0.5f);
             yield return new WaitForSeconds(0.52f);
-            bloodText.text = para.getFinalBlood().ToString();
+            bloodText.text = para.getFinalBlood() + "/" + para.getDefenseUser().getMaxBlood();
         }
         Destroy(tempText.gameObject);
 

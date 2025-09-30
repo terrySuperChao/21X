@@ -1,5 +1,6 @@
 //ÅÆ¶Ñ
 using System.Collections.Generic;
+using UnityEngine;
 
 public class CardSettle : IGameSettle
 {
@@ -43,6 +44,7 @@ public class CardSettle : IGameSettle
                     GameMessage.Instance.addMsg(GameConst.ADDPOKERVALUE, pokerPara);
 
                     handlePara.setPoker(poker);
+                    handlePara.setBaseValue(addValue);
                     CardMgr.Instance.handle(handlePara,CardHandleType.addValue);
                 }
 
@@ -60,27 +62,30 @@ public class CardSettle : IGameSettle
             if (i != winIndex && winIndex > -1)
             {
                 IUser user = users[winIndex];
-                List<float> attacks = new List<float>();
-                if (user.getAttack() > 0) {
-                    attacks.Add(user.getAttack());
-                }
+                List<bool> skipDefense = new List<bool>() { isPenetrate };
+                List<float> attacks = new List<float>() { user.getAttack() };
+
                 if (user.getMagic() >= user.getMaxMagic())
                 {
                     attacks.Add(50); //Ö±½Ó¹¥»÷50
+                    skipDefense.Add(true);
                     user.setMagic(0);
                 }
 
                 for (int j = 0; j < attacks.Count; j++) {
+                    if (attacks[j] <= 0){
+                        continue;
+                    }
+
                     float attack = attacks[j];
                     float defense = users[i].getDefense();
                     float blood = users[i].getBlood();
                     
-                    float attackValue = 0;
+                    float attackValue = attack;
                     float defenseValue = 0;
                     float bloodValue = 0;
-
-                    attackValue = attack;
-                    if (i == 0 && !isPenetrate) {
+                    
+                    if (!skipDefense[j]) {
                         if (attack > defense)
                         {
                             defenseValue = defense;
@@ -109,7 +114,7 @@ public class CardSettle : IGameSettle
                     users[i].setDefense(defense);
                     user.setAttack(0);
 
-                    IUICommonAttackPara attackPara = new UICommonAttackParaObject(user, attackValue, bloodValue, blood,defenseValue,defense);
+                    IUICommonAttackPara attackPara = new UICommonAttackParaObject(user, users[i], attackValue, bloodValue, blood,defenseValue,defense,j == 1);
                     GameMessage.Instance.addMsg(GameConst.COMMONATTACK, attackPara);
 
                     if (blood <= 0) {

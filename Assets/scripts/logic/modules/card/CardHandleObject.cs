@@ -1,3 +1,4 @@
+using System;
 using System.Diagnostics;
 
 public abstract class CardHandleObject:ICardHandle
@@ -18,5 +19,10 @@ public abstract class CardHandleObject:ICardHandle
     protected virtual void _addRoundValueHanle(ICardHandlePara para)
     {
 
+    }
+
+    //保留一位小数
+    protected float getNumberDigits(float number) {
+        return (float)Math.Round(number, 1);
     }
 }

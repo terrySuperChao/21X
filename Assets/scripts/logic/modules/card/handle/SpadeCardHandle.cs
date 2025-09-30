@@ -12,7 +12,7 @@ public class SpadeCardHandle:CardHandleObject
         
         float addValue = 1;
         float finalValue = para.getAttackUser().addAttack(addValue);
-        IUICardHandlePara uiPara = new UICardHandleParaObject(para, addValue, finalValue);
+        IUICardHandlePara uiPara = new UICardHandleParaObject(para, addValue, finalValue, suit);
         GameMessage.Instance.addMsg(GameConst.ADDCARDVALUE, uiPara);
     }
 }

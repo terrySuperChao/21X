@@ -6,6 +6,7 @@ public class CardHandleParaObject : ICardHandlePara
     private IUser _attackUser;
     private IUser _defenseUser;
     private IPoker _poker;
+    private float _baseValue;
     private Object _object;
     public CardHandleParaObject(ICardHandlePara para)
     {
@@ -44,6 +45,13 @@ public class CardHandleParaObject : ICardHandlePara
         _poker = poker;
     }
 
+    public float getBaseValue() {
+        return _baseValue;
+    }
+
+    public void setBaseValue(float baseValue) {
+        _baseValue = baseValue;
+    }
     public Object getExtralData() {
         return _object;
     }

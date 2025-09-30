@@ -11,7 +11,7 @@ public class SpadeCardPlusHandle : CardHandleObject
         
         float addValue = 2;
         float finalValue = para.getAttackUser().addAttack(addValue);
-        IUICardHandlePara uiPara = new UICardHandleParaObject(para, addValue, finalValue);
+        IUICardHandlePara uiPara = new UICardHandleParaObject(para, addValue, finalValue, suit);
         GameMessage.Instance.addMsg(GameConst.ADDCARDVALUE, uiPara);
     }
 
@@ -21,7 +21,7 @@ public class SpadeCardPlusHandle : CardHandleObject
         if (RandomMgr.Instance.getRangeInt(0,2) == 0) return;
 
         para.setExtralData(1);
-        IUICardHandlePara uiPara = new UICardHandleParaObject(para, 0, 0);
+        IUICardHandlePara uiPara = new UICardHandleParaObject(para, 0, 0, PokerSuit.spade);
         uiPara.setExtralData("´©Í¸");
         GameMessage.Instance.addMsg(GameConst.FLYFONT, uiPara);
         

@@ -2,10 +2,12 @@ public class UICardHandleParaObject : CardHandleParaObject, IUICardHandlePara
 {
     private float _addValue;
     private float _finalValue;
-    public UICardHandleParaObject(ICardHandlePara para, float addValue,float finalValue) : base(para)
+    private PokerSuit _pokerSuit;
+    public UICardHandleParaObject(ICardHandlePara para, float addValue,float finalValue,PokerSuit pokerSuit) : base(para)
     {
         _addValue = addValue;
         _finalValue = finalValue;
+        _pokerSuit = pokerSuit;
     }
 
     public float getAddValue() {
@@ -13,6 +15,10 @@ public class UICardHandleParaObject : CardHandleParaObject, IUICardHandlePara
     }
     public float getFinalValue() {
         return _finalValue;
+    }
+
+    public PokerSuit getPokerSuit() {
+        return _pokerSuit;
     }
 
 }

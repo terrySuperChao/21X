@@ -10,6 +10,10 @@ public interface ICardHandlePara
     public IPoker getPoker();
     public void setPoker(IPoker poker);
 
+    public float getBaseValue();
+
+    public void setBaseValue(float baseValue);
+
     public Object getExtralData();
 
     public void setExtralData(Object obj);
