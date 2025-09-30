@@ -6,16 +6,16 @@ public abstract class CardHandleObject:ICardHandle
         this._addValueHandle(para);
     }
 
-    public void penetrateHanle(ICardHandlePara para)
+    public void addRoundValueHanle(ICardHandlePara para)
     {
-        this._penetrateHanle(para);
+        this._addRoundValueHanle(para);
     }
 
     protected virtual void _addValueHandle(ICardHandlePara para) {
         
     }
 
-    protected virtual void _penetrateHanle(ICardHandlePara para)
+    protected virtual void _addRoundValueHanle(ICardHandlePara para)
     {
 
     }

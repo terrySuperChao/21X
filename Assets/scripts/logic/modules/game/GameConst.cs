@@ -61,3 +61,8 @@ public enum PokerSuit {
      */
     club = 4,
 }
+
+public enum CardHandleType {
+    addValue,
+    addRoundValue
+}

@@ -16,7 +16,7 @@ public class SpadeCardPlusHandle : CardHandleObject
     }
 
     override
-    protected void _penetrateHanle(ICardHandlePara para)
+    protected void _addRoundValueHanle(ICardHandlePara para)
     {
         if (RandomMgr.Instance.getRangeInt(0,2) == 0) return;
 

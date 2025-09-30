@@ -1,5 +1,6 @@
-using UnityEngine;
+using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 public class CardMgr: Singleton<CardMgr>
 {
@@ -145,32 +146,22 @@ public class CardMgr: Singleton<CardMgr>
     }
 
     //
-    public void addCardValue(ICardHandlePara para) {
+    public void handle(ICardHandlePara para, CardHandleType type) {
         if (!_cardDic.ContainsKey(para.getAttackUser().getUserId())) return;
         List<ICard> cards = _cardDic[para.getAttackUser().getUserId()];
         List<ICardHandle> handles = CardConfig.getHandle();
         for (int i = 0; i < cards.Count; i++) {
             para.setCard(cards[i]);
             int index = cards[i].getId() - 1;
-            Debug.Log("==============" + index);
-            if (handles.Count > index) {
-                handles[index].addValueHandle(para);
-            }
-        }
-    }
-
-    public void penetrateValue(ICardHandlePara para)
-    {
-        if (!_cardDic.ContainsKey(para.getAttackUser().getUserId())) return;
-        List<ICard> cards = _cardDic[para.getAttackUser().getUserId()];
-        List<ICardHandle> handles = CardConfig.getHandle();
-        for (int i = 0; i < cards.Count; i++)
-        {
-            para.setCard(cards[i]);
-            int index = cards[i].getId() - 1;
-            if (handles.Count > index)
-            {
-                handles[index].addValueHandle(para);
+            if (index < handles.Count) {
+                switch (type) {
+                    case CardHandleType.addValue:
+                        handles[index].addValueHandle(para);
+                        break;
+                    case CardHandleType.addRoundValue:
+                        handles[index].addRoundValueHanle(para);
+                        break;
+                }
             }
         }
     }

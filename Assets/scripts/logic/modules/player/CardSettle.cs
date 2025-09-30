@@ -43,11 +43,10 @@ public class CardSettle : IGameSettle
                     GameMessage.Instance.addMsg(GameConst.ADDPOKERVALUE, pokerPara);
 
                     handlePara.setPoker(poker);
-                    CardMgr.Instance.addCardValue(handlePara);
+                    CardMgr.Instance.handle(handlePara,CardHandleType.addValue);
                 }
 
-                //´©Í¸
-                CardMgr.Instance.penetrateValue(handlePara);
+                CardMgr.Instance.handle(handlePara, CardHandleType.addRoundValue);
                 if (handlePara.getExtralData() != null && (int)handlePara.getExtralData() == 1)
                 {
                     isPenetrate = true;
