@@ -579,10 +579,10 @@ public class CardView : MonoBehaviour
             defenseText = userDefenseText;
 
             if (para.isMagicAttack()){
-                npcMagicText.text = "0"+para.getAttackUser().getMaxMagic();
+                npcMagicText.text =  para.getAttackUser().getMagic() + "/" + para.getAttackUser().getMaxMagic();
             }
             else {
-                npcAttackText.text = "0";
+                npcAttackText.text = para.getAttackUser().getAttack().ToString();
             }
             attackImage.transform.position = npcHeadImage.transform.position;
             effectImage.transform.position = userHeadImage.transform.position;
@@ -595,11 +595,11 @@ public class CardView : MonoBehaviour
 
             if (para.isMagicAttack())
             {
-                userMagicText.text = "0" + para.getAttackUser().getMaxMagic();
+                userMagicText.text = para.getAttackUser().getMagic() + "/" + para.getAttackUser().getMaxMagic();
             }
             else
             {
-                userAttackText.text = "0";
+                userAttackText.text = para.getAttackUser().getAttack().ToString();
             }
             attackImage.transform.position = userHeadImage.transform.position;
             effectImage.transform.position = npcHeadImage.transform.position;
@@ -701,7 +701,7 @@ public class CardView : MonoBehaviour
         {
             Text addText = Instantiate(userAttackText, rootTransform);
             addText.transform.position = child.position;
-            addText.text = para.getExtralData().ToString();
+            addText.text = (string)obj[1]; ;
             iTween.MoveBy(addText.gameObject,new Vector3(0,100,0) , 0.5f);
             iTween.ScaleTo(child.gameObject, new Vector3(0.6f, 0.6f, 0.6f), 0.5f);
             yield return new WaitForSeconds(0.6f);

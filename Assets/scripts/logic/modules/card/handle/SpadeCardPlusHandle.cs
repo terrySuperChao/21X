@@ -20,10 +20,9 @@ public class SpadeCardPlusHandle : CardHandleObject
     {
         if (RandomMgr.Instance.getRangeInt(0,2) == 0) return;
 
-        para.setExtralData(1);
+        para.getRoundResult().setPenetrateValue(1);
         IUICardHandlePara uiPara = new UICardHandleParaObject(para, 0, 0, PokerSuit.spade);
-        uiPara.setExtralData("´©Í¸");
-        GameMessage.Instance.addMsg(GameConst.FLYFONT, uiPara);
+        GameMessage.Instance.addMsg(GameConst.FLYFONT, uiPara, "´©Í¸");
         
     }
 }

@@ -14,7 +14,7 @@ public interface ICardHandlePara
 
     public void setBaseValue(float baseValue);
 
-    public Object getExtralData();
+    public IRoundResult getRoundResult();
 
-    public void setExtralData(Object obj);
+    public void setRoundResult(IRoundResult value);
 }

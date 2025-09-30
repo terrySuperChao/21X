@@ -5,8 +5,8 @@ using UnityEngine;
 public class CardSettle : IGameSettle
 {
     public bool gameSettle(IGameSettlePara para) {
-        bool isPenetrate = false; //´©Í¸
         bool isGameOver = false;
+        IRoundResult roundResult = new RoundResultObject();
         int winIndex = para.getWinIndex();
         List<IUser> users = para.getUsers();
         for (int i = 0; i < users.Count; i++) {
@@ -47,12 +47,8 @@ public class CardSettle : IGameSettle
                     handlePara.setBaseValue(addValue);
                     CardMgr.Instance.handle(handlePara,CardHandleType.addValue);
                 }
-
+                handlePara.setRoundResult(roundResult);
                 CardMgr.Instance.handle(handlePara, CardHandleType.addRoundValue);
-                if (handlePara.getExtralData() != null && (int)handlePara.getExtralData() == 1)
-                {
-                    isPenetrate = true;
-                }
                 break;
             }
         }
@@ -62,14 +58,14 @@ public class CardSettle : IGameSettle
             if (i != winIndex && winIndex > -1)
             {
                 IUser user = users[winIndex];
-                List<bool> skipDefense = new List<bool>() { isPenetrate };
+                List<bool> skipDefense = new List<bool>() { roundResult.getPenetrateValue() > 0 };
                 List<float> attacks = new List<float>() { user.getAttack() };
 
                 if (user.getMagic() >= user.getMaxMagic())
                 {
                     attacks.Add(50); //Ö±½Ó¹¥»÷50
                     skipDefense.Add(true);
-                    user.setMagic(0);
+                    user.setMagic(user.getMaxMagic() * roundResult.getSaveMagicValue());
                 }
 
                 for (int j = 0; j < attacks.Count; j++) {

@@ -1,13 +1,12 @@
 using System;
 public class CardHandleParaObject : ICardHandlePara
 {
-
     private ICard _card;
     private IUser _attackUser;
     private IUser _defenseUser;
     private IPoker _poker;
     private float _baseValue;
-    private Object _object;
+    private IRoundResult _roundResult;
     public CardHandleParaObject(ICardHandlePara para)
     {
         _attackUser = para.getAttackUser();
@@ -49,14 +48,14 @@ public class CardHandleParaObject : ICardHandlePara
         return _baseValue;
     }
 
-    public void setBaseValue(float baseValue) {
-        _baseValue = baseValue;
+    public void setBaseValue(float value) {
+        _baseValue = value;
     }
-    public Object getExtralData() {
-        return _object;
+    public IRoundResult getRoundResult() {
+        return _roundResult;
     }
 
-    public void setExtralData(Object obj) {
-        _object = obj;
+    public void setRoundResult(IRoundResult value) {
+        _roundResult = value;
     }
 }

@@ -42,6 +42,8 @@ public class CardConfig
 		new SpadeCardPlusHandle(),
 		new HeartCardHandle(),
 		new HeartCardPlusHandle(),
+		new ClubCardHandle(),
+        new ClubCardPlusHandle(),
     };
 
     public static List<ICardHandle> getHandle()
