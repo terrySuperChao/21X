@@ -74,6 +74,7 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_ExampleScript_01.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMPro_InstructionOverlay.cs" />
     <Compile Include="Assets\scripts\logic\modules\game\GameMessage.cs" />
+    <Compile Include="Assets\scripts\logic\modules\card\handle\DiamondCardPlusHandle.cs" />
     <Compile Include="Assets\scripts\logic\modules\card\CardHandleObject.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexShakeB.cs" />
     <Compile Include="Assets\scripts\logic\data\IGameBegin.cs" />
@@ -85,6 +86,7 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\EnvMapAnimator.cs" />
     <Compile Include="Assets\scripts\ui\SelectCardView.cs" />
     <Compile Include="Assets\scripts\logic\modules\card\handle\ClubCardHandle.cs" />
+    <Compile Include="Assets\scripts\logic\modules\card\handle\DiamondCardHandle.cs" />
     <Compile Include="Assets\scripts\logic\modules\pokerPile\PokerPileMgr.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextSelector_A.cs" />
     <Compile Include="Assets\scripts\logic\modules\card\IUICommonAttackPara.cs" />

@@ -22,7 +22,7 @@ public class SpadeCardPlusHandle : CardHandleObject
 
         para.getRoundResult().setPenetrateValue(1);
         IUICardHandlePara uiPara = new UICardHandleParaObject(para, 0, 0, PokerSuit.spade);
-        GameMessage.Instance.addMsg(GameConst.FLYFONT, uiPara, "´©Í¸");
+        GameMessage.Instance.addMsg(GameConst.FLYFONT, uiPara, "´©Í¸",0.0f);
         
     }
 }

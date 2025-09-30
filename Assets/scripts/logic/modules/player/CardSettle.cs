@@ -1,6 +1,7 @@
 //ÅÆ¶Ñ
 using System.Collections.Generic;
 using UnityEngine;
+using static Unity.Collections.AllocatorManager;
 
 public class CardSettle : IGameSettle
 {
@@ -110,10 +111,18 @@ public class CardSettle : IGameSettle
                     users[i].setDefense(defense);
                     user.setAttack(0);
 
-                    IUICommonAttackPara attackPara = new UICommonAttackParaObject(user, users[i], attackValue, bloodValue, blood,defenseValue,defense,j == 1);
+                    IUICommonAttackPara attackPara = new UICommonAttackParaObject(user, users[i], attackValue, bloodValue, blood, defenseValue, defense, j == 1);
                     GameMessage.Instance.addMsg(GameConst.COMMONATTACK, attackPara);
+                    
+                    //·´µ¯ÉËº¦
+                    float reflectValue = roundResult.getReflectValue();
+                    if (reflectValue > 0 && defenseValue > 0)
+                    {
+                        IUICommonAttackPara reflectattackPara = new UICommonAttackParaObject(users[i], user, reflectValue, reflectValue, user.getBlood(), 0, 0, false);
+                        GameMessage.Instance.addMsg(GameConst.COMMONATTACK, reflectattackPara);
+                    }
 
-                    if (blood <= 0) {
+                    if (blood <= 0 || user.getBlood() <= 0) {
                         isGameOver = true;
                         break;
                     }   

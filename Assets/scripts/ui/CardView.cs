@@ -479,7 +479,7 @@ public class CardView : MonoBehaviour
             addText.color = Color.green;
             iTween.MoveBy(addText.gameObject, new Vector3(0,50,0), 0.5f);
             iTween.ScaleTo(child.gameObject, new Vector3(0.5f, 0.5f, 0.5f), 0.5f);
-            yield return new WaitForSeconds(0.6f);
+            yield return new WaitForSeconds(0.51f);
             iTween.ScaleTo(child.gameObject, new Vector3(0.6f, 0.6f, 0.6f), 0.1f);
             Destroy(addText.gameObject);
             text.text = getFinalContent(para.getAttackUser(), suit, para.getFinalValue());
@@ -506,7 +506,7 @@ public class CardView : MonoBehaviour
             addText.color = Color.green;
             iTween.MoveBy(addText.gameObject, new Vector3(0,50,0), 0.5f);
             iTween.ScaleTo(child.gameObject, new Vector3(0.6f, 0.6f, 0.6f), 0.5f);
-            yield return new WaitForSeconds(0.6f);
+            yield return new WaitForSeconds(0.51f);
             iTween.ScaleTo(child.gameObject, new Vector3(0.7f, 0.7f, 0.7f), 0.1f);
             Destroy(addText.gameObject);
             text.text = getFinalContent(para.getAttackUser(), para.getPokerSuit(), para.getFinalValue());
@@ -634,7 +634,6 @@ public class CardView : MonoBehaviour
             bloodText.text = para.getFinalBlood() + "/" + para.getDefenseUser().getMaxBlood();
         }
         Destroy(tempText.gameObject);
-
         GameMessage.Instance.setHandleMessageComplete();
     }
 
@@ -696,18 +695,30 @@ public class CardView : MonoBehaviour
     private IEnumerator flyFontHandle(params System.Object[] obj)
     {
         IUICardHandlePara para = (IUICardHandlePara)obj[0];
+        string str = (string)obj[1];
+        float delay = (float)obj[2];
+        bool flag = false;
+        if (delay > 0) {
+            flag = true;
+            GameMessage.Instance.setHandleMessageComplete();
+            yield return new WaitForSeconds(delay - 0.51f);
+        }
+
         Transform child = getCardIdTransform(para.getAttackUser(), para.getCard());
         if (child != null)
         {
             Text addText = Instantiate(userAttackText, rootTransform);
             addText.transform.position = child.position;
-            addText.text = (string)obj[1]; ;
+            addText.text = (string)obj[1];
             iTween.MoveBy(addText.gameObject,new Vector3(0,100,0) , 0.5f);
             iTween.ScaleTo(child.gameObject, new Vector3(0.6f, 0.6f, 0.6f), 0.5f);
-            yield return new WaitForSeconds(0.6f);
+            yield return new WaitForSeconds(0.51f);
             Destroy(addText.gameObject);
             iTween.ScaleTo(child.gameObject, new Vector3(0.7f, 0.7f, 0.7f), 0.1f);
         }
-        GameMessage.Instance.setHandleMessageComplete();
+
+        if (!flag) {
+            GameMessage.Instance.setHandleMessageComplete();
+        }
     }
 }

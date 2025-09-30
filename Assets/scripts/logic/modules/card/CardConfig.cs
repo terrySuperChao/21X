@@ -30,7 +30,6 @@ public class CardConfig
 		List<ICard> list = new List<ICard>();
 		for (int i = 0; i < _handle.Count; i++) {
 			list.Add(_config[i]);
-
         }
         return list;
         //return _config;
@@ -44,6 +43,8 @@ public class CardConfig
 		new HeartCardPlusHandle(),
 		new ClubCardHandle(),
         new ClubCardPlusHandle(),
+		new DiamondCardHandle(),
+		new DiamondCardPlusHandle(),
     };
 
     public static List<ICardHandle> getHandle()

@@ -7,4 +7,9 @@ public interface IRoundResult
     //±£´æÄ§·¨
     public float getSaveMagicValue();
     public void setSaveMagicValue(float value);
+
+
+    //·´µ¯ÉËº¦
+    public float getReflectValue();
+    public void setReflectValue(float value);
 }
