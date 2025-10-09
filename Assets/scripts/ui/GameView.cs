@@ -58,8 +58,8 @@ public class GameView : MonoBehaviour
         EventDispatcher.Instance.off(GameConst.PLAYERACTION, this.playerAction);
         EventDispatcher.Instance.off(GameConst.SHUFFLEPOKER, this.shufflePoker);
         EventDispatcher.Instance.off(GameConst.GAMESETTLE, this.gameSettle);
-        EventDispatcher.Instance.on(GameConst.GAMENEXTROUND, this.gameNextRound);
-        EventDispatcher.Instance.on(GameConst.GAMEOVER, this.gameOver);
+        EventDispatcher.Instance.off(GameConst.GAMENEXTROUND, this.gameNextRound);
+        EventDispatcher.Instance.off(GameConst.GAMEOVER, this.gameOver);
     }
 
     // Update is called once per frame

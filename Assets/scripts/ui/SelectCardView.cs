@@ -20,7 +20,7 @@ public class SelectCardView : MonoBehaviour
 
     private void OnDestroy()
     {
-        EventDispatcher.Instance.on(GameConst.SELECTCARD, this.selectCard);
+        EventDispatcher.Instance.off(GameConst.SELECTCARD, this.selectCard);
     }
 
     public void initCards(IUser user,List<ICard> cards)
