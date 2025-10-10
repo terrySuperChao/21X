@@ -1,6 +1,6 @@
 public interface IUIPokerPara
 {
-    public IUser getAttackUser();
+    public IUser getUser();
     public IPoker getPoker();
     public float getAddValue();
     public float getFinalValue();

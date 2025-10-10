@@ -147,19 +147,46 @@ public class CardMgr: Singleton<CardMgr>
 
     //
     public void handle(ICardHandlePara para, CardHandleType type) {
-        if (!_cardDic.ContainsKey(para.getAttackUser().getUserId())) return;
-        List<ICard> cards = _cardDic[para.getAttackUser().getUserId()];
+        if (!_cardDic.ContainsKey(para.getUser().getUserId())) return;
+        List<ICard> cards = _cardDic[para.getUser().getUserId()];
         List<ICardHandle> handles = CardConfig.getHandle();
         for (int i = 0; i < cards.Count; i++) {
             para.setCard(cards[i]);
             int index = cards[i].getId() - 1;
             if (index < handles.Count) {
                 switch (type) {
-                    case CardHandleType.addValue:
-                        handles[index].addValueHandle(para);
+                    case CardHandleType.dealPoker:
+                        handles[index].dealPokerHandle(para);
                         break;
-                    case CardHandleType.addRoundValue:
-                        handles[index].addRoundValueHanle(para);
+                    case CardHandleType.roundBegin:
+                        handles[index].roundBeginHandle(para);
+                        break;
+                    case CardHandleType.roundAddValue:
+                        handles[index].roundAddValueHandle(para);
+                        break;
+                    case CardHandleType.roundAddMagic:
+                        handles[index].roundAddMagicHandle(para);
+                        break;
+                    case CardHandleType.roundAttackBegin:
+                        handles[index].roundAttackBeginHandle(para);
+                        break;
+                    case CardHandleType.roundAttack:
+                        handles[index].roundAttackHandle(para);
+                        break;
+                    case CardHandleType.roundMagicAttack:
+                        handles[index].roundMagicAttackHandle(para);
+                        break;
+                    case CardHandleType.roundSubDefense:
+                        handles[index].roundSubDefenseHandle(para);
+                        break;
+                    case CardHandleType.roundSubBlood:
+                        handles[index].roundSubBloodHandle(para);
+                        break;
+                    case CardHandleType.roundAttackAfter:
+                        handles[index].roundAttackAfterHandle(para);
+                        break;
+                    case CardHandleType.roundEnd:
+                        handles[index].roundEndHandle(para);
                         break;
                 }
             }

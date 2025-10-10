@@ -1,10 +1,4 @@
 //ÅÆ¶Ñ
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Reflection;
-using UnityEngine;
-
 public class GameConst
 {
     public const string DEALPOKER       = "dealPoker";
@@ -22,6 +16,31 @@ public class GameConst
     public const string ADDCARDVALUE    = "addCardValue";
     public const string COMMONATTACK    = "commonAttack";
     public const string FLYFONT         = "flyFont";
+
+    public static ValueType SuitTransformValueType(PokerSuit suit)
+    {
+        if (suit == PokerSuit.club)
+        {
+            return ValueType.magic;
+        }
+        else if (suit == PokerSuit.diamond)
+        {
+            return ValueType.defense;
+        }
+        else if (suit == PokerSuit.spade)
+        {
+
+            return ValueType.attack;
+        }
+        else if (suit == PokerSuit.heart)
+        {
+            return ValueType.blood;
+        }
+        else
+        {
+            return ValueType.nil;
+        }
+    }
 }
 
 public enum GameMode { 
@@ -63,6 +82,24 @@ public enum PokerSuit {
 }
 
 public enum CardHandleType {
-    addValue,
-    addRoundValue
+    dealPoker,
+    roundBegin,
+    roundAddValue,
+    roundAddMagic,
+    roundAttackBegin,
+    roundAttack,
+    roundMagicAttack,
+    roundSubDefense,
+    roundSubBlood,
+    roundAttackAfter,
+    roundEnd,
 }
+
+public enum ValueType { 
+    nil,
+    blood,
+    attack,
+    defense,
+    magic
+}
+

@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting.Antlr3.Runtime;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -73,8 +72,8 @@ public class CardView : MonoBehaviour
         EventDispatcher.Instance.on(GameConst.ADDPOKERVALUE, this.addPokerValue);
         EventDispatcher.Instance.on(GameConst.ADDCARDVALUE, this.addCardValue);
         EventDispatcher.Instance.on(GameConst.COMMONATTACK, this.commonAttack);
-        EventDispatcher.Instance.on(GameConst.GAMENEXTROUND, this.gameNextRound);
         EventDispatcher.Instance.on(GameConst.FLYFONT, this.flyFont);
+        EventDispatcher.Instance.on(GameConst.GAMENEXTROUND, this.gameNextRound);
         StartCoroutine(dealPokerAfterAction());
     }
 
@@ -91,8 +90,8 @@ public class CardView : MonoBehaviour
         EventDispatcher.Instance.off(GameConst.ADDPOKERVALUE, this.addPokerValue);
         EventDispatcher.Instance.off(GameConst.ADDCARDVALUE, this.addCardValue);
         EventDispatcher.Instance.off(GameConst.COMMONATTACK, this.commonAttack);
-        EventDispatcher.Instance.off(GameConst.GAMENEXTROUND, this.gameNextRound);
         EventDispatcher.Instance.off(GameConst.FLYFONT, this.flyFont);
+        EventDispatcher.Instance.off(GameConst.GAMENEXTROUND, this.gameNextRound);
     }
 
     // Update is called once per frame
@@ -179,6 +178,7 @@ public class CardView : MonoBehaviour
         setBtnInteractable(false);
         PlayPokerMgr.Instance.dealPoker();
         GameMessage.Instance.setHandleMessageComplete();
+        _gameSettle.dealPokerCardHandle(PlayPokerMgr.Instance.getPlayers(),false);
     }
 
     public void onStopPokerClick() {
@@ -267,11 +267,13 @@ public class CardView : MonoBehaviour
         if (number >= 17)
         {
             PlayPokerMgr.Instance.stopDealPoker();
+            GameMessage.Instance.setHandleMessageComplete();
         }
         else {
             PlayPokerMgr.Instance.dealPoker();
+            GameMessage.Instance.setHandleMessageComplete();
+            _gameSettle.dealPokerCardHandle(PlayPokerMgr.Instance.getPlayers(), true);
         }
-        GameMessage.Instance.setHandleMessageComplete();
     }
 
     private void gameSettle(params System.Object[] obj) {
@@ -469,8 +471,8 @@ public class CardView : MonoBehaviour
     {
         IUIPokerPara para = (IUIPokerPara)obj[0];
         PokerSuit suit = (PokerSuit)para.getPoker().getSuit();
-        Text text = getText(para.getAttackUser(), suit);
-        Transform child = getPokerIdTransform(para.getAttackUser(), para.getPoker());
+        Text text = getText(para.getUser(), GameConst.SuitTransformValueType(suit));
+        Transform child = getPokerIdTransform(para.getUser(), para.getPoker());
         if (child != null && text != null)
         {
             Text addText = Instantiate(text, rootTransform);
@@ -482,7 +484,7 @@ public class CardView : MonoBehaviour
             yield return new WaitForSeconds(0.51f);
             iTween.ScaleTo(child.gameObject, new Vector3(0.6f, 0.6f, 0.6f), 0.1f);
             Destroy(addText.gameObject);
-            text.text = getFinalContent(para.getAttackUser(), suit, para.getFinalValue());
+            text.text = getFinalContent(para.getUser(), GameConst.SuitTransformValueType(suit), para.getFinalValue());
         }
         GameMessage.Instance.setHandleMessageComplete();
     }
@@ -495,39 +497,43 @@ public class CardView : MonoBehaviour
 
     private IEnumerator addCardValueHandle(params System.Object[] obj)
     {
-        IUICardHandlePara para = (IUICardHandlePara)obj[0];
-
-        Text text = getText(para.getAttackUser(), para.getPokerSuit());
-        Transform child = getCardIdTransform(para.getAttackUser(), para.getCard());
-        if (child != null && text != null) {
+        IUICommonPara para = (IUICommonPara)obj[0];
+        Text text = getText(para.getUser(), para.getValueType());
+        if (text != null) {
             Text addText = Instantiate(text, rootTransform);
             addText.transform.position = text.transform.position;
-            addText.text = "+" + para.getAddValue();
-            addText.color = Color.green;
-            iTween.MoveBy(addText.gameObject, new Vector3(0,50,0), 0.5f);
-            iTween.ScaleTo(child.gameObject, new Vector3(0.6f, 0.6f, 0.6f), 0.5f);
+            if (para.getValue() > 0)
+            {
+                addText.text = "+" + para.getValue();
+                addText.color = Color.green;
+                iTween.MoveBy(addText.gameObject, new Vector3(0, 50, 0), 0.5f);
+            }
+            else {
+                addText.text = "" + para.getValue();
+                addText.color = Color.red;
+                iTween.MoveBy(addText.gameObject, new Vector3(0, -50, 0), 0.5f);
+            }
             yield return new WaitForSeconds(0.51f);
-            iTween.ScaleTo(child.gameObject, new Vector3(0.7f, 0.7f, 0.7f), 0.1f);
             Destroy(addText.gameObject);
-            text.text = getFinalContent(para.getAttackUser(), para.getPokerSuit(), para.getFinalValue());
+            text.text = getFinalContent(para.getUser(), para.getValueType(), para.getFinalValue());
         }
         GameMessage.Instance.setHandleMessageComplete();
     }
 
-    private Text getText(IUser user, PokerSuit suit) {
+    private Text getText(IUser user, ValueType type) {
         Text text = null;
-        switch (suit)
+        switch (type)
         {
-            case PokerSuit.diamond: // 方
+            case ValueType.defense: // 方
                 text = user.isNpc() ? npcDefenseText : userDefenseText;
                 break;
-            case PokerSuit.heart: // 红
+            case ValueType.blood: // 红
                 text = user.isNpc() ? npcBloodText : userBloodText;
                 break;
-            case PokerSuit.spade: // 黑
+            case ValueType.attack: // 黑
                 text = user.isNpc() ? npcAttackText : userAttackText;
                 break;
-            case PokerSuit.club: // 梅
+            case ValueType.magic: // 梅
                 text = user.isNpc() ? npcMagicText : userMagicText;
                 break;
             default:
@@ -535,19 +541,19 @@ public class CardView : MonoBehaviour
         }
         return text;
     }
-    private string getFinalContent(IUser user, PokerSuit suit, float finalValue)
+    private string getFinalContent(IUser user, ValueType type, float finalValue)
     {
         float maxValue = -1;
-        switch (suit)
+        switch (type)
         {
-            case PokerSuit.diamond: // 方
+            case ValueType.defense: // 方
                 break;
-            case PokerSuit.heart: // 红
+            case ValueType.blood: // 红
                 maxValue = user.getMaxBlood();
                 break;
-            case PokerSuit.spade: // 黑
+            case ValueType.attack: // 黑
                 break;
-            case PokerSuit.club: // 梅
+            case ValueType.magic: // 梅
                 maxValue = user.getMaxMagic();
                 break;
             default:
@@ -569,38 +575,26 @@ public class CardView : MonoBehaviour
 
     private IEnumerator commonAttackHandle(params System.Object[] obj)
     {
-        IUICommonAttackPara para = (IUICommonAttackPara)obj[0];
-
-        Text bloodText;
-        Text defenseText;
-        if (para.getAttackUser().isNpc())
+        IUICommonPara para = (IUICommonPara)obj[0];
+        if (para.getValueType() == ValueType.magic)
         {
-            bloodText = userBloodText;
-            defenseText = userDefenseText;
+            Text text = getText(para.getUser(), ValueType.magic);
+            text.text = para.getUser().getMagic() + "/" + para.getUser().getMaxMagic();
+        }
+        else
+        {
+            Text text = getText(para.getUser(), ValueType.attack);
+            text.text = para.getUser().getAttack().ToString();
+        }
 
-            if (para.isMagicAttack()){
-                npcMagicText.text =  para.getAttackUser().getMagic() + "/" + para.getAttackUser().getMaxMagic();
-            }
-            else {
-                npcAttackText.text = para.getAttackUser().getAttack().ToString();
-            }
+        if (para.getUser().isNpc())
+        {
             attackImage.transform.position = npcHeadImage.transform.position;
             effectImage.transform.position = userHeadImage.transform.position;
             iTween.MoveTo(attackImage, userHeadImage.transform.position, 1.0f);
         }
         else
         {
-            bloodText = npcBloodText;
-            defenseText = npcDefenseText;
-
-            if (para.isMagicAttack())
-            {
-                userMagicText.text = para.getAttackUser().getMagic() + "/" + para.getAttackUser().getMaxMagic();
-            }
-            else
-            {
-                userAttackText.text = para.getAttackUser().getAttack().ToString();
-            }
             attackImage.transform.position = userHeadImage.transform.position;
             effectImage.transform.position = npcHeadImage.transform.position;
             iTween.MoveTo(attackImage, npcHeadImage.transform.position, 1.0f);
@@ -610,30 +604,33 @@ public class CardView : MonoBehaviour
         yield return new WaitForSeconds(1.1f);
         attackImage.SetActive(false);
         effectImage.SetActive(true);
-        effectText.text = "-" + para.getAttack().ToString();
+        effectText.text = "-" + para.getValue().ToString();
         yield return new WaitForSeconds(0.5f);
         effectImage.SetActive(false);
+        
+        GameMessage.Instance.setHandleMessageComplete();
+    }
 
-        Text tempText = Instantiate(defenseText, rootTransform);
-        if (para.getDefense() > 0)
+    public void flyFont(params System.Object[] obj)
+    {
+        StartCoroutine(flyFontHandle(obj));
+    }
+
+    private IEnumerator flyFontHandle(params System.Object[] obj)
+    {
+        IUIFlyFontPara para = (IUIFlyFontPara)obj[0];
+        Transform child = getCardIdTransform(para.getUser(), para.getCard());
+        if (child != null)
         {
-            tempText.transform.position = defenseText.transform.position;
-            tempText.text = "-" + para.getDefense();
-            tempText.color = Color.red;
-            iTween.MoveBy(tempText.gameObject, new Vector3(0, -50, 0), 0.5f);
-            yield return new WaitForSeconds(0.52f);
-            defenseText.text = para.getFinalDefense().ToString();
+            Text addText = Instantiate(userAttackText, rootTransform);
+            addText.transform.position = child.position;
+            addText.text = para.getText();
+            iTween.MoveBy(addText.gameObject, new Vector3(0, 100, 0), 0.5f);
+            iTween.ScaleTo(child.gameObject, new Vector3(0.6f, 0.6f, 0.6f), 0.5f);
+            yield return new WaitForSeconds(0.51f);
+            Destroy(addText.gameObject);
+            iTween.ScaleTo(child.gameObject, new Vector3(0.7f, 0.7f, 0.7f), 0.1f);
         }
-        if (para.getBlood() > 0)
-        {
-            tempText.transform.position = bloodText.transform.position;
-            tempText.text = "-" + para.getBlood();
-            tempText.color = Color.red;
-            iTween.MoveBy(tempText.gameObject, new Vector3(0, -50, 0), 0.5f);
-            yield return new WaitForSeconds(0.52f);
-            bloodText.text = para.getFinalBlood() + "/" + para.getDefenseUser().getMaxBlood();
-        }
-        Destroy(tempText.gameObject);
         GameMessage.Instance.setHandleMessageComplete();
     }
 
@@ -685,40 +682,5 @@ public class CardView : MonoBehaviour
         HandPokerMgr.Instance.resetHandPoker();
         PlayPokerMgr.Instance.startPlayPoker();
         GameMessage.Instance.setHandleMessageComplete();
-    }
-
-    public void flyFont(params System.Object[] obj)
-    {
-        StartCoroutine(flyFontHandle(obj));
-    }
-
-    private IEnumerator flyFontHandle(params System.Object[] obj)
-    {
-        IUICardHandlePara para = (IUICardHandlePara)obj[0];
-        string str = (string)obj[1];
-        float delay = (float)obj[2];
-        bool flag = false;
-        if (delay > 0) {
-            flag = true;
-            GameMessage.Instance.setHandleMessageComplete();
-            yield return new WaitForSeconds(delay - 0.51f);
-        }
-
-        Transform child = getCardIdTransform(para.getAttackUser(), para.getCard());
-        if (child != null)
-        {
-            Text addText = Instantiate(userAttackText, rootTransform);
-            addText.transform.position = child.position;
-            addText.text = (string)obj[1];
-            iTween.MoveBy(addText.gameObject,new Vector3(0,100,0) , 0.5f);
-            iTween.ScaleTo(child.gameObject, new Vector3(0.6f, 0.6f, 0.6f), 0.5f);
-            yield return new WaitForSeconds(0.51f);
-            Destroy(addText.gameObject);
-            iTween.ScaleTo(child.gameObject, new Vector3(0.7f, 0.7f, 0.7f), 0.1f);
-        }
-
-        if (!flag) {
-            GameMessage.Instance.setHandleMessageComplete();
-        }
     }
 }

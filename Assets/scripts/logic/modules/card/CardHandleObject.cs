@@ -1,28 +1,96 @@
 using System;
-using System.Diagnostics;
 
-public abstract class CardHandleObject:ICardHandle
+public abstract class CardHandleObject : ICardHandle
 {
-    public void addValueHandle(ICardHandlePara para) {
-        this._addValueHandle(para);
+
+    //要牌
+    public void dealPokerHandle(ICardHandlePara para) {
+        _dealPokerHandle(para);
     }
 
-    public void addRoundValueHanle(ICardHandlePara para)
+    //回合前
+    public void roundBeginHandle(ICardHandlePara para)
     {
-        this._addRoundValueHanle(para);
+        _roundBeginHandle(para);
     }
-
-    protected virtual void _addValueHandle(ICardHandlePara para) {
-        
-    }
-
-    protected virtual void _addRoundValueHanle(ICardHandlePara para)
+    //回合添加值
+    public void roundAddValueHandle(ICardHandlePara para)
     {
-
+        _roundAddValueHandle(para);
     }
+
+    //回合添加魔法值
+    public void roundAddMagicHandle(ICardHandlePara para) {
+        _roundAddMagicHandle(para);
+    }
+
+    //回合攻击前
+    public void roundAttackBeginHandle(ICardHandlePara para)
+    {
+        _roundAttackBeginHandle(para);
+    }
+
+    //攻击
+    public void roundAttackHandle(ICardHandlePara para)
+    {
+        _roundAttackHandle(para);
+    }
+
+    //魔法攻击
+    public void roundMagicAttackHandle(ICardHandlePara para) {
+        _roundMagicAttackHandle(para);
+    }
+    //扣护甲
+    public void roundSubDefenseHandle(ICardHandlePara para)
+    {
+        _roundSubDefenseHandle(para);
+    }
+    //扣血
+    public void roundSubBloodHandle(ICardHandlePara para)
+    {
+        _roundSubBloodHandle(para);
+    }
+
+    //回合攻击后
+    public void roundAttackAfterHandle(ICardHandlePara para)
+    {
+        _roundAttackAfterHandle(para);
+    }
+    //回合结束
+    public void roundEndHandle(ICardHandlePara para)
+    {
+        _roundEndHandle(para);
+    }
+
+    protected virtual void _dealPokerHandle(ICardHandlePara para){ }
+
+    //回合前
+    protected virtual void _roundBeginHandle(ICardHandlePara para) { }
+    //回合添加值
+    protected virtual void _roundAddValueHandle(ICardHandlePara para) { }
+    //回合添加魔法值
+    protected virtual void _roundAddMagicHandle(ICardHandlePara para){ }
+    //回合攻击前
+    protected virtual void _roundAttackBeginHandle(ICardHandlePara para) { }
+
+    //攻击
+    protected virtual void _roundAttackHandle(ICardHandlePara para) { }
+
+    //魔法攻击
+    protected virtual void _roundMagicAttackHandle(ICardHandlePara para) { }
+    //扣护甲
+    protected virtual void _roundSubDefenseHandle(ICardHandlePara para) { }
+    //扣血
+    protected virtual void _roundSubBloodHandle(ICardHandlePara para) { }
+
+    //回合攻击后
+    protected virtual void _roundAttackAfterHandle(ICardHandlePara para) { }
+    //回合结束
+    protected virtual void _roundEndHandle(ICardHandlePara para) { }
 
     //保留一位小数
-    protected float getNumberDigits(float number) {
+    protected float getNumberDigits(float number)
+    {
         return (float)Math.Round(number, 1);
     }
 }

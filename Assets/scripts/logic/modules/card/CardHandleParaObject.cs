@@ -2,24 +2,22 @@ using System;
 public class CardHandleParaObject : ICardHandlePara
 {
     private ICard _card;
+    private IUser _user;
     private IUser _attackUser;
     private IUser _defenseUser;
     private IPoker _poker;
     private float _baseValue;
     private IRoundResult _roundResult;
-    public CardHandleParaObject(ICardHandlePara para)
+
+    public CardHandleParaObject()
     {
-        _attackUser = para.getAttackUser();
-        _defenseUser = para.getDefenseUser();
-        _card = para.getCard();
-        _poker = para.getPoker();
     }
 
-    public CardHandleParaObject(IUser attackUser, IUser defenseUser, ICard card, IPoker poker) {
-        _attackUser = attackUser;
-        _defenseUser = defenseUser;
-        _card = card;
-        _poker = poker;
+    public IUser getUser() {
+        return _user;
+    }
+    public void setUser(IUser user) { 
+        _user = user;
     }
 
     public void setCard(ICard card) {
@@ -28,8 +26,19 @@ public class CardHandleParaObject : ICardHandlePara
     public ICard getCard() {
         return _card;
     }
+
+    public void setAttackUser(IUser user)
+    {
+        _attackUser = user;
+    }
+
     public IUser getAttackUser() {
         return _attackUser;
+    }
+
+    public void setDefenseUser(IUser user)
+    {
+        _defenseUser =  user;
     }
 
     public IUser getDefenseUser() {

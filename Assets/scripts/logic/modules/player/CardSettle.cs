@@ -1,136 +1,166 @@
 //ÅÆ¶Ñ
 using System.Collections.Generic;
-using UnityEngine;
-using static Unity.Collections.AllocatorManager;
 
 public class CardSettle : IGameSettle
 {
     public bool gameSettle(IGameSettlePara para) {
-        bool isGameOver = false;
-        IRoundResult roundResult = new RoundResultObject();
         int winIndex = para.getWinIndex();
-        List<IUser> users = para.getUsers();
-        for (int i = 0; i < users.Count; i++) {
-            if (i == winIndex) {
-                IUser user = users[i];
-                ICardHandlePara handlePara = new CardHandleParaObject(user, null,null,null);
-                List<IPoker> pokers = HandPokerMgr.Instance.getHandPoker(user);
-                List<int> values = getPokerValue(pokers);
-                for (int j = 0; j < pokers.Count; j++) {
-                    IPoker poker = pokers[j];
-                    float addValue = values[j];
-                    float finalValue = 0;
-                    PokerSuit suit = (PokerSuit)poker.getSuit();
-                    switch (suit) {
-                        case PokerSuit.diamond: // ·½
-                            addValue *= 0.5f;
-                            finalValue = user.addDefense(addValue);
-                            break;
-                        case PokerSuit.heart: // ºì
-                            addValue *= 0.5f;
-                            finalValue = user.addBlood(addValue);
-                            break;
-                        case PokerSuit.spade: // ºÚ
-                            addValue *= 1.0f;
-                            finalValue = user.addAttack(addValue);
-                            break;
-                        case PokerSuit.club: // Ã·
-                            addValue *= 1.0f;
-                            finalValue = user.addMagic(addValue);
-                            break;
-                        default:
-                            break;
-                    }
-                    IUIPokerPara pokerPara = new UIPokerPara(user, poker, addValue, finalValue, para.isBackJock());
-                    GameMessage.Instance.addMsg(GameConst.ADDPOKERVALUE, pokerPara);
+        if (winIndex == -1) return false;
 
-                    handlePara.setPoker(poker);
-                    handlePara.setBaseValue(addValue);
-                    CardMgr.Instance.handle(handlePara,CardHandleType.addValue);
-                }
-                handlePara.setRoundResult(roundResult);
-                CardMgr.Instance.handle(handlePara, CardHandleType.addRoundValue);
-                break;
+        List<IUser> users = para.getUsers();
+        IUser attackUser = users[winIndex];
+        IUser defenseUser = users[winIndex == 0 ? 1 : 0];
+
+        IRoundResult roundResult = new RoundResultObject();
+        ICardHandlePara handlePara = new CardHandleParaObject();
+        handlePara.setUser(attackUser);
+        handlePara.setAttackUser(attackUser);
+        handlePara.setDefenseUser(defenseUser);
+        handlePara.setRoundResult(roundResult);
+
+        CardMgr.Instance.handle(handlePara, CardHandleType.roundBegin);
+        
+        //Ìí¼ÓÖµ
+        List<IPoker> pokers = HandPokerMgr.Instance.getHandPoker(attackUser);
+        List<int> values = getPokerValue(pokers);
+        for (int j = 0; j < pokers.Count; j++)
+        {
+            IPoker poker = pokers[j];
+            float addValue = values[j] * roundResult.getAttributeMult();
+            float finalValue = 0;
+            ValueType type = GameConst.SuitTransformValueType((PokerSuit)poker.getSuit());
+            switch (type)
+            {
+                case ValueType.defense: // ·½
+                    addValue *= 0.5f;
+                    finalValue = attackUser.addDefense(addValue);
+                    break;
+                case ValueType.blood: // ºì
+                    addValue *= 0.5f;
+                    finalValue = attackUser.addBlood(addValue);
+                    break;
+                case ValueType.attack: // ºÚ
+                    addValue *= 1.0f;
+                    finalValue = attackUser.addAttack(addValue);
+                    break;
+                case ValueType.magic: // Ã·
+                    addValue *= 1.0f;
+                    finalValue = attackUser.addMagic(addValue);
+                    break;
+                default:
+                    break;
             }
+            IUIPokerPara pokerPara = new UIPokerPara(attackUser, poker, addValue, finalValue, para.isBackJock());
+            GameMessage.Instance.addMsg(GameConst.ADDPOKERVALUE, pokerPara);
+
+            if (type == ValueType.magic)
+            {
+                CardMgr.Instance.handle(handlePara, CardHandleType.roundAddMagic);
+            }
+
+            handlePara.setPoker(poker);
+            handlePara.setBaseValue(addValue);
+            CardMgr.Instance.handle(handlePara, CardHandleType.roundAddValue);
         }
 
-        for (int i = 0; i < users.Count; i++)
-        {
-            if (i != winIndex && winIndex > -1)
+        //¹¥»÷½áËã
+        handlePara.setUser(attackUser);
+        CardMgr.Instance.handle(handlePara, CardHandleType.roundAttackBegin);
+
+        handlePara.setUser(defenseUser);
+        CardMgr.Instance.handle(handlePara, CardHandleType.roundAttackBegin);
+
+        float attack = attackUser.getAttack();
+        attackUser.setAttack(roundResult.getSaveAttackValue());
+        if (attack > 0) {
+            IUICommonPara attackPara0 = new UICommonParaObject(attackUser, ValueType.attack, attack, attackUser.getAttack());
+            GameMessage.Instance.addMsg(GameConst.COMMONATTACK, attackPara0);
+
+            handlePara.setUser(attackUser);
+            CardMgr.Instance.handle(handlePara, CardHandleType.roundAttack);
+
+            if (roundResult.getPenetrateValue() == 0)
             {
-                IUser user = users[winIndex];
-                List<bool> skipDefense = new List<bool>() { roundResult.getPenetrateValue() > 0 };
-                List<float> attacks = new List<float>() { user.getAttack() };
-
-                if (user.getMagic() >= user.getMaxMagic())
-                {
-                    attacks.Add(50); //Ö±½Ó¹¥»÷50
-                    skipDefense.Add(true);
-                    user.setMagic(user.getMaxMagic() * roundResult.getSaveMagicValue());
-                }
-
-                for (int j = 0; j < attacks.Count; j++) {
-                    if (attacks[j] <= 0){
-                        continue;
-                    }
-
-                    float attack = attacks[j];
-                    float defense = users[i].getDefense();
-                    float blood = users[i].getBlood();
-                    
-                    float attackValue = attack;
+                float defense = defenseUser.getDefense();
+                if (defense > 0) {
                     float defenseValue = 0;
-                    float bloodValue = 0;
-                    
-                    if (!skipDefense[j]) {
-                        if (attack > defense)
-                        {
-                            defenseValue = defense;
-                            attack -= defense;
-                            defense = 0;
-                        }
-                        else
-                        {
-                            defense -= attack;
-                            attack = 0;
-                        }
-                    }
-
-                    if (blood > attack)
+                    if (attack > defense)
                     {
-                        bloodValue = attack;
-                        blood -= attack;
+                        defenseValue = defense;
+                        attack -= defense;
+                        defense = 0;
                     }
                     else
                     {
-                        bloodValue = blood;
-                        blood = 0;
+                        defenseValue = attack;
+                        defense -= attack;
+                        attack = 0;
                     }
+                    defenseUser.setDefense(defense);
 
-                    users[i].setBlood(blood);
-                    users[i].setDefense(defense);
-                    user.setAttack(0);
+                    IUICommonPara attackPara1 = new UICommonParaObject(defenseUser, ValueType.defense, defenseValue, defenseUser.getDefense());
+                    GameMessage.Instance.addMsg(GameConst.ADDCARDVALUE, attackPara1);
 
-                    IUICommonAttackPara attackPara = new UICommonAttackParaObject(user, users[i], attackValue, bloodValue, blood, defenseValue, defense, j == 1);
-                    GameMessage.Instance.addMsg(GameConst.COMMONATTACK, attackPara);
-                    
-                    //·´µ¯ÉËº¦
-                    float reflectValue = roundResult.getReflectValue();
-                    if (reflectValue > 0 && defenseValue > 0)
-                    {
-                        IUICommonAttackPara reflectattackPara = new UICommonAttackParaObject(users[i], user, reflectValue, reflectValue, user.getBlood(), 0, 0, false);
-                        GameMessage.Instance.addMsg(GameConst.COMMONATTACK, reflectattackPara);
-                    }
-
-                    if (blood <= 0 || user.getBlood() <= 0) {
-                        isGameOver = true;
-                        break;
-                    }   
+                    handlePara.setUser(defenseUser);
+                    CardMgr.Instance.handle(handlePara, CardHandleType.roundSubDefense);
+                    handlePara.setUser(attackUser);
                 }
-                break;
+            }
+
+            float blood = defenseUser.getBlood();
+            if (attack > 0) {
+                float bloodValue = 0;
+                if (attack > blood)
+                {
+                    bloodValue = blood;
+                    blood = 0;   
+                }
+                else
+                {
+                    bloodValue = attack;
+                    blood -= attack;
+                }
+                defenseUser.setBlood(blood);
+                IUICommonPara attackPara1 = new UICommonParaObject(defenseUser, ValueType.blood, bloodValue, defenseUser.getBlood());
+                GameMessage.Instance.addMsg(GameConst.ADDCARDVALUE, attackPara1);
+                CardMgr.Instance.handle(handlePara, CardHandleType.roundSubBlood);
             }
         }
-        return isGameOver;
+
+        if (defenseUser.getBlood() > 0 && attackUser.getMagic() >= attackUser.getMaxMagic())
+        {
+            attack = 50;
+            float blood = defenseUser.getBlood();
+            float bloodValue = 0;
+
+            if (attack > blood)
+            {
+                bloodValue = blood;
+                blood = 0;
+            }
+            else
+            {
+                bloodValue = attack;
+                blood -= attack;
+            }
+            defenseUser.setBlood(blood);
+
+            attackUser.setMagic(roundResult.getSaveMagicValue());
+            IUICommonPara attackPara1 = new UICommonParaObject(attackUser, ValueType.magic, attackUser.getMaxMagic(), attackUser.getMagic());
+            GameMessage.Instance.addMsg(GameConst.COMMONATTACK, attackPara1);
+            CardMgr.Instance.handle(handlePara, CardHandleType.roundMagicAttack);
+
+            IUICommonPara attackPara2 = new UICommonParaObject(defenseUser, ValueType.blood, bloodValue, defenseUser.getBlood());
+            GameMessage.Instance.addMsg(GameConst.ADDCARDVALUE, attackPara2);
+            CardMgr.Instance.handle(handlePara, CardHandleType.roundSubBlood);
+        }
+        CardMgr.Instance.handle(handlePara, CardHandleType.roundAttackAfter);      
+        CardMgr.Instance.handle(handlePara, CardHandleType.roundEnd);
+
+        handlePara.setUser(defenseUser);
+        CardMgr.Instance.handle(handlePara, CardHandleType.roundEnd);
+
+        return defenseUser.getBlood() <= 0 || attackUser.getBlood() <= 0;
     }
 
     public List<int> getPokerValue(List<IPoker> pokers)
@@ -180,5 +210,18 @@ public class CardSettle : IGameSettle
         }
 
         return values;
+    }
+
+    public void dealPokerCardHandle(List<IUser> list,bool isNpc) {
+        ICardHandlePara handlePara = new CardHandleParaObject();
+        for (int i = 0; i < list.Count; i++)
+        {
+            if (list[i].isNpc() == isNpc)
+            {
+                handlePara.setUser(list[i]);
+                break;
+            }
+        }
+        CardMgr.Instance.handle(handlePara, CardHandleType.dealPoker);
     }
 }

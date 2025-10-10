@@ -4,16 +4,19 @@ using System;
 public class DiamondCardHandle : CardHandleObject
 {
     override
-    protected void _addValueHandle(ICardHandlePara para) {
+    protected void _roundAddValueHandle(ICardHandlePara para) {
         PokerSuit suit = (PokerSuit)para.getPoker().getSuit();
-        if (suit != PokerSuit.diamond)
-        { 
-            return;
-        }
+        if (suit == PokerSuit.diamond)
+        { //·½¿é
+            
+            float addValue = getNumberDigits(para.getBaseValue() * 0.2f);
+            float finalValue = para.getAttackUser().addDefense(addValue);
 
-        float addValue = getNumberDigits(para.getBaseValue() * 0.2f);
-        float finalValue = para.getAttackUser().addDefense(addValue);
-        IUICardHandlePara uiPara = new UICardHandleParaObject(para, addValue, finalValue, suit);
-        GameMessage.Instance.addMsg(GameConst.ADDCARDVALUE, uiPara);
+            IUIFlyFontPara uiPara1 = new UIFlyFontParaObject(para.getAttackUser(), para.getCard(), "»¤¼×+" + addValue);
+            GameMessage.Instance.addMsg(GameConst.FLYFONT, uiPara1);
+
+            IUICommonPara uiPara2 = new UICommonParaObject(para.getAttackUser(), GameConst.SuitTransformValueType(suit), addValue, finalValue);
+            GameMessage.Instance.addMsg(GameConst.ADDCARDVALUE, uiPara2);
+        }
     }
 }

@@ -98,7 +98,7 @@ public class PlayPokerMgr : Singleton<PlayPokerMgr>
         }
     }
 
-    public void dealPoker() {
+    public void dealPoker(int dealNumbe = 1) {
         int index = getPlayingIndex();
         if (index == -1) {
             gameSettle();
@@ -106,11 +106,13 @@ public class PlayPokerMgr : Singleton<PlayPokerMgr>
         }
 
         IUser user = _players[index].user;
-        IPoker poker = getDealPoker();
-        HandPokerMgr.Instance.addHandPoker(user, poker);
+        for (int i = 0; i < dealNumbe; i++) { 
+            IPoker poker = getDealPoker();
+            HandPokerMgr.Instance.addHandPoker(user, poker);
 
-        int number = HandPokerMgr.Instance.getHandPokerPoint(user, true);
-        GameMessage.Instance.addMsg(GameConst.DEALPOKER, user, poker, number);
+            int number = HandPokerMgr.Instance.getHandPokerPoint(user, true);
+            GameMessage.Instance.addMsg(GameConst.DEALPOKER, user, poker, number);
+        }
 
         //最终的分数
         int number2 = HandPokerMgr.Instance.getHandPokerPoint(user, false);
@@ -127,8 +129,7 @@ public class PlayPokerMgr : Singleton<PlayPokerMgr>
             }
             else {
                 nextPlayer(index);
-            }
-                
+            }  
         }
     }
 
@@ -234,7 +235,7 @@ public class PlayPokerMgr : Singleton<PlayPokerMgr>
         return number;
     }
 
-    private int getPlayingIndex() {
+    public int getPlayingIndex() {
         int index = -1;
         for (int i = 0; i < _players.Count; i++)
         {

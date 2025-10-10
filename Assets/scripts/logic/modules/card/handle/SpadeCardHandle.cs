@@ -3,16 +3,17 @@ using UnityEngine;
 public class SpadeCardHandle:CardHandleObject
 {
     override
-    protected void _addValueHandle(ICardHandlePara para) {
+    protected void _roundAddValueHandle(ICardHandlePara para) {
         PokerSuit suit = (PokerSuit)para.getPoker().getSuit();
-        if (suit != PokerSuit.spade)
-        { //ºÚÌÒ
-            return;
+        if (suit == PokerSuit.spade)
+        {   //ºÚÌÒ
+            float addValue = 1;
+            float finalValue = para.getAttackUser().addAttack(addValue);
+            IUIFlyFontPara uiPara1 = new UIFlyFontParaObject(para.getAttackUser(),para.getCard(), "¹¥»÷Á¦+" + addValue);
+            GameMessage.Instance.addMsg(GameConst.FLYFONT, uiPara1);
+
+            IUICommonPara uiPara2 = new UICommonParaObject(para.getAttackUser(), GameConst.SuitTransformValueType(suit), addValue, finalValue);
+            GameMessage.Instance.addMsg(GameConst.ADDCARDVALUE, uiPara2);
         }
-        
-        float addValue = 1;
-        float finalValue = para.getAttackUser().addAttack(addValue);
-        IUICardHandlePara uiPara = new UICardHandleParaObject(para, addValue, finalValue, suit);
-        GameMessage.Instance.addMsg(GameConst.ADDCARDVALUE, uiPara);
     }
 }

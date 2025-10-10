@@ -9,7 +9,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <RootNamespace></RootNamespace>
+    <RootNamespace>
+    </RootNamespace>
     <ProjectGuid>{51D25762-1DDA-C4D8-1531-CADC2A34A96A}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -60,7 +61,20 @@
     <Analyzer Include="D:\Program Files\Unity Editor\2022.3.62f1c1\Editor\Data\Tools\Unity.SourceGenerators\Unity.Properties.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\scripts\logic\modules\card\handle\RefactoringPlusHandle.cs" />
+    <Compile Include="Assets\scripts\logic\modules\card\handle\RefactoringHandle.cs" />
+    <Compile Include="Assets\scripts\logic\modules\card\handle\FateLuckyPlusHandle.cs" />
+    <Compile Include="Assets\scripts\logic\modules\card\handle\FateLuckyHandle.cs" />
+    <Compile Include="Assets\scripts\logic\modules\card\handle\BloodthirstyPlusHandle.cs" />
+    <Compile Include="Assets\scripts\logic\modules\card\handle\BloodthirstyHandle.cs" />
+    <Compile Include="Assets\scripts\logic\modules\card\handle\ExplosiveShieldHandle.cs" />
+    <Compile Include="Assets\scripts\logic\modules\card\handle\ExplosiveShieldPlusHandle.cs" />
+    <Compile Include="Assets\scripts\logic\modules\card\handle\MagickaPlusHandle.cs" />
+    <Compile Include="Assets\scripts\logic\modules\card\handle\MagickaHandle.cs" />
+    <Compile Include="Assets\scripts\logic\modules\card\UIFlyFontParaObject.cs" />
+    <Compile Include="Assets\scripts\logic\modules\card\IUIFlyFontPara.cs" />
     <Compile Include="Assets\scripts\logic\modules\game\RandomMgr.cs" />
+    <Compile Include="Assets\scripts\logic\modules\card\UICommonParaObject.cs" />
     <Compile Include="Assets\scripts\Main.cs" />
     <Compile Include="Assets\conframework\iTween.cs" />
     <Compile Include="Assets\scripts\logic\data\PokerObject.cs" />
@@ -89,7 +103,6 @@
     <Compile Include="Assets\scripts\logic\modules\card\handle\DiamondCardHandle.cs" />
     <Compile Include="Assets\scripts\logic\modules\pokerPile\PokerPileMgr.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextSelector_A.cs" />
-    <Compile Include="Assets\scripts\logic\modules\card\IUICommonAttackPara.cs" />
     <Compile Include="Assets\scripts\logic\modules\card\handle\ClubCardPlusHandle.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01_UGUI.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\SimpleScript.cs" />
@@ -105,6 +118,7 @@
     <Compile Include="Assets\scripts\logic\modules\player\GameSettlePara.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexJitter.cs" />
     <Compile Include="Assets\scripts\logic\data\CardObject.cs" />
+    <Compile Include="Assets\scripts\logic\modules\card\handle\BerserkerHandle.cs" />
     <Compile Include="Assets\scripts\logic\modules\card\UIPokerPara.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_DigitValidator.cs" />
     <Compile Include="Assets\scripts\logic\modules\config\ConfigMgr.cs" />
@@ -123,15 +137,13 @@
     <Compile Include="Assets\scripts\ui\FightView.cs" />
     <Compile Include="Assets\scripts\logic\modules\card\RoundResultObject.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark02.cs" />
-    <Compile Include="Assets\scripts\logic\modules\card\UICommonAttackParaObject.cs" />
-    <Compile Include="Assets\scripts\logic\modules\card\UICardHandleParaObject.cs" />
     <Compile Include="Assets\scripts\logic\data\UserObject.cs" />
     <Compile Include="Assets\scripts\ui\Poker.cs" />
-    <Compile Include="Assets\scripts\logic\modules\card\IUICardHandlePara.cs" />
     <Compile Include="Assets\conframework\base\Singleton.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextSelector_B.cs" />
     <Compile Include="Assets\scripts\logic\modules\card\IRoundResult.cs" />
     <Compile Include="Assets\scripts\logic\modules\card\handle\HeartCardHandle.cs" />
+    <Compile Include="Assets\scripts\logic\modules\card\handle\BerserkerPlusHandle.cs" />
     <Compile Include="Assets\scripts\logic\modules\card\handle\HeartCardPlusHandle.cs" />
     <Compile Include="Assets\scripts\logic\modules\card\CardHandleParaObject.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\SkewTextExample.cs" />
@@ -148,6 +160,7 @@
     <Compile Include="Assets\scripts\logic\modules\card\IUIPokerPara.cs" />
     <Compile Include="Assets\scripts\logic\modules\pokerPile\HandPokerMgr.cs" />
     <Compile Include="Assets\scripts\logic\modules\player\CardSettle.cs" />
+    <Compile Include="Assets\scripts\logic\modules\card\IUICommonPara.cs" />
     <Compile Include="Assets\scripts\logic\modules\player\FightSettle.cs" />
     <Compile Include="Assets\scripts\ui\LobbyView.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextInfoDebugTool.cs" />

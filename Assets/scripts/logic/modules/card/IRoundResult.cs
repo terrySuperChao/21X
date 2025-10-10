@@ -9,7 +9,16 @@ public interface IRoundResult
     public void setSaveMagicValue(float value);
 
 
+    //±£¥Êπ•ª˜¡¶
+    public float getSaveAttackValue();
+    public void setSaveAttackValue(float value);
+
     //∑¥µØ…À∫¶
     public float getReflectValue();
     public void setReflectValue(float value);
+
+
+    // Ù–‘∑≠±∂
+    public float getAttributeMult();
+    public void setAttributeMult(float value);
 }

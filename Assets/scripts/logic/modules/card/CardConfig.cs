@@ -1,6 +1,7 @@
 //牌堆
 using System;
 using System.Collections.Generic;
+using TreeEditor;
 
 public class CardConfig
 {
@@ -16,8 +17,8 @@ public class CardConfig
 		new CardObject(9,(int)CardType.cardType5,1,"牌序重构","每次发牌时有1次重新发牌的机会"),
 		new CardObject(10,(int)CardType.cardType5,2,"牌序重构+","每次发牌时有2次重新发牌的机会，且可指定花色"),
 		new CardObject(11,(int)CardType.cardType6,1,"狂战士之怒","每次攻击保留20%的攻击力"),
-		new CardObject(12,(int)CardType.cardType6,2,"狂战士之怒+","每次攻击保留100%的攻击力，但会额外消耗10点血量"),
-		new CardObject(13,(int)CardType.cardType7,1,"魔能外溢","每次获得魔法值时，随机给对方造成1-2点随机魔法伤害"),
+		new CardObject(12,(int)CardType.cardType6,2,"狂战士之怒+","每次攻击保留100%的攻击力，但会额外消耗10点血量"), 
+        new CardObject(13,(int)CardType.cardType7,1,"魔能外溢","每次获得魔法值时，随机给对方造成1-2点随机魔法伤害"),
 		new CardObject(14,(int)CardType.cardType7,2,"魔能外溢+","每次获得魔法值时，随机给对方造成2-4点随机魔法伤害，且不管21点是否获胜，每回合都会获得5点魔法值"),
 		new CardObject(15,(int)CardType.cardType8,1,"爆牌之盾","每次爆牌，额外获得5点护甲"),
 		new CardObject(16,(int)CardType.cardType8,2,"爆牌之盾+","每次爆牌，额外获得10点护甲，且有50%几率翻倍"),
@@ -35,17 +36,28 @@ public class CardConfig
         //return _config;
     }
 
-
-	private static List<ICardHandle> _handle = new List<ICardHandle> { 
+	private static List<ICardHandle> _handle = new List<ICardHandle> {
 		new SpadeCardHandle(),
 		new SpadeCardPlusHandle(),
 		new HeartCardHandle(),
 		new HeartCardPlusHandle(),
 		new ClubCardHandle(),
-        new ClubCardPlusHandle(),
+		new ClubCardPlusHandle(),
 		new DiamondCardHandle(),
 		new DiamondCardPlusHandle(),
-    };
+		new RefactoringHandle(),
+		new RefactoringPlusHandle(),
+        new BerserkerHandle(),
+        new BerserkerPlusHandle(),
+        new MagickaHandle(),
+		new MagickaPlusHandle(),
+		new ExplosiveShieldHandle(),
+		new ExplosiveShieldPlusHandle(),
+		new BloodthirstyHandle(),
+		new BloodthirstyPlusHandle(),
+		new FateLuckyHandle(),
+		new FateLuckyPlusHandle(),
+	};
 
     public static List<ICardHandle> getHandle()
     {

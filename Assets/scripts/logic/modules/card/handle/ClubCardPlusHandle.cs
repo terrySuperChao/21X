@@ -4,22 +4,35 @@ using System;
 public class ClubCardPlusHandle : CardHandleObject
 {
     override
-    protected void _addValueHandle(ICardHandlePara para) {
+    protected void _roundAddValueHandle(ICardHandlePara para) {
         PokerSuit suit = (PokerSuit)para.getPoker().getSuit();
-        if (suit != PokerSuit.club)
+        if (suit == PokerSuit.club)
         {
-            return;
-        }
+            float addValue = 2;
+            float finalValue = para.getAttackUser().addMagic(addValue);
 
-        float addValue = 2;
-        float finalValue = para.getAttackUser().addMagic(addValue);
-        IUICardHandlePara uiPara = new UICardHandleParaObject(para, addValue, finalValue, suit);
-        GameMessage.Instance.addMsg(GameConst.ADDCARDVALUE, uiPara);
+            IUIFlyFontPara uiPara1 = new UIFlyFontParaObject(para.getAttackUser(), para.getCard(), "Ä§·¨+" + addValue);
+            GameMessage.Instance.addMsg(GameConst.FLYFONT, uiPara1);
+
+            IUICommonPara uiPara2 = new UICommonParaObject(para.getAttackUser(), GameConst.SuitTransformValueType(suit), addValue, finalValue);
+            GameMessage.Instance.addMsg(GameConst.ADDCARDVALUE, uiPara2);
+
+            CardMgr.Instance.handle(para, CardHandleType.roundAddMagic);
+        }
     }
 
     override
-    protected void _addRoundValueHanle(ICardHandlePara para)
+    protected void _roundAttackBeginHandle(ICardHandlePara para)
     {
-        para.getRoundResult().setSaveMagicValue(0.3f);
+        para.getRoundResult().setSaveMagicValue(para.getAttackUser().getMaxMagic() * 0.3f);
     }
+
+
+    override
+    protected void _roundMagicAttackHandle(ICardHandlePara para)
+    {
+        IUIFlyFontPara uiPara1 = new UIFlyFontParaObject(para.getAttackUser(), para.getCard(), "±£Áô30%Ä§·¨");
+        GameMessage.Instance.addMsg(GameConst.FLYFONT, uiPara1);
+    }
+    
 }

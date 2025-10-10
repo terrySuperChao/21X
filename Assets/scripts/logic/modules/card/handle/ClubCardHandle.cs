@@ -4,16 +4,21 @@ using System;
 public class ClubCardHandle: CardHandleObject
 {
     override
-    protected void _addValueHandle(ICardHandlePara para) {
+    protected void _roundAddValueHandle(ICardHandlePara para) {
         PokerSuit suit = (PokerSuit)para.getPoker().getSuit();
-        if (suit != PokerSuit.club)
-        {
-            return;
-        }
+        if (suit == PokerSuit.club)
+        { //Ã·»¨
 
-        float addValue = 1;
-        float finalValue = para.getAttackUser().addMagic(addValue);
-        IUICardHandlePara uiPara = new UICardHandleParaObject(para, addValue, finalValue, suit);
-        GameMessage.Instance.addMsg(GameConst.ADDCARDVALUE, uiPara);
+            float addValue = 1;
+            float finalValue = para.getAttackUser().addMagic(addValue);
+
+            IUIFlyFontPara uiPara1 = new UIFlyFontParaObject(para.getAttackUser(), para.getCard(), "Ä§·¨+" + addValue);
+            GameMessage.Instance.addMsg(GameConst.FLYFONT, uiPara1);
+
+            IUICommonPara uiPara2 = new UICommonParaObject(para.getAttackUser(), GameConst.SuitTransformValueType(suit), addValue, finalValue);
+            GameMessage.Instance.addMsg(GameConst.ADDCARDVALUE, uiPara2);
+
+            CardMgr.Instance.handle(para, CardHandleType.roundAddMagic);
+        }
     }
 }
