@@ -99,7 +99,7 @@ public class CardSettle : IGameSettle
                         }
                         defenseUser.setDefense(defense);
 
-                        IUICommonPara attackPara1 = new UICommonParaObject(defenseUser, ValueType.defense, defenseValue, defenseUser.getDefense());
+                        IUICommonPara attackPara1 = new UICommonParaObject(defenseUser, ValueType.defense, -defenseValue, defenseUser.getDefense());
                         GameMessage.Instance.addMsg(GameConst.ADDCARDVALUE, attackPara1);
 
                         handlePara.setUser(defenseUser);
@@ -122,7 +122,7 @@ public class CardSettle : IGameSettle
                         blood -= attack;
                     }
                     defenseUser.setBlood(blood);
-                    IUICommonPara attackPara1 = new UICommonParaObject(defenseUser, ValueType.blood, bloodValue, defenseUser.getBlood());
+                    IUICommonPara attackPara1 = new UICommonParaObject(defenseUser, ValueType.blood, -bloodValue, defenseUser.getBlood());
                     GameMessage.Instance.addMsg(GameConst.ADDCARDVALUE, attackPara1);
                     CardMgr.Instance.handle(handlePara, CardHandleType.roundSubBlood);
                 }
@@ -151,7 +151,7 @@ public class CardSettle : IGameSettle
                 GameMessage.Instance.addMsg(GameConst.COMMONATTACK, attackPara1);
                 CardMgr.Instance.handle(handlePara, CardHandleType.roundMagicAttack);
 
-                IUICommonPara attackPara2 = new UICommonParaObject(defenseUser, ValueType.blood, bloodValue, defenseUser.getBlood());
+                IUICommonPara attackPara2 = new UICommonParaObject(defenseUser, ValueType.blood, -bloodValue, defenseUser.getBlood());
                 GameMessage.Instance.addMsg(GameConst.ADDCARDVALUE, attackPara2);
                 CardMgr.Instance.handle(handlePara, CardHandleType.roundSubBlood);
             }

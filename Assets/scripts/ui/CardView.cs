@@ -190,7 +190,6 @@ public class CardView : MonoBehaviour
         refactoringGameObject.SetActive(false);
         setBtnInteractable(false);
         PlayPokerMgr.Instance.dealPoker();
-        GameMessage.Instance.setHandleMessageComplete();
         _gameSettle.cardHandleTypeHandle(PlayPokerMgr.Instance.getPlayers(),false, CardHandleType.dealPokerAfter);
     }
 
@@ -198,7 +197,6 @@ public class CardView : MonoBehaviour
         refactoringGameObject.SetActive(false);
         setBtnInteractable(false);
         PlayPokerMgr.Instance.stopDealPoker();
-        GameMessage.Instance.setHandleMessageComplete();
     }
 
     private void dealPoker(params System.Object[] obj)
@@ -271,6 +269,7 @@ public class CardView : MonoBehaviour
         IUser user = (IUser)obj[0];
         if (user.isNpc())
         {
+            setBtnInteractable(false);
             yield return new WaitForSeconds(RandomMgr.Instance.getRangeInt(1, 3));
             int number = HandPokerMgr.Instance.getHandPokerPoint(user, false);
             if (number >= 17)
@@ -284,9 +283,10 @@ public class CardView : MonoBehaviour
             }
         }
         else {
+            setBtnInteractable(true);
             //用户自行操作
+            yield return new WaitForSeconds(0.1f);
         }
-        setBtnInteractable(!user.isNpc());
         GameMessage.Instance.setHandleMessageComplete();
     }
 
