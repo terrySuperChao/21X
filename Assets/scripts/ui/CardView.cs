@@ -51,7 +51,6 @@ public class CardView : MonoBehaviour
 
     private CardBegin _gameBegin = new CardBegin();
     private CardSettle _gameSettle = new CardSettle();
-    private bool _dealHandPokerFinish = false;
 
 
     // Start is called before the first frame update
@@ -63,6 +62,10 @@ public class CardView : MonoBehaviour
         PlayPokerMgr.Instance.setGameBegin(_gameBegin);
         PlayPokerMgr.Instance.setGameSettle(_gameSettle);
         PlayPokerMgr.Instance.startPlayPoker();
+
+        //重置手牌
+        _gameSettle.cardHandleTypeHandle(PlayPokerMgr.Instance.getPlayers(), false, CardHandleType.handPokerAfter);
+        _gameSettle.cardHandleTypeHandle(PlayPokerMgr.Instance.getPlayers(), true, CardHandleType.handPokerAfter);
 
         EventDispatcher.Instance.on(GameConst.DEALPOKER, this.dealPoker);
         EventDispatcher.Instance.on(GameConst.STOPDEALPOKER, this.stopDealPoker);
@@ -261,36 +264,30 @@ public class CardView : MonoBehaviour
     }
 
     private void playerAction(params System.Object[] obj) {
-        if (!_dealHandPokerFinish) {
-            _dealHandPokerFinish = true;
-            _gameSettle.cardHandleTypeHandle(PlayPokerMgr.Instance.getPlayers(), false, CardHandleType.handPokerAfter);
-            _gameSettle.cardHandleTypeHandle(PlayPokerMgr.Instance.getPlayers(), true, CardHandleType.handPokerAfter);
-        }
+        StartCoroutine(playerActionHandle(obj));
+    }
 
+    private IEnumerator playerActionHandle(params System.Object[] obj) {
         IUser user = (IUser)obj[0];
         if (user.isNpc())
         {
-            StartCoroutine(npcAutoDealPokerHandle(user));
+            yield return new WaitForSeconds(RandomMgr.Instance.getRangeInt(1, 3));
+            int number = HandPokerMgr.Instance.getHandPokerPoint(user, false);
+            if (number >= 17)
+            {
+                PlayPokerMgr.Instance.stopDealPoker();
+            }
+            else
+            {
+                PlayPokerMgr.Instance.dealPoker();
+                _gameSettle.cardHandleTypeHandle(PlayPokerMgr.Instance.getPlayers(), true, CardHandleType.dealPokerAfter);
+            }
         }
         else {
             //用户自行操作
         }
         setBtnInteractable(!user.isNpc());
-    }
-
-    private IEnumerator npcAutoDealPokerHandle(IUser user) {
-        yield return new WaitForSeconds(RandomMgr.Instance.getRangeInt(1,3));
-        int number = HandPokerMgr.Instance.getHandPokerPoint(user, false);
-        if (number >= 17)
-        {
-            PlayPokerMgr.Instance.stopDealPoker();
-            GameMessage.Instance.setHandleMessageComplete();
-        }
-        else {
-            PlayPokerMgr.Instance.dealPoker();
-            GameMessage.Instance.setHandleMessageComplete();
-            _gameSettle.cardHandleTypeHandle(PlayPokerMgr.Instance.getPlayers(), true,CardHandleType.dealPokerAfter);
-        }
+        GameMessage.Instance.setHandleMessageComplete();
     }
 
     private void gameSettle(params System.Object[] obj) {
@@ -741,13 +738,13 @@ public class CardView : MonoBehaviour
         {
             Destroy(child[i].gameObject);
         }
-        _dealHandPokerFinish = false;
+        
         PokerPileMgr.Instance.shuffle();
         HandPokerMgr.Instance.resetHandPoker();
         PlayPokerMgr.Instance.startPlayPoker();
+        //重置手牌
+        _gameSettle.cardHandleTypeHandle(PlayPokerMgr.Instance.getPlayers(), false, CardHandleType.handPokerAfter);
+        _gameSettle.cardHandleTypeHandle(PlayPokerMgr.Instance.getPlayers(), true, CardHandleType.handPokerAfter);
         GameMessage.Instance.setHandleMessageComplete();
-    }
-
-   
-    
+    }     
 }
