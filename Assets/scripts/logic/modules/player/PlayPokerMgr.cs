@@ -80,16 +80,21 @@ public class PlayPokerMgr : Singleton<PlayPokerMgr>
             }
         }
 
+        IUser player = null;
         for (int j = 0; j < _players.Count; j++)
         {
             if (j == 0)
             {
+                player = _players[j].user;
                 _players[j].state = PlayState.play;
-                GameMessage.Instance.addMsg(GameConst.PLAYERACTION, _players[j].user);
             }
             else {
                 _players[j].state = PlayState.none;
             }
+        }
+
+        if (player != null) {
+            GameMessage.Instance.addMsg(GameConst.PLAYERACTION, player);
         }
     }
 
