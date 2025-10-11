@@ -1,5 +1,8 @@
 //牌堆
+using System;
 using System.Collections.Generic;
+using System.Reflection;
+using UnityEngine;
 
 
 public class PlayPokerMgr : Singleton<PlayPokerMgr>
@@ -27,16 +30,10 @@ public class PlayPokerMgr : Singleton<PlayPokerMgr>
     }
 
     private List<PlayerState> _players = new List<PlayerState>();
-    private IGameBegin _gameBegin;
-    private IGameSettle _gameSettle;
+    private IGameFlow _gameFlow;
 
-    public void setGameBegin(IGameBegin gameBegin)
-    {
-        _gameBegin = gameBegin;
-    }
-
-    public void setGameSettle(IGameSettle gameSettle) {
-        _gameSettle = gameSettle;
+    public void setGameFlow(IGameFlow gameFlow) {
+        _gameFlow = gameFlow;
     }
 
     public void addPlayer(IUser user) {
@@ -60,14 +57,8 @@ public class PlayPokerMgr : Singleton<PlayPokerMgr>
     }
 
     public void startPlayPoker() {
-        List<IUser> users = new List<IUser>();
-        for (int i = 0; i < _players.Count; i++)
-        {
-            users.Add(_players[i].user);
-        }
-        _gameBegin?.gameBegin(new GameBeginPara(users));
-
-
+        _gameFlow.gameBegin(new GameBeginPara(getPlayers()));
+      
         for (int i = 0; i < 2; i++) {
             for (int j = 0; j < _players.Count; j++){
                 IUser user = _players[j].user;
@@ -93,12 +84,14 @@ public class PlayPokerMgr : Singleton<PlayPokerMgr>
             }
         }
 
+        _gameFlow.handPokerAfter(new HandPokerAfterPara(getPlayers()));
+
         if (player != null) {
             GameMessage.Instance.addMsg(GameConst.PLAYERACTION, player);
         }
     }
 
-    public void dealPoker(int dealNumbe = 1) {
+    public void dealPoker() {
         int index = getPlayingIndex();
         if (index == -1) {
             gameSettle();
@@ -106,14 +99,14 @@ public class PlayPokerMgr : Singleton<PlayPokerMgr>
         }
 
         IUser user = _players[index].user;
-        for (int i = 0; i < dealNumbe; i++) { 
-            IPoker poker = getDealPoker();
-            HandPokerMgr.Instance.addHandPoker(user, poker);
+        IPoker poker = getDealPoker();
+        HandPokerMgr.Instance.addHandPoker(user, poker);
 
-            int number = HandPokerMgr.Instance.getHandPokerPoint(user, true);
-            GameMessage.Instance.addMsg(GameConst.DEALPOKER, user, poker, number);
-        }
+        int number = HandPokerMgr.Instance.getHandPokerPoint(user, true);
+        GameMessage.Instance.addMsg(GameConst.DEALPOKER, user, poker, number);
 
+         _gameFlow.dealPokerAfter(new DealPokerAfterPara(getPlayers(),user));
+      
         //最终的分数
         int number2 = HandPokerMgr.Instance.getHandPokerPoint(user, false);
         if (number2 <= 21)
@@ -204,7 +197,7 @@ public class PlayPokerMgr : Singleton<PlayPokerMgr>
         }
         GameMessage.Instance.addMsg(GameConst.GAMESETTLE, user);
 
-        bool isGameOver = _gameSettle.gameSettle(new GameSettlePara(this.getPlayers(), index, isBack));
+        bool isGameOver = _gameFlow.gameSettle(new GameSettlePara(getPlayers(), index, isBack));
 
         GameMessage.Instance.addMsg(isGameOver ? GameConst.GAMEOVER : GameConst.GAMENEXTROUND);
     }
@@ -246,5 +239,51 @@ public class PlayPokerMgr : Singleton<PlayPokerMgr>
             }
         }
         return index;
+    }
+
+    public void specialUserDealPoker(IUser user,int dealNumbe)
+    {
+        if (user == null) return;
+
+        for (int i = 0; i < dealNumbe; i++)
+        {
+            IPoker poker = getDealPoker();
+            HandPokerMgr.Instance.addHandPoker(user, poker);
+
+            int number = HandPokerMgr.Instance.getHandPokerPoint(user, true);
+            GameMessage.Instance.addMsg(GameConst.DEALPOKER, user, poker, number);
+        }
+
+        //最终的分数
+        int number2 = HandPokerMgr.Instance.getHandPokerPoint(user, false);
+        if (number2 > 21)
+        {
+            for (int i = 0; i < _players.Count; i++)
+            {
+                if (_players[i].user.getUserId() == user.getUserId())
+                {
+                    _players[i].state = PlayState.death;
+                    break;
+                }
+            }
+
+            if (getPlayerStateNumber() == 0)
+            {
+                gameSettle();
+            }
+        }
+    }
+
+    public IUser getNoneStateUser(bool isNpc) {
+        for (int i = 0; i < _players.Count; i++)
+        {
+            if (_players[i].user.isNpc() == isNpc &&
+                _players[i].state == PlayState.none)
+            {
+
+                return _players[i].user;
+            }
+        }
+        return null;
     }
 }

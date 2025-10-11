@@ -2,11 +2,13 @@
 using System;
 using System.Collections.Generic;
 
-public class GameSettle : IGameSettle
+public class GameFlow : GameFlowObject
 {
     private int _money = 100;
     private int _settleMoney = 0;
-    public bool gameSettle(IGameSettlePara para)
+
+    override
+    protected bool _gameSettle(IGameSettlePara para)
     {
         int winIndex = para.getWinIndex();
         List<IUser> users = para.getUsers();

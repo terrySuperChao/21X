@@ -56,7 +56,7 @@ public class CardConfig
 		new BloodthirstyPlusHandle(),
 		new FateLuckyHandle(),
 		new FateLuckyPlusHandle(),
-	};
+    };
 
     public static List<ICardHandle> getHandle()
     {

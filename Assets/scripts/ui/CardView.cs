@@ -49,8 +49,7 @@ public class CardView : MonoBehaviour
     public Transform userCards;
     public GameObject refactoringGameObject;
 
-    private CardBegin _gameBegin = new CardBegin();
-    private CardSettle _gameSettle = new CardSettle();
+    private CardFlow _gameFlow = new CardFlow();
 
 
     // Start is called before the first frame update
@@ -59,13 +58,8 @@ public class CardView : MonoBehaviour
         updateUserInfo();
         setBtnInteractable(false);
 
-        PlayPokerMgr.Instance.setGameBegin(_gameBegin);
-        PlayPokerMgr.Instance.setGameSettle(_gameSettle);
+        PlayPokerMgr.Instance.setGameFlow(_gameFlow);
         PlayPokerMgr.Instance.startPlayPoker();
-
-        //重置手牌
-        _gameSettle.cardHandleTypeHandle(PlayPokerMgr.Instance.getPlayers(), false, CardHandleType.handPokerAfter);
-        _gameSettle.cardHandleTypeHandle(PlayPokerMgr.Instance.getPlayers(), true, CardHandleType.handPokerAfter);
 
         EventDispatcher.Instance.on(GameConst.DEALPOKER, this.dealPoker);
         EventDispatcher.Instance.on(GameConst.STOPDEALPOKER, this.stopDealPoker);
@@ -190,7 +184,6 @@ public class CardView : MonoBehaviour
         refactoringGameObject.SetActive(false);
         setBtnInteractable(false);
         PlayPokerMgr.Instance.dealPoker();
-        _gameSettle.cardHandleTypeHandle(PlayPokerMgr.Instance.getPlayers(),false, CardHandleType.dealPokerAfter);
     }
 
     public void onStopPokerClick() {
@@ -279,7 +272,6 @@ public class CardView : MonoBehaviour
             else
             {
                 PlayPokerMgr.Instance.dealPoker();
-                _gameSettle.cardHandleTypeHandle(PlayPokerMgr.Instance.getPlayers(), true, CardHandleType.dealPokerAfter);
             }
         }
         else {
@@ -657,7 +649,7 @@ public class CardView : MonoBehaviour
             if (number < 21) {
                 if (RandomMgr.Instance.getRangeInt(0, 100) <= 30)
                 {
-                    _gameSettle.reDealHandPoker(PlayPokerMgr.Instance.getPlayers(), true);
+                    _gameFlow.reDealHandPoker(PlayPokerMgr.Instance.getPlayers(), true);
                 }
             }
         }
@@ -667,7 +659,7 @@ public class CardView : MonoBehaviour
         GameMessage.Instance.setHandleMessageComplete();
     }
     public void reHandPoker(params System.Object[] obj) {
-        _gameSettle.reDealHandPoker(PlayPokerMgr.Instance.getPlayers(), false);
+        _gameFlow.reDealHandPoker(PlayPokerMgr.Instance.getPlayers(), false);
     }
     
     public void clearHandPoker(params System.Object[] obj)
@@ -743,9 +735,6 @@ public class CardView : MonoBehaviour
         PokerPileMgr.Instance.shuffle();
         HandPokerMgr.Instance.resetHandPoker();
         PlayPokerMgr.Instance.startPlayPoker();
-        //重置手牌
-        _gameSettle.cardHandleTypeHandle(PlayPokerMgr.Instance.getPlayers(), false, CardHandleType.handPokerAfter);
-        _gameSettle.cardHandleTypeHandle(PlayPokerMgr.Instance.getPlayers(), true, CardHandleType.handPokerAfter);
         GameMessage.Instance.setHandleMessageComplete();
     }     
 }

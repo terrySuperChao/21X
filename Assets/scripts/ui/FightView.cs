@@ -42,14 +42,14 @@ public class FightView : MonoBehaviour
     public GameObject attackImage;
     public Text effectText;
     
-    private FightSettle _gameSettle = new FightSettle();
+    private FightFlow _gameFlow = new FightFlow();
     // Start is called before the first frame update
     void Start()
     {
         updateUserInfo();
         setBtnInteractable(false);
 
-        PlayPokerMgr.Instance.setGameSettle(_gameSettle);
+        PlayPokerMgr.Instance.setGameFlow(_gameFlow);
         PlayPokerMgr.Instance.startPlayPoker();
         
         EventDispatcher.Instance.on(GameConst.DEALPOKER, this.dealPoker);
@@ -323,7 +323,7 @@ public class FightView : MonoBehaviour
             Text text = null;
             Text addText = null;
             List <IPoker> pokers = HandPokerMgr.Instance.getHandPoker(user);
-            List<int> values = _gameSettle.getPokerValue(pokers);
+            List<int> values = _gameFlow.getPokerValue(pokers);
             for (int i = 0; i < pokers.Count; i++)
             {
                 float addValue = values[i];
@@ -356,7 +356,7 @@ public class FightView : MonoBehaviour
                 {
                     addText = Instantiate(text, rootTransform);
                 }
-                if (_gameSettle.isBackJock())
+                if (_gameFlow.isBackJock())
                 {
                     addText.text = "+" + addValue + " X2";
                     addValue *= 2;
@@ -390,8 +390,8 @@ public class FightView : MonoBehaviour
                 Destroy(addText.gameObject);
             }
             
-            float attack = _gameSettle.getSettleAttack();
-            float defense = _gameSettle.getSettleDefense();
+            float attack = _gameFlow.getSettleAttack();
+            float defense = _gameFlow.getSettleDefense();
             if (attack > 0) { 
                 Text bloodText;
                 Text defenseText;

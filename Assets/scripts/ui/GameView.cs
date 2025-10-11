@@ -31,13 +31,13 @@ public class GameView : MonoBehaviour
     public GameObject npcTipsPanel;
     public GameObject userTipsPanel;
 
-    private GameSettle _gameSettle = new GameSettle();
+    private GameFlow _gameFlow = new GameFlow();
     // Start is called before the first frame update
     void Start()
     {
         updateUserInfo();
         setBtnInteractable(false);
-        PlayPokerMgr.Instance.setGameSettle(_gameSettle);
+        PlayPokerMgr.Instance.setGameFlow(_gameFlow);
         PlayPokerMgr.Instance.startPlayPoker();
         
         EventDispatcher.Instance.on(GameConst.DEALPOKER, this.dealPoker);
@@ -92,7 +92,7 @@ public class GameView : MonoBehaviour
 
     private IEnumerator dealPokerAfterAction() {
         yield return new WaitForSeconds(1.0f);
-        int money = _gameSettle.bettingMoney(PlayPokerMgr.Instance.getPlayers());
+        int money = _gameFlow.bettingMoney(PlayPokerMgr.Instance.getPlayers());
 
         Text text1 = Instantiate(npcMoneyText,rootTransform);
         text1.gameObject.transform.position = npcMoneyText.gameObject.transform.position;
@@ -299,7 +299,7 @@ public class GameView : MonoBehaviour
         }
 
         yield return new WaitForSeconds(1f);
-        int money = _gameSettle.getSettleMoney();
+        int money = _gameFlow.getSettleMoney();
 
         string str1 = "";
         string str2 = "";

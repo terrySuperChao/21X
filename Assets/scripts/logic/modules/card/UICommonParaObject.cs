@@ -8,7 +8,7 @@ public class UICommonParaObject: IUICommonPara
         _user = user;
         _type = type;
         _value = value;
-        finalValue = _finalValue;
+        _finalValue = finalValue;
     }
     public IUser getUser() {
         return _user;
