@@ -1,6 +1,4 @@
 //√∑ª®¥Û ¶
-using System;
-
 public class ClubCardHandle: CardHandleObject
 {
     override

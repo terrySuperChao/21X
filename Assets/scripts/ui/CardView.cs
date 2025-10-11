@@ -47,9 +47,12 @@ public class CardView : MonoBehaviour
 
     public Transform npcCards;
     public Transform userCards;
+    public GameObject refactoringGameObject;
 
     private CardBegin _gameBegin = new CardBegin();
     private CardSettle _gameSettle = new CardSettle();
+    private bool _dealHandPokerFinish = false;
+
 
     // Start is called before the first frame update
     void Start()
@@ -73,6 +76,9 @@ public class CardView : MonoBehaviour
         EventDispatcher.Instance.on(GameConst.ADDCARDVALUE, this.addCardValue);
         EventDispatcher.Instance.on(GameConst.COMMONATTACK, this.commonAttack);
         EventDispatcher.Instance.on(GameConst.FLYFONT, this.flyFont);
+        EventDispatcher.Instance.on(GameConst.REFACTORING, this.refactoring);
+        EventDispatcher.Instance.on(GameConst.REHANDPOKER, this.reHandPoker);
+        EventDispatcher.Instance.on(GameConst.CLEARHEADPOKER, this.clearHandPoker);
         EventDispatcher.Instance.on(GameConst.GAMENEXTROUND, this.gameNextRound);
         StartCoroutine(dealPokerAfterAction());
     }
@@ -91,6 +97,9 @@ public class CardView : MonoBehaviour
         EventDispatcher.Instance.off(GameConst.ADDCARDVALUE, this.addCardValue);
         EventDispatcher.Instance.off(GameConst.COMMONATTACK, this.commonAttack);
         EventDispatcher.Instance.off(GameConst.FLYFONT, this.flyFont);
+        EventDispatcher.Instance.off(GameConst.REFACTORING, this.refactoring);
+        EventDispatcher.Instance.off(GameConst.REHANDPOKER, this.reHandPoker);
+        EventDispatcher.Instance.off(GameConst.CLEARHEADPOKER, this.clearHandPoker);
         EventDispatcher.Instance.off(GameConst.GAMENEXTROUND, this.gameNextRound);
     }
 
@@ -175,13 +184,15 @@ public class CardView : MonoBehaviour
     }
 
     public void onDealPokerClick() {
+        refactoringGameObject.SetActive(false);
         setBtnInteractable(false);
         PlayPokerMgr.Instance.dealPoker();
         GameMessage.Instance.setHandleMessageComplete();
-        _gameSettle.dealPokerCardHandle(PlayPokerMgr.Instance.getPlayers(),false);
+        _gameSettle.cardHandleTypeHandle(PlayPokerMgr.Instance.getPlayers(),false, CardHandleType.dealPokerAfter);
     }
 
     public void onStopPokerClick() {
+        refactoringGameObject.SetActive(false);
         setBtnInteractable(false);
         PlayPokerMgr.Instance.stopDealPoker();
         GameMessage.Instance.setHandleMessageComplete();
@@ -250,6 +261,12 @@ public class CardView : MonoBehaviour
     }
 
     private void playerAction(params System.Object[] obj) {
+        if (!_dealHandPokerFinish) {
+            _dealHandPokerFinish = true;
+            _gameSettle.cardHandleTypeHandle(PlayPokerMgr.Instance.getPlayers(), false, CardHandleType.handPokerAfter);
+            _gameSettle.cardHandleTypeHandle(PlayPokerMgr.Instance.getPlayers(), true, CardHandleType.handPokerAfter);
+        }
+
         IUser user = (IUser)obj[0];
         if (user.isNpc())
         {
@@ -272,7 +289,7 @@ public class CardView : MonoBehaviour
         else {
             PlayPokerMgr.Instance.dealPoker();
             GameMessage.Instance.setHandleMessageComplete();
-            _gameSettle.dealPokerCardHandle(PlayPokerMgr.Instance.getPlayers(), true);
+            _gameSettle.cardHandleTypeHandle(PlayPokerMgr.Instance.getPlayers(), true,CardHandleType.dealPokerAfter);
         }
     }
 
@@ -633,6 +650,53 @@ public class CardView : MonoBehaviour
         }
         GameMessage.Instance.setHandleMessageComplete();
     }
+    public void refactoring(params System.Object[] obj)
+    {
+        IUser user = (IUser)obj[0];
+        if (user.isNpc())
+        {
+            int number = HandPokerMgr.Instance.getHandPokerPoint(user, false);
+            if (number < 21) {
+                if (RandomMgr.Instance.getRangeInt(0, 100) <= 30)
+                {
+                    _gameSettle.reDealHandPoker(PlayPokerMgr.Instance.getPlayers(), true);
+                }
+            }
+        }
+        else {
+            refactoringGameObject.GetComponent<Refactoring>().setFactoringNum((int)obj[1]);
+        }
+        GameMessage.Instance.setHandleMessageComplete();
+    }
+    public void reHandPoker(params System.Object[] obj) {
+        _gameSettle.reDealHandPoker(PlayPokerMgr.Instance.getPlayers(), false);
+    }
+    
+    public void clearHandPoker(params System.Object[] obj)
+    {
+        List<Transform> child = new List<Transform>();
+        IUser user = (IUser)obj[0];
+        if (user.isNpc())
+        {
+            for (int i = 0; i < npcPokers.childCount; i++)
+            {
+                child.Add(npcPokers.GetChild(i));
+            }
+        }
+        else
+        {
+            for (int i = 0; i < userPokers.childCount; i++)
+            {
+                child.Add(userPokers.GetChild(i));
+            }
+        }
+
+        for (int i = 0; i < child.Count; i++)
+        {
+            Destroy(child[i].gameObject);
+        }
+        GameMessage.Instance.setHandleMessageComplete();
+    }
 
     public void gameNextRound(params System.Object[] obj)
     {
@@ -677,10 +741,13 @@ public class CardView : MonoBehaviour
         {
             Destroy(child[i].gameObject);
         }
-
+        _dealHandPokerFinish = false;
         PokerPileMgr.Instance.shuffle();
         HandPokerMgr.Instance.resetHandPoker();
         PlayPokerMgr.Instance.startPlayPoker();
         GameMessage.Instance.setHandleMessageComplete();
     }
+
+   
+    
 }

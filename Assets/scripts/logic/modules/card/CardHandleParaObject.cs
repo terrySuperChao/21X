@@ -1,4 +1,3 @@
-using System;
 public class CardHandleParaObject : ICardHandlePara
 {
     private ICard _card;

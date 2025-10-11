@@ -1,15 +1,20 @@
 public interface ICardHandle
 {
+    //底牌
+    public void handPokerAfterHandle(ICardHandlePara para);
+
     //要牌
-    public void dealPokerHandle(ICardHandlePara para);
+    public void dealPokerAfterHandle(ICardHandlePara para);
     //回合前
     public void roundBeginHandle(ICardHandlePara para);
+    //回合添加值前
+    public void roundAddValueBeforeHandle(ICardHandlePara para);
     //回合添加值
     public void roundAddValueHandle(ICardHandlePara para);
     //回合添加魔法值
     public void roundAddMagicHandle(ICardHandlePara para);
     //回合攻击前
-    public void roundAttackBeginHandle(ICardHandlePara para);
+    public void roundAttackBeforeHandle(ICardHandlePara para);
     //攻击
     public void roundAttackHandle(ICardHandlePara para);
     //魔法攻击

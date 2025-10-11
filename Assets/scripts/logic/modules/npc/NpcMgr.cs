@@ -1,6 +1,3 @@
-using System;
-using System.Collections.Generic;
-
 public class NpcMgr : Singleton<NpcMgr>
 {
     private IUser _user = new UserObject(true);

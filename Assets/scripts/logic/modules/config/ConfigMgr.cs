@@ -1,7 +1,4 @@
 //牌堆
-using System;
-using System.Collections.Generic;
-
 public class ConfigMgr: Singleton<ConfigMgr>
 {
     //初始化钱的数量

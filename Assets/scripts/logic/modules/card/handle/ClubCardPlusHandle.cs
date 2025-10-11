@@ -1,6 +1,4 @@
 //√∑ª®¥Û ¶
-using System;
-
 public class ClubCardPlusHandle : CardHandleObject
 {
     override
@@ -22,7 +20,7 @@ public class ClubCardPlusHandle : CardHandleObject
     }
 
     override
-    protected void _roundAttackBeginHandle(ICardHandlePara para)
+    protected void _roundAttackBeforeHandle(ICardHandlePara para)
     {
         para.getRoundResult().setSaveMagicValue(para.getAttackUser().getMaxMagic() * 0.3f);
     }

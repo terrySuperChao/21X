@@ -1,5 +1,3 @@
-using System;
-
 public class PokerObject : IPoker
 {
     private int _id = 0;

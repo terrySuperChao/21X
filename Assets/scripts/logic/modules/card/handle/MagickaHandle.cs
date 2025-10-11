@@ -1,8 +1,16 @@
 //Ä§ÄÜÍâÒç
-using System;
-
 public class MagickaHandle : CardHandleObject
 {
+    override
+    protected void _roundAddValueBeforeHandle(ICardHandlePara para)
+    { 
+        PokerSuit suit = (PokerSuit)para.getPoker().getSuit();
+        if (suit == PokerSuit.club)
+        { //Ã·»¨
+            _roundAddMagicHandle(para);
+        }
+    }
+
     override
     protected void _roundAddMagicHandle(ICardHandlePara para)
     {

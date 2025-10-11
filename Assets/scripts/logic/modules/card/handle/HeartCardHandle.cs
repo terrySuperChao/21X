@@ -1,6 +1,4 @@
 //ºìÌÒ´óÊ¦
-using System;
-
 public class HeartCardHandle: CardHandleObject
 {
     override

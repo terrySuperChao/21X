@@ -1,6 +1,4 @@
 //ÊÈÑª¿ñ»¶+
-using System;
-using UnityEngine;
 
 public class BloodthirstyPlusHandle : CardHandleObject
 {

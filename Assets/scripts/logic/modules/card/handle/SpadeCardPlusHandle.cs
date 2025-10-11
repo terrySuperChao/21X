@@ -1,11 +1,9 @@
 //ºÚÌÒ´óÊ¦
-using System;
-using UnityEngine;
 public class SpadeCardPlusHandle : CardHandleObject
 {
     private bool isPenetrate = false;
     override
-    protected void _roundAttackBeginHandle(ICardHandlePara para)
+    protected void _roundAttackBeforeHandle(ICardHandlePara para)
     {
         if (isPenetrate = RandomMgr.Instance.getRangeInt(0, 2) == 0)
         {

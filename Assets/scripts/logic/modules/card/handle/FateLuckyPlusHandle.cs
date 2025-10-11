@@ -1,11 +1,8 @@
 //ÃüÔËÀ¡Ôù+
-using System;
-using UnityEngine;
-
 public class FateLuckyPlusHandle : CardHandleObject
 {
     override
-    protected void _dealPokerHandle(ICardHandlePara para)
+    protected void _dealPokerAfterHandle(ICardHandlePara para)
     {
         if (RandomMgr.Instance.getRangeInt(0, 100) <= 40) {
             PlayPokerMgr.Instance.dealPoker(2);

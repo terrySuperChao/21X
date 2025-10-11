@@ -1,4 +1,3 @@
-using System;
 public interface ICardHandlePara
 {
     public IUser getUser();

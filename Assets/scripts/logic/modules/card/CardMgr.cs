@@ -1,6 +1,4 @@
-using System;
 using System.Collections.Generic;
-using UnityEngine;
 
 public class CardMgr: Singleton<CardMgr>
 {
@@ -155,11 +153,17 @@ public class CardMgr: Singleton<CardMgr>
             int index = cards[i].getId() - 1;
             if (index < handles.Count) {
                 switch (type) {
-                    case CardHandleType.dealPoker:
-                        handles[index].dealPokerHandle(para);
+                    case CardHandleType.handPokerAfter:
+                        handles[index].handPokerAfterHandle(para);
+                        break;
+                    case CardHandleType.dealPokerAfter:
+                        handles[index].dealPokerAfterHandle(para);
                         break;
                     case CardHandleType.roundBegin:
                         handles[index].roundBeginHandle(para);
+                        break;
+                    case CardHandleType.roundAddValueBefore:
+                        handles[index].roundAddValueBeforeHandle(para);
                         break;
                     case CardHandleType.roundAddValue:
                         handles[index].roundAddValueHandle(para);
@@ -168,7 +172,7 @@ public class CardMgr: Singleton<CardMgr>
                         handles[index].roundAddMagicHandle(para);
                         break;
                     case CardHandleType.roundAttackBegin:
-                        handles[index].roundAttackBeginHandle(para);
+                        handles[index].roundAttackBeforeHandle(para);
                         break;
                     case CardHandleType.roundAttack:
                         handles[index].roundAttackHandle(para);

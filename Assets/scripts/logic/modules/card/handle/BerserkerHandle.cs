@@ -1,12 +1,10 @@
 //��սʿ֮ŭ
-using System;
-using UnityEngine;
 
 public class BerserkerHandle : CardHandleObject
 {
     private float _saveAttackValue = 0.0f;
     override
-    protected void _roundAttackBeginHandle(ICardHandlePara para)
+    protected void _roundAttackBeforeHandle(ICardHandlePara para)
     {
         _saveAttackValue = getNumberDigits(para.getAttackUser().getAttack() * 0.2f);
         if (_saveAttackValue >= 0.1f) {

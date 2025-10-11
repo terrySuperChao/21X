@@ -3,9 +3,13 @@ using System;
 public abstract class CardHandleObject : ICardHandle
 {
 
-    //要牌
-    public void dealPokerHandle(ICardHandlePara para) {
-        _dealPokerHandle(para);
+    //手牌后
+    public void handPokerAfterHandle(ICardHandlePara para) {
+        _handPokerAfterHandle(para);
+    }
+    //要牌后
+    public void dealPokerAfterHandle(ICardHandlePara para) {
+        _dealPokerAfterHandle(para);
     }
 
     //回合前
@@ -13,6 +17,12 @@ public abstract class CardHandleObject : ICardHandle
     {
         _roundBeginHandle(para);
     }
+
+    //回合添加值前
+    public void roundAddValueBeforeHandle(ICardHandlePara para) {
+        _roundAddValueBeforeHandle(para);
+    }
+
     //回合添加值
     public void roundAddValueHandle(ICardHandlePara para)
     {
@@ -25,9 +35,9 @@ public abstract class CardHandleObject : ICardHandle
     }
 
     //回合攻击前
-    public void roundAttackBeginHandle(ICardHandlePara para)
+    public void roundAttackBeforeHandle(ICardHandlePara para)
     {
-        _roundAttackBeginHandle(para);
+        _roundAttackBeforeHandle(para);
     }
 
     //攻击
@@ -62,16 +72,21 @@ public abstract class CardHandleObject : ICardHandle
         _roundEndHandle(para);
     }
 
-    protected virtual void _dealPokerHandle(ICardHandlePara para){ }
+    //手牌后
+    protected virtual void _handPokerAfterHandle(ICardHandlePara para) { }
+    //要牌
+    protected virtual void _dealPokerAfterHandle(ICardHandlePara para){ }
 
     //回合前
     protected virtual void _roundBeginHandle(ICardHandlePara para) { }
+    //回合添加值前
+    protected virtual void _roundAddValueBeforeHandle(ICardHandlePara para) { }
     //回合添加值
     protected virtual void _roundAddValueHandle(ICardHandlePara para) { }
     //回合添加魔法值
     protected virtual void _roundAddMagicHandle(ICardHandlePara para){ }
     //回合攻击前
-    protected virtual void _roundAttackBeginHandle(ICardHandlePara para) { }
+    protected virtual void _roundAttackBeforeHandle(ICardHandlePara para) { }
 
     //攻击
     protected virtual void _roundAttackHandle(ICardHandlePara para) { }

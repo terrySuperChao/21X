@@ -1,6 +1,4 @@
 //·½¿é´óÊ¦+
-using System;
-
 public class DiamondCardPlusHandle : CardHandleObject
 {
     override

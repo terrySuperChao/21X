@@ -16,6 +16,9 @@ public class GameConst
     public const string ADDCARDVALUE    = "addCardValue";
     public const string COMMONATTACK    = "commonAttack";
     public const string FLYFONT         = "flyFont";
+    public const string REFACTORING     = "reFactoring";
+    public const string REHANDPOKER     = "reHandPoker";
+    public const string CLEARHEADPOKER  = "clearHandPoker";
 
     public static ValueType SuitTransformValueType(PokerSuit suit)
     {
@@ -82,8 +85,10 @@ public enum PokerSuit {
 }
 
 public enum CardHandleType {
-    dealPoker,
+    handPokerAfter,
+    dealPokerAfter,
     roundBegin,
+    roundAddValueBefore,
     roundAddValue,
     roundAddMagic,
     roundAttackBegin,

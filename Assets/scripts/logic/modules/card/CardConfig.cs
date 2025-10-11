@@ -1,7 +1,6 @@
 //ÅÆ¶Ñ
-using System;
+
 using System.Collections.Generic;
-using TreeEditor;
 
 public class CardConfig
 {
