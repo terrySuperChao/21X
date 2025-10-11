@@ -10,7 +10,7 @@ public class ExplosiveShieldPlusHandle : CardHandleObject
             bool isDouble = RandomMgr.Instance.getRangeInt(0, 2) == 0;
             string text = isDouble ? "»¤¼×+10x2" : "»¤¼×+10";
             float addValue = isDouble ? 20 : 10;
-            float finalVlaue = para.getAttackUser().addDefense(addValue);
+            float finalVlaue = para.getUser().addDefense(addValue);
             IUIFlyFontPara uiPara1 = new UIFlyFontParaObject(para.getUser(), para.getCard(), text);
             GameMessage.Instance.addMsg(GameConst.FLYFONT, uiPara1);
 

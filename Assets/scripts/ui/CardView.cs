@@ -378,7 +378,7 @@ public class CardView : MonoBehaviour
         }
 
         if (user.isNpc())
-        {
+        {   
             int rd = RandomMgr.Instance.getRangeInt(0,cards.Count);
             ICard card = cards[rd];
             CardMgr.Instance.addCard(user, card);
