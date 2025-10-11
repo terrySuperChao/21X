@@ -639,7 +639,8 @@ public class CardView : MonoBehaviour
             Text addText = Instantiate(userAttackText, rootTransform);
             addText.transform.position = child.position;
             addText.text = para.getText();
-            iTween.MoveBy(addText.gameObject, new Vector3(0, 100, 0), 0.5f);
+            addText.fontSize = 30;
+            iTween.MoveBy(addText.gameObject, new Vector3(0, 50, 0), 0.5f);
             iTween.ScaleTo(child.gameObject, new Vector3(0.6f, 0.6f, 0.6f), 0.5f);
             yield return new WaitForSeconds(0.51f);
             Destroy(addText.gameObject);
