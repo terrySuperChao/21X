@@ -36,8 +36,6 @@ public class CardConfig
     }
 
 	private static List<ICardHandle> _handle = new List<ICardHandle> {
-        new RefactoringHandle(),
-		/*
 		new SpadeCardHandle(),
 		new SpadeCardPlusHandle(),
 		new HeartCardHandle(),
@@ -57,7 +55,7 @@ public class CardConfig
 		new BloodthirstyHandle(),
 		new BloodthirstyPlusHandle(),
 		new FateLuckyHandle(),
-		new FateLuckyPlusHandle(),*/
+		new FateLuckyPlusHandle(),
     };
 
     public static List<ICardHandle> getHandle()
