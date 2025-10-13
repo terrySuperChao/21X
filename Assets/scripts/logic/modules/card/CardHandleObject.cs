@@ -3,6 +3,11 @@ using System;
 public abstract class CardHandleObject : ICardHandle
 {
 
+    //添加新卡牌
+    public void addNewCardAfterHandle(ICardHandlePara para) {
+        _addNewCardAfterHandle(para);
+    }
+
     //手牌后
     public void handPokerAfterHandle(ICardHandlePara para) {
         _handPokerAfterHandle(para);
@@ -71,6 +76,9 @@ public abstract class CardHandleObject : ICardHandle
     {
         _roundEndHandle(para);
     }
+
+    //添加新卡牌
+    protected virtual void _addNewCardAfterHandle(ICardHandlePara para) { }
 
     //手牌后
     protected virtual void _handPokerAfterHandle(ICardHandlePara para) { }

@@ -389,6 +389,8 @@ public class CardView : MonoBehaviour
             cardObject.transform.position = npcCards.GetChild(index).position;
             cardObject.transform.localScale = new Vector3(0.7f, 0.7f, 0.7f);
             Destroy(npcCards.GetChild(index).gameObject);
+
+            _gameFlow.cardHandleTypeHandle(PlayPokerMgr.Instance.getPlayers(), false, CardHandleType.addNewCardAfter);
             GameMessage.Instance.setHandleMessageComplete();
         }
         else {
@@ -406,10 +408,10 @@ public class CardView : MonoBehaviour
         IUser user = (IUser)obj[0];
         ICard card = (ICard)obj[1];
         selectCard.SetActive(false);
-
+        
         if (card != null) {
             CardMgr.Instance.addCard(user, card);
-
+          
             GameObject cardObject = Instantiate(cardPrefab, rootTransform);
             cardObject.GetComponent<Card>().loadCard(card);
             cardObject.transform.position = (Vector3)obj[2];
@@ -421,8 +423,9 @@ public class CardView : MonoBehaviour
             cardObject.transform.parent = userCards;
             cardObject.transform.localScale = new Vector3(0.7f, 0.7f, 0.7f);
         }
-
         yield return new WaitForSeconds(0.1f);
+
+        _gameFlow.cardHandleTypeHandle(PlayPokerMgr.Instance.getPlayers(), false, CardHandleType.addNewCardAfter);
         GameMessage.Instance.setHandleMessageComplete();
     }
 

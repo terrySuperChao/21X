@@ -1,24 +1,7 @@
 //梅花大师
-public class ClubCardPlusHandle : CardHandleObject
+public class ClubCardPlusHandle : ClubCardHandle
 {
-    override
-    protected void _roundAddValueHandle(ICardHandlePara para) {
-        PokerSuit suit = (PokerSuit)para.getPoker().getSuit();
-        if (suit == PokerSuit.club)
-        {
-            float addValue = 2;
-            float finalValue = para.getAttackUser().addMagic(addValue);
-
-            IUIFlyFontPara uiPara1 = new UIFlyFontParaObject(para.getAttackUser(), para.getCard(), "魔法+" + addValue);
-            GameMessage.Instance.addMsg(GameConst.FLYFONT, uiPara1);
-
-            IUICommonPara uiPara2 = new UICommonParaObject(para.getAttackUser(), GameConst.SuitTransformValueType(suit), addValue, finalValue);
-            GameMessage.Instance.addMsg(GameConst.ADDCARDVALUE, uiPara2);
-
-            CardMgr.Instance.handle(para, CardHandleType.roundAddMagic);
-        }
-    }
-
+   
     override
     protected void _roundAttackBeforeHandle(ICardHandlePara para)
     {
@@ -31,6 +14,12 @@ public class ClubCardPlusHandle : CardHandleObject
     {
         IUIFlyFontPara uiPara1 = new UIFlyFontParaObject(para.getAttackUser(), para.getCard(), "保留30%魔法");
         GameMessage.Instance.addMsg(GameConst.FLYFONT, uiPara1);
+    }
+
+    override
+    protected int getNumber()
+    {
+        return 2;
     }
     
 }

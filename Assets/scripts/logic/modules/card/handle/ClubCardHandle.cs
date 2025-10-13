@@ -7,7 +7,7 @@ public class ClubCardHandle: CardHandleObject
         if (suit == PokerSuit.club)
         { //Ã·»¨
 
-            float addValue = 1;
+            float addValue = getNumber();
             float finalValue = para.getAttackUser().addMagic(addValue);
 
             IUIFlyFontPara uiPara1 = new UIFlyFontParaObject(para.getAttackUser(), para.getCard(), "Ä§·¨+" + addValue);
@@ -18,5 +18,9 @@ public class ClubCardHandle: CardHandleObject
 
             CardMgr.Instance.handle(para, CardHandleType.roundAddMagic);
         }
+    }
+
+    protected virtual int getNumber() {
+        return 1;
     }
 }

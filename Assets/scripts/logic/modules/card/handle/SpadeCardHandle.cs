@@ -8,7 +8,7 @@ public class SpadeCardHandle:CardHandleObject
         PokerSuit suit = (PokerSuit)para.getPoker().getSuit();
         if (suit == PokerSuit.spade)
         {   //ºÚÌÒ
-            float addValue = 1;
+            float addValue = getNumber();
             float finalValue = para.getAttackUser().addAttack(addValue);
             IUIFlyFontPara uiPara1 = new UIFlyFontParaObject(para.getAttackUser(),para.getCard(), "¹¥»÷Á¦+" + addValue);
             GameMessage.Instance.addMsg(GameConst.FLYFONT, uiPara1);
@@ -16,5 +16,9 @@ public class SpadeCardHandle:CardHandleObject
             IUICommonPara uiPara2 = new UICommonParaObject(para.getAttackUser(), GameConst.SuitTransformValueType(suit), addValue, finalValue);
             GameMessage.Instance.addMsg(GameConst.ADDCARDVALUE, uiPara2);
         }
+    }
+
+    public virtual int getNumber() {
+        return 1;
     }
 }

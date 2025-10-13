@@ -85,6 +85,7 @@ public enum PokerSuit {
 }
 
 public enum CardHandleType {
+    addNewCardAfter,
     handPokerAfter,
     dealPokerAfter,
     roundBegin,

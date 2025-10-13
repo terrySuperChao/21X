@@ -153,6 +153,9 @@ public class CardMgr: Singleton<CardMgr>
             int index = cards[i].getId() - 1;
             if (index < handles.Count) {
                 switch (type) {
+                    case CardHandleType.addNewCardAfter:
+                        handles[index].addNewCardAfterHandle(para);
+                        break;
                     case CardHandleType.handPokerAfter:
                         handles[index].handPokerAfterHandle(para);
                         break;

@@ -1,5 +1,7 @@
 public interface ICardHandle
 {
+    //Ìí¼ÓÐÂ¿¨ÅÆ
+    public void addNewCardAfterHandle(ICardHandlePara para);
     //µ×ÅÆ
     public void handPokerAfterHandle(ICardHandlePara para);
 

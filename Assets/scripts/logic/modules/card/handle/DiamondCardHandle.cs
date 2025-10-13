@@ -7,7 +7,7 @@ public class DiamondCardHandle : CardHandleObject
         if (suit == PokerSuit.diamond)
         { //·½¿é
             
-            float addValue = getNumberDigits(para.getBaseValue() * 0.2f);
+            float addValue = getNumberDigits(para.getBaseValue() * getNumber() * 0.1f);
             float finalValue = para.getAttackUser().addDefense(addValue);
 
             IUIFlyFontPara uiPara1 = new UIFlyFontParaObject(para.getAttackUser(), para.getCard(), "»¤¼×+" + addValue);
@@ -16,5 +16,9 @@ public class DiamondCardHandle : CardHandleObject
             IUICommonPara uiPara2 = new UICommonParaObject(para.getAttackUser(), GameConst.SuitTransformValueType(suit), addValue, finalValue);
             GameMessage.Instance.addMsg(GameConst.ADDCARDVALUE, uiPara2);
         }
+    }
+
+    protected virtual int getNumber() {
+        return 2;
     }
 }

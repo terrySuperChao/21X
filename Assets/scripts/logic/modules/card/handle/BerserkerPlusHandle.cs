@@ -1,28 +1,20 @@
 //狂战士之怒+
-public class BerserkerPlusHandle : CardHandleObject
+
+public class BerserkerPlusHandle : BerserkerHandle
 {
-    private float _saveAttackValue = 0.0f;
     override
-    protected void _roundAttackBeforeHandle(ICardHandlePara para)
+    protected void lossBlood(ICardHandlePara para)
     {
-        _saveAttackValue = getNumberDigits(para.getAttackUser().getAttack() * 1.0f);
-        if (_saveAttackValue >= 0.1f) {
-            para.getRoundResult().setSaveAttackValue(_saveAttackValue);
-        }
+        float addValue = -10;
+        float finalValue = para.getAttackUser().addBlood(addValue);
+
+        IUICommonPara uiPara2 = new UICommonParaObject(para.getAttackUser(), ValueType.blood, addValue, finalValue);
+        GameMessage.Instance.addMsg(GameConst.COMMONATTACK, uiPara2);
     }
 
     override
-    protected void _roundAttackHandle(ICardHandlePara para)
+    protected int getNumber()
     {
-        if (_saveAttackValue >= 0.1f) {
-            float addValue = -10;
-            float finalValue = para.getAttackUser().addBlood(addValue);
-
-            IUIFlyFontPara uiPara1 = new UIFlyFontParaObject(para.getAttackUser(), para.getCard(), "攻击力保留100%");
-            GameMessage.Instance.addMsg(GameConst.FLYFONT, uiPara1);
-                       
-            IUICommonPara uiPara2 = new UICommonParaObject(para.getAttackUser(), ValueType.blood, addValue, finalValue);
-            GameMessage.Instance.addMsg(GameConst.COMMONATTACK, uiPara2);
-        }
+        return 100;
     }
 }

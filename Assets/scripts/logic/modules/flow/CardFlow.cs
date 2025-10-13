@@ -1,5 +1,6 @@
 //ÅÆ¶Ñ
 using System.Collections.Generic;
+using UnityEngine;
 
 public class CardFlow : GameFlowObject
 {
@@ -32,7 +33,7 @@ public class CardFlow : GameFlowObject
     override
     protected void _dealPokerAfter(IDealPokerAfterPara para)
     {
-        cardHandleTypeHandle(para.getUsers(), para.getUser().isNpc(), CardHandleType.dealPokerAfter);
+        cardHandleTypeHandle(para.getUsers(), !para.getUser().isNpc(), CardHandleType.dealPokerAfter);
     }
 
     override

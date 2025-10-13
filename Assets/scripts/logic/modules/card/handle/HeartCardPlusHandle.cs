@@ -1,5 +1,5 @@
 //ºìÌÒ´óÊ¦
-public class HeartCardPlusHandle : CardHandleObject
+public class HeartCardPlusHandle : HeartCardHandle
 {
     override
     protected void _roundAddValueHandle(ICardHandlePara para) {

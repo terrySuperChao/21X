@@ -7,7 +7,7 @@ public class ExplosiveShieldHandle : CardHandleObject
         int number = HandPokerMgr.Instance.getHandPokerPoint(para.getUser(), false);
         if (number > 21)
         {
-            float addValue = 5;
+            float addValue = getNumber();
             float finalVlaue = para.getUser().addDefense(addValue);
             IUIFlyFontPara uiPara1 = new UIFlyFontParaObject(para.getUser(), para.getCard(), "»¤¼×+" + addValue);
             GameMessage.Instance.addMsg(GameConst.FLYFONT, uiPara1);
@@ -15,5 +15,10 @@ public class ExplosiveShieldHandle : CardHandleObject
             IUICommonPara uiPara2 = new UICommonParaObject(para.getUser(), ValueType.defense, addValue, finalVlaue);
             GameMessage.Instance.addMsg(GameConst.ADDCARDVALUE, uiPara2);
         }
+    }
+
+    protected virtual int getNumber()
+    {
+        return 5;
     }
 }

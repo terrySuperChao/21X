@@ -70,6 +70,7 @@ public class PlayPokerMgr : Singleton<PlayPokerMgr>
                 GameMessage.Instance.addMsg(GameConst.DEALPOKER, user, poker, number);
             }
         }
+        _gameFlow.handPokerAfter(new HandPokerAfterPara(getPlayers()));
 
         IUser player = null;
         for (int j = 0; j < _players.Count; j++)
@@ -83,8 +84,6 @@ public class PlayPokerMgr : Singleton<PlayPokerMgr>
                 _players[j].state = PlayState.none;
             }
         }
-
-        _gameFlow.handPokerAfter(new HandPokerAfterPara(getPlayers()));
 
         if (player != null) {
             GameMessage.Instance.addMsg(GameConst.PLAYERACTION, player);
