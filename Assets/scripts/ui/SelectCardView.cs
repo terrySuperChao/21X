@@ -40,6 +40,26 @@ public class SelectCardView : MonoBehaviour
     }
 
     public void okClick() {
+        List<ICard> list = CardMgr.Instance.getCards(_user);
+        if (list != null)
+        {
+            if (list.Count == CardMgr.Instance.getMaxSlot())
+            {
+                bool flag = true;
+                for (int i = 0; i < list.Count; i++)
+                {
+                    if (list[i].getType() == _card.getType())
+                    {
+                        flag = false;
+                        break;
+                    }
+                }
+                if (flag) {
+                    EventDispatcher.Instance.emit(GameConst.SHOWTIPS,"¿¨²ÛÒÑÂú");
+                    return;
+                }
+            }    
+        }
         EventDispatcher.Instance.emit(GameConst.SELECTFINSIHCARD, _user, _card, _position);
     }
 

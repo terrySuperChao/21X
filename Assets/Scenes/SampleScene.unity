@@ -276,6 +276,7 @@ MonoBehaviour:
   gameView: {fileID: 6462848143466931906, guid: 68bc00e9b0e476f4da0a7e2b054bf2fb, type: 3}
   fightView: {fileID: 6462848143466931906, guid: 3a4682b66f468aa49b87b6c20ae19139, type: 3}
   cardView: {fileID: 6462848143466931906, guid: 53952face967d8c49b588d7a6dff369e, type: 3}
+  tipsView: {fileID: 7709974655959353843, guid: 7e86659e18af8694fadee9285bd5321a, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

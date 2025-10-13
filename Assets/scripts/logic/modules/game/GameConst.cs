@@ -1,6 +1,9 @@
 //ÅÆ¶Ñ
 public class GameConst
 {
+    public const string RETURNTOLOBBY   = "returnToLobby";
+    public const string STARTGAME       = "startGame";
+    public const string SHOWTIPS        = "SHOWTIPS";
     public const string DEALPOKER       = "dealPoker";
     public const string STOPDEALPOKER   = "stopDealPoker";
     public const string PLAYERACTION    = "playerAction";

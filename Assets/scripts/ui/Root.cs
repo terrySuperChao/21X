@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Root : MonoBehaviour
@@ -10,8 +11,9 @@ public class Root : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        EventDispatcher.Instance.on("returnToLobby", this.onLobby);
-        EventDispatcher.Instance.on("startGame", this.onStart);
+        EventDispatcher.Instance.on(GameConst.RETURNTOLOBBY, this.onLobby);
+        EventDispatcher.Instance.on(GameConst.STARTGAME, this.onStart);
+
         InvokeRepeating("repeatHandleMessage", 0.0f, 0.1f);
         onLoadLobbyView();
     }
@@ -23,8 +25,8 @@ public class Root : MonoBehaviour
     }
 
     private void OnDestroy(){
-        EventDispatcher.Instance.off("startGame", this.onStart);
-        EventDispatcher.Instance.off("returnToLobby", this.onLobby);
+        EventDispatcher.Instance.off(GameConst.RETURNTOLOBBY, this.onLobby);
+        EventDispatcher.Instance.off(GameConst.STARTGAME, this.onStart);
     }
 
     private void onLobby(params System.Object[] obj) {
@@ -94,5 +96,5 @@ public class Root : MonoBehaviour
         GameMessage.Instance.handleMessage();
     }
 
-    
+   
 }

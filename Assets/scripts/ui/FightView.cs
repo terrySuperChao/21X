@@ -146,12 +146,12 @@ public class FightView : MonoBehaviour
 
     public void onReturnClick() {
         Debug.Log("onReturnClick");
-        EventDispatcher.Instance.emit("returnToLobby");
+        EventDispatcher.Instance.emit(GameConst.RETURNTOLOBBY);
     }
 
     public void onCloseClick() {
         Debug.Log("onCloseClick");
-        EventDispatcher.Instance.emit("returnToLobby");
+        EventDispatcher.Instance.emit(GameConst.RETURNTOLOBBY);
     }
 
     public void onDealPokerClick() {

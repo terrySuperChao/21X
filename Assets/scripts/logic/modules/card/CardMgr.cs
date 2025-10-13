@@ -149,6 +149,10 @@ public class CardMgr: Singleton<CardMgr>
         _round++;
     }
 
+    public int getMaxSlot() {
+        return MAXSLOT;
+    }
+
     //
     public void handle(ICardHandlePara para, CardHandleType type) {
         if (!_cardDic.ContainsKey(para.getUser().getUserId())) return;

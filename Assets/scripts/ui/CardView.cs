@@ -48,9 +48,9 @@ public class CardView : MonoBehaviour
     public Transform npcCards;
     public Transform userCards;
     public GameObject refactoringGameObject;
+    public GameObject tipsView;
 
     private CardFlow _gameFlow = new CardFlow();
-
 
     // Start is called before the first frame update
     void Start()
@@ -77,6 +77,7 @@ public class CardView : MonoBehaviour
         EventDispatcher.Instance.on(GameConst.REHANDPOKER, this.reHandPoker);
         EventDispatcher.Instance.on(GameConst.CLEARHEADPOKER, this.clearHandPoker);
         EventDispatcher.Instance.on(GameConst.GAMENEXTROUND, this.gameNextRound);
+        EventDispatcher.Instance.on(GameConst.SHOWTIPS, this.onShowTips);
         StartCoroutine(dealPokerAfterAction());
     }
 
@@ -98,6 +99,7 @@ public class CardView : MonoBehaviour
         EventDispatcher.Instance.off(GameConst.REHANDPOKER, this.reHandPoker);
         EventDispatcher.Instance.off(GameConst.CLEARHEADPOKER, this.clearHandPoker);
         EventDispatcher.Instance.off(GameConst.GAMENEXTROUND, this.gameNextRound);
+        EventDispatcher.Instance.off(GameConst.SHOWTIPS, this.onShowTips);
     }
 
     // Update is called once per frame
@@ -172,12 +174,12 @@ public class CardView : MonoBehaviour
 
     public void onReturnClick() {
         Debug.Log("onReturnClick");
-        EventDispatcher.Instance.emit("returnToLobby");
+        EventDispatcher.Instance.emit(GameConst.RETURNTOLOBBY);
     }
 
     public void onCloseClick() {
         Debug.Log("onCloseClick");
-        EventDispatcher.Instance.emit("returnToLobby");
+        EventDispatcher.Instance.emit(GameConst.RETURNTOLOBBY);
     }
 
     public void onDealPokerClick() {
@@ -444,12 +446,6 @@ public class CardView : MonoBehaviour
                 cardObject.transform.localScale = new Vector3(0.7f, 0.7f, 0.7f);
 
                 _gameFlow.cardHandleTypeHandle(PlayPokerMgr.Instance.getPlayers(), false, CardHandleType.addNewCardAfter);
-            }
-            else {
-                resultText.text = "卡槽已满";
-                resultPanel.SetActive(true);
-                yield return new WaitForSeconds(0.5f);
-                resultPanel.SetActive(false);
             }
         }
         yield return new WaitForSeconds(0.1f);
@@ -775,5 +771,15 @@ public class CardView : MonoBehaviour
         HandPokerMgr.Instance.resetHandPoker();
         PlayPokerMgr.Instance.startPlayPoker();
         GameMessage.Instance.setHandleMessageComplete();
-    }     
+    }
+
+    private void onShowTips(params System.Object[] obj)
+    {
+        GameObject tipsViewObject = Instantiate(tipsView);
+        tipsViewObject.name = "tipsView";
+        tipsViewObject.transform.parent = tipsView.transform.parent;
+        tipsViewObject.transform.position = tipsView.transform.position;
+        tipsViewObject.SetActive(true);
+        tipsViewObject.GetComponent<TipsView>().setText((string)obj[0]);
+    }
 }

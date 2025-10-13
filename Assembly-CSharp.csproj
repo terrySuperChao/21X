@@ -74,6 +74,7 @@
     <Compile Include="Assets\scripts\logic\modules\card\CardConfig.cs" />
     <Compile Include="Assets\scripts\ui\Card.cs" />
     <Compile Include="Assets\scripts\logic\modules\game\GameConst.cs" />
+    <Compile Include="Assets\scripts\ui\TipsView.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_ExampleScript_01.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMPro_InstructionOverlay.cs" />
     <Compile Include="Assets\scripts\logic\modules\flow\FightFlow.cs" />
