@@ -1,8 +1,5 @@
 //ÅÆ¶Ñ
-using System;
 using System.Collections.Generic;
-using System.Reflection;
-using UnityEngine;
 
 
 public class PlayPokerMgr : Singleton<PlayPokerMgr>
@@ -271,18 +268,5 @@ public class PlayPokerMgr : Singleton<PlayPokerMgr>
                 gameSettle();
             }
         }
-    }
-
-    public IUser getNoneStateUser(bool isNpc) {
-        for (int i = 0; i < _players.Count; i++)
-        {
-            if (_players[i].user.isNpc() == isNpc &&
-                _players[i].state == PlayState.none)
-            {
-
-                return _players[i].user;
-            }
-        }
-        return null;
     }
 }

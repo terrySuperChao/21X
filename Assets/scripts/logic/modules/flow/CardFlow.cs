@@ -89,7 +89,7 @@ public class CardFlow : GameFlowObject
                     default:
                         break;
                 }
-                IUIPokerPara pokerPara = new UIPokerPara(attackUser, poker, addValue, finalValue, para.isBackJock());
+                IUIPokerPara pokerPara = new UIPokerPara(attackUser, poker, addValue, finalValue, roundResult.getAttributeMult(), para.isBackJock());
                 GameMessage.Instance.addMsg(GameConst.ADDPOKERVALUE, pokerPara);
 
                 handlePara.setPoker(poker);
@@ -217,7 +217,7 @@ public class CardFlow : GameFlowObject
         CardMgr.Instance.handle(handlePara, type);
     }
 
-    public void reDealHandPoker(List<IUser> list, bool isNpc) {
+    public void reDealHandPoker(List<IUser> list, bool isNpc,int suit) {
         IUser user = null;
         for (int i = 0; i < list.Count; i++)
         {
@@ -232,7 +232,8 @@ public class CardFlow : GameFlowObject
             HandPokerMgr.Instance.clearHandPoker(user);
             for (int i = 0; i < 2; i++)
             {
-                IPoker poker = PokerPileMgr.Instance.dealPoker();
+                int suitValue = RandomMgr.Instance.getRangeInt(0, 2) == 0 ? 0 : suit;
+                IPoker poker = PokerPileMgr.Instance.dealSpecialPoker(suitValue);
                 poker.setBack(i == 0 && isNpc);
                 HandPokerMgr.Instance.addHandPoker(user, poker);
             
@@ -241,6 +242,5 @@ public class CardFlow : GameFlowObject
             }
             EventDispatcher.Instance.emit(GameConst.CLEARHEADPOKER, user);
         }
-
     }
 }

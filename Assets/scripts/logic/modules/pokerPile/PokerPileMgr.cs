@@ -1,6 +1,7 @@
 //ÅÆ¶Ñ
 using System;
 using System.Collections.Generic;
+using System.Reflection;
 
 public class PokerPileMgr : Singleton<PokerPileMgr>
 {
@@ -41,17 +42,38 @@ public class PokerPileMgr : Singleton<PokerPileMgr>
 
     public IPoker dealPoker()
     {
-        IPoker poker = null;
-        if (_remainCards.Count > 0){
-            poker = _remainCards[0];
-            poker.setBack(false);
-            _playedTableCards.Add(poker);
-            _remainCards.RemoveAt(0);
-        }
-        return poker;
+        return getPoker(0);
     }
 
     public int getRemainCards() {
         return _remainCards.Count;
+    }
+
+    public IPoker dealSpecialPoker(int suit) {
+        IPoker poker = null;
+        if (_remainCards.Count > 0)
+        {
+            int index = 0;
+            for (int i = 0; i < _remainCards.Count; i++) {
+                if (_remainCards[i].getSuit() == suit) {
+                    index = i;
+                    break;
+                }
+            }
+            poker = getPoker(index);
+        }
+        return poker;
+    }
+
+    private IPoker getPoker(int index) {
+        IPoker poker = null;
+        if (_remainCards.Count > 0)
+        {
+            poker = _remainCards[index];
+            poker.setBack(false);
+            _playedTableCards.Add(poker);
+            _remainCards.RemoveAt(index);
+        }
+        return poker;
     }
 }

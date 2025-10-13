@@ -17,7 +17,7 @@ public class BerserkerHandle : CardHandleObject
         if (_saveAttackValue >= 0.1f) {
             lossBlood(para);
 
-            IUIFlyFontPara uiPara1 = new UIFlyFontParaObject(para.getDefenseUser(), para.getCard(), "攻击力保留"+ getNumber() + "%");
+            IUIFlyFontPara uiPara1 = new UIFlyFontParaObject(para.getAttackUser(), para.getCard(), "攻击力保留"+ getNumber() + "%");
             GameMessage.Instance.addMsg(GameConst.FLYFONT, uiPara1);
         }
     }

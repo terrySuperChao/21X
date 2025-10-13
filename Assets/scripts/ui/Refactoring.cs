@@ -44,7 +44,7 @@ public class Refactoring : MonoBehaviour
             StartCoroutine(delayAction());
         }
         resultText.text = _refactoringNum.ToString();
-        EventDispatcher.Instance.emit(GameConst.REHANDPOKER);
+        EventDispatcher.Instance.emit(GameConst.REHANDPOKER, _selectIndex);
     }
 
     private IEnumerator delayAction()
@@ -55,35 +55,35 @@ public class Refactoring : MonoBehaviour
     }
 
     public void selectClick1() {
-        _selectIndex = 1;
+        _selectIndex = 0;
         btn1.localScale = new Vector3(0.5f, 0.5f, 1f);
         btn2.localScale = btn3.localScale = btn4.localScale = btn5.localScale = new Vector3(0.4f, 0.4f, 1f);
     }
 
     public void selectClick2()
     {
-        _selectIndex = 2;
+        _selectIndex = 1;
         btn2.localScale = new Vector3(0.5f, 0.5f, 1f);
         btn1.localScale = btn3.localScale = btn4.localScale = btn5.localScale = new Vector3(0.4f, 0.4f, 1f);
     }
 
     public void selectClick3()
     {
-        _selectIndex = 3;
+        _selectIndex = 2;
         btn3.localScale = new Vector3(0.5f, 0.5f, 1f);
         btn1.localScale = btn2.localScale = btn4.localScale = btn5.localScale = new Vector3(0.4f, 0.4f, 1f);
     }
 
     public void selectClick4()
     {
-        _selectIndex = 4;
+        _selectIndex = 3;
         btn4.localScale = new Vector3(0.5f, 0.5f, 1f);
         btn1.localScale = btn2.localScale = btn3.localScale = btn5.localScale = new Vector3(0.4f, 0.4f, 1f);
     }
 
     public void selectClick5()
     {
-        _selectIndex = 5;
+        _selectIndex = 4;
         btn5.localScale = new Vector3(0.5f, 0.5f, 1f);
         btn1.localScale = btn2.localScale = btn3.localScale = btn4.localScale = new Vector3(0.4f, 0.4f, 1f);
     }

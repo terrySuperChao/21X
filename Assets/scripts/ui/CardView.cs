@@ -378,19 +378,38 @@ public class CardView : MonoBehaviour
         }
 
         if (user.isNpc())
-        {   
-            int rd = RandomMgr.Instance.getRangeInt(0,cards.Count);
-            ICard card = cards[rd];
-            CardMgr.Instance.addCard(user, card);
-            int index = getCardForTypeIndex(card, npcCards);
+        {
+            ICard card = null;
+            int rd = RandomMgr.Instance.getRangeInt(0, cards.Count);
+            List<ICard> list = CardMgr.Instance.getCards(user);
+            if (list != null) {
+                for (int i = 0; i < list.Count; i++) {
+                    for (int j = 0; j < cards.Count; j++) {
+                        if (list[i].getType() == cards[j].getType()) {
+                            card = cards[j];
+                            break;
+                        }
+                    }
+                    if (card != null) {
+                        break;
+                    }
+                }
+            }
+            if (card == null) {
+                card = cards[rd];
+            }
+            bool success = CardMgr.Instance.addCard(user, card);
+            if (success) { 
+                int index = getCardForTypeIndex(card, npcCards);
 
-            GameObject cardObject = Instantiate(cardPrefab, npcCards);
-            cardObject.GetComponent<Card>().loadCard(card);
-            cardObject.transform.position = npcCards.GetChild(index).position;
-            cardObject.transform.localScale = new Vector3(0.7f, 0.7f, 0.7f);
-            Destroy(npcCards.GetChild(index).gameObject);
+                GameObject cardObject = Instantiate(cardPrefab, npcCards);
+                cardObject.GetComponent<Card>().loadCard(card);
+                cardObject.transform.position = npcCards.GetChild(index).position;
+                cardObject.transform.localScale = new Vector3(0.7f, 0.7f, 0.7f);
+                Destroy(npcCards.GetChild(index).gameObject);
 
-            _gameFlow.cardHandleTypeHandle(PlayPokerMgr.Instance.getPlayers(), false, CardHandleType.addNewCardAfter);
+                _gameFlow.cardHandleTypeHandle(PlayPokerMgr.Instance.getPlayers(), false, CardHandleType.addNewCardAfter);
+            }
             GameMessage.Instance.setHandleMessageComplete();
         }
         else {
@@ -492,9 +511,18 @@ public class CardView : MonoBehaviour
         Transform child = getPokerIdTransform(para.getUser(), para.getPoker());
         if (child != null && text != null)
         {
+            string str = "";
+            if (para.getMult() > 1.0f)
+            {
+                str = "+" + (para.getAddValue() / para.getMult()) + " X" + para.getMult();
+            }
+            else {
+                str = "+" + para.getAddValue();
+            }
+
             Text addText = Instantiate(text, rootTransform);
             addText.transform.position = text.transform.position;
-            addText.text = "+" + para.getAddValue();
+            addText.text = str;
             addText.color = Color.green;
             iTween.MoveBy(addText.gameObject, new Vector3(0,50,0), 0.5f);
             iTween.ScaleTo(child.gameObject, new Vector3(0.5f, 0.5f, 0.5f), 0.5f);
@@ -660,7 +688,7 @@ public class CardView : MonoBehaviour
             if (number < 21) {
                 if (RandomMgr.Instance.getRangeInt(0, 100) <= 30)
                 {
-                    _gameFlow.reDealHandPoker(PlayPokerMgr.Instance.getPlayers(), true);
+                    _gameFlow.reDealHandPoker(PlayPokerMgr.Instance.getPlayers(), true,0);
                 }
             }
         }
@@ -670,7 +698,7 @@ public class CardView : MonoBehaviour
         GameMessage.Instance.setHandleMessageComplete();
     }
     public void reHandPoker(params System.Object[] obj) {
-        _gameFlow.reDealHandPoker(PlayPokerMgr.Instance.getPlayers(), false);
+        _gameFlow.reDealHandPoker(PlayPokerMgr.Instance.getPlayers(), false, (int)obj[0]);
     }
     
     public void clearHandPoker(params System.Object[] obj)

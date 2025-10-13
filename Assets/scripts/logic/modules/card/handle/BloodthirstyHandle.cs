@@ -12,7 +12,7 @@ public class BloodthirstyHandle : CardHandleObject
         int point = HandPokerMgr.Instance.getHandPokerPoint(para.getAttackUser(), false);
         if(point == 21)
         {
-            if (para.getAttackUser().getMaxBlood() * getRatio() >= para.getAttackUser().getBlood())
+            if (para.getAttackUser().getBlood() / para.getAttackUser().getMaxBlood() < getRatio())
             {
                 para.getRoundResult().setAttributeMult(getNumber());
                 isMult = true;

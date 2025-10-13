@@ -4,14 +4,16 @@ public class UIPokerPara : IUIPokerPara
     private IPoker _poker;
     private float _addValue;
     private float _finalValue;
+    private float _mult;
     private bool _isBackJock;
-
-    public UIPokerPara(IUser user, IPoker poker, float addValue,float finalValue,bool isBackJock)
+    
+    public UIPokerPara(IUser user, IPoker poker, float addValue,float finalValue,float mult,bool isBackJock)
     {
         _user = user;
         _poker = poker;
         _addValue = addValue;
         _finalValue = finalValue;
+        _mult = mult;
         _isBackJock = isBackJock;
     }
 
@@ -30,6 +32,10 @@ public class UIPokerPara : IUIPokerPara
     public IPoker getPoker()
     {
         return _poker;
+    }
+
+    public float getMult() {
+        return _mult;
     }
 
     public bool isBackJock()
