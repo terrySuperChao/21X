@@ -11,10 +11,10 @@ public class CardMgr: Singleton<CardMgr>
         _cardDic.Clear();
     }
 
-    public void addCard(IUser user, ICard card)
+    public bool addCard(IUser user, ICard card)
     {
         if (user == null || card == null){
-            return;
+            return false;
         }
 
         if (_cardDic.ContainsKey(user.getUserId()))
@@ -23,16 +23,22 @@ public class CardMgr: Singleton<CardMgr>
             for (int i = 0; i < list.Count; i++) {
                 if (list[i].getType() == card.getType()) {
                     list[i] = card;
-                    return;
+                    return true;
                 }
             }
-            if (list.Count < MAXSLOT) {
+            if (list.Count < MAXSLOT)
+            {
                 _cardDic[user.getUserId()].Add(card);
+                return true;
+            }
+            else {
+                return false;
             }
         }
         else
         {
             _cardDic[user.getUserId()] = new List<ICard> { card };
+            return true;
         }
     }
 

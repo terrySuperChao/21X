@@ -2,10 +2,14 @@
 using UnityEngine;
 public class RefactoringHandle : CardHandleObject
 {
+    private bool isFirst = true;
     override
     protected void _addNewCardAfterHandle(ICardHandlePara para)
     {
-        handle(para);
+        if (isFirst) {
+            isFirst = false;
+            handle(para);
+        }
     }
 
     override

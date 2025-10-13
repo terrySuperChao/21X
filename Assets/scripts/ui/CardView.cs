@@ -410,22 +410,30 @@ public class CardView : MonoBehaviour
         selectCard.SetActive(false);
         
         if (card != null) {
-            CardMgr.Instance.addCard(user, card);
-          
-            GameObject cardObject = Instantiate(cardPrefab, rootTransform);
-            cardObject.GetComponent<Card>().loadCard(card);
-            cardObject.transform.position = (Vector3)obj[2];
+            bool success = CardMgr.Instance.addCard(user, card);
+            if (success)
+            {
+                GameObject cardObject = Instantiate(cardPrefab, rootTransform);
+                cardObject.GetComponent<Card>().loadCard(card);
+                cardObject.transform.position = (Vector3)obj[2];
 
-            int index = getCardForTypeIndex(card, userCards);
-            iTween.MoveTo(cardObject, userCards.GetChild(index).position, 0.5f);
-            yield return new WaitForSeconds(0.6f);
-            Destroy(userCards.GetChild(index).gameObject);
-            cardObject.transform.parent = userCards;
-            cardObject.transform.localScale = new Vector3(0.7f, 0.7f, 0.7f);
+                int index = getCardForTypeIndex(card, userCards);
+                iTween.MoveTo(cardObject, userCards.GetChild(index).position, 0.5f);
+                yield return new WaitForSeconds(0.6f);
+                Destroy(userCards.GetChild(index).gameObject);
+                cardObject.transform.parent = userCards;
+                cardObject.transform.localScale = new Vector3(0.7f, 0.7f, 0.7f);
+
+                _gameFlow.cardHandleTypeHandle(PlayPokerMgr.Instance.getPlayers(), false, CardHandleType.addNewCardAfter);
+            }
+            else {
+                resultText.text = "卡槽已满";
+                resultPanel.SetActive(true);
+                yield return new WaitForSeconds(0.5f);
+                resultPanel.SetActive(false);
+            }
         }
         yield return new WaitForSeconds(0.1f);
-
-        _gameFlow.cardHandleTypeHandle(PlayPokerMgr.Instance.getPlayers(), false, CardHandleType.addNewCardAfter);
         GameMessage.Instance.setHandleMessageComplete();
     }
 
