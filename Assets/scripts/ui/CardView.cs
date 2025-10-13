@@ -663,6 +663,7 @@ public class CardView : MonoBehaviour
         Transform child = getCardIdTransform(para.getUser(), para.getCard());
         if (child != null)
         {
+            Debug.Log("para.getText()===" + para.getText());
             Text addText = Instantiate(userAttackText, rootTransform);
             addText.transform.position = child.position;
             addText.text = para.getText();

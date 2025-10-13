@@ -1,4 +1,3 @@
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Root : MonoBehaviour
@@ -13,7 +12,7 @@ public class Root : MonoBehaviour
     {
         EventDispatcher.Instance.on(GameConst.RETURNTOLOBBY, this.onLobby);
         EventDispatcher.Instance.on(GameConst.STARTGAME, this.onStart);
-
+        
         InvokeRepeating("repeatHandleMessage", 0.0f, 0.1f);
         onLoadLobbyView();
     }

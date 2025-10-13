@@ -2,7 +2,7 @@
 public class ExplosiveShieldHandle : CardHandleObject
 {
     override
-    protected void _roundAttackBeforeHandle(ICardHandlePara para)
+    protected void _roundBustHandle(ICardHandlePara para)
     {
         int number = HandPokerMgr.Instance.getHandPokerPoint(para.getUser(), false);
         if (number > 21)

@@ -7,7 +7,8 @@ public class BerserkerHandle : CardHandleObject
     protected void _roundAttackBeforeHandle(ICardHandlePara para)
     {
         _saveAttackValue = getNumberDigits(para.getAttackUser().getAttack() * getNumber() * 0.01f);
-        if (_saveAttackValue >= 0.1f) {
+        if (_saveAttackValue >= 0.1f)
+        {
             para.getRoundResult().setSaveAttackValue(_saveAttackValue);
         }
     }

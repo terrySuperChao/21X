@@ -41,8 +41,9 @@ public class CardFlow : GameFlowObject
         int winIndex = para.getWinIndex();
         if (winIndex == -1)
         {
-            cardHandleTypeHandle(para.getUsers(), false, CardHandleType.roundAttackBegin);
-            cardHandleTypeHandle(para.getUsers(), true, CardHandleType.roundAttackBegin);
+            //±¬ÅÆ
+            cardHandleTypeHandle(para.getUsers(), false, CardHandleType.roundBust);
+            cardHandleTypeHandle(para.getUsers(), true, CardHandleType.roundBust);
             return false;
         }
         else { 
@@ -98,11 +99,11 @@ public class CardFlow : GameFlowObject
                 CardMgr.Instance.handle(handlePara, CardHandleType.roundAddValue);
             }
 
-            //¹¥»÷½áËã
-            handlePara.setUser(attackUser);
-            CardMgr.Instance.handle(handlePara, CardHandleType.roundAttackBegin);
+            //±¬ÅÆ
+            cardHandleTypeHandle(para.getUsers(), false, CardHandleType.roundBust);
+            cardHandleTypeHandle(para.getUsers(), true, CardHandleType.roundBust);
 
-            handlePara.setUser(defenseUser);
+            //¹¥»÷½áËã
             CardMgr.Instance.handle(handlePara, CardHandleType.roundAttackBegin);
 
             float attack = attackUser.getAttack();
@@ -190,11 +191,6 @@ public class CardFlow : GameFlowObject
                 CardMgr.Instance.handle(handlePara, CardHandleType.roundSubBlood);
             }
             CardMgr.Instance.handle(handlePara, CardHandleType.roundAttackAfter);
-
-            handlePara.setUser(attackUser);
-            CardMgr.Instance.handle(handlePara, CardHandleType.roundEnd);
-
-            handlePara.setUser(defenseUser);
             CardMgr.Instance.handle(handlePara, CardHandleType.roundEnd);
 
             return defenseUser.getBlood() <= 0 || attackUser.getBlood() <= 0;

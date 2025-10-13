@@ -5,7 +5,7 @@ public class ClubCardPlusHandle : ClubCardHandle
     override
     protected void _roundAttackBeforeHandle(ICardHandlePara para)
     {
-        para.getRoundResult().setSaveMagicValue(para.getAttackUser().getMaxMagic() * 0.3f);
+          para.getRoundResult().setSaveMagicValue(para.getAttackUser().getMaxMagic() * 0.3f);
     }
 
 
