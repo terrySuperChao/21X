@@ -123,6 +123,6 @@ public abstract class CardHandleObject : ICardHandle
     //保留一位小数
     protected float getNumberDigits(float number)
     {
-        return (float)Math.Round(number, 1);
+        return (float)Math.Round((number*10+0.5)/10, 1);
     }
 }
