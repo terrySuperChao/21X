@@ -205,6 +205,8 @@ public class CardFlow : GameFlowObject
 
     public void cardHandleTypeHandle(List<IUser> list,bool isNpc, CardHandleType type) {
         ICardHandlePara handlePara = new CardHandleParaObject();
+        IRoundResult roundResult = new RoundResultObject();
+        handlePara.setRoundResult(roundResult);
         for (int i = 0; i < list.Count; i++)
         {
             if (list[i].isNpc() == isNpc)
