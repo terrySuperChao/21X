@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Tilemaps;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -147,19 +148,19 @@ public class CardView : MonoBehaviour
         pokerObject.GetComponent<Poker>().loadPokerRes(poker);
         pokerObject.transform.position = pokerPrefab.transform.position;
 
-        Vector3 pos = parent.position;
+        Vector3 pos = new Vector3(0, 0, 0);
         float count = parent.childCount;
         float index = count - 1;
         float scalex = pokerObject.transform.localScale.x;
         float width = pokerObject.GetComponent<RectTransform>().rect.width * scalex;
         float maxWidth = parent.gameObject.GetComponent<RectTransform>().rect.width;
-        float offX = count <= 1 ? 60 : Math.Min((maxWidth - width * count) / (count - 1), 60);
+        float offX = count <= 1 ? 120 : Math.Min((maxWidth - width * count) / (count - 1), 120);
         float startX = pos.x - index * (width * scalex + offX) / 2;
         
         for (int i = 0; i < count; i++)
         {
             Vector3 localPos = new Vector3(startX + (width * scalex + offX) * i, pos.y, pos.z);
-            iTween.MoveTo(parent.GetChild(i).gameObject, localPos, 0.5f);
+            moveTo(parent.GetChild(i).gameObject, localPos);
         }
 
         if (point < 21) {
@@ -520,7 +521,9 @@ public class CardView : MonoBehaviour
             addText.transform.position = text.transform.position;
             addText.text = str;
             addText.color = Color.green;
-            iTween.MoveBy(addText.gameObject, new Vector3(0,50,0), 0.5f);
+
+            Vector3 localPos = addText.transform.localPosition;
+            moveTo(addText.gameObject, new Vector3(localPos.x, localPos.y + 50, localPos.z));
             iTween.ScaleTo(child.gameObject, new Vector3(0.5f, 0.5f, 0.5f), 0.5f);
             yield return new WaitForSeconds(0.51f);
             iTween.ScaleTo(child.gameObject, new Vector3(0.6f, 0.6f, 0.6f), 0.1f);
@@ -547,12 +550,14 @@ public class CardView : MonoBehaviour
             {
                 addText.text = "+" + para.getValue();
                 addText.color = Color.green;
-                iTween.MoveBy(addText.gameObject, new Vector3(0, 50, 0), 0.5f);
+                Vector3 localPos = addText.transform.localPosition;
+                moveTo(addText.gameObject, new Vector3(localPos.x, localPos.y + 50, localPos.z));
             }
             else {
-                addText.text = "" + para.getValue();
+                addText.text = "-" + para.getValue();
                 addText.color = Color.red;
-                iTween.MoveBy(addText.gameObject, new Vector3(0, -50, 0), 0.5f);
+                Vector3 localPos = addText.transform.localPosition;
+                moveTo(addText.gameObject, new Vector3(localPos.x, localPos.y - 50, localPos.z));
             }
             yield return new WaitForSeconds(0.51f);
             Destroy(addText.gameObject);
@@ -663,12 +668,12 @@ public class CardView : MonoBehaviour
         Transform child = getCardIdTransform(para.getUser(), para.getCard());
         if (child != null)
         {
-            Debug.Log("para.getText()===" + para.getText());
             Text addText = Instantiate(userAttackText, rootTransform);
             addText.transform.position = child.position;
             addText.text = para.getText();
             addText.fontSize = 30;
-            iTween.MoveBy(addText.gameObject, new Vector3(0, 50, 0), 0.5f);
+            Vector3 localPos = addText.transform.localPosition;
+            moveTo(addText.gameObject, new Vector3(localPos.x, localPos.y + 50, localPos.z));
             iTween.ScaleTo(child.gameObject, new Vector3(0.6f, 0.6f, 0.6f), 0.5f);
             yield return new WaitForSeconds(0.51f);
             Destroy(addText.gameObject);
@@ -782,5 +787,9 @@ public class CardView : MonoBehaviour
         tipsViewObject.transform.position = tipsView.transform.position;
         tipsViewObject.SetActive(true);
         tipsViewObject.GetComponent<TipsView>().setText((string)obj[0]);
+    }
+
+    private void moveTo(GameObject gameObject, Vector3 position) {
+        iTween.MoveTo(gameObject, iTween.Hash("position", position, "time", 0.5f, "isLocal", true, "easeType", iTween.EaseType.linear));
     }
 }
