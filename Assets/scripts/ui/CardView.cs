@@ -155,7 +155,7 @@ public class CardView : MonoBehaviour
         float maxWidth = parent.gameObject.GetComponent<RectTransform>().rect.width;
         float offX = count <= 1 ? 60 : Math.Min((maxWidth - width * count) / (count - 1), 60);
         float startX = pos.x - index * (width * scalex + offX) / 2;
-
+        
         for (int i = 0; i < count; i++)
         {
             Vector3 localPos = new Vector3(startX + (width * scalex + offX) * i, pos.y, pos.z);
@@ -442,7 +442,7 @@ public class CardView : MonoBehaviour
                 iTween.MoveTo(cardObject, userCards.GetChild(index).position, 0.5f);
                 yield return new WaitForSeconds(0.6f);
                 Destroy(userCards.GetChild(index).gameObject);
-                cardObject.transform.parent = userCards;
+                cardObject.transform.SetParent(userCards);
                 cardObject.transform.localScale = new Vector3(0.7f, 0.7f, 0.7f);
 
                 _gameFlow.cardHandleTypeHandle(PlayPokerMgr.Instance.getPlayers(), false, CardHandleType.addNewCardAfter);
