@@ -8,8 +8,11 @@ public class BerserkerPlusHandle : BerserkerHandle
         float addValue = -10;
         float finalValue = para.getAttackUser().addBlood(addValue);
 
+        IUIFlyFontPara uiPara1 = new UIFlyFontParaObject(para.getAttackUser(), para.getCard(), "ÑªÁ¿" + addValue);
+        GameMessage.Instance.addMsg(GameConst.FLYFONT, uiPara1);
+
         IUICommonPara uiPara2 = new UICommonParaObject(para.getAttackUser(), ValueType.blood, addValue, finalValue);
-        GameMessage.Instance.addMsg(GameConst.COMMONATTACK, uiPara2);
+        GameMessage.Instance.addMsg(GameConst.ADDCARDVALUE, uiPara2);
     }
 
     override

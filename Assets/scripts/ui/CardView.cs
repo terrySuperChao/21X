@@ -171,6 +171,7 @@ public class CardView : MonoBehaviour
             text.color = Color.red;
         }
         text.text = point.ToString();
+        Debug.Log("point===" + point);
     }
 
     public void onReturnClick() {
@@ -186,13 +187,13 @@ public class CardView : MonoBehaviour
     public void onDealPokerClick() {
         refactoringGameObject.SetActive(false);
         setBtnInteractable(false);
-        PlayPokerMgr.Instance.dealPoker();
+        PlayPokerMgr.Instance.dealPokerAction();
     }
 
     public void onStopPokerClick() {
         refactoringGameObject.SetActive(false);
         setBtnInteractable(false);
-        PlayPokerMgr.Instance.stopDealPoker();
+        PlayPokerMgr.Instance.stopDealPokerAction();
     }
 
     private void dealPoker(params System.Object[] obj)
@@ -270,11 +271,11 @@ public class CardView : MonoBehaviour
             int number = HandPokerMgr.Instance.getHandPokerPoint(user, false);
             if (number >= 17)
             {
-                PlayPokerMgr.Instance.stopDealPoker();
+                PlayPokerMgr.Instance.stopDealPokerAction();
             }
             else
             {
-                PlayPokerMgr.Instance.dealPoker();
+                PlayPokerMgr.Instance.dealPokerAction();
             }
         }
         else {
@@ -668,6 +669,7 @@ public class CardView : MonoBehaviour
         Transform child = getCardIdTransform(para.getUser(), para.getCard());
         if (child != null)
         {
+            Debug.Log("文字====" + para.getText());
             Text addText = Instantiate(userAttackText, rootTransform);
             addText.transform.position = child.position;
             addText.text = para.getText();

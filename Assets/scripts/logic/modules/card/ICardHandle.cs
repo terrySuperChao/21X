@@ -15,8 +15,8 @@ public interface ICardHandle
     public void roundAddValueHandle(ICardHandlePara para);
     //回合添加魔法值
     public void roundAddMagicHandle(ICardHandlePara para);
-    //爆牌
-    public void roundBustHandle(ICardHandlePara para);
+    //特殊属性
+    public void roundSpecialAttrHandle(ICardHandlePara para);
     //回合攻击前
     public void roundAttackBeforeHandle(ICardHandlePara para);
     //攻击

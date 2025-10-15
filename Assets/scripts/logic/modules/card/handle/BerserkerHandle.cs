@@ -16,10 +16,10 @@ public class BerserkerHandle : CardHandleObject
     override
     protected void _roundAttackHandle(ICardHandlePara para) {
         if (_saveAttackValue >= 0.1f) {
-            lossBlood(para);
-
             IUIFlyFontPara uiPara1 = new UIFlyFontParaObject(para.getAttackUser(), para.getCard(), "¹¥»÷Á¦±£Áô"+ getNumber() + "%");
             GameMessage.Instance.addMsg(GameConst.FLYFONT, uiPara1);
+
+            lossBlood(para);
         }
     }
 

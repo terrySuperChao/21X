@@ -42,8 +42,8 @@ public class CardFlow : GameFlowObject
         if (winIndex == -1)
         {
             //±¬ÅÆ
-            cardHandleTypeHandle(para.getUsers(), false, CardHandleType.roundBust);
-            cardHandleTypeHandle(para.getUsers(), true, CardHandleType.roundBust);
+            cardHandleTypeHandle(para.getUsers(), false, CardHandleType.roundSpecialAttr);
+            cardHandleTypeHandle(para.getUsers(), true, CardHandleType.roundSpecialAttr);
             return false;
         }
         else { 
@@ -100,8 +100,8 @@ public class CardFlow : GameFlowObject
             }
 
             //±¬ÅÆ
-            cardHandleTypeHandle(para.getUsers(), false, CardHandleType.roundBust);
-            cardHandleTypeHandle(para.getUsers(), true, CardHandleType.roundBust);
+            cardHandleTypeHandle(para.getUsers(), false, CardHandleType.roundSpecialAttr);
+            cardHandleTypeHandle(para.getUsers(), true, CardHandleType.roundSpecialAttr);
 
             //¹¥»÷½áËã
             CardMgr.Instance.handle(handlePara, CardHandleType.roundAttackBegin);
@@ -209,7 +209,9 @@ public class CardFlow : GameFlowObject
             {
                 handlePara.setUser(list[i]);
                 handlePara.setAttackUser(list[i]);
-                break;
+            }
+            else {
+                handlePara.setDefenseUser(list[i]);
             }
         }
         CardMgr.Instance.handle(handlePara, type);
@@ -231,7 +233,7 @@ public class CardFlow : GameFlowObject
             for (int i = 0; i < 2; i++)
             {
                 int suitValue = RandomMgr.Instance.getRangeInt(0, 2) == 0 ? 0 : suit;
-                IPoker poker = PokerPileMgr.Instance.dealSpecialPoker(suitValue);
+                IPoker poker = PokerPileMgr.Instance.dealSuitPoker(suitValue);
                 poker.setBack(i == 0 && isNpc);
                 HandPokerMgr.Instance.addHandPoker(user, poker);
             

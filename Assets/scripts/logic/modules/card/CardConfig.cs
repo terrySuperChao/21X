@@ -36,7 +36,7 @@ public class CardConfig
     }
 
 	private static List<ICardHandle> _handle = new List<ICardHandle> {
-		new SpadeCardHandle(),
+        new SpadeCardHandle(),
 		new SpadeCardPlusHandle(),
 		new HeartCardHandle(),
 		new HeartCardPlusHandle(),

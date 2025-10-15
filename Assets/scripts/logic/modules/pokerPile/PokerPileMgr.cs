@@ -49,7 +49,8 @@ public class PokerPileMgr : Singleton<PokerPileMgr>
         return _remainCards.Count;
     }
 
-    public IPoker dealSpecialPoker(int suit) {
+    //发指定花色的牌
+    public IPoker dealSuitPoker(int suit) {
         IPoker poker = null;
         if (_remainCards.Count > 0)
         {

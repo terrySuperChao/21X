@@ -95,7 +95,7 @@ public enum CardHandleType {
     roundAddValueBefore,
     roundAddValue,
     roundAddMagic,
-    roundBust,
+    roundSpecialAttr,
     roundAttackBegin,
     roundAttack,
     roundMagicAttack,

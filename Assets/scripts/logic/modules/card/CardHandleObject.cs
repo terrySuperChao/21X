@@ -39,10 +39,10 @@ public abstract class CardHandleObject : ICardHandle
         _roundAddMagicHandle(para);
     }
 
-    //爆牌
-    public void roundBustHandle(ICardHandlePara para)
+    //特殊属性
+    public void roundSpecialAttrHandle(ICardHandlePara para)
     {
-        _roundBustHandle(para);
+        _roundSpecialAttrHandle(para);
     }
     //回合攻击前
     public void roundAttackBeforeHandle(ICardHandlePara para)
@@ -99,8 +99,8 @@ public abstract class CardHandleObject : ICardHandle
     //回合添加魔法值
     protected virtual void _roundAddMagicHandle(ICardHandlePara para){ }
 
-    //爆牌
-    protected virtual void _roundBustHandle(ICardHandlePara para){}
+    //特殊属性
+    protected virtual void _roundSpecialAttrHandle(ICardHandlePara para){}
 
     //回合攻击前
     protected virtual void _roundAttackBeforeHandle(ICardHandlePara para) { }

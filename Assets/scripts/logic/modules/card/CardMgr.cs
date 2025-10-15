@@ -184,8 +184,8 @@ public class CardMgr: Singleton<CardMgr>
                     case CardHandleType.roundAddMagic:
                         handles[index].roundAddMagicHandle(para);
                         break;
-                    case CardHandleType.roundBust:
-                        handles[index].roundBustHandle(para);
+                    case CardHandleType.roundSpecialAttr:
+                        handles[index].roundSpecialAttrHandle(para);
                         break;
                     case CardHandleType.roundAttackBegin:
                         handles[index].roundAttackBeforeHandle(para);

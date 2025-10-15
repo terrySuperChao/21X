@@ -156,13 +156,13 @@ public class FightView : MonoBehaviour
 
     public void onDealPokerClick() {
         setBtnInteractable(false);
-        PlayPokerMgr.Instance.dealPoker();
+        PlayPokerMgr.Instance.dealPokerAction();
         GameMessage.Instance.setHandleMessageComplete();
     }
 
     public void onStopPokerClick() {
         setBtnInteractable(false);
-        PlayPokerMgr.Instance.stopDealPoker();
+        PlayPokerMgr.Instance.stopDealPokerAction();
         GameMessage.Instance.setHandleMessageComplete();
     }
 
@@ -245,10 +245,10 @@ public class FightView : MonoBehaviour
         int number = HandPokerMgr.Instance.getHandPokerPoint(user, false);
         if (number >= 17)
         {
-            PlayPokerMgr.Instance.stopDealPoker();
+            PlayPokerMgr.Instance.stopDealPokerAction();
         }
         else {
-            PlayPokerMgr.Instance.dealPoker();
+            PlayPokerMgr.Instance.dealPokerAction();
         }
         GameMessage.Instance.setHandleMessageComplete();
     }
