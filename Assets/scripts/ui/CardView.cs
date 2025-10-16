@@ -438,12 +438,14 @@ public class CardView : MonoBehaviour
             {
                 GameObject cardObject = Instantiate(cardPrefab, rootTransform);
                 cardObject.GetComponent<Card>().loadCard(card);
+                cardObject.GetComponent<Card>().showNameText(false);
                 cardObject.transform.position = (Vector3)obj[2];
 
                 int index = getCardForTypeIndex(card, userCards);
                 iTween.MoveTo(cardObject, userCards.GetChild(index).position, 0.5f);
                 yield return new WaitForSeconds(0.6f);
                 Destroy(userCards.GetChild(index).gameObject);
+                cardObject.GetComponent<Card>().showNameText(true);
                 cardObject.transform.SetParent(userCards);
                 cardObject.transform.localScale = new Vector3(0.7f, 0.7f, 0.7f);
 
@@ -673,7 +675,8 @@ public class CardView : MonoBehaviour
             Text addText = Instantiate(userAttackText, rootTransform);
             addText.transform.position = child.position;
             addText.text = para.getText();
-            addText.fontSize = 30;
+            addText.fontSize = 40;
+            addText.color = Color.green;
             Vector3 localPos = addText.transform.localPosition;
             moveTo(addText.gameObject, new Vector3(localPos.x, localPos.y + 50, localPos.z));
             iTween.ScaleTo(child.gameObject, new Vector3(0.6f, 0.6f, 0.6f), 0.5f);

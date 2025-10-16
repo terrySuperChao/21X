@@ -54,4 +54,8 @@ public class Card : MonoBehaviour
     public ICard getCard() {
         return _card;
     }
+
+    public void showNameText(bool active) {
+        cardName.gameObject.SetActive(active);
+    }
 }   
