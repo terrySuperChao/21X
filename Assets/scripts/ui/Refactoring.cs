@@ -10,6 +10,7 @@ public class Refactoring : MonoBehaviour
     public Transform btn4;
     public Transform btn5;
     public Button okBtn;
+    public GameObject suitNode;
     private int _selectIndex = -1;
     private int _refactoringNum = 0;
     // Start is called before the first frame update
@@ -33,6 +34,7 @@ public class Refactoring : MonoBehaviour
         _refactoringNum = num;
         resultText.text = _refactoringNum.ToString();
         this.gameObject.SetActive(true);
+        this.suitNode.SetActive(num == 2);
     }
 
     public void okClick() {

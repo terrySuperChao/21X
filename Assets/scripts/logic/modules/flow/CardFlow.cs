@@ -137,9 +137,7 @@ public class CardFlow : GameFlowObject
                         IUICommonPara attackPara1 = new UICommonParaObject(defenseUser, ValueType.defense, -defenseValue, defenseUser.getDefense());
                         GameMessage.Instance.addMsg(GameConst.ADDCARDVALUE, attackPara1);
 
-                        handlePara.setUser(defenseUser);
-                        CardMgr.Instance.handle(handlePara, CardHandleType.roundSubDefense);
-                        handlePara.setUser(attackUser);
+                        cardHandleTypeHandle(para.getUsers(), defenseUser.isNpc(), CardHandleType.roundSubDefense);
                     }
                 }
 

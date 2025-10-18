@@ -171,7 +171,6 @@ public class CardView : MonoBehaviour
             text.color = Color.red;
         }
         text.text = point.ToString();
-        Debug.Log("point===" + point);
     }
 
     public void onReturnClick() {
@@ -557,7 +556,7 @@ public class CardView : MonoBehaviour
                 moveTo(addText.gameObject, new Vector3(localPos.x, localPos.y + 50, localPos.z));
             }
             else {
-                addText.text = "-" + para.getValue();
+                addText.text = "" + para.getValue();
                 addText.color = Color.red;
                 Vector3 localPos = addText.transform.localPosition;
                 moveTo(addText.gameObject, new Vector3(localPos.x, localPos.y - 50, localPos.z));
