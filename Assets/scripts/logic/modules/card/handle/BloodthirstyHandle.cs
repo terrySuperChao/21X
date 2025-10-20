@@ -8,17 +8,11 @@ public class BloodthirstyHandle : CardHandleObject
     override
     protected void _roundBeginHandle(ICardHandlePara para)
     {
-        isMult = false;
-        int point = HandPokerMgr.Instance.getHandPokerPoint(para.getAttackUser(), false);
-        if(point == 21)
+        isMult = para.getAttackUser().getBlood() / para.getAttackUser().getMaxBlood() <= getRatio();
+        if (isMult)
         {
-            if (para.getAttackUser().getBlood() / para.getAttackUser().getMaxBlood() < getRatio())
-            {
-                para.getRoundResult().setAttributeMult(getNumber());
-                isMult = true;
-            }
+            para.getRoundResult().setAttributeMult(getNumber());
         }
-        
     }
 
     override

@@ -589,9 +589,10 @@ public class CardView : MonoBehaviour
         }
         return text;
     }
-    private string getFinalContent(IUser user, ValueType type, float finalValue)
+    private string getFinalContent(IUser user, ValueType type, float value)
     {
         float maxValue = -1;
+        float finalValue = (float)Math.Round((value * 10 + 0.5) / 10, 1);
         switch (type)
         {
             case ValueType.defense: // 方

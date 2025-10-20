@@ -100,8 +100,8 @@ public class CardFlow : GameFlowObject
             }
 
             //±¬ÅÆ
-            cardHandleTypeHandle(para.getUsers(), false, CardHandleType.roundSpecialAttr);
-            cardHandleTypeHandle(para.getUsers(), true, CardHandleType.roundSpecialAttr);
+            cardHandleTypeHandle(para.getUsers(), attackUser.isNpc(), CardHandleType.roundSpecialAttr);
+            cardHandleTypeHandle(para.getUsers(), defenseUser.isNpc(), CardHandleType.roundSpecialAttr);
 
             //¹¥»÷½áËã
             CardMgr.Instance.handle(handlePara, CardHandleType.roundAttackBegin);

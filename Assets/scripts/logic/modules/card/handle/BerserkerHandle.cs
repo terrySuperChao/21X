@@ -6,7 +6,7 @@ public class BerserkerHandle : CardHandleObject
     override
     protected void _roundAttackBeforeHandle(ICardHandlePara para)
     {
-        _saveAttackValue = getNumberDigits(para.getAttackUser().getAttack() * getNumber() * 0.01f);
+        _saveAttackValue = getNumberDigits(para.getAttackUser().getAttack() * getNumber() / 100.0f);
         if (_saveAttackValue >= 0.1f)
         {
             para.getRoundResult().setSaveAttackValue(_saveAttackValue);

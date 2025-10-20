@@ -7,7 +7,7 @@ public class DiamondCardPlusHandle : DiamondCardHandle
     private Dictionary<string,float> _value = new Dictionary<string, float>();
     override
     protected void _roundSpecialAttrHandle(ICardHandlePara para) {
-        if (para.getDefenseUser().getAttack() > para.getAttackUser().getDefense()){
+        if (para.getDefenseUser().getAttack() < para.getAttackUser().getDefense()){
             _value[para.getUser().getUserId()] = para.getDefenseUser().getAttack() * 0.5f;
         }
         else {
