@@ -1,7 +1,30 @@
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.UI;
 
-public class LobbyView : MonoBehaviour
+public class LobbyView : MonoBehaviour,IBaseView
 {
+    public GameObject version;
+    public GameObject continueGame;
+    public void init()
+    {
+        
+    }
+
+    public void beforeShow()
+    {
+        
+    }
+
+    public void refresh()
+    {
+        
+    }
+
+    public void afterShow()
+    {
+        
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -14,20 +37,7 @@ public class LobbyView : MonoBehaviour
         
     }
 
-    public void onStartClick() {
-        EventDispatcher.Instance.emit("startGame", GameMode.Common);
-    }
-
-    public void onFightClick() {
-        EventDispatcher.Instance.emit("startGame", GameMode.Fight);
-    }
-
-    public void onCardClick()
-    {
-        EventDispatcher.Instance.emit("startGame", GameMode.Card);
-    }
-
-    public void onCloseClick() { 
-        
+    public void onNewGameClick() {
+        UIMgr.Instance.showView("stateView");
     }
 }

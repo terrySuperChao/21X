@@ -113,3 +113,18 @@ public enum ValueType {
     magic
 }
 
+public enum PageIndex {
+    EntryView,
+    LobbyView,
+    StageView,
+    GameView,
+    RelaxView,
+    ShopView,
+}
+
+public enum GameState { 
+    idle,
+    playing,
+}
+
+

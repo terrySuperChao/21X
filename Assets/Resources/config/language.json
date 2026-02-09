@@ -1,0 +1,28 @@
+{
+	"btn_join_game": {
+		"zh_CN": "加入游戏",
+		"zh_SG": "加入游戏",
+		"zh_TW": "加入遊戲",
+		"zh_HK": "加入遊戲",
+		"zh_MO": "加入遊戲",
+		"en_US": "Join",
+		"en_GB": "Join",
+		"ar_SA": "‫انضم‬",
+		"vi_VN": "Tham gia",
+		"id_ID": "Gabung",
+		"th_TH": "เข้าร่วม"
+	},
+	"btn_quit_name": {
+		"zh_CN": "退出游戏",
+		"zh_SG": "退出游戏",
+		"zh_TW": "退出遊戲",
+		"zh_HK": "退出遊戲",
+		"zh_MO": "退出遊戲",
+		"en_US": "Quit",
+		"en_GB": "Quit",
+		"ar_SA": "‫خروج‬",
+		"vi_VN": "Thoát",
+		"id_ID": "Keluar",
+		"th_TH": "ออก"
+	}
+}

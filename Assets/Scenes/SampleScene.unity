@@ -225,7 +225,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1388254394}
   - component: {fileID: 1388254395}
-  - component: {fileID: 1388254396}
   m_Layer: 0
   m_Name: root
   m_TagString: Untagged
@@ -260,23 +259,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b1f5bd5e4fafb145a6c2bf1d11ff508, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1388254396
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1388254393}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ce2528bf48d24bc4cb1616b9c20977e3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lobbyView: {fileID: 8105682527857957194, guid: 625aebfaa7e49bb47936b2278595e0c9, type: 3}
-  gameView: {fileID: 6462848143466931906, guid: 68bc00e9b0e476f4da0a7e2b054bf2fb, type: 3}
-  fightView: {fileID: 6462848143466931906, guid: 3a4682b66f468aa49b87b6c20ae19139, type: 3}
-  cardView: {fileID: 6462848143466931906, guid: 53952face967d8c49b588d7a6dff369e, type: 3}
-  tipsView: {fileID: 7709974655959353843, guid: 7e86659e18af8694fadee9285bd5321a, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

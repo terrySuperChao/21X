@@ -1296,7 +1296,7 @@ GameObject:
   - component: {fileID: 1828666139890872284}
   - component: {fileID: 8284387560536310028}
   m_Layer: 0
-  m_Name: LobbyView
+  m_Name: LobbyViewCopy 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

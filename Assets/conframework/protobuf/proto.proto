@@ -1,0 +1,25 @@
+syntax = "proto3";
+package pb;
+
+//账号
+message Account{
+}
+
+//设置
+message Setting{
+}
+
+//游戏
+message GameData{
+  optional int32 gameState = 1;
+  optional int32 pageIndex = 2;
+}
+
+//游戏财产
+message GameProperty{
+  optional Account account = 1;
+  optional Setting setting = 2;
+  optional GameData gameData = 3;
+}
+
+//protoc --proto_path=. --csharp_out=. proto.proto
