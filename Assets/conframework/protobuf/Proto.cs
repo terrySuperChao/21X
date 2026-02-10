@@ -24,19 +24,24 @@ namespace Pb {
     static ProtoReflection() {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
-            "Cgtwcm90by5wcm90bxICcGIiCQoHQWNjb3VudCIJCgdTZXR0aW5nIlYKCEdh",
-            "bWVEYXRhEhYKCWdhbWVTdGF0ZRgBIAEoBUgAiAEBEhYKCXBhZ2VJbmRleBgC",
-            "IAEoBUgBiAEBQgwKCl9nYW1lU3RhdGVCDAoKX3BhZ2VJbmRleCKeAQoMR2Ft",
-            "ZVByb3BlcnR5EiEKB2FjY291bnQYASABKAsyCy5wYi5BY2NvdW50SACIAQES",
-            "IQoHc2V0dGluZxgCIAEoCzILLnBiLlNldHRpbmdIAYgBARIjCghnYW1lRGF0",
-            "YRgDIAEoCzIMLnBiLkdhbWVEYXRhSAKIAQFCCgoIX2FjY291bnRCCgoIX3Nl",
-            "dHRpbmdCCwoJX2dhbWVEYXRhYgZwcm90bzM="));
+            "Cgtwcm90by5wcm90bxICcGIiCQoHQWNjb3VudCIJCgdTZXR0aW5nIkYKEERl",
+            "ZmVhdFBsYXllclJvbGUSDwoCaWQYASABKAVIAIgBARIRCgRkaWZmGAIgASgF",
+            "SAGIAQFCBQoDX2lkQgcKBV9kaWZmIscBCghHYW1lRGF0YRIWCglnYW1lU3Rh",
+            "dGUYASABKAVIAIgBARIWCglwYWdlSW5kZXgYAiABKAVIAYgBARIWCglwbGF5",
+            "aW5nSWQYAyABKAVIAogBARIQCgNleHAYBCABKAVIA4gBARIvChFkZWZlYXRQ",
+            "bGF5ZXJSb2xlcxgFIAMoCzIULnBiLkRlZmVhdFBsYXllclJvbGVCDAoKX2dh",
+            "bWVTdGF0ZUIMCgpfcGFnZUluZGV4QgwKCl9wbGF5aW5nSWRCBgoEX2V4cCKe",
+            "AQoMR2FtZVByb3BlcnR5EiEKB2FjY291bnQYASABKAsyCy5wYi5BY2NvdW50",
+            "SACIAQESIQoHc2V0dGluZxgCIAEoCzILLnBiLlNldHRpbmdIAYgBARIjCghn",
+            "YW1lRGF0YRgDIAEoCzIMLnBiLkdhbWVEYXRhSAKIAQFCCgoIX2FjY291bnRC",
+            "CgoIX3NldHRpbmdCCwoJX2dhbWVEYXRhYgZwcm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::Pb.Account), global::Pb.Account.Parser, null, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Pb.Setting), global::Pb.Setting.Parser, null, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Pb.GameData), global::Pb.GameData.Parser, new[]{ "GameState", "PageIndex" }, new[]{ "GameState", "PageIndex" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Pb.DefeatPlayerRole), global::Pb.DefeatPlayerRole.Parser, new[]{ "Id", "Diff" }, new[]{ "Id", "Diff" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Pb.GameData), global::Pb.GameData.Parser, new[]{ "GameState", "PageIndex", "PlayingId", "Exp", "DefeatPlayerRoles" }, new[]{ "GameState", "PageIndex", "PlayingId", "Exp" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Pb.GameProperty), global::Pb.GameProperty.Parser, new[]{ "Account", "Setting", "GameData" }, new[]{ "Account", "Setting", "GameData" }, null, null, null)
           }));
     }
@@ -372,6 +377,279 @@ namespace Pb {
 
   }
 
+  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+  public sealed partial class DefeatPlayerRole : pb::IMessage<DefeatPlayerRole>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
+    private static readonly pb::MessageParser<DefeatPlayerRole> _parser = new pb::MessageParser<DefeatPlayerRole>(() => new DefeatPlayerRole());
+    private pb::UnknownFieldSet _unknownFields;
+    private int _hasBits0;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pb::MessageParser<DefeatPlayerRole> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Pb.ProtoReflection.Descriptor.MessageTypes[2]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public DefeatPlayerRole() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public DefeatPlayerRole(DefeatPlayerRole other) : this() {
+      _hasBits0 = other._hasBits0;
+      id_ = other.id_;
+      diff_ = other.diff_;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public DefeatPlayerRole Clone() {
+      return new DefeatPlayerRole(this);
+    }
+
+    /// <summary>Field number for the "id" field.</summary>
+    public const int IdFieldNumber = 1;
+    private readonly static int IdDefaultValue = 0;
+
+    private int id_;
+    /// <summary>
+    ///击败的角色Id
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int Id {
+      get { if ((_hasBits0 & 1) != 0) { return id_; } else { return IdDefaultValue; } }
+      set {
+        _hasBits0 |= 1;
+        id_ = value;
+      }
+    }
+    /// <summary>Gets whether the "id" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasId {
+      get { return (_hasBits0 & 1) != 0; }
+    }
+    /// <summary>Clears the value of the "id" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearId() {
+      _hasBits0 &= ~1;
+    }
+
+    /// <summary>Field number for the "diff" field.</summary>
+    public const int DiffFieldNumber = 2;
+    private readonly static int DiffDefaultValue = 0;
+
+    private int diff_;
+    /// <summary>
+    ///难度
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int Diff {
+      get { if ((_hasBits0 & 2) != 0) { return diff_; } else { return DiffDefaultValue; } }
+      set {
+        _hasBits0 |= 2;
+        diff_ = value;
+      }
+    }
+    /// <summary>Gets whether the "diff" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasDiff {
+      get { return (_hasBits0 & 2) != 0; }
+    }
+    /// <summary>Clears the value of the "diff" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearDiff() {
+      _hasBits0 &= ~2;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override bool Equals(object other) {
+      return Equals(other as DefeatPlayerRole);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool Equals(DefeatPlayerRole other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (Id != other.Id) return false;
+      if (Diff != other.Diff) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (HasId) hash ^= Id.GetHashCode();
+      if (HasDiff) hash ^= Diff.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
+      if (HasId) {
+        output.WriteRawTag(8);
+        output.WriteInt32(Id);
+      }
+      if (HasDiff) {
+        output.WriteRawTag(16);
+        output.WriteInt32(Diff);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (HasId) {
+        output.WriteRawTag(8);
+        output.WriteInt32(Id);
+      }
+      if (HasDiff) {
+        output.WriteRawTag(16);
+        output.WriteInt32(Diff);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int CalculateSize() {
+      int size = 0;
+      if (HasId) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Id);
+      }
+      if (HasDiff) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Diff);
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(DefeatPlayerRole other) {
+      if (other == null) {
+        return;
+      }
+      if (other.HasId) {
+        Id = other.Id;
+      }
+      if (other.HasDiff) {
+        Diff = other.Diff;
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+      if ((tag & 7) == 4) {
+        // Abort on any end group tag.
+        return;
+      }
+      switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 8: {
+            Id = input.ReadInt32();
+            break;
+          }
+          case 16: {
+            Diff = input.ReadInt32();
+            break;
+          }
+        }
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+      if ((tag & 7) == 4) {
+        // Abort on any end group tag.
+        return;
+      }
+      switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+          case 8: {
+            Id = input.ReadInt32();
+            break;
+          }
+          case 16: {
+            Diff = input.ReadInt32();
+            break;
+          }
+        }
+      }
+    }
+    #endif
+
+  }
+
   /// <summary>
   ///游戏
   /// </summary>
@@ -391,7 +669,7 @@ namespace Pb {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Pb.ProtoReflection.Descriptor.MessageTypes[2]; }
+      get { return global::Pb.ProtoReflection.Descriptor.MessageTypes[3]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -414,6 +692,9 @@ namespace Pb {
       _hasBits0 = other._hasBits0;
       gameState_ = other.gameState_;
       pageIndex_ = other.pageIndex_;
+      playingId_ = other.playingId_;
+      exp_ = other.exp_;
+      defeatPlayerRoles_ = other.defeatPlayerRoles_.Clone();
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -477,6 +758,80 @@ namespace Pb {
       _hasBits0 &= ~2;
     }
 
+    /// <summary>Field number for the "playingId" field.</summary>
+    public const int PlayingIdFieldNumber = 3;
+    private readonly static int PlayingIdDefaultValue = 0;
+
+    private int playingId_;
+    /// <summary>
+    ///当前玩角色Id
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int PlayingId {
+      get { if ((_hasBits0 & 4) != 0) { return playingId_; } else { return PlayingIdDefaultValue; } }
+      set {
+        _hasBits0 |= 4;
+        playingId_ = value;
+      }
+    }
+    /// <summary>Gets whether the "playingId" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasPlayingId {
+      get { return (_hasBits0 & 4) != 0; }
+    }
+    /// <summary>Clears the value of the "playingId" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearPlayingId() {
+      _hasBits0 &= ~4;
+    }
+
+    /// <summary>Field number for the "exp" field.</summary>
+    public const int ExpFieldNumber = 4;
+    private readonly static int ExpDefaultValue = 0;
+
+    private int exp_;
+    /// <summary>
+    ///经验
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int Exp {
+      get { if ((_hasBits0 & 8) != 0) { return exp_; } else { return ExpDefaultValue; } }
+      set {
+        _hasBits0 |= 8;
+        exp_ = value;
+      }
+    }
+    /// <summary>Gets whether the "exp" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasExp {
+      get { return (_hasBits0 & 8) != 0; }
+    }
+    /// <summary>Clears the value of the "exp" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearExp() {
+      _hasBits0 &= ~8;
+    }
+
+    /// <summary>Field number for the "defeatPlayerRoles" field.</summary>
+    public const int DefeatPlayerRolesFieldNumber = 5;
+    private static readonly pb::FieldCodec<global::Pb.DefeatPlayerRole> _repeated_defeatPlayerRoles_codec
+        = pb::FieldCodec.ForMessage(42, global::Pb.DefeatPlayerRole.Parser);
+    private readonly pbc::RepeatedField<global::Pb.DefeatPlayerRole> defeatPlayerRoles_ = new pbc::RepeatedField<global::Pb.DefeatPlayerRole>();
+    /// <summary>
+    ///击败的
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public pbc::RepeatedField<global::Pb.DefeatPlayerRole> DefeatPlayerRoles {
+      get { return defeatPlayerRoles_; }
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override bool Equals(object other) {
@@ -494,6 +849,9 @@ namespace Pb {
       }
       if (GameState != other.GameState) return false;
       if (PageIndex != other.PageIndex) return false;
+      if (PlayingId != other.PlayingId) return false;
+      if (Exp != other.Exp) return false;
+      if(!defeatPlayerRoles_.Equals(other.defeatPlayerRoles_)) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -503,6 +861,9 @@ namespace Pb {
       int hash = 1;
       if (HasGameState) hash ^= GameState.GetHashCode();
       if (HasPageIndex) hash ^= PageIndex.GetHashCode();
+      if (HasPlayingId) hash ^= PlayingId.GetHashCode();
+      if (HasExp) hash ^= Exp.GetHashCode();
+      hash ^= defeatPlayerRoles_.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -529,6 +890,15 @@ namespace Pb {
         output.WriteRawTag(16);
         output.WriteInt32(PageIndex);
       }
+      if (HasPlayingId) {
+        output.WriteRawTag(24);
+        output.WriteInt32(PlayingId);
+      }
+      if (HasExp) {
+        output.WriteRawTag(32);
+        output.WriteInt32(Exp);
+      }
+      defeatPlayerRoles_.WriteTo(output, _repeated_defeatPlayerRoles_codec);
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -547,6 +917,15 @@ namespace Pb {
         output.WriteRawTag(16);
         output.WriteInt32(PageIndex);
       }
+      if (HasPlayingId) {
+        output.WriteRawTag(24);
+        output.WriteInt32(PlayingId);
+      }
+      if (HasExp) {
+        output.WriteRawTag(32);
+        output.WriteInt32(Exp);
+      }
+      defeatPlayerRoles_.WriteTo(ref output, _repeated_defeatPlayerRoles_codec);
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -563,6 +942,13 @@ namespace Pb {
       if (HasPageIndex) {
         size += 1 + pb::CodedOutputStream.ComputeInt32Size(PageIndex);
       }
+      if (HasPlayingId) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(PlayingId);
+      }
+      if (HasExp) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Exp);
+      }
+      size += defeatPlayerRoles_.CalculateSize(_repeated_defeatPlayerRoles_codec);
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
       }
@@ -581,6 +967,13 @@ namespace Pb {
       if (other.HasPageIndex) {
         PageIndex = other.PageIndex;
       }
+      if (other.HasPlayingId) {
+        PlayingId = other.PlayingId;
+      }
+      if (other.HasExp) {
+        Exp = other.Exp;
+      }
+      defeatPlayerRoles_.Add(other.defeatPlayerRoles_);
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
 
@@ -606,6 +999,18 @@ namespace Pb {
           }
           case 16: {
             PageIndex = input.ReadInt32();
+            break;
+          }
+          case 24: {
+            PlayingId = input.ReadInt32();
+            break;
+          }
+          case 32: {
+            Exp = input.ReadInt32();
+            break;
+          }
+          case 42: {
+            defeatPlayerRoles_.AddEntriesFrom(input, _repeated_defeatPlayerRoles_codec);
             break;
           }
         }
@@ -635,6 +1040,18 @@ namespace Pb {
             PageIndex = input.ReadInt32();
             break;
           }
+          case 24: {
+            PlayingId = input.ReadInt32();
+            break;
+          }
+          case 32: {
+            Exp = input.ReadInt32();
+            break;
+          }
+          case 42: {
+            defeatPlayerRoles_.AddEntriesFrom(ref input, _repeated_defeatPlayerRoles_codec);
+            break;
+          }
         }
       }
     }
@@ -660,7 +1077,7 @@ namespace Pb {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Pb.ProtoReflection.Descriptor.MessageTypes[3]; }
+      get { return global::Pb.ProtoReflection.Descriptor.MessageTypes[4]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]

@@ -6,6 +6,7 @@ public class Main : MonoBehaviour
     void Start()
     {
         GamePropertyMgr.Instance.init();
+        GameStaticConfigMgr.Instance.init();
         UIMgr.Instance.init(this.gameObject, "config/UIConfig");
         LangMgr.Instance.init("config/language");
         UIMgr.Instance.showView("LoadingView");

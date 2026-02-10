@@ -74,6 +74,7 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexShakeA.cs" />
     <Compile Include="Assets\scripts\logic\modules\flow\GameFlow.cs" />
     <Compile Include="Assets\scripts\logic\modules\card\CardConfig.cs" />
+    <Compile Include="Assets\scripts\logic\data\static\PlayerRoleConfig.cs" />
     <Compile Include="Assets\scripts\ui\Card.cs" />
     <Compile Include="Assets\scripts\logic\modules\game\GameConst.cs" />
     <Compile Include="Assets\scripts\ui\TipsView.cs" />
@@ -159,6 +160,7 @@
     <Compile Include="Assets\scripts\logic\data\ICard.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\ShaderPropAnimator.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\CameraController.cs" />
+    <Compile Include="Assets\scripts\logic\modules\game\GameStaticConfigMgr.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark03.cs" />
     <Compile Include="Assets\scripts\logic\modules\card\handle\SpadeCardPlusHandle.cs" />
     <Compile Include="Assets\scripts\logic\modules\card\ICardHandlePara.cs" />

@@ -1,0 +1,69 @@
+[
+	{
+		"id": 1,
+		"name":"工人",
+		"desc":"钢铁厂的烟囱逐一熄灭。他是那群被时代抛弃的沉默的大多数，他在高温的炉火前挥汗如雨十几年，换来的只有满身的伤病和一张辞退通知",
+		"mainSkills":[{
+			"name":"沉重一击",
+			"desc":"造成30点伤害，有50%几率触发暴击效果，额外造成50%伤害",
+			"unLockLevel":0
+		}],
+		"secondSkills":[
+			{
+				"name":"稳重",
+				"desc":"每次牌局，初始护甲+10",
+				"unLockLevel":2
+			},
+			{
+				"name":"材料回收",
+				"desc":"每次牌局胜利后，有几率获得额外一个印记碎片",
+				"unLockLevel":5
+			},
+			{
+				"name":"强化",
+				"desc":"所有护甲和恢复相关的印记效果增强50%",
+				"unLockLevel":7
+			},
+			{
+				"name":"坚韧不拔",
+				"desc":"生命低于30%时，自动恢复30%的生命值，每次牌局战斗最多触发1次",
+				"unLockLevel":10
+			}
+		]
+	},
+	{
+		"id": 2,
+		"name":"侦探",
+		"desc":"",
+		"mainSkills":[],
+		"secondSkills":[]
+	},
+	{
+		"id": 3,
+		"name":"医生",
+		"desc":"",
+		"mainSkills":[],
+		"secondSkills":[]
+	},
+	{
+		"id": 4,
+		"name":"黑帮成员",
+		"desc":"",
+		"mainSkills":[],
+		"secondSkills":[]
+	},
+	{
+		"id": 5,
+		"name":"乐队成员",
+		"desc":"",
+		"mainSkills":[],
+		"secondSkills":[]
+	},
+	{
+		"id": 6,
+		"name":"赌徒",
+		"desc":"",
+		"mainSkills":[],
+		"secondSkills":[]
+	}
+]

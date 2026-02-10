@@ -9,10 +9,18 @@ message Account{
 message Setting{
 }
 
+message DefeatPlayerRole{
+optional int32 id = 1;				//击败的角色Id
+optional int32 diff= 2;				//难度
+}
+
 //游戏
 message GameData{
   optional int32 gameState = 1;
-  optional int32 pageIndex = 2;
+  optional int32 pageIndex = 2;		
+  optional int32 playingId = 3; 		//当前玩角色Id
+  optional int32 exp = 4;   			//经验
+  repeated DefeatPlayerRole  defeatPlayerRoles = 5;//击败的
 }
 
 //游戏财产
