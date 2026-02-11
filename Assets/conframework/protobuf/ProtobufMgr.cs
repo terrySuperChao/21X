@@ -1,5 +1,6 @@
+using Pb;
 using System.IO;
-
+using UnityEngine;
 public class ProtobufMgr : Singleton<ProtobufMgr>
 {
     // 序列化到二进制文件
@@ -12,10 +13,7 @@ public class ProtobufMgr : Singleton<ProtobufMgr>
     public FileStream deserializeFromFile(string path)
     {
         if (File.Exists(path)) {
-            using (var file = File.OpenRead(path))
-            {
-                return file;
-            }
+            return File.OpenRead(path);
         }
         return null;
     }

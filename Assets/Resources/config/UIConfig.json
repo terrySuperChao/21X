@@ -18,8 +18,8 @@
 		"desc":"大厅界面"
 	},
 	{
-		"name": "stage‌View",
-		"resPath": "prefabs/game/stage‌View",
+		"name": "StageView",
+		"resPath": "prefabs/game/StageView",
 		"viewType": 1,
 		"desc":"关卡界面"
 	},
@@ -28,5 +28,17 @@
 		"resPath": "prefabs/game/GameView",
 		"viewType": 1,
 		"desc":"游戏界面"
+	},
+	{
+		"name": "AlertView",
+		"resPath": "prefabs/game/AlertView",
+		"viewType": 2,
+		"desc":"弹窗"
+	},
+	{
+		"name": "TipsView",
+		"resPath": "prefabs/game/TipsView",
+		"viewType": 3,
+		"desc":"tips"
 	}
 ]

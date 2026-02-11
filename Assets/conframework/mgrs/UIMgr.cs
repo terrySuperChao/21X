@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class UIMgr : Singleton<UIMgr>
@@ -58,7 +60,7 @@ public class UIMgr : Singleton<UIMgr>
         else
         {
             GameObject prefab = Resources.Load<GameObject>(tempInfo.resPath);
-            GameObject gameObject = Object.Instantiate(prefab, new Vector3(0, 0, 0), Quaternion.identity);
+            GameObject gameObject = UnityEngine.Object.Instantiate(prefab, new Vector3(0, 0, 0), Quaternion.identity);
             gameObject.name = name;
             if (tempInfo.viewType == (int)ViewType.view)
             {
@@ -98,17 +100,32 @@ public class UIMgr : Singleton<UIMgr>
                     break;
                 }
             }
+            
             this.closeView(deleteName);
 
             this._mapViews[name] = gameObject;
         }
     }
 
+    public void showAlert(string name,string conetnt, Action okAction,Action cancelAction) {
+        this.showView(name);
+        if (this._mapViews.ContainsKey(name)) {
+            IBaseView baseView = this._mapViews[name].GetComponent<IBaseView>();
+            if (baseView != null) {
+                baseView.setAlert(conetnt, okAction, cancelAction);
+            }
+        }
+    }
+
+    public void showTips(string name, string conetnt) {
+        this.showAlert(name,conetnt, () => { }, () => { });
+    }
+
     public void closeView(string name) {
         if (this._mapViews.ContainsKey(name))
         {
-            GameObject gameObject = this._mapViews[name];
-            Object.Destroy(gameObject.gameObject);
+            UnityEngine.Object.Destroy(this._mapViews[name]);
+            this._mapViews.Remove(name);
         }
     }
 }

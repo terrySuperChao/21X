@@ -43,19 +43,21 @@ public class EntryView : MonoBehaviour,IBaseView
     }
 
     public void onNewGameClick() {
-        UIMgr.Instance.showView("stateView");
+        UIMgr.Instance.showView("LobbyView");
     }
 
-    public void onFightClick() {
-        EventDispatcher.Instance.emit("startGame", GameMode.Fight);
-    }
+    public void onContinueClick() {
+        GamePropertyMgr.Instance.getGameData().GameState = (int)GameState.playing;
+        GamePropertyMgr.Instance.save();
 
-    public void onCardClick()
-    {
-        EventDispatcher.Instance.emit("startGame", GameMode.Card);
-    }
-
-    public void onCloseClick() { 
-        
+        PageIndex pageIndex = (PageIndex)GamePropertyMgr.Instance.getGameData().PageIndex;
+        if (pageIndex == PageIndex.LobbyView)
+        {
+            UIMgr.Instance.showView("LobbyView");
+        }
+        else if (pageIndex == PageIndex.StageView)
+        {
+            UIMgr.Instance.showView("StageView");
+        }
     }
 }

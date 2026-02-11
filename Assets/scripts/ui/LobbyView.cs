@@ -1,7 +1,5 @@
 ﻿using Pb;
 using System.Collections.Generic;
-using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -146,7 +144,21 @@ public class LobbyView : MonoBehaviour,IBaseView
     }
 
     public void onStartGameClick() {
-        UIMgr.Instance.showView("StageView");
+        if (GamePropertyMgr.Instance.getGameData().GameState == (int)GameState.playing)
+        {
+            UIMgr.Instance.showAlert("AlertView", "开始新的一局游戏，已保存的内容将被清除，是否确认继续?",
+            () =>
+            {
+                this.gotoStageView();
+            },
+            () =>
+            {
+
+            });
+        }
+        else {
+            this.gotoStageView();
+        }
     }
 
     public void onTabClick(int parameter) {
@@ -166,5 +178,12 @@ public class LobbyView : MonoBehaviour,IBaseView
             vector.x = obj1Transform.transform.position.x;
             this.secondSkillPop.transform.position = vector;
         }
+    }
+
+    private void gotoStageView() {
+        GamePropertyMgr.Instance.getGameData().GameState = (int)GameState.playing;
+        GamePropertyMgr.Instance.getGameData().PageIndex = (int)PageIndex.StageView;
+        GamePropertyMgr.Instance.save();
+        UIMgr.Instance.showView("StageView");
     }
 }

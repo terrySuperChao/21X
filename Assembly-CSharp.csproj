@@ -108,12 +108,14 @@
     <Compile Include="Assets\scripts\logic\data\IPoker.cs" />
     <Compile Include="Assets\scripts\logic\modules\card\handle\ExplosiveShieldHandle.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark04.cs" />
+    <Compile Include="Assets\scripts\ui\AlertView.cs" />
     <Compile Include="Assets\scripts\logic\modules\npc\NpcMgr.cs" />
     <Compile Include="Assets\scripts\logic\modules\user\UserMgr.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\ChatController.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\ObjectSpin.cs" />
     <Compile Include="Assets\scripts\logic\data\IUser.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_PhoneNumberValidator.cs" />
+    <Compile Include="Assets\scripts\ui\StageView.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexJitter.cs" />
     <Compile Include="Assets\scripts\logic\modules\card\handle\BloodthirstyHandle.cs" />
     <Compile Include="Assets\scripts\logic\data\CardObject.cs" />

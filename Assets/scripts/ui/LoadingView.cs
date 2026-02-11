@@ -27,7 +27,21 @@ public class LoadingView : MonoBehaviour,IBaseView
     private IEnumerator gotoLobbyView()
     {
         yield return new WaitForSeconds(1.0f);
-        UIMgr.Instance.showView("LobbyView");
+        if (GamePropertyMgr.Instance.getGameData().GameState == (int)GameState.idle)
+        {
+            Debug.Log("FFFFF1");
+            UIMgr.Instance.showView("EntryView");
+        }
+        else {
+            PageIndex pageIndex = (PageIndex)GamePropertyMgr.Instance.getGameData().PageIndex;
+            if (pageIndex == PageIndex.LobbyView)
+            {
+                UIMgr.Instance.showView("LobbyView");
+            }
+            else if (pageIndex == PageIndex.StageView) {
+                UIMgr.Instance.showView("StageView");
+            }
+        }
     }
 
         // Start is called before the first frame update
