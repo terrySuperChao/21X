@@ -55,9 +55,9 @@ public class EntryView : MonoBehaviour,IBaseView
         {
             UIMgr.Instance.showView("LobbyView");
         }
-        else if (pageIndex == PageIndex.StageView)
+        else if (pageIndex == PageIndex.BarrierView)
         {
-            UIMgr.Instance.showView("StageView");
+            UIMgr.Instance.showView("BarrierView");
         }
     }
 }

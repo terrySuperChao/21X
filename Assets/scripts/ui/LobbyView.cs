@@ -149,7 +149,7 @@ public class LobbyView : MonoBehaviour,IBaseView
             UIMgr.Instance.showAlert("AlertView", "开始新的一局游戏，已保存的内容将被清除，是否确认继续?",
             () =>
             {
-                this.gotoStageView();
+                this.gotoBarrierView();
             },
             () =>
             {
@@ -157,7 +157,7 @@ public class LobbyView : MonoBehaviour,IBaseView
             });
         }
         else {
-            this.gotoStageView();
+            this.gotoBarrierView();
         }
     }
 
@@ -180,10 +180,10 @@ public class LobbyView : MonoBehaviour,IBaseView
         }
     }
 
-    private void gotoStageView() {
+    private void gotoBarrierView() {
         GamePropertyMgr.Instance.getGameData().GameState = (int)GameState.playing;
-        GamePropertyMgr.Instance.getGameData().PageIndex = (int)PageIndex.StageView;
+        GamePropertyMgr.Instance.getGameData().PageIndex = (int)PageIndex.BarrierView;
         GamePropertyMgr.Instance.save();
-        UIMgr.Instance.showView("StageView");
+        UIMgr.Instance.showView("BarrierView");
     }
 }

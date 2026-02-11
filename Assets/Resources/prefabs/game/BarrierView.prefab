@@ -482,9 +482,9 @@ RectTransform:
   - {fileID: 7780600579434197427}
   m_Father: {fileID: 2603155079253470622}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -625, y: -505}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: -627, y: 158}
   m_SizeDelta: {x: 300, y: 300}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1770709266336651131
@@ -1729,7 +1729,7 @@ GameObject:
   - component: {fileID: 1306303640112435323}
   - component: {fileID: 4672694973469301750}
   m_Layer: 0
-  m_Name: StageView
+  m_Name: BarrierView
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1987,7 +1987,7 @@ GameObject:
   - component: {fileID: 4026450081054458861}
   - component: {fileID: 5219345137714066831}
   m_Layer: 5
-  m_Name: returnBtn
+  m_Name: popBtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2096,8 +2096,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 4672694973469301750}
-        m_TargetAssemblyTypeName: StageView, Assembly-CSharp
-        m_MethodName: onCloseClick
+        m_TargetAssemblyTypeName: BarrierView, Assembly-CSharp
+        m_MethodName: onPopClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

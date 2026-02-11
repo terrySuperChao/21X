@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-public class StageView : MonoBehaviour,IBaseView
+public class BarrierView : MonoBehaviour,IBaseView
 {
     public GameObject money;
     public GameObject diamond;
@@ -71,7 +71,7 @@ public class StageView : MonoBehaviour,IBaseView
 
     }
 
-    public void onCloseClick() {
-        
+    public void onPopClick() {
+        UIMgr.Instance.showView("PopView");
     }
 }

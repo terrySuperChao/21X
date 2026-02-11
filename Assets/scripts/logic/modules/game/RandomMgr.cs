@@ -1,9 +1,24 @@
-using System;
+
+using System.Collections.Generic;
 
 public class RandomMgr : Singleton<RandomMgr>
 {
-    private Random _rd = new Random();
+    private RandomEx _rd = null;
 
+    public void deserialized()
+    {
+        int initSeed = GamePropertyMgr.Instance.getGameData().InitSeed;
+        this._rd = new RandomEx(initSeed);
+    }
+
+    public void serialized()
+    {
+        GamePropertyMgr.Instance.getGameData().InitSeed = this._rd.seed;
+    }
+
+    public void init(int initSeed) { 
+        this._rd = new RandomEx(initSeed);
+    }
     /**
       * 返回随机整数, 默认范围[min, max)
       * @param type 种子的类型
@@ -12,6 +27,6 @@ public class RandomMgr : Singleton<RandomMgr>
       * @returns 随机的整数
      */
     public int getRangeInt(int min, int max) {
-        return _rd.Next(min, max);
+        return this._rd.rangeInt(min, max);
     }
 }

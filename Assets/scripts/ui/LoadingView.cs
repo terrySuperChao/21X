@@ -29,17 +29,21 @@ public class LoadingView : MonoBehaviour,IBaseView
         yield return new WaitForSeconds(1.0f);
         if (GamePropertyMgr.Instance.getGameData().GameState == (int)GameState.idle)
         {
-            Debug.Log("FFFFF1");
             UIMgr.Instance.showView("EntryView");
         }
         else {
             PageIndex pageIndex = (PageIndex)GamePropertyMgr.Instance.getGameData().PageIndex;
-            if (pageIndex == PageIndex.LobbyView)
+            if (pageIndex == PageIndex.EntryView)
+            {
+                UIMgr.Instance.showView("EntryView");
+            }
+            else if (pageIndex == PageIndex.LobbyView)
             {
                 UIMgr.Instance.showView("LobbyView");
             }
-            else if (pageIndex == PageIndex.StageView) {
-                UIMgr.Instance.showView("StageView");
+            else if (pageIndex == PageIndex.BarrierView)
+            {
+                UIMgr.Instance.showView("BarrierView");
             }
         }
     }
