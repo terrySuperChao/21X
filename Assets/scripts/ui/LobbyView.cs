@@ -144,7 +144,7 @@ public class LobbyView : MonoBehaviour,IBaseView
     }
 
     public void onStartGameClick() {
-        if (GamePropertyMgr.Instance.getGameData().GameState == (int)GameState.playing)
+        if (GameDataMgr.Instance.getGameState() == GameState.playing)
         {
             UIMgr.Instance.showAlert("AlertView", "开始新的一局游戏，已保存的内容将被清除，是否确认继续?",
             () =>
@@ -181,8 +181,8 @@ public class LobbyView : MonoBehaviour,IBaseView
     }
 
     private void gotoBarrierView() {
-        GamePropertyMgr.Instance.getGameData().GameState = (int)GameState.playing;
-        GamePropertyMgr.Instance.getGameData().PageIndex = (int)PageIndex.BarrierView;
+        GameDataMgr.Instance.setGameState(GameState.playing);
+        GameDataMgr.Instance.setPageIndex(PageIndex.BarrierView);
         GamePropertyMgr.Instance.save();
         UIMgr.Instance.showView("BarrierView");
     }

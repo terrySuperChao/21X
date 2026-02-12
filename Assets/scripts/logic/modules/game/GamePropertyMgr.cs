@@ -28,14 +28,11 @@ public class GamePropertyMgr : Singleton<GamePropertyMgr>
         if (this._gameProperty.Setting == null) {
             this._gameProperty.Setting = new Setting();
         }
-
         this.deserialized();
     }
 
     public void save() {
         this.serialized();
-
-        ProtobufMgr.Instance.serializeToFile(_fileName,this._gameProperty.ToByteArray());
     }
 
     public GameProperty getGameProperty()
@@ -43,18 +40,17 @@ public class GamePropertyMgr : Singleton<GamePropertyMgr>
         return _gameProperty;
     }
 
-    public GameData getGameData()
-    {
-        return _gameProperty.GameData;
-    }
-
     private void deserialized() {
-        RandomMgr.Instance.deserialized();
-        BarrierPokerPileMgr.Instance.deserialized();
+        GameDataMgr.Instance.init(this._gameProperty.GameData);
+        GameDataMgr.Instance.deserialized();
     }
 
     private void serialized() {
-        RandomMgr.Instance.serialized();
-        BarrierPokerPileMgr.Instance.serialized();
+        GameDataMgr.Instance.serialized();
+
+
+
+        //±£´æ
+        ProtobufMgr.Instance.serializeToFile(_fileName, this._gameProperty.ToByteArray());
     }
 }

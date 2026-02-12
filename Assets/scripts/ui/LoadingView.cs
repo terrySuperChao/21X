@@ -27,12 +27,12 @@ public class LoadingView : MonoBehaviour,IBaseView
     private IEnumerator gotoLobbyView()
     {
         yield return new WaitForSeconds(1.0f);
-        if (GamePropertyMgr.Instance.getGameData().GameState == (int)GameState.idle)
+        if (GameDataMgr.Instance.getGameState() == GameState.idle)
         {
             UIMgr.Instance.showView("EntryView");
         }
         else {
-            PageIndex pageIndex = (PageIndex)GamePropertyMgr.Instance.getGameData().PageIndex;
+            PageIndex pageIndex = GameDataMgr.Instance.getPageIndex();
             if (pageIndex == PageIndex.EntryView)
             {
                 UIMgr.Instance.showView("EntryView");

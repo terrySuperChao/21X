@@ -1,19 +1,20 @@
 
+using Pb;
 using System.Collections.Generic;
 
 public class RandomMgr : Singleton<RandomMgr>
 {
     private RandomEx _rd = null;
 
-    public void deserialized()
+    public void deserialized(GameData data)
     {
-        int initSeed = GamePropertyMgr.Instance.getGameData().InitSeed;
+        int initSeed = data.InitSeed;
         this._rd = new RandomEx(initSeed);
     }
 
-    public void serialized()
+    public void serialized(GameData data)
     {
-        GamePropertyMgr.Instance.getGameData().InitSeed = this._rd.seed;
+        data.InitSeed = this._rd.seed;
     }
 
     public void init(int initSeed) { 

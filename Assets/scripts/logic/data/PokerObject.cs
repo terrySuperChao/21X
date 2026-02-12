@@ -16,11 +16,11 @@ public class PokerObject : IPoker
         _value = value;
     }
 
-    public int getRank() {
+    public int getSuit() {
         return _value % 100;
     }
 
-    public int getSuit() { 
+    public int getRank() { 
         return (_value - _value % 100)/100;
     }
 

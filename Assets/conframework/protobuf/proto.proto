@@ -15,7 +15,14 @@ message DefeatPlayerRole{
 }
 
 message Barrier{
-  repeated int32 pokerPile = 1; //牌堆
+  repeated int32 pokerPile = 1;     	//牌堆
+  repeated int32 npcPokers = 2;     	//npc的牌 
+  repeated int32 playerPokers = 3;  	//player的牌
+  optional int32 state = 4;           //状态 0发牌 1组合 2要牌
+  optional int32 matchPointA = 5;     //匹配的索引
+  optional int32 matchPointB = 6;     //匹配的索引
+  optional int32 offsetX = 7;    	    //坐标的偏差
+  optional int32 offsetY = 8;         //坐标的偏差
 }
 
 //游戏
@@ -23,10 +30,10 @@ message GameData{
   optional int32 initSeed = 1;
   optional int32 gameState = 2;
   optional int32 pageIndex = 3;		
-  optional int32 playingId = 4; 		//当前玩角色Id
-  optional int32 exp = 5;   			  //经验
-  repeated DefeatPlayerRole  defeatPlayerRoles = 6;//击败的
-  optional Barrier barrier = 7;//关卡
+  optional int32 playingId = 4; 		              //当前玩角色Id
+  optional int32 exp = 5;   			                //经验
+  repeated DefeatPlayerRole defeatPlayerRoles = 6;//击败的
+  optional Barrier barrier = 7;                   //关卡
 }
 
 //游戏财产

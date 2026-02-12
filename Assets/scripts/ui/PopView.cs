@@ -45,7 +45,7 @@ public class PopView : MonoBehaviour, IBaseView
     }
 
     public void onHomeClick() {
-        GamePropertyMgr.Instance.getGameData().GameState = (int)GameState.idle;
+        GameDataMgr.Instance.setGameState(GameState.idle);
         GamePropertyMgr.Instance.save();
         UIMgr.Instance.closeView(this.gameObject.name);
         UIMgr.Instance.showView("EntryView");

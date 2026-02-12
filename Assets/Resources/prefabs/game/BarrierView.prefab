@@ -423,7 +423,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1316765226634388089}
   m_Layer: 5
-  m_Name: npcContent
+  m_Name: npcPokers
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -881,7 +881,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5911202881576137457}
   m_Layer: 5
-  m_Name: userContent
+  m_Name: playerPokers
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1036,7 +1036,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -534, y: 641}
+  m_AnchoredPosition: {x: -534, y: 600}
   m_SizeDelta: {x: 250, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3002076826186022282
@@ -1168,9 +1168,9 @@ RectTransform:
   - {fileID: 7303877770924566715}
   - {fileID: 1810073853908468197}
   - {fileID: 7010959342928479173}
+  - {fileID: 745945400365355810}
   - {fileID: 8562404119277473105}
   - {fileID: 8972055356665396362}
-  - {fileID: 745945400365355810}
   - {fileID: 1316765226634388089}
   - {fileID: 5911202881576137457}
   - {fileID: 4653053143723434869}
@@ -1619,7 +1619,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -885, y: 641}
+  m_AnchoredPosition: {x: -885, y: 600}
   m_SizeDelta: {x: 250, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4591315374257885727
@@ -1804,6 +1804,15 @@ MonoBehaviour:
   magic: {fileID: 0}
   attack: {fileID: 0}
   defense: {fileID: 0}
+  pokerPrefab: {fileID: 1532674946065205824}
+  npcPokers: {fileID: 1556039356098817421}
+  playerPokers: {fileID: 2619967970111659244}
+  sureBtn: {fileID: 3075471743875800742}
+  searchBtn: {fileID: 7733788497423586558}
+  stopPokerBtn: {fileID: 6681374526462976199}
+  dealPokerBtn: {fileID: 6207022926299753636}
+  reDealPokerBtn1: {fileID: 7508553775008262822}
+  reDealPokerBtn2: {fileID: 8624690269394370016}
 --- !u!1 &6681374526462976199
 GameObject:
   m_ObjectHideFlags: 0
@@ -1840,7 +1849,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -1228, y: 641}
+  m_AnchoredPosition: {x: -1228, y: 600}
   m_SizeDelta: {x: 250, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &498998509411219906
@@ -3340,6 +3349,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fedc6a3e6c306c3408dd161d57340808, type: 3}
+--- !u!1 &1532674946065205824 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5257655248267919920, guid: fedc6a3e6c306c3408dd161d57340808, type: 3}
+  m_PrefabInstance: {fileID: 6751975740694186096}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &6983735559678173522 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4420529689198618914, guid: fedc6a3e6c306c3408dd161d57340808, type: 3}

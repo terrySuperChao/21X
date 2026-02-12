@@ -22,8 +22,8 @@ public class EntryView : MonoBehaviour,IBaseView
 
     public void afterShow()
     {
-        if (GamePropertyMgr.Instance.getGameData().GameState == (int)GameState.idle) {
-            if (GamePropertyMgr.Instance.getGameData().PageIndex == (int)PageIndex.EntryView) {
+        if (GameDataMgr.Instance.getGameState() == GameState.idle) {
+            if (GameDataMgr.Instance.getPageIndex() == (int)PageIndex.EntryView) {
                 this.continueGame.SetActive(false);
             }
         }
@@ -47,10 +47,10 @@ public class EntryView : MonoBehaviour,IBaseView
     }
 
     public void onContinueClick() {
-        GamePropertyMgr.Instance.getGameData().GameState = (int)GameState.playing;
+        GameDataMgr.Instance.setGameState(GameState.playing);
         GamePropertyMgr.Instance.save();
 
-        PageIndex pageIndex = (PageIndex)GamePropertyMgr.Instance.getGameData().PageIndex;
+        PageIndex pageIndex = GameDataMgr.Instance.getPageIndex();
         if (pageIndex == PageIndex.LobbyView)
         {
             UIMgr.Instance.showView("LobbyView");

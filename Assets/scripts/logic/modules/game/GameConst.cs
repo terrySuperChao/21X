@@ -134,6 +134,12 @@ public enum GameState {
     playing,
 }
 
+public enum BarrierState { 
+    idle,
+    match,
+    deal,
+}
+
 
 
 
