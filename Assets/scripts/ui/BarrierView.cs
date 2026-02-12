@@ -120,7 +120,7 @@ public class BarrierView : MonoBehaviour,IBaseView
         int space = 20;
         int width = 323;
 
-        float x = index * (width + space) + width / 2 - ((count * width) + (count - 1) * space);
+        float x = index * (width + space) + width / 2 - ((count * width) + (count - 1) * space)/2;
         IPoker poker = BarrierDataMgr.Instance.dealNpcPoker();
         GameObject pokerGameObject = Object.Instantiate(this.pokerPrefab);
         pokerGameObject.GetComponent<Poker>().loadPokerRes(poker);

@@ -24,9 +24,9 @@ public class Poker : MonoBehaviour
         _poker = poker;
         if (poker == null || poker.isBack()) return;
         // 加载名为"MyImage"的图片
-        string suit = System.String.Format("{0:00}", poker.getSuit());
-        string rank = poker.getRank().ToString();
-        Texture2D myTexture = Resources.Load<Texture2D>($"UI/pokers/blt_game_poker_01_{rank}_{suit}");
+        string suit = poker.getSuit().ToString();
+        string rank = System.String.Format("{0:00}", poker.getRank()); 
+        Texture2D myTexture = Resources.Load<Texture2D>($"UI/pokers/blt_game_poker_01_{suit}_{rank}");
         if (myTexture != null)
         {
             // 例如，将加载的纹理设置给UI Image组件
