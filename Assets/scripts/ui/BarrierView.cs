@@ -381,7 +381,8 @@ public class BarrierView : MonoBehaviour, IBaseView
             {
                 if (i == 0)
                 {
-
+                    viewName = "GameView";
+                    pageIndex = PageIndex.GameView;
                 }
                 else if (i == 1)
                 {

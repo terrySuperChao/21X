@@ -63,5 +63,9 @@ public class EntryView : MonoBehaviour,IBaseView
         {
             UIMgr.Instance.showView("RelaxView");
         }
+        else if (pageIndex == PageIndex.GameView)
+        {
+            UIMgr.Instance.showView("GameView");
+        }
     }
 }

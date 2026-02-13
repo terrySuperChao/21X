@@ -5,6 +5,7 @@ public class Main : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        InvokeRepeating("repeatHandleMessage", 0.0f, 0.1f);
         GamePropertyMgr.Instance.init();
         GameStaticConfigMgr.Instance.init();
         UIMgr.Instance.init(this.gameObject, "config/UIConfig");
@@ -12,5 +13,10 @@ public class Main : MonoBehaviour
         UIMgr.Instance.showView("LoadingView");
         PokerPileMgr.Instance.init();
         HandPokerMgr.Instance.init();
+    }
+
+    private void repeatHandleMessage()
+    {
+        GameMessage.Instance.handleMessage();
     }
 }

@@ -48,6 +48,10 @@ public class LoadingView : MonoBehaviour,IBaseView
             else if (pageIndex == PageIndex.RelaxView) {
                 UIMgr.Instance.showView("RelaxView");
             }
+            else if (pageIndex == PageIndex.GameView)
+            {
+                UIMgr.Instance.showView("GameView");
+            }
         }
     }
 

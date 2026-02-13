@@ -35,6 +35,19 @@ public class GameView : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //每局开始处理
+        UserMgr.Instance.init();
+        NpcMgr.Instance.init();
+        CardMgr.Instance.init();
+        IUser user1 = UserMgr.Instance.getUser();
+        IUser user2 = NpcMgr.Instance.getUser();
+        PokerPileMgr.Instance.shuffle();
+        HandPokerMgr.Instance.resetHandPoker();
+        GameMessage.Instance.clearCacheMessage();
+        PlayPokerMgr.Instance.clearPlayer();
+        PlayPokerMgr.Instance.addPlayer(user1);
+        PlayPokerMgr.Instance.addPlayer(user2);
+
         updateUserInfo();
         setBtnInteractable(false);
         PlayPokerMgr.Instance.setGameFlow(_gameFlow);
@@ -455,5 +468,10 @@ public class GameView : MonoBehaviour
             yield return new WaitForSeconds(0.1f);
             pokerPrefab.SetActive(false);
         }
+    }
+
+    public void onPopClick()
+    {
+        UIMgr.Instance.showView("PopView");
     }
 }
