@@ -23,7 +23,7 @@ public class EntryView : MonoBehaviour,IBaseView
     public void afterShow()
     {
         if (GameDataMgr.Instance.getGameState() == GameState.idle) {
-            if (GameDataMgr.Instance.getPageIndex() == (int)PageIndex.EntryView) {
+            if (GameDataMgr.Instance.getPageIndex() == PageIndex.EntryView) {
                 this.continueGame.SetActive(false);
             }
         }
@@ -58,6 +58,10 @@ public class EntryView : MonoBehaviour,IBaseView
         else if (pageIndex == PageIndex.BarrierView)
         {
             UIMgr.Instance.showView("BarrierView");
+        }
+        else if (pageIndex == PageIndex.RelaxView)
+        {
+            UIMgr.Instance.showView("RelaxView");
         }
     }
 }

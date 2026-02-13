@@ -26,30 +26,31 @@ namespace Pb {
           string.Concat(
             "Cgtwcm90by5wcm90bxICcGIiCQoHQWNjb3VudCIJCgdTZXR0aW5nIkYKEERl",
             "ZmVhdFBsYXllclJvbGUSDwoCaWQYASABKAVIAIgBARIRCgRkaWZmGAIgASgF",
-            "SAGIAQFCBQoDX2lkQgcKBV9kaWZmIvsBCgdCYXJyaWVyEhEKCXBva2VyUGls",
+            "SAGIAQFCBQoDX2lkQgcKBV9kaWZmIsACCgdCYXJyaWVyEhEKCXBva2VyUGls",
             "ZRgBIAMoBRIRCglucGNQb2tlcnMYAiADKAUSFAoMcGxheWVyUG9rZXJzGAMg",
-            "AygFEhIKBXN0YXRlGAQgASgFSACIAQESGAoLbWF0Y2hQb2ludEEYBSABKAVI",
-            "AYgBARIYCgttYXRjaFBvaW50QhgGIAEoBUgCiAEBEhQKB29mZnNldFgYByAB",
-            "KAVIA4gBARIUCgdvZmZzZXRZGAggASgFSASIAQFCCAoGX3N0YXRlQg4KDF9t",
-            "YXRjaFBvaW50QUIOCgxfbWF0Y2hQb2ludEJCCgoIX29mZnNldFhCCgoIX29m",
-            "ZnNldFkimgIKCEdhbWVEYXRhEhUKCGluaXRTZWVkGAEgASgFSACIAQESFgoJ",
-            "Z2FtZVN0YXRlGAIgASgFSAGIAQESFgoJcGFnZUluZGV4GAMgASgFSAKIAQES",
-            "FgoJcGxheWluZ0lkGAQgASgFSAOIAQESEAoDZXhwGAUgASgFSASIAQESLwoR",
-            "ZGVmZWF0UGxheWVyUm9sZXMYBiADKAsyFC5wYi5EZWZlYXRQbGF5ZXJSb2xl",
-            "EiEKB2JhcnJpZXIYByABKAsyCy5wYi5CYXJyaWVySAWIAQFCCwoJX2luaXRT",
-            "ZWVkQgwKCl9nYW1lU3RhdGVCDAoKX3BhZ2VJbmRleEIMCgpfcGxheWluZ0lk",
-            "QgYKBF9leHBCCgoIX2JhcnJpZXIingEKDEdhbWVQcm9wZXJ0eRIhCgdhY2Nv",
-            "dW50GAEgASgLMgsucGIuQWNjb3VudEgAiAEBEiEKB3NldHRpbmcYAiABKAsy",
-            "Cy5wYi5TZXR0aW5nSAGIAQESIwoIZ2FtZURhdGEYAyABKAsyDC5wYi5HYW1l",
-            "RGF0YUgCiAEBQgoKCF9hY2NvdW50QgoKCF9zZXR0aW5nQgsKCV9nYW1lRGF0",
-            "YWIGcHJvdG8z"));
+            "AygFEhMKC290aGVyUG9rZXJzGAQgAygFEhIKBXN0YXRlGAUgASgFSACIAQES",
+            "GAoLbWF0Y2hQb2ludEEYBiABKAVIAYgBARIYCgttYXRjaFBvaW50QhgHIAEo",
+            "BUgCiAEBEhYKCXBva2VyUG9zWBgIIAEoBUgDiAEBEhYKCXBva2VyUG9zWRgJ",
+            "IAEoBUgEiAEBEhcKCmZpbmFsUG9pbnQYCiABKAVIBYgBAUIICgZfc3RhdGVC",
+            "DgoMX21hdGNoUG9pbnRBQg4KDF9tYXRjaFBvaW50QkIMCgpfcG9rZXJQb3NY",
+            "QgwKCl9wb2tlclBvc1lCDQoLX2ZpbmFsUG9pbnQimgIKCEdhbWVEYXRhEhUK",
+            "CGluaXRTZWVkGAEgASgFSACIAQESFgoJZ2FtZVN0YXRlGAIgASgFSAGIAQES",
+            "FgoJcGFnZUluZGV4GAMgASgFSAKIAQESFgoJcGxheWluZ0lkGAQgASgFSAOI",
+            "AQESEAoDZXhwGAUgASgFSASIAQESLwoRZGVmZWF0UGxheWVyUm9sZXMYBiAD",
+            "KAsyFC5wYi5EZWZlYXRQbGF5ZXJSb2xlEiEKB2JhcnJpZXIYByABKAsyCy5w",
+            "Yi5CYXJyaWVySAWIAQFCCwoJX2luaXRTZWVkQgwKCl9nYW1lU3RhdGVCDAoK",
+            "X3BhZ2VJbmRleEIMCgpfcGxheWluZ0lkQgYKBF9leHBCCgoIX2JhcnJpZXIi",
+            "ngEKDEdhbWVQcm9wZXJ0eRIhCgdhY2NvdW50GAEgASgLMgsucGIuQWNjb3Vu",
+            "dEgAiAEBEiEKB3NldHRpbmcYAiABKAsyCy5wYi5TZXR0aW5nSAGIAQESIwoI",
+            "Z2FtZURhdGEYAyABKAsyDC5wYi5HYW1lRGF0YUgCiAEBQgoKCF9hY2NvdW50",
+            "QgoKCF9zZXR0aW5nQgsKCV9nYW1lRGF0YWIGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::Pb.Account), global::Pb.Account.Parser, null, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Pb.Setting), global::Pb.Setting.Parser, null, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Pb.DefeatPlayerRole), global::Pb.DefeatPlayerRole.Parser, new[]{ "Id", "Diff" }, new[]{ "Id", "Diff" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Pb.Barrier), global::Pb.Barrier.Parser, new[]{ "PokerPile", "NpcPokers", "PlayerPokers", "State", "MatchPointA", "MatchPointB", "OffsetX", "OffsetY" }, new[]{ "State", "MatchPointA", "MatchPointB", "OffsetX", "OffsetY" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Pb.Barrier), global::Pb.Barrier.Parser, new[]{ "PokerPile", "NpcPokers", "PlayerPokers", "OtherPokers", "State", "MatchPointA", "MatchPointB", "PokerPosX", "PokerPosY", "FinalPoint" }, new[]{ "State", "MatchPointA", "MatchPointB", "PokerPosX", "PokerPosY", "FinalPoint" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Pb.GameData), global::Pb.GameData.Parser, new[]{ "InitSeed", "GameState", "PageIndex", "PlayingId", "Exp", "DefeatPlayerRoles", "Barrier" }, new[]{ "InitSeed", "GameState", "PageIndex", "PlayingId", "Exp", "Barrier" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Pb.GameProperty), global::Pb.GameProperty.Parser, new[]{ "Account", "Setting", "GameData" }, new[]{ "Account", "Setting", "GameData" }, null, null, null)
           }));
@@ -699,11 +700,13 @@ namespace Pb {
       pokerPile_ = other.pokerPile_.Clone();
       npcPokers_ = other.npcPokers_.Clone();
       playerPokers_ = other.playerPokers_.Clone();
+      otherPokers_ = other.otherPokers_.Clone();
       state_ = other.state_;
       matchPointA_ = other.matchPointA_;
       matchPointB_ = other.matchPointB_;
-      offsetX_ = other.offsetX_;
-      offsetY_ = other.offsetY_;
+      pokerPosX_ = other.pokerPosX_;
+      pokerPosY_ = other.pokerPosY_;
+      finalPoint_ = other.finalPoint_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -755,8 +758,22 @@ namespace Pb {
       get { return playerPokers_; }
     }
 
+    /// <summary>Field number for the "otherPokers" field.</summary>
+    public const int OtherPokersFieldNumber = 4;
+    private static readonly pb::FieldCodec<int> _repeated_otherPokers_codec
+        = pb::FieldCodec.ForInt32(34);
+    private readonly pbc::RepeatedField<int> otherPokers_ = new pbc::RepeatedField<int>();
+    /// <summary>
+    ///其他的牌
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public pbc::RepeatedField<int> OtherPokers {
+      get { return otherPokers_; }
+    }
+
     /// <summary>Field number for the "state" field.</summary>
-    public const int StateFieldNumber = 4;
+    public const int StateFieldNumber = 5;
     private readonly static int StateDefaultValue = 0;
 
     private int state_;
@@ -786,7 +803,7 @@ namespace Pb {
     }
 
     /// <summary>Field number for the "matchPointA" field.</summary>
-    public const int MatchPointAFieldNumber = 5;
+    public const int MatchPointAFieldNumber = 6;
     private readonly static int MatchPointADefaultValue = 0;
 
     private int matchPointA_;
@@ -816,7 +833,7 @@ namespace Pb {
     }
 
     /// <summary>Field number for the "matchPointB" field.</summary>
-    public const int MatchPointBFieldNumber = 6;
+    public const int MatchPointBFieldNumber = 7;
     private readonly static int MatchPointBDefaultValue = 0;
 
     private int matchPointB_;
@@ -845,64 +862,94 @@ namespace Pb {
       _hasBits0 &= ~4;
     }
 
-    /// <summary>Field number for the "offsetX" field.</summary>
-    public const int OffsetXFieldNumber = 7;
-    private readonly static int OffsetXDefaultValue = 0;
+    /// <summary>Field number for the "pokerPosX" field.</summary>
+    public const int PokerPosXFieldNumber = 8;
+    private readonly static int PokerPosXDefaultValue = 0;
 
-    private int offsetX_;
+    private int pokerPosX_;
     /// <summary>
     ///坐标的偏差
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public int OffsetX {
-      get { if ((_hasBits0 & 8) != 0) { return offsetX_; } else { return OffsetXDefaultValue; } }
+    public int PokerPosX {
+      get { if ((_hasBits0 & 8) != 0) { return pokerPosX_; } else { return PokerPosXDefaultValue; } }
       set {
         _hasBits0 |= 8;
-        offsetX_ = value;
+        pokerPosX_ = value;
       }
     }
-    /// <summary>Gets whether the "offsetX" field is set</summary>
+    /// <summary>Gets whether the "pokerPosX" field is set</summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public bool HasOffsetX {
+    public bool HasPokerPosX {
       get { return (_hasBits0 & 8) != 0; }
     }
-    /// <summary>Clears the value of the "offsetX" field</summary>
+    /// <summary>Clears the value of the "pokerPosX" field</summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void ClearOffsetX() {
+    public void ClearPokerPosX() {
       _hasBits0 &= ~8;
     }
 
-    /// <summary>Field number for the "offsetY" field.</summary>
-    public const int OffsetYFieldNumber = 8;
-    private readonly static int OffsetYDefaultValue = 0;
+    /// <summary>Field number for the "pokerPosY" field.</summary>
+    public const int PokerPosYFieldNumber = 9;
+    private readonly static int PokerPosYDefaultValue = 0;
 
-    private int offsetY_;
+    private int pokerPosY_;
     /// <summary>
     ///坐标的偏差
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public int OffsetY {
-      get { if ((_hasBits0 & 16) != 0) { return offsetY_; } else { return OffsetYDefaultValue; } }
+    public int PokerPosY {
+      get { if ((_hasBits0 & 16) != 0) { return pokerPosY_; } else { return PokerPosYDefaultValue; } }
       set {
         _hasBits0 |= 16;
-        offsetY_ = value;
+        pokerPosY_ = value;
       }
     }
-    /// <summary>Gets whether the "offsetY" field is set</summary>
+    /// <summary>Gets whether the "pokerPosY" field is set</summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public bool HasOffsetY {
+    public bool HasPokerPosY {
       get { return (_hasBits0 & 16) != 0; }
     }
-    /// <summary>Clears the value of the "offsetY" field</summary>
+    /// <summary>Clears the value of the "pokerPosY" field</summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void ClearOffsetY() {
+    public void ClearPokerPosY() {
       _hasBits0 &= ~16;
+    }
+
+    /// <summary>Field number for the "finalPoint" field.</summary>
+    public const int FinalPointFieldNumber = 10;
+    private readonly static int FinalPointDefaultValue = 0;
+
+    private int finalPoint_;
+    /// <summary>
+    ///最终的点数
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int FinalPoint {
+      get { if ((_hasBits0 & 32) != 0) { return finalPoint_; } else { return FinalPointDefaultValue; } }
+      set {
+        _hasBits0 |= 32;
+        finalPoint_ = value;
+      }
+    }
+    /// <summary>Gets whether the "finalPoint" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasFinalPoint {
+      get { return (_hasBits0 & 32) != 0; }
+    }
+    /// <summary>Clears the value of the "finalPoint" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearFinalPoint() {
+      _hasBits0 &= ~32;
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -923,11 +970,13 @@ namespace Pb {
       if(!pokerPile_.Equals(other.pokerPile_)) return false;
       if(!npcPokers_.Equals(other.npcPokers_)) return false;
       if(!playerPokers_.Equals(other.playerPokers_)) return false;
+      if(!otherPokers_.Equals(other.otherPokers_)) return false;
       if (State != other.State) return false;
       if (MatchPointA != other.MatchPointA) return false;
       if (MatchPointB != other.MatchPointB) return false;
-      if (OffsetX != other.OffsetX) return false;
-      if (OffsetY != other.OffsetY) return false;
+      if (PokerPosX != other.PokerPosX) return false;
+      if (PokerPosY != other.PokerPosY) return false;
+      if (FinalPoint != other.FinalPoint) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -938,11 +987,13 @@ namespace Pb {
       hash ^= pokerPile_.GetHashCode();
       hash ^= npcPokers_.GetHashCode();
       hash ^= playerPokers_.GetHashCode();
+      hash ^= otherPokers_.GetHashCode();
       if (HasState) hash ^= State.GetHashCode();
       if (HasMatchPointA) hash ^= MatchPointA.GetHashCode();
       if (HasMatchPointB) hash ^= MatchPointB.GetHashCode();
-      if (HasOffsetX) hash ^= OffsetX.GetHashCode();
-      if (HasOffsetY) hash ^= OffsetY.GetHashCode();
+      if (HasPokerPosX) hash ^= PokerPosX.GetHashCode();
+      if (HasPokerPosY) hash ^= PokerPosY.GetHashCode();
+      if (HasFinalPoint) hash ^= FinalPoint.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -964,25 +1015,30 @@ namespace Pb {
       pokerPile_.WriteTo(output, _repeated_pokerPile_codec);
       npcPokers_.WriteTo(output, _repeated_npcPokers_codec);
       playerPokers_.WriteTo(output, _repeated_playerPokers_codec);
+      otherPokers_.WriteTo(output, _repeated_otherPokers_codec);
       if (HasState) {
-        output.WriteRawTag(32);
+        output.WriteRawTag(40);
         output.WriteInt32(State);
       }
       if (HasMatchPointA) {
-        output.WriteRawTag(40);
+        output.WriteRawTag(48);
         output.WriteInt32(MatchPointA);
       }
       if (HasMatchPointB) {
-        output.WriteRawTag(48);
+        output.WriteRawTag(56);
         output.WriteInt32(MatchPointB);
       }
-      if (HasOffsetX) {
-        output.WriteRawTag(56);
-        output.WriteInt32(OffsetX);
-      }
-      if (HasOffsetY) {
+      if (HasPokerPosX) {
         output.WriteRawTag(64);
-        output.WriteInt32(OffsetY);
+        output.WriteInt32(PokerPosX);
+      }
+      if (HasPokerPosY) {
+        output.WriteRawTag(72);
+        output.WriteInt32(PokerPosY);
+      }
+      if (HasFinalPoint) {
+        output.WriteRawTag(80);
+        output.WriteInt32(FinalPoint);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -997,25 +1053,30 @@ namespace Pb {
       pokerPile_.WriteTo(ref output, _repeated_pokerPile_codec);
       npcPokers_.WriteTo(ref output, _repeated_npcPokers_codec);
       playerPokers_.WriteTo(ref output, _repeated_playerPokers_codec);
+      otherPokers_.WriteTo(ref output, _repeated_otherPokers_codec);
       if (HasState) {
-        output.WriteRawTag(32);
+        output.WriteRawTag(40);
         output.WriteInt32(State);
       }
       if (HasMatchPointA) {
-        output.WriteRawTag(40);
+        output.WriteRawTag(48);
         output.WriteInt32(MatchPointA);
       }
       if (HasMatchPointB) {
-        output.WriteRawTag(48);
+        output.WriteRawTag(56);
         output.WriteInt32(MatchPointB);
       }
-      if (HasOffsetX) {
-        output.WriteRawTag(56);
-        output.WriteInt32(OffsetX);
-      }
-      if (HasOffsetY) {
+      if (HasPokerPosX) {
         output.WriteRawTag(64);
-        output.WriteInt32(OffsetY);
+        output.WriteInt32(PokerPosX);
+      }
+      if (HasPokerPosY) {
+        output.WriteRawTag(72);
+        output.WriteInt32(PokerPosY);
+      }
+      if (HasFinalPoint) {
+        output.WriteRawTag(80);
+        output.WriteInt32(FinalPoint);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
@@ -1030,6 +1091,7 @@ namespace Pb {
       size += pokerPile_.CalculateSize(_repeated_pokerPile_codec);
       size += npcPokers_.CalculateSize(_repeated_npcPokers_codec);
       size += playerPokers_.CalculateSize(_repeated_playerPokers_codec);
+      size += otherPokers_.CalculateSize(_repeated_otherPokers_codec);
       if (HasState) {
         size += 1 + pb::CodedOutputStream.ComputeInt32Size(State);
       }
@@ -1039,11 +1101,14 @@ namespace Pb {
       if (HasMatchPointB) {
         size += 1 + pb::CodedOutputStream.ComputeInt32Size(MatchPointB);
       }
-      if (HasOffsetX) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(OffsetX);
+      if (HasPokerPosX) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(PokerPosX);
       }
-      if (HasOffsetY) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(OffsetY);
+      if (HasPokerPosY) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(PokerPosY);
+      }
+      if (HasFinalPoint) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(FinalPoint);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -1060,6 +1125,7 @@ namespace Pb {
       pokerPile_.Add(other.pokerPile_);
       npcPokers_.Add(other.npcPokers_);
       playerPokers_.Add(other.playerPokers_);
+      otherPokers_.Add(other.otherPokers_);
       if (other.HasState) {
         State = other.State;
       }
@@ -1069,11 +1135,14 @@ namespace Pb {
       if (other.HasMatchPointB) {
         MatchPointB = other.MatchPointB;
       }
-      if (other.HasOffsetX) {
-        OffsetX = other.OffsetX;
+      if (other.HasPokerPosX) {
+        PokerPosX = other.PokerPosX;
       }
-      if (other.HasOffsetY) {
-        OffsetY = other.OffsetY;
+      if (other.HasPokerPosY) {
+        PokerPosY = other.PokerPosY;
+      }
+      if (other.HasFinalPoint) {
+        FinalPoint = other.FinalPoint;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -1109,24 +1178,33 @@ namespace Pb {
             playerPokers_.AddEntriesFrom(input, _repeated_playerPokers_codec);
             break;
           }
+          case 34:
           case 32: {
-            State = input.ReadInt32();
+            otherPokers_.AddEntriesFrom(input, _repeated_otherPokers_codec);
             break;
           }
           case 40: {
-            MatchPointA = input.ReadInt32();
+            State = input.ReadInt32();
             break;
           }
           case 48: {
-            MatchPointB = input.ReadInt32();
+            MatchPointA = input.ReadInt32();
             break;
           }
           case 56: {
-            OffsetX = input.ReadInt32();
+            MatchPointB = input.ReadInt32();
             break;
           }
           case 64: {
-            OffsetY = input.ReadInt32();
+            PokerPosX = input.ReadInt32();
+            break;
+          }
+          case 72: {
+            PokerPosY = input.ReadInt32();
+            break;
+          }
+          case 80: {
+            FinalPoint = input.ReadInt32();
             break;
           }
         }
@@ -1163,24 +1241,33 @@ namespace Pb {
             playerPokers_.AddEntriesFrom(ref input, _repeated_playerPokers_codec);
             break;
           }
+          case 34:
           case 32: {
-            State = input.ReadInt32();
+            otherPokers_.AddEntriesFrom(ref input, _repeated_otherPokers_codec);
             break;
           }
           case 40: {
-            MatchPointA = input.ReadInt32();
+            State = input.ReadInt32();
             break;
           }
           case 48: {
-            MatchPointB = input.ReadInt32();
+            MatchPointA = input.ReadInt32();
             break;
           }
           case 56: {
-            OffsetX = input.ReadInt32();
+            MatchPointB = input.ReadInt32();
             break;
           }
           case 64: {
-            OffsetY = input.ReadInt32();
+            PokerPosX = input.ReadInt32();
+            break;
+          }
+          case 72: {
+            PokerPosY = input.ReadInt32();
+            break;
+          }
+          case 80: {
+            FinalPoint = input.ReadInt32();
             break;
           }
         }

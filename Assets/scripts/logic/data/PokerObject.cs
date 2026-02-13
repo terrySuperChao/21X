@@ -17,11 +17,11 @@ public class PokerObject : IPoker
     }
 
     public int getSuit() {
-        return _value % 100;
+        return (_value - _value % 100) / 100;
     }
 
     public int getRank() { 
-        return (_value - _value % 100)/100;
+        return _value % 100; 
     }
 
     public bool isBack() {

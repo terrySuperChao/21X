@@ -45,6 +45,9 @@ public class LoadingView : MonoBehaviour,IBaseView
             {
                 UIMgr.Instance.showView("BarrierView");
             }
+            else if (pageIndex == PageIndex.RelaxView) {
+                UIMgr.Instance.showView("RelaxView");
+            }
         }
     }
 

@@ -135,9 +135,18 @@ public enum GameState {
 }
 
 public enum BarrierState { 
-    idle,
-    match,
-    deal,
+    startPoker,  //¿ªÊ¼ÅÆ
+    matchPoker, //Æ¥ÅäÅÆ
+    dealPoker, //·¢ÅÆ
+    stopPoker, //Í£ÅÆ
+    fillPoker, //²¹ÅÆ
+}
+
+public enum BarrierDealType
+{
+    npc,
+    player,
+    other,
 }
 
 

@@ -17,10 +17,7 @@ public class GamePropertyMgr : Singleton<GamePropertyMgr>
             this._gameProperty = new GameProperty();
         }
         if (this._gameProperty.GameData == null) {
-            this._gameProperty.GameData = new GameData();
-        }
-        if (this._gameProperty.GameData.Barrier == null) {
-            this._gameProperty.GameData.Barrier = new Barrier();
+            this._gameProperty.GameData = GameDataMgr.Instance.newGameData();
         }
         if (this._gameProperty.Account == null) {
             this._gameProperty.Account = new Account();
@@ -41,15 +38,12 @@ public class GamePropertyMgr : Singleton<GamePropertyMgr>
     }
 
     private void deserialized() {
-        GameDataMgr.Instance.init(this._gameProperty.GameData);
+        GameDataMgr.Instance.init(this._gameProperty);
         GameDataMgr.Instance.deserialized();
     }
 
     private void serialized() {
         GameDataMgr.Instance.serialized();
-
-
-
         //±£´æ
         ProtobufMgr.Instance.serializeToFile(_fileName, this._gameProperty.ToByteArray());
     }

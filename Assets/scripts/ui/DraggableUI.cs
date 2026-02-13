@@ -8,10 +8,15 @@ public class DraggableUI : MonoBehaviour,IDragHandler, IPointerDownHandler, IPoi
     private Func<GameObject, bool> _callBack;
     private RectTransform _rectTransform;
 
-    private void Awake()
+    public void initPos(Vector3 initPos)
     {
         this._rectTransform = gameObject.GetComponent<RectTransform>();
-        this._initPos = transform.position;
+        this._initPos = initPos;
+    }
+
+    public void resetInitPos()
+    {
+        this._rectTransform.position = this._initPos;
     }
 
     public void OnPointerDown(PointerEventData eventData)
@@ -37,16 +42,18 @@ public class DraggableUI : MonoBehaviour,IDragHandler, IPointerDownHandler, IPoi
 
             }
             else {
-                this._rectTransform.position = this._initPos;
+                this.resetInitPos();
             }
         }
         else {
-            this._rectTransform.position = this._initPos;
+            this.resetInitPos();
         }
     }
 
     public void setCallBack(Func<GameObject,bool> callBack) {
         this._callBack = callBack;
     }
+
+    
 
 }

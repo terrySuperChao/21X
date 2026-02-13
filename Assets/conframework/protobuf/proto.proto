@@ -18,11 +18,13 @@ message Barrier{
   repeated int32 pokerPile = 1;     	//牌堆
   repeated int32 npcPokers = 2;     	//npc的牌 
   repeated int32 playerPokers = 3;  	//player的牌
-  optional int32 state = 4;           //状态 0发牌 1组合 2要牌
-  optional int32 matchPointA = 5;     //匹配的索引
-  optional int32 matchPointB = 6;     //匹配的索引
-  optional int32 offsetX = 7;    	    //坐标的偏差
-  optional int32 offsetY = 8;         //坐标的偏差
+  repeated int32 otherPokers = 4;  	  //其他的牌
+  optional int32 state = 5;           //状态 0发牌 1组合 2要牌
+  optional int32 matchPointA = 6;     //匹配的索引
+  optional int32 matchPointB = 7;     //匹配的索引
+  optional int32 pokerPosX = 8;  	    //坐标的偏差
+  optional int32 pokerPosY = 9;       //坐标的偏差
+  optional int32 finalPoint = 10;     //最终的点数
 }
 
 //游戏

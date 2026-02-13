@@ -1,6 +1,7 @@
 //ÅÆ¶Ñ
 using Google.Protobuf.Collections;
 using System.Collections.Generic;
+using UnityEngine;
 
 public class BarrierPokerPile
 {
@@ -9,6 +10,8 @@ public class BarrierPokerPile
 
     public void init(RepeatedField<int> pokers)
     {
+        this._remainCards.Clear();
+        this._playedTableCards.Clear();
         if (pokers != null && pokers.Count > 0)
         {
             for (int i = 0; i < pokers.Count; i++)

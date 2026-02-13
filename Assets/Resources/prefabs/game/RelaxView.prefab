@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1315063067363419591}
   - component: {fileID: 1706928164315074509}
   m_Layer: 5
-  m_Name: Text (1)
+  m_Name: title
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -33,9 +33,9 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 2211025897814303776}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -860, y: 602.2}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 168, y: -116}
   m_SizeDelta: {x: 0, y: 70}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5505114555517026179
@@ -303,7 +303,7 @@ GameObject:
   - component: {fileID: 906596607534835602}
   - component: {fileID: 841001800228575006}
   m_Layer: 5
-  m_Name: closeBtn
+  m_Name: popBtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -326,8 +326,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -91, y: -60}
-  m_SizeDelta: {x: 120, y: 80}
+  m_AnchoredPosition: {x: -160, y: -100}
+  m_SizeDelta: {x: 200, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &9100646973077366853
 CanvasRenderer:
@@ -411,9 +411,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8284387560536310028}
-        m_TargetAssemblyTypeName: LobbyView, Assembly-CSharp
-        m_MethodName: onCloseClick
+      - m_Target: {fileID: 7633393695264507572}
+        m_TargetAssemblyTypeName: RelaxView, Assembly-CSharp
+        m_MethodName: onPopClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -436,7 +436,7 @@ GameObject:
   - component: {fileID: 1423377537077621837}
   - component: {fileID: 4759245050340180866}
   m_Layer: 5
-  m_Name: startBtn
+  m_Name: relaxBtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -460,7 +460,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 152, y: 0}
-  m_SizeDelta: {x: 200, y: 60}
+  m_SizeDelta: {x: 300, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8594393864049101298
 CanvasRenderer:
@@ -544,9 +544,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8284387560536310028}
-        m_TargetAssemblyTypeName: LobbyView, Assembly-CSharp
-        m_MethodName: onCardClick
+      - m_Target: {fileID: 7633393695264507572}
+        m_TargetAssemblyTypeName: RelaxView, Assembly-CSharp
+        m_MethodName: onRelaxClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -720,11 +720,11 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 2202083941964717195}
   - {fileID: 8389654586745119289}
   - {fileID: 4281074868535143007}
   - {fileID: 8636015889902840200}
   - {fileID: 3627998830068835304}
-  - {fileID: 2202083941964717195}
   - {fileID: 3886537294060413441}
   m_Father: {fileID: 6544988370732538167}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -784,7 +784,7 @@ GameObject:
   - component: {fileID: 427906573988831222}
   - component: {fileID: 1950713005327710749}
   m_Layer: 5
-  m_Name: startBtn (1)
+  m_Name: trainBtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -808,7 +808,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 152, y: -121}
-  m_SizeDelta: {x: 200, y: 60}
+  m_SizeDelta: {x: 300, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3716709668945333295
 CanvasRenderer:
@@ -892,9 +892,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8284387560536310028}
-        m_TargetAssemblyTypeName: LobbyView, Assembly-CSharp
-        m_MethodName: onCardClick
+      - m_Target: {fileID: 7633393695264507572}
+        m_TargetAssemblyTypeName: RelaxView, Assembly-CSharp
+        m_MethodName: onTrainClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -940,7 +940,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 70}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4661805569531973627
 CanvasRenderer:
@@ -963,7 +963,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_HorizontalFit: 2
-  m_VerticalFit: 0
+  m_VerticalFit: 2
 --- !u!114 &5646317628532714000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -997,7 +997,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u8BE6\u7EC6"
+  m_Text: "\u8BE6\u60C5"
 --- !u!1 &7591501840882746977
 GameObject:
   m_ObjectHideFlags: 0
@@ -1143,7 +1143,7 @@ GameObject:
   - component: {fileID: 6497107375530993869}
   - component: {fileID: 5307565073409241612}
   - component: {fileID: 1828666139890872284}
-  - component: {fileID: 8284387560536310028}
+  - component: {fileID: 7633393695264507572}
   m_Layer: 0
   m_Name: RelaxView
   m_TagString: Untagged
@@ -1202,7 +1202,7 @@ MonoBehaviour:
   m_InputActionsPerSecond: 10
   m_RepeatDelay: 0.5
   m_ForceModuleActive: 0
---- !u!114 &8284387560536310028
+--- !u!114 &7633393695264507572
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1211,7 +1211,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8105682527857957194}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 419dcf6e7b478ea49938fa0c2c73bcbb, type: 3}
+  m_Script: {fileID: 11500000, guid: ce7ac6c0e7984834da404f2e2bff8e64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &8473355290377608989
@@ -1250,7 +1250,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 70}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2874551829260569854
 CanvasRenderer:
@@ -1273,7 +1273,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_HorizontalFit: 2
-  m_VerticalFit: 0
+  m_VerticalFit: 2
 --- !u!114 &2294049274714691537
 MonoBehaviour:
   m_ObjectHideFlags: 0

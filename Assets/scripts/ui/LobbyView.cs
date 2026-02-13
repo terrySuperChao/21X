@@ -181,6 +181,7 @@ public class LobbyView : MonoBehaviour,IBaseView
     }
 
     private void gotoBarrierView() {
+        GameDataMgr.Instance.newGame();
         GameDataMgr.Instance.setGameState(GameState.playing);
         GameDataMgr.Instance.setPageIndex(PageIndex.BarrierView);
         GamePropertyMgr.Instance.save();
