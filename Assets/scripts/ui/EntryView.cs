@@ -68,4 +68,8 @@ public class EntryView : MonoBehaviour,IBaseView
             UIMgr.Instance.showView("GameView");
         }
     }
+
+    public void onSettingViewClick() {
+        UIMgr.Instance.showView("SettingView");
+    }
 }

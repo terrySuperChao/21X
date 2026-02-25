@@ -23,7 +23,7 @@ public class GamePropertyMgr : Singleton<GamePropertyMgr>
             this._gameProperty.Account = new Account();
         }
         if (this._gameProperty.Setting == null) {
-            this._gameProperty.Setting = new Setting();
+            this._gameProperty.Setting = SettingDataMgr.Instance.newSetting();
         }
         this.deserialized();
     }
@@ -40,10 +40,16 @@ public class GamePropertyMgr : Singleton<GamePropertyMgr>
     private void deserialized() {
         GameDataMgr.Instance.init(this._gameProperty);
         GameDataMgr.Instance.deserialized();
+
+        SettingDataMgr.Instance.init(this._gameProperty);
+        SettingDataMgr.Instance.deserialized();
+
+        LangMgr.Instance.setCurLanguage(SettingDataMgr.Instance.getLanguage());
     }
 
     private void serialized() {
         GameDataMgr.Instance.serialized();
+        SettingDataMgr.Instance.serialized();
         //±£´æ
         ProtobufMgr.Instance.serializeToFile(_fileName, this._gameProperty.ToByteArray());
     }

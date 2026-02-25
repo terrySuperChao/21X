@@ -7,6 +7,12 @@ message Account{
 
 //设置
 message Setting{
+  optional string language = 1;
+  optional int32 appearance = 2;
+  optional int32 resolution = 3;
+  optional float mainVolume = 4;
+  optional float musicVolume = 5;
+  optional float soundVolume = 6;
 }
 
 message DefeatPlayerRole{

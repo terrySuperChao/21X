@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Xml.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -126,6 +127,21 @@ public class UIMgr : Singleton<UIMgr>
         {
             UnityEngine.Object.Destroy(this._mapViews[name]);
             this._mapViews.Remove(name);
+        }
+    }
+
+    public void refreshView() {
+        for (int i = 0; i < this._viewInfos.Count; i++)
+        {
+            IViewInfo viewInfo = this._viewInfos[i];
+            if (viewInfo.viewType == (int)ViewType.view)
+            {
+                if (this._mapViews.ContainsKey(viewInfo.name)) { 
+                    this.closeView(viewInfo.name);
+                    this.showView(viewInfo.name);
+                    break;
+                }
+            }
         }
     }
 }

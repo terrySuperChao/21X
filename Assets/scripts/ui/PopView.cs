@@ -42,6 +42,7 @@ public class PopView : MonoBehaviour, IBaseView
 
     public void onSettingClick() {
         UIMgr.Instance.closeView(this.gameObject.name);
+        UIMgr.Instance.showView("SettingView");
     }
 
     public void onHomeClick() {
@@ -52,6 +53,8 @@ public class PopView : MonoBehaviour, IBaseView
     }
 
     public void onSaveClick() {
+        GamePropertyMgr.Instance.save();
         UIMgr.Instance.closeView(this.gameObject.name);
+        UIMgr.Instance.showTips("TipsView", "保存成功");
     }
 }

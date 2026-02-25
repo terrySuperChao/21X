@@ -6,10 +6,10 @@ public class Main : MonoBehaviour
     void Start()
     {
         InvokeRepeating("repeatHandleMessage", 0.0f, 0.1f);
+        LangMgr.Instance.init("config/language");
         GamePropertyMgr.Instance.init();
         GameStaticConfigMgr.Instance.init();
         UIMgr.Instance.init(this.gameObject, "config/UIConfig");
-        LangMgr.Instance.init("config/language");
         UIMgr.Instance.showView("LoadingView");
         PokerPileMgr.Instance.init();
         HandPokerMgr.Instance.init();

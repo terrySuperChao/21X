@@ -1653,8 +1653,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 8284387560536310028}
-        m_TargetAssemblyTypeName: LobbyView, Assembly-CSharp
-        m_MethodName: onCloseClick
+        m_TargetAssemblyTypeName: EntryView, Assembly-CSharp
+        m_MethodName: onSettingViewClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1770,6 +1770,7 @@ GameObject:
   - component: {fileID: 4661805569531973627}
   - component: {fileID: 5037550503282787071}
   - component: {fileID: 5646317628532714000}
+  - component: {fileID: 2748752644780890813}
   m_Layer: 5
   m_Name: Text
   m_TagString: Untagged
@@ -1852,6 +1853,19 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: "\u65B0\u6E38\u620F"
+--- !u!114 &2748752644780890813
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6795533863512691155}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb653b674368277408e82b424f09532b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textkey: btn_new_game
 --- !u!1 &7236424712980916784
 GameObject:
   m_ObjectHideFlags: 0
@@ -2027,6 +2041,7 @@ GameObject:
   - component: {fileID: 594106743805458098}
   - component: {fileID: 8372562049830072771}
   - component: {fileID: 7335734758171143240}
+  - component: {fileID: 6270239576977850175}
   m_Layer: 5
   m_Name: Text
   m_TagString: Untagged
@@ -2109,6 +2124,19 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: "\u7EE7\u7EED\u6E38\u620F"
+--- !u!114 &6270239576977850175
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7730484500383121092}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb653b674368277408e82b424f09532b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textkey: btn_continue_name
 --- !u!1 &7830112021323592983
 GameObject:
   m_ObjectHideFlags: 0

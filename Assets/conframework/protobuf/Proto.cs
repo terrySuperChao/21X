@@ -24,31 +24,37 @@ namespace Pb {
     static ProtoReflection() {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
-            "Cgtwcm90by5wcm90bxICcGIiCQoHQWNjb3VudCIJCgdTZXR0aW5nIkYKEERl",
-            "ZmVhdFBsYXllclJvbGUSDwoCaWQYASABKAVIAIgBARIRCgRkaWZmGAIgASgF",
-            "SAGIAQFCBQoDX2lkQgcKBV9kaWZmIsACCgdCYXJyaWVyEhEKCXBva2VyUGls",
-            "ZRgBIAMoBRIRCglucGNQb2tlcnMYAiADKAUSFAoMcGxheWVyUG9rZXJzGAMg",
-            "AygFEhMKC290aGVyUG9rZXJzGAQgAygFEhIKBXN0YXRlGAUgASgFSACIAQES",
-            "GAoLbWF0Y2hQb2ludEEYBiABKAVIAYgBARIYCgttYXRjaFBvaW50QhgHIAEo",
-            "BUgCiAEBEhYKCXBva2VyUG9zWBgIIAEoBUgDiAEBEhYKCXBva2VyUG9zWRgJ",
-            "IAEoBUgEiAEBEhcKCmZpbmFsUG9pbnQYCiABKAVIBYgBAUIICgZfc3RhdGVC",
-            "DgoMX21hdGNoUG9pbnRBQg4KDF9tYXRjaFBvaW50QkIMCgpfcG9rZXJQb3NY",
-            "QgwKCl9wb2tlclBvc1lCDQoLX2ZpbmFsUG9pbnQimgIKCEdhbWVEYXRhEhUK",
-            "CGluaXRTZWVkGAEgASgFSACIAQESFgoJZ2FtZVN0YXRlGAIgASgFSAGIAQES",
-            "FgoJcGFnZUluZGV4GAMgASgFSAKIAQESFgoJcGxheWluZ0lkGAQgASgFSAOI",
-            "AQESEAoDZXhwGAUgASgFSASIAQESLwoRZGVmZWF0UGxheWVyUm9sZXMYBiAD",
-            "KAsyFC5wYi5EZWZlYXRQbGF5ZXJSb2xlEiEKB2JhcnJpZXIYByABKAsyCy5w",
-            "Yi5CYXJyaWVySAWIAQFCCwoJX2luaXRTZWVkQgwKCl9nYW1lU3RhdGVCDAoK",
-            "X3BhZ2VJbmRleEIMCgpfcGxheWluZ0lkQgYKBF9leHBCCgoIX2JhcnJpZXIi",
-            "ngEKDEdhbWVQcm9wZXJ0eRIhCgdhY2NvdW50GAEgASgLMgsucGIuQWNjb3Vu",
-            "dEgAiAEBEiEKB3NldHRpbmcYAiABKAsyCy5wYi5TZXR0aW5nSAGIAQESIwoI",
-            "Z2FtZURhdGEYAyABKAsyDC5wYi5HYW1lRGF0YUgCiAEBQgoKCF9hY2NvdW50",
-            "QgoKCF9zZXR0aW5nQgsKCV9nYW1lRGF0YWIGcHJvdG8z"));
+            "Cgtwcm90by5wcm90bxICcGIiCQoHQWNjb3VudCL5AQoHU2V0dGluZxIVCghs",
+            "YW5ndWFnZRgBIAEoCUgAiAEBEhcKCmFwcGVhcmFuY2UYAiABKAVIAYgBARIX",
+            "CgpyZXNvbHV0aW9uGAMgASgFSAKIAQESFwoKbWFpblZvbHVtZRgEIAEoAkgD",
+            "iAEBEhgKC211c2ljVm9sdW1lGAUgASgCSASIAQESGAoLc291bmRWb2x1bWUY",
+            "BiABKAJIBYgBAUILCglfbGFuZ3VhZ2VCDQoLX2FwcGVhcmFuY2VCDQoLX3Jl",
+            "c29sdXRpb25CDQoLX21haW5Wb2x1bWVCDgoMX211c2ljVm9sdW1lQg4KDF9z",
+            "b3VuZFZvbHVtZSJGChBEZWZlYXRQbGF5ZXJSb2xlEg8KAmlkGAEgASgFSACI",
+            "AQESEQoEZGlmZhgCIAEoBUgBiAEBQgUKA19pZEIHCgVfZGlmZiLAAgoHQmFy",
+            "cmllchIRCglwb2tlclBpbGUYASADKAUSEQoJbnBjUG9rZXJzGAIgAygFEhQK",
+            "DHBsYXllclBva2VycxgDIAMoBRITCgtvdGhlclBva2VycxgEIAMoBRISCgVz",
+            "dGF0ZRgFIAEoBUgAiAEBEhgKC21hdGNoUG9pbnRBGAYgASgFSAGIAQESGAoL",
+            "bWF0Y2hQb2ludEIYByABKAVIAogBARIWCglwb2tlclBvc1gYCCABKAVIA4gB",
+            "ARIWCglwb2tlclBvc1kYCSABKAVIBIgBARIXCgpmaW5hbFBvaW50GAogASgF",
+            "SAWIAQFCCAoGX3N0YXRlQg4KDF9tYXRjaFBvaW50QUIOCgxfbWF0Y2hQb2lu",
+            "dEJCDAoKX3Bva2VyUG9zWEIMCgpfcG9rZXJQb3NZQg0KC19maW5hbFBvaW50",
+            "IpoCCghHYW1lRGF0YRIVCghpbml0U2VlZBgBIAEoBUgAiAEBEhYKCWdhbWVT",
+            "dGF0ZRgCIAEoBUgBiAEBEhYKCXBhZ2VJbmRleBgDIAEoBUgCiAEBEhYKCXBs",
+            "YXlpbmdJZBgEIAEoBUgDiAEBEhAKA2V4cBgFIAEoBUgEiAEBEi8KEWRlZmVh",
+            "dFBsYXllclJvbGVzGAYgAygLMhQucGIuRGVmZWF0UGxheWVyUm9sZRIhCgdi",
+            "YXJyaWVyGAcgASgLMgsucGIuQmFycmllckgFiAEBQgsKCV9pbml0U2VlZEIM",
+            "CgpfZ2FtZVN0YXRlQgwKCl9wYWdlSW5kZXhCDAoKX3BsYXlpbmdJZEIGCgRf",
+            "ZXhwQgoKCF9iYXJyaWVyIp4BCgxHYW1lUHJvcGVydHkSIQoHYWNjb3VudBgB",
+            "IAEoCzILLnBiLkFjY291bnRIAIgBARIhCgdzZXR0aW5nGAIgASgLMgsucGIu",
+            "U2V0dGluZ0gBiAEBEiMKCGdhbWVEYXRhGAMgASgLMgwucGIuR2FtZURhdGFI",
+            "AogBAUIKCghfYWNjb3VudEIKCghfc2V0dGluZ0ILCglfZ2FtZURhdGFiBnBy",
+            "b3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::Pb.Account), global::Pb.Account.Parser, null, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Pb.Setting), global::Pb.Setting.Parser, null, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Pb.Setting), global::Pb.Setting.Parser, new[]{ "Language", "Appearance", "Resolution", "MainVolume", "MusicVolume", "SoundVolume" }, new[]{ "Language", "Appearance", "Resolution", "MainVolume", "MusicVolume", "SoundVolume" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Pb.DefeatPlayerRole), global::Pb.DefeatPlayerRole.Parser, new[]{ "Id", "Diff" }, new[]{ "Id", "Diff" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Pb.Barrier), global::Pb.Barrier.Parser, new[]{ "PokerPile", "NpcPokers", "PlayerPokers", "OtherPokers", "State", "MatchPointA", "MatchPointB", "PokerPosX", "PokerPosY", "FinalPoint" }, new[]{ "State", "MatchPointA", "MatchPointB", "PokerPosX", "PokerPosY", "FinalPoint" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Pb.GameData), global::Pb.GameData.Parser, new[]{ "InitSeed", "GameState", "PageIndex", "PlayingId", "Exp", "DefeatPlayerRoles", "Barrier" }, new[]{ "InitSeed", "GameState", "PageIndex", "PlayingId", "Exp", "Barrier" }, null, null, null),
@@ -234,6 +240,7 @@ namespace Pb {
   {
     private static readonly pb::MessageParser<Setting> _parser = new pb::MessageParser<Setting>(() => new Setting());
     private pb::UnknownFieldSet _unknownFields;
+    private int _hasBits0;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pb::MessageParser<Setting> Parser { get { return _parser; } }
@@ -261,6 +268,13 @@ namespace Pb {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public Setting(Setting other) : this() {
+      _hasBits0 = other._hasBits0;
+      language_ = other.language_;
+      appearance_ = other.appearance_;
+      resolution_ = other.resolution_;
+      mainVolume_ = other.mainVolume_;
+      musicVolume_ = other.musicVolume_;
+      soundVolume_ = other.soundVolume_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -268,6 +282,167 @@ namespace Pb {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public Setting Clone() {
       return new Setting(this);
+    }
+
+    /// <summary>Field number for the "language" field.</summary>
+    public const int LanguageFieldNumber = 1;
+    private readonly static string LanguageDefaultValue = "";
+
+    private string language_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public string Language {
+      get { return language_ ?? LanguageDefaultValue; }
+      set {
+        language_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+    /// <summary>Gets whether the "language" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasLanguage {
+      get { return language_ != null; }
+    }
+    /// <summary>Clears the value of the "language" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearLanguage() {
+      language_ = null;
+    }
+
+    /// <summary>Field number for the "appearance" field.</summary>
+    public const int AppearanceFieldNumber = 2;
+    private readonly static int AppearanceDefaultValue = 0;
+
+    private int appearance_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int Appearance {
+      get { if ((_hasBits0 & 1) != 0) { return appearance_; } else { return AppearanceDefaultValue; } }
+      set {
+        _hasBits0 |= 1;
+        appearance_ = value;
+      }
+    }
+    /// <summary>Gets whether the "appearance" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasAppearance {
+      get { return (_hasBits0 & 1) != 0; }
+    }
+    /// <summary>Clears the value of the "appearance" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearAppearance() {
+      _hasBits0 &= ~1;
+    }
+
+    /// <summary>Field number for the "resolution" field.</summary>
+    public const int ResolutionFieldNumber = 3;
+    private readonly static int ResolutionDefaultValue = 0;
+
+    private int resolution_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int Resolution {
+      get { if ((_hasBits0 & 2) != 0) { return resolution_; } else { return ResolutionDefaultValue; } }
+      set {
+        _hasBits0 |= 2;
+        resolution_ = value;
+      }
+    }
+    /// <summary>Gets whether the "resolution" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasResolution {
+      get { return (_hasBits0 & 2) != 0; }
+    }
+    /// <summary>Clears the value of the "resolution" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearResolution() {
+      _hasBits0 &= ~2;
+    }
+
+    /// <summary>Field number for the "mainVolume" field.</summary>
+    public const int MainVolumeFieldNumber = 4;
+    private readonly static float MainVolumeDefaultValue = 0F;
+
+    private float mainVolume_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public float MainVolume {
+      get { if ((_hasBits0 & 4) != 0) { return mainVolume_; } else { return MainVolumeDefaultValue; } }
+      set {
+        _hasBits0 |= 4;
+        mainVolume_ = value;
+      }
+    }
+    /// <summary>Gets whether the "mainVolume" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasMainVolume {
+      get { return (_hasBits0 & 4) != 0; }
+    }
+    /// <summary>Clears the value of the "mainVolume" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearMainVolume() {
+      _hasBits0 &= ~4;
+    }
+
+    /// <summary>Field number for the "musicVolume" field.</summary>
+    public const int MusicVolumeFieldNumber = 5;
+    private readonly static float MusicVolumeDefaultValue = 0F;
+
+    private float musicVolume_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public float MusicVolume {
+      get { if ((_hasBits0 & 8) != 0) { return musicVolume_; } else { return MusicVolumeDefaultValue; } }
+      set {
+        _hasBits0 |= 8;
+        musicVolume_ = value;
+      }
+    }
+    /// <summary>Gets whether the "musicVolume" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasMusicVolume {
+      get { return (_hasBits0 & 8) != 0; }
+    }
+    /// <summary>Clears the value of the "musicVolume" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearMusicVolume() {
+      _hasBits0 &= ~8;
+    }
+
+    /// <summary>Field number for the "soundVolume" field.</summary>
+    public const int SoundVolumeFieldNumber = 6;
+    private readonly static float SoundVolumeDefaultValue = 0F;
+
+    private float soundVolume_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public float SoundVolume {
+      get { if ((_hasBits0 & 16) != 0) { return soundVolume_; } else { return SoundVolumeDefaultValue; } }
+      set {
+        _hasBits0 |= 16;
+        soundVolume_ = value;
+      }
+    }
+    /// <summary>Gets whether the "soundVolume" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasSoundVolume {
+      get { return (_hasBits0 & 16) != 0; }
+    }
+    /// <summary>Clears the value of the "soundVolume" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearSoundVolume() {
+      _hasBits0 &= ~16;
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -285,6 +460,12 @@ namespace Pb {
       if (ReferenceEquals(other, this)) {
         return true;
       }
+      if (Language != other.Language) return false;
+      if (Appearance != other.Appearance) return false;
+      if (Resolution != other.Resolution) return false;
+      if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(MainVolume, other.MainVolume)) return false;
+      if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(MusicVolume, other.MusicVolume)) return false;
+      if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(SoundVolume, other.SoundVolume)) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -292,6 +473,12 @@ namespace Pb {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override int GetHashCode() {
       int hash = 1;
+      if (HasLanguage) hash ^= Language.GetHashCode();
+      if (HasAppearance) hash ^= Appearance.GetHashCode();
+      if (HasResolution) hash ^= Resolution.GetHashCode();
+      if (HasMainVolume) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(MainVolume);
+      if (HasMusicVolume) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(MusicVolume);
+      if (HasSoundVolume) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(SoundVolume);
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -310,6 +497,30 @@ namespace Pb {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
+      if (HasLanguage) {
+        output.WriteRawTag(10);
+        output.WriteString(Language);
+      }
+      if (HasAppearance) {
+        output.WriteRawTag(16);
+        output.WriteInt32(Appearance);
+      }
+      if (HasResolution) {
+        output.WriteRawTag(24);
+        output.WriteInt32(Resolution);
+      }
+      if (HasMainVolume) {
+        output.WriteRawTag(37);
+        output.WriteFloat(MainVolume);
+      }
+      if (HasMusicVolume) {
+        output.WriteRawTag(45);
+        output.WriteFloat(MusicVolume);
+      }
+      if (HasSoundVolume) {
+        output.WriteRawTag(53);
+        output.WriteFloat(SoundVolume);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -320,6 +531,30 @@ namespace Pb {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (HasLanguage) {
+        output.WriteRawTag(10);
+        output.WriteString(Language);
+      }
+      if (HasAppearance) {
+        output.WriteRawTag(16);
+        output.WriteInt32(Appearance);
+      }
+      if (HasResolution) {
+        output.WriteRawTag(24);
+        output.WriteInt32(Resolution);
+      }
+      if (HasMainVolume) {
+        output.WriteRawTag(37);
+        output.WriteFloat(MainVolume);
+      }
+      if (HasMusicVolume) {
+        output.WriteRawTag(45);
+        output.WriteFloat(MusicVolume);
+      }
+      if (HasSoundVolume) {
+        output.WriteRawTag(53);
+        output.WriteFloat(SoundVolume);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -330,6 +565,24 @@ namespace Pb {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int CalculateSize() {
       int size = 0;
+      if (HasLanguage) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Language);
+      }
+      if (HasAppearance) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Appearance);
+      }
+      if (HasResolution) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Resolution);
+      }
+      if (HasMainVolume) {
+        size += 1 + 4;
+      }
+      if (HasMusicVolume) {
+        size += 1 + 4;
+      }
+      if (HasSoundVolume) {
+        size += 1 + 4;
+      }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
       }
@@ -341,6 +594,24 @@ namespace Pb {
     public void MergeFrom(Setting other) {
       if (other == null) {
         return;
+      }
+      if (other.HasLanguage) {
+        Language = other.Language;
+      }
+      if (other.HasAppearance) {
+        Appearance = other.Appearance;
+      }
+      if (other.HasResolution) {
+        Resolution = other.Resolution;
+      }
+      if (other.HasMainVolume) {
+        MainVolume = other.MainVolume;
+      }
+      if (other.HasMusicVolume) {
+        MusicVolume = other.MusicVolume;
+      }
+      if (other.HasSoundVolume) {
+        SoundVolume = other.SoundVolume;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -361,6 +632,30 @@ namespace Pb {
           default:
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
+          case 10: {
+            Language = input.ReadString();
+            break;
+          }
+          case 16: {
+            Appearance = input.ReadInt32();
+            break;
+          }
+          case 24: {
+            Resolution = input.ReadInt32();
+            break;
+          }
+          case 37: {
+            MainVolume = input.ReadFloat();
+            break;
+          }
+          case 45: {
+            MusicVolume = input.ReadFloat();
+            break;
+          }
+          case 53: {
+            SoundVolume = input.ReadFloat();
+            break;
+          }
         }
       }
     #endif
@@ -380,6 +675,30 @@ namespace Pb {
           default:
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
+          case 10: {
+            Language = input.ReadString();
+            break;
+          }
+          case 16: {
+            Appearance = input.ReadInt32();
+            break;
+          }
+          case 24: {
+            Resolution = input.ReadInt32();
+            break;
+          }
+          case 37: {
+            MainVolume = input.ReadFloat();
+            break;
+          }
+          case 45: {
+            MusicVolume = input.ReadFloat();
+            break;
+          }
+          case 53: {
+            SoundVolume = input.ReadFloat();
+            break;
+          }
         }
       }
     }

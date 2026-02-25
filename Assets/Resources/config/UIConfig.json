@@ -36,6 +36,12 @@
 		"desc":"休息界面"
 	},
 	{
+		"name": "SettingView",
+		"resPath": "prefabs/game/SettingView",
+		"viewType": 2,
+		"desc":"设置界面"
+	},
+	{
 		"name": "AlertView",
 		"resPath": "prefabs/game/AlertView",
 		"viewType": 2,
