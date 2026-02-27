@@ -11,7 +11,7 @@ public class GameDataMgr : Singleton<GameDataMgr>
 
     public GameData newGameData() {
         GameData gameData = new GameData();
-        gameData.Barrier = new Barrier();
+        gameData.Barrier = BarrierDataMgr.Instance.newBarrier();
         return gameData;
     }
 

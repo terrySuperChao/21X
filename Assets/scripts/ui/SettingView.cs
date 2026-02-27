@@ -133,6 +133,7 @@ public class SettingView : MonoBehaviour, IBaseView
         SettingDataMgr.Instance.setLanguage(this._curLanguage);
         SettingDataMgr.Instance.saveSetting();
         GamePropertyMgr.Instance.save();
+
         LangMgr.Instance.setCurLanguage(this._curLanguage);
         UIMgr.Instance.closeView("SettingView");
         UIMgr.Instance.refreshView();

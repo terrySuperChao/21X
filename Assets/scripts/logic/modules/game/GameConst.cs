@@ -23,6 +23,10 @@ public class GameConst
     public const string REHANDPOKER     = "reHandPoker";
     public const string CLEARHEADPOKER  = "clearHandPoker";
 
+    //πÿø®
+    public const string BARRIERVIEW_NEWPOKER = "BARRIERVIEW_NEWPOKER";
+    public const string BARRIERVIEW_SUREPOKER = "BARRIERVIEW_SUREPOKER";
+
     public static ValueType SuitTransformValueType(PokerSuit suit)
     {
         if (suit == PokerSuit.club)
@@ -136,10 +140,11 @@ public enum GameState {
 
 public enum BarrierState { 
     startPoker,  //ø™ º≈∆
-    matchPoker, //∆•≈‰≈∆
-    dealPoker, //∑¢≈∆
-    stopPoker, //Õ£≈∆
-    fillPoker, //≤π≈∆
+    dragPoker,   //Õœ≈∆
+    matchPoker,  //∆•≈‰≈∆
+    dealPoker,   //∑¢≈∆
+    stopPoker,   //Õ£≈∆
+    fillPoker,   //≤π≈∆
 }
 
 public enum BarrierDealType

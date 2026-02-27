@@ -1,0 +1,23 @@
+[
+	{
+		"id": 1,
+		"title": "第一章",
+		"childTotal": 10,
+		"bossName": "boss1的名字",
+		"bossDesc": "boss1的描述"
+	},
+	{
+		"id": 2,
+		"title": "第二章",
+		"childTotal": 11,
+		"bossName": "boss2的名字",
+		"bossDesc": "boss2的描述"
+	},
+	{
+		"id": 3,
+		"title": "第三章",
+		"childTotal": 12,
+		"bossName": "boss3的名字",
+		"bossDesc": "boss3的描述"
+	}
+]

@@ -1,9 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
-using static UnityEditor.PlayerSettings;
 
 public class BarrierView : MonoBehaviour, IBaseView
 {
@@ -22,11 +20,16 @@ public class BarrierView : MonoBehaviour, IBaseView
     public GameObject searchBtn;
     public GameObject stopPokerBtn;
     public GameObject dealPokerBtn;
-    public GameObject reDealPokerBtn1;
-    public GameObject reDealPokerBtn2;
+    public GameObject refreshNpcPokerBtn;
+    public GameObject refreshPlayerPokerBtn;
     public GameObject matchPoint;
     public GameObject point;
-
+    public GameObject bustProbability;
+    public GameObject refreshNpcPokerNum;
+    public GameObject refreshPlayerPokerNum;
+    public GameObject title;
+    public GameObject desc;
+    public GameObject chapterItem;
     public void init()
     {
 
@@ -50,143 +53,79 @@ public class BarrierView : MonoBehaviour, IBaseView
         this.searchBtn.GetComponent<Button>().interactable = false;
         this.stopPokerBtn.GetComponent<Button>().interactable = false;
         this.dealPokerBtn.GetComponent<Button>().interactable = false;
-        this.reDealPokerBtn1.GetComponent<Button>().interactable = false;
-        this.reDealPokerBtn2.GetComponent<Button>().interactable = false;
+
+        this.showChapterInfo();
+        this.showRefreshNpcPokerNum();
+        this.showRefreshPlayerPokerNum();
+
+        this.createPokerList(this.npcPokers, BarrierDealType.npc);
+        this.createPokerList(this.playerPokers, BarrierDealType.player);
+        this.createPokerList(this.otherPokers, BarrierDealType.other);
 
         BarrierState state = BarrierDataMgr.Instance.getState();
-        if (state == BarrierState.startPoker)
-        {
-            StartCoroutine(startDealPoker());
-            return;
-        }
-      
-        GameObject matchGameObjectA = null;
-        GameObject matchGameObjectB = null;
-        List<IPoker> npcList = BarrierDataMgr.Instance.getPokers(BarrierDealType.npc);
-        for (int i = 0; i < npcList.Count; i++)
-        {
-            IPoker poker = npcList[i];
-            Vector3 initPos = this.initPokerPos(i, this.npcPokers);
-            GameObject pokerGameObject = this.createPokerGameObject(i, this.npcPokers, poker);
-            pokerGameObject.transform.position = initPos;
-
-            if (poker.getValue() == BarrierDataMgr.Instance.getMatchPointA())
-            {
-                matchGameObjectA = pokerGameObject;
-            }
-        }
-
-        List<IPoker> playerList = BarrierDataMgr.Instance.getPokers(BarrierDealType.player);
-        for (int i = 0; i < playerList.Count; i++)
-        {
-            IPoker poker = playerList[i];
-            Vector3 initPos = this.initPokerPos(i, this.playerPokers);
-            GameObject pokerGameObject = this.createPokerGameObject(i, this.playerPokers, poker);
-            pokerGameObject.transform.position = initPos;
-
-            if (BarrierDataMgr.Instance.getState() == BarrierState.matchPoker ||
-                BarrierDataMgr.Instance.getState() == BarrierState.fillPoker)
-            {
-                this.addDraggableToPoker(pokerGameObject, initPos);
-            }
-
-            if (poker.getValue() == BarrierDataMgr.Instance.getMatchPointB())
-            {
-                matchGameObjectB = pokerGameObject;
-            }
-        }
-
-        List<IPoker> otherList = BarrierDataMgr.Instance.getPokers(BarrierDealType.other);
-        for (int i = 0; i < otherList.Count; i++)
-        {
-            IPoker poker = otherList[i];
-            Vector3 initPos = this.initOtherPos(i, this.otherPokers);
-            GameObject pokerGameObject = this.createPokerGameObject(i, this.otherPokers, poker);
-            pokerGameObject.transform.position = initPos;
-        }
-
-        if (state == BarrierState.matchPoker)
-        {
-            if (matchGameObjectA != null && matchGameObjectB != null)
-            {
+        switch (state) {
+            case BarrierState.startPoker:
+                BarrierReqMgr.Instance.requestNewBarrier();
+                GameMessage.Instance.setHandleMessageComplete();
+                break;
+            case BarrierState.dragPoker:
+                this.addPlayerPokerDrag();
+                break;
+            case BarrierState.matchPoker:
+                this.addPlayerPokerDrag();
                 this.stopPokerBtn.GetComponent<Button>().interactable = true;
                 this.dealPokerBtn.GetComponent<Button>().interactable = true;
-            }
-        }
-        else if (state == BarrierState.dealPoker)
-        {
-            this.stopPokerBtn.GetComponent<Button>().interactable = true;
-            this.dealPokerBtn.GetComponent<Button>().interactable = true;
-        }
-        else if (state == BarrierState.stopPoker)
-        {
-            this.sureBtn.SetActive(true);
-            this.sureBtn.GetComponent<Button>().interactable = true;
-        }
-        else if (state == BarrierState.fillPoker) {
-            StartCoroutine(startFillPoker());
+                break;
+            case BarrierState.dealPoker:
+                this.stopPokerBtn.GetComponent<Button>().interactable = true;
+                this.dealPokerBtn.GetComponent<Button>().interactable = true;
+                break;
+            case BarrierState.stopPoker:
+                this.sureBtn.SetActive(true);
+                this.sureBtn.GetComponent<Button>().interactable = true;
+                break;
+            case BarrierState.fillPoker:
+                this.addPlayerPokerDrag();
+                BarrierReqMgr.Instance.requestFillPoker();
+                GameMessage.Instance.setHandleMessageComplete();
+                break;
         }
 
-        if (matchGameObjectA != null && matchGameObjectB != null)
+        if (BarrierDataMgr.Instance.getMatchPointA() > 0 &&
+            BarrierDataMgr.Instance.getMatchPointB() > 0)
         {
+            GameObject matchGameObjectA = this.findPokerGameObject(this.npcPokers, BarrierDataMgr.Instance.getMatchPointA());
+            GameObject matchGameObjectB = this.findPokerGameObject(this.playerPokers, BarrierDataMgr.Instance.getMatchPointB());
             matchGameObjectB.transform.position = new Vector3(BarrierDataMgr.Instance.getPokerPosX(), BarrierDataMgr.Instance.getPokerPosY(), 0);
             this.matchPokerPoint(matchGameObjectA, matchGameObjectB);
+            this.showBustProbability();
         }
     }
-    private IEnumerator startDealPoker()
-    {
-        yield return new WaitForSeconds(0.5f);
 
-        int count = 3;
-        for (int i = 0; i < count; i++)
+    public void createPokerList(GameObject parent, BarrierDealType type) {
+        List<IPoker> pokers = BarrierDataMgr.Instance.getPokers(type);
+        for (int i = 0; i < pokers.Count; i++)
         {
-            IPoker poker = BarrierDataMgr.Instance.dealPoker(BarrierDealType.npc);
-            Vector3 initPos = this.initPokerPos(i, this.npcPokers);
-            GameObject pokerGameObject = this.createPokerGameObject(i, this.npcPokers, poker);
-            iTween.MoveTo(pokerGameObject.gameObject, initPos, 0.5f);
-            yield return new WaitForSeconds(0.3f);
+            IPoker poker = pokers[i];
+            if (poker.getValue() != 0) {
+                Vector3 initPos = this.initPokerPos(i, parent, type);
+                GameObject pokerGameObject = this.createPokerGameObject(i, parent, poker);
+                pokerGameObject.transform.position = initPos;
+            }
         }
-
-        for (int i = 0; i < count; i++)
-        {
-            IPoker poker = BarrierDataMgr.Instance.dealPoker(BarrierDealType.player);
-            Vector3 initPos = this.initPokerPos(i, this.playerPokers);
-            GameObject pokerGameObject = this.createPokerGameObject(i, this.playerPokers, poker);
-            iTween.MoveTo(pokerGameObject.gameObject, initPos, 0.5f);
-            this.addDraggableToPoker(pokerGameObject, initPos);
-            yield return new WaitForSeconds(0.3f);
-        }
-
-        BarrierDataMgr.Instance.setState(BarrierState.matchPoker);
-        GamePropertyMgr.Instance.save();
     }
 
-    private IEnumerator startFillPoker()
-    {
-        yield return new WaitForSeconds(0.5f);
-
-        int count = 3;
-        for (int i = 2; i < count; i++)
+    public GameObject findPokerGameObject(GameObject parent, int value) {
+        for (int i = 0; i < parent.transform.childCount; i++)
         {
-            IPoker poker = BarrierDataMgr.Instance.dealPoker(BarrierDealType.npc);
-            Vector3 initPos = this.initPokerPos(i, this.npcPokers);
-            GameObject pokerGameObject = this.createPokerGameObject(i, this.npcPokers, poker);
-            iTween.MoveTo(pokerGameObject.gameObject, initPos, 0.5f);
-            yield return new WaitForSeconds(0.3f);
+            GameObject gameObject = parent.transform.GetChild(i).gameObject;
+            Poker poker = gameObject.GetComponent<Poker>();
+            if (poker != null && poker.getPoker().getValue() == value)
+            {
+                return gameObject;
+            }
         }
-
-        for (int i = 2; i < count; i++)
-        {
-            IPoker poker = BarrierDataMgr.Instance.dealPoker(BarrierDealType.player);
-            Vector3 initPos = this.initPokerPos(i, this.playerPokers);
-            GameObject pokerGameObject = this.createPokerGameObject(i, this.playerPokers, poker);
-            iTween.MoveTo(pokerGameObject.gameObject, initPos, 0.5f);
-            this.addDraggableToPoker(pokerGameObject, initPos);
-            yield return new WaitForSeconds(0.3f);
-        }
-
-        BarrierDataMgr.Instance.setState(BarrierState.matchPoker);
-        GamePropertyMgr.Instance.save();
+        return null;
     }
 
     public GameObject createPokerGameObject(int index, GameObject parent, IPoker poker)
@@ -201,27 +140,40 @@ public class BarrierView : MonoBehaviour, IBaseView
 
     }
 
-    public Vector3 initPokerPos(int index, GameObject parent)
+    public Vector3 initPokerPos(int index, GameObject parent, BarrierDealType type)
     {
         int count = 3;
         int space = 20;
         int width = 323;
-
-        float x = index * (width + space) + width / 2 - ((count * width) + (count) * space) / 2;
-        Vector3 initPos = parent.transform.TransformPoint(new Vector3(x, 0, 0));
-
-        return initPos;
+        float x = 0;
+        if (type == BarrierDealType.other)
+        {
+            x = index * space * 3 + width / 2;
+        }
+        else {
+            x = index * (width + space) + width / 2 - ((count * width) + (count) * space) / 2;
+        }
+        return parent.transform.TransformPoint(new Vector3(x, 0, 0)); ;
     }
 
-    public Vector3 initOtherPos(int index, GameObject parent)
-    {
-        int space = 20;
-        int width = 323;
+    public void addPlayerPokerDrag() {
+        for (int i = 0; i < this.playerPokers.transform.childCount; i++)
+        {
+            GameObject gameObject = this.playerPokers.transform.GetChild(i).gameObject;
+            Vector3 initPos = this.initPokerPos(i, this.playerPokers, BarrierDealType.player);
+            this.addDraggableToPoker(gameObject, initPos);
+        }
+    }
 
-        float x = index * space + width / 2;
-        Vector3 initPos = parent.transform.TransformPoint(new Vector3(x, 0, 0));
-
-        return initPos;
+    public void deletePlayerPokerDrag() {
+        for (int i = 0; i < this.playerPokers.transform.childCount; i++)
+        {
+            DraggableUI draggableUI = this.playerPokers.transform.GetChild(i).gameObject.GetComponent<DraggableUI>();
+            if (draggableUI != null)
+            {
+                draggableUI.enabled = false;
+            }
+        }
     }
 
     public void addDraggableToPoker(GameObject pokerGameObject, Vector3 initPos)
@@ -230,9 +182,9 @@ public class BarrierView : MonoBehaviour, IBaseView
         draggableUI.initPos(initPos);
         draggableUI.setCallBack((GameObject gameObject) =>
         {
-            for (int j = 0; j < this.npcPokers.transform.childCount; j++)
+            for (int i = 0; i < this.npcPokers.transform.childCount; i++)
             {
-                GameObject npcPoker = this.npcPokers.transform.GetChild(j).gameObject;
+                GameObject npcPoker = this.npcPokers.transform.GetChild(i).gameObject;
                 Vector3 pointLocal1 = this.npcPokers.transform.InverseTransformPoint(gameObject.transform.position);
                 Vector3 pointLocal2 = this.npcPokers.transform.InverseTransformPoint(npcPoker.transform.position);
                 float scaleX = npcPoker.GetComponent<RectTransform>().localScale.x;
@@ -248,10 +200,7 @@ public class BarrierView : MonoBehaviour, IBaseView
                     int matchPointB = gameObject.GetComponent<Poker>().getPoker().getValue();
                     int pokerPosX = (int)gameObject.transform.position.x;
                     int pokerPosY = (int)gameObject.transform.position.y;
-
-                    BarrierDataMgr.Instance.setState(BarrierState.dealPoker);
-                    BarrierDataMgr.Instance.setMatchPoker(matchPointA, matchPointB, pokerPosX, pokerPosY);
-                    GamePropertyMgr.Instance.save();
+                    BarrierReqMgr.Instance.requestMatchPoker(matchPointA, matchPointB, pokerPosX, pokerPosY);
 
                     //重置坐标
                     for (int z = 0; z < this.playerPokers.transform.childCount; z++)
@@ -262,29 +211,29 @@ public class BarrierView : MonoBehaviour, IBaseView
                             this.playerPokers.transform.GetChild(z).GetComponent<DraggableUI>().resetInitPos();
                         }
                     }
-                    
+
                     this.stopPokerBtn.GetComponent<Button>().interactable = true;
                     this.dealPokerBtn.GetComponent<Button>().interactable = true;
                     this.matchPokerPoint(npcPoker, gameObject);
+                    this.showBustProbability();
 
                     return true;
                 }
             }
-            
-            BarrierDataMgr.Instance.setState(BarrierState.matchPoker);
-            BarrierDataMgr.Instance.setMatchPoker(0, 0,0, 0);
-            GamePropertyMgr.Instance.save();
 
-            this.matchPoint.SetActive(false);
-            this.stopPokerBtn.GetComponent<Button>().interactable = false;
-            this.dealPokerBtn.GetComponent<Button>().interactable = false;
-
+            if (BarrierDataMgr.Instance.getMatchPointB() == gameObject.GetComponent<Poker>().getPoker().getValue()) {
+                this.matchPoint.SetActive(false);
+                this.stopPokerBtn.GetComponent<Button>().interactable = false;
+                this.dealPokerBtn.GetComponent<Button>().interactable = false;
+                BarrierReqMgr.Instance.requestUnMatchPoker();
+            }
             return false;
         });
 
     }
 
-    private void matchPokerPoint(GameObject matchGameObjectA,GameObject matchGameObjectB) {
+    private void matchPokerPoint(GameObject matchGameObjectA, GameObject matchGameObjectB)
+    {
         Vector3 pos = matchGameObjectA.transform.position;
         float scaleX = matchGameObjectA.GetComponent<RectTransform>().localScale.x;
         float scaleY = matchGameObjectA.GetComponent<RectTransform>().localScale.y;
@@ -293,76 +242,178 @@ public class BarrierView : MonoBehaviour, IBaseView
 
         this.matchPoint.SetActive(true);
         this.matchPoint.transform.position = matchGameObjectA.transform.TransformPoint(-pokerWidth / 2 - 30, pokerHeight / 2 + 30, pos.z);
-        this.otherPokers.transform.position = matchGameObjectB.transform.TransformPoint(20, 0, 0);
+        this.otherPokers.transform.position = matchGameObjectB.transform.TransformPoint(-pokerWidth / 2, 0, 0);
         this.point.GetComponent<Text>().text = BarrierDataMgr.Instance.getMatchPoint().ToString();
+    }
+
+    private void showBustProbability() {
+        float number = BarrierDataMgr.Instance.getBustProbability();
+        this.bustProbability.GetComponent<Text>().text = number + "%";
+        this.bustProbability.SetActive(true);
+        if (number <= 30)
+        {
+            this.bustProbability.GetComponent<Text>().color = Color.green;
+        }
+        else if (number <= 60)
+        {
+            this.bustProbability.GetComponent<Text>().color = Color.blue;
+        }
+        else if (number <= 90)
+        {
+            this.bustProbability.GetComponent<Text>().color = Color.red;
+        }
+        else
+        {
+            this.bustProbability.GetComponent<Text>().color = Color.red;
+        }
+    }
+
+    private void showChapterInfo() {
+        Chapter chapter = GameStaticConfigMgr.Instance.getChapterConfig().getChapter(BarrierDataMgr.Instance.getChapterId());
+        if (chapter == null) return;
+
+        GameObject parent = this.chapterItem.transform.parent.gameObject;
+        for (int i = 0; i < chapter.childTotal-1; i++) {
+            GameObject item = Object.Instantiate(this.chapterItem);
+            item.GetComponent<RectTransform>().sizeDelta = new Vector2(80, 80);
+            item.transform.SetParent(parent.transform, false);
+        }
+
+        for (int i = 0; i < parent.transform.childCount; i++) {
+            if (i + 1 <= BarrierDataMgr.Instance.getBarrierId()) {
+                parent.transform.GetChild(i).GetChild(0).gameObject.SetActive(true);
+            }
+        }
+
+        this.title.GetComponent<Text>().text = chapter.title;
+        this.desc.GetComponent<Text>().text = chapter.bossDesc;
+    }
+
+    private void showRefreshNpcPokerNum() {
+        int number = BarrierDataMgr.Instance.getRefreshNpcPokerNum();
+        this.refreshNpcPokerNum.GetComponent<Text>().text = number.ToString();
+        this.refreshNpcPokerBtn.GetComponent<Button>().interactable = number > 0;
+    }
+
+    private void showRefreshPlayerPokerNum()
+    {
+        int number = BarrierDataMgr.Instance.getRefreshPlayerPokerNum();
+        this.refreshPlayerPokerNum.GetComponent<Text>().text = number.ToString();
+        this.refreshPlayerPokerBtn.GetComponent<Button>().interactable = number > 0;
     }
 
     // Start is called before the first frame update
     void Start()
     {
+        EventDispatcher.Instance.on(GameConst.BARRIERVIEW_NEWPOKER, this.newPokerHandle);
+        EventDispatcher.Instance.on(GameConst.BARRIERVIEW_SUREPOKER, this.surePokerHandle);
+    }
 
+    private void OnDestroy(){
+        EventDispatcher.Instance.off(GameConst.BARRIERVIEW_NEWPOKER, this.newPokerHandle);
+        EventDispatcher.Instance.off(GameConst.BARRIERVIEW_SUREPOKER, this.surePokerHandle);
     }
 
     // Update is called once per frame
     void Update()
     {
-
+       
     }
 
-    public void onDealPokerClick()
-    {
-        IPoker poker = BarrierDataMgr.Instance.dealPoker(BarrierDealType.other);
-        
-        Vector3 initPos = this.initOtherPos(this.otherPokers.transform.childCount, this.otherPokers);
-        GameObject pokerGameObject = this.createPokerGameObject(0, this.otherPokers, poker);
-        iTween.MoveTo(pokerGameObject.gameObject, initPos, 0.5f);
-
-        //取消拖动
-        for (int i = 0; i < this.playerPokers.transform.childCount; i++) {
-            DraggableUI draggableUI = this.playerPokers.transform.GetChild(i).gameObject.GetComponent<DraggableUI>();
-            if (draggableUI != null)
-            {
-                draggableUI.enabled = false;
-            }
-        }
-
-        int point = BarrierDataMgr.Instance.getMatchPoint();
-        if (point > 21)
+    public void newPokerHandle(params System.Object[] obj) {
+        BarrierDealPoker poker = (BarrierDealPoker)obj[0];
+        if (poker.type == BarrierDealType.npc)
         {
-            BarrierDataMgr.Instance.setState(BarrierState.stopPoker);
-            GamePropertyMgr.Instance.save();
+            StartCoroutine(newPoker(poker, this.npcPokers,false));
+        }
+        else if (poker.type == BarrierDealType.player)
+        {
+            StartCoroutine(newPoker(poker,this.playerPokers,true));
+        }
+        else if (poker.type == BarrierDealType.other) {
+            StartCoroutine(newPoker(poker,this.otherPokers,false));
+            newPokerAfter();
+        }
+    }
 
+
+    private IEnumerator newPoker(BarrierDealPoker poker, GameObject parent,bool addDrag)
+    {
+        Vector3 initPos = this.initPokerPos(poker.index, parent, poker.type);
+        GameObject pokerGameObject = this.createPokerGameObject(poker.index, parent, poker.poker);
+        iTween.MoveTo(pokerGameObject.gameObject, initPos, 0.5f);
+        yield return new WaitForSeconds(0.3f);
+
+        if (addDrag) {
+            this.addDraggableToPoker(pokerGameObject, initPos);
+        }
+        GameMessage.Instance.setHandleMessageComplete();
+    }
+
+    private void newPokerAfter() {
+        //取消拖动
+        this.deletePlayerPokerDrag();
+
+        BarrierState state = BarrierDataMgr.Instance.getState();
+        if (state == BarrierState.stopPoker){
+            this.bustProbability.SetActive(false);
             this.sureBtn.SetActive(true);
             this.sureBtn.GetComponent<Button>().interactable = true;
             this.stopPokerBtn.GetComponent<Button>().interactable = false;
             this.dealPokerBtn.GetComponent<Button>().interactable = false;
         }
-        else {
-            BarrierDataMgr.Instance.setState(BarrierState.dealPoker);
-            GamePropertyMgr.Instance.save();
+        else
+        {
+            this.showBustProbability();
         }
-        this.point.GetComponent<Text>().text = point.ToString();
+        this.point.GetComponent<Text>().text = BarrierDataMgr.Instance.getMatchPoint().ToString();
     }
 
-    public void onReDealPokerClick1()
+    public void surePokerHandle(params System.Object[] obj)
     {
+        UIMgr.Instance.showView((string)obj[0]);
+    }
+        
 
+    public void onDealPokerClick()
+    {
+        BarrierReqMgr.Instance.requestDealPoker();
+        GameMessage.Instance.setHandleMessageComplete();
     }
 
-    public void onReDealPokerClick2()
+    private void refreshPokerType(BarrierDealType type, GameObject parent,int value) {
+        for (int i = parent.transform.childCount - 1; i > -1; i--){
+            GameObject child = parent.transform.GetChild(i).gameObject;
+            Poker poker = child.GetComponent<Poker>();
+            if (poker != null && poker.getPoker().getValue() != value)
+            {
+                Destroy(child);
+            }
+        }
+        BarrierReqMgr.Instance.requestRefreshPoker(type);
+        GameMessage.Instance.setHandleMessageComplete();
+    }
+    public void onRefreshNpcPokerClick()
     {
+        this.refreshPokerType(BarrierDealType.npc, this.npcPokers, BarrierDataMgr.Instance.getMatchPointA());
+        this.showRefreshNpcPokerNum();
+    }
 
+    public void onRefreshPlayerPokerClick()
+    {
+        this.refreshPokerType(BarrierDealType.player, this.playerPokers, BarrierDataMgr.Instance.getMatchPointB());
+        this.showRefreshPlayerPokerNum();
     }
 
     public void onStopPokerClick()
     {
-        BarrierDataMgr.Instance.setState(BarrierState.stopPoker);
-        GamePropertyMgr.Instance.save();
+        this.deletePlayerPokerDrag();
 
         this.sureBtn.SetActive(true);
         this.sureBtn.GetComponent<Button>().interactable = true;
         this.stopPokerBtn.GetComponent<Button>().interactable = false;
         this.dealPokerBtn.GetComponent<Button>().interactable = false;
+        BarrierReqMgr.Instance.requestStopPoker();
     }
 
     public void onCardClick()
@@ -372,36 +423,8 @@ public class BarrierView : MonoBehaviour, IBaseView
 
     public void onSureClick()
     {
-        string viewName = "";
-        PageIndex pageIndex = 0;
-        List<IPoker> npcList = BarrierDataMgr.Instance.getPokers(BarrierDealType.npc);
-        for (int i = 0; i < npcList.Count; i++)
-        {
-            if (npcList[i].getValue() == BarrierDataMgr.Instance.getMatchPointA())
-            {
-                if (i == 0)
-                {
-                    viewName = "GameView";
-                    pageIndex = PageIndex.GameView;
-                }
-                else if (i == 1)
-                {
-                    viewName = "RelaxView";
-                    pageIndex = PageIndex.RelaxView;
-                }
-                else if (i == 2)
-                { 
-
-                }
-            }
-        }
-        if (pageIndex == 0) return;
-
-        BarrierDataMgr.Instance.clearMatch();
-        BarrierDataMgr.Instance.setState(BarrierState.fillPoker);
-        GameDataMgr.Instance.setPageIndex(pageIndex);
-        GamePropertyMgr.Instance.save();
-        UIMgr.Instance.showView(viewName);
+        BarrierReqMgr.Instance.requestSurePoker();
+        GameMessage.Instance.setHandleMessageComplete();
     }
 
     public void onSearchClick()

@@ -81,7 +81,7 @@ public class BarrierPokerPile
 
         for (int i = randomList.Count - 1; i > 0; i--)
         {
-            int j = RandomMgr.Instance.getRangeInt(0, 1) * (i + 1);
+            int j = RandomMgr.Instance.getRangeInt(0, i + 1);
             (randomList[i], randomList[j]) = (randomList[j], randomList[i]);
         }
 

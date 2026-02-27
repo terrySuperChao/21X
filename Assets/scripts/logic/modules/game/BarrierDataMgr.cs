@@ -2,9 +2,17 @@
 using Google.Protobuf.Collections;
 using Google.Protobuf.WellKnownTypes;
 using Pb;
+using System;
 using System.Collections.Generic;
+using System.Drawing;
 using Unity.VisualScripting;
 using UnityEngine;
+
+public class BarrierDealPoker {
+    public BarrierDealType type;
+    public IPoker poker;
+    public int index;
+}
 
 public class BarrierDataMgr : Singleton<BarrierDataMgr>
 {
@@ -13,6 +21,21 @@ public class BarrierDataMgr : Singleton<BarrierDataMgr>
     private List<IPoker> _playerList = new List<IPoker>();
     private List<IPoker> _otherList = new List<IPoker>();
     private BarrierPokerPile _pokerPile = new BarrierPokerPile();
+
+    public Barrier newBarrier() {
+        Barrier barrier = new Barrier();
+        barrier.State = 0;
+        barrier.MatchPointA = 0;
+        barrier.MatchPointB = 0;
+        barrier.PokerPosX = 0;
+        barrier.PokerPosY = 0;
+        barrier.FinalPoint = 0;
+        barrier.BarrierId = 1;
+        barrier.ChapterId = 1;
+        barrier.RefreshNpcPokerNum = 1;
+        barrier.RefreshPlayerPokerNum = 1;
+        return barrier;
+    }
     public void deserialized(GameData data)
     {
         this._barrier = data.Barrier;
@@ -66,22 +89,28 @@ public class BarrierDataMgr : Singleton<BarrierDataMgr>
         data.Barrier = this._barrier;
     }
 
-    public IPoker dealPoker(BarrierDealType type) 
+    public BarrierDealPoker dealPoker(BarrierDealType type) 
     {
-
         IPoker poker = this._pokerPile.getPoker(0);
-        if (type == BarrierDealType.npc)
+      
+        BarrierDealPoker dealPoker = new BarrierDealPoker();
+        dealPoker.poker = poker;
+        dealPoker.type = type;
+        dealPoker.index = 0;
+
+        List<IPoker> list = this.getPokers(type);
+        int x = list.FindIndex(p => p.getValue() == 0);
+        if (x != -1)
         {
-            this._npcList.Add(poker);
+            list[x] = poker;
+            dealPoker.index = x;
         }
-        else if (type == BarrierDealType.player)
-        {
-            this._playerList.Add(poker);
+        else {
+            list.Add(poker);
+            dealPoker.index = list.Count - 1;
         }
-        else if (type == BarrierDealType.other) {
-            this._otherList.Add(poker);
-        }
-        return poker;
+        
+        return dealPoker;
     }
 
     public List<IPoker> getPokers(BarrierDealType type) {
@@ -151,27 +180,118 @@ public class BarrierDataMgr : Singleton<BarrierDataMgr>
     }
 
     public void clearMatch() {
-        this._barrier.FinalPoint = this.getMatchPoint();
-
         for (int i = 0; i < this._npcList.Count; i++) {
-            if (this._npcList[i].getValue() == this._barrier.MatchPointA) { 
-                this._npcList.RemoveAt(i);
+            if (this._npcList[i].getValue() == this._barrier.MatchPointA) {
+                this._npcList[i].setValue(0);
                 break;
             }
         }
 
-        for (int i = 0; i < this._playerList.Count; i++)
-        {
-            if (this._playerList[i].getValue() == this._barrier.MatchPointB)
-            {
-                this._playerList.RemoveAt(i);
+        for (int i = 0; i < this._playerList.Count; i++){
+            if (this._playerList[i].getValue() == this._barrier.MatchPointB){
+                this._playerList[i].setValue(0);
                 break;
             }
         }
-        this._otherList.Clear();
+        this._barrier.FinalPoint = this.getMatchPoint();
         this._barrier.MatchPointA = 0;
         this._barrier.MatchPointB = 0;
         this._barrier.PokerPosX = 0;
         this._barrier.PokerPosY = 0;
+        this._otherList.Clear();
+    }
+
+    //±¬ÅÆµÄ¸ÅÂÊ
+    public int getBustProbability()
+    {
+        List<int> list = new List<int>();
+        list.Add(this._barrier.MatchPointA);
+        list.Add(this._barrier.MatchPointB);
+        for (int i = 0; i < this._otherList.Count; i++) {
+            list.Add(this._otherList[i].getValue());
+        }
+
+        int number = 0;
+        List<IPoker> cards = _pokerPile.getRemainCards();
+        for (int i = 0; i < cards.Count; i++) {
+            list.Add(cards[i].getValue());
+            int point = PokerPointMgr.Instance.getPokerPoint(list);
+            if (point > 21) {
+                number++;
+            }
+            list.RemoveAt(list.Count - 1);
+        }
+
+        if (cards.Count > 0)
+        {
+            return (int)(Math.Ceiling((number * 1.0f) / cards.Count * 100));
+        }
+        else { 
+            return number;
+        }
+    }
+
+    public int getRefreshNpcPokerNum() {
+        return this._barrier.RefreshNpcPokerNum;
+    }
+
+    public int setRefreshNpcPokerNum() {
+        if (this._barrier.RefreshNpcPokerNum > 0) {
+            this._barrier.RefreshNpcPokerNum -= 1;
+        }
+
+        int count = 0;
+        for (int i = 0; i < this._npcList.Count; i++)
+        {
+            if (this._npcList[i].getValue() != this._barrier.MatchPointA)
+            {
+                count++;
+                this._npcList[i].setValue(0);
+            }
+        }
+        return count;
+    }
+
+    public int getRefreshPlayerPokerNum()
+    {
+        return this._barrier.RefreshPlayerPokerNum;
+    }
+
+    public int setRefreshPlayerPokerNum()
+    {
+        if (this._barrier.RefreshPlayerPokerNum > 0) {
+            this._barrier.RefreshPlayerPokerNum -= 1;
+        }
+
+        int count = 0;
+        for (int i = 0; i < this._playerList.Count; i++)
+        {
+            if (this._playerList[i].getValue() != this._barrier.MatchPointB)
+            {
+                count++;
+                this._playerList[i].setValue(0);
+            }
+        }
+        return count;
+    }
+
+    public int getChapterId() { 
+        return this._barrier.ChapterId;
+    }
+
+    public int getBarrierId()
+    {
+        return this._barrier.BarrierId;
+    }
+
+    public void addBarrierId() {
+        Chapter chapter = GameStaticConfigMgr.Instance.getChapterConfig().getChapter(this._barrier.ChapterId);
+        if (chapter != null){
+            this._barrier.BarrierId += 1;
+            if (this._barrier.BarrierId > chapter.childTotal) {
+                this._barrier.BarrierId = 1;
+                this._barrier.ChapterId += 1;
+            }
+        }
     }
 }

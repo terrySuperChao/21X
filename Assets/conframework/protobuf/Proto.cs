@@ -31,32 +31,36 @@ namespace Pb {
             "BiABKAJIBYgBAUILCglfbGFuZ3VhZ2VCDQoLX2FwcGVhcmFuY2VCDQoLX3Jl",
             "c29sdXRpb25CDQoLX21haW5Wb2x1bWVCDgoMX211c2ljVm9sdW1lQg4KDF9z",
             "b3VuZFZvbHVtZSJGChBEZWZlYXRQbGF5ZXJSb2xlEg8KAmlkGAEgASgFSACI",
-            "AQESEQoEZGlmZhgCIAEoBUgBiAEBQgUKA19pZEIHCgVfZGlmZiLAAgoHQmFy",
+            "AQESEQoEZGlmZhgCIAEoBUgBiAEBQgUKA19pZEIHCgVfZGlmZiKCBAoHQmFy",
             "cmllchIRCglwb2tlclBpbGUYASADKAUSEQoJbnBjUG9rZXJzGAIgAygFEhQK",
             "DHBsYXllclBva2VycxgDIAMoBRITCgtvdGhlclBva2VycxgEIAMoBRISCgVz",
             "dGF0ZRgFIAEoBUgAiAEBEhgKC21hdGNoUG9pbnRBGAYgASgFSAGIAQESGAoL",
             "bWF0Y2hQb2ludEIYByABKAVIAogBARIWCglwb2tlclBvc1gYCCABKAVIA4gB",
             "ARIWCglwb2tlclBvc1kYCSABKAVIBIgBARIXCgpmaW5hbFBvaW50GAogASgF",
-            "SAWIAQFCCAoGX3N0YXRlQg4KDF9tYXRjaFBvaW50QUIOCgxfbWF0Y2hQb2lu",
-            "dEJCDAoKX3Bva2VyUG9zWEIMCgpfcG9rZXJQb3NZQg0KC19maW5hbFBvaW50",
-            "IpoCCghHYW1lRGF0YRIVCghpbml0U2VlZBgBIAEoBUgAiAEBEhYKCWdhbWVT",
-            "dGF0ZRgCIAEoBUgBiAEBEhYKCXBhZ2VJbmRleBgDIAEoBUgCiAEBEhYKCXBs",
-            "YXlpbmdJZBgEIAEoBUgDiAEBEhAKA2V4cBgFIAEoBUgEiAEBEi8KEWRlZmVh",
-            "dFBsYXllclJvbGVzGAYgAygLMhQucGIuRGVmZWF0UGxheWVyUm9sZRIhCgdi",
-            "YXJyaWVyGAcgASgLMgsucGIuQmFycmllckgFiAEBQgsKCV9pbml0U2VlZEIM",
-            "CgpfZ2FtZVN0YXRlQgwKCl9wYWdlSW5kZXhCDAoKX3BsYXlpbmdJZEIGCgRf",
-            "ZXhwQgoKCF9iYXJyaWVyIp4BCgxHYW1lUHJvcGVydHkSIQoHYWNjb3VudBgB",
-            "IAEoCzILLnBiLkFjY291bnRIAIgBARIhCgdzZXR0aW5nGAIgASgLMgsucGIu",
-            "U2V0dGluZ0gBiAEBEiMKCGdhbWVEYXRhGAMgASgLMgwucGIuR2FtZURhdGFI",
-            "AogBAUIKCghfYWNjb3VudEIKCghfc2V0dGluZ0ILCglfZ2FtZURhdGFiBnBy",
-            "b3RvMw=="));
+            "SAWIAQESFgoJY2hhcHRlcklkGAsgASgFSAaIAQESFgoJYmFycmllcklkGAwg",
+            "ASgFSAeIAQESHwoScmVmcmVzaE5wY1Bva2VyTnVtGA0gASgFSAiIAQESIgoV",
+            "cmVmcmVzaFBsYXllclBva2VyTnVtGA4gASgFSAmIAQFCCAoGX3N0YXRlQg4K",
+            "DF9tYXRjaFBvaW50QUIOCgxfbWF0Y2hQb2ludEJCDAoKX3Bva2VyUG9zWEIM",
+            "CgpfcG9rZXJQb3NZQg0KC19maW5hbFBvaW50QgwKCl9jaGFwdGVySWRCDAoK",
+            "X2JhcnJpZXJJZEIVChNfcmVmcmVzaE5wY1Bva2VyTnVtQhgKFl9yZWZyZXNo",
+            "UGxheWVyUG9rZXJOdW0imgIKCEdhbWVEYXRhEhUKCGluaXRTZWVkGAEgASgF",
+            "SACIAQESFgoJZ2FtZVN0YXRlGAIgASgFSAGIAQESFgoJcGFnZUluZGV4GAMg",
+            "ASgFSAKIAQESFgoJcGxheWluZ0lkGAQgASgFSAOIAQESEAoDZXhwGAUgASgF",
+            "SASIAQESLwoRZGVmZWF0UGxheWVyUm9sZXMYBiADKAsyFC5wYi5EZWZlYXRQ",
+            "bGF5ZXJSb2xlEiEKB2JhcnJpZXIYByABKAsyCy5wYi5CYXJyaWVySAWIAQFC",
+            "CwoJX2luaXRTZWVkQgwKCl9nYW1lU3RhdGVCDAoKX3BhZ2VJbmRleEIMCgpf",
+            "cGxheWluZ0lkQgYKBF9leHBCCgoIX2JhcnJpZXIingEKDEdhbWVQcm9wZXJ0",
+            "eRIhCgdhY2NvdW50GAEgASgLMgsucGIuQWNjb3VudEgAiAEBEiEKB3NldHRp",
+            "bmcYAiABKAsyCy5wYi5TZXR0aW5nSAGIAQESIwoIZ2FtZURhdGEYAyABKAsy",
+            "DC5wYi5HYW1lRGF0YUgCiAEBQgoKCF9hY2NvdW50QgoKCF9zZXR0aW5nQgsK",
+            "CV9nYW1lRGF0YWIGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::Pb.Account), global::Pb.Account.Parser, null, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Pb.Setting), global::Pb.Setting.Parser, new[]{ "Language", "Appearance", "Resolution", "MainVolume", "MusicVolume", "SoundVolume" }, new[]{ "Language", "Appearance", "Resolution", "MainVolume", "MusicVolume", "SoundVolume" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Pb.DefeatPlayerRole), global::Pb.DefeatPlayerRole.Parser, new[]{ "Id", "Diff" }, new[]{ "Id", "Diff" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Pb.Barrier), global::Pb.Barrier.Parser, new[]{ "PokerPile", "NpcPokers", "PlayerPokers", "OtherPokers", "State", "MatchPointA", "MatchPointB", "PokerPosX", "PokerPosY", "FinalPoint" }, new[]{ "State", "MatchPointA", "MatchPointB", "PokerPosX", "PokerPosY", "FinalPoint" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Pb.Barrier), global::Pb.Barrier.Parser, new[]{ "PokerPile", "NpcPokers", "PlayerPokers", "OtherPokers", "State", "MatchPointA", "MatchPointB", "PokerPosX", "PokerPosY", "FinalPoint", "ChapterId", "BarrierId", "RefreshNpcPokerNum", "RefreshPlayerPokerNum" }, new[]{ "State", "MatchPointA", "MatchPointB", "PokerPosX", "PokerPosY", "FinalPoint", "ChapterId", "BarrierId", "RefreshNpcPokerNum", "RefreshPlayerPokerNum" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Pb.GameData), global::Pb.GameData.Parser, new[]{ "InitSeed", "GameState", "PageIndex", "PlayingId", "Exp", "DefeatPlayerRoles", "Barrier" }, new[]{ "InitSeed", "GameState", "PageIndex", "PlayingId", "Exp", "Barrier" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Pb.GameProperty), global::Pb.GameProperty.Parser, new[]{ "Account", "Setting", "GameData" }, new[]{ "Account", "Setting", "GameData" }, null, null, null)
           }));
@@ -1026,6 +1030,10 @@ namespace Pb {
       pokerPosX_ = other.pokerPosX_;
       pokerPosY_ = other.pokerPosY_;
       finalPoint_ = other.finalPoint_;
+      chapterId_ = other.chapterId_;
+      barrierId_ = other.barrierId_;
+      refreshNpcPokerNum_ = other.refreshNpcPokerNum_;
+      refreshPlayerPokerNum_ = other.refreshPlayerPokerNum_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -1127,7 +1135,7 @@ namespace Pb {
 
     private int matchPointA_;
     /// <summary>
-    ///匹配的索引
+    ///公共牌的值
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -1157,7 +1165,7 @@ namespace Pb {
 
     private int matchPointB_;
     /// <summary>
-    ///匹配的索引
+    ///手牌的值
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -1271,6 +1279,126 @@ namespace Pb {
       _hasBits0 &= ~32;
     }
 
+    /// <summary>Field number for the "chapterId" field.</summary>
+    public const int ChapterIdFieldNumber = 11;
+    private readonly static int ChapterIdDefaultValue = 0;
+
+    private int chapterId_;
+    /// <summary>
+    ///当前章节id
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int ChapterId {
+      get { if ((_hasBits0 & 64) != 0) { return chapterId_; } else { return ChapterIdDefaultValue; } }
+      set {
+        _hasBits0 |= 64;
+        chapterId_ = value;
+      }
+    }
+    /// <summary>Gets whether the "chapterId" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasChapterId {
+      get { return (_hasBits0 & 64) != 0; }
+    }
+    /// <summary>Clears the value of the "chapterId" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearChapterId() {
+      _hasBits0 &= ~64;
+    }
+
+    /// <summary>Field number for the "barrierId" field.</summary>
+    public const int BarrierIdFieldNumber = 12;
+    private readonly static int BarrierIdDefaultValue = 0;
+
+    private int barrierId_;
+    /// <summary>
+    ///关卡id
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int BarrierId {
+      get { if ((_hasBits0 & 128) != 0) { return barrierId_; } else { return BarrierIdDefaultValue; } }
+      set {
+        _hasBits0 |= 128;
+        barrierId_ = value;
+      }
+    }
+    /// <summary>Gets whether the "barrierId" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasBarrierId {
+      get { return (_hasBits0 & 128) != 0; }
+    }
+    /// <summary>Clears the value of the "barrierId" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearBarrierId() {
+      _hasBits0 &= ~128;
+    }
+
+    /// <summary>Field number for the "refreshNpcPokerNum" field.</summary>
+    public const int RefreshNpcPokerNumFieldNumber = 13;
+    private readonly static int RefreshNpcPokerNumDefaultValue = 0;
+
+    private int refreshNpcPokerNum_;
+    /// <summary>
+    ///刷新npc的牌次数
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int RefreshNpcPokerNum {
+      get { if ((_hasBits0 & 256) != 0) { return refreshNpcPokerNum_; } else { return RefreshNpcPokerNumDefaultValue; } }
+      set {
+        _hasBits0 |= 256;
+        refreshNpcPokerNum_ = value;
+      }
+    }
+    /// <summary>Gets whether the "refreshNpcPokerNum" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasRefreshNpcPokerNum {
+      get { return (_hasBits0 & 256) != 0; }
+    }
+    /// <summary>Clears the value of the "refreshNpcPokerNum" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearRefreshNpcPokerNum() {
+      _hasBits0 &= ~256;
+    }
+
+    /// <summary>Field number for the "refreshPlayerPokerNum" field.</summary>
+    public const int RefreshPlayerPokerNumFieldNumber = 14;
+    private readonly static int RefreshPlayerPokerNumDefaultValue = 0;
+
+    private int refreshPlayerPokerNum_;
+    /// <summary>
+    ///刷新玩家的牌次数
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int RefreshPlayerPokerNum {
+      get { if ((_hasBits0 & 512) != 0) { return refreshPlayerPokerNum_; } else { return RefreshPlayerPokerNumDefaultValue; } }
+      set {
+        _hasBits0 |= 512;
+        refreshPlayerPokerNum_ = value;
+      }
+    }
+    /// <summary>Gets whether the "refreshPlayerPokerNum" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasRefreshPlayerPokerNum {
+      get { return (_hasBits0 & 512) != 0; }
+    }
+    /// <summary>Clears the value of the "refreshPlayerPokerNum" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearRefreshPlayerPokerNum() {
+      _hasBits0 &= ~512;
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override bool Equals(object other) {
@@ -1296,6 +1424,10 @@ namespace Pb {
       if (PokerPosX != other.PokerPosX) return false;
       if (PokerPosY != other.PokerPosY) return false;
       if (FinalPoint != other.FinalPoint) return false;
+      if (ChapterId != other.ChapterId) return false;
+      if (BarrierId != other.BarrierId) return false;
+      if (RefreshNpcPokerNum != other.RefreshNpcPokerNum) return false;
+      if (RefreshPlayerPokerNum != other.RefreshPlayerPokerNum) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -1313,6 +1445,10 @@ namespace Pb {
       if (HasPokerPosX) hash ^= PokerPosX.GetHashCode();
       if (HasPokerPosY) hash ^= PokerPosY.GetHashCode();
       if (HasFinalPoint) hash ^= FinalPoint.GetHashCode();
+      if (HasChapterId) hash ^= ChapterId.GetHashCode();
+      if (HasBarrierId) hash ^= BarrierId.GetHashCode();
+      if (HasRefreshNpcPokerNum) hash ^= RefreshNpcPokerNum.GetHashCode();
+      if (HasRefreshPlayerPokerNum) hash ^= RefreshPlayerPokerNum.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -1359,6 +1495,22 @@ namespace Pb {
         output.WriteRawTag(80);
         output.WriteInt32(FinalPoint);
       }
+      if (HasChapterId) {
+        output.WriteRawTag(88);
+        output.WriteInt32(ChapterId);
+      }
+      if (HasBarrierId) {
+        output.WriteRawTag(96);
+        output.WriteInt32(BarrierId);
+      }
+      if (HasRefreshNpcPokerNum) {
+        output.WriteRawTag(104);
+        output.WriteInt32(RefreshNpcPokerNum);
+      }
+      if (HasRefreshPlayerPokerNum) {
+        output.WriteRawTag(112);
+        output.WriteInt32(RefreshPlayerPokerNum);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -1397,6 +1549,22 @@ namespace Pb {
         output.WriteRawTag(80);
         output.WriteInt32(FinalPoint);
       }
+      if (HasChapterId) {
+        output.WriteRawTag(88);
+        output.WriteInt32(ChapterId);
+      }
+      if (HasBarrierId) {
+        output.WriteRawTag(96);
+        output.WriteInt32(BarrierId);
+      }
+      if (HasRefreshNpcPokerNum) {
+        output.WriteRawTag(104);
+        output.WriteInt32(RefreshNpcPokerNum);
+      }
+      if (HasRefreshPlayerPokerNum) {
+        output.WriteRawTag(112);
+        output.WriteInt32(RefreshPlayerPokerNum);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -1428,6 +1596,18 @@ namespace Pb {
       }
       if (HasFinalPoint) {
         size += 1 + pb::CodedOutputStream.ComputeInt32Size(FinalPoint);
+      }
+      if (HasChapterId) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(ChapterId);
+      }
+      if (HasBarrierId) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(BarrierId);
+      }
+      if (HasRefreshNpcPokerNum) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(RefreshNpcPokerNum);
+      }
+      if (HasRefreshPlayerPokerNum) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(RefreshPlayerPokerNum);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -1462,6 +1642,18 @@ namespace Pb {
       }
       if (other.HasFinalPoint) {
         FinalPoint = other.FinalPoint;
+      }
+      if (other.HasChapterId) {
+        ChapterId = other.ChapterId;
+      }
+      if (other.HasBarrierId) {
+        BarrierId = other.BarrierId;
+      }
+      if (other.HasRefreshNpcPokerNum) {
+        RefreshNpcPokerNum = other.RefreshNpcPokerNum;
+      }
+      if (other.HasRefreshPlayerPokerNum) {
+        RefreshPlayerPokerNum = other.RefreshPlayerPokerNum;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -1526,6 +1718,22 @@ namespace Pb {
             FinalPoint = input.ReadInt32();
             break;
           }
+          case 88: {
+            ChapterId = input.ReadInt32();
+            break;
+          }
+          case 96: {
+            BarrierId = input.ReadInt32();
+            break;
+          }
+          case 104: {
+            RefreshNpcPokerNum = input.ReadInt32();
+            break;
+          }
+          case 112: {
+            RefreshPlayerPokerNum = input.ReadInt32();
+            break;
+          }
         }
       }
     #endif
@@ -1587,6 +1795,22 @@ namespace Pb {
           }
           case 80: {
             FinalPoint = input.ReadInt32();
+            break;
+          }
+          case 88: {
+            ChapterId = input.ReadInt32();
+            break;
+          }
+          case 96: {
+            BarrierId = input.ReadInt32();
+            break;
+          }
+          case 104: {
+            RefreshNpcPokerNum = input.ReadInt32();
+            break;
+          }
+          case 112: {
+            RefreshPlayerPokerNum = input.ReadInt32();
             break;
           }
         }

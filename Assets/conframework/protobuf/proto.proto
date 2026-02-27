@@ -26,11 +26,15 @@ message Barrier{
   repeated int32 playerPokers = 3;  	//player的牌
   repeated int32 otherPokers = 4;  	  //其他的牌
   optional int32 state = 5;           //状态 0发牌 1组合 2要牌
-  optional int32 matchPointA = 6;     //匹配的索引
-  optional int32 matchPointB = 7;     //匹配的索引
+  optional int32 matchPointA = 6;     //公共牌的值
+  optional int32 matchPointB = 7;     //手牌的值
   optional int32 pokerPosX = 8;  	    //坐标的偏差
   optional int32 pokerPosY = 9;       //坐标的偏差
   optional int32 finalPoint = 10;     //最终的点数
+  optional int32 chapterId = 11;             //当前章节id
+  optional int32 barrierId = 12;             //关卡id
+  optional int32 refreshNpcPokerNum = 13;    //刷新npc的牌次数
+  optional int32 refreshPlayerPokerNum = 14; //刷新玩家的牌次数
 }
 
 //游戏

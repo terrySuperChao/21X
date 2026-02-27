@@ -65,7 +65,6 @@
     <Compile Include="Assets\scripts\logic\modules\game\RandomMgr.cs" />
     <Compile Include="Assets\scripts\logic\modules\card\UICommonParaObject.cs" />
     <Compile Include="Assets\scripts\Main.cs" />
-    <Compile Include="Assets\conframework\iTween.cs" />
     <Compile Include="Assets\scripts\logic\data\PokerObject.cs" />
     <Compile Include="Assets\scripts\logic\modules\card\handle\MagickaPlusHandle.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextEventHandler.cs" />
@@ -117,6 +116,7 @@
     <Compile Include="Assets\scripts\logic\modules\npc\NpcMgr.cs" />
     <Compile Include="Assets\scripts\logic\modules\user\UserMgr.cs" />
     <Compile Include="Assets\scripts\logic\modules\game\GameDataMgr.cs" />
+    <Compile Include="Assets\scripts\logic\modules\game\BarrierReqMgr.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\ChatController.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\ObjectSpin.cs" />
     <Compile Include="Assets\scripts\logic\data\IUser.cs" />
@@ -170,6 +170,7 @@
     <Compile Include="Assets\scripts\logic\data\ICard.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\ShaderPropAnimator.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\CameraController.cs" />
+    <Compile Include="Assets\scripts\logic\data\static\ChapterConfig.cs" />
     <Compile Include="Assets\scripts\logic\modules\game\GameStaticConfigMgr.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark03.cs" />
     <Compile Include="Assets\scripts\logic\modules\card\handle\SpadeCardPlusHandle.cs" />

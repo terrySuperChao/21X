@@ -1,6 +1,6 @@
 //ÅÆ¶Ñ
 using System.Collections.Generic;
-
+using UnityEngine;
 
 public class GameMessage : Singleton<GameMessage>
 {
@@ -36,7 +36,7 @@ public class GameMessage : Singleton<GameMessage>
             _msgCache.RemoveAt(0);
             EventDispatcher.Instance.emit(msg.getKey(), msg.getData());
         }
-    }
+    }   
 
     public void setHandleMessageComplete()
     {
