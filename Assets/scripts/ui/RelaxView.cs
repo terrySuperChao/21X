@@ -1,13 +1,12 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
-using static UnityEditor.PlayerSettings;
 
 public class RelaxView : MonoBehaviour, IBaseView
 {
-   
+    public GameObject point;
+    public GameObject effect;
+    public GameObject addHp;
+
     public void init()
     {
 
@@ -25,15 +24,57 @@ public class RelaxView : MonoBehaviour, IBaseView
 
     public void afterShow()
     {
-        
-    }
+        int point = BarrierDataMgr.Instance.getFinalPoint();
+        string effectStr = "";
+        string hpStr = "";
+        if (point < 15)
+        {
+            effectStr = "点数总和<15，治疗效果-50%";
+            hpStr = "恢复10点生命力";
+        }
+        else if (point >= 15 && point <= 19)
+        {
+            effectStr = "点数总和=15-19，治疗效果不变";
+            hpStr = "恢复20点生命力";
+        }
+        else if (point >= 20 && point <= 21)
+        {
+            if (BarrierDataMgr.Instance.getBlackjack() == 1)
+            {
+                effectStr = "点数为blackjack，治疗效果+50%，额外增加生命值上限";
+            }
+            else
+            {
+                effectStr = "点数总和=20-21，治疗效果+50%";
+                hpStr = "恢复40点生命力";
+            }
+        }
+        else
+        {
+            effectStr = "点数爆牌，仅能获得随机治疗";
+            hpStr = "仅能获得随机治疗";
+        }
+        this.effect.GetComponent<Text>().text = effectStr;
+        this.addHp.GetComponent<Text>().text = hpStr;   
 
-    
+        if (BarrierDataMgr.Instance.getBlackjack() == 1)
+        {
+            this.point.GetComponent<Text>().text = "当前点数：blackjack";
+        }
+        else {
+            this.point.GetComponent<Text>().text = "当前点数：" + point;
+        }
+    }
 
     // Start is called before the first frame update
     void Start()
     {
+        EventDispatcher.Instance.on(GameConst.RELAXVIEW_RELAX, this.relaxHandle);
+    }
 
+    private void OnDestroy()
+    {
+        EventDispatcher.Instance.off(GameConst.RELAXVIEW_RELAX, this.relaxHandle);
     }
 
     // Update is called once per frame
@@ -42,20 +83,22 @@ public class RelaxView : MonoBehaviour, IBaseView
 
     }
 
+    public void relaxHandle(params System.Object[] obj)
+    {
+        bool isFinsih = (bool)obj[0];
+        if (isFinsih) {
+            UIMgr.Instance.showView("BarrierView");
+        }
+    }
+
     public void onRelaxClick()
     {
-        GameDataMgr.Instance.setPageIndex(PageIndex.BarrierView);
-        GamePropertyMgr.Instance.save();
-        UIMgr.Instance.showView("BarrierView");
+        GameReqMgr.Instance.requestRelax();
+        GameMessage.Instance.setHandleMessageComplete();
     }
 
     public void onTrainClick()
     {
 
-    }
-
-    public void onPopClick()
-    {
-        UIMgr.Instance.showView("PopView");
     }
 }

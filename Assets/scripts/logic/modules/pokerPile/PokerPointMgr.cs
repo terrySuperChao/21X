@@ -101,4 +101,52 @@ public class PokerPointMgr : Singleton<PokerPointMgr>
         }
 
     }
+
+    public bool isBlackJack(List<int> list)
+    {
+        int poker10 = 0;
+        int pokerJ = 0;
+        int pokerQ = 0;
+        int pokerK = 0;
+        int pokerA = 0;
+        for (int i = 0; i < list.Count; i++)
+        {
+            int rank = list[i] % 100;
+            if (rank == 10)
+            {
+                poker10++;
+            }
+            else if (rank == 11)
+            {
+                pokerJ++;
+            }
+            else if (rank == 12)
+            {
+                pokerQ++;
+            }
+            else if (rank == 13)
+            {
+                pokerK++;
+            }
+            else if (rank == 14)
+            {
+                pokerA++;
+            }
+        }
+
+        int number = 0;
+        if (pokerA == 1)
+        {
+            if (poker10 > 0) number++;
+            if (pokerJ > 0) number++;
+            if (pokerQ > 0) number++;
+            if (pokerK > 0) number++;
+            return number == 1;
+        }
+        else
+        {
+            return false;
+        }
+
+    }
 }

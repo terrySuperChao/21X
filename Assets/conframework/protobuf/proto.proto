@@ -15,7 +15,18 @@ message Setting{
   optional float soundVolume = 6;
 }
 
-message DefeatPlayerRole{
+message Player{
+  optional int32 money = 1;     //金币
+  optional int32 diamond = 2;   //钻石
+  optional int32 roleId = 3; 	  //当前玩角色Id
+  optional int32 hp = 4;        //当前血量
+  optional int32 maxHP = 5;     //最大血量
+  optional int32 magic = 6;     //当前魔法
+  optional int32 maxMagic = 7;  //最大魔法
+  optional int32 exp = 8;   	  //经验
+}
+
+message DefeatRole{
   optional int32 id = 1;				//击败的角色Id
   optional int32 diff= 2;				//难度
 }
@@ -29,12 +40,13 @@ message Barrier{
   optional int32 matchPointA = 6;     //公共牌的值
   optional int32 matchPointB = 7;     //手牌的值
   optional int32 pokerPosX = 8;  	    //坐标的偏差
-  optional int32 pokerPosY = 9;       //坐标的偏差
-  optional int32 finalPoint = 10;     //最终的点数
-  optional int32 chapterId = 11;             //当前章节id
-  optional int32 barrierId = 12;             //关卡id
-  optional int32 refreshNpcPokerNum = 13;    //刷新npc的牌次数
-  optional int32 refreshPlayerPokerNum = 14; //刷新玩家的牌次数
+  optional int32 pokerPosY = 9;        //坐标的偏差
+  optional int32 finalPoint = 10;       //最终的点数
+  optional int32 blackjack = 11;          //blackjack
+  optional int32 chapterId = 12;             //当前章节id
+  optional int32 barrierId = 13;             //关卡id
+  optional int32 refreshNpcPokerNum = 14;    //刷新npc的牌次数
+  optional int32 refreshPlayerPokerNum = 15; //刷新玩家的牌次数
 }
 
 //游戏
@@ -42,10 +54,9 @@ message GameData{
   optional int32 initSeed = 1;
   optional int32 gameState = 2;
   optional int32 pageIndex = 3;		
-  optional int32 playingId = 4; 		              //当前玩角色Id
-  optional int32 exp = 5;   			                //经验
-  repeated DefeatPlayerRole defeatPlayerRoles = 6;//击败的
-  optional Barrier barrier = 7;                   //关卡
+  optional Player player = 4;             //玩家信息
+  optional Barrier barrier = 5;           //关卡
+  repeated DefeatRole defeatRoles = 6;    //击败的
 }
 
 //游戏财产

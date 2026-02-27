@@ -2313,12 +2313,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc22914b4f918a34fa26cc917326d14e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  money: {fileID: 0}
-  diamond: {fileID: 0}
-  hp: {fileID: 0}
-  magic: {fileID: 0}
-  attack: {fileID: 0}
-  defense: {fileID: 0}
+  money: {fileID: 2910288232212386350}
+  diamond: {fileID: 510464355350450430}
+  hp: {fileID: 7532746585706620199}
+  magic: {fileID: 8453585316729636166}
+  attack: {fileID: 2377133844184081068}
+  defense: {fileID: 1064772234647769547}
   pokerPrefab: {fileID: 1532674946065205824}
   npcPokers: {fileID: 1556039356098817421}
   playerPokers: {fileID: 2619967970111659244}

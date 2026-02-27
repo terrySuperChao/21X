@@ -27,6 +27,9 @@ public class GameConst
     public const string BARRIERVIEW_NEWPOKER = "BARRIERVIEW_NEWPOKER";
     public const string BARRIERVIEW_SUREPOKER = "BARRIERVIEW_SUREPOKER";
 
+    //ÐÝÏ¢
+    public const string RELAXVIEW_RELAX = "RELAXVIEW_RELAX";
+
     public static ValueType SuitTransformValueType(PokerSuit suit)
     {
         if (suit == PokerSuit.club)

@@ -30,38 +30,45 @@ namespace Pb {
             "iAEBEhgKC211c2ljVm9sdW1lGAUgASgCSASIAQESGAoLc291bmRWb2x1bWUY",
             "BiABKAJIBYgBAUILCglfbGFuZ3VhZ2VCDQoLX2FwcGVhcmFuY2VCDQoLX3Jl",
             "c29sdXRpb25CDQoLX21haW5Wb2x1bWVCDgoMX211c2ljVm9sdW1lQg4KDF9z",
-            "b3VuZFZvbHVtZSJGChBEZWZlYXRQbGF5ZXJSb2xlEg8KAmlkGAEgASgFSACI",
-            "AQESEQoEZGlmZhgCIAEoBUgBiAEBQgUKA19pZEIHCgVfZGlmZiKCBAoHQmFy",
-            "cmllchIRCglwb2tlclBpbGUYASADKAUSEQoJbnBjUG9rZXJzGAIgAygFEhQK",
-            "DHBsYXllclBva2VycxgDIAMoBRITCgtvdGhlclBva2VycxgEIAMoBRISCgVz",
-            "dGF0ZRgFIAEoBUgAiAEBEhgKC21hdGNoUG9pbnRBGAYgASgFSAGIAQESGAoL",
-            "bWF0Y2hQb2ludEIYByABKAVIAogBARIWCglwb2tlclBvc1gYCCABKAVIA4gB",
-            "ARIWCglwb2tlclBvc1kYCSABKAVIBIgBARIXCgpmaW5hbFBvaW50GAogASgF",
-            "SAWIAQESFgoJY2hhcHRlcklkGAsgASgFSAaIAQESFgoJYmFycmllcklkGAwg",
-            "ASgFSAeIAQESHwoScmVmcmVzaE5wY1Bva2VyTnVtGA0gASgFSAiIAQESIgoV",
-            "cmVmcmVzaFBsYXllclBva2VyTnVtGA4gASgFSAmIAQFCCAoGX3N0YXRlQg4K",
-            "DF9tYXRjaFBvaW50QUIOCgxfbWF0Y2hQb2ludEJCDAoKX3Bva2VyUG9zWEIM",
-            "CgpfcG9rZXJQb3NZQg0KC19maW5hbFBvaW50QgwKCl9jaGFwdGVySWRCDAoK",
-            "X2JhcnJpZXJJZEIVChNfcmVmcmVzaE5wY1Bva2VyTnVtQhgKFl9yZWZyZXNo",
-            "UGxheWVyUG9rZXJOdW0imgIKCEdhbWVEYXRhEhUKCGluaXRTZWVkGAEgASgF",
-            "SACIAQESFgoJZ2FtZVN0YXRlGAIgASgFSAGIAQESFgoJcGFnZUluZGV4GAMg",
-            "ASgFSAKIAQESFgoJcGxheWluZ0lkGAQgASgFSAOIAQESEAoDZXhwGAUgASgF",
-            "SASIAQESLwoRZGVmZWF0UGxheWVyUm9sZXMYBiADKAsyFC5wYi5EZWZlYXRQ",
-            "bGF5ZXJSb2xlEiEKB2JhcnJpZXIYByABKAsyCy5wYi5CYXJyaWVySAWIAQFC",
-            "CwoJX2luaXRTZWVkQgwKCl9nYW1lU3RhdGVCDAoKX3BhZ2VJbmRleEIMCgpf",
-            "cGxheWluZ0lkQgYKBF9leHBCCgoIX2JhcnJpZXIingEKDEdhbWVQcm9wZXJ0",
-            "eRIhCgdhY2NvdW50GAEgASgLMgsucGIuQWNjb3VudEgAiAEBEiEKB3NldHRp",
-            "bmcYAiABKAsyCy5wYi5TZXR0aW5nSAGIAQESIwoIZ2FtZURhdGEYAyABKAsy",
-            "DC5wYi5HYW1lRGF0YUgCiAEBQgoKCF9hY2NvdW50QgoKCF9zZXR0aW5nQgsK",
-            "CV9nYW1lRGF0YWIGcHJvdG8z"));
+            "b3VuZFZvbHVtZSL6AQoGUGxheWVyEhIKBW1vbmV5GAEgASgFSACIAQESFAoH",
+            "ZGlhbW9uZBgCIAEoBUgBiAEBEhMKBnJvbGVJZBgDIAEoBUgCiAEBEg8KAmhw",
+            "GAQgASgFSAOIAQESEgoFbWF4SFAYBSABKAVIBIgBARISCgVtYWdpYxgGIAEo",
+            "BUgFiAEBEhUKCG1heE1hZ2ljGAcgASgFSAaIAQESEAoDZXhwGAggASgFSAeI",
+            "AQFCCAoGX21vbmV5QgoKCF9kaWFtb25kQgkKB19yb2xlSWRCBQoDX2hwQggK",
+            "Bl9tYXhIUEIICgZfbWFnaWNCCwoJX21heE1hZ2ljQgYKBF9leHAiQAoKRGVm",
+            "ZWF0Um9sZRIPCgJpZBgBIAEoBUgAiAEBEhEKBGRpZmYYAiABKAVIAYgBAUIF",
+            "CgNfaWRCBwoFX2RpZmYiqAQKB0JhcnJpZXISEQoJcG9rZXJQaWxlGAEgAygF",
+            "EhEKCW5wY1Bva2VycxgCIAMoBRIUCgxwbGF5ZXJQb2tlcnMYAyADKAUSEwoL",
+            "b3RoZXJQb2tlcnMYBCADKAUSEgoFc3RhdGUYBSABKAVIAIgBARIYCgttYXRj",
+            "aFBvaW50QRgGIAEoBUgBiAEBEhgKC21hdGNoUG9pbnRCGAcgASgFSAKIAQES",
+            "FgoJcG9rZXJQb3NYGAggASgFSAOIAQESFgoJcG9rZXJQb3NZGAkgASgFSASI",
+            "AQESFwoKZmluYWxQb2ludBgKIAEoBUgFiAEBEhYKCWJsYWNramFjaxgLIAEo",
+            "BUgGiAEBEhYKCWNoYXB0ZXJJZBgMIAEoBUgHiAEBEhYKCWJhcnJpZXJJZBgN",
+            "IAEoBUgIiAEBEh8KEnJlZnJlc2hOcGNQb2tlck51bRgOIAEoBUgJiAEBEiIK",
+            "FXJlZnJlc2hQbGF5ZXJQb2tlck51bRgPIAEoBUgKiAEBQggKBl9zdGF0ZUIO",
+            "CgxfbWF0Y2hQb2ludEFCDgoMX21hdGNoUG9pbnRCQgwKCl9wb2tlclBvc1hC",
+            "DAoKX3Bva2VyUG9zWUINCgtfZmluYWxQb2ludEIMCgpfYmxhY2tqYWNrQgwK",
+            "Cl9jaGFwdGVySWRCDAoKX2JhcnJpZXJJZEIVChNfcmVmcmVzaE5wY1Bva2Vy",
+            "TnVtQhgKFl9yZWZyZXNoUGxheWVyUG9rZXJOdW0i+gEKCEdhbWVEYXRhEhUK",
+            "CGluaXRTZWVkGAEgASgFSACIAQESFgoJZ2FtZVN0YXRlGAIgASgFSAGIAQES",
+            "FgoJcGFnZUluZGV4GAMgASgFSAKIAQESHwoGcGxheWVyGAQgASgLMgoucGIu",
+            "UGxheWVySAOIAQESIQoHYmFycmllchgFIAEoCzILLnBiLkJhcnJpZXJIBIgB",
+            "ARIjCgtkZWZlYXRSb2xlcxgGIAMoCzIOLnBiLkRlZmVhdFJvbGVCCwoJX2lu",
+            "aXRTZWVkQgwKCl9nYW1lU3RhdGVCDAoKX3BhZ2VJbmRleEIJCgdfcGxheWVy",
+            "QgoKCF9iYXJyaWVyIp4BCgxHYW1lUHJvcGVydHkSIQoHYWNjb3VudBgBIAEo",
+            "CzILLnBiLkFjY291bnRIAIgBARIhCgdzZXR0aW5nGAIgASgLMgsucGIuU2V0",
+            "dGluZ0gBiAEBEiMKCGdhbWVEYXRhGAMgASgLMgwucGIuR2FtZURhdGFIAogB",
+            "AUIKCghfYWNjb3VudEIKCghfc2V0dGluZ0ILCglfZ2FtZURhdGFiBnByb3Rv",
+            "Mw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::Pb.Account), global::Pb.Account.Parser, null, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Pb.Setting), global::Pb.Setting.Parser, new[]{ "Language", "Appearance", "Resolution", "MainVolume", "MusicVolume", "SoundVolume" }, new[]{ "Language", "Appearance", "Resolution", "MainVolume", "MusicVolume", "SoundVolume" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Pb.DefeatPlayerRole), global::Pb.DefeatPlayerRole.Parser, new[]{ "Id", "Diff" }, new[]{ "Id", "Diff" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Pb.Barrier), global::Pb.Barrier.Parser, new[]{ "PokerPile", "NpcPokers", "PlayerPokers", "OtherPokers", "State", "MatchPointA", "MatchPointB", "PokerPosX", "PokerPosY", "FinalPoint", "ChapterId", "BarrierId", "RefreshNpcPokerNum", "RefreshPlayerPokerNum" }, new[]{ "State", "MatchPointA", "MatchPointB", "PokerPosX", "PokerPosY", "FinalPoint", "ChapterId", "BarrierId", "RefreshNpcPokerNum", "RefreshPlayerPokerNum" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Pb.GameData), global::Pb.GameData.Parser, new[]{ "InitSeed", "GameState", "PageIndex", "PlayingId", "Exp", "DefeatPlayerRoles", "Barrier" }, new[]{ "InitSeed", "GameState", "PageIndex", "PlayingId", "Exp", "Barrier" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Pb.Player), global::Pb.Player.Parser, new[]{ "Money", "Diamond", "RoleId", "Hp", "MaxHP", "Magic", "MaxMagic", "Exp" }, new[]{ "Money", "Diamond", "RoleId", "Hp", "MaxHP", "Magic", "MaxMagic", "Exp" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Pb.DefeatRole), global::Pb.DefeatRole.Parser, new[]{ "Id", "Diff" }, new[]{ "Id", "Diff" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Pb.Barrier), global::Pb.Barrier.Parser, new[]{ "PokerPile", "NpcPokers", "PlayerPokers", "OtherPokers", "State", "MatchPointA", "MatchPointB", "PokerPosX", "PokerPosY", "FinalPoint", "Blackjack", "ChapterId", "BarrierId", "RefreshNpcPokerNum", "RefreshPlayerPokerNum" }, new[]{ "State", "MatchPointA", "MatchPointB", "PokerPosX", "PokerPosY", "FinalPoint", "Blackjack", "ChapterId", "BarrierId", "RefreshNpcPokerNum", "RefreshPlayerPokerNum" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Pb.GameData), global::Pb.GameData.Parser, new[]{ "InitSeed", "GameState", "PageIndex", "Player", "Barrier", "DefeatRoles" }, new[]{ "InitSeed", "GameState", "PageIndex", "Player", "Barrier" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Pb.GameProperty), global::Pb.GameProperty.Parser, new[]{ "Account", "Setting", "GameData" }, new[]{ "Account", "Setting", "GameData" }, null, null, null)
           }));
     }
@@ -711,17 +718,17 @@ namespace Pb {
   }
 
   [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
-  public sealed partial class DefeatPlayerRole : pb::IMessage<DefeatPlayerRole>
+  public sealed partial class Player : pb::IMessage<Player>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
   #endif
   {
-    private static readonly pb::MessageParser<DefeatPlayerRole> _parser = new pb::MessageParser<DefeatPlayerRole>(() => new DefeatPlayerRole());
+    private static readonly pb::MessageParser<Player> _parser = new pb::MessageParser<Player>(() => new Player());
     private pb::UnknownFieldSet _unknownFields;
     private int _hasBits0;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pb::MessageParser<DefeatPlayerRole> Parser { get { return _parser; } }
+    public static pb::MessageParser<Player> Parser { get { return _parser; } }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -737,7 +744,7 @@ namespace Pb {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public DefeatPlayerRole() {
+    public Player() {
       OnConstruction();
     }
 
@@ -745,7 +752,610 @@ namespace Pb {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public DefeatPlayerRole(DefeatPlayerRole other) : this() {
+    public Player(Player other) : this() {
+      _hasBits0 = other._hasBits0;
+      money_ = other.money_;
+      diamond_ = other.diamond_;
+      roleId_ = other.roleId_;
+      hp_ = other.hp_;
+      maxHP_ = other.maxHP_;
+      magic_ = other.magic_;
+      maxMagic_ = other.maxMagic_;
+      exp_ = other.exp_;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public Player Clone() {
+      return new Player(this);
+    }
+
+    /// <summary>Field number for the "money" field.</summary>
+    public const int MoneyFieldNumber = 1;
+    private readonly static int MoneyDefaultValue = 0;
+
+    private int money_;
+    /// <summary>
+    ///金币
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int Money {
+      get { if ((_hasBits0 & 1) != 0) { return money_; } else { return MoneyDefaultValue; } }
+      set {
+        _hasBits0 |= 1;
+        money_ = value;
+      }
+    }
+    /// <summary>Gets whether the "money" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasMoney {
+      get { return (_hasBits0 & 1) != 0; }
+    }
+    /// <summary>Clears the value of the "money" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearMoney() {
+      _hasBits0 &= ~1;
+    }
+
+    /// <summary>Field number for the "diamond" field.</summary>
+    public const int DiamondFieldNumber = 2;
+    private readonly static int DiamondDefaultValue = 0;
+
+    private int diamond_;
+    /// <summary>
+    ///钻石
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int Diamond {
+      get { if ((_hasBits0 & 2) != 0) { return diamond_; } else { return DiamondDefaultValue; } }
+      set {
+        _hasBits0 |= 2;
+        diamond_ = value;
+      }
+    }
+    /// <summary>Gets whether the "diamond" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasDiamond {
+      get { return (_hasBits0 & 2) != 0; }
+    }
+    /// <summary>Clears the value of the "diamond" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearDiamond() {
+      _hasBits0 &= ~2;
+    }
+
+    /// <summary>Field number for the "roleId" field.</summary>
+    public const int RoleIdFieldNumber = 3;
+    private readonly static int RoleIdDefaultValue = 0;
+
+    private int roleId_;
+    /// <summary>
+    ///当前玩角色Id
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int RoleId {
+      get { if ((_hasBits0 & 4) != 0) { return roleId_; } else { return RoleIdDefaultValue; } }
+      set {
+        _hasBits0 |= 4;
+        roleId_ = value;
+      }
+    }
+    /// <summary>Gets whether the "roleId" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasRoleId {
+      get { return (_hasBits0 & 4) != 0; }
+    }
+    /// <summary>Clears the value of the "roleId" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearRoleId() {
+      _hasBits0 &= ~4;
+    }
+
+    /// <summary>Field number for the "hp" field.</summary>
+    public const int HpFieldNumber = 4;
+    private readonly static int HpDefaultValue = 0;
+
+    private int hp_;
+    /// <summary>
+    ///当前血量
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int Hp {
+      get { if ((_hasBits0 & 8) != 0) { return hp_; } else { return HpDefaultValue; } }
+      set {
+        _hasBits0 |= 8;
+        hp_ = value;
+      }
+    }
+    /// <summary>Gets whether the "hp" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasHp {
+      get { return (_hasBits0 & 8) != 0; }
+    }
+    /// <summary>Clears the value of the "hp" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearHp() {
+      _hasBits0 &= ~8;
+    }
+
+    /// <summary>Field number for the "maxHP" field.</summary>
+    public const int MaxHPFieldNumber = 5;
+    private readonly static int MaxHPDefaultValue = 0;
+
+    private int maxHP_;
+    /// <summary>
+    ///最大血量
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int MaxHP {
+      get { if ((_hasBits0 & 16) != 0) { return maxHP_; } else { return MaxHPDefaultValue; } }
+      set {
+        _hasBits0 |= 16;
+        maxHP_ = value;
+      }
+    }
+    /// <summary>Gets whether the "maxHP" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasMaxHP {
+      get { return (_hasBits0 & 16) != 0; }
+    }
+    /// <summary>Clears the value of the "maxHP" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearMaxHP() {
+      _hasBits0 &= ~16;
+    }
+
+    /// <summary>Field number for the "magic" field.</summary>
+    public const int MagicFieldNumber = 6;
+    private readonly static int MagicDefaultValue = 0;
+
+    private int magic_;
+    /// <summary>
+    ///当前魔法
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int Magic {
+      get { if ((_hasBits0 & 32) != 0) { return magic_; } else { return MagicDefaultValue; } }
+      set {
+        _hasBits0 |= 32;
+        magic_ = value;
+      }
+    }
+    /// <summary>Gets whether the "magic" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasMagic {
+      get { return (_hasBits0 & 32) != 0; }
+    }
+    /// <summary>Clears the value of the "magic" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearMagic() {
+      _hasBits0 &= ~32;
+    }
+
+    /// <summary>Field number for the "maxMagic" field.</summary>
+    public const int MaxMagicFieldNumber = 7;
+    private readonly static int MaxMagicDefaultValue = 0;
+
+    private int maxMagic_;
+    /// <summary>
+    ///最大魔法
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int MaxMagic {
+      get { if ((_hasBits0 & 64) != 0) { return maxMagic_; } else { return MaxMagicDefaultValue; } }
+      set {
+        _hasBits0 |= 64;
+        maxMagic_ = value;
+      }
+    }
+    /// <summary>Gets whether the "maxMagic" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasMaxMagic {
+      get { return (_hasBits0 & 64) != 0; }
+    }
+    /// <summary>Clears the value of the "maxMagic" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearMaxMagic() {
+      _hasBits0 &= ~64;
+    }
+
+    /// <summary>Field number for the "exp" field.</summary>
+    public const int ExpFieldNumber = 8;
+    private readonly static int ExpDefaultValue = 0;
+
+    private int exp_;
+    /// <summary>
+    ///经验
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int Exp {
+      get { if ((_hasBits0 & 128) != 0) { return exp_; } else { return ExpDefaultValue; } }
+      set {
+        _hasBits0 |= 128;
+        exp_ = value;
+      }
+    }
+    /// <summary>Gets whether the "exp" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasExp {
+      get { return (_hasBits0 & 128) != 0; }
+    }
+    /// <summary>Clears the value of the "exp" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearExp() {
+      _hasBits0 &= ~128;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override bool Equals(object other) {
+      return Equals(other as Player);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool Equals(Player other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (Money != other.Money) return false;
+      if (Diamond != other.Diamond) return false;
+      if (RoleId != other.RoleId) return false;
+      if (Hp != other.Hp) return false;
+      if (MaxHP != other.MaxHP) return false;
+      if (Magic != other.Magic) return false;
+      if (MaxMagic != other.MaxMagic) return false;
+      if (Exp != other.Exp) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (HasMoney) hash ^= Money.GetHashCode();
+      if (HasDiamond) hash ^= Diamond.GetHashCode();
+      if (HasRoleId) hash ^= RoleId.GetHashCode();
+      if (HasHp) hash ^= Hp.GetHashCode();
+      if (HasMaxHP) hash ^= MaxHP.GetHashCode();
+      if (HasMagic) hash ^= Magic.GetHashCode();
+      if (HasMaxMagic) hash ^= MaxMagic.GetHashCode();
+      if (HasExp) hash ^= Exp.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
+      if (HasMoney) {
+        output.WriteRawTag(8);
+        output.WriteInt32(Money);
+      }
+      if (HasDiamond) {
+        output.WriteRawTag(16);
+        output.WriteInt32(Diamond);
+      }
+      if (HasRoleId) {
+        output.WriteRawTag(24);
+        output.WriteInt32(RoleId);
+      }
+      if (HasHp) {
+        output.WriteRawTag(32);
+        output.WriteInt32(Hp);
+      }
+      if (HasMaxHP) {
+        output.WriteRawTag(40);
+        output.WriteInt32(MaxHP);
+      }
+      if (HasMagic) {
+        output.WriteRawTag(48);
+        output.WriteInt32(Magic);
+      }
+      if (HasMaxMagic) {
+        output.WriteRawTag(56);
+        output.WriteInt32(MaxMagic);
+      }
+      if (HasExp) {
+        output.WriteRawTag(64);
+        output.WriteInt32(Exp);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (HasMoney) {
+        output.WriteRawTag(8);
+        output.WriteInt32(Money);
+      }
+      if (HasDiamond) {
+        output.WriteRawTag(16);
+        output.WriteInt32(Diamond);
+      }
+      if (HasRoleId) {
+        output.WriteRawTag(24);
+        output.WriteInt32(RoleId);
+      }
+      if (HasHp) {
+        output.WriteRawTag(32);
+        output.WriteInt32(Hp);
+      }
+      if (HasMaxHP) {
+        output.WriteRawTag(40);
+        output.WriteInt32(MaxHP);
+      }
+      if (HasMagic) {
+        output.WriteRawTag(48);
+        output.WriteInt32(Magic);
+      }
+      if (HasMaxMagic) {
+        output.WriteRawTag(56);
+        output.WriteInt32(MaxMagic);
+      }
+      if (HasExp) {
+        output.WriteRawTag(64);
+        output.WriteInt32(Exp);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int CalculateSize() {
+      int size = 0;
+      if (HasMoney) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Money);
+      }
+      if (HasDiamond) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Diamond);
+      }
+      if (HasRoleId) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(RoleId);
+      }
+      if (HasHp) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Hp);
+      }
+      if (HasMaxHP) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(MaxHP);
+      }
+      if (HasMagic) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Magic);
+      }
+      if (HasMaxMagic) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(MaxMagic);
+      }
+      if (HasExp) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Exp);
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(Player other) {
+      if (other == null) {
+        return;
+      }
+      if (other.HasMoney) {
+        Money = other.Money;
+      }
+      if (other.HasDiamond) {
+        Diamond = other.Diamond;
+      }
+      if (other.HasRoleId) {
+        RoleId = other.RoleId;
+      }
+      if (other.HasHp) {
+        Hp = other.Hp;
+      }
+      if (other.HasMaxHP) {
+        MaxHP = other.MaxHP;
+      }
+      if (other.HasMagic) {
+        Magic = other.Magic;
+      }
+      if (other.HasMaxMagic) {
+        MaxMagic = other.MaxMagic;
+      }
+      if (other.HasExp) {
+        Exp = other.Exp;
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+      if ((tag & 7) == 4) {
+        // Abort on any end group tag.
+        return;
+      }
+      switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 8: {
+            Money = input.ReadInt32();
+            break;
+          }
+          case 16: {
+            Diamond = input.ReadInt32();
+            break;
+          }
+          case 24: {
+            RoleId = input.ReadInt32();
+            break;
+          }
+          case 32: {
+            Hp = input.ReadInt32();
+            break;
+          }
+          case 40: {
+            MaxHP = input.ReadInt32();
+            break;
+          }
+          case 48: {
+            Magic = input.ReadInt32();
+            break;
+          }
+          case 56: {
+            MaxMagic = input.ReadInt32();
+            break;
+          }
+          case 64: {
+            Exp = input.ReadInt32();
+            break;
+          }
+        }
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+      if ((tag & 7) == 4) {
+        // Abort on any end group tag.
+        return;
+      }
+      switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+          case 8: {
+            Money = input.ReadInt32();
+            break;
+          }
+          case 16: {
+            Diamond = input.ReadInt32();
+            break;
+          }
+          case 24: {
+            RoleId = input.ReadInt32();
+            break;
+          }
+          case 32: {
+            Hp = input.ReadInt32();
+            break;
+          }
+          case 40: {
+            MaxHP = input.ReadInt32();
+            break;
+          }
+          case 48: {
+            Magic = input.ReadInt32();
+            break;
+          }
+          case 56: {
+            MaxMagic = input.ReadInt32();
+            break;
+          }
+          case 64: {
+            Exp = input.ReadInt32();
+            break;
+          }
+        }
+      }
+    }
+    #endif
+
+  }
+
+  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+  public sealed partial class DefeatRole : pb::IMessage<DefeatRole>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
+    private static readonly pb::MessageParser<DefeatRole> _parser = new pb::MessageParser<DefeatRole>(() => new DefeatRole());
+    private pb::UnknownFieldSet _unknownFields;
+    private int _hasBits0;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pb::MessageParser<DefeatRole> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Pb.ProtoReflection.Descriptor.MessageTypes[3]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public DefeatRole() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public DefeatRole(DefeatRole other) : this() {
       _hasBits0 = other._hasBits0;
       id_ = other.id_;
       diff_ = other.diff_;
@@ -754,8 +1364,8 @@ namespace Pb {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public DefeatPlayerRole Clone() {
-      return new DefeatPlayerRole(this);
+    public DefeatRole Clone() {
+      return new DefeatRole(this);
     }
 
     /// <summary>Field number for the "id" field.</summary>
@@ -821,12 +1431,12 @@ namespace Pb {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override bool Equals(object other) {
-      return Equals(other as DefeatPlayerRole);
+      return Equals(other as DefeatRole);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public bool Equals(DefeatPlayerRole other) {
+    public bool Equals(DefeatRole other) {
       if (ReferenceEquals(other, null)) {
         return false;
       }
@@ -912,7 +1522,7 @@ namespace Pb {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(DefeatPlayerRole other) {
+    public void MergeFrom(DefeatRole other) {
       if (other == null) {
         return;
       }
@@ -999,7 +1609,7 @@ namespace Pb {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Pb.ProtoReflection.Descriptor.MessageTypes[3]; }
+      get { return global::Pb.ProtoReflection.Descriptor.MessageTypes[4]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1030,6 +1640,7 @@ namespace Pb {
       pokerPosX_ = other.pokerPosX_;
       pokerPosY_ = other.pokerPosY_;
       finalPoint_ = other.finalPoint_;
+      blackjack_ = other.blackjack_;
       chapterId_ = other.chapterId_;
       barrierId_ = other.barrierId_;
       refreshNpcPokerNum_ = other.refreshNpcPokerNum_;
@@ -1279,8 +1890,38 @@ namespace Pb {
       _hasBits0 &= ~32;
     }
 
+    /// <summary>Field number for the "blackjack" field.</summary>
+    public const int BlackjackFieldNumber = 11;
+    private readonly static int BlackjackDefaultValue = 0;
+
+    private int blackjack_;
+    /// <summary>
+    ///blackjack
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int Blackjack {
+      get { if ((_hasBits0 & 64) != 0) { return blackjack_; } else { return BlackjackDefaultValue; } }
+      set {
+        _hasBits0 |= 64;
+        blackjack_ = value;
+      }
+    }
+    /// <summary>Gets whether the "blackjack" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasBlackjack {
+      get { return (_hasBits0 & 64) != 0; }
+    }
+    /// <summary>Clears the value of the "blackjack" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearBlackjack() {
+      _hasBits0 &= ~64;
+    }
+
     /// <summary>Field number for the "chapterId" field.</summary>
-    public const int ChapterIdFieldNumber = 11;
+    public const int ChapterIdFieldNumber = 12;
     private readonly static int ChapterIdDefaultValue = 0;
 
     private int chapterId_;
@@ -1290,9 +1931,9 @@ namespace Pb {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int ChapterId {
-      get { if ((_hasBits0 & 64) != 0) { return chapterId_; } else { return ChapterIdDefaultValue; } }
+      get { if ((_hasBits0 & 128) != 0) { return chapterId_; } else { return ChapterIdDefaultValue; } }
       set {
-        _hasBits0 |= 64;
+        _hasBits0 |= 128;
         chapterId_ = value;
       }
     }
@@ -1300,17 +1941,17 @@ namespace Pb {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public bool HasChapterId {
-      get { return (_hasBits0 & 64) != 0; }
+      get { return (_hasBits0 & 128) != 0; }
     }
     /// <summary>Clears the value of the "chapterId" field</summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public void ClearChapterId() {
-      _hasBits0 &= ~64;
+      _hasBits0 &= ~128;
     }
 
     /// <summary>Field number for the "barrierId" field.</summary>
-    public const int BarrierIdFieldNumber = 12;
+    public const int BarrierIdFieldNumber = 13;
     private readonly static int BarrierIdDefaultValue = 0;
 
     private int barrierId_;
@@ -1320,9 +1961,9 @@ namespace Pb {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int BarrierId {
-      get { if ((_hasBits0 & 128) != 0) { return barrierId_; } else { return BarrierIdDefaultValue; } }
+      get { if ((_hasBits0 & 256) != 0) { return barrierId_; } else { return BarrierIdDefaultValue; } }
       set {
-        _hasBits0 |= 128;
+        _hasBits0 |= 256;
         barrierId_ = value;
       }
     }
@@ -1330,17 +1971,17 @@ namespace Pb {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public bool HasBarrierId {
-      get { return (_hasBits0 & 128) != 0; }
+      get { return (_hasBits0 & 256) != 0; }
     }
     /// <summary>Clears the value of the "barrierId" field</summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public void ClearBarrierId() {
-      _hasBits0 &= ~128;
+      _hasBits0 &= ~256;
     }
 
     /// <summary>Field number for the "refreshNpcPokerNum" field.</summary>
-    public const int RefreshNpcPokerNumFieldNumber = 13;
+    public const int RefreshNpcPokerNumFieldNumber = 14;
     private readonly static int RefreshNpcPokerNumDefaultValue = 0;
 
     private int refreshNpcPokerNum_;
@@ -1350,9 +1991,9 @@ namespace Pb {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int RefreshNpcPokerNum {
-      get { if ((_hasBits0 & 256) != 0) { return refreshNpcPokerNum_; } else { return RefreshNpcPokerNumDefaultValue; } }
+      get { if ((_hasBits0 & 512) != 0) { return refreshNpcPokerNum_; } else { return RefreshNpcPokerNumDefaultValue; } }
       set {
-        _hasBits0 |= 256;
+        _hasBits0 |= 512;
         refreshNpcPokerNum_ = value;
       }
     }
@@ -1360,17 +2001,17 @@ namespace Pb {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public bool HasRefreshNpcPokerNum {
-      get { return (_hasBits0 & 256) != 0; }
+      get { return (_hasBits0 & 512) != 0; }
     }
     /// <summary>Clears the value of the "refreshNpcPokerNum" field</summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public void ClearRefreshNpcPokerNum() {
-      _hasBits0 &= ~256;
+      _hasBits0 &= ~512;
     }
 
     /// <summary>Field number for the "refreshPlayerPokerNum" field.</summary>
-    public const int RefreshPlayerPokerNumFieldNumber = 14;
+    public const int RefreshPlayerPokerNumFieldNumber = 15;
     private readonly static int RefreshPlayerPokerNumDefaultValue = 0;
 
     private int refreshPlayerPokerNum_;
@@ -1380,9 +2021,9 @@ namespace Pb {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int RefreshPlayerPokerNum {
-      get { if ((_hasBits0 & 512) != 0) { return refreshPlayerPokerNum_; } else { return RefreshPlayerPokerNumDefaultValue; } }
+      get { if ((_hasBits0 & 1024) != 0) { return refreshPlayerPokerNum_; } else { return RefreshPlayerPokerNumDefaultValue; } }
       set {
-        _hasBits0 |= 512;
+        _hasBits0 |= 1024;
         refreshPlayerPokerNum_ = value;
       }
     }
@@ -1390,13 +2031,13 @@ namespace Pb {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public bool HasRefreshPlayerPokerNum {
-      get { return (_hasBits0 & 512) != 0; }
+      get { return (_hasBits0 & 1024) != 0; }
     }
     /// <summary>Clears the value of the "refreshPlayerPokerNum" field</summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public void ClearRefreshPlayerPokerNum() {
-      _hasBits0 &= ~512;
+      _hasBits0 &= ~1024;
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1424,6 +2065,7 @@ namespace Pb {
       if (PokerPosX != other.PokerPosX) return false;
       if (PokerPosY != other.PokerPosY) return false;
       if (FinalPoint != other.FinalPoint) return false;
+      if (Blackjack != other.Blackjack) return false;
       if (ChapterId != other.ChapterId) return false;
       if (BarrierId != other.BarrierId) return false;
       if (RefreshNpcPokerNum != other.RefreshNpcPokerNum) return false;
@@ -1445,6 +2087,7 @@ namespace Pb {
       if (HasPokerPosX) hash ^= PokerPosX.GetHashCode();
       if (HasPokerPosY) hash ^= PokerPosY.GetHashCode();
       if (HasFinalPoint) hash ^= FinalPoint.GetHashCode();
+      if (HasBlackjack) hash ^= Blackjack.GetHashCode();
       if (HasChapterId) hash ^= ChapterId.GetHashCode();
       if (HasBarrierId) hash ^= BarrierId.GetHashCode();
       if (HasRefreshNpcPokerNum) hash ^= RefreshNpcPokerNum.GetHashCode();
@@ -1495,20 +2138,24 @@ namespace Pb {
         output.WriteRawTag(80);
         output.WriteInt32(FinalPoint);
       }
-      if (HasChapterId) {
+      if (HasBlackjack) {
         output.WriteRawTag(88);
+        output.WriteInt32(Blackjack);
+      }
+      if (HasChapterId) {
+        output.WriteRawTag(96);
         output.WriteInt32(ChapterId);
       }
       if (HasBarrierId) {
-        output.WriteRawTag(96);
+        output.WriteRawTag(104);
         output.WriteInt32(BarrierId);
       }
       if (HasRefreshNpcPokerNum) {
-        output.WriteRawTag(104);
+        output.WriteRawTag(112);
         output.WriteInt32(RefreshNpcPokerNum);
       }
       if (HasRefreshPlayerPokerNum) {
-        output.WriteRawTag(112);
+        output.WriteRawTag(120);
         output.WriteInt32(RefreshPlayerPokerNum);
       }
       if (_unknownFields != null) {
@@ -1549,20 +2196,24 @@ namespace Pb {
         output.WriteRawTag(80);
         output.WriteInt32(FinalPoint);
       }
-      if (HasChapterId) {
+      if (HasBlackjack) {
         output.WriteRawTag(88);
+        output.WriteInt32(Blackjack);
+      }
+      if (HasChapterId) {
+        output.WriteRawTag(96);
         output.WriteInt32(ChapterId);
       }
       if (HasBarrierId) {
-        output.WriteRawTag(96);
+        output.WriteRawTag(104);
         output.WriteInt32(BarrierId);
       }
       if (HasRefreshNpcPokerNum) {
-        output.WriteRawTag(104);
+        output.WriteRawTag(112);
         output.WriteInt32(RefreshNpcPokerNum);
       }
       if (HasRefreshPlayerPokerNum) {
-        output.WriteRawTag(112);
+        output.WriteRawTag(120);
         output.WriteInt32(RefreshPlayerPokerNum);
       }
       if (_unknownFields != null) {
@@ -1596,6 +2247,9 @@ namespace Pb {
       }
       if (HasFinalPoint) {
         size += 1 + pb::CodedOutputStream.ComputeInt32Size(FinalPoint);
+      }
+      if (HasBlackjack) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Blackjack);
       }
       if (HasChapterId) {
         size += 1 + pb::CodedOutputStream.ComputeInt32Size(ChapterId);
@@ -1642,6 +2296,9 @@ namespace Pb {
       }
       if (other.HasFinalPoint) {
         FinalPoint = other.FinalPoint;
+      }
+      if (other.HasBlackjack) {
+        Blackjack = other.Blackjack;
       }
       if (other.HasChapterId) {
         ChapterId = other.ChapterId;
@@ -1719,18 +2376,22 @@ namespace Pb {
             break;
           }
           case 88: {
-            ChapterId = input.ReadInt32();
+            Blackjack = input.ReadInt32();
             break;
           }
           case 96: {
-            BarrierId = input.ReadInt32();
+            ChapterId = input.ReadInt32();
             break;
           }
           case 104: {
-            RefreshNpcPokerNum = input.ReadInt32();
+            BarrierId = input.ReadInt32();
             break;
           }
           case 112: {
+            RefreshNpcPokerNum = input.ReadInt32();
+            break;
+          }
+          case 120: {
             RefreshPlayerPokerNum = input.ReadInt32();
             break;
           }
@@ -1798,18 +2459,22 @@ namespace Pb {
             break;
           }
           case 88: {
-            ChapterId = input.ReadInt32();
+            Blackjack = input.ReadInt32();
             break;
           }
           case 96: {
-            BarrierId = input.ReadInt32();
+            ChapterId = input.ReadInt32();
             break;
           }
           case 104: {
-            RefreshNpcPokerNum = input.ReadInt32();
+            BarrierId = input.ReadInt32();
             break;
           }
           case 112: {
+            RefreshNpcPokerNum = input.ReadInt32();
+            break;
+          }
+          case 120: {
             RefreshPlayerPokerNum = input.ReadInt32();
             break;
           }
@@ -1839,7 +2504,7 @@ namespace Pb {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Pb.ProtoReflection.Descriptor.MessageTypes[4]; }
+      get { return global::Pb.ProtoReflection.Descriptor.MessageTypes[5]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1863,10 +2528,9 @@ namespace Pb {
       initSeed_ = other.initSeed_;
       gameState_ = other.gameState_;
       pageIndex_ = other.pageIndex_;
-      playingId_ = other.playingId_;
-      exp_ = other.exp_;
-      defeatPlayerRoles_ = other.defeatPlayerRoles_.Clone();
+      player_ = other.player_ != null ? other.player_.Clone() : null;
       barrier_ = other.barrier_ != null ? other.barrier_.Clone() : null;
+      defeatRoles_ = other.defeatRoles_.Clone();
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -1957,82 +2621,23 @@ namespace Pb {
       _hasBits0 &= ~4;
     }
 
-    /// <summary>Field number for the "playingId" field.</summary>
-    public const int PlayingIdFieldNumber = 4;
-    private readonly static int PlayingIdDefaultValue = 0;
-
-    private int playingId_;
+    /// <summary>Field number for the "player" field.</summary>
+    public const int PlayerFieldNumber = 4;
+    private global::Pb.Player player_;
     /// <summary>
-    ///当前玩角色Id
+    ///玩家信息
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public int PlayingId {
-      get { if ((_hasBits0 & 8) != 0) { return playingId_; } else { return PlayingIdDefaultValue; } }
+    public global::Pb.Player Player {
+      get { return player_; }
       set {
-        _hasBits0 |= 8;
-        playingId_ = value;
+        player_ = value;
       }
-    }
-    /// <summary>Gets whether the "playingId" field is set</summary>
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public bool HasPlayingId {
-      get { return (_hasBits0 & 8) != 0; }
-    }
-    /// <summary>Clears the value of the "playingId" field</summary>
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void ClearPlayingId() {
-      _hasBits0 &= ~8;
-    }
-
-    /// <summary>Field number for the "exp" field.</summary>
-    public const int ExpFieldNumber = 5;
-    private readonly static int ExpDefaultValue = 0;
-
-    private int exp_;
-    /// <summary>
-    ///经验
-    /// </summary>
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public int Exp {
-      get { if ((_hasBits0 & 16) != 0) { return exp_; } else { return ExpDefaultValue; } }
-      set {
-        _hasBits0 |= 16;
-        exp_ = value;
-      }
-    }
-    /// <summary>Gets whether the "exp" field is set</summary>
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public bool HasExp {
-      get { return (_hasBits0 & 16) != 0; }
-    }
-    /// <summary>Clears the value of the "exp" field</summary>
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void ClearExp() {
-      _hasBits0 &= ~16;
-    }
-
-    /// <summary>Field number for the "defeatPlayerRoles" field.</summary>
-    public const int DefeatPlayerRolesFieldNumber = 6;
-    private static readonly pb::FieldCodec<global::Pb.DefeatPlayerRole> _repeated_defeatPlayerRoles_codec
-        = pb::FieldCodec.ForMessage(50, global::Pb.DefeatPlayerRole.Parser);
-    private readonly pbc::RepeatedField<global::Pb.DefeatPlayerRole> defeatPlayerRoles_ = new pbc::RepeatedField<global::Pb.DefeatPlayerRole>();
-    /// <summary>
-    ///击败的
-    /// </summary>
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public pbc::RepeatedField<global::Pb.DefeatPlayerRole> DefeatPlayerRoles {
-      get { return defeatPlayerRoles_; }
     }
 
     /// <summary>Field number for the "barrier" field.</summary>
-    public const int BarrierFieldNumber = 7;
+    public const int BarrierFieldNumber = 5;
     private global::Pb.Barrier barrier_;
     /// <summary>
     ///关卡
@@ -2044,6 +2649,20 @@ namespace Pb {
       set {
         barrier_ = value;
       }
+    }
+
+    /// <summary>Field number for the "defeatRoles" field.</summary>
+    public const int DefeatRolesFieldNumber = 6;
+    private static readonly pb::FieldCodec<global::Pb.DefeatRole> _repeated_defeatRoles_codec
+        = pb::FieldCodec.ForMessage(50, global::Pb.DefeatRole.Parser);
+    private readonly pbc::RepeatedField<global::Pb.DefeatRole> defeatRoles_ = new pbc::RepeatedField<global::Pb.DefeatRole>();
+    /// <summary>
+    ///击败的
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public pbc::RepeatedField<global::Pb.DefeatRole> DefeatRoles {
+      get { return defeatRoles_; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -2064,10 +2683,9 @@ namespace Pb {
       if (InitSeed != other.InitSeed) return false;
       if (GameState != other.GameState) return false;
       if (PageIndex != other.PageIndex) return false;
-      if (PlayingId != other.PlayingId) return false;
-      if (Exp != other.Exp) return false;
-      if(!defeatPlayerRoles_.Equals(other.defeatPlayerRoles_)) return false;
+      if (!object.Equals(Player, other.Player)) return false;
       if (!object.Equals(Barrier, other.Barrier)) return false;
+      if(!defeatRoles_.Equals(other.defeatRoles_)) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -2078,10 +2696,9 @@ namespace Pb {
       if (HasInitSeed) hash ^= InitSeed.GetHashCode();
       if (HasGameState) hash ^= GameState.GetHashCode();
       if (HasPageIndex) hash ^= PageIndex.GetHashCode();
-      if (HasPlayingId) hash ^= PlayingId.GetHashCode();
-      if (HasExp) hash ^= Exp.GetHashCode();
-      hash ^= defeatPlayerRoles_.GetHashCode();
+      if (player_ != null) hash ^= Player.GetHashCode();
       if (barrier_ != null) hash ^= Barrier.GetHashCode();
+      hash ^= defeatRoles_.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -2112,19 +2729,15 @@ namespace Pb {
         output.WriteRawTag(24);
         output.WriteInt32(PageIndex);
       }
-      if (HasPlayingId) {
-        output.WriteRawTag(32);
-        output.WriteInt32(PlayingId);
+      if (player_ != null) {
+        output.WriteRawTag(34);
+        output.WriteMessage(Player);
       }
-      if (HasExp) {
-        output.WriteRawTag(40);
-        output.WriteInt32(Exp);
-      }
-      defeatPlayerRoles_.WriteTo(output, _repeated_defeatPlayerRoles_codec);
       if (barrier_ != null) {
-        output.WriteRawTag(58);
+        output.WriteRawTag(42);
         output.WriteMessage(Barrier);
       }
+      defeatRoles_.WriteTo(output, _repeated_defeatRoles_codec);
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -2147,19 +2760,15 @@ namespace Pb {
         output.WriteRawTag(24);
         output.WriteInt32(PageIndex);
       }
-      if (HasPlayingId) {
-        output.WriteRawTag(32);
-        output.WriteInt32(PlayingId);
+      if (player_ != null) {
+        output.WriteRawTag(34);
+        output.WriteMessage(Player);
       }
-      if (HasExp) {
-        output.WriteRawTag(40);
-        output.WriteInt32(Exp);
-      }
-      defeatPlayerRoles_.WriteTo(ref output, _repeated_defeatPlayerRoles_codec);
       if (barrier_ != null) {
-        output.WriteRawTag(58);
+        output.WriteRawTag(42);
         output.WriteMessage(Barrier);
       }
+      defeatRoles_.WriteTo(ref output, _repeated_defeatRoles_codec);
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -2179,16 +2788,13 @@ namespace Pb {
       if (HasPageIndex) {
         size += 1 + pb::CodedOutputStream.ComputeInt32Size(PageIndex);
       }
-      if (HasPlayingId) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(PlayingId);
+      if (player_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Player);
       }
-      if (HasExp) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Exp);
-      }
-      size += defeatPlayerRoles_.CalculateSize(_repeated_defeatPlayerRoles_codec);
       if (barrier_ != null) {
         size += 1 + pb::CodedOutputStream.ComputeMessageSize(Barrier);
       }
+      size += defeatRoles_.CalculateSize(_repeated_defeatRoles_codec);
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
       }
@@ -2210,19 +2816,19 @@ namespace Pb {
       if (other.HasPageIndex) {
         PageIndex = other.PageIndex;
       }
-      if (other.HasPlayingId) {
-        PlayingId = other.PlayingId;
+      if (other.player_ != null) {
+        if (player_ == null) {
+          Player = new global::Pb.Player();
+        }
+        Player.MergeFrom(other.Player);
       }
-      if (other.HasExp) {
-        Exp = other.Exp;
-      }
-      defeatPlayerRoles_.Add(other.defeatPlayerRoles_);
       if (other.barrier_ != null) {
         if (barrier_ == null) {
           Barrier = new global::Pb.Barrier();
         }
         Barrier.MergeFrom(other.Barrier);
       }
+      defeatRoles_.Add(other.defeatRoles_);
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
 
@@ -2254,23 +2860,22 @@ namespace Pb {
             PageIndex = input.ReadInt32();
             break;
           }
-          case 32: {
-            PlayingId = input.ReadInt32();
+          case 34: {
+            if (player_ == null) {
+              Player = new global::Pb.Player();
+            }
+            input.ReadMessage(Player);
             break;
           }
-          case 40: {
-            Exp = input.ReadInt32();
-            break;
-          }
-          case 50: {
-            defeatPlayerRoles_.AddEntriesFrom(input, _repeated_defeatPlayerRoles_codec);
-            break;
-          }
-          case 58: {
+          case 42: {
             if (barrier_ == null) {
               Barrier = new global::Pb.Barrier();
             }
             input.ReadMessage(Barrier);
+            break;
+          }
+          case 50: {
+            defeatRoles_.AddEntriesFrom(input, _repeated_defeatRoles_codec);
             break;
           }
         }
@@ -2304,23 +2909,22 @@ namespace Pb {
             PageIndex = input.ReadInt32();
             break;
           }
-          case 32: {
-            PlayingId = input.ReadInt32();
+          case 34: {
+            if (player_ == null) {
+              Player = new global::Pb.Player();
+            }
+            input.ReadMessage(Player);
             break;
           }
-          case 40: {
-            Exp = input.ReadInt32();
-            break;
-          }
-          case 50: {
-            defeatPlayerRoles_.AddEntriesFrom(ref input, _repeated_defeatPlayerRoles_codec);
-            break;
-          }
-          case 58: {
+          case 42: {
             if (barrier_ == null) {
               Barrier = new global::Pb.Barrier();
             }
             input.ReadMessage(Barrier);
+            break;
+          }
+          case 50: {
+            defeatRoles_.AddEntriesFrom(ref input, _repeated_defeatRoles_codec);
             break;
           }
         }
@@ -2348,7 +2952,7 @@ namespace Pb {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Pb.ProtoReflection.Descriptor.MessageTypes[5]; }
+      get { return global::Pb.ProtoReflection.Descriptor.MessageTypes[6]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]

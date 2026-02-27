@@ -7,8 +7,8 @@ public class Main : MonoBehaviour
     {
         InvokeRepeating("repeatHandleMessage", 0.0f, 0.1f);
         LangMgr.Instance.init("config/language");
-        GamePropertyMgr.Instance.init();
         GameStaticConfigMgr.Instance.init();
+        GamePropertyMgr.Instance.init();
         UIMgr.Instance.init(this.gameObject, "config/UIConfig");
         UIMgr.Instance.showView("LoadingView");
         PokerPileMgr.Instance.init();

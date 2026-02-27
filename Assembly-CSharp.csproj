@@ -116,7 +116,6 @@
     <Compile Include="Assets\scripts\logic\modules\npc\NpcMgr.cs" />
     <Compile Include="Assets\scripts\logic\modules\user\UserMgr.cs" />
     <Compile Include="Assets\scripts\logic\modules\game\GameDataMgr.cs" />
-    <Compile Include="Assets\scripts\logic\modules\game\BarrierReqMgr.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\ChatController.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\ObjectSpin.cs" />
     <Compile Include="Assets\scripts\logic\data\IUser.cs" />
@@ -152,10 +151,12 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark02.cs" />
     <Compile Include="Assets\scripts\logic\data\UserObject.cs" />
     <Compile Include="Assets\scripts\ui\Poker.cs" />
+    <Compile Include="Assets\scripts\logic\modules\game\GameReqMgr.cs" />
     <Compile Include="Assets\conframework\base\Singleton.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextSelector_B.cs" />
     <Compile Include="Assets\scripts\logic\modules\card\IRoundResult.cs" />
     <Compile Include="Assets\conframework\base\ISerialization.cs" />
+    <Compile Include="Assets\scripts\ui\PlayerInfo.cs" />
     <Compile Include="Assets\scripts\logic\modules\card\handle\HeartCardHandle.cs" />
     <Compile Include="Assets\scripts\logic\modules\game\SettingDataMgr.cs" />
     <Compile Include="Assets\scripts\logic\modules\card\handle\BerserkerPlusHandle.cs" />
@@ -172,6 +173,7 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\CameraController.cs" />
     <Compile Include="Assets\scripts\logic\data\static\ChapterConfig.cs" />
     <Compile Include="Assets\scripts\logic\modules\game\GameStaticConfigMgr.cs" />
+    <Compile Include="Assets\scripts\logic\modules\game\PlayerDataMgr.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark03.cs" />
     <Compile Include="Assets\scripts\logic\modules\card\handle\SpadeCardPlusHandle.cs" />
     <Compile Include="Assets\scripts\logic\modules\card\ICardHandlePara.cs" />

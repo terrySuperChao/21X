@@ -16,7 +16,7 @@ public class LobbyView : MonoBehaviour,IBaseView
     public Sprite tabClickSprite;
     public Sprite tabNormalSprite;
 
-    private PlayerRole _selectPlayerRole = null;
+    private PlayerRole _selectRole = null;
 
     public void init()
     {
@@ -98,15 +98,15 @@ public class LobbyView : MonoBehaviour,IBaseView
         }
 
         this.playerRoleDesc.GetComponent<Text>().text = playerRole.desc;
-        this._selectPlayerRole = playerRole;
+        this._selectRole = playerRole;
     }
 
     private void updateDiff(int playerRoleId) {
         GameProperty gameProperty = GamePropertyMgr.Instance.getGameProperty();
 
         int index = 0;
-        for (int i = 0; i < gameProperty.GameData.DefeatPlayerRoles.Count; i++){
-            if (gameProperty.GameData.DefeatPlayerRoles[i].Id == playerRoleId) {
+        for (int i = 0; i < gameProperty.GameData.DefeatRoles.Count; i++){
+            if (gameProperty.GameData.DefeatRoles[i].Id == playerRoleId) {
                 index = i;
                 break;
             }
@@ -167,8 +167,8 @@ public class LobbyView : MonoBehaviour,IBaseView
 
     public void onSecondSkillClick(int parameter) { 
         this.secondSkillPop.SetActive(true);
-        if (parameter < this._selectPlayerRole.secondSkills.Count) {
-            Skill skill = this._selectPlayerRole.secondSkills[parameter];
+        if (parameter < this._selectRole.secondSkills.Count) {
+            Skill skill = this._selectRole.secondSkills[parameter];
             this.secondSkillPopDesc.GetComponent<Text>().text = skill.name + "\n" + skill.desc;
 
             Transform obj1Transform = this.secondSkillContainer.transform.GetChild(parameter);
@@ -181,10 +181,7 @@ public class LobbyView : MonoBehaviour,IBaseView
     }
 
     private void gotoBarrierView() {
-        GameDataMgr.Instance.newGame();
-        GameDataMgr.Instance.setGameState(GameState.playing);
-        GameDataMgr.Instance.setPageIndex(PageIndex.BarrierView);
-        GamePropertyMgr.Instance.save();
+        GameReqMgr.Instance.requestNewGame(this._selectRole.id);
         UIMgr.Instance.showView("BarrierView");
     }
 }

@@ -12,17 +12,20 @@ public class GameDataMgr : Singleton<GameDataMgr>
     public GameData newGameData() {
         GameData gameData = new GameData();
         gameData.Barrier = BarrierDataMgr.Instance.newBarrier();
+        gameData.Player = PlayerDataMgr.Instance.newPlayer();
         return gameData;
     }
 
     public void deserialized() {
         RandomMgr.Instance.deserialized(this._gameData);
         BarrierDataMgr.Instance.deserialized(this._gameData);
+        PlayerDataMgr.Instance.deserialized(this._gameData);
     }
 
     public void serialized() {
         RandomMgr.Instance.serialized(this._gameData);
         BarrierDataMgr.Instance.serialized(this._gameData);
+        PlayerDataMgr.Instance.serialized(this._gameData);
     }
 
     public void newGame() {

@@ -1,8 +1,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BarrierReqMgr : Singleton<BarrierReqMgr>
+public class GameReqMgr : Singleton<GameReqMgr>
 {
+    public void requestNewGame(int roleId)
+    {
+        GameDataMgr.Instance.newGame();
+        GameDataMgr.Instance.setGameState(GameState.playing);
+        GameDataMgr.Instance.setPageIndex(PageIndex.BarrierView);
+        PlayerDataMgr.Instance.setRoleId(roleId);
+        PlayerDataMgr.Instance.setMoney(ConfigMgr.INIT_MONEY_VALUE);
+        PlayerDataMgr.Instance.setHP(ConfigMgr.INIT_BLOOD_VALUE);
+        PlayerDataMgr.Instance.setMaxHP(ConfigMgr.INIT_BLOOD_VALUE);
+        PlayerDataMgr.Instance.setMaxMagic(ConfigMgr.INIT_MAGIC_VALUE);
+        GamePropertyMgr.Instance.save();
+    }
+
     public void requestNewBarrier() {
         List<BarrierDealType> typeList = new List<BarrierDealType> { BarrierDealType.npc, BarrierDealType.player };
         for (int i = 0; i < typeList.Count; i++) {
@@ -102,5 +115,35 @@ public class BarrierReqMgr : Singleton<BarrierReqMgr>
         BarrierDataMgr.Instance.setState(BarrierState.dragPoker);
         BarrierDataMgr.Instance.setMatchPoker(0, 0, 0, 0);
         GamePropertyMgr.Instance.save();
+    }
+
+    public void requestRelax() {
+        int point = BarrierDataMgr.Instance.getFinalPoint();
+        int value = 0;
+        if (point < 15)
+        {
+            value = 10;
+        }
+        else if (point >= 15 && point <= 19)
+        {
+            value = 20;
+        }
+        else if (point >= 20 && point <= 21)
+        {
+            value = 30;
+        }
+        else {
+            value = RandomMgr.Instance.getRangeInt(1, 16);
+        }
+        if (BarrierDataMgr.Instance.getBlackjack() == 1)
+        {
+            PlayerDataMgr.Instance.addMaxHP(10);
+        }
+        PlayerDataMgr.Instance.addHP(value);
+        GameDataMgr.Instance.setPageIndex(PageIndex.BarrierView);
+        GamePropertyMgr.Instance.save();
+
+        bool isFinish = PlayerDataMgr.Instance.getHP() == PlayerDataMgr.Instance.getMaxHP();
+        GameMessage.Instance.addMsg(GameConst.RELAXVIEW_RELAX,isFinish);
     }
 }

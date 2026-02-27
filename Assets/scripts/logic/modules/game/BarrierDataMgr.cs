@@ -169,14 +169,29 @@ public class BarrierDataMgr : Singleton<BarrierDataMgr>
         return this._barrier.FinalPoint;
     }
 
-    public int getMatchPoint() {
-        List<int> values = new List<int> ();
+    public int getBlackjack()
+    {
+        return this._barrier.Blackjack;
+    }
+
+    private List<int> getPokerValues() {
+        List<int> values = new List<int>();
         values.Add(this._barrier.MatchPointA);
         values.Add(this._barrier.MatchPointB);
-        for (int i = 0; i < this._otherList.Count; i++) {
+        for (int i = 0; i < this._otherList.Count; i++)
+        {
             values.Add(this._otherList[i].getValue());
         }
-        return PokerPointMgr.Instance.getPokerPoint(values);
+        return values;
+    }
+
+    public int getMatchPoint() {
+        return PokerPointMgr.Instance.getPokerPoint(this.getPokerValues());
+    }
+
+    public bool isBlackjack()
+    {
+        return PokerPointMgr.Instance.isBlackJack(this.getPokerValues());
     }
 
     public void clearMatch() {
@@ -193,6 +208,8 @@ public class BarrierDataMgr : Singleton<BarrierDataMgr>
                 break;
             }
         }
+        
+        this._barrier.Blackjack = this.isBlackjack() ? 1 : 0;
         this._barrier.FinalPoint = this.getMatchPoint();
         this._barrier.MatchPointA = 0;
         this._barrier.MatchPointB = 0;

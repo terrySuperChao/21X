@@ -30,6 +30,7 @@ public class BarrierView : MonoBehaviour, IBaseView
     public GameObject title;
     public GameObject desc;
     public GameObject chapterItem;
+
     public void init()
     {
 
@@ -54,6 +55,7 @@ public class BarrierView : MonoBehaviour, IBaseView
         this.stopPokerBtn.GetComponent<Button>().interactable = false;
         this.dealPokerBtn.GetComponent<Button>().interactable = false;
 
+        this.showPlayerInfo();
         this.showChapterInfo();
         this.showRefreshNpcPokerNum();
         this.showRefreshPlayerPokerNum();
@@ -65,7 +67,7 @@ public class BarrierView : MonoBehaviour, IBaseView
         BarrierState state = BarrierDataMgr.Instance.getState();
         switch (state) {
             case BarrierState.startPoker:
-                BarrierReqMgr.Instance.requestNewBarrier();
+                GameReqMgr.Instance.requestNewBarrier();
                 GameMessage.Instance.setHandleMessageComplete();
                 break;
             case BarrierState.dragPoker:
@@ -86,7 +88,7 @@ public class BarrierView : MonoBehaviour, IBaseView
                 break;
             case BarrierState.fillPoker:
                 this.addPlayerPokerDrag();
-                BarrierReqMgr.Instance.requestFillPoker();
+                GameReqMgr.Instance.requestFillPoker();
                 GameMessage.Instance.setHandleMessageComplete();
                 break;
         }
@@ -200,7 +202,7 @@ public class BarrierView : MonoBehaviour, IBaseView
                     int matchPointB = gameObject.GetComponent<Poker>().getPoker().getValue();
                     int pokerPosX = (int)gameObject.transform.position.x;
                     int pokerPosY = (int)gameObject.transform.position.y;
-                    BarrierReqMgr.Instance.requestMatchPoker(matchPointA, matchPointB, pokerPosX, pokerPosY);
+                    GameReqMgr.Instance.requestMatchPoker(matchPointA, matchPointB, pokerPosX, pokerPosY);
 
                     //重置坐标
                     for (int z = 0; z < this.playerPokers.transform.childCount; z++)
@@ -225,7 +227,7 @@ public class BarrierView : MonoBehaviour, IBaseView
                 this.matchPoint.SetActive(false);
                 this.stopPokerBtn.GetComponent<Button>().interactable = false;
                 this.dealPokerBtn.GetComponent<Button>().interactable = false;
-                BarrierReqMgr.Instance.requestUnMatchPoker();
+                GameReqMgr.Instance.requestUnMatchPoker();
             }
             return false;
         });
@@ -287,6 +289,15 @@ public class BarrierView : MonoBehaviour, IBaseView
 
         this.title.GetComponent<Text>().text = chapter.title;
         this.desc.GetComponent<Text>().text = chapter.bossDesc;
+    }
+
+    private void showPlayerInfo() {
+         this.money.GetComponent<Text>().text = PlayerDataMgr.Instance.getMoney().ToString();
+         this.diamond.GetComponent<Text>().text = PlayerDataMgr.Instance.getDiamond().ToString();
+         this.hp.GetComponent<Text>().text = PlayerDataMgr.Instance.getHP() + "/" + PlayerDataMgr.Instance.getMaxHP();
+         this.magic.GetComponent<Text>().text = PlayerDataMgr.Instance.getMagic() + "/" + PlayerDataMgr.Instance.getMaxMagic();
+         this.attack.GetComponent<Text>().text = "0";
+         this.defense.GetComponent<Text>().text = "0";
     }
 
     private void showRefreshNpcPokerNum() {
@@ -377,7 +388,7 @@ public class BarrierView : MonoBehaviour, IBaseView
 
     public void onDealPokerClick()
     {
-        BarrierReqMgr.Instance.requestDealPoker();
+        GameReqMgr.Instance.requestDealPoker();
         GameMessage.Instance.setHandleMessageComplete();
     }
 
@@ -390,7 +401,7 @@ public class BarrierView : MonoBehaviour, IBaseView
                 Destroy(child);
             }
         }
-        BarrierReqMgr.Instance.requestRefreshPoker(type);
+        GameReqMgr.Instance.requestRefreshPoker(type);
         GameMessage.Instance.setHandleMessageComplete();
     }
     public void onRefreshNpcPokerClick()
@@ -413,7 +424,7 @@ public class BarrierView : MonoBehaviour, IBaseView
         this.sureBtn.GetComponent<Button>().interactable = true;
         this.stopPokerBtn.GetComponent<Button>().interactable = false;
         this.dealPokerBtn.GetComponent<Button>().interactable = false;
-        BarrierReqMgr.Instance.requestStopPoker();
+        GameReqMgr.Instance.requestStopPoker();
     }
 
     public void onCardClick()
@@ -423,7 +434,7 @@ public class BarrierView : MonoBehaviour, IBaseView
 
     public void onSureClick()
     {
-        BarrierReqMgr.Instance.requestSurePoker();
+        GameReqMgr.Instance.requestSurePoker();
         GameMessage.Instance.setHandleMessageComplete();
     }
 
