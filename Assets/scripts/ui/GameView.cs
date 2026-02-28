@@ -60,6 +60,7 @@ public class GameView : MonoBehaviour
         EventDispatcher.Instance.on(GameConst.GAMESETTLE, this.gameSettle);
         EventDispatcher.Instance.on(GameConst.GAMENEXTROUND, this.gameNextRound);
         EventDispatcher.Instance.on(GameConst.GAMEOVER, this.gameOver);
+        EventDispatcher.Instance.on(GameConst.EXIT_PAGE, this.exitPageHandle);
 
         StartCoroutine(dealPokerAfterAction());
     }
@@ -73,6 +74,13 @@ public class GameView : MonoBehaviour
         EventDispatcher.Instance.off(GameConst.GAMESETTLE, this.gameSettle);
         EventDispatcher.Instance.off(GameConst.GAMENEXTROUND, this.gameNextRound);
         EventDispatcher.Instance.off(GameConst.GAMEOVER, this.gameOver);
+        EventDispatcher.Instance.off(GameConst.EXIT_PAGE, this.exitPageHandle);
+    }
+
+    public void exitPageHandle(params System.Object[] obj)
+    {
+        string pageName = Enum.GetName(typeof(PageIndex), GameDataMgr.Instance.getPageIndex());
+        UIMgr.Instance.showView(pageName);
     }
 
     // Update is called once per frame
@@ -427,6 +435,7 @@ public class GameView : MonoBehaviour
     private IEnumerator gameOverHandle(params System.Object[] obj)
     {
         yield return new WaitForSeconds(0.1f);
+        GameReqMgr.Instance.requestExitPage();
         EventDispatcher.Instance.emit("returnToLobby");
         GameMessage.Instance.setHandleMessageComplete();
     }

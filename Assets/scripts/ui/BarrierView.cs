@@ -34,7 +34,7 @@ public class BarrierView : MonoBehaviour, IBaseView
 
     public void init()
     {
-
+        GameMessage.Instance.clearCacheMessage();
     }
 
     public void beforeShow()
