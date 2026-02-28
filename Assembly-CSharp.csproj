@@ -173,6 +173,7 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\CameraController.cs" />
     <Compile Include="Assets\scripts\logic\data\static\ChapterConfig.cs" />
     <Compile Include="Assets\scripts\logic\modules\game\GameStaticConfigMgr.cs" />
+    <Compile Include="Assets\conframework\ui\AutoText.cs" />
     <Compile Include="Assets\scripts\logic\modules\game\PlayerDataMgr.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark03.cs" />
     <Compile Include="Assets\scripts\logic\modules\card\handle\SpadeCardPlusHandle.cs" />

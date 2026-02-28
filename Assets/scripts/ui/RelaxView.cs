@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using TMPro;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class RelaxView : MonoBehaviour, IBaseView
@@ -30,7 +31,7 @@ public class RelaxView : MonoBehaviour, IBaseView
         if (point < 15)
         {
             effectStr = "点数总和<15，治疗效果-50%";
-            hpStr = "恢复10点生命力";
+            hpStr = "恢复<s>20</s><color=red>10</color>点生命力";
         }
         else if (point >= 15 && point <= 19)
         {
@@ -42,11 +43,12 @@ public class RelaxView : MonoBehaviour, IBaseView
             if (BarrierDataMgr.Instance.getBlackjack() == 1)
             {
                 effectStr = "点数为blackjack，治疗效果+50%，额外增加生命值上限";
+                hpStr = "恢复<s>20</s><color=red>40</color>点生命力,额外增加生命值上限10";
             }
             else
             {
                 effectStr = "点数总和=20-21，治疗效果+50%";
-                hpStr = "恢复40点生命力";
+                hpStr = "恢复<s>20</s><color=red>40</color>点生命力";
             }
         }
         else
@@ -55,7 +57,7 @@ public class RelaxView : MonoBehaviour, IBaseView
             hpStr = "仅能获得随机治疗";
         }
         this.effect.GetComponent<Text>().text = effectStr;
-        this.addHp.GetComponent<Text>().text = hpStr;   
+        this.addHp.GetComponent<TMP_Text>().text = hpStr;
 
         if (BarrierDataMgr.Instance.getBlackjack() == 1)
         {
