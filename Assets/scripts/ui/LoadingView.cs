@@ -1,4 +1,6 @@
+using System;
 using System.Collections;
+using System.Drawing;
 using UnityEngine;
 
 public class LoadingView : MonoBehaviour,IBaseView
@@ -27,32 +29,16 @@ public class LoadingView : MonoBehaviour,IBaseView
     private IEnumerator gotoLobbyView()
     {
         yield return new WaitForSeconds(1.0f);
+
+        string pageName = "";
         if (GameDataMgr.Instance.getGameState() == GameState.idle)
         {
-            UIMgr.Instance.showView("EntryView");
+            pageName = Enum.GetName(typeof(PageIndex), PageIndex.EntryView);
         }
         else {
-            PageIndex pageIndex = GameDataMgr.Instance.getPageIndex();
-            if (pageIndex == PageIndex.EntryView)
-            {
-                UIMgr.Instance.showView("EntryView");
-            }
-            else if (pageIndex == PageIndex.LobbyView)
-            {
-                UIMgr.Instance.showView("LobbyView");
-            }
-            else if (pageIndex == PageIndex.BarrierView)
-            {
-                UIMgr.Instance.showView("BarrierView");
-            }
-            else if (pageIndex == PageIndex.RelaxView) {
-                UIMgr.Instance.showView("RelaxView");
-            }
-            else if (pageIndex == PageIndex.GameView)
-            {
-                UIMgr.Instance.showView("GameView");
-            }
+            pageName = Enum.GetName(typeof(PageIndex), GameDataMgr.Instance.getPageIndex());
         }
+        UIMgr.Instance.showView(pageName);
     }
 
         // Start is called before the first frame update

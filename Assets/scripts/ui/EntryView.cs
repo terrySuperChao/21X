@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class EntryView : MonoBehaviour,IBaseView
@@ -43,30 +44,16 @@ public class EntryView : MonoBehaviour,IBaseView
     }
 
     public void onNewGameClick() {
-        UIMgr.Instance.showView("LobbyView");
+        string pageName = Enum.GetName(typeof(PageIndex), PageIndex.LobbyView);
+        UIMgr.Instance.showView(pageName);
     }
 
     public void onContinueClick() {
         GameDataMgr.Instance.setGameState(GameState.playing);
         GamePropertyMgr.Instance.save();
 
-        PageIndex pageIndex = GameDataMgr.Instance.getPageIndex();
-        if (pageIndex == PageIndex.LobbyView)
-        {
-            UIMgr.Instance.showView("LobbyView");
-        }
-        else if (pageIndex == PageIndex.BarrierView)
-        {
-            UIMgr.Instance.showView("BarrierView");
-        }
-        else if (pageIndex == PageIndex.RelaxView)
-        {
-            UIMgr.Instance.showView("RelaxView");
-        }
-        else if (pageIndex == PageIndex.GameView)
-        {
-            UIMgr.Instance.showView("GameView");
-        }
+        string pageName = Enum.GetName(typeof(PageIndex), GameDataMgr.Instance.getPageIndex());
+        UIMgr.Instance.showView(pageName);
     }
 
     public void onSettingViewClick() {

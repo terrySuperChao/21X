@@ -46,14 +46,15 @@ public class PopView : MonoBehaviour, IBaseView
     }
 
     public void onHomeClick() {
-        GameDataMgr.Instance.setGameState(GameState.idle);
-        GamePropertyMgr.Instance.save();
+        GameReqMgr.Instance.requestReturnHome();
         UIMgr.Instance.closeView(this.gameObject.name);
-        UIMgr.Instance.showView("EntryView");
+
+        string pageName = Enum.GetName(typeof(PageIndex), PageIndex.EntryView);
+        UIMgr.Instance.showView(pageName);
     }
 
     public void onSaveClick() {
-        GamePropertyMgr.Instance.save();
+        GameReqMgr.Instance.requestSaveFile();
         UIMgr.Instance.closeView(this.gameObject.name);
         UIMgr.Instance.showTips("TipsView", "保存成功");
     }

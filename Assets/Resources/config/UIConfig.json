@@ -9,7 +9,7 @@
 		"name": "EntryView",
 		"resPath": "prefabs/game/EntryView",
 		"viewType": 1,
-		"desc":"大厅界面"
+		"desc":"进入界面"
 	},
 	{
 		"name": "LobbyView",
@@ -34,6 +34,12 @@
 		"resPath": "prefabs/game/RelaxView",
 		"viewType": 1,
 		"desc":"休息界面"
+	},
+	{
+		"name": "AdventureView",
+		"resPath": "prefabs/game/AdventureView",
+		"viewType": 1,
+		"desc":"奇遇界面"
 	},
 	{
 		"name": "SettingView",

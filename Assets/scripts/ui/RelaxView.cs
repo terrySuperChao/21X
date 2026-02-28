@@ -1,4 +1,5 @@
 ﻿using TMPro;
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,7 +8,7 @@ public class RelaxView : MonoBehaviour, IBaseView
     public GameObject point;
     public GameObject effect;
     public GameObject addHp;
-
+    
     public void init()
     {
 
@@ -87,9 +88,9 @@ public class RelaxView : MonoBehaviour, IBaseView
 
     public void relaxHandle(params System.Object[] obj)
     {
-        bool isFinsih = (bool)obj[0];
-        if (isFinsih) {
-            UIMgr.Instance.showView("BarrierView");
+        if (GameDataMgr.Instance.getPageIndex() != PageIndex.RelaxView) {
+            string pageName = Enum.GetName(typeof(PageIndex), GameDataMgr.Instance.getPageIndex());
+            UIMgr.Instance.showView(pageName);
         }
     }
 

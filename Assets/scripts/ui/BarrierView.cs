@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -132,7 +133,7 @@ public class BarrierView : MonoBehaviour, IBaseView
 
     public GameObject createPokerGameObject(int index, GameObject parent, IPoker poker)
     {
-        GameObject pokerGameObject = Object.Instantiate(this.pokerPrefab);
+        GameObject pokerGameObject = UnityEngine.Object.Instantiate(this.pokerPrefab);
         pokerGameObject.GetComponent<Poker>().loadPokerRes(poker);
         pokerGameObject.transform.SetParent(parent.transform, true);
         pokerGameObject.GetComponent<RectTransform>().localScale = new Vector3(0.6f, 0.6f, 0.6f);
@@ -276,7 +277,7 @@ public class BarrierView : MonoBehaviour, IBaseView
 
         GameObject parent = this.chapterItem.transform.parent.gameObject;
         for (int i = 0; i < chapter.childTotal-1; i++) {
-            GameObject item = Object.Instantiate(this.chapterItem);
+            GameObject item = UnityEngine.Object.Instantiate(this.chapterItem);
             item.GetComponent<RectTransform>().sizeDelta = new Vector2(80, 80);
             item.transform.SetParent(parent.transform, false);
         }
@@ -382,7 +383,8 @@ public class BarrierView : MonoBehaviour, IBaseView
 
     public void surePokerHandle(params System.Object[] obj)
     {
-        UIMgr.Instance.showView((string)obj[0]);
+        string pageName = Enum.GetName(typeof(PageIndex), GameDataMgr.Instance.getPageIndex());
+        UIMgr.Instance.showView(pageName);
     }
         
 

@@ -120,21 +120,13 @@ public class SettingView : MonoBehaviour, IBaseView
     }
 
     public void onDefualtClick() {
-        SettingDataMgr.Instance.resetSetting();
-        GamePropertyMgr.Instance.save();
-
-        this._curLanguage = SettingDataMgr.Instance.getLanguage();
-        LangMgr.Instance.setCurLanguage(this._curLanguage);
+        GameReqMgr.Instance.requestResetSetting();
         UIMgr.Instance.closeView("SettingView");
         UIMgr.Instance.refreshView();
     }
 
     public void onSaveClick() {
-        SettingDataMgr.Instance.setLanguage(this._curLanguage);
-        SettingDataMgr.Instance.saveSetting();
-        GamePropertyMgr.Instance.save();
-
-        LangMgr.Instance.setCurLanguage(this._curLanguage);
+        GameReqMgr.Instance.requestSaveSetting(this._curLanguage);
         UIMgr.Instance.closeView("SettingView");
         UIMgr.Instance.refreshView();
     }

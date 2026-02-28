@@ -29,6 +29,9 @@ public class GameConst
 
     //ÐÝÏ¢
     public const string RELAXVIEW_RELAX = "RELAXVIEW_RELAX";
+    //ÆæÓö
+    public const string ADVENTURE_FOOD = "ADVENTURE_FOOD";
+    public const string ADVENTURE_EXIT = "ADVENTURE_EXIT";
 
     public static ValueType SuitTransformValueType(PokerSuit suit)
     {
@@ -60,7 +63,7 @@ public class GameConst
     202, 203, 204, 205, 206, 207, 208, 209, 210, 211, 212, 213, 214,    // ºì
     302, 303, 304, 305, 306, 307, 308, 309, 310, 311, 312, 313, 314,    // ºÚ
     402, 403, 404, 405, 406, 407, 408, 409, 410, 411, 412, 413, 414     // Ã·
-};
+    };
 }
 
 public enum GameMode { 
@@ -133,6 +136,7 @@ public enum PageIndex {
     BarrierView,
     GameView,
     RelaxView,
+    AdventureView,
     ShopView,
 }
 

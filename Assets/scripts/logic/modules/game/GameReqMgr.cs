@@ -74,24 +74,20 @@ public class GameReqMgr : Singleton<GameReqMgr>
     }
 
     public void requestSurePoker() {
-        string viewName = "";
         PageIndex pageIndex = 0;
         List<IPoker> npcList = BarrierDataMgr.Instance.getPokers(BarrierDealType.npc);
         int index = npcList.FindIndex(p => p.getValue() == BarrierDataMgr.Instance.getMatchPointA());
-        
         if (index == 0)
         {
-            viewName = "GameView";
             pageIndex = PageIndex.GameView;
         }
         else if (index == 1)
         {
-            viewName = "RelaxView";
             pageIndex = PageIndex.RelaxView;
         }
         else if (index == 2)
         {
-
+            pageIndex = PageIndex.AdventureView;
         }
           
         if (pageIndex == 0) return;
@@ -101,7 +97,7 @@ public class GameReqMgr : Singleton<GameReqMgr>
         BarrierDataMgr.Instance.setState(BarrierState.fillPoker);
         GameDataMgr.Instance.setPageIndex(pageIndex);
         GamePropertyMgr.Instance.save();
-        GameMessage.Instance.addMsg(GameConst.BARRIERVIEW_SUREPOKER, viewName);
+        GameMessage.Instance.addMsg(GameConst.BARRIERVIEW_SUREPOKER);
     }
 
     public void requestMatchPoker(int matchPointA, int matchPointB, int pokerPosX, int pokerPosY)
@@ -139,11 +135,41 @@ public class GameReqMgr : Singleton<GameReqMgr>
         {
             PlayerDataMgr.Instance.addMaxHP(10);
         }
+        if (PlayerDataMgr.Instance.getHP() == PlayerDataMgr.Instance.getMaxHP()) {
+            GameDataMgr.Instance.setPageIndex(PageIndex.BarrierView);
+        }
         PlayerDataMgr.Instance.addHP(value);
+        GamePropertyMgr.Instance.save();
+        GameMessage.Instance.addMsg(GameConst.RELAXVIEW_RELAX);
+    }
+
+    public void requestExitAdventure()
+    {
         GameDataMgr.Instance.setPageIndex(PageIndex.BarrierView);
         GamePropertyMgr.Instance.save();
+        GameMessage.Instance.addMsg(GameConst.ADVENTURE_EXIT);
+    }
 
-        bool isFinish = PlayerDataMgr.Instance.getHP() == PlayerDataMgr.Instance.getMaxHP();
-        GameMessage.Instance.addMsg(GameConst.RELAXVIEW_RELAX,isFinish);
+    public void requestReturnHome() {
+        GameDataMgr.Instance.setGameState(GameState.idle);
+        GamePropertyMgr.Instance.save();
+    }
+
+    public void requestSaveSetting(string language) {
+        SettingDataMgr.Instance.setLanguage(language);
+        SettingDataMgr.Instance.saveSetting();
+        LangMgr.Instance.setCurLanguage(SettingDataMgr.Instance.getLanguage());
+        GamePropertyMgr.Instance.save();
+    }
+
+    public void requestResetSetting()
+    {
+        SettingDataMgr.Instance.resetSetting();
+        LangMgr.Instance.setCurLanguage(SettingDataMgr.Instance.getLanguage());
+        GamePropertyMgr.Instance.save();
+    }
+
+    public void requestSaveFile() {
+        GamePropertyMgr.Instance.save();
     }
 }
