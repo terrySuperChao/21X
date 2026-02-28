@@ -73,11 +73,13 @@ public class RelaxView : MonoBehaviour, IBaseView
     void Start()
     {
         EventDispatcher.Instance.on(GameConst.RELAXVIEW_RELAX, this.relaxHandle);
+        EventDispatcher.Instance.on(GameConst.EXIT_PAGE, this.exitPageHandle);
     }
 
     private void OnDestroy()
     {
         EventDispatcher.Instance.off(GameConst.RELAXVIEW_RELAX, this.relaxHandle);
+        EventDispatcher.Instance.off(GameConst.EXIT_PAGE, this.exitPageHandle);
     }
 
     // Update is called once per frame
@@ -85,6 +87,13 @@ public class RelaxView : MonoBehaviour, IBaseView
     {
 
     }
+
+    public void exitPageHandle(params System.Object[] obj)
+    {
+        string pageName = Enum.GetName(typeof(PageIndex), GameDataMgr.Instance.getPageIndex());
+        UIMgr.Instance.showView(pageName);
+    }
+
 
     public void relaxHandle(params System.Object[] obj)
     {
@@ -103,5 +112,10 @@ public class RelaxView : MonoBehaviour, IBaseView
     public void onTrainClick()
     {
 
+    }
+
+    public void onExitClick() {
+        GameReqMgr.Instance.requestExitPage();
+        GameMessage.Instance.setHandleMessageComplete();
     }
 }

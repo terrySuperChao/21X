@@ -74,24 +74,10 @@ public class GameReqMgr : Singleton<GameReqMgr>
     }
 
     public void requestSurePoker() {
-        PageIndex pageIndex = 0;
-        List<IPoker> npcList = BarrierDataMgr.Instance.getPokers(BarrierDealType.npc);
-        int index = npcList.FindIndex(p => p.getValue() == BarrierDataMgr.Instance.getMatchPointA());
-        if (index == 0)
-        {
-            pageIndex = PageIndex.GameView;
-        }
-        else if (index == 1)
-        {
-            pageIndex = PageIndex.RelaxView;
-        }
-        else if (index == 2)
-        {
-            pageIndex = PageIndex.AdventureView;
-        }
-          
-        if (pageIndex == 0) return;
-
+        int point = BarrierDataMgr.Instance.getMatchPointA();
+        if (point <= 0) return;
+        int suit = (point - point % 100) / 100;
+        PageIndex pageIndex = GameConst.PAGEINDEX_SUIT[suit];
         BarrierDataMgr.Instance.clearMatch();
         BarrierDataMgr.Instance.addBarrierId();
         BarrierDataMgr.Instance.setState(BarrierState.fillPoker);
@@ -143,11 +129,11 @@ public class GameReqMgr : Singleton<GameReqMgr>
         GameMessage.Instance.addMsg(GameConst.RELAXVIEW_RELAX);
     }
 
-    public void requestExitAdventure()
+    public void requestExitPage()
     {
         GameDataMgr.Instance.setPageIndex(PageIndex.BarrierView);
         GamePropertyMgr.Instance.save();
-        GameMessage.Instance.addMsg(GameConst.ADVENTURE_EXIT);
+        GameMessage.Instance.addMsg(GameConst.EXIT_PAGE);
     }
 
     public void requestReturnHome() {
