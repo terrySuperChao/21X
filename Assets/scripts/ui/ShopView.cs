@@ -1,5 +1,6 @@
-﻿using TMPro;
-using System;
+﻿using System;
+using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,7 +8,8 @@ public class ShopView : MonoBehaviour, IBaseView
 {
     public GameObject point;
     public GameObject effect;
-
+    public GameObject shopContainer;
+    public GameObject shopItem;
     public void init()
     {
 
@@ -58,6 +60,27 @@ public class ShopView : MonoBehaviour, IBaseView
         }
         else {
             this.point.GetComponent<Text>().text = "当前点数：" + point;
+        }
+
+        //商店物品
+        List<ShopInfo> shopList = GameStaticConfigMgr.Instance.getShopConfig().getShop();
+        for (int i = 0; i < shopList.Count; i++)
+        {
+            GameObject item = UnityEngine.Object.Instantiate(this.shopItem);
+            item.SetActive(true);
+            item.GetComponent<RectTransform>().sizeDelta = new Vector2(200, 200);
+            item.transform.SetParent(shopContainer.transform, false);
+
+            Transform name = item.transform.Find("name");
+            if (name != null) {
+                name.gameObject.GetComponent<TMP_Text>().text = shopList[i].name;
+            }
+
+            Transform price = item.transform.Find("price");
+            if (price != null)
+            {
+                price.gameObject.GetComponent<TMP_Text>().text = shopList[i].price + "";
+            }
         }
     }
 

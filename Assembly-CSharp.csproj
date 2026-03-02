@@ -167,6 +167,7 @@
     <Compile Include="Assets\conframework\protobuf\ProtobufMgr.cs" />
     <Compile Include="Assets\scripts\ui\AdventureView.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\WarpTextExample.cs" />
+    <Compile Include="Assets\scripts\logic\data\static\ShopConfig.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TextMeshProFloatingText.cs" />
     <Compile Include="Assets\scripts\ui\DraggableUI.cs" />
     <Compile Include="Assets\scripts\ui\CardView.cs" />
