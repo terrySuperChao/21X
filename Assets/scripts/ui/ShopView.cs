@@ -28,9 +28,11 @@ public class ShopView : MonoBehaviour, IBaseView
     public void afterShow()
     {
         int point = BarrierDataMgr.Instance.getFinalPoint();
+        int value = 0;
         string effectStr = "";
         if (point < 15)
         {
+            value = 30;
             effectStr = "商店价格涨价30%";
         }
         else if (point >= 15 && point <= 19)
@@ -45,6 +47,7 @@ public class ShopView : MonoBehaviour, IBaseView
             }
             else
             {
+                value = -30;
                 effectStr = "商店价格降价30%";
             }
         }
@@ -79,7 +82,8 @@ public class ShopView : MonoBehaviour, IBaseView
             Transform price = item.transform.Find("price");
             if (price != null)
             {
-                price.gameObject.GetComponent<TMP_Text>().text = shopList[i].price + "";
+                int newPrice = (int)(shopList[i].price * (100 + value) / 100.0f);
+                price.gameObject.GetComponent<TMP_Text>().text = "<s><color=black>"+shopList[i].price+"  </color></s>" + "<color=green>"+ newPrice + "</color>";
             }
         }
     }
