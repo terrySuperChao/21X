@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using TMPro;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class PlayerInfo : MonoBehaviour
@@ -23,10 +24,11 @@ public class PlayerInfo : MonoBehaviour
     void Start()
     {
         this.showPlayerInfo();
+        EventDispatcher.Instance.on(GameConst.UPDATE_PLAYER_INFO, this.updatePlayerInfoHandle);
     }
 
     private void OnDestroy(){
-       
+        EventDispatcher.Instance.off(GameConst.UPDATE_PLAYER_INFO, this.updatePlayerInfoHandle);
     }
 
     // Update is called once per frame
@@ -37,5 +39,11 @@ public class PlayerInfo : MonoBehaviour
     public void onPopClick()
     {
         UIMgr.Instance.showView("PopView");
+    }
+
+    public void updatePlayerInfoHandle(params System.Object[] obj)
+    {
+        this.showPlayerInfo();
+        GameMessage.Instance.setHandleMessageComplete();
     }
 }

@@ -10,6 +10,9 @@ public class ShopView : MonoBehaviour, IBaseView
     public GameObject effect;
     public GameObject shopContainer;
     public GameObject shopItem;
+    public GameObject sellHPBtn;
+    public GameObject selectItem;
+
     public void init()
     {
 
@@ -66,38 +69,64 @@ public class ShopView : MonoBehaviour, IBaseView
         }
 
         //商店物品
-        List<ShopInfo> shopList = GameStaticConfigMgr.Instance.getShopConfig().getShop();
-        for (int i = 0; i < shopList.Count; i++)
+        List<int> goods = ShopDataMgr.Instance.getGoods();
+        for (int i = 0; i < goods.Count; i++)
         {
+            int id = goods[i];
+            bool isPurchased = ShopDataMgr.Instance.isPurchased(id);
+            ShopInfo shopInfo = GameStaticConfigMgr.Instance.getShopConfig().getShopId(id);
+            int newPrice = (int)(shopInfo.price * (100 + value) / 100.0f);
+
             GameObject item = UnityEngine.Object.Instantiate(this.shopItem);
             item.SetActive(true);
             item.GetComponent<RectTransform>().sizeDelta = new Vector2(200, 200);
             item.transform.SetParent(shopContainer.transform, false);
 
-            Transform name = item.transform.Find("name");
-            if (name != null) {
-                name.gameObject.GetComponent<TMP_Text>().text = shopList[i].name;
+            Transform nameObject = item.transform.Find("name");
+            if (nameObject != null) {
+                nameObject.gameObject.GetComponent<TMP_Text>().text = shopInfo.name;
             }
 
-            Transform price = item.transform.Find("price");
-            if (price != null)
+            Transform buyBtnObject = item.transform.Find("buyBtn");
+            buyBtnObject.gameObject.SetActive(!isPurchased);
+            if (buyBtnObject != null)
             {
-                int newPrice = (int)(shopList[i].price * (100 + value) / 100.0f);
-                price.gameObject.GetComponent<TMP_Text>().text = "<s><color=black>"+shopList[i].price+"  </color></s>" + "<color=green>"+ newPrice + "</color>";
+                buyBtnObject.gameObject.GetComponent<Button>().onClick.AddListener(() =>
+                {
+                    this.selectItem = item;
+                    this.onItemClick(id, newPrice);
+                });
             }
+
+            Transform priceObject = item.transform.Find("price");
+            if (priceObject != null) { 
+                if (isPurchased)
+                {
+                    priceObject.gameObject.GetComponent<TMP_Text>().text = "<color=black>售罄</color>";
+                }
+                else {
+                    priceObject.gameObject.GetComponent<TMP_Text>().text = "<s><color=black>" + shopInfo.price + "  </color></s>" + "<color=green>" + newPrice + "</color>";
+                }
+            }
+        }
+
+        if (PlayerDataMgr.Instance.getHP() < 10) {
+            this.sellHPBtn.GetComponent<Button>().interactable = false;
         }
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        EventDispatcher.Instance.on(GameConst.RELAXVIEW_RELAX, this.relaxHandle);
+        EventDispatcher.Instance.on(GameConst.SHOPVIEW_PURCHASE, this.purchaseHandle);
+        EventDispatcher.Instance.on(GameConst.SHOPVIEW_REFRESH, this.refreshHandle);
         EventDispatcher.Instance.on(GameConst.EXIT_PAGE, this.exitPageHandle);
     }
 
     private void OnDestroy()
     {
-        EventDispatcher.Instance.off(GameConst.RELAXVIEW_RELAX, this.relaxHandle);
+        EventDispatcher.Instance.off(GameConst.SHOPVIEW_PURCHASE, this.purchaseHandle);
+        EventDispatcher.Instance.off(GameConst.SHOPVIEW_REFRESH, this.refreshHandle);
         EventDispatcher.Instance.off(GameConst.EXIT_PAGE, this.exitPageHandle);
     }
 
@@ -109,32 +138,85 @@ public class ShopView : MonoBehaviour, IBaseView
 
     public void exitPageHandle(params System.Object[] obj)
     {
-        string pageName = Enum.GetName(typeof(PageIndex), GameDataMgr.Instance.getPageIndex());
+        string pageName = System.Enum.GetName(typeof(PageIndex), GameDataMgr.Instance.getPageIndex());
         UIMgr.Instance.showView(pageName);
     }
 
-    public void relaxHandle(params System.Object[] obj)
+    public void purchaseHandle(params System.Object[] obj)
     {
-        if (GameDataMgr.Instance.getPageIndex() != PageIndex.RelaxView) {
-            string pageName = Enum.GetName(typeof(PageIndex), GameDataMgr.Instance.getPageIndex());
-            UIMgr.Instance.showView(pageName);
+        GameObject item = this.selectItem;
+        Transform buyBtnObject = item.transform.Find("buyBtn");
+        if (buyBtnObject != null)
+        {
+            buyBtnObject.gameObject.SetActive(false);
         }
+
+        Transform priceObject = item.transform.Find("price");
+        if (priceObject != null)
+        {
+            priceObject.gameObject.GetComponent<TMP_Text>().text = "<color=black>售罄</color>";
+        }
+    }
+
+    public void refreshHandle(params System.Object[] obj)
+    {
+        //商店物品
+        List<int> goods = ShopDataMgr.Instance.getGoods();
+        for (int i = 0; i < goods.Count; i++)
+        {
+            int id = goods[i];
+            ShopInfo shopInfo = GameStaticConfigMgr.Instance.getShopConfig().getShopId(id);
+ 
+            GameObject item = shopContainer.transform.GetChild(i).gameObject;
+            item.SetActive(true);
+            item.GetComponent<RectTransform>().sizeDelta = new Vector2(200, 200);
+            item.transform.SetParent(shopContainer.transform, false);
+
+            Transform nameObject = item.transform.Find("name");
+            if (nameObject != null)
+            {
+                nameObject.gameObject.GetComponent<TMP_Text>().text = shopInfo.name;
+            }
+
+            Transform buyBtnObject = item.transform.Find("buyBtn");
+            buyBtnObject.gameObject.SetActive(true);
+            if (buyBtnObject != null)
+            {
+                buyBtnObject.gameObject.GetComponent<Button>().onClick.RemoveAllListeners();
+                buyBtnObject.gameObject.GetComponent<Button>().onClick.AddListener(() =>{
+                    this.selectItem = item;
+                    this.onItemClick(id, shopInfo.price);
+                });
+            }
+
+            Transform priceObject = item.transform.Find("price");
+            if (priceObject != null)
+            {
+                priceObject.gameObject.GetComponent<TMP_Text>().text = "<color=black>" + shopInfo.price + "  </color>";
+            }
+        }
+        
     }
 
     public void onRefreshClick()
     {
-        GameReqMgr.Instance.requestRelax();
+        GameReqMgr.Instance.requestRefreshShop();
         GameMessage.Instance.setHandleMessageComplete();
     }
 
-    public void onSellClick()
+    public void onSellHPClick()
     {
-
+        GameReqMgr.Instance.requestSellHP();
+        GameMessage.Instance.setHandleMessageComplete();
     }
 
     public void onExitClick()
     {
         GameReqMgr.Instance.requestExitPage();
+        GameMessage.Instance.setHandleMessageComplete();
+    }
+    public void onItemClick(int id,int newPrice) { 
+        GameReqMgr.Instance.requestPurchaseGoods(id, newPrice);
         GameMessage.Instance.setHandleMessageComplete();
     }
 }

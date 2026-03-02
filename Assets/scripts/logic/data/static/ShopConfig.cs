@@ -27,4 +27,8 @@ public class ShopConfig
     public List<ShopInfo> getShop() {
         return this._shopList;
     }
+
+    public ShopInfo getShopId(int id) { 
+        return this._shopList.Find(x => x.id == id);
+    }
 }

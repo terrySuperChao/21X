@@ -14,7 +14,7 @@ public class RandomMgr : Singleton<RandomMgr>
 
     public void serialized(GameData data)
     {
-        data.InitSeed = this._rd.seed;
+        data.InitSeed = this._rd.getSeed();
     }
 
     public void init(int initSeed) { 

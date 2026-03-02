@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Diagnostics;
 using UnityEngine;
 
 public class GameReqMgr : Singleton<GameReqMgr>
@@ -77,7 +78,9 @@ public class GameReqMgr : Singleton<GameReqMgr>
         int point = BarrierDataMgr.Instance.getMatchPointA();
         if (point <= 0) return;
         int suit = (point - point % 100) / 100;
+        
         PageIndex pageIndex = GameConst.PAGEINDEX_SUIT[suit];
+        ShopDataMgr.Instance.createGoods(suit);
         BarrierDataMgr.Instance.clearMatch();
         BarrierDataMgr.Instance.addBarrierId();
         BarrierDataMgr.Instance.setState(BarrierState.fillPoker);
@@ -126,6 +129,7 @@ public class GameReqMgr : Singleton<GameReqMgr>
         }
         PlayerDataMgr.Instance.addHP(value);
         GamePropertyMgr.Instance.save();
+        GameMessage.Instance.addMsg(GameConst.UPDATE_PLAYER_INFO);
         GameMessage.Instance.addMsg(GameConst.RELAXVIEW_RELAX);
     }
 
@@ -157,5 +161,32 @@ public class GameReqMgr : Singleton<GameReqMgr>
 
     public void requestSaveFile() {
         GamePropertyMgr.Instance.save();
+    }
+
+    public void requestPurchaseGoods(int id,int price) {
+        if (PlayerDataMgr.Instance.getMoney() >= price) {
+            bool success = ShopDataMgr.Instance.purchaseGoods(id);
+            if (success)
+            {
+                PlayerDataMgr.Instance.addMoney(-price);
+                GamePropertyMgr.Instance.save();
+                GameMessage.Instance.addMsg(GameConst.UPDATE_PLAYER_INFO);
+                GameMessage.Instance.addMsg(GameConst.SHOPVIEW_PURCHASE);
+            }
+        }
+    }
+
+    public void requestSellHP() {
+        if (PlayerDataMgr.Instance.getHP() > 10) {
+            PlayerDataMgr.Instance.addHP(-10);
+            PlayerDataMgr.Instance.addMoney(50);
+            GamePropertyMgr.Instance.save();
+            GameMessage.Instance.addMsg(GameConst.UPDATE_PLAYER_INFO);
+        }
+    }
+
+    public void requestRefreshShop() {
+        ShopDataMgr.Instance.refreshShop();
+        GameMessage.Instance.addMsg(GameConst.SHOPVIEW_REFRESH);
     }
 }

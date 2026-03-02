@@ -31,9 +31,12 @@ public class GameConst
     public const string RELAXVIEW_RELAX = "RELAXVIEW_RELAX";
     //∆Ê”ˆ
     public const string ADVENTURE_FOOD = "ADVENTURE_FOOD";
-
+    //…ÃµÍ
+    public const string SHOPVIEW_PURCHASE = "SHOPVIEW_PURCHASE";
+    public const string SHOPVIEW_REFRESH = "SHOPVIEW_REFRESH";
 
     public const string EXIT_PAGE = "EXIT_PAGE";
+    public const string UPDATE_PLAYER_INFO = "UPDATE_PLAYER_INFO";
 
     public static ValueType SuitTransformValueType(PokerSuit suit)
     {

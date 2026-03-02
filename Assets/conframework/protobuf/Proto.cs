@@ -49,17 +49,18 @@ namespace Pb {
             "CgxfbWF0Y2hQb2ludEFCDgoMX21hdGNoUG9pbnRCQgwKCl9wb2tlclBvc1hC",
             "DAoKX3Bva2VyUG9zWUINCgtfZmluYWxQb2ludEIMCgpfYmxhY2tqYWNrQgwK",
             "Cl9jaGFwdGVySWRCDAoKX2JhcnJpZXJJZEIVChNfcmVmcmVzaE5wY1Bva2Vy",
-            "TnVtQhgKFl9yZWZyZXNoUGxheWVyUG9rZXJOdW0i+gEKCEdhbWVEYXRhEhUK",
-            "CGluaXRTZWVkGAEgASgFSACIAQESFgoJZ2FtZVN0YXRlGAIgASgFSAGIAQES",
-            "FgoJcGFnZUluZGV4GAMgASgFSAKIAQESHwoGcGxheWVyGAQgASgLMgoucGIu",
-            "UGxheWVySAOIAQESIQoHYmFycmllchgFIAEoCzILLnBiLkJhcnJpZXJIBIgB",
-            "ARIjCgtkZWZlYXRSb2xlcxgGIAMoCzIOLnBiLkRlZmVhdFJvbGVCCwoJX2lu",
-            "aXRTZWVkQgwKCl9nYW1lU3RhdGVCDAoKX3BhZ2VJbmRleEIJCgdfcGxheWVy",
-            "QgoKCF9iYXJyaWVyIp4BCgxHYW1lUHJvcGVydHkSIQoHYWNjb3VudBgBIAEo",
-            "CzILLnBiLkFjY291bnRIAIgBARIhCgdzZXR0aW5nGAIgASgLMgsucGIuU2V0",
-            "dGluZ0gBiAEBEiMKCGdhbWVEYXRhGAMgASgLMgwucGIuR2FtZURhdGFIAogB",
-            "AUIKCghfYWNjb3VudEIKCghfc2V0dGluZ0ILCglfZ2FtZURhdGFiBnByb3Rv",
-            "Mw=="));
+            "TnVtQhgKFl9yZWZyZXNoUGxheWVyUG9rZXJOdW0iKAoEU2hvcBINCgVnb29k",
+            "cxgBIAMoBRIRCglwdXJjaGFzZWQYAiADKAUioAIKCEdhbWVEYXRhEhUKCGlu",
+            "aXRTZWVkGAEgASgFSACIAQESFgoJZ2FtZVN0YXRlGAIgASgFSAGIAQESFgoJ",
+            "cGFnZUluZGV4GAMgASgFSAKIAQESHwoGcGxheWVyGAQgASgLMgoucGIuUGxh",
+            "eWVySAOIAQESIQoHYmFycmllchgFIAEoCzILLnBiLkJhcnJpZXJIBIgBARIb",
+            "CgRzaG9wGAYgASgLMggucGIuU2hvcEgFiAEBEiMKC2RlZmVhdFJvbGVzGAcg",
+            "AygLMg4ucGIuRGVmZWF0Um9sZUILCglfaW5pdFNlZWRCDAoKX2dhbWVTdGF0",
+            "ZUIMCgpfcGFnZUluZGV4QgkKB19wbGF5ZXJCCgoIX2JhcnJpZXJCBwoFX3No",
+            "b3AingEKDEdhbWVQcm9wZXJ0eRIhCgdhY2NvdW50GAEgASgLMgsucGIuQWNj",
+            "b3VudEgAiAEBEiEKB3NldHRpbmcYAiABKAsyCy5wYi5TZXR0aW5nSAGIAQES",
+            "IwoIZ2FtZURhdGEYAyABKAsyDC5wYi5HYW1lRGF0YUgCiAEBQgoKCF9hY2Nv",
+            "dW50QgoKCF9zZXR0aW5nQgsKCV9nYW1lRGF0YWIGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
@@ -68,7 +69,8 @@ namespace Pb {
             new pbr::GeneratedClrTypeInfo(typeof(global::Pb.Player), global::Pb.Player.Parser, new[]{ "Money", "Diamond", "RoleId", "Hp", "MaxHP", "Magic", "MaxMagic", "Exp" }, new[]{ "Money", "Diamond", "RoleId", "Hp", "MaxHP", "Magic", "MaxMagic", "Exp" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Pb.DefeatRole), global::Pb.DefeatRole.Parser, new[]{ "Id", "Diff" }, new[]{ "Id", "Diff" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Pb.Barrier), global::Pb.Barrier.Parser, new[]{ "PokerPile", "NpcPokers", "PlayerPokers", "OtherPokers", "State", "MatchPointA", "MatchPointB", "PokerPosX", "PokerPosY", "FinalPoint", "Blackjack", "ChapterId", "BarrierId", "RefreshNpcPokerNum", "RefreshPlayerPokerNum" }, new[]{ "State", "MatchPointA", "MatchPointB", "PokerPosX", "PokerPosY", "FinalPoint", "Blackjack", "ChapterId", "BarrierId", "RefreshNpcPokerNum", "RefreshPlayerPokerNum" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Pb.GameData), global::Pb.GameData.Parser, new[]{ "InitSeed", "GameState", "PageIndex", "Player", "Barrier", "DefeatRoles" }, new[]{ "InitSeed", "GameState", "PageIndex", "Player", "Barrier" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Pb.Shop), global::Pb.Shop.Parser, new[]{ "Goods", "Purchased" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Pb.GameData), global::Pb.GameData.Parser, new[]{ "InitSeed", "GameState", "PageIndex", "Player", "Barrier", "Shop", "DefeatRoles" }, new[]{ "InitSeed", "GameState", "PageIndex", "Player", "Barrier", "Shop" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Pb.GameProperty), global::Pb.GameProperty.Parser, new[]{ "Account", "Setting", "GameData" }, new[]{ "Account", "Setting", "GameData" }, null, null, null)
           }));
     }
@@ -2485,6 +2487,229 @@ namespace Pb {
 
   }
 
+  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+  public sealed partial class Shop : pb::IMessage<Shop>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
+    private static readonly pb::MessageParser<Shop> _parser = new pb::MessageParser<Shop>(() => new Shop());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pb::MessageParser<Shop> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Pb.ProtoReflection.Descriptor.MessageTypes[5]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public Shop() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public Shop(Shop other) : this() {
+      goods_ = other.goods_.Clone();
+      purchased_ = other.purchased_.Clone();
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public Shop Clone() {
+      return new Shop(this);
+    }
+
+    /// <summary>Field number for the "goods" field.</summary>
+    public const int GoodsFieldNumber = 1;
+    private static readonly pb::FieldCodec<int> _repeated_goods_codec
+        = pb::FieldCodec.ForInt32(10);
+    private readonly pbc::RepeatedField<int> goods_ = new pbc::RepeatedField<int>();
+    /// <summary>
+    ///商品
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public pbc::RepeatedField<int> Goods {
+      get { return goods_; }
+    }
+
+    /// <summary>Field number for the "purchased" field.</summary>
+    public const int PurchasedFieldNumber = 2;
+    private static readonly pb::FieldCodec<int> _repeated_purchased_codec
+        = pb::FieldCodec.ForInt32(18);
+    private readonly pbc::RepeatedField<int> purchased_ = new pbc::RepeatedField<int>();
+    /// <summary>
+    ///已购买列表
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public pbc::RepeatedField<int> Purchased {
+      get { return purchased_; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override bool Equals(object other) {
+      return Equals(other as Shop);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool Equals(Shop other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if(!goods_.Equals(other.goods_)) return false;
+      if(!purchased_.Equals(other.purchased_)) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override int GetHashCode() {
+      int hash = 1;
+      hash ^= goods_.GetHashCode();
+      hash ^= purchased_.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
+      goods_.WriteTo(output, _repeated_goods_codec);
+      purchased_.WriteTo(output, _repeated_purchased_codec);
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      goods_.WriteTo(ref output, _repeated_goods_codec);
+      purchased_.WriteTo(ref output, _repeated_purchased_codec);
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int CalculateSize() {
+      int size = 0;
+      size += goods_.CalculateSize(_repeated_goods_codec);
+      size += purchased_.CalculateSize(_repeated_purchased_codec);
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(Shop other) {
+      if (other == null) {
+        return;
+      }
+      goods_.Add(other.goods_);
+      purchased_.Add(other.purchased_);
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+      if ((tag & 7) == 4) {
+        // Abort on any end group tag.
+        return;
+      }
+      switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 10:
+          case 8: {
+            goods_.AddEntriesFrom(input, _repeated_goods_codec);
+            break;
+          }
+          case 18:
+          case 16: {
+            purchased_.AddEntriesFrom(input, _repeated_purchased_codec);
+            break;
+          }
+        }
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+      if ((tag & 7) == 4) {
+        // Abort on any end group tag.
+        return;
+      }
+      switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+          case 10:
+          case 8: {
+            goods_.AddEntriesFrom(ref input, _repeated_goods_codec);
+            break;
+          }
+          case 18:
+          case 16: {
+            purchased_.AddEntriesFrom(ref input, _repeated_purchased_codec);
+            break;
+          }
+        }
+      }
+    }
+    #endif
+
+  }
+
   /// <summary>
   ///游戏
   /// </summary>
@@ -2504,7 +2729,7 @@ namespace Pb {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Pb.ProtoReflection.Descriptor.MessageTypes[5]; }
+      get { return global::Pb.ProtoReflection.Descriptor.MessageTypes[6]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -2530,6 +2755,7 @@ namespace Pb {
       pageIndex_ = other.pageIndex_;
       player_ = other.player_ != null ? other.player_.Clone() : null;
       barrier_ = other.barrier_ != null ? other.barrier_.Clone() : null;
+      shop_ = other.shop_ != null ? other.shop_.Clone() : null;
       defeatRoles_ = other.defeatRoles_.Clone();
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
@@ -2651,10 +2877,25 @@ namespace Pb {
       }
     }
 
+    /// <summary>Field number for the "shop" field.</summary>
+    public const int ShopFieldNumber = 6;
+    private global::Pb.Shop shop_;
+    /// <summary>
+    ///商店
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::Pb.Shop Shop {
+      get { return shop_; }
+      set {
+        shop_ = value;
+      }
+    }
+
     /// <summary>Field number for the "defeatRoles" field.</summary>
-    public const int DefeatRolesFieldNumber = 6;
+    public const int DefeatRolesFieldNumber = 7;
     private static readonly pb::FieldCodec<global::Pb.DefeatRole> _repeated_defeatRoles_codec
-        = pb::FieldCodec.ForMessage(50, global::Pb.DefeatRole.Parser);
+        = pb::FieldCodec.ForMessage(58, global::Pb.DefeatRole.Parser);
     private readonly pbc::RepeatedField<global::Pb.DefeatRole> defeatRoles_ = new pbc::RepeatedField<global::Pb.DefeatRole>();
     /// <summary>
     ///击败的
@@ -2685,6 +2926,7 @@ namespace Pb {
       if (PageIndex != other.PageIndex) return false;
       if (!object.Equals(Player, other.Player)) return false;
       if (!object.Equals(Barrier, other.Barrier)) return false;
+      if (!object.Equals(Shop, other.Shop)) return false;
       if(!defeatRoles_.Equals(other.defeatRoles_)) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
@@ -2698,6 +2940,7 @@ namespace Pb {
       if (HasPageIndex) hash ^= PageIndex.GetHashCode();
       if (player_ != null) hash ^= Player.GetHashCode();
       if (barrier_ != null) hash ^= Barrier.GetHashCode();
+      if (shop_ != null) hash ^= Shop.GetHashCode();
       hash ^= defeatRoles_.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
@@ -2737,6 +2980,10 @@ namespace Pb {
         output.WriteRawTag(42);
         output.WriteMessage(Barrier);
       }
+      if (shop_ != null) {
+        output.WriteRawTag(50);
+        output.WriteMessage(Shop);
+      }
       defeatRoles_.WriteTo(output, _repeated_defeatRoles_codec);
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -2768,6 +3015,10 @@ namespace Pb {
         output.WriteRawTag(42);
         output.WriteMessage(Barrier);
       }
+      if (shop_ != null) {
+        output.WriteRawTag(50);
+        output.WriteMessage(Shop);
+      }
       defeatRoles_.WriteTo(ref output, _repeated_defeatRoles_codec);
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
@@ -2793,6 +3044,9 @@ namespace Pb {
       }
       if (barrier_ != null) {
         size += 1 + pb::CodedOutputStream.ComputeMessageSize(Barrier);
+      }
+      if (shop_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Shop);
       }
       size += defeatRoles_.CalculateSize(_repeated_defeatRoles_codec);
       if (_unknownFields != null) {
@@ -2827,6 +3081,12 @@ namespace Pb {
           Barrier = new global::Pb.Barrier();
         }
         Barrier.MergeFrom(other.Barrier);
+      }
+      if (other.shop_ != null) {
+        if (shop_ == null) {
+          Shop = new global::Pb.Shop();
+        }
+        Shop.MergeFrom(other.Shop);
       }
       defeatRoles_.Add(other.defeatRoles_);
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
@@ -2875,6 +3135,13 @@ namespace Pb {
             break;
           }
           case 50: {
+            if (shop_ == null) {
+              Shop = new global::Pb.Shop();
+            }
+            input.ReadMessage(Shop);
+            break;
+          }
+          case 58: {
             defeatRoles_.AddEntriesFrom(input, _repeated_defeatRoles_codec);
             break;
           }
@@ -2924,6 +3191,13 @@ namespace Pb {
             break;
           }
           case 50: {
+            if (shop_ == null) {
+              Shop = new global::Pb.Shop();
+            }
+            input.ReadMessage(Shop);
+            break;
+          }
+          case 58: {
             defeatRoles_.AddEntriesFrom(ref input, _repeated_defeatRoles_codec);
             break;
           }
@@ -2952,7 +3226,7 @@ namespace Pb {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Pb.ProtoReflection.Descriptor.MessageTypes[6]; }
+      get { return global::Pb.ProtoReflection.Descriptor.MessageTypes[7]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]

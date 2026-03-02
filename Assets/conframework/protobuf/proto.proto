@@ -49,6 +49,11 @@ message Barrier{
   optional int32 refreshPlayerPokerNum = 15; //刷新玩家的牌次数
 }
 
+message Shop{
+  repeated int32 goods = 1;        //商品
+  repeated int32 purchased = 2;   //已购买列表
+}
+
 //游戏
 message GameData{
   optional int32 initSeed = 1;
@@ -56,7 +61,8 @@ message GameData{
   optional int32 pageIndex = 3;		
   optional Player player = 4;             //玩家信息
   optional Barrier barrier = 5;           //关卡
-  repeated DefeatRole defeatRoles = 6;    //击败的
+  optional Shop shop = 6;                 //商店
+  repeated DefeatRole defeatRoles = 7;    //击败的
 }
 
 //游戏财产
