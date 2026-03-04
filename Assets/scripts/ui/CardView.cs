@@ -56,6 +56,25 @@ public class CardView : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //每局开始处理
+        UserMgr.Instance.init();
+        NpcMgr.Instance.init();
+        CardMgr.Instance.init();
+        IUser user1 = UserMgr.Instance.getUser();
+        IUser user2 = NpcMgr.Instance.getUser();
+        PokerPileMgr.Instance.shuffle();
+        HandPokerMgr.Instance.resetHandPoker();
+        GameMessage.Instance.clearCacheMessage();
+        PlayPokerMgr.Instance.clearPlayer();
+        PlayPokerMgr.Instance.addPlayer(user1);
+        PlayPokerMgr.Instance.addPlayer(user2);
+
+        //设置数值
+        user1.setMaxBlood(PlayerDataMgr.Instance.getMaxHP());
+        user1.setBlood(PlayerDataMgr.Instance.getHP());
+        user1.setMagic(PlayerDataMgr.Instance.getMagic());
+        user1.setMaxMagic(PlayerDataMgr.Instance.getMaxMagic());
+
         updateUserInfo();
         setBtnInteractable(false);
 
@@ -79,6 +98,7 @@ public class CardView : MonoBehaviour
         EventDispatcher.Instance.on(GameConst.CLEARHEADPOKER, this.clearHandPoker);
         EventDispatcher.Instance.on(GameConst.GAMENEXTROUND, this.gameNextRound);
         EventDispatcher.Instance.on(GameConst.SHOWTIPS, this.onShowTips);
+        EventDispatcher.Instance.on(GameConst.EXIT_PAGE, this.exitPageHandle);
         StartCoroutine(dealPokerAfterAction());
     }
 
@@ -101,6 +121,12 @@ public class CardView : MonoBehaviour
         EventDispatcher.Instance.off(GameConst.CLEARHEADPOKER, this.clearHandPoker);
         EventDispatcher.Instance.off(GameConst.GAMENEXTROUND, this.gameNextRound);
         EventDispatcher.Instance.off(GameConst.SHOWTIPS, this.onShowTips);
+        EventDispatcher.Instance.on(GameConst.EXIT_PAGE, this.exitPageHandle);
+    }
+    public void exitPageHandle(params System.Object[] obj)
+    {
+        string pageName = Enum.GetName(typeof(PageIndex), GameDataMgr.Instance.getPageIndex());
+        UIMgr.Instance.showView(pageName);
     }
 
     // Update is called once per frame
@@ -350,7 +376,9 @@ public class CardView : MonoBehaviour
 
     private void gameOver(params System.Object[] obj)
     {
+        GameReqMgr.Instance.requestExitPage();
         EventDispatcher.Instance.emit("returnToLobby");
+        GameMessage.Instance.setHandleMessageComplete();
     }
 
     private void setBtnInteractable(bool able) {

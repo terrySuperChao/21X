@@ -70,7 +70,7 @@ public class GameConst
     402, 403, 404, 405, 406, 407, 408, 409, 410, 411, 412, 413, 414     // ÷
     };
 
-    public readonly static PageIndex[] PAGEINDEX_SUIT = { PageIndex.BarrierView, PageIndex.AdventureView, PageIndex.RelaxView, PageIndex.GameView, PageIndex.ShopView };
+    public readonly static PageIndex[] PAGEINDEX_SUIT = { PageIndex.BarrierView, PageIndex.AdventureView, PageIndex.RelaxView, PageIndex.CardView, PageIndex.ShopView };
 }
 
 public enum GameMode { 
@@ -142,6 +142,7 @@ public enum PageIndex {
     LobbyView,
     BarrierView,
     GameView,
+    CardView,
     RelaxView,
     AdventureView,
     ShopView,

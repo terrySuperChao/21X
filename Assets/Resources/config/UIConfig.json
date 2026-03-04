@@ -30,6 +30,12 @@
 		"desc":"游戏界面"
 	},
 	{
+		"name": "CardView",
+		"resPath": "prefabs/game/CardView",
+		"viewType": 1,
+		"desc":"游戏界面"
+	},
+	{
 		"name": "RelaxView",
 		"resPath": "prefabs/game/RelaxView",
 		"viewType": 1,

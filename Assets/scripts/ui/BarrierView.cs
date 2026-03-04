@@ -6,12 +6,7 @@ using UnityEngine.UI;
 
 public class BarrierView : MonoBehaviour, IBaseView
 {
-    public GameObject money;
-    public GameObject diamond;
-    public GameObject hp;
-    public GameObject magic;
-    public GameObject attack;
-    public GameObject defense;
+   
     public GameObject pokerPrefab;
     public GameObject npcPokers;
     public GameObject playerPokers;
@@ -56,7 +51,6 @@ public class BarrierView : MonoBehaviour, IBaseView
         this.stopPokerBtn.GetComponent<Button>().interactable = false;
         this.dealPokerBtn.GetComponent<Button>().interactable = false;
 
-        this.showPlayerInfo();
         this.showChapterInfo();
         this.showRefreshNpcPokerNum();
         this.showRefreshPlayerPokerNum();
@@ -290,15 +284,6 @@ public class BarrierView : MonoBehaviour, IBaseView
 
         this.title.GetComponent<Text>().text = chapter.title;
         this.desc.GetComponent<Text>().text = chapter.bossDesc;
-    }
-
-    private void showPlayerInfo() {
-         this.money.GetComponent<Text>().text = PlayerDataMgr.Instance.getMoney().ToString();
-         this.diamond.GetComponent<Text>().text = PlayerDataMgr.Instance.getDiamond().ToString();
-         this.hp.GetComponent<Text>().text = PlayerDataMgr.Instance.getHP() + "/" + PlayerDataMgr.Instance.getMaxHP();
-         this.magic.GetComponent<Text>().text = PlayerDataMgr.Instance.getMagic() + "/" + PlayerDataMgr.Instance.getMaxMagic();
-         this.attack.GetComponent<Text>().text = "0";
-         this.defense.GetComponent<Text>().text = "0";
     }
 
     private void showRefreshNpcPokerNum() {
