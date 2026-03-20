@@ -24,10 +24,15 @@ public interface IGameBeginPara : IGameFlowPara
 {
 }
 
+public interface IAddCardAfterPara : IGameFlowPara
+{
+}
+
 public interface IGameFlow
 {
     public void gameBegin(IGameBeginPara para);
 
+    public void addCardAfter(IAddCardAfterPara para);
     public void handPokerAfter(IHandPokerAfterPara para);
 
     public void dealPokerAfter(IDealPokerAfterPara para);

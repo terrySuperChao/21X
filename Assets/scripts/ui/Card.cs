@@ -39,12 +39,13 @@ public class Card : MonoBehaviour
     }
 
     public void onClick() {
-        EventDispatcher.Instance.emit(GameConst.SELECTCARD, _card,this.transform.position);
+        EventDispatcher.Instance.emit(GameConst.SELECTCARD, new SelectCardPara(null,_card,this.transform.position));
     }
 
     private void selectCard(params System.Object[] obj)
     {
-        selectImage.SetActive(_card == obj[0]);
+        ISelectCardPara para = (ISelectCardPara)obj[0];
+        selectImage.SetActive(_card == para.getCard());
     }
 
     public bool isSelected() {

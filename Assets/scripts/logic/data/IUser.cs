@@ -42,4 +42,11 @@ public interface IUser
 
     public void reset();
 
+    public void setState(UserState state);
+
+    public UserState getState();
+
+    public void setPoint(int value);
+    public int getPoint();
+
 }

@@ -54,12 +54,10 @@ public class ShopDataMgr : Singleton<ShopDataMgr>
         }
     }
 
-    public void createGoods(int suit) {
-        //Ã·»¨
-        if (suit == (int)PokerSuit.club) {
-            this.newShopGoods();
-            this.addBurstPurchased();
-        }
+    //Èë¿Ú
+    public void initEntry() {
+        this.newShopGoods();
+        this.addBurstPurchased();
     }
 
     public List<int> getGoods() { 

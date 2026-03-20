@@ -108,7 +108,7 @@ public class UIMgr : Singleton<UIMgr>
         }
     }
 
-    public void showAlert(string name,string conetnt, Action okAction,Action cancelAction) {
+    public void showAlert(string name, object conetnt, Action okAction,Action cancelAction) {
         this.showView(name);
         if (this._mapViews.ContainsKey(name)) {
             IBaseView baseView = this._mapViews[name].GetComponent<IBaseView>();
@@ -118,7 +118,7 @@ public class UIMgr : Singleton<UIMgr>
         }
     }
 
-    public void showTips(string name, string conetnt) {
+    public void showTips(string name, object conetnt) {
         this.showAlert(name,conetnt, () => { }, () => { });
     }
 

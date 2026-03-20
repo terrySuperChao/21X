@@ -12,7 +12,9 @@ public class UserObject : IUser
     private float _defense = 0;
     private float _magic = 0;
     private float _maxMagic = 0;
+    private int _point = 0;
     private bool _isNpc = false;
+    private UserState _state = UserState.none;
 
     public UserObject(bool isNpc) {
         _isNpc = isNpc;
@@ -150,5 +152,21 @@ public class UserObject : IUser
         _attack = 0;
         _defense = 0;
         _magic = 0;
+        _state = UserState.none;
+    }
+
+    public void setState(UserState state) { 
+        this._state = state;
+    }
+
+    public UserState getState() {
+        return _state;
+    }
+
+    public void setPoint(int value) { 
+        this._point = value;
+    }
+    public int getPoint() {
+        return this._point;
     }
 }

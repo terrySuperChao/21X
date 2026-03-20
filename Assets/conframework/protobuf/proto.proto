@@ -54,6 +54,29 @@ message Shop{
   repeated int32 purchased = 2;   //已购买列表
 }
 
+//战斗的资产
+message AssetInfo{
+  optional int32 state = 1;
+  repeated int32 pokers = 2;    //牌 
+  repeated int32 cards = 3;  	  //卡
+  optional int32 hp = 4;        //当前血量
+  optional int32 maxHP = 5;     //最大血量
+  optional int32 magic = 6;     //当前魔法
+  optional int32 maxMagic = 7;  //最大魔法
+  optional int32 attack = 8;    //攻击力
+  optional int32 defense = 9;   //防御力
+  optional int32 isFilp = 10;    //是否翻面
+}
+
+//战斗
+message Fight{
+  repeated int32 pokerPile = 1;     	 //牌堆
+  optional AssetInfo npcAsset = 2;     //npc的资产
+  optional AssetInfo playerAsset = 3;  //player的资产
+  optional int32 state = 4;            //状态
+  optional int32 round = 5;            //轮
+}
+
 //游戏
 message GameData{
   optional int32 initSeed = 1;
@@ -62,7 +85,8 @@ message GameData{
   optional Player player = 4;             //玩家信息
   optional Barrier barrier = 5;           //关卡
   optional Shop shop = 6;                 //商店
-  repeated DefeatRole defeatRoles = 7;    //击败的
+  optional Fight fight = 7;               //战斗     
+  repeated DefeatRole defeatRoles = 8;    //击败的
 }
 
 //游戏财产

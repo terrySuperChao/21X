@@ -50,17 +50,29 @@ namespace Pb {
             "DAoKX3Bva2VyUG9zWUINCgtfZmluYWxQb2ludEIMCgpfYmxhY2tqYWNrQgwK",
             "Cl9jaGFwdGVySWRCDAoKX2JhcnJpZXJJZEIVChNfcmVmcmVzaE5wY1Bva2Vy",
             "TnVtQhgKFl9yZWZyZXNoUGxheWVyUG9rZXJOdW0iKAoEU2hvcBINCgVnb29k",
-            "cxgBIAMoBRIRCglwdXJjaGFzZWQYAiADKAUioAIKCEdhbWVEYXRhEhUKCGlu",
-            "aXRTZWVkGAEgASgFSACIAQESFgoJZ2FtZVN0YXRlGAIgASgFSAGIAQESFgoJ",
-            "cGFnZUluZGV4GAMgASgFSAKIAQESHwoGcGxheWVyGAQgASgLMgoucGIuUGxh",
-            "eWVySAOIAQESIQoHYmFycmllchgFIAEoCzILLnBiLkJhcnJpZXJIBIgBARIb",
-            "CgRzaG9wGAYgASgLMggucGIuU2hvcEgFiAEBEiMKC2RlZmVhdFJvbGVzGAcg",
-            "AygLMg4ucGIuRGVmZWF0Um9sZUILCglfaW5pdFNlZWRCDAoKX2dhbWVTdGF0",
-            "ZUIMCgpfcGFnZUluZGV4QgkKB19wbGF5ZXJCCgoIX2JhcnJpZXJCBwoFX3No",
-            "b3AingEKDEdhbWVQcm9wZXJ0eRIhCgdhY2NvdW50GAEgASgLMgsucGIuQWNj",
-            "b3VudEgAiAEBEiEKB3NldHRpbmcYAiABKAsyCy5wYi5TZXR0aW5nSAGIAQES",
-            "IwoIZ2FtZURhdGEYAyABKAsyDC5wYi5HYW1lRGF0YUgCiAEBQgoKCF9hY2Nv",
-            "dW50QgoKCF9zZXR0aW5nQgsKCV9nYW1lRGF0YWIGcHJvdG8z"));
+            "cxgBIAMoBRIRCglwdXJjaGFzZWQYAiADKAUiogIKCUFzc2V0SW5mbxISCgVz",
+            "dGF0ZRgBIAEoBUgAiAEBEg4KBnBva2VycxgCIAMoBRINCgVjYXJkcxgDIAMo",
+            "BRIPCgJocBgEIAEoBUgBiAEBEhIKBW1heEhQGAUgASgFSAKIAQESEgoFbWFn",
+            "aWMYBiABKAVIA4gBARIVCghtYXhNYWdpYxgHIAEoBUgEiAEBEhMKBmF0dGFj",
+            "axgIIAEoBUgFiAEBEhQKB2RlZmVuc2UYCSABKAVIBogBARITCgZpc0ZpbHAY",
+            "CiABKAVIB4gBAUIICgZfc3RhdGVCBQoDX2hwQggKBl9tYXhIUEIICgZfbWFn",
+            "aWNCCwoJX21heE1hZ2ljQgkKB19hdHRhY2tCCgoIX2RlZmVuc2VCCQoHX2lz",
+            "RmlscCLCAQoFRmlnaHQSEQoJcG9rZXJQaWxlGAEgAygFEiQKCG5wY0Fzc2V0",
+            "GAIgASgLMg0ucGIuQXNzZXRJbmZvSACIAQESJwoLcGxheWVyQXNzZXQYAyAB",
+            "KAsyDS5wYi5Bc3NldEluZm9IAYgBARISCgVzdGF0ZRgEIAEoBUgCiAEBEhIK",
+            "BXJvdW5kGAUgASgFSAOIAQFCCwoJX25wY0Fzc2V0Qg4KDF9wbGF5ZXJBc3Nl",
+            "dEIICgZfc3RhdGVCCAoGX3JvdW5kIskCCghHYW1lRGF0YRIVCghpbml0U2Vl",
+            "ZBgBIAEoBUgAiAEBEhYKCWdhbWVTdGF0ZRgCIAEoBUgBiAEBEhYKCXBhZ2VJ",
+            "bmRleBgDIAEoBUgCiAEBEh8KBnBsYXllchgEIAEoCzIKLnBiLlBsYXllckgD",
+            "iAEBEiEKB2JhcnJpZXIYBSABKAsyCy5wYi5CYXJyaWVySASIAQESGwoEc2hv",
+            "cBgGIAEoCzIILnBiLlNob3BIBYgBARIdCgVmaWdodBgHIAEoCzIJLnBiLkZp",
+            "Z2h0SAaIAQESIwoLZGVmZWF0Um9sZXMYCCADKAsyDi5wYi5EZWZlYXRSb2xl",
+            "QgsKCV9pbml0U2VlZEIMCgpfZ2FtZVN0YXRlQgwKCl9wYWdlSW5kZXhCCQoH",
+            "X3BsYXllckIKCghfYmFycmllckIHCgVfc2hvcEIICgZfZmlnaHQingEKDEdh",
+            "bWVQcm9wZXJ0eRIhCgdhY2NvdW50GAEgASgLMgsucGIuQWNjb3VudEgAiAEB",
+            "EiEKB3NldHRpbmcYAiABKAsyCy5wYi5TZXR0aW5nSAGIAQESIwoIZ2FtZURh",
+            "dGEYAyABKAsyDC5wYi5HYW1lRGF0YUgCiAEBQgoKCF9hY2NvdW50QgoKCF9z",
+            "ZXR0aW5nQgsKCV9nYW1lRGF0YWIGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
@@ -70,7 +82,9 @@ namespace Pb {
             new pbr::GeneratedClrTypeInfo(typeof(global::Pb.DefeatRole), global::Pb.DefeatRole.Parser, new[]{ "Id", "Diff" }, new[]{ "Id", "Diff" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Pb.Barrier), global::Pb.Barrier.Parser, new[]{ "PokerPile", "NpcPokers", "PlayerPokers", "OtherPokers", "State", "MatchPointA", "MatchPointB", "PokerPosX", "PokerPosY", "FinalPoint", "Blackjack", "ChapterId", "BarrierId", "RefreshNpcPokerNum", "RefreshPlayerPokerNum" }, new[]{ "State", "MatchPointA", "MatchPointB", "PokerPosX", "PokerPosY", "FinalPoint", "Blackjack", "ChapterId", "BarrierId", "RefreshNpcPokerNum", "RefreshPlayerPokerNum" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Pb.Shop), global::Pb.Shop.Parser, new[]{ "Goods", "Purchased" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Pb.GameData), global::Pb.GameData.Parser, new[]{ "InitSeed", "GameState", "PageIndex", "Player", "Barrier", "Shop", "DefeatRoles" }, new[]{ "InitSeed", "GameState", "PageIndex", "Player", "Barrier", "Shop" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Pb.AssetInfo), global::Pb.AssetInfo.Parser, new[]{ "State", "Pokers", "Cards", "Hp", "MaxHP", "Magic", "MaxMagic", "Attack", "Defense", "IsFilp" }, new[]{ "State", "Hp", "MaxHP", "Magic", "MaxMagic", "Attack", "Defense", "IsFilp" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Pb.Fight), global::Pb.Fight.Parser, new[]{ "PokerPile", "NpcAsset", "PlayerAsset", "State", "Round" }, new[]{ "NpcAsset", "PlayerAsset", "State", "Round" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Pb.GameData), global::Pb.GameData.Parser, new[]{ "InitSeed", "GameState", "PageIndex", "Player", "Barrier", "Shop", "Fight", "DefeatRoles" }, new[]{ "InitSeed", "GameState", "PageIndex", "Player", "Barrier", "Shop", "Fight" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Pb.GameProperty), global::Pb.GameProperty.Parser, new[]{ "Account", "Setting", "GameData" }, new[]{ "Account", "Setting", "GameData" }, null, null, null)
           }));
     }
@@ -2711,6 +2725,1076 @@ namespace Pb {
   }
 
   /// <summary>
+  ///战斗的资产
+  /// </summary>
+  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+  public sealed partial class AssetInfo : pb::IMessage<AssetInfo>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
+    private static readonly pb::MessageParser<AssetInfo> _parser = new pb::MessageParser<AssetInfo>(() => new AssetInfo());
+    private pb::UnknownFieldSet _unknownFields;
+    private int _hasBits0;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pb::MessageParser<AssetInfo> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Pb.ProtoReflection.Descriptor.MessageTypes[6]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public AssetInfo() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public AssetInfo(AssetInfo other) : this() {
+      _hasBits0 = other._hasBits0;
+      state_ = other.state_;
+      pokers_ = other.pokers_.Clone();
+      cards_ = other.cards_.Clone();
+      hp_ = other.hp_;
+      maxHP_ = other.maxHP_;
+      magic_ = other.magic_;
+      maxMagic_ = other.maxMagic_;
+      attack_ = other.attack_;
+      defense_ = other.defense_;
+      isFilp_ = other.isFilp_;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public AssetInfo Clone() {
+      return new AssetInfo(this);
+    }
+
+    /// <summary>Field number for the "state" field.</summary>
+    public const int StateFieldNumber = 1;
+    private readonly static int StateDefaultValue = 0;
+
+    private int state_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int State {
+      get { if ((_hasBits0 & 1) != 0) { return state_; } else { return StateDefaultValue; } }
+      set {
+        _hasBits0 |= 1;
+        state_ = value;
+      }
+    }
+    /// <summary>Gets whether the "state" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasState {
+      get { return (_hasBits0 & 1) != 0; }
+    }
+    /// <summary>Clears the value of the "state" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearState() {
+      _hasBits0 &= ~1;
+    }
+
+    /// <summary>Field number for the "pokers" field.</summary>
+    public const int PokersFieldNumber = 2;
+    private static readonly pb::FieldCodec<int> _repeated_pokers_codec
+        = pb::FieldCodec.ForInt32(18);
+    private readonly pbc::RepeatedField<int> pokers_ = new pbc::RepeatedField<int>();
+    /// <summary>
+    ///牌 
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public pbc::RepeatedField<int> Pokers {
+      get { return pokers_; }
+    }
+
+    /// <summary>Field number for the "cards" field.</summary>
+    public const int CardsFieldNumber = 3;
+    private static readonly pb::FieldCodec<int> _repeated_cards_codec
+        = pb::FieldCodec.ForInt32(26);
+    private readonly pbc::RepeatedField<int> cards_ = new pbc::RepeatedField<int>();
+    /// <summary>
+    ///卡
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public pbc::RepeatedField<int> Cards {
+      get { return cards_; }
+    }
+
+    /// <summary>Field number for the "hp" field.</summary>
+    public const int HpFieldNumber = 4;
+    private readonly static int HpDefaultValue = 0;
+
+    private int hp_;
+    /// <summary>
+    ///当前血量
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int Hp {
+      get { if ((_hasBits0 & 2) != 0) { return hp_; } else { return HpDefaultValue; } }
+      set {
+        _hasBits0 |= 2;
+        hp_ = value;
+      }
+    }
+    /// <summary>Gets whether the "hp" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasHp {
+      get { return (_hasBits0 & 2) != 0; }
+    }
+    /// <summary>Clears the value of the "hp" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearHp() {
+      _hasBits0 &= ~2;
+    }
+
+    /// <summary>Field number for the "maxHP" field.</summary>
+    public const int MaxHPFieldNumber = 5;
+    private readonly static int MaxHPDefaultValue = 0;
+
+    private int maxHP_;
+    /// <summary>
+    ///最大血量
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int MaxHP {
+      get { if ((_hasBits0 & 4) != 0) { return maxHP_; } else { return MaxHPDefaultValue; } }
+      set {
+        _hasBits0 |= 4;
+        maxHP_ = value;
+      }
+    }
+    /// <summary>Gets whether the "maxHP" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasMaxHP {
+      get { return (_hasBits0 & 4) != 0; }
+    }
+    /// <summary>Clears the value of the "maxHP" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearMaxHP() {
+      _hasBits0 &= ~4;
+    }
+
+    /// <summary>Field number for the "magic" field.</summary>
+    public const int MagicFieldNumber = 6;
+    private readonly static int MagicDefaultValue = 0;
+
+    private int magic_;
+    /// <summary>
+    ///当前魔法
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int Magic {
+      get { if ((_hasBits0 & 8) != 0) { return magic_; } else { return MagicDefaultValue; } }
+      set {
+        _hasBits0 |= 8;
+        magic_ = value;
+      }
+    }
+    /// <summary>Gets whether the "magic" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasMagic {
+      get { return (_hasBits0 & 8) != 0; }
+    }
+    /// <summary>Clears the value of the "magic" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearMagic() {
+      _hasBits0 &= ~8;
+    }
+
+    /// <summary>Field number for the "maxMagic" field.</summary>
+    public const int MaxMagicFieldNumber = 7;
+    private readonly static int MaxMagicDefaultValue = 0;
+
+    private int maxMagic_;
+    /// <summary>
+    ///最大魔法
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int MaxMagic {
+      get { if ((_hasBits0 & 16) != 0) { return maxMagic_; } else { return MaxMagicDefaultValue; } }
+      set {
+        _hasBits0 |= 16;
+        maxMagic_ = value;
+      }
+    }
+    /// <summary>Gets whether the "maxMagic" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasMaxMagic {
+      get { return (_hasBits0 & 16) != 0; }
+    }
+    /// <summary>Clears the value of the "maxMagic" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearMaxMagic() {
+      _hasBits0 &= ~16;
+    }
+
+    /// <summary>Field number for the "attack" field.</summary>
+    public const int AttackFieldNumber = 8;
+    private readonly static int AttackDefaultValue = 0;
+
+    private int attack_;
+    /// <summary>
+    ///攻击力
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int Attack {
+      get { if ((_hasBits0 & 32) != 0) { return attack_; } else { return AttackDefaultValue; } }
+      set {
+        _hasBits0 |= 32;
+        attack_ = value;
+      }
+    }
+    /// <summary>Gets whether the "attack" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasAttack {
+      get { return (_hasBits0 & 32) != 0; }
+    }
+    /// <summary>Clears the value of the "attack" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearAttack() {
+      _hasBits0 &= ~32;
+    }
+
+    /// <summary>Field number for the "defense" field.</summary>
+    public const int DefenseFieldNumber = 9;
+    private readonly static int DefenseDefaultValue = 0;
+
+    private int defense_;
+    /// <summary>
+    ///防御力
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int Defense {
+      get { if ((_hasBits0 & 64) != 0) { return defense_; } else { return DefenseDefaultValue; } }
+      set {
+        _hasBits0 |= 64;
+        defense_ = value;
+      }
+    }
+    /// <summary>Gets whether the "defense" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasDefense {
+      get { return (_hasBits0 & 64) != 0; }
+    }
+    /// <summary>Clears the value of the "defense" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearDefense() {
+      _hasBits0 &= ~64;
+    }
+
+    /// <summary>Field number for the "isFilp" field.</summary>
+    public const int IsFilpFieldNumber = 10;
+    private readonly static int IsFilpDefaultValue = 0;
+
+    private int isFilp_;
+    /// <summary>
+    ///是否翻面
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int IsFilp {
+      get { if ((_hasBits0 & 128) != 0) { return isFilp_; } else { return IsFilpDefaultValue; } }
+      set {
+        _hasBits0 |= 128;
+        isFilp_ = value;
+      }
+    }
+    /// <summary>Gets whether the "isFilp" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasIsFilp {
+      get { return (_hasBits0 & 128) != 0; }
+    }
+    /// <summary>Clears the value of the "isFilp" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearIsFilp() {
+      _hasBits0 &= ~128;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override bool Equals(object other) {
+      return Equals(other as AssetInfo);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool Equals(AssetInfo other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (State != other.State) return false;
+      if(!pokers_.Equals(other.pokers_)) return false;
+      if(!cards_.Equals(other.cards_)) return false;
+      if (Hp != other.Hp) return false;
+      if (MaxHP != other.MaxHP) return false;
+      if (Magic != other.Magic) return false;
+      if (MaxMagic != other.MaxMagic) return false;
+      if (Attack != other.Attack) return false;
+      if (Defense != other.Defense) return false;
+      if (IsFilp != other.IsFilp) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (HasState) hash ^= State.GetHashCode();
+      hash ^= pokers_.GetHashCode();
+      hash ^= cards_.GetHashCode();
+      if (HasHp) hash ^= Hp.GetHashCode();
+      if (HasMaxHP) hash ^= MaxHP.GetHashCode();
+      if (HasMagic) hash ^= Magic.GetHashCode();
+      if (HasMaxMagic) hash ^= MaxMagic.GetHashCode();
+      if (HasAttack) hash ^= Attack.GetHashCode();
+      if (HasDefense) hash ^= Defense.GetHashCode();
+      if (HasIsFilp) hash ^= IsFilp.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
+      if (HasState) {
+        output.WriteRawTag(8);
+        output.WriteInt32(State);
+      }
+      pokers_.WriteTo(output, _repeated_pokers_codec);
+      cards_.WriteTo(output, _repeated_cards_codec);
+      if (HasHp) {
+        output.WriteRawTag(32);
+        output.WriteInt32(Hp);
+      }
+      if (HasMaxHP) {
+        output.WriteRawTag(40);
+        output.WriteInt32(MaxHP);
+      }
+      if (HasMagic) {
+        output.WriteRawTag(48);
+        output.WriteInt32(Magic);
+      }
+      if (HasMaxMagic) {
+        output.WriteRawTag(56);
+        output.WriteInt32(MaxMagic);
+      }
+      if (HasAttack) {
+        output.WriteRawTag(64);
+        output.WriteInt32(Attack);
+      }
+      if (HasDefense) {
+        output.WriteRawTag(72);
+        output.WriteInt32(Defense);
+      }
+      if (HasIsFilp) {
+        output.WriteRawTag(80);
+        output.WriteInt32(IsFilp);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (HasState) {
+        output.WriteRawTag(8);
+        output.WriteInt32(State);
+      }
+      pokers_.WriteTo(ref output, _repeated_pokers_codec);
+      cards_.WriteTo(ref output, _repeated_cards_codec);
+      if (HasHp) {
+        output.WriteRawTag(32);
+        output.WriteInt32(Hp);
+      }
+      if (HasMaxHP) {
+        output.WriteRawTag(40);
+        output.WriteInt32(MaxHP);
+      }
+      if (HasMagic) {
+        output.WriteRawTag(48);
+        output.WriteInt32(Magic);
+      }
+      if (HasMaxMagic) {
+        output.WriteRawTag(56);
+        output.WriteInt32(MaxMagic);
+      }
+      if (HasAttack) {
+        output.WriteRawTag(64);
+        output.WriteInt32(Attack);
+      }
+      if (HasDefense) {
+        output.WriteRawTag(72);
+        output.WriteInt32(Defense);
+      }
+      if (HasIsFilp) {
+        output.WriteRawTag(80);
+        output.WriteInt32(IsFilp);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int CalculateSize() {
+      int size = 0;
+      if (HasState) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(State);
+      }
+      size += pokers_.CalculateSize(_repeated_pokers_codec);
+      size += cards_.CalculateSize(_repeated_cards_codec);
+      if (HasHp) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Hp);
+      }
+      if (HasMaxHP) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(MaxHP);
+      }
+      if (HasMagic) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Magic);
+      }
+      if (HasMaxMagic) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(MaxMagic);
+      }
+      if (HasAttack) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Attack);
+      }
+      if (HasDefense) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Defense);
+      }
+      if (HasIsFilp) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(IsFilp);
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(AssetInfo other) {
+      if (other == null) {
+        return;
+      }
+      if (other.HasState) {
+        State = other.State;
+      }
+      pokers_.Add(other.pokers_);
+      cards_.Add(other.cards_);
+      if (other.HasHp) {
+        Hp = other.Hp;
+      }
+      if (other.HasMaxHP) {
+        MaxHP = other.MaxHP;
+      }
+      if (other.HasMagic) {
+        Magic = other.Magic;
+      }
+      if (other.HasMaxMagic) {
+        MaxMagic = other.MaxMagic;
+      }
+      if (other.HasAttack) {
+        Attack = other.Attack;
+      }
+      if (other.HasDefense) {
+        Defense = other.Defense;
+      }
+      if (other.HasIsFilp) {
+        IsFilp = other.IsFilp;
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+      if ((tag & 7) == 4) {
+        // Abort on any end group tag.
+        return;
+      }
+      switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 8: {
+            State = input.ReadInt32();
+            break;
+          }
+          case 18:
+          case 16: {
+            pokers_.AddEntriesFrom(input, _repeated_pokers_codec);
+            break;
+          }
+          case 26:
+          case 24: {
+            cards_.AddEntriesFrom(input, _repeated_cards_codec);
+            break;
+          }
+          case 32: {
+            Hp = input.ReadInt32();
+            break;
+          }
+          case 40: {
+            MaxHP = input.ReadInt32();
+            break;
+          }
+          case 48: {
+            Magic = input.ReadInt32();
+            break;
+          }
+          case 56: {
+            MaxMagic = input.ReadInt32();
+            break;
+          }
+          case 64: {
+            Attack = input.ReadInt32();
+            break;
+          }
+          case 72: {
+            Defense = input.ReadInt32();
+            break;
+          }
+          case 80: {
+            IsFilp = input.ReadInt32();
+            break;
+          }
+        }
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+      if ((tag & 7) == 4) {
+        // Abort on any end group tag.
+        return;
+      }
+      switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+          case 8: {
+            State = input.ReadInt32();
+            break;
+          }
+          case 18:
+          case 16: {
+            pokers_.AddEntriesFrom(ref input, _repeated_pokers_codec);
+            break;
+          }
+          case 26:
+          case 24: {
+            cards_.AddEntriesFrom(ref input, _repeated_cards_codec);
+            break;
+          }
+          case 32: {
+            Hp = input.ReadInt32();
+            break;
+          }
+          case 40: {
+            MaxHP = input.ReadInt32();
+            break;
+          }
+          case 48: {
+            Magic = input.ReadInt32();
+            break;
+          }
+          case 56: {
+            MaxMagic = input.ReadInt32();
+            break;
+          }
+          case 64: {
+            Attack = input.ReadInt32();
+            break;
+          }
+          case 72: {
+            Defense = input.ReadInt32();
+            break;
+          }
+          case 80: {
+            IsFilp = input.ReadInt32();
+            break;
+          }
+        }
+      }
+    }
+    #endif
+
+  }
+
+  /// <summary>
+  ///战斗
+  /// </summary>
+  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+  public sealed partial class Fight : pb::IMessage<Fight>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
+    private static readonly pb::MessageParser<Fight> _parser = new pb::MessageParser<Fight>(() => new Fight());
+    private pb::UnknownFieldSet _unknownFields;
+    private int _hasBits0;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pb::MessageParser<Fight> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Pb.ProtoReflection.Descriptor.MessageTypes[7]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public Fight() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public Fight(Fight other) : this() {
+      _hasBits0 = other._hasBits0;
+      pokerPile_ = other.pokerPile_.Clone();
+      npcAsset_ = other.npcAsset_ != null ? other.npcAsset_.Clone() : null;
+      playerAsset_ = other.playerAsset_ != null ? other.playerAsset_.Clone() : null;
+      state_ = other.state_;
+      round_ = other.round_;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public Fight Clone() {
+      return new Fight(this);
+    }
+
+    /// <summary>Field number for the "pokerPile" field.</summary>
+    public const int PokerPileFieldNumber = 1;
+    private static readonly pb::FieldCodec<int> _repeated_pokerPile_codec
+        = pb::FieldCodec.ForInt32(10);
+    private readonly pbc::RepeatedField<int> pokerPile_ = new pbc::RepeatedField<int>();
+    /// <summary>
+    ///牌堆
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public pbc::RepeatedField<int> PokerPile {
+      get { return pokerPile_; }
+    }
+
+    /// <summary>Field number for the "npcAsset" field.</summary>
+    public const int NpcAssetFieldNumber = 2;
+    private global::Pb.AssetInfo npcAsset_;
+    /// <summary>
+    ///npc的资产
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::Pb.AssetInfo NpcAsset {
+      get { return npcAsset_; }
+      set {
+        npcAsset_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "playerAsset" field.</summary>
+    public const int PlayerAssetFieldNumber = 3;
+    private global::Pb.AssetInfo playerAsset_;
+    /// <summary>
+    ///player的资产
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::Pb.AssetInfo PlayerAsset {
+      get { return playerAsset_; }
+      set {
+        playerAsset_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "state" field.</summary>
+    public const int StateFieldNumber = 4;
+    private readonly static int StateDefaultValue = 0;
+
+    private int state_;
+    /// <summary>
+    ///状态
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int State {
+      get { if ((_hasBits0 & 1) != 0) { return state_; } else { return StateDefaultValue; } }
+      set {
+        _hasBits0 |= 1;
+        state_ = value;
+      }
+    }
+    /// <summary>Gets whether the "state" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasState {
+      get { return (_hasBits0 & 1) != 0; }
+    }
+    /// <summary>Clears the value of the "state" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearState() {
+      _hasBits0 &= ~1;
+    }
+
+    /// <summary>Field number for the "round" field.</summary>
+    public const int RoundFieldNumber = 5;
+    private readonly static int RoundDefaultValue = 0;
+
+    private int round_;
+    /// <summary>
+    ///轮
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int Round {
+      get { if ((_hasBits0 & 2) != 0) { return round_; } else { return RoundDefaultValue; } }
+      set {
+        _hasBits0 |= 2;
+        round_ = value;
+      }
+    }
+    /// <summary>Gets whether the "round" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasRound {
+      get { return (_hasBits0 & 2) != 0; }
+    }
+    /// <summary>Clears the value of the "round" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearRound() {
+      _hasBits0 &= ~2;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override bool Equals(object other) {
+      return Equals(other as Fight);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool Equals(Fight other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if(!pokerPile_.Equals(other.pokerPile_)) return false;
+      if (!object.Equals(NpcAsset, other.NpcAsset)) return false;
+      if (!object.Equals(PlayerAsset, other.PlayerAsset)) return false;
+      if (State != other.State) return false;
+      if (Round != other.Round) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override int GetHashCode() {
+      int hash = 1;
+      hash ^= pokerPile_.GetHashCode();
+      if (npcAsset_ != null) hash ^= NpcAsset.GetHashCode();
+      if (playerAsset_ != null) hash ^= PlayerAsset.GetHashCode();
+      if (HasState) hash ^= State.GetHashCode();
+      if (HasRound) hash ^= Round.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
+      pokerPile_.WriteTo(output, _repeated_pokerPile_codec);
+      if (npcAsset_ != null) {
+        output.WriteRawTag(18);
+        output.WriteMessage(NpcAsset);
+      }
+      if (playerAsset_ != null) {
+        output.WriteRawTag(26);
+        output.WriteMessage(PlayerAsset);
+      }
+      if (HasState) {
+        output.WriteRawTag(32);
+        output.WriteInt32(State);
+      }
+      if (HasRound) {
+        output.WriteRawTag(40);
+        output.WriteInt32(Round);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      pokerPile_.WriteTo(ref output, _repeated_pokerPile_codec);
+      if (npcAsset_ != null) {
+        output.WriteRawTag(18);
+        output.WriteMessage(NpcAsset);
+      }
+      if (playerAsset_ != null) {
+        output.WriteRawTag(26);
+        output.WriteMessage(PlayerAsset);
+      }
+      if (HasState) {
+        output.WriteRawTag(32);
+        output.WriteInt32(State);
+      }
+      if (HasRound) {
+        output.WriteRawTag(40);
+        output.WriteInt32(Round);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int CalculateSize() {
+      int size = 0;
+      size += pokerPile_.CalculateSize(_repeated_pokerPile_codec);
+      if (npcAsset_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(NpcAsset);
+      }
+      if (playerAsset_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(PlayerAsset);
+      }
+      if (HasState) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(State);
+      }
+      if (HasRound) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Round);
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(Fight other) {
+      if (other == null) {
+        return;
+      }
+      pokerPile_.Add(other.pokerPile_);
+      if (other.npcAsset_ != null) {
+        if (npcAsset_ == null) {
+          NpcAsset = new global::Pb.AssetInfo();
+        }
+        NpcAsset.MergeFrom(other.NpcAsset);
+      }
+      if (other.playerAsset_ != null) {
+        if (playerAsset_ == null) {
+          PlayerAsset = new global::Pb.AssetInfo();
+        }
+        PlayerAsset.MergeFrom(other.PlayerAsset);
+      }
+      if (other.HasState) {
+        State = other.State;
+      }
+      if (other.HasRound) {
+        Round = other.Round;
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+      if ((tag & 7) == 4) {
+        // Abort on any end group tag.
+        return;
+      }
+      switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 10:
+          case 8: {
+            pokerPile_.AddEntriesFrom(input, _repeated_pokerPile_codec);
+            break;
+          }
+          case 18: {
+            if (npcAsset_ == null) {
+              NpcAsset = new global::Pb.AssetInfo();
+            }
+            input.ReadMessage(NpcAsset);
+            break;
+          }
+          case 26: {
+            if (playerAsset_ == null) {
+              PlayerAsset = new global::Pb.AssetInfo();
+            }
+            input.ReadMessage(PlayerAsset);
+            break;
+          }
+          case 32: {
+            State = input.ReadInt32();
+            break;
+          }
+          case 40: {
+            Round = input.ReadInt32();
+            break;
+          }
+        }
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+      if ((tag & 7) == 4) {
+        // Abort on any end group tag.
+        return;
+      }
+      switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+          case 10:
+          case 8: {
+            pokerPile_.AddEntriesFrom(ref input, _repeated_pokerPile_codec);
+            break;
+          }
+          case 18: {
+            if (npcAsset_ == null) {
+              NpcAsset = new global::Pb.AssetInfo();
+            }
+            input.ReadMessage(NpcAsset);
+            break;
+          }
+          case 26: {
+            if (playerAsset_ == null) {
+              PlayerAsset = new global::Pb.AssetInfo();
+            }
+            input.ReadMessage(PlayerAsset);
+            break;
+          }
+          case 32: {
+            State = input.ReadInt32();
+            break;
+          }
+          case 40: {
+            Round = input.ReadInt32();
+            break;
+          }
+        }
+      }
+    }
+    #endif
+
+  }
+
+  /// <summary>
   ///游戏
   /// </summary>
   [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
@@ -2729,7 +3813,7 @@ namespace Pb {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Pb.ProtoReflection.Descriptor.MessageTypes[6]; }
+      get { return global::Pb.ProtoReflection.Descriptor.MessageTypes[8]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -2756,6 +3840,7 @@ namespace Pb {
       player_ = other.player_ != null ? other.player_.Clone() : null;
       barrier_ = other.barrier_ != null ? other.barrier_.Clone() : null;
       shop_ = other.shop_ != null ? other.shop_.Clone() : null;
+      fight_ = other.fight_ != null ? other.fight_.Clone() : null;
       defeatRoles_ = other.defeatRoles_.Clone();
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
@@ -2892,10 +3977,25 @@ namespace Pb {
       }
     }
 
+    /// <summary>Field number for the "fight" field.</summary>
+    public const int FightFieldNumber = 7;
+    private global::Pb.Fight fight_;
+    /// <summary>
+    ///战斗     
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::Pb.Fight Fight {
+      get { return fight_; }
+      set {
+        fight_ = value;
+      }
+    }
+
     /// <summary>Field number for the "defeatRoles" field.</summary>
-    public const int DefeatRolesFieldNumber = 7;
+    public const int DefeatRolesFieldNumber = 8;
     private static readonly pb::FieldCodec<global::Pb.DefeatRole> _repeated_defeatRoles_codec
-        = pb::FieldCodec.ForMessage(58, global::Pb.DefeatRole.Parser);
+        = pb::FieldCodec.ForMessage(66, global::Pb.DefeatRole.Parser);
     private readonly pbc::RepeatedField<global::Pb.DefeatRole> defeatRoles_ = new pbc::RepeatedField<global::Pb.DefeatRole>();
     /// <summary>
     ///击败的
@@ -2927,6 +4027,7 @@ namespace Pb {
       if (!object.Equals(Player, other.Player)) return false;
       if (!object.Equals(Barrier, other.Barrier)) return false;
       if (!object.Equals(Shop, other.Shop)) return false;
+      if (!object.Equals(Fight, other.Fight)) return false;
       if(!defeatRoles_.Equals(other.defeatRoles_)) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
@@ -2941,6 +4042,7 @@ namespace Pb {
       if (player_ != null) hash ^= Player.GetHashCode();
       if (barrier_ != null) hash ^= Barrier.GetHashCode();
       if (shop_ != null) hash ^= Shop.GetHashCode();
+      if (fight_ != null) hash ^= Fight.GetHashCode();
       hash ^= defeatRoles_.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
@@ -2984,6 +4086,10 @@ namespace Pb {
         output.WriteRawTag(50);
         output.WriteMessage(Shop);
       }
+      if (fight_ != null) {
+        output.WriteRawTag(58);
+        output.WriteMessage(Fight);
+      }
       defeatRoles_.WriteTo(output, _repeated_defeatRoles_codec);
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -3019,6 +4125,10 @@ namespace Pb {
         output.WriteRawTag(50);
         output.WriteMessage(Shop);
       }
+      if (fight_ != null) {
+        output.WriteRawTag(58);
+        output.WriteMessage(Fight);
+      }
       defeatRoles_.WriteTo(ref output, _repeated_defeatRoles_codec);
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
@@ -3047,6 +4157,9 @@ namespace Pb {
       }
       if (shop_ != null) {
         size += 1 + pb::CodedOutputStream.ComputeMessageSize(Shop);
+      }
+      if (fight_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Fight);
       }
       size += defeatRoles_.CalculateSize(_repeated_defeatRoles_codec);
       if (_unknownFields != null) {
@@ -3087,6 +4200,12 @@ namespace Pb {
           Shop = new global::Pb.Shop();
         }
         Shop.MergeFrom(other.Shop);
+      }
+      if (other.fight_ != null) {
+        if (fight_ == null) {
+          Fight = new global::Pb.Fight();
+        }
+        Fight.MergeFrom(other.Fight);
       }
       defeatRoles_.Add(other.defeatRoles_);
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
@@ -3142,6 +4261,13 @@ namespace Pb {
             break;
           }
           case 58: {
+            if (fight_ == null) {
+              Fight = new global::Pb.Fight();
+            }
+            input.ReadMessage(Fight);
+            break;
+          }
+          case 66: {
             defeatRoles_.AddEntriesFrom(input, _repeated_defeatRoles_codec);
             break;
           }
@@ -3198,6 +4324,13 @@ namespace Pb {
             break;
           }
           case 58: {
+            if (fight_ == null) {
+              Fight = new global::Pb.Fight();
+            }
+            input.ReadMessage(Fight);
+            break;
+          }
+          case 66: {
             defeatRoles_.AddEntriesFrom(ref input, _repeated_defeatRoles_codec);
             break;
           }
@@ -3226,7 +4359,7 @@ namespace Pb {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Pb.ProtoReflection.Descriptor.MessageTypes[7]; }
+      get { return global::Pb.ProtoReflection.Descriptor.MessageTypes[9]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]

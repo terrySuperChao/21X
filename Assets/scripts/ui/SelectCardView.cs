@@ -1,8 +1,9 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class SelectCardView : MonoBehaviour
+public class SelectCardView : MonoBehaviour, IBaseView
 {
     public Transform content;
     public Button onBtn;
@@ -20,10 +21,9 @@ public class SelectCardView : MonoBehaviour
     {
         EventDispatcher.Instance.off(GameConst.SELECTCARD, this.selectCard);
     }
-
-    public void initCards(IUser user,List<ICard> cards)
+    private void initCards(List<ICard> cards)
     {
-        _user = user;
+
         for (int i = 0; i < 3; i++)
         {
             content.GetChild(i).gameObject.SetActive(false);
@@ -36,37 +36,55 @@ public class SelectCardView : MonoBehaviour
     }
 
     public void cancelClick() {
-        EventDispatcher.Instance.emit(GameConst.SELECTFINSIHCARD, _user, null, _position);
+        GameReqMgr.Instance.requestAddCard(false,_user, _card, _position);
+        UIMgr.Instance.closeView(this.gameObject.name);
     }
 
     public void okClick() {
-        List<ICard> list = CardMgr.Instance.getCards(_user);
-        if (list != null)
+        List<ICard> list = FightPokerMgr.Instance.getUserCards(_user);
+        int index = list.FindIndex(card => card.getType() == this._card.getType());
+        if (index != -1 && list.Count == 3)
         {
-            if (list.Count == CardMgr.Instance.getMaxSlot())
-            {
-                bool flag = true;
-                for (int i = 0; i < list.Count; i++)
-                {
-                    if (list[i].getType() == _card.getType())
-                    {
-                        flag = false;
-                        break;
-                    }
-                }
-                if (flag) {
-                    EventDispatcher.Instance.emit(GameConst.SHOWTIPS,"¿¨²ÛÒÑÂú");
-                    return;
-                }
-            }    
+            UIMgr.Instance.showTips("TipsView", "¿¨²ÛÒÑÂú");
         }
-        EventDispatcher.Instance.emit(GameConst.SELECTFINSIHCARD, _user, _card, _position);
+        else {
+            GameReqMgr.Instance.requestAddCard(true,_user, _card, _position);
+            UIMgr.Instance.closeView(this.gameObject.name);
+        }
     }
 
     private void selectCard(params System.Object[] obj)
     {
-        _card = (ICard)obj[0];
-        _position = (Vector3)obj[1];
+        SelectCardPara selecCard = (SelectCardPara)obj[0];
+        _card = selecCard.getCard();
+        _position = selecCard.getPosition();
         onBtn.interactable = true;
+    }
+
+    public void init()
+    {
+
+    }
+
+    public void beforeShow()
+    {
+
+    }
+
+    public void refresh()
+    {
+
+    }
+
+    public void afterShow()
+    {
+
+    }
+
+    public void setAlert(object content, Action okAction, Action cancelAction)
+    {
+        ICandidacyCardPara para = (ICandidacyCardPara)content;
+        this._user = para.getUser();
+        this.initCards(para.getCards());
     }
 }

@@ -1,44 +1,12 @@
 //牌堆
-using Google.Protobuf.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 
-public class BarrierPokerPile
+
+public class BarrierPokerPile:BasePokerPile
 {
-    private List<IPoker> _remainCards = new List<IPoker>();
-    private List<IPoker> _playedTableCards = new List<IPoker>();
-
-    public void init(RepeatedField<int> pokers)
+    public override List<IPoker> preShuffle(List<IPoker> allPoker)
     {
-        this._remainCards.Clear();
-        this._playedTableCards.Clear();
-        if (pokers != null && pokers.Count > 0)
-        {
-            for (int i = 0; i < pokers.Count; i++)
-            {
-                _remainCards.Add(this.createPoker(pokers[i]));
-            }
-        }
-        else
-        {
-            this.initDefautPokers();
-            this.shuffle();
-        }
-    }
-
-    private void initDefautPokers() {
-        for (int i = 0; i < GameConst.CARDS.Length; i++) {
-            _remainCards.Add(this.createPoker(GameConst.CARDS[i]));
-        }
-    }
-
-    public void shuffle()
-    {
-        List<IPoker> randomList = new List<IPoker>();
-        randomList.AddRange(_remainCards);
-        randomList.AddRange(_playedTableCards);
-
-        List<IPoker> publicList = new List<IPoker>(); //公共牌
+        List<IPoker> publicPoker = new List<IPoker>(); //公共牌
         while (true)
         {
             PokerSuit suit = PokerSuit.spade;
@@ -60,57 +28,26 @@ public class BarrierPokerPile
                 suit = PokerSuit.diamond;
             }
 
-            List<IPoker> temp = new List< IPoker >();
-            for (int i = 0; i < randomList.Count; i++)
+            List<IPoker> randomPoker = new List< IPoker >();
+            for (int i = 0; i < allPoker.Count; i++)
             {
-                if (suit == (PokerSuit)randomList[i].getSuit())
+                if (suit == (PokerSuit)allPoker[i].getSuit())
                 {
-                    temp.Add(randomList[i]);
+                    randomPoker.Add(allPoker[i]);
                 }
             }
-            if (temp.Count > 0) {
-                int m = RandomMgr.Instance.getRangeInt(0, temp.Count);
-                publicList.Add(temp[m]);
-                randomList.Remove(temp[m]);
+
+            if (randomPoker.Count > 0) {
+                int m = RandomMgr.Instance.getRangeInt(0, randomPoker.Count);
+                publicPoker.Add(randomPoker[m]);
+                allPoker.Remove(randomPoker[m]);
             }
 
-            if (randomList.Count == 0 || publicList.Count == 3) {
+            if (allPoker.Count == 0 || publicPoker.Count == 3) {
                 break;
             }
         }
-
-        for (int i = randomList.Count - 1; i > 0; i--)
-        {
-            int j = RandomMgr.Instance.getRangeInt(0, i + 1);
-            (randomList[i], randomList[j]) = (randomList[j], randomList[i]);
-        }
-
-        _remainCards.Clear();
-        _playedTableCards.Clear();
-        _remainCards.AddRange(publicList);
-        _remainCards.AddRange(randomList);
+        return publicPoker;
     }
-    public IPoker getPoker(int index)
-    {
-        IPoker poker = null;
-        if (_remainCards.Count > 0)
-        {
-            poker = _remainCards[index];
-            poker.setBack(false);
-            _playedTableCards.Add(poker);
-            _remainCards.RemoveAt(index);
-        }
-        return poker;
-    }
-
-    public List<IPoker> getRemainCards() { 
-        return this._remainCards;
-    }
-
-    public IPoker createPoker(int value) {
-        IPoker poker = new PokerObject();
-        poker.setId(0);
-        poker.setValue(value);
-        return poker;
-    }
+    
 }

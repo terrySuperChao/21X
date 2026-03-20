@@ -27,9 +27,9 @@ public class AlertView : MonoBehaviour, IBaseView
        
     }
 
-    public void setAlert(string content, Action okAction, Action cancelAction) { 
+    public void setAlert(object content, Action okAction, Action cancelAction) { 
         
-        this.content.GetComponent<Text>().text = content;
+        this.content.GetComponent<Text>().text = (string)content;
         this._okAction = okAction;
         this._cancelAction = cancelAction;
     }

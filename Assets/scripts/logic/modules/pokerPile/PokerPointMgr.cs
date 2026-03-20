@@ -135,7 +135,7 @@ public class PokerPointMgr : Singleton<PokerPointMgr>
         }
 
         int number = 0;
-        if (pokerA == 1)
+        if (pokerA == 1 && list.Count == 2)
         {
             if (poker10 > 0) number++;
             if (pokerJ > 0) number++;

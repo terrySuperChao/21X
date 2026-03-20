@@ -21,6 +21,14 @@ public class GameBeginPara : GameFlowPara, IGameBeginPara
     }
 }
 
+public class AddCardAfterPara : GameFlowPara, IAddCardAfterPara 
+{
+    public AddCardAfterPara(List<IUser> users) : base(users)
+    {
+
+    }
+}
+
 public class HandPokerAfterPara : GameFlowPara, IHandPokerAfterPara
 {
     public HandPokerAfterPara(List<IUser> users) : base(users)
@@ -62,13 +70,15 @@ public class GameSettlePara : GameFlowPara, IGameSettlePara
     }
 }
 
-
-
-
 public class GameFlowObject : IGameFlow
 {
     public void gameBegin(IGameBeginPara para) {
         _gameBegin(para);
+    }
+
+    public void addCardAfter(IAddCardAfterPara para)
+    {
+        _addCardAfter(para);
     }
 
     public void handPokerAfter(IHandPokerAfterPara para)
@@ -84,6 +94,8 @@ public class GameFlowObject : IGameFlow
     }
 
     protected virtual void _gameBegin(IGameBeginPara para){}
+
+    protected virtual void _addCardAfter(IAddCardAfterPara para) { }
 
     protected virtual void _handPokerAfter(IHandPokerAfterPara para){}
 

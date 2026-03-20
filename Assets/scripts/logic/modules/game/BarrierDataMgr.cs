@@ -17,9 +17,9 @@ public class BarrierDealPoker {
 public class BarrierDataMgr : Singleton<BarrierDataMgr>
 {
     private Barrier _barrier;
-    private List<IPoker> _npcList = new List<IPoker>();
-    private List<IPoker> _playerList = new List<IPoker>();
-    private List<IPoker> _otherList = new List<IPoker>();
+    private List<IPoker> _npcPokers = new List<IPoker>();
+    private List<IPoker> _playerPokers = new List<IPoker>();
+    private List<IPoker> _otherPokers = new List<IPoker>();
     private BarrierPokerPile _pokerPile = new BarrierPokerPile();
 
     public Barrier newBarrier() {
@@ -39,22 +39,22 @@ public class BarrierDataMgr : Singleton<BarrierDataMgr>
     public void deserialized(GameData data)
     {
         this._barrier = data.Barrier;
-        this._npcList.Clear();
-        this._playerList.Clear();
-        this._otherList.Clear();
+        this._npcPokers.Clear();
+        this._playerPokers.Clear();
+        this._otherPokers.Clear();
 
         foreach (var value in this._barrier.NpcPokers) {
-            this._npcList.Add(this._pokerPile.createPoker(value));
+            this._npcPokers.Add(this._pokerPile.createPoker(value));
         }
 
         foreach (var value in this._barrier.PlayerPokers)
         {
-            this._playerList.Add(this._pokerPile.createPoker(value));
+            this._playerPokers.Add(this._pokerPile.createPoker(value));
         }
 
         foreach (var value in this._barrier.OtherPokers)
         {
-            this._otherList.Add(this._pokerPile.createPoker(value));
+            this._otherPokers.Add(this._pokerPile.createPoker(value));
         }
 
         this._pokerPile.init(this._barrier.PokerPile);
@@ -72,17 +72,17 @@ public class BarrierDataMgr : Singleton<BarrierDataMgr>
             this._barrier.PokerPile.Add(value.getValue());
         }
 
-        foreach(var value in this._npcList)
+        foreach(var value in this._npcPokers)
         {
             this._barrier.NpcPokers.Add(value.getValue());
         }
 
-        foreach (var value in this._playerList)
+        foreach (var value in this._playerPokers)
         {
             this._barrier.PlayerPokers.Add(value.getValue());
         }
 
-        foreach (var value in this._otherList)
+        foreach (var value in this._otherPokers)
         {
             this._barrier.OtherPokers.Add(value.getValue());
         }
@@ -116,17 +116,17 @@ public class BarrierDataMgr : Singleton<BarrierDataMgr>
     public List<IPoker> getPokers(BarrierDealType type) {
         if (type == BarrierDealType.npc)
         {
-            return this._npcList;
+            return this._npcPokers;
         }
         else if (type == BarrierDealType.player)
         {
-            return this._playerList;
+            return this._playerPokers;
         }
         else if (type == BarrierDealType.other)
         {
-            return this._otherList;
+            return this._otherPokers;
         }
-        return this._npcList;
+        return this._npcPokers;
     }
 
     public void setMatchPoker(int matchPointA, int matchPointB, int pokerPosX, int pokerPosY) {
@@ -178,9 +178,9 @@ public class BarrierDataMgr : Singleton<BarrierDataMgr>
         List<int> values = new List<int>();
         values.Add(this._barrier.MatchPointA);
         values.Add(this._barrier.MatchPointB);
-        for (int i = 0; i < this._otherList.Count; i++)
+        for (int i = 0; i < this._otherPokers.Count; i++)
         {
-            values.Add(this._otherList[i].getValue());
+            values.Add(this._otherPokers[i].getValue());
         }
         return values;
     }
@@ -195,16 +195,16 @@ public class BarrierDataMgr : Singleton<BarrierDataMgr>
     }
 
     public void clearMatch() {
-        for (int i = 0; i < this._npcList.Count; i++) {
-            if (this._npcList[i].getValue() == this._barrier.MatchPointA) {
-                this._npcList[i].setValue(0);
+        for (int i = 0; i < this._npcPokers.Count; i++) {
+            if (this._npcPokers[i].getValue() == this._barrier.MatchPointA) {
+                this._npcPokers[i].setValue(0);
                 break;
             }
         }
 
-        for (int i = 0; i < this._playerList.Count; i++){
-            if (this._playerList[i].getValue() == this._barrier.MatchPointB){
-                this._playerList[i].setValue(0);
+        for (int i = 0; i < this._playerPokers.Count; i++){
+            if (this._playerPokers[i].getValue() == this._barrier.MatchPointB){
+                this._playerPokers[i].setValue(0);
                 break;
             }
         }
@@ -215,7 +215,7 @@ public class BarrierDataMgr : Singleton<BarrierDataMgr>
         this._barrier.MatchPointB = 0;
         this._barrier.PokerPosX = 0;
         this._barrier.PokerPosY = 0;
-        this._otherList.Clear();
+        this._otherPokers.Clear();
     }
 
     //±¬ÅÆµÄ¸ÅÂÊ
@@ -224,8 +224,8 @@ public class BarrierDataMgr : Singleton<BarrierDataMgr>
         List<int> list = new List<int>();
         list.Add(this._barrier.MatchPointA);
         list.Add(this._barrier.MatchPointB);
-        for (int i = 0; i < this._otherList.Count; i++) {
-            list.Add(this._otherList[i].getValue());
+        for (int i = 0; i < this._otherPokers.Count; i++) {
+            list.Add(this._otherPokers[i].getValue());
         }
 
         int number = 0;
@@ -258,12 +258,12 @@ public class BarrierDataMgr : Singleton<BarrierDataMgr>
         }
 
         int count = 0;
-        for (int i = 0; i < this._npcList.Count; i++)
+        for (int i = 0; i < this._npcPokers.Count; i++)
         {
-            if (this._npcList[i].getValue() != this._barrier.MatchPointA)
+            if (this._npcPokers[i].getValue() != this._barrier.MatchPointA)
             {
                 count++;
-                this._npcList[i].setValue(0);
+                this._npcPokers[i].setValue(0);
             }
         }
         return count;
@@ -281,12 +281,12 @@ public class BarrierDataMgr : Singleton<BarrierDataMgr>
         }
 
         int count = 0;
-        for (int i = 0; i < this._playerList.Count; i++)
+        for (int i = 0; i < this._playerPokers.Count; i++)
         {
-            if (this._playerList[i].getValue() != this._barrier.MatchPointB)
+            if (this._playerPokers[i].getValue() != this._barrier.MatchPointB)
             {
                 count++;
-                this._playerList[i].setValue(0);
+                this._playerPokers[i].setValue(0);
             }
         }
         return count;

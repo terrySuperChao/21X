@@ -14,6 +14,7 @@ public class GameDataMgr : Singleton<GameDataMgr>
         gameData.Shop = ShopDataMgr.Instance.newShop();
         gameData.Barrier = BarrierDataMgr.Instance.newBarrier();
         gameData.Player = PlayerDataMgr.Instance.newPlayer();
+        gameData.Fight = FightDataMgr.Instance.newFight();
         return gameData;
     }
 
@@ -22,6 +23,7 @@ public class GameDataMgr : Singleton<GameDataMgr>
         ShopDataMgr.Instance.deserialized(this._gameData);
         BarrierDataMgr.Instance.deserialized(this._gameData);
         PlayerDataMgr.Instance.deserialized(this._gameData);
+        FightDataMgr.Instance.deserialized(this._gameData);
     }
 
     public void serialized() {
@@ -29,6 +31,7 @@ public class GameDataMgr : Singleton<GameDataMgr>
         ShopDataMgr.Instance.serialized(this._gameData);
         BarrierDataMgr.Instance.serialized(this._gameData);
         PlayerDataMgr.Instance.serialized(this._gameData);
+        FightDataMgr.Instance.serialized(this._gameData);
     }
 
     public void newGame() {

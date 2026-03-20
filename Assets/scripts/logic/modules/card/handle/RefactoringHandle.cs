@@ -20,7 +20,7 @@ public class RefactoringHandle : CardHandleObject
 
     protected void handle(ICardHandlePara para) {
         int number = getNumber();
-        GameMessage.Instance.addMsg(GameConst.REFACTORING, para.getUser(), number);
+        GameMessage.Instance.addMsg(GameConst.REFACTORING, new RefactoringPara(para.getUser(), number));
 
         IUIFlyFontPara uiPara1 = new UIFlyFontParaObject(para.getUser(), para.getCard(), "ÖØ¿ª+"+ number);
         GameMessage.Instance.addMsg(GameConst.FLYFONT, uiPara1);

@@ -3,43 +3,9 @@ using System.Collections.Generic;
 public class CardMgr: Singleton<CardMgr>
 {
     private const int MAXSLOT = 3;
-    private int _round = 1;
-    private Dictionary<string, List<ICard>> _cardDic = new Dictionary<string, List<ICard>>();
     public void init()
     {
-        _round = 1;
-        _cardDic.Clear();
-    }
-
-    public bool addCard(IUser user, ICard card)
-    {
-        if (user == null || card == null){
-            return false;
-        }
-
-        if (_cardDic.ContainsKey(user.getUserId()))
-        {
-            List<ICard> list = _cardDic[user.getUserId()];
-            for (int i = 0; i < list.Count; i++) {
-                if (list[i].getType() == card.getType()) {
-                    list[i] = card;
-                    return true;
-                }
-            }
-            if (list.Count < MAXSLOT)
-            {
-                _cardDic[user.getUserId()].Add(card);
-                return true;
-            }
-            else {
-                return false;
-            }
-        }
-        else
-        {
-            _cardDic[user.getUserId()] = new List<ICard> { card };
-            return true;
-        }
+    
     }
 
     public List<ICard> getRandomCard(IUser user) {
@@ -47,168 +13,110 @@ public class CardMgr: Singleton<CardMgr>
         List<ICard> list0 = new List<ICard>();
         List<ICard> list1 = new List<ICard>();
         List<ICard> list2 = new List<ICard>();
-        List<ICard> userCards = new List<ICard>();
-
-        if (_cardDic.ContainsKey(user.getUserId()))
-        {
-            userCards = _cardDic[user.getUserId()];
-        }
+        List<ICard> userCards = FightPokerMgr.Instance.getUserCards(user);
 
         //判断满槽了
-        int slot = MAXSLOT;
-        for (int i = 0; i < userCards.Count; i++) {
-            if (userCards[i].getLevel() > 1) {
-                slot--;
-            }
-        }
-        if (slot == 0) return list0;
-
-
-        for (int i = 0; i < config.Count; i++) {
-            if (config[i].getLevel() == 1) {
-                list1.Add(config[i]);
-            }
-            else {
-                list2.Add(config[i]);
-            }
-        }
-
-        for (int i = 0; i < userCards.Count; i++) {
-            if (userCards[i].getLevel() == 1)
-            {
-                for (int j = 0; j < list1.Count; j++) {
-                    if (userCards[i].getType() == list1[j].getType() && 
-                        userCards[i].getLevel() == list1[j].getLevel()) {
-                        list1.RemoveAt(j);
-                        break;
-                    }
-                }
-            }
-            else {
-                for (int j = 0; j < list1.Count; j++)
-                {
-                    if (userCards[i].getType() == list1[j].getType())
-                    {
-                        list1.RemoveAt(j);
-                        break;
-                    }
-                }
-                for (int j = 0; j < list2.Count; j++)
-                {
-                    if (userCards[i].getType() == list2[j].getType())
-                    {
-                        list2.RemoveAt(j);
-                        break;
-                    }
-                }
-            }
-        }
-
-        for (int i = 0; i < list1.Count; i++)
-        {
-            for (int j = 0; j < list2.Count; j++)
-            {
-                if (list1[i].getType() == list2[j].getType())
-                {
-                    list2.RemoveAt(j);
-                    break;
-                }
-            }
-        }
-
-        for (int i = 0; i < list2.Count; i++)
-        {
-            list1.Add(list2[i]);
+        if (userCards.FindAll(item => item.getLevel() > 1).Count >= MAXSLOT) {
+            return list0;
         }
         
-        for (int i = 0; i < 3; i++) {
+        //没有该类型的选择Level=1,
+        //拥有该类型的选择Level=2,
+        for (int i = 0; i < config.Count; i++) {
+            if ((config[i].getLevel() == 1 && -1 == userCards.FindIndex(card => card.getType() == config[i].getType())) ||
+                (config[i].getLevel() == 2 && -1 != userCards.FindIndex(card => card.getType() == config[i].getType() && card.getLevel() == 1)))
+            {
+                list1.Add(config[i]);
+            }
+        }
+
+        for (int i = 0; i < MAXSLOT; i++) {
             if (list1.Count == 0) break;
-            int index = RandomMgr.Instance.getRangeInt(0,list1.Count);
-            ICard card = list1[index];
+            ICard card = list1[RandomMgr.Instance.getRangeInt(0,list1.Count)];
             list0.Add(card);
-            list1.RemoveAt(index);
+            list1.Remove(card);
         }
         return list0;
-    }
-
-    public List<ICard> getCards(IUser user) {
-        if (!_cardDic.ContainsKey(user.getUserId()))
-        {
-            return null;
-        }
-        else {
-            return _cardDic[user.getUserId()];
-        }
-    }
-
-    public int getRound() {
-        return _round;
-    }
-
-    public void addRound() {
-        _round++;
     }
 
     public int getMaxSlot() {
         return MAXSLOT;
     }
 
+    public void cardHandleTypeHandle(List<IUser> list, bool isNpc, CardHandleType type)
+    {
+        ICardHandlePara handlePara = new CardHandleParaObject();
+        IRoundResult roundResult = new RoundResultObject();
+        handlePara.setRoundResult(roundResult);
+        for (int i = 0; i < list.Count; i++)
+        {
+            if (list[i].isNpc() == isNpc)
+            {
+                handlePara.setUser(list[i]);
+                handlePara.setAttackUser(list[i]);
+            }
+            else
+            {
+                handlePara.setDefenseUser(list[i]);
+            }
+        }
+        this.handle(handlePara, type);
+    }
+
     //
     public void handle(ICardHandlePara para, CardHandleType type) {
-        if (!_cardDic.ContainsKey(para.getUser().getUserId())) return;
-        List<ICard> cards = _cardDic[para.getUser().getUserId()];
+        List<ICard> cards = FightPokerMgr.Instance.getUserCards(para.getUser());
         List<ICardHandle> handles = CardConfig.getHandle();
         for (int i = 0; i < cards.Count; i++) {
             para.setCard(cards[i]);
             int index = cards[i].getId() - 1;
-            if (index < handles.Count) {
-                switch (type) {
-                    case CardHandleType.addNewCardAfter:
-                        handles[index].addNewCardAfterHandle(para);
-                        break;
-                    case CardHandleType.handPokerAfter:
-                        handles[index].handPokerAfterHandle(para);
-                        break;
-                    case CardHandleType.dealPokerAfter:
-                        handles[index].dealPokerAfterHandle(para);
-                        break;
-                    case CardHandleType.roundBegin:
-                        handles[index].roundBeginHandle(para);
-                        break;
-                    case CardHandleType.roundAddValueBefore:
-                        handles[index].roundAddValueBeforeHandle(para);
-                        break;
-                    case CardHandleType.roundAddValue:
-                        handles[index].roundAddValueHandle(para);
-                        break;
-                    case CardHandleType.roundAddMagic:
-                        handles[index].roundAddMagicHandle(para);
-                        break;
-                    case CardHandleType.roundSpecialAttr:
-                        handles[index].roundSpecialAttrHandle(para);
-                        break;
-                    case CardHandleType.roundAttackBegin:
-                        handles[index].roundAttackBeforeHandle(para);
-                        break;
-                    case CardHandleType.roundAttack:
-                        handles[index].roundAttackHandle(para);
-                        break;
-                    case CardHandleType.roundMagicAttack:
-                        handles[index].roundMagicAttackHandle(para);
-                        break;
-                    case CardHandleType.roundSubDefense:
-                        handles[index].roundSubDefenseHandle(para);
-                        break;
-                    case CardHandleType.roundSubBlood:
-                        handles[index].roundSubBloodHandle(para);
-                        break;
-                    case CardHandleType.roundAttackAfter:
-                        handles[index].roundAttackAfterHandle(para);
-                        break;
-                    case CardHandleType.roundEnd:
-                        handles[index].roundEndHandle(para);
-                        break;
-                }
+            if (index >= handles.Count) continue;
+            switch (type) {
+                case CardHandleType.addNewCardAfter:
+                    handles[index].addNewCardAfterHandle(para);
+                    break;
+                case CardHandleType.handPokerAfter:
+                    handles[index].handPokerAfterHandle(para);
+                    break;
+                case CardHandleType.dealPokerAfter:
+                    handles[index].dealPokerAfterHandle(para);
+                    break;
+                case CardHandleType.roundBegin:
+                    handles[index].roundBeginHandle(para);
+                    break;
+                case CardHandleType.roundAddValueBefore:
+                    handles[index].roundAddValueBeforeHandle(para);
+                    break;
+                case CardHandleType.roundAddValue:
+                    handles[index].roundAddValueHandle(para);
+                    break;
+                case CardHandleType.roundAddMagic:
+                    handles[index].roundAddMagicHandle(para);
+                    break;
+                case CardHandleType.roundSpecialAttr:
+                    handles[index].roundSpecialAttrHandle(para);
+                    break;
+                case CardHandleType.roundAttackBegin:
+                    handles[index].roundAttackBeforeHandle(para);
+                    break;
+                case CardHandleType.roundAttack:
+                    handles[index].roundAttackHandle(para);
+                    break;
+                case CardHandleType.roundMagicAttack:
+                    handles[index].roundMagicAttackHandle(para);
+                    break;
+                case CardHandleType.roundSubDefense:
+                    handles[index].roundSubDefenseHandle(para);
+                    break;
+                case CardHandleType.roundSubBlood:
+                    handles[index].roundSubBloodHandle(para);
+                    break;
+                case CardHandleType.roundAttackAfter:
+                    handles[index].roundAttackAfterHandle(para);
+                    break;
+                case CardHandleType.roundEnd:
+                    handles[index].roundEndHandle(para);
+                    break;
             }
         }
     }

@@ -1,6 +1,10 @@
+using Pb;
 using System.Collections.Generic;
 using System.Diagnostics;
+using Unity.Collections.LowLevel.Unsafe;
 using UnityEngine;
+using UnityEngine.UIElements;
+using static UnityEngine.UIElements.UxmlAttributeDescription;
 
 public class GameReqMgr : Singleton<GameReqMgr>
 {
@@ -27,7 +31,7 @@ public class GameReqMgr : Singleton<GameReqMgr>
                 GameMessage.Instance.addMsg(GameConst.BARRIERVIEW_NEWPOKER, poker);
             }
         }
-        
+
         BarrierDataMgr.Instance.setState(BarrierState.dragPoker);
         GamePropertyMgr.Instance.save();
     }
@@ -35,7 +39,7 @@ public class GameReqMgr : Singleton<GameReqMgr>
     public void requestFillPoker()
     {
         List<BarrierDealType> typeList = new List<BarrierDealType> { BarrierDealType.npc, BarrierDealType.player };
-        for(int i=0;i< typeList.Count; i++)
+        for (int i = 0; i < typeList.Count; i++)
         {
             BarrierDealType type = typeList[i];
             BarrierDealPoker poker = BarrierDataMgr.Instance.dealPoker(type);
@@ -47,7 +51,7 @@ public class GameReqMgr : Singleton<GameReqMgr>
 
     public void requestDealPoker() {
         BarrierDealPoker poker = BarrierDataMgr.Instance.dealPoker(BarrierDealType.other);
-        GameMessage.Instance.addMsg(GameConst.BARRIERVIEW_NEWPOKER,poker);
+        GameMessage.Instance.addMsg(GameConst.BARRIERVIEW_NEWPOKER, poker);
 
         BarrierState state = BarrierDataMgr.Instance.getMatchPoint() >= 21 ? BarrierState.stopPoker : BarrierState.dealPoker;
         BarrierDataMgr.Instance.setState(state);
@@ -56,9 +60,9 @@ public class GameReqMgr : Singleton<GameReqMgr>
 
     public void requestRefreshPoker(BarrierDealType type) {
         int count = 0;
-        if (type == BarrierDealType.npc){
+        if (type == BarrierDealType.npc) {
             count = BarrierDataMgr.Instance.setRefreshNpcPokerNum();
-        }else{
+        } else {
             count = BarrierDataMgr.Instance.setRefreshPlayerPokerNum();
         }
         for (int i = 0; i < count; i++)
@@ -77,10 +81,19 @@ public class GameReqMgr : Singleton<GameReqMgr>
     public void requestSurePoker() {
         int point = BarrierDataMgr.Instance.getMatchPointA();
         if (point <= 0) return;
-        int suit = (point - point % 100) / 100;
-        
-        PageIndex pageIndex = GameConst.PAGEINDEX_SUIT[suit];
-        ShopDataMgr.Instance.createGoods(suit);
+
+        PokerSuit suit = (PokerSuit)((point - point % 100) / 100);
+        if (suit == PokerSuit.club) {
+            ShopDataMgr.Instance.initEntry();
+        }
+        else if (suit == PokerSuit.spade) {
+            FightDataMgr.Instance.initEntry();
+
+            //初始化资源
+            this.requestInitPlayerInfo();
+        }
+
+        PageIndex pageIndex = GameConst.PAGEINDEX_SUIT[(int)suit];
         BarrierDataMgr.Instance.clearMatch();
         BarrierDataMgr.Instance.addBarrierId();
         BarrierDataMgr.Instance.setState(BarrierState.fillPoker);
@@ -163,7 +176,7 @@ public class GameReqMgr : Singleton<GameReqMgr>
         GamePropertyMgr.Instance.save();
     }
 
-    public void requestPurchaseGoods(int id,int price) {
+    public void requestPurchaseGoods(int id, int price) {
         if (PlayerDataMgr.Instance.getMoney() >= price) {
             bool success = ShopDataMgr.Instance.purchaseGoods(id);
             if (success)
@@ -188,5 +201,56 @@ public class GameReqMgr : Singleton<GameReqMgr>
     public void requestRefreshShop() {
         ShopDataMgr.Instance.refreshShop();
         GameMessage.Instance.addMsg(GameConst.SHOPVIEW_REFRESH);
+    }
+    public void requestAddCard(bool isOk, IUser user, ICard card, Vector3 position) {
+        bool success = FightPokerMgr.Instance.addUserCard(isOk, user, card);
+        if (success)
+        {
+            EventDispatcher.Instance.emit(GameConst.OKSELECTCARD, new SelectCardPara(user, card, position));
+        }
+        else
+        {
+            EventDispatcher.Instance.emit(GameConst.CANCELSELECTCARD);
+        }
+    }
+    public void requestNpcOperator(IUser user)
+    {
+        FightFlowState state;
+        if (FightPokerMgr.Instance.getUserHandPokerPoint(user, false) >= 17)
+        {
+            state = FightFlowState.stopDealPoker;
+        }
+        else
+        {
+            state = FightFlowState.dealPoker;
+        }
+        this.requestSaveFightFlowState(state);
+    }
+
+    public void requestSaveFightFlowState(FightFlowState state) {
+        //保存下一个状态
+        FightPokerMgr.Instance.setFlowState(state);
+        GamePropertyMgr.Instance.save();
+
+        //下一个流程
+        FightPokerMgr.Instance.runFlow();
+    }
+
+    
+
+    //保存状态
+    public void requestSavePlayerInfo() {
+        AssetInfo playerInfo = FightDataMgr.Instance.getAssetInfo(FightDealType.player);
+        PlayerDataMgr.Instance.setHP(playerInfo.Hp);
+        PlayerDataMgr.Instance.setMaxHP(playerInfo.MaxHP);
+        PlayerDataMgr.Instance.setMagic(playerInfo.Magic);
+        PlayerDataMgr.Instance.setMaxMagic(playerInfo.MaxMagic);
+    }
+    private void requestInitPlayerInfo() {
+        AssetInfo playerInfo = FightDataMgr.Instance.getAssetInfo(FightDealType.player);
+        playerInfo.Hp = PlayerDataMgr.Instance.getHP();
+        playerInfo.MaxHP = PlayerDataMgr.Instance.getMaxHP();
+        playerInfo.Magic = PlayerDataMgr.Instance.getMagic();
+        playerInfo.MaxMagic = PlayerDataMgr.Instance.getMaxMagic();
     }
 }

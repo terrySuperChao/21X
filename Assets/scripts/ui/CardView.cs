@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Tilemaps;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -43,7 +42,6 @@ public class CardView : MonoBehaviour
     public GameObject attackImage;
     public Text effectText;
 
-    public GameObject selectCard;
     public GameObject cardPrefab;
 
     public Transform npcCards;
@@ -51,77 +49,75 @@ public class CardView : MonoBehaviour
     public GameObject refactoringGameObject;
     public GameObject tipsView;
 
-    private CardFlow _gameFlow = new CardFlow();
-
     // Start is called before the first frame update
     void Start()
     {
-        //每局开始处理
-        UserMgr.Instance.init();
-        NpcMgr.Instance.init();
-        CardMgr.Instance.init();
-        IUser user1 = UserMgr.Instance.getUser();
-        IUser user2 = NpcMgr.Instance.getUser();
-        PokerPileMgr.Instance.shuffle();
-        HandPokerMgr.Instance.resetHandPoker();
-        GameMessage.Instance.clearCacheMessage();
-        PlayPokerMgr.Instance.clearPlayer();
-        PlayPokerMgr.Instance.addPlayer(user1);
-        PlayPokerMgr.Instance.addPlayer(user2);
-
-        //设置数值
-        user1.setMaxBlood(PlayerDataMgr.Instance.getMaxHP());
-        user1.setBlood(PlayerDataMgr.Instance.getHP());
-        user1.setMagic(PlayerDataMgr.Instance.getMagic());
-        user1.setMaxMagic(PlayerDataMgr.Instance.getMaxMagic());
-
-        updateUserInfo();
-        setBtnInteractable(false);
-
-        PlayPokerMgr.Instance.setGameFlow(_gameFlow);
-        PlayPokerMgr.Instance.startPlayPoker();
+        EventDispatcher.Instance.on(GameConst.DEALCARD, this.dealCard);
+        
+        EventDispatcher.Instance.on(GameConst.CANDIDACYCARD, this.candidacyCard);
+        EventDispatcher.Instance.on(GameConst.OKSELECTCARD, this.okSelectCard);
+        EventDispatcher.Instance.on(GameConst.CANCELSELECTCARD, this.cancelSelectCard);
 
         EventDispatcher.Instance.on(GameConst.DEALPOKER, this.dealPoker);
+        EventDispatcher.Instance.on(GameConst.TURNPLAYER, this.turnPlayer);
         EventDispatcher.Instance.on(GameConst.STOPDEALPOKER, this.stopDealPoker);
-        EventDispatcher.Instance.on(GameConst.PLAYERACTION, this.playerAction);
+        EventDispatcher.Instance.on(GameConst.WAITOPERATOR, this.waitOperator);
+        EventDispatcher.Instance.on(GameConst.TOTALPOKERPOINT, this.totalPokerPoint);
+        EventDispatcher.Instance.on(GameConst.FIGHTFLOWSTATE, this.fightFlowState);
         EventDispatcher.Instance.on(GameConst.SHUFFLEPOKER, this.shufflePoker);
         EventDispatcher.Instance.on(GameConst.GAMESETTLE, this.gameSettle);
         EventDispatcher.Instance.on(GameConst.GAMEOVER, this.gameOver);
-        EventDispatcher.Instance.on(GameConst.DEALCARD, this.dealCard);
-        EventDispatcher.Instance.on(GameConst.SELECTFINSIHCARD, this.selectFinishCard);
+
         EventDispatcher.Instance.on(GameConst.ADDPOKERVALUE, this.addPokerValue);
         EventDispatcher.Instance.on(GameConst.ADDCARDVALUE, this.addCardValue);
         EventDispatcher.Instance.on(GameConst.COMMONATTACK, this.commonAttack);
         EventDispatcher.Instance.on(GameConst.FLYFONT, this.flyFont);
         EventDispatcher.Instance.on(GameConst.REFACTORING, this.refactoring);
         EventDispatcher.Instance.on(GameConst.REHANDPOKER, this.reHandPoker);
-        EventDispatcher.Instance.on(GameConst.CLEARHEADPOKER, this.clearHandPoker);
+        EventDispatcher.Instance.on(GameConst.CLEARHANDPOKER, this.clearHandPoker);
         EventDispatcher.Instance.on(GameConst.GAMENEXTROUND, this.gameNextRound);
         EventDispatcher.Instance.on(GameConst.SHOWTIPS, this.onShowTips);
         EventDispatcher.Instance.on(GameConst.EXIT_PAGE, this.exitPageHandle);
-        StartCoroutine(dealPokerAfterAction());
+
+        FightPokerMgr.Instance.init();
+        FightPokerMgr.Instance.runFlow();
+
+        this.initPokers();
+        this.initCards();
+        this.initUserInfo();
+        this.setBtnInteractable(false);
+
+        Invoke("delayMessageComplete", 0.5f);
     }
 
     private void OnDestroy()
     {
+        EventDispatcher.Instance.off(GameConst.DEALCARD, this.dealCard);
+
+        EventDispatcher.Instance.off(GameConst.CANDIDACYCARD, this.candidacyCard);
+        EventDispatcher.Instance.off(GameConst.OKSELECTCARD, this.okSelectCard);
+        EventDispatcher.Instance.off(GameConst.CANCELSELECTCARD, this.cancelSelectCard);
+
         EventDispatcher.Instance.off(GameConst.DEALPOKER, this.dealPoker);
+        EventDispatcher.Instance.off(GameConst.TURNPLAYER, this.turnPlayer);
         EventDispatcher.Instance.off(GameConst.STOPDEALPOKER, this.stopDealPoker);
-        EventDispatcher.Instance.off(GameConst.PLAYERACTION, this.playerAction);
+        EventDispatcher.Instance.off(GameConst.WAITOPERATOR, this.waitOperator);
+        EventDispatcher.Instance.off(GameConst.TOTALPOKERPOINT, this.totalPokerPoint);
+        EventDispatcher.Instance.off(GameConst.FIGHTFLOWSTATE, this.fightFlowState);
         EventDispatcher.Instance.off(GameConst.SHUFFLEPOKER, this.shufflePoker);
         EventDispatcher.Instance.off(GameConst.GAMESETTLE, this.gameSettle);
         EventDispatcher.Instance.off(GameConst.GAMEOVER, this.gameOver);
-        EventDispatcher.Instance.off(GameConst.DEALCARD, this.dealCard);
-        EventDispatcher.Instance.off(GameConst.SELECTFINSIHCARD, this.selectFinishCard);
+        
         EventDispatcher.Instance.off(GameConst.ADDPOKERVALUE, this.addPokerValue);
         EventDispatcher.Instance.off(GameConst.ADDCARDVALUE, this.addCardValue);
         EventDispatcher.Instance.off(GameConst.COMMONATTACK, this.commonAttack);
         EventDispatcher.Instance.off(GameConst.FLYFONT, this.flyFont);
         EventDispatcher.Instance.off(GameConst.REFACTORING, this.refactoring);
         EventDispatcher.Instance.off(GameConst.REHANDPOKER, this.reHandPoker);
-        EventDispatcher.Instance.off(GameConst.CLEARHEADPOKER, this.clearHandPoker);
+        EventDispatcher.Instance.off(GameConst.CLEARHANDPOKER, this.clearHandPoker);
         EventDispatcher.Instance.off(GameConst.GAMENEXTROUND, this.gameNextRound);
         EventDispatcher.Instance.off(GameConst.SHOWTIPS, this.onShowTips);
-        EventDispatcher.Instance.on(GameConst.EXIT_PAGE, this.exitPageHandle);
+        EventDispatcher.Instance.off(GameConst.EXIT_PAGE, this.exitPageHandle);
     }
     public void exitPageHandle(params System.Object[] obj)
     {
@@ -136,67 +132,305 @@ public class CardView : MonoBehaviour
     }
 
     private void updateUserInfo() {
-        List<IUser> list = PlayPokerMgr.Instance.getPlayers();
-        for (int i = 0; i < list.Count; i++)
+        List<IUser> list = FightPokerMgr.Instance.getPlayers();
+        foreach (var user in list)
         {
-            IUser user = list[i];
-            if (user.isNpc())
+            this.setUserInfo(user, ValueType.blood);
+            this.setUserInfo(user, ValueType.attack);
+            this.setUserInfo(user, ValueType.defense);
+            this.setUserInfo(user, ValueType.magic);
+            this.setUserInfo(user, ValueType.point);
+            this.setUserInfo(user, ValueType.winRate);
+        }
+    }
+
+    private void initUserInfo()
+    {
+        this.updateUserInfo();
+    }
+
+    private void initPokers() {
+        List<IUser> players = FightPokerMgr.Instance.getPlayers();
+        foreach (var user in players)
+        {
+            List<IPoker> pokers = FightPokerMgr.Instance.getUsetHandPoker(user);
+            foreach (var poker in pokers)
             {
-                npcPointText.text = "0";
-                npcWinsText.text = user.getWins().ToString();
-                npcWinRateText.text = string.Format("{0:P1}", user.getWinRate());
-                npcBloodText.text = user.getBlood() + "/" + user.getMaxBlood();
-                npcAttackText.text = user.getAttack().ToString();
-                npcDefenseText.text = user.getDefense().ToString();
-                npcMagicText.text = user.getMagic() + "/" + user.getMaxMagic();
+                int point = FightPokerMgr.Instance.getUserHandPokerPoint(user, user.isNpc());
+                this.addPoker(new DealPokerPara(user, poker));
             }
-            else
+            this.showUserState(user);
+        }
+    }
+
+    private void initCards() {
+        List<IUser> players = FightPokerMgr.Instance.getPlayers();
+        foreach (var user in players)
+        {
+            List<ICard> cards = FightPokerMgr.Instance.getUserCards(user);
+            foreach (var card in cards)
             {
-                userPointText.text = "0";
-                userWinsText.text = user.getWins().ToString();
-                userWinRateText.text = string.Format("{0:P1}", user.getWinRate());
-                userBloodText.text = user.getBlood() + "/" + user.getMaxBlood();
-                userAttackText.text = user.getAttack().ToString();
-                userDefenseText.text = user.getDefense().ToString();
-                userMagicText.text = user.getMagic() + "/" + user.getMaxMagic();
+                this.addCard(new SelectCardPara(user, card, new Vector3()));
             }
         }
     }
 
-    private IEnumerator dealPokerAfterAction() {
-        yield return new WaitForSeconds(1.0f);
-        updateUserInfo();
+    private void fightFlowState(params System.Object[] obj) {
+        FightFlowState state = (FightFlowState)obj[0];
+        GameReqMgr.Instance.requestSaveFightFlowState(state);
         GameMessage.Instance.setHandleMessageComplete();
     }
 
-    private void addPoker(IUser user, IPoker poker, int point, Transform parent, Text text) {
-        GameObject pokerObject = Instantiate(pokerPrefab, parent);
-        pokerObject.GetComponent<Poker>().loadPokerRes(poker);
+    private void addPoker(IDealPokerPara para) {
+        Transform transform = para.getUser().isNpc() ? npcPokers : userPokers;
+        
+        GameObject pokerObject = Instantiate(pokerPrefab, transform);
+        pokerObject.GetComponent<Poker>().loadPokerRes(para.getPoker());
         pokerObject.transform.position = pokerPrefab.transform.position;
 
         Vector3 pos = new Vector3(0, 0, 0);
-        float count = parent.childCount;
+        float count = transform.childCount;
         float index = count - 1;
         float scalex = pokerObject.transform.localScale.x;
         float width = pokerObject.GetComponent<RectTransform>().rect.width * scalex;
-        float maxWidth = parent.gameObject.GetComponent<RectTransform>().rect.width;
+        float maxWidth = transform.gameObject.GetComponent<RectTransform>().rect.width;
         float offX = count <= 1 ? 120 : Math.Min((maxWidth - width * count) / (count - 1), 120);
         float startX = pos.x - index * (width * scalex + offX) / 2;
         
         for (int i = 0; i < count; i++)
         {
             Vector3 localPos = new Vector3(startX + (width * scalex + offX) * i, pos.y, pos.z);
-            moveTo(parent.GetChild(i).gameObject, localPos);
+            moveTo(transform.GetChild(i).gameObject, localPos);
+        }
+    }
+
+    private void addCard(ISelectCardPara para){
+        Transform parent = para.getUser().isNpc() ? npcCards : userCards;
+        int index = getCardForTypeIndex(para.getCard(), parent);
+        GameObject cardObject = Instantiate(cardPrefab, parent);
+        cardObject.GetComponent<Card>().loadCard(para.getCard());
+        cardObject.transform.position = parent.GetChild(index).position;
+        cardObject.transform.localScale = new Vector3(0.7f, 0.7f, 0.7f);
+        Destroy(parent.GetChild(index).gameObject);
+    }
+
+
+    // ------》》》》 1发卡牌
+    public void dealCard(params System.Object[] obj)
+    {
+        IDealCardPara para = (IDealCardPara)obj[0];
+        this.addCard(new SelectCardPara(para.getUser(), para.getCard(), new Vector3()));
+        Invoke("delayMessageComplete", 0.5f);
+    }
+
+    // ------》》》》 1.1 选择卡牌
+    public void candidacyCard(params System.Object[] obj)
+    {
+        ICandidacyCardPara para = (ICandidacyCardPara)obj[0];
+        UIMgr.Instance.showTips("SelectCardView", obj[0]);
+    }
+
+    public void okSelectCard(params System.Object[] obj)
+    {
+        StartCoroutine(okSelectCardHandle(obj));
+    }
+
+    private IEnumerator okSelectCardHandle(params System.Object[] obj)
+    {
+        ISelectCardPara para = (ISelectCardPara)obj[0];
+        IUser user = para.getUser();
+        ICard card = para.getCard();
+        
+        GameObject cardObject = Instantiate(this.cardPrefab, this.rootTransform);
+        cardObject.GetComponent<Card>().loadCard(card);
+        cardObject.GetComponent<Card>().showNameText(false);
+        cardObject.transform.position = para.getPosition();
+
+        int index = this.getCardForTypeIndex(card, this.userCards);
+        iTween.MoveTo(cardObject, this.userCards.GetChild(index).position, 0.5f);
+        yield return new WaitForSeconds(0.6f);
+        Destroy(this.userCards.GetChild(index).gameObject);
+        cardObject.GetComponent<Card>().showNameText(true);
+        cardObject.transform.SetParent(this.userCards);
+        cardObject.transform.localScale = new Vector3(0.7f, 0.7f, 0.7f);
+
+        Invoke("delayMessageComplete", 0.1f);
+    }
+
+    public void cancelSelectCard(params System.Object[] obj)
+    {
+        GameMessage.Instance.setHandleMessageComplete();
+    }
+
+
+    // ------》》》》 2发扑克牌
+    private void dealPoker(params System.Object[] obj)
+    {
+        IDealPokerPara para = (IDealPokerPara)obj[0];
+        this.addPoker(para);
+        this.showUserState(para.getUser());
+
+        Invoke("delayMessageComplete", 0.6f);
+    }
+
+    // ------》》》》 3轮到操作者
+    private void turnPlayer(params System.Object[] obj)
+    {
+        IUser user = (IUser)obj[0];
+        this.setBtnInteractable(!user.isNpc());
+
+        Invoke("delayMessageComplete", 0.1f);
+    }
+
+    // ------》》》》 4 等待操作
+    private void waitOperator(params System.Object[] obj) {
+        StartCoroutine(waitOperatorHandle(obj));
+    }
+
+    private IEnumerator waitOperatorHandle(params System.Object[] obj)
+    {
+        IUser user = (IUser)obj[0];
+        if (user.isNpc())
+        {
+            yield return new WaitForSeconds(RandomMgr.Instance.getRangeInt(1, 3));
+            FightFlowState state = FightPokerMgr.Instance.getUserHandPokerPoint(user, false) >= 17 ? FightFlowState.stopDealPoker : FightFlowState.dealPoker;
+            GameReqMgr.Instance.requestSaveFightFlowState(state);
+        }
+        else
+        {
+            yield return new WaitForSeconds(0.1f);
+            this.setBtnInteractable(true);
+        }
+        GameMessage.Instance.setHandleMessageComplete();
+    }
+
+    // ------》》》》 5 统计点数
+    private void stopDealPoker(params System.Object[] obj)
+    {
+        IUser user = (IUser)obj[0];
+        this.showUserState(user);
+        GameMessage.Instance.setHandleMessageComplete();
+    }
+
+
+    // ------》》》》 6 统计点数
+    private void totalPokerPoint(params System.Object[] obj)
+    {
+        ITotalHandPokerPointPara para = (ITotalHandPokerPointPara)obj[0];
+        this.showUserState(para.getUser());
+        GameMessage.Instance.setHandleMessageComplete();
+    }
+    private void showUserState(IUser user) {
+        List<IPoker> pokers = FightPokerMgr.Instance.getUsetHandPoker(user);
+        int index = pokers.FindIndex(poker => poker.isBack());
+        int point = FightPokerMgr.Instance.getUserHandPokerPoint(user,index == -1);
+        bool isBack = FightPokerMgr.Instance.isUserHandPokerBlackJack(user);
+
+        Text text = null;
+        Text tips = null;
+        GameObject panel = null;
+        
+        if (user.isNpc())
+        {
+            text = npcPointText;
+            panel = npcTipsPanel;
+            tips = npcTipsPanel.GetComponentInChildren<Text>();
+        }
+        else
+        {
+            text = userPointText;
+            panel = userTipsPanel;
+            tips = userTipsPanel.GetComponentInChildren<Text>();
+        }
+        
+        if (isBack)
+        {
+            tips.text = "Blackack";
+            tips.color = new Color(255, 223, 0);
+            panel.SetActive(true);
+
         }
 
-        if (point < 21) {
+       if (point > 21)
+       {
+            tips.text = "爆牌";
+            tips.color = Color.red;
+            panel.SetActive(true);
+        }
+         
+        if (user.getState() == UserState.end)
+        {
+            tips.text = "停牌";
+            tips.color = Color.red;
+            panel.SetActive(true);
+        }
+
+        if (point < 21)
+        {
             text.color = Color.black;
-        } else if (point == 21) {
+        }
+        else if (point == 21)
+        {
             text.color = new Color(255, 223, 0);
-        } else {
+        }
+        else
+        {
             text.color = Color.red;
         }
         text.text = point.ToString();
+    }
+
+    private void gameSettle(params System.Object[] obj)
+    {
+        StartCoroutine(gameSettleHandle(obj));
+    }
+
+    private IEnumerator gameSettleHandle(params System.Object[] obj)
+    {
+        setBtnInteractable(false);
+        yield return new WaitForSeconds(0.5f);
+
+        EventDispatcher.Instance.emit(GameConst.FLIPPOKER);
+        yield return new WaitForSeconds(0.5f);
+
+        IUser npc = FightPokerMgr.Instance.getPlayers().Find(user => user.isNpc());
+        int point = FightPokerMgr.Instance.getUserHandPokerPoint(npc, false);
+        npcPointText.text = point.ToString();
+
+        yield return new WaitForSeconds(0.1f);
+        this.showUserState(npc);
+
+        yield return new WaitForSeconds(1f);
+        IUser user = (IUser)obj[0];
+
+        if (user == null)
+        {
+            resultText.text = "本回合平局";
+        }
+        else
+        {
+            if (user.isNpc())
+            {
+                resultText.text = "本回合NPC获胜";
+            }
+            else
+            {
+                resultText.text = "本回合玩家获胜";
+            }
+        }
+        resultPanel.SetActive(true);
+
+        yield return new WaitForSeconds(0.5f);
+        resultPanel.SetActive(false);
+        GameMessage.Instance.setHandleMessageComplete();
+    }
+
+    private void gameOver(params System.Object[] obj)
+    {
+        GameReqMgr.Instance.requestSavePlayerInfo();
+        GameReqMgr.Instance.requestExitPage();
+        EventDispatcher.Instance.emit("returnToLobby");
+        GameMessage.Instance.setHandleMessageComplete();
     }
 
     public void onReturnClick() {
@@ -210,278 +444,26 @@ public class CardView : MonoBehaviour
     }
 
     public void onDealPokerClick() {
-        refactoringGameObject.SetActive(false);
-        setBtnInteractable(false);
-        PlayPokerMgr.Instance.dealPokerAction();
+        this.refactoringGameObject.SetActive(false);
+        this.setBtnInteractable(false);
+        GameReqMgr.Instance.requestSaveFightFlowState(FightFlowState.dealPoker);
     }
 
     public void onStopPokerClick() {
-        refactoringGameObject.SetActive(false);
-        setBtnInteractable(false);
-        PlayPokerMgr.Instance.stopDealPokerAction();
+        this.refactoringGameObject.SetActive(false);
+        this.setBtnInteractable(false);
+        GameReqMgr.Instance.requestSaveFightFlowState(FightFlowState.stopDealPoker);
     }
 
-    private void dealPoker(params System.Object[] obj)
-    {
-        StartCoroutine(dealPokerHandle(obj));
-    }
-
-    private IEnumerator dealPokerHandle(params System.Object[] obj)
-    {
-        IUser user = (IUser)obj[0];
-        IPoker poker = (IPoker)obj[1];
-        int point = (int)obj[2];
-
-        Transform transform;
-        Text text;
-
-        if (user.isNpc())
-        {
-            transform = npcPokers;
-            text = npcPointText;
-        }
-        else {
-            transform = userPokers;
-            text = userPointText;
-        }
-        addPoker(user, poker, point, transform, text);
-
-        if (!user.isNpc()) {
-            //获取真实的分数
-            if (point == 21)
-            {
-                if (HandPokerMgr.Instance.isBlackJack(user)) {
-                    yield return new WaitForSeconds(0.5f);
-
-                    userTipsPanel.SetActive(true);
-                    Text tips = userTipsPanel.GetComponentInChildren<Text>();
-                    tips.text = "Blackack";
-                    tips.color = new Color(255, 223, 0);
-                }
-            }
-            else if (point > 21)
-            {
-                yield return new WaitForSeconds(0.5f);
-                userTipsPanel.SetActive(true);
-                Text tips = userTipsPanel.GetComponentInChildren<Text>();
-                tips.text = "爆牌！！";
-                tips.color = Color.red;
-            }
-        }
-
-        yield return new WaitForSeconds(0.6f);
-        GameMessage.Instance.setHandleMessageComplete();
-    }
-
-    private void stopDealPoker(params System.Object[] obj) {
-        IUser user = (IUser)obj[0];
-        GameObject panel = user.isNpc() ? npcTipsPanel : userTipsPanel;
-
-        panel.SetActive(true);
-        Text text = panel.GetComponentInChildren<Text>();
-        text.text = "停牌";
-        GameMessage.Instance.setHandleMessageComplete();
-    }
-
-    private void playerAction(params System.Object[] obj) {
-        StartCoroutine(playerActionHandle(obj));
-    }
-
-    private IEnumerator playerActionHandle(params System.Object[] obj) {
-        IUser user = (IUser)obj[0];
-        if (user.isNpc())
-        {
-            setBtnInteractable(false);
-            yield return new WaitForSeconds(RandomMgr.Instance.getRangeInt(1, 3));
-            int number = HandPokerMgr.Instance.getHandPokerPoint(user, false);
-            if (number >= 17)
-            {
-                PlayPokerMgr.Instance.stopDealPokerAction();
-            }
-            else
-            {
-                PlayPokerMgr.Instance.dealPokerAction();
-            }
-        }
-        else {
-            setBtnInteractable(true);
-            //用户自行操作
-            yield return new WaitForSeconds(0.1f);
-        }
-        GameMessage.Instance.setHandleMessageComplete();
-    }
-
-    private void gameSettle(params System.Object[] obj) {
-        StartCoroutine(gameSettleHandle(obj));
-    }
-
-    private IEnumerator gameSettleHandle(params System.Object[] obj) {
-        setBtnInteractable(false);
-        yield return new WaitForSeconds(0.5f);
-
-        EventDispatcher.Instance.emit(GameConst.FLIPPOKER);
-        yield return new WaitForSeconds(0.5f);
-
-        List<IUser> list = PlayPokerMgr.Instance.getPlayers();
-        for (int i = 0; i < list.Count; i++)
-        {
-            if (list[i].isNpc()) {
-                int point = HandPokerMgr.Instance.getHandPokerPoint(list[i], false);
-                npcPointText.text = point.ToString();
-
-                //获取真实的分数
-                if (point == 21)
-                {
-                    if (HandPokerMgr.Instance.isBlackJack(list[i]))
-                    {
-                        yield return new WaitForSeconds(0.5f);
-
-                        npcTipsPanel.SetActive(true);
-                        Text tips = npcTipsPanel.GetComponentInChildren<Text>();
-                        tips.text = "Blackack";
-                        tips.color = new Color(255, 223, 0);
-                    }
-                }
-                else if (point > 21)
-                {
-                    yield return new WaitForSeconds(0.5f);
-                    npcTipsPanel.SetActive(true);
-                    Text tips = npcTipsPanel.GetComponentInChildren<Text>();
-                    tips.text = "爆牌！！";
-                    tips.color = Color.red;
-                }
-            }
-        }
-
-        yield return new WaitForSeconds(1f);
-        IUser user = (IUser)obj[0];
-
-        if (user == null) {
-            resultText.text = "本回合平局";
-        }
-        else {
-            if (user.isNpc()) {
-                resultText.text = "本回合NPC获胜";
-            }
-            else {
-                resultText.text = "本回合玩家获胜";
-            }
-        }
-        resultPanel.SetActive(true);
-
-        yield return new WaitForSeconds(0.5f);
-        resultPanel.SetActive(false);
-        GameMessage.Instance.setHandleMessageComplete();
-    }
-
-    private void gameOver(params System.Object[] obj)
-    {
-        GameReqMgr.Instance.requestExitPage();
-        EventDispatcher.Instance.emit("returnToLobby");
-        GameMessage.Instance.setHandleMessageComplete();
-    }
-
+    
     private void setBtnInteractable(bool able) {
         stopPokerBtn.interactable = dealPokerBtn.interactable = able;
     }
 
     private void shufflePoker(params System.Object[] obj) {
-        StartCoroutine(shufflePokerHandle(obj));
+        Invoke("delayMessageComplete", 0.1f);
     }
 
-    private IEnumerator shufflePokerHandle(params System.Object[] obj) {
-        yield return new WaitForSeconds(0.1f);
-        GameMessage.Instance.setHandleMessageComplete();
-    }
-
-    public void dealCard(params System.Object[] obj) {
-        IUser user = (IUser)obj[0];
-
-        if (user == null) {
-            GameMessage.Instance.setHandleMessageComplete();
-            return;
-        }
-
-        List<ICard> cards = (List<ICard>)obj[1];
-        if (cards == null) {
-            GameMessage.Instance.setHandleMessageComplete();
-            return;
-        }
-
-        if (user.isNpc())
-        {
-            ICard card = null;
-            int rd = RandomMgr.Instance.getRangeInt(0, cards.Count);
-            List<ICard> list = CardMgr.Instance.getCards(user);
-            if (list != null) {
-                for (int i = 0; i < list.Count; i++) {
-                    for (int j = 0; j < cards.Count; j++) {
-                        if (list[i].getType() == cards[j].getType()) {
-                            card = cards[j];
-                            break;
-                        }
-                    }
-                    if (card != null) {
-                        break;
-                    }
-                }
-            }
-            if (card == null) {
-                card = cards[rd];
-            }
-            bool success = CardMgr.Instance.addCard(user, card);
-            if (success) { 
-                int index = getCardForTypeIndex(card, npcCards);
-
-                GameObject cardObject = Instantiate(cardPrefab, npcCards);
-                cardObject.GetComponent<Card>().loadCard(card);
-                cardObject.transform.position = npcCards.GetChild(index).position;
-                cardObject.transform.localScale = new Vector3(0.7f, 0.7f, 0.7f);
-                Destroy(npcCards.GetChild(index).gameObject);
-
-                _gameFlow.cardHandleTypeHandle(PlayPokerMgr.Instance.getPlayers(), false, CardHandleType.addNewCardAfter);
-            }
-            GameMessage.Instance.setHandleMessageComplete();
-        }
-        else {
-            selectCard.SetActive(true);
-            selectCard.GetComponent<SelectCardView>().initCards(user, cards);
-        }
-    }
-
-    public void selectFinishCard(params System.Object[] obj)
-    {
-        StartCoroutine(selectFinishCardHandle(obj));
-    }
-
-    private IEnumerator selectFinishCardHandle(params System.Object[] obj) {
-        IUser user = (IUser)obj[0];
-        ICard card = (ICard)obj[1];
-        selectCard.SetActive(false);
-        
-        if (card != null) {
-            bool success = CardMgr.Instance.addCard(user, card);
-            if (success)
-            {
-                GameObject cardObject = Instantiate(cardPrefab, rootTransform);
-                cardObject.GetComponent<Card>().loadCard(card);
-                cardObject.GetComponent<Card>().showNameText(false);
-                cardObject.transform.position = (Vector3)obj[2];
-
-                int index = getCardForTypeIndex(card, userCards);
-                iTween.MoveTo(cardObject, userCards.GetChild(index).position, 0.5f);
-                yield return new WaitForSeconds(0.6f);
-                Destroy(userCards.GetChild(index).gameObject);
-                cardObject.GetComponent<Card>().showNameText(true);
-                cardObject.transform.SetParent(userCards);
-                cardObject.transform.localScale = new Vector3(0.7f, 0.7f, 0.7f);
-
-                _gameFlow.cardHandleTypeHandle(PlayPokerMgr.Instance.getPlayers(), false, CardHandleType.addNewCardAfter);
-            }
-        }
-        yield return new WaitForSeconds(0.1f);
-        GameMessage.Instance.setHandleMessageComplete();
-    }
 
     private int getCardForTypeIndex(ICard card, Transform parent) {
         int index = 0;
@@ -525,7 +507,6 @@ public class CardView : MonoBehaviour
         return null;
     }
 
-
     public void addPokerValue(params System.Object[] obj)
     {
         StartCoroutine(addPokerValueHandle(obj));
@@ -562,7 +543,6 @@ public class CardView : MonoBehaviour
         }
         GameMessage.Instance.setHandleMessageComplete();
     }
-
 
     public void addCardValue(params System.Object[] obj)
     {
@@ -617,6 +597,55 @@ public class CardView : MonoBehaviour
         }
         return text;
     }
+
+    private void setUserInfo(IUser user, ValueType type) {
+        if (user.isNpc())
+        {
+            switch (type)
+            {
+                case ValueType.defense: // 方
+                    npcDefenseText.text = user.getDefense().ToString();
+                    break;
+                case ValueType.blood: // 红
+                    npcBloodText.text = user.getBlood() + "/" + user.getMaxBlood();
+                    break;
+                case ValueType.attack: // 黑
+                    npcAttackText.text = user.getAttack().ToString();
+                    break;
+                case ValueType.magic: // 梅
+                    npcMagicText.text = user.getMagic() + "/ " + user.getMaxMagic();
+                    break;
+                case ValueType.winRate: //赢率
+                    npcWinRateText.text = string.Format("{0:P1}", user.getWinRate());
+                    break;
+                default:
+                    break;
+            }
+        }
+        else {
+            switch (type)
+            {
+                case ValueType.defense: // 方
+                    userDefenseText.text = user.getDefense().ToString();
+                    break;
+                case ValueType.blood: // 红
+                    userBloodText.text = user.getBlood() + "/" + user.getMaxBlood();
+                    break;
+                case ValueType.attack: // 黑
+                    userAttackText.text = user.getAttack().ToString();
+                    break;
+                case ValueType.magic: // 梅
+                    userMagicText.text = user.getMagic() + "/ " + user.getMaxMagic();
+                    break;
+                case ValueType.winRate: //赢率
+                    userWinRateText.text = string.Format("{0:P1}", user.getWinRate());
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
+
     private string getFinalContent(IUser user, ValueType type, float value)
     {
         float maxValue = -1;
@@ -653,16 +682,7 @@ public class CardView : MonoBehaviour
     private IEnumerator commonAttackHandle(params System.Object[] obj)
     {
         IUICommonPara para = (IUICommonPara)obj[0];
-        if (para.getValueType() == ValueType.magic)
-        {
-            Text text = getText(para.getUser(), ValueType.magic);
-            text.text = para.getUser().getMagic() + "/" + para.getUser().getMaxMagic();
-        }
-        else
-        {
-            Text text = getText(para.getUser(), ValueType.attack);
-            text.text = para.getUser().getAttack().ToString();
-        }
+        this.setUserInfo(para.getUser(), para.getValueType());
 
         if (para.getUser().isNpc())
         {
@@ -716,45 +736,29 @@ public class CardView : MonoBehaviour
     }
     public void refactoring(params System.Object[] obj)
     {
-        IUser user = (IUser)obj[0];
-        if (user.isNpc())
-        {
-            int number = HandPokerMgr.Instance.getHandPokerPoint(user, false);
-            if (number < 21) {
-                if (RandomMgr.Instance.getRangeInt(0, 100) <= 30)
-                {
-                    _gameFlow.reDealHandPoker(PlayPokerMgr.Instance.getPlayers(), true,0);
-                }
-            }
-        }
-        else {
-            refactoringGameObject.GetComponent<Refactoring>().setFactoringNum((int)obj[1]);
+        IRefactoringPara para = (IRefactoringPara)obj[0];
+        if (para.getUser().isNpc()){
+            FightPokerMgr.Instance.reDealHandPoker(para.getUser());
+        }else {
+            //refactoringGameObject.GetComponent<Refactoring>().setFactoringNum(para);
         }
         GameMessage.Instance.setHandleMessageComplete();
     }
+
     public void reHandPoker(params System.Object[] obj) {
-        _gameFlow.reDealHandPoker(PlayPokerMgr.Instance.getPlayers(), false, (int)obj[0]);
+        IReHandPokerPara para = (IReHandPokerPara)obj[0];
+        FightPokerMgr.Instance.reDealHandPoker(para.getUser(), para.getSuit());
     }
     
     public void clearHandPoker(params System.Object[] obj)
     {
-        List<Transform> child = new List<Transform>();
         IUser user = (IUser)obj[0];
-        if (user.isNpc())
+        List<Transform> child = new List<Transform>();
+        Transform transform = user.isNpc() ? npcPokers : userPokers;
+        for (int i = 0; i < transform.childCount; i++)
         {
-            for (int i = 0; i < npcPokers.childCount; i++)
-            {
-                child.Add(npcPokers.GetChild(i));
-            }
+            child.Add(transform.GetChild(i));
         }
-        else
-        {
-            for (int i = 0; i < userPokers.childCount; i++)
-            {
-                child.Add(userPokers.GetChild(i));
-            }
-        }
-
         for (int i = 0; i < child.Count; i++)
         {
             Destroy(child[i].gameObject);
@@ -805,10 +809,7 @@ public class CardView : MonoBehaviour
         {
             Destroy(child[i].gameObject);
         }
-        
-        PokerPileMgr.Instance.shuffle();
-        HandPokerMgr.Instance.resetHandPoker();
-        PlayPokerMgr.Instance.startPlayPoker();
+        FightPokerMgr.Instance.clear();
         GameMessage.Instance.setHandleMessageComplete();
     }
 
@@ -824,5 +825,9 @@ public class CardView : MonoBehaviour
 
     private void moveTo(GameObject gameObject, Vector3 position) {
         iTween.MoveTo(gameObject, iTween.Hash("position", position, "time", 0.5f, "isLocal", true, "easeType", iTween.EaseType.linear));
+    }
+
+    private void delayMessageComplete() {
+        GameMessage.Instance.setHandleMessageComplete();
     }
 }

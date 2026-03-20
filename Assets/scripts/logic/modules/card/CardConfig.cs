@@ -63,4 +63,7 @@ public class CardConfig
         return _handle;
     }
 
+	public static ICard getCard(int cardId) {
+		return _config.Find(card => card.getId() == cardId);
+    }
 }

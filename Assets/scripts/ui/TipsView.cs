@@ -44,10 +44,10 @@ public class TipsView : MonoBehaviour,IBaseView
         
     }
 
-    public void setAlert(string content, Action okAction, Action cancelAction)
+    public void setAlert(object content, Action okAction, Action cancelAction)
     {
 
-        this.setText(content);
+        this.setText((string)content);
     }
 
     public void setText(string str) {
@@ -59,6 +59,6 @@ public class TipsView : MonoBehaviour,IBaseView
         text.text = str;
         iTween.MoveBy(this.gameObject, new Vector3(0, 300, 0), 1f);
         yield return new WaitForSeconds(1.0f);
-        Destroy(this.gameObject);
+        UIMgr.Instance.closeView(this.gameObject.name);
     }
 }   

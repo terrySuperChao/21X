@@ -6,23 +6,31 @@ public class GameConst
     public const string SHOWTIPS        = "SHOWTIPS";
     public const string DEALPOKER       = "dealPoker";
     public const string STOPDEALPOKER   = "stopDealPoker";
-    public const string PLAYERACTION    = "playerAction";
+    public const string TURNPLAYER      = "turnPlayer";
+    public const string WAITOPERATOR    = "waitOperator";
     public const string SHUFFLEPOKER    = "shufflePoker";
     public const string GAMESETTLE      = "gameSettle";
     public const string GAMENEXTROUND   = "gameNextRound";
+    public const string GAMECLEAR       = "gameClear";
     public const string GAMEOVER        = "gameOver";
     public const string FLIPPOKER       = "flipPoker";
     public const string DEALCARD        = "dealCard";
+    public const string CANDIDACYCARD   = "CandidacyCard";
     public const string SELECTCARD      = "selectCard";
-    public const string SELECTFINSIHCARD = "SELECTFINSIHCARD";
+    public const string CANCELSELECTCARD = "cancelSelectCard";
+    public const string OKSELECTCARD     = "onSelectCard";
     public const string ADDPOKERVALUE   = "addPokerValue";
     public const string ADDCARDVALUE    = "addCardValue";
     public const string COMMONATTACK    = "commonAttack";
     public const string FLYFONT         = "flyFont";
     public const string REFACTORING     = "reFactoring";
     public const string REHANDPOKER     = "reHandPoker";
-    public const string CLEARHEADPOKER  = "clearHandPoker";
-
+    public const string FIGHTFLOWSTATE  = "fightFlowState";
+    public const string TOTALPOKERPOINT = "totalPokerPoint";
+    public const string CLEARHANDPOKER  = "clearHandPoker";
+    public const string PLAYERACTION = "playerAction";
+    public const string RUN_REFACTORING = "RUN_REFACTORING";
+    public const string HIDE_REFACTORING = "HIDE_REFACTORING";
     //¹Ø¿¨
     public const string BARRIERVIEW_NEWPOKER = "BARRIERVIEW_NEWPOKER";
     public const string BARRIERVIEW_SUREPOKER = "BARRIERVIEW_SUREPOKER";
@@ -70,7 +78,7 @@ public class GameConst
     402, 403, 404, 405, 406, 407, 408, 409, 410, 411, 412, 413, 414     // Ã·
     };
 
-    public readonly static PageIndex[] PAGEINDEX_SUIT = { PageIndex.BarrierView, PageIndex.AdventureView, PageIndex.RelaxView, PageIndex.CardView, PageIndex.ShopView };
+    public readonly static PageIndex[] PAGEINDEX_SUIT = { PageIndex.BarrierView, PageIndex.AdventureView, PageIndex.RelaxView, PageIndex.FightCardView, PageIndex.ShopView };
 }
 
 public enum GameMode { 
@@ -134,7 +142,9 @@ public enum ValueType {
     blood,
     attack,
     defense,
-    magic
+    magic,
+    point,
+    winRate,
 }
 
 public enum PageIndex {
@@ -142,7 +152,7 @@ public enum PageIndex {
     LobbyView,
     BarrierView,
     GameView,
-    CardView,
+    FightCardView,
     RelaxView,
     AdventureView,
     ShopView,
@@ -167,6 +177,34 @@ public enum BarrierDealType
     npc,
     player,
     other,
+}
+
+public enum FightDealType
+{
+    npc,
+    player,
+}
+
+public enum UserState
+{
+    none,
+    idle,
+    play,
+    end,
+    death
+}
+
+
+public enum FightFlowState { 
+    dealCard,
+    twoHandPoker,
+    turnPlayer,
+    waitOperator,
+    dealPoker,
+    stopDealPoker,
+    totalPokerPoint,
+    fightSettle,
+    fightOver,
 }
 
 
