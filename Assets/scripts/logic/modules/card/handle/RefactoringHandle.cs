@@ -9,6 +9,7 @@ public class RefactoringHandle : CardHandleObject
         if (isFirst) {
             isFirst = false;
             handle(para);
+            Debug.Log("RefactoringHandle");
         }
     }
 

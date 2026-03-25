@@ -519,18 +519,9 @@ public class CardView : MonoBehaviour
         Transform child = getPokerIdTransform(para.getUser(), para.getPoker());
         if (child != null && text != null)
         {
-            string str = "";
-            if (para.getMult() > 1.0f)
-            {
-                str = "+" + (para.getAddValue() / para.getMult()) + " X" + para.getMult();
-            }
-            else {
-                str = "+" + para.getAddValue();
-            }
-
             Text addText = Instantiate(text, rootTransform);
             addText.transform.position = text.transform.position;
-            addText.text = str;
+            addText.text = para.getText();
             addText.color = Color.green;
 
             Vector3 localPos = addText.transform.localPosition;

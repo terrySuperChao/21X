@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using UnityEngine;
 
 public class CardMgr: Singleton<CardMgr>
 {
@@ -23,7 +24,7 @@ public class CardMgr: Singleton<CardMgr>
         //没有该类型的选择Level=1,
         //拥有该类型的选择Level=2,
         for (int i = 0; i < config.Count; i++) {
-            if ((config[i].getLevel() == 1 && -1 == userCards.FindIndex(card => card.getType() == config[i].getType())) ||
+            if ((config[i].getLevel() == 1 && - 1 == userCards.FindIndex(card => card.getType() == config[i].getType()) && userCards.Count != MAXSLOT) ||
                 (config[i].getLevel() == 2 && -1 != userCards.FindIndex(card => card.getType() == config[i].getType() && card.getLevel() == 1)))
             {
                 list1.Add(config[i]);
@@ -45,21 +46,13 @@ public class CardMgr: Singleton<CardMgr>
 
     public void cardHandleTypeHandle(List<IUser> list, bool isNpc, CardHandleType type)
     {
+        IUser attackUser = list.Find(user => user.isNpc() == isNpc);
+        IUser defenseUser = list.Find(user => user.isNpc() != isNpc);
         ICardHandlePara handlePara = new CardHandleParaObject();
-        IRoundResult roundResult = new RoundResultObject();
-        handlePara.setRoundResult(roundResult);
-        for (int i = 0; i < list.Count; i++)
-        {
-            if (list[i].isNpc() == isNpc)
-            {
-                handlePara.setUser(list[i]);
-                handlePara.setAttackUser(list[i]);
-            }
-            else
-            {
-                handlePara.setDefenseUser(list[i]);
-            }
-        }
+        handlePara.setRoundResult(new RoundResultObject());
+        handlePara.setUser(attackUser);
+        handlePara.setAttackUser(attackUser);
+        handlePara.setDefenseUser(defenseUser);
         this.handle(handlePara, type);
     }
 

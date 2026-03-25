@@ -323,7 +323,7 @@ public class FightView : MonoBehaviour
             Text text = null;
             Text addText = null;
             List <IPoker> pokers = HandPokerMgr.Instance.getHandPoker(user);
-            List<int> values = _gameFlow.getPokerValue(pokers);
+            List<int> values = PokerPointMgr.Instance.getPokerValue(pokers);
             for (int i = 0; i < pokers.Count; i++)
             {
                 float addValue = values[i];

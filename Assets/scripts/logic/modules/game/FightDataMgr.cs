@@ -185,7 +185,6 @@ public class FightDataMgr : Singleton<FightDataMgr>
     }
 
     public bool addCard(FightDealType type,ICard card) {
-
         List<ICard> list = this.getCards(type);
         for (int i = 0; i < list.Count; i++)
         {
@@ -195,7 +194,7 @@ public class FightDataMgr : Singleton<FightDataMgr>
                 return true;
             }
         }
-
+        
         if (list.Count < MAXSLOT)
         {
             list.Add(card);

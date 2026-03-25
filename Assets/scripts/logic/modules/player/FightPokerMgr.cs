@@ -1,6 +1,7 @@
 //牌堆
 using Pb;
 using System.Collections.Generic;
+using Unity.Collections.LowLevel.Unsafe;
 using UnityEngine;
 
 
@@ -72,10 +73,10 @@ public class FightPokerMgr : Singleton<FightPokerMgr>
         switch (state) {
             case FightFlowState.dealCard:
                 {
-                    bool isImmediately = true;
+                    ICandidacyCardPara para = null;
                     for (int i = 0; i < this._players.Count; i++)
                     {
-                        if (this.getUserRound() % 2 == 1) 
+                        if (this.getUserRound() % 2 == 1)
                             continue;
 
                         IUser user = this._players[i];
@@ -86,21 +87,22 @@ public class FightPokerMgr : Singleton<FightPokerMgr>
 
                         if (user.isNpc())
                         {
-                            ICard card = this.addNpcCard(user, cards);
-                            GameMessage.Instance.addMsg(GameConst.DEALCARD, new DealCardPara(user, card));
+                            this.addNpcCard(user, cards);
                         }
                         else
                         {
-                            isImmediately = false;
-                            GameMessage.Instance.addMsg(GameConst.CANDIDACYCARD, new CandidacyCardPara(user, cards));
+                            para = new CandidacyCardPara(user, cards);
                         }
                     }
-                    this.addUserRound();
-                    this._gameFlow.addCardAfter(new AddCardAfterPara(this._players));
-
-                    if (isImmediately) {
+                    
+                    if (para != null)
+                    {
+                        GameMessage.Instance.addMsg(GameConst.CANDIDACYCARD, para);
+                    }
+                    else {
                         GameMessage.Instance.addMsg(GameConst.FIGHTFLOWSTATE, FightFlowState.twoHandPoker);
                     }
+                    this.addUserRound();
                 }
                 break;
             case FightFlowState.twoHandPoker:
@@ -281,20 +283,20 @@ public class FightPokerMgr : Singleton<FightPokerMgr>
         return FightDataMgr.Instance.addRound();
     }
 
-    public ICard addNpcCard(IUser user,List<ICard> cards) {
+    public void addNpcCard(IUser user,List<ICard> cards) {
         //优选第2级
         ICard card = cards.Find(card => card.getLevel() == 2);
-
+        
         //随机第1级
         if (card == null){
             card = cards[RandomMgr.Instance.getRangeInt(0, cards.Count)];
         }
 
         bool success = FightDataMgr.Instance.addCard(this.getDealType(user), card);
-        if (success){
-            return card;
-        }else { 
-            return null;
+        if (success)
+        {
+            GameMessage.Instance.addMsg(GameConst.DEALCARD, new DealCardPara(user, card));
+            this._gameFlow.addCardAfter(new AddCardAfterPara(this._players));
         }
     }
 

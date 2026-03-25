@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.UIElements;
 
 public class PlayerAsset : MonoBehaviour
 {
@@ -44,6 +43,7 @@ public class PlayerAsset : MonoBehaviour
         EventDispatcher.Instance.on(GameConst.FLYFONT, this.flyFont);
         EventDispatcher.Instance.on(GameConst.GAMECLEAR, this.gameClear);
 
+        this._texts.Add(this.winRateText);
         this._texts.Add(this.bloodText);
         this._texts.Add(this.attackText);
         this._texts.Add(this.defenseText);
@@ -117,7 +117,7 @@ public class PlayerAsset : MonoBehaviour
 
         Vector3 pos = new Vector3(0, 0, 0);
         float count = this.pokers.childCount;
-        Debug.Log("=======" + count);
+        
         float index = count - 1;
         float scalex = pokerObject.transform.localScale.x;
         float width = pokerObject.GetComponent<RectTransform>().rect.width * scalex;
@@ -133,11 +133,13 @@ public class PlayerAsset : MonoBehaviour
     }
     public void addCard(ICard card){
         int index = getCardForTypeIndex(card);
+        Transform cardChild = this.cards.GetChild(index); //
         GameObject cardObject = Instantiate(this.cardPrefab, this.cards);
         cardObject.GetComponent<Card>().loadCard(card);
-        cardObject.transform.position = this.cards.GetChild(index).position;
+        cardObject.transform.position = cardChild.position;
         cardObject.transform.localScale = new Vector3(0.7f, 0.7f, 0.7f);
-        Destroy(this.cards.GetChild(index).gameObject);
+        cardChild.SetParent(null);
+        Destroy(cardChild.gameObject);
     }
 
     
@@ -288,25 +290,17 @@ public class PlayerAsset : MonoBehaviour
     {
         IUIPokerPara para = (IUIPokerPara)obj[0];
         PokerSuit suit = (PokerSuit)para.getPoker().getSuit();
-        Text text = this._texts[(int)GameConst.SuitTransformValueType(suit)];
+        ValueType type = GameConst.SuitTransformValueType(suit);
+        Text text = this._texts[(int)type];
         Transform child = this.getPokerIdTransform(para.getPoker());
         if (child == null || text == null)
         {
             yield return 0;
         }
 
-        string str = "";
-        if (para.getMult() > 1.0f)
-        {
-            str = "+" + (para.getAddValue() / para.getMult()) + " X" + para.getMult();
-        }
-        else {
-            str = "+" + para.getAddValue();
-        }
-
         Text addText = Instantiate(text, rootTransform);
         addText.transform.position = text.transform.position;
-        addText.text = str;
+        addText.text = para.getText();
         addText.color = Color.green;
 
         Vector3 localPos = addText.transform.localPosition;
@@ -315,7 +309,7 @@ public class PlayerAsset : MonoBehaviour
         yield return new WaitForSeconds(0.51f);
         iTween.ScaleTo(child.gameObject, new Vector3(0.6f, 0.6f, 0.6f), 0.1f);
         Destroy(addText.gameObject);
-        text.text = getFinalContent(GameConst.SuitTransformValueType(suit), para.getFinalValue());
+        text.text = this.getFinalContent(type, para.getFinalValue());
     }
 
     public void addCardValue(params System.Object[] obj)
@@ -335,28 +329,14 @@ public class PlayerAsset : MonoBehaviour
             yield return 0;
         }
 
-        float offY = 0;
-        string value = "";
-        Color color = Color.white;
-        if (para.getValue() > 0)
-        {
-            offY = 50;
-            color = Color.green;
-            value = "+" + para.getValue();
-        }
-        else
-        {
-            offY = -50;
-            value = "-" + para.getValue();
-            color = Color.red;
-        }
+        bool bl = para.getValue() > 0;
 
         Text addText = Instantiate(text, rootTransform);
         addText.transform.position = text.transform.position;
-        addText.text = value;
-        addText.color = color;
+        addText.text = ((bl ? "+" : "-") + para.getValue());
+        addText.color = (bl ? Color.green : Color.red);
         Vector3 localPos = addText.transform.localPosition;
-        this.moveTo(addText.gameObject, new Vector3(localPos.x, localPos.y + offY, localPos.z));
+        this.moveTo(addText.gameObject, new Vector3(localPos.x, localPos.y + ((bl ? 1 : -1) * 50.0f), localPos.z));
         
         yield return new WaitForSeconds(0.51f);
         Destroy(addText.gameObject);
@@ -386,7 +366,7 @@ public class PlayerAsset : MonoBehaviour
                 break;
         }
 
-        Text text = this._texts[(int)(type - 1)];
+        Text text = this._texts[(int)(type)];
         if (text != null) {
             text.text = value;
         }
@@ -420,11 +400,15 @@ public class PlayerAsset : MonoBehaviour
 
     public void clearHandPoker(params System.Object[] obj)
     {
-        while (this.pokers.childCount > 0)
+        IUser user = (IUser)obj[0];
+        if (user == this._user)
         {
-            Transform child = this.pokers.GetChild(0);
-            child.SetParent(null); //
-            GameObject.Destroy(child.gameObject); // 销毁子对象
+            while (this.pokers.childCount > 0)
+            {
+                Transform child = this.pokers.GetChild(0);
+                child.SetParent(null); //
+                GameObject.Destroy(child.gameObject); // 销毁子对象
+            }
         }
     }
 

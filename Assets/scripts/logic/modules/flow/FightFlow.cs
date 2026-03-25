@@ -26,7 +26,7 @@ public class FightFlow : GameFlowObject
                 float magic = 0;
 
                 List<IPoker> pokers = HandPokerMgr.Instance.getHandPoker(users[i]);
-                List<int> values = getPokerValue(pokers);
+                List<int> values = PokerPointMgr.Instance.getPokerValue(pokers);
                 for (int j = 0; j < pokers.Count; j++) {
                     int value = values[j];
                     switch (pokers[j].getSuit()) {

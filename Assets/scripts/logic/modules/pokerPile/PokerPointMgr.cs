@@ -149,4 +149,60 @@ public class PokerPointMgr : Singleton<PokerPointMgr>
         }
 
     }
+
+    public List<int> getPokerValue(List<IPoker> pokers)
+    {
+        List<int> values = new List<int>();
+        List<IPoker> APokers = new List<IPoker>();
+        for (int i = 0; i < pokers.Count; i++)
+        {
+            if (pokers[i].getRank() == 14)
+            {
+                APokers.Add(pokers[i]);
+                values.Add(0);
+            }
+            else if (pokers[i].getRank() == 10 ||
+                      pokers[i].getRank() == 11 ||
+                      pokers[i].getRank() == 12 ||
+                      pokers[i].getRank() == 13)
+            {
+                values.Add(10);
+            }
+            else
+            {
+                values.Add(pokers[i].getRank());
+            }
+        }
+
+        int remainPoint = 21;
+        for (int j = 0; j < values.Count; j++)
+        {
+            remainPoint -= values[j];
+        }
+
+        for (int i = 0; i < APokers.Count; i++)
+        {
+            int value = 0;
+            if (remainPoint >= 11 && remainPoint - 11 >= ((APokers.Count - 1) - i))
+            {
+                value = 11;
+            }
+            else
+            {
+                value = 1;
+            }
+            remainPoint -= value;
+
+            for (int j = 0; j < values.Count; j++)
+            {
+                if (values[j] == 0)
+                {
+                    values[j] = value;
+                    break;
+                }
+            }
+        }
+
+        return values;
+    }
 }

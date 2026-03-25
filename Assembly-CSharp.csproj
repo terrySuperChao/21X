@@ -62,6 +62,8 @@
   <ItemGroup>
     <Compile Include="Assets\scripts\ui\LoadingView.cs" />
     <Compile Include="Assets\conframework\mgrs\UIMgr.cs" />
+    <Compile Include="Assets\scripts\logic\modules\settle\SpecialSettle.cs" />
+    <Compile Include="Assets\scripts\logic\modules\pokerPile\BasePokerPile.cs" />
     <Compile Include="Assets\scripts\logic\modules\game\RandomMgr.cs" />
     <Compile Include="Assets\scripts\logic\modules\card\UICommonParaObject.cs" />
     <Compile Include="Assets\scripts\Main.cs" />
@@ -117,13 +119,18 @@
     <Compile Include="Assets\scripts\logic\modules\npc\NpcMgr.cs" />
     <Compile Include="Assets\scripts\logic\modules\user\UserMgr.cs" />
     <Compile Include="Assets\scripts\logic\modules\game\GameDataMgr.cs" />
+    <Compile Include="Assets\scripts\logic\modules\settle\IAttackSettle.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\ChatController.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\ObjectSpin.cs" />
+    <Compile Include="Assets\scripts\logic\modules\pokerPile\FightPokerPile.cs" />
     <Compile Include="Assets\scripts\logic\data\IUser.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_PhoneNumberValidator.cs" />
+    <Compile Include="Assets\scripts\logic\modules\settle\suit\SpadeSettle.cs" />
+    <Compile Include="Assets\scripts\logic\modules\settle\suit\HeartSettle.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexJitter.cs" />
     <Compile Include="Assets\scripts\logic\modules\card\handle\BloodthirstyHandle.cs" />
     <Compile Include="Assets\scripts\logic\data\CardObject.cs" />
+    <Compile Include="Assets\scripts\ui\PlayerAsset.cs" />
     <Compile Include="Assets\scripts\logic\modules\card\handle\BerserkerHandle.cs" />
     <Compile Include="Assets\scripts\logic\modules\card\UIPokerPara.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_DigitValidator.cs" />
@@ -131,6 +138,7 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_FrameRateCounter.cs" />
     <Compile Include="Assets\conframework\ui\LanguageCom.cs" />
     <Compile Include="Assets\scripts\logic\modules\player\PlayPokerMgr.cs" />
+    <Compile Include="Assets\scripts\logic\modules\settle\suit\ISuitSettle.cs" />
     <Compile Include="Assets\scripts\logic\modules\card\handle\BloodthirstyPlusHandle.cs" />
     <Compile Include="Assets\scripts\logic\modules\card\CardMgr.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TextConsoleSimulator.cs" />
@@ -147,6 +155,7 @@
     <Compile Include="Assets\scripts\logic\modules\card\handle\FateLuckyHandle.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexZoom.cs" />
     <Compile Include="Assets\scripts\ui\FightView.cs" />
+    <Compile Include="Assets\scripts\ui\FightCardView.cs" />
     <Compile Include="Assets\scripts\ui\Refactoring.cs" />
     <Compile Include="Assets\scripts\logic\modules\card\RoundResultObject.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark02.cs" />
@@ -159,6 +168,7 @@
     <Compile Include="Assets\conframework\base\ISerialization.cs" />
     <Compile Include="Assets\scripts\ui\PlayerInfo.cs" />
     <Compile Include="Assets\scripts\logic\modules\card\handle\HeartCardHandle.cs" />
+    <Compile Include="Assets\scripts\logic\modules\game\FightDataMgr.cs" />
     <Compile Include="Assets\scripts\logic\modules\game\SettingDataMgr.cs" />
     <Compile Include="Assets\scripts\logic\modules\card\handle\BerserkerPlusHandle.cs" />
     <Compile Include="Assets\scripts\logic\modules\card\handle\HeartCardPlusHandle.cs" />
@@ -168,12 +178,14 @@
     <Compile Include="Assets\scripts\ui\AdventureView.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\WarpTextExample.cs" />
     <Compile Include="Assets\scripts\logic\data\static\ShopConfig.cs" />
+    <Compile Include="Assets\scripts\logic\modules\player\FightPokerMgr.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TextMeshProFloatingText.cs" />
     <Compile Include="Assets\scripts\ui\DraggableUI.cs" />
     <Compile Include="Assets\scripts\ui\CardView.cs" />
     <Compile Include="Assets\scripts\logic\data\ICard.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\ShaderPropAnimator.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\CameraController.cs" />
+    <Compile Include="Assets\scripts\logic\modules\settle\suit\SuitSettle.cs" />
     <Compile Include="Assets\scripts\logic\data\static\ChapterConfig.cs" />
     <Compile Include="Assets\scripts\logic\modules\game\GameStaticConfigMgr.cs" />
     <Compile Include="Assets\conframework\ui\AutoText.cs" />
@@ -183,12 +195,17 @@
     <Compile Include="Assets\scripts\logic\modules\card\handle\SpadeCardPlusHandle.cs" />
     <Compile Include="Assets\scripts\logic\modules\card\ICardHandlePara.cs" />
     <Compile Include="Assets\scripts\logic\modules\flow\CardFlow.cs" />
+    <Compile Include="Assets\scripts\logic\modules\game\GameMessagePara.cs" />
     <Compile Include="Assets\scripts\ui\EntryView.cs" />
     <Compile Include="Assets\scripts\logic\modules\card\IUIPokerPara.cs" />
     <Compile Include="Assets\scripts\logic\modules\pokerPile\HandPokerMgr.cs" />
+    <Compile Include="Assets\scripts\logic\modules\settle\AttackSettle.cs" />
+    <Compile Include="Assets\scripts\logic\modules\settle\suit\DiamondSettle.cs" />
     <Compile Include="Assets\scripts\logic\modules\flow\GameFlowObject.cs" />
+    <Compile Include="Assets\scripts\logic\modules\settle\PokerSettle.cs" />
     <Compile Include="Assets\scripts\logic\modules\game\GamePropertyMgr.cs" />
     <Compile Include="Assets\scripts\logic\modules\card\IUICommonPara.cs" />
+    <Compile Include="Assets\scripts\logic\modules\settle\suit\ClubSettle.cs" />
     <Compile Include="Assets\scripts\ui\BarrierView.cs" />
     <Compile Include="Assets\conframework\mgrs\JsonMgr.cs" />
     <Compile Include="Assets\scripts\ui\LobbyView.cs" />

@@ -210,17 +210,17 @@ public class FightCardView : MonoBehaviour
 
     public void addPokerValue(params System.Object[] obj)
     {
-        GameMessage.Instance.setHandleMessageComplete();
+        Invoke("delayMessageComplete", 0.6f);
     }
 
     public void addCardValue(params System.Object[] obj)
     {
-        GameMessage.Instance.setHandleMessageComplete();
+        Invoke("delayMessageComplete", 0.6f);
     }
 
     public void flyFont(params System.Object[] obj)
     {
-        GameMessage.Instance.setHandleMessageComplete();
+        Invoke("delayMessageComplete", 0.6f);
     }
 
     private void gameSettle(params System.Object[] obj)
@@ -236,28 +236,15 @@ public class FightCardView : MonoBehaviour
         EventDispatcher.Instance.emit(GameConst.FLIPPOKER);
         yield return new WaitForSeconds(0.5f);
 
-        this.userAsset.GetComponent<PlayerAsset>().showUserState();
+        this.npcAsset.GetComponent<PlayerAsset>().showUserState();
+
+        yield return new WaitForSeconds(0.3f);
 
         IUser user = (IUser)obj[0];
-        string tipsText = "";
-        if (user == null)
-        {
-            tipsText = "本回合平局";
-        }
-        else
-        {
-            if (user.isNpc())
-            {
-                tipsText = "本回合NPC获胜";
-            }
-            else
-            {
-                tipsText = "本回合玩家获胜";
-            }
-        }
+        string tipsText = user == null ? "本回合平局" : (user.isNpc() ? "本回合NPC获胜" : "本回合玩家获胜");
         UIMgr.Instance.showTips("TipsView", tipsText);
 
-        Invoke("delayMessageComplete", 0.5f);
+        Invoke("delayMessageComplete", 1.2f);
     }
 
     private void gameOver(params System.Object[] obj)
