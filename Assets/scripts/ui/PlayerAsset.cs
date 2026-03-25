@@ -291,25 +291,25 @@ public class PlayerAsset : MonoBehaviour
         IUIPokerPara para = (IUIPokerPara)obj[0];
         PokerSuit suit = (PokerSuit)para.getPoker().getSuit();
         ValueType type = GameConst.SuitTransformValueType(suit);
-        Text text = this._texts[(int)type];
-        Transform child = this.getPokerIdTransform(para.getPoker());
-        if (child == null || text == null)
+        Text textChild = this._texts[(int)type];
+        Transform pokerChild = this.getPokerIdTransform(para.getPoker());
+        if (pokerChild == null || textChild == null)
         {
             yield return 0;
         }
 
-        Text addText = Instantiate(text, rootTransform);
-        addText.transform.position = text.transform.position;
+        Text addText = Instantiate(textChild, rootTransform);
+        addText.transform.position = textChild.transform.position;
         addText.text = para.getText();
         addText.color = Color.green;
 
         Vector3 localPos = addText.transform.localPosition;
         moveTo(addText.gameObject, new Vector3(localPos.x, localPos.y + 50, localPos.z));
-        iTween.ScaleTo(child.gameObject, new Vector3(0.5f, 0.5f, 0.5f), 0.5f);
+        iTween.ScaleTo(pokerChild.gameObject, new Vector3(0.5f, 0.5f, 0.5f), 0.5f);
         yield return new WaitForSeconds(0.51f);
-        iTween.ScaleTo(child.gameObject, new Vector3(0.6f, 0.6f, 0.6f), 0.1f);
+        iTween.ScaleTo(pokerChild.gameObject, new Vector3(0.6f, 0.6f, 0.6f), 0.1f);
         Destroy(addText.gameObject);
-        text.text = this.getFinalContent(type, para.getFinalValue());
+        textChild.text = this.getFinalContent(type, para.getFinalValue());
     }
 
     public void addCardValue(params System.Object[] obj)

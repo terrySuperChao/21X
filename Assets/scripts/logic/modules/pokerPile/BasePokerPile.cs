@@ -5,13 +5,13 @@ using System.Collections.Generic;
 
 public class BasePokerPile
 {
+    private int _id = 1;
     private List<IPoker> _remainCards = new List<IPoker>();
-    private List<IPoker> _playedTableCards = new List<IPoker>();
 
     public void init(RepeatedField<int> pokers)
     {
+        this._id = 1;
         this._remainCards.Clear();
-        this._playedTableCards.Clear();
         if (pokers != null && pokers.Count > 0)
         {
             for (int i = 0; i < pokers.Count; i++)
@@ -21,15 +21,7 @@ public class BasePokerPile
         }
         else
         {
-            this.initDefautPokers();
             this.shuffle();
-        }
-    }
-
-    private void initDefautPokers() {
-        for (int i = 0; i < GameConst.CARDS.Length; i++)
-        {
-            _remainCards.Add(this.createPoker(GameConst.CARDS[i]));
         }
     }
 
@@ -39,19 +31,19 @@ public class BasePokerPile
 
     public void shuffle() {
         List<IPoker> allPoker = new List<IPoker>();
-        allPoker.AddRange(_remainCards);
-        allPoker.AddRange(_playedTableCards);
+        for (int i = 0; i < GameConst.CARDS.Length; i++)
+        {
+            allPoker.Add(this.createPoker(GameConst.CARDS[i]));
+        }
 
         List<IPoker> prePoker = this.preShuffle(allPoker);
         for (int i = allPoker.Count-1; i > 0 ; i--){
             int j = RandomMgr.Instance.getRangeInt(0, i + 1);
             (allPoker[i], allPoker[j]) = (allPoker[j], allPoker[i]);
         }
-
-        _remainCards.Clear();
-        _playedTableCards.Clear();
-        _remainCards.AddRange(prePoker);
-        _remainCards.AddRange(allPoker);
+        this._remainCards.Clear();
+        this._remainCards.AddRange(prePoker);
+        this._remainCards.AddRange(allPoker);
     }
 
     public IPoker getPoker(int index)
@@ -61,7 +53,6 @@ public class BasePokerPile
         {
             poker = _remainCards[index];
             poker.setBack(false);
-            _playedTableCards.Add(poker);
             _remainCards.RemoveAt(index);
         }
         return poker;
@@ -72,15 +63,11 @@ public class BasePokerPile
         return this._remainCards;
     }
 
-    public List<IPoker> getPlayedTableCards()
-    {
-        return this._playedTableCards;
-    }
 
     public IPoker createPoker(int value)
     {
         IPoker poker = new PokerObject();
-        poker.setId(0);
+        poker.setId(this._id++);
         poker.setValue(value);
         return poker;
     }
