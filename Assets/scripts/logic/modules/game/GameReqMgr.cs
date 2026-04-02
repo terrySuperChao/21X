@@ -99,7 +99,14 @@ public class GameReqMgr : Singleton<GameReqMgr>
         BarrierDataMgr.Instance.setState(BarrierState.fillPoker);
         GameDataMgr.Instance.setPageIndex(pageIndex);
         GamePropertyMgr.Instance.save();
-        GameMessage.Instance.addMsg(GameConst.BARRIERVIEW_SUREPOKER);
+        GameMessage.Instance.addMsg(GameConst.BARRIERVIEW_EXIT);
+    }
+
+    public void requestImprint(int obj) {
+        ImprintDataMgr.Instance.setAssembleObject(obj);
+        GameDataMgr.Instance.setPageIndex(PageIndex.ImprintView);
+        GamePropertyMgr.Instance.save();
+        GameMessage.Instance.addMsg(GameConst.BARRIERVIEW_EXIT);
     }
 
     public void requestMatchPoker(int matchPointA, int matchPointB, int pokerPosX, int pokerPosY)

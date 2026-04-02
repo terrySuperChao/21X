@@ -303,12 +303,12 @@ public class BarrierView : MonoBehaviour, IBaseView
     void Start()
     {
         EventDispatcher.Instance.on(GameConst.BARRIERVIEW_NEWPOKER, this.newPokerHandle);
-        EventDispatcher.Instance.on(GameConst.BARRIERVIEW_SUREPOKER, this.surePokerHandle);
+        EventDispatcher.Instance.on(GameConst.BARRIERVIEW_EXIT, this.exitPageHandle);
     }
 
     private void OnDestroy(){
         EventDispatcher.Instance.off(GameConst.BARRIERVIEW_NEWPOKER, this.newPokerHandle);
-        EventDispatcher.Instance.off(GameConst.BARRIERVIEW_SUREPOKER, this.surePokerHandle);
+        EventDispatcher.Instance.on(GameConst.BARRIERVIEW_EXIT, this.exitPageHandle);
     }
 
     // Update is called once per frame
@@ -366,7 +366,7 @@ public class BarrierView : MonoBehaviour, IBaseView
         this.point.GetComponent<Text>().text = BarrierDataMgr.Instance.getMatchPoint().ToString();
     }
 
-    public void surePokerHandle(params System.Object[] obj)
+    public void exitPageHandle(params System.Object[] obj)
     {
         string pageName = Enum.GetName(typeof(PageIndex), GameDataMgr.Instance.getPageIndex());
         UIMgr.Instance.showView(pageName);
@@ -428,6 +428,16 @@ public class BarrierView : MonoBehaviour, IBaseView
     public void onSearchClick()
     {
 
+    }
+
+    public void onPlayerImprintClick() {
+        GameReqMgr.Instance.requestImprint(1);
+        GameMessage.Instance.setHandleMessageComplete();
+    }
+
+    public void onNpcImprintClick() {
+        GameReqMgr.Instance.requestImprint(0);
+        GameMessage.Instance.setHandleMessageComplete();
     }
 
     public void onPopClick()

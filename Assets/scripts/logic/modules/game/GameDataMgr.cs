@@ -15,6 +15,7 @@ public class GameDataMgr : Singleton<GameDataMgr>
         gameData.Barrier = BarrierDataMgr.Instance.newBarrier();
         gameData.Player = PlayerDataMgr.Instance.newPlayer();
         gameData.Fight = FightDataMgr.Instance.newFight();
+        gameData.Imprint = ImprintDataMgr.Instance.newImprint();
         return gameData;
     }
 
@@ -24,6 +25,7 @@ public class GameDataMgr : Singleton<GameDataMgr>
         BarrierDataMgr.Instance.deserialized(this._gameData);
         PlayerDataMgr.Instance.deserialized(this._gameData);
         FightDataMgr.Instance.deserialized(this._gameData);
+        ImprintDataMgr.Instance.deserialized(this._gameData);
     }
 
     public void serialized() {
@@ -32,6 +34,7 @@ public class GameDataMgr : Singleton<GameDataMgr>
         BarrierDataMgr.Instance.serialized(this._gameData);
         PlayerDataMgr.Instance.serialized(this._gameData);
         FightDataMgr.Instance.serialized(this._gameData);
+        ImprintDataMgr.Instance.serialized(this._gameData);
     }
 
     public void newGame() {

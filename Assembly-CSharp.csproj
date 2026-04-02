@@ -98,6 +98,7 @@
     <Compile Include="Assets\scripts\logic\modules\card\handle\ClubCardHandle.cs" />
     <Compile Include="Assets\scripts\logic\modules\pokerPile\PokerPointMgr.cs" />
     <Compile Include="Assets\scripts\logic\modules\card\handle\FateLuckyPlusHandle.cs" />
+    <Compile Include="Assets\scripts\logic\data\IAssembleCard.cs" />
     <Compile Include="Assets\scripts\logic\modules\card\IUIFlyFontPara.cs" />
     <Compile Include="Assets\scripts\logic\modules\game\BarrierDataMgr.cs" />
     <Compile Include="Assets\scripts\logic\modules\card\handle\DiamondCardHandle.cs" />
@@ -189,6 +190,7 @@
     <Compile Include="Assets\scripts\logic\data\static\ChapterConfig.cs" />
     <Compile Include="Assets\scripts\logic\modules\game\GameStaticConfigMgr.cs" />
     <Compile Include="Assets\conframework\ui\AutoText.cs" />
+    <Compile Include="Assets\scripts\ui\ImprintView.cs" />
     <Compile Include="Assets\scripts\logic\modules\game\PlayerDataMgr.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark03.cs" />
     <Compile Include="Assets\scripts\logic\modules\game\ShopDataMgr.cs" />
@@ -199,12 +201,14 @@
     <Compile Include="Assets\scripts\ui\EntryView.cs" />
     <Compile Include="Assets\scripts\logic\modules\card\IUIPokerPara.cs" />
     <Compile Include="Assets\scripts\logic\modules\pokerPile\HandPokerMgr.cs" />
+    <Compile Include="Assets\scripts\logic\data\AssembleCardObject.cs" />
     <Compile Include="Assets\scripts\logic\modules\settle\AttackSettle.cs" />
     <Compile Include="Assets\scripts\logic\modules\settle\suit\DiamondSettle.cs" />
     <Compile Include="Assets\scripts\logic\modules\flow\GameFlowObject.cs" />
     <Compile Include="Assets\scripts\logic\modules\settle\PokerSettle.cs" />
     <Compile Include="Assets\scripts\logic\modules\game\GamePropertyMgr.cs" />
     <Compile Include="Assets\scripts\logic\modules\card\IUICommonPara.cs" />
+    <Compile Include="Assets\scripts\logic\modules\game\ImprintDataMgr.cs" />
     <Compile Include="Assets\scripts\logic\modules\settle\suit\ClubSettle.cs" />
     <Compile Include="Assets\scripts\ui\BarrierView.cs" />
     <Compile Include="Assets\conframework\mgrs\JsonMgr.cs" />

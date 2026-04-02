@@ -77,6 +77,21 @@ message Fight{
   optional int32 round = 5;            //轮
 }
 
+//印记
+message AssembleCard{
+  optional int32 baseDataId = 1;   //基础数字Id
+  optional int32 triggerId = 2;    //触发Id
+  optional int32 level = 3;        //等级
+}
+
+
+//印记
+message Imprint{
+  optional int32 assembleObject = 1;      //正在组装的人, 0npc 1玩家
+  repeated AssembleCard npcCards = 2;      //npc的资产
+  repeated AssembleCard playerCards = 3;   //player的资产
+}
+
 //游戏
 message GameData{
   optional int32 initSeed = 1;
@@ -85,8 +100,9 @@ message GameData{
   optional Player player = 4;             //玩家信息
   optional Barrier barrier = 5;           //关卡
   optional Shop shop = 6;                 //商店
-  optional Fight fight = 7;               //战斗     
-  repeated DefeatRole defeatRoles = 8;    //击败的
+  optional Fight fight = 7;               //战斗  
+  optional Imprint imprint = 8;           //印记
+  repeated DefeatRole defeatRoles = 9;    //击败的
 }
 
 //游戏财产

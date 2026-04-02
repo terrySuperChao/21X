@@ -33,7 +33,7 @@ public class GameConst
     public const string HIDE_REFACTORING = "HIDE_REFACTORING";
     //¹Ø¿¨
     public const string BARRIERVIEW_NEWPOKER = "BARRIERVIEW_NEWPOKER";
-    public const string BARRIERVIEW_SUREPOKER = "BARRIERVIEW_SUREPOKER";
+    public const string BARRIERVIEW_EXIT = "BARRIERVIEW_EXIT";
 
     //ÐÝÏ¢
     public const string RELAXVIEW_RELAX = "RELAXVIEW_RELAX";
@@ -78,7 +78,7 @@ public class GameConst
     402, 403, 404, 405, 406, 407, 408, 409, 410, 411, 412, 413, 414     // Ã·
     };
 
-    public readonly static PageIndex[] PAGEINDEX_SUIT = { PageIndex.BarrierView, PageIndex.AdventureView, PageIndex.RelaxView, PageIndex.FightCardView, PageIndex.ShopView };
+    public readonly static PageIndex[] PAGEINDEX_SUIT = { PageIndex.BarrierView, PageIndex.AdventureView, PageIndex.RelaxView, PageIndex.FightCardView, PageIndex.ShopView, PageIndex.ImprintView };
 }
 
 public enum GameMode { 
@@ -156,6 +156,7 @@ public enum PageIndex {
     RelaxView,
     AdventureView,
     ShopView,
+    ImprintView
 }
 
 public enum GameState { 
