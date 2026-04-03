@@ -46,6 +46,8 @@ public class GameConst
     public const string EXIT_PAGE = "EXIT_PAGE";
     public const string UPDATE_PLAYER_INFO = "UPDATE_PLAYER_INFO";
 
+    public const string IMPRINT_SELECT_PART = "Imprint_select_part";
+
     public static ValueType SuitTransformValueType(PokerSuit suit)
     {
         if (suit == PokerSuit.club)
