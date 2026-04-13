@@ -1,6 +1,7 @@
 //Ó¡¼Ç
 using Pb;
 using System.Collections.Generic;
+using UnityEngine;
 
 public class ImprintDataMgr : Singleton<ImprintDataMgr>
 {
@@ -9,6 +10,10 @@ public class ImprintDataMgr : Singleton<ImprintDataMgr>
     private List<IAssembleCard> _playerCards = new List<IAssembleCard>();
     public Imprint newImprint() {
         Imprint imprint = new Imprint();
+        for (int i = 0; i < 3; i++) {
+            imprint.NpcCards.Add(new AssembleCard());
+            imprint.PlayerCards.Add(new AssembleCard());
+        }
         return imprint;
     }
     public void deserialized(GameData data)
@@ -17,6 +22,7 @@ public class ImprintDataMgr : Singleton<ImprintDataMgr>
         if (this._imprint == null) {
             this._imprint = this.newImprint();
         }
+       
         this._npcCards.Clear();
         this._playerCards.Clear();
         foreach (var value in this._imprint.NpcCards)
@@ -62,5 +68,20 @@ public class ImprintDataMgr : Singleton<ImprintDataMgr>
 
     public List<IAssembleCard> getAssembleCard() { 
         return this._imprint.AssembleObject == 0 ? this._npcCards : this._playerCards;
+    }
+
+    public void addPart(int index, TargetPart targetType, int partId) {
+        List<IAssembleCard> cards = this.getAssembleCard();
+        if (cards.Count < index) {
+            return;
+        }
+        if (targetType == TargetPart.basePart) {
+            Debug.Log("1111111111111111===="+partId);
+            cards[index].setBaseDataId(partId);
+        }
+        else {
+            Debug.Log("2222222" + partId);
+            cards[index].setTriggerId(partId);
+        }
     }
 }

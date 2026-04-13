@@ -37,14 +37,6 @@ public class ImprintView : MonoBehaviour, IBaseView
 
     public void afterShow()
     {
-        this.cardPartController.addCardPartItem(null,this.baseTargetArea1,TargetPart.basePart);
-        this.cardPartController.addCardPartItem(null, this.baseTargetArea1, TargetPart.basePart);
-        this.cardPartController.addCardPartItem(null, this.baseTargetArea1, TargetPart.basePart);
-
-        this.cardPartController.addCardPartItem(null, this.triggerTargetArea1, TargetPart.triggerPart);
-        this.cardPartController.addCardPartItem(null, this.triggerTargetArea2, TargetPart.triggerPart);
-        this.cardPartController.addCardPartItem(null, this.triggerTargetArea3, TargetPart.triggerPart);
-
         List<BasePartInfo> baseParts = GameStaticConfigMgr.Instance.getBasePartConfig().getBasePart();
         List<TriggerPartInfo> triggerParts = GameStaticConfigMgr.Instance.getTriggerPartConfig().getTriggerPart();
         List<IPart> parts = new List<IPart>();
@@ -62,6 +54,31 @@ public class ImprintView : MonoBehaviour, IBaseView
             longPressItem.scrollRect = this.scrollRect;
             longPressItem.partInfo = parts[i];
         }
+
+        List<RectTransform> baseTargetAreaList = new List<RectTransform>{ this.baseTargetArea1,this.baseTargetArea2,this.baseTargetArea3 };
+        List<RectTransform> triggerTargetAreList = new List<RectTransform> { this.triggerTargetArea1, this.triggerTargetArea2, this.triggerTargetArea3 };
+
+        List<IAssembleCard> assembleCard = ImprintDataMgr.Instance.getAssembleCard();
+        for (int i = 0; i < assembleCard.Count; i++)
+        {
+            //基础类
+            BasePartInfo baseInfo = GameStaticConfigMgr.Instance.getBasePartConfig().getBasePartId(assembleCard[i].getBaseDataId());
+            RectTransform baseTargetArea = baseTargetAreaList[i];
+            this.cardPartController.addCardPartItem(i, baseInfo, baseTargetArea, TargetPart.basePart);
+            if (baseInfo != null) {
+                this.createSelectCardPart(baseTargetArea, baseInfo);
+            }
+
+            //触发类
+            TriggerPartInfo triggerInfo = GameStaticConfigMgr.Instance.getTriggerPartConfig().getTriggerPartId(assembleCard[i].getTriggerId());
+            RectTransform triggerTargetArea = triggerTargetAreList[i];
+            this.cardPartController.addCardPartItem(i, triggerInfo, triggerTargetArea, TargetPart.triggerPart);
+            if (triggerInfo != null)
+            {
+                this.createSelectCardPart(triggerTargetArea, triggerInfo);
+            }
+        }
+
     }
 
     public GameObject createCardPartObject()
@@ -69,6 +86,15 @@ public class ImprintView : MonoBehaviour, IBaseView
         GameObject partGameObject = UnityEngine.Object.Instantiate(this.cardPartPrefab);
         partGameObject.transform.SetParent(this.content.transform, false);
         return partGameObject;
+    }
+
+    public void createSelectCardPart(Transform targetArea,IPart partInfo) {
+        GameObject partGameObject = UnityEngine.Object.Instantiate(this.cardPartPrefab);
+        partGameObject.transform.SetParent(targetArea, false);
+        partGameObject.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
+
+        CardPart cardPart = partGameObject.GetComponent<CardPart>();
+        cardPart.loadPartImage(partInfo);
     }
 
     public void addDraggableToPoker(GameObject partGameObject, Vector3 initPos)
@@ -109,5 +135,13 @@ public class ImprintView : MonoBehaviour, IBaseView
     {
         GameReqMgr.Instance.requestExitPage();
         GameMessage.Instance.setHandleMessageComplete();
+    }
+
+    public void onBasePartClick(int index) {
+        this.cardPartController.deleteTargetArea(this,index, TargetPart.basePart);
+    }
+
+    public void onTriggerPartClick(int index) {
+        this.cardPartController.deleteTargetArea(this,index, TargetPart.triggerPart);
     }
 }
