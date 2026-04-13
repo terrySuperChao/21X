@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7177435755328152822}
   - component: {fileID: 2900415278362699744}
   m_Layer: 5
-  m_Name: downBtn
+  m_Name: triggerTarget
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -145,7 +145,7 @@ GameObject:
   - component: {fileID: 2044150805705891130}
   - component: {fileID: 1965107133541678204}
   m_Layer: 5
-  m_Name: upBtn
+  m_Name: baseTarget
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -505,7 +505,7 @@ GameObject:
   - component: {fileID: 1728623037224122851}
   - component: {fileID: 8774177138321483465}
   m_Layer: 5
-  m_Name: downBtn
+  m_Name: triggerTarget
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -624,6 +624,41 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!1 &2144209828417326084
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4284206330164308276}
+  m_Layer: 5
+  m_Name: drayLayer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &4284206330164308276
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2144209828417326084}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2211025897814303776}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: -1820, y: -1082}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &2173648317157528774
 GameObject:
   m_ObjectHideFlags: 0
@@ -1127,7 +1162,7 @@ GameObject:
   - component: {fileID: 7359826402102551224}
   - component: {fileID: 3082913292123798438}
   m_Layer: 5
-  m_Name: downBtn
+  m_Name: triggerTarget
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1546,7 +1581,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.00008778582}
+  m_AnchoredPosition: {x: 0, y: -0.000056699733}
   m_SizeDelta: {x: 0, y: 300}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &873348750981765535
@@ -1862,8 +1897,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 6294704390292094651}
   m_HandleRect: {fileID: 6586112766564691540}
   m_Direction: 2
-  m_Value: 0
-  m_Size: 0.99997896
+  m_Value: 1
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -1980,6 +2015,7 @@ RectTransform:
   - {fileID: 4460878440086040612}
   - {fileID: 3627750142738593612}
   - {fileID: 750340617765804732}
+  - {fileID: 4284206330164308276}
   m_Father: {fileID: 6544988370732538167}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -2078,7 +2114,7 @@ GameObject:
   - component: {fileID: 8379736330036016082}
   - component: {fileID: 8430404642312172716}
   m_Layer: 5
-  m_Name: upBtn
+  m_Name: baseTarget
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2522,6 +2558,14 @@ MonoBehaviour:
   item1: {fileID: 6435224439486228237}
   item2: {fileID: 4400732618894802887}
   item3: {fileID: 1597195261148095820}
+  drayLayer: {fileID: 4284206330164308276}
+  baseTargetArea1: {fileID: 7177678512243572458}
+  baseTargetArea2: {fileID: 8674400797766219978}
+  baseTargetArea3: {fileID: 700131147695074026}
+  triggerTargetArea1: {fileID: 3828084889453253766}
+  triggerTargetArea2: {fileID: 2584153476839435390}
+  triggerTargetArea3: {fileID: 363563615947358327}
+  scrollRect: {fileID: 6648219955411164265}
   content: {fileID: 4830786790074334251}
   root: {fileID: 6103429007475471641}
   cardPartPrefab: {fileID: 5257655248267919920, guid: ed65b18a2086f8e41bfc28c530c6b505, type: 3}
@@ -2613,7 +2657,7 @@ GameObject:
   - component: {fileID: 5509073671606620698}
   - component: {fileID: 4845244009879137500}
   m_Layer: 5
-  m_Name: upBtn
+  m_Name: baseTarget
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

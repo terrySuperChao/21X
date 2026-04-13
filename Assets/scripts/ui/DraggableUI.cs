@@ -21,14 +21,12 @@ public class DraggableUI : MonoBehaviour,IDragHandler, IPointerDownHandler, IPoi
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        Debug.Log("XXXXX");
         RectTransformUtility.ScreenPointToWorldPointInRectangle(this._rectTransform, eventData.position, eventData.pressEventCamera, out Vector3 mousePos);
         this._offset = this._rectTransform.position - mousePos;
     }
 
     public void OnDrag(PointerEventData eventData)
     {
-        Debug.Log("XXXXXXXXXXXXXXXXX");
         if (eventData.pointerPressRaycast.gameObject == gameObject) {
             if (RectTransformUtility.ScreenPointToWorldPointInRectangle(this._rectTransform, eventData.position, eventData.pressEventCamera, out Vector3 mousePos)){
                 this._rectTransform.position = mousePos + this._offset;
@@ -38,7 +36,6 @@ public class DraggableUI : MonoBehaviour,IDragHandler, IPointerDownHandler, IPoi
 
     public void OnPointerUp(PointerEventData eventData)
     {
-        Debug.Log("XXXXXXXXXXXXXXXXX11111111111111");
         if (this._callBack != null)
         {
             if (this._callBack(this.gameObject)){

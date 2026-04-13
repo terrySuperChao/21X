@@ -210,6 +210,12 @@ public enum FightFlowState {
     fightOver,
 }
 
+public enum TargetPart
+{
+    basePart,
+    triggerPart,
+}
+
 
 
 

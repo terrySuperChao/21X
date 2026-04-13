@@ -4,13 +4,37 @@ using UnityEngine;
 
 
 [System.Serializable]
-public class BasePartInfo
+public class BasePartInfo : IPart
 {
-    public int id;
+    public int id; 
     public string name;
     public int level;
     public int type;
     public int value;
+
+    public int getId() {
+        return this.id;
+    }
+
+    public string getName() { 
+        return this.name;
+    }
+
+    public int getLevel() { 
+        return this.level;
+    }
+
+    public int getType() { 
+        return this.type;
+    }
+
+    public int getValue() {
+        return this.value;
+    }
+
+    public TargetPart getTargetPart() { 
+        return TargetPart.basePart;
+    }
 }
 
 public class BasePartConfig
