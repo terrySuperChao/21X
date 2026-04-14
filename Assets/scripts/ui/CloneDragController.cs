@@ -1,6 +1,8 @@
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using System.Collections.Generic;
+using static UnityEngine.RuleTile.TilingRuleOutput;
 
 public class CloneDragController : MonoBehaviour
 {
@@ -9,19 +11,18 @@ public class CloneDragController : MonoBehaviour
 
     private RectTransform dragLayer;
     private Camera uiCamera;
-    private ScrollRect scrollRect;
     private IPart partInfo;
     private CardPartController cardPartController;
 
     private bool isDragging;
-
-    public void BeginDrag(RectTransform dragLayer, CardPartController cardPartController, Camera uiCamera, ScrollRect scrollRect, IPart partInfo)
+    private Action<bool> callBack;
+    public void BeginDrag(RectTransform dragLayer, CardPartController cardPartController, Camera uiCamera, IPart partInfo, Action<bool> callBack)
     {
         this.dragLayer = dragLayer;
         this.cardPartController = cardPartController;
         this.uiCamera = uiCamera;
-        this.scrollRect = scrollRect;
         this.partInfo = partInfo;
+        this.callBack = callBack;
 
         rectTransform = GetComponent<RectTransform>();
 
@@ -32,9 +33,7 @@ public class CloneDragController : MonoBehaviour
         // 不阻挡射线，防止遮住目标区域
         canvasGroup.blocksRaycasts = false;
 
-        // 禁用 ScrollRect，防止拖动时列表滚动
-        if (this.scrollRect != null)
-            this.scrollRect.enabled = false;
+
 
         isDragging = true;
 
@@ -97,9 +96,6 @@ public class CloneDragController : MonoBehaviour
     {
         isDragging = false;
 
-        if (scrollRect != null)
-            scrollRect.enabled = true;
-
         bool success = false;
         RectTransform targetArea = null;
         List<RectTransform> targetAreas = cardPartController.getTargetAreas(partInfo.getTargetPart());
@@ -117,11 +113,13 @@ public class CloneDragController : MonoBehaviour
 
         if (success)
         {
-            cardPartController.matchTargetArea(targetArea,partInfo);
+            cardPartController.matchTargetAreaPart(targetArea,partInfo);
             transform.SetParent(targetArea, false);
+            transform.localPosition = Vector3.zero;
 
             // 你可以改成吸附到某个格子，这里先简单放中间
             rectTransform.anchoredPosition = Vector2.zero;
+            rectTransform.localPosition = Vector3.zero;
 
             canvasGroup.blocksRaycasts = true;
             Debug.Log("放置成功");
@@ -131,5 +129,10 @@ public class CloneDragController : MonoBehaviour
             Debug.Log("放置失败，销毁 clone");
             Destroy(gameObject);
         }
+
+        if (this.callBack != null) {
+            this.callBack(!success);
+        }
+        
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -20,6 +21,7 @@ public class ImprintView : MonoBehaviour, IBaseView
     public GameObject root;
     public GameObject cardPartPrefab;
     private CardPartController cardPartController = new CardPartController();
+    private List<LongPressCloneSource> longPressItems = new List<LongPressCloneSource>();
     public void init()
     {
 
@@ -53,6 +55,7 @@ public class ImprintView : MonoBehaviour, IBaseView
             longPressItem.cardPartController = this.cardPartController;
             longPressItem.scrollRect = this.scrollRect;
             longPressItem.partInfo = parts[i];
+            this.longPressItems.Add(longPressItem);
         }
 
         List<RectTransform> baseTargetAreaList = new List<RectTransform>{ this.baseTargetArea1,this.baseTargetArea2,this.baseTargetArea3 };
@@ -64,31 +67,37 @@ public class ImprintView : MonoBehaviour, IBaseView
             //基础类
             BasePartInfo baseInfo = GameStaticConfigMgr.Instance.getBasePartConfig().getBasePartId(assembleCard[i].getBaseDataId());
             RectTransform baseTargetArea = baseTargetAreaList[i];
-            this.cardPartController.addCardPartItem(i, baseInfo, baseTargetArea, TargetPart.basePart);
-            if (baseInfo != null) {
-                this.createSelectCardPart(baseTargetArea, baseInfo);
+            if (baseTargetArea != null) { 
+                this.cardPartController.addCardPartItem(i, baseInfo, baseTargetArea, TargetPart.basePart);
+                if (baseInfo != null) {
+                    this.createSelectCardPart(baseTargetArea, baseInfo);
+                    this.seLongPressItemState(baseInfo,false);
+                }
             }
 
             //触发类
             TriggerPartInfo triggerInfo = GameStaticConfigMgr.Instance.getTriggerPartConfig().getTriggerPartId(assembleCard[i].getTriggerId());
             RectTransform triggerTargetArea = triggerTargetAreList[i];
-            this.cardPartController.addCardPartItem(i, triggerInfo, triggerTargetArea, TargetPart.triggerPart);
-            if (triggerInfo != null)
-            {
-                this.createSelectCardPart(triggerTargetArea, triggerInfo);
+            if (triggerTargetArea != null){
+                this.cardPartController.addCardPartItem(i, triggerInfo, triggerTargetArea, TargetPart.triggerPart);
+                if (triggerInfo != null)
+                {
+                    this.createSelectCardPart(triggerTargetArea, triggerInfo);
+                    this.seLongPressItemState(triggerInfo, false);
+                }
             }
         }
 
     }
 
-    public GameObject createCardPartObject()
+    private GameObject createCardPartObject()
     {
         GameObject partGameObject = UnityEngine.Object.Instantiate(this.cardPartPrefab);
         partGameObject.transform.SetParent(this.content.transform, false);
         return partGameObject;
     }
 
-    public void createSelectCardPart(Transform targetArea,IPart partInfo) {
+    private void createSelectCardPart(Transform targetArea,IPart partInfo) {
         GameObject partGameObject = UnityEngine.Object.Instantiate(this.cardPartPrefab);
         partGameObject.transform.SetParent(targetArea, false);
         partGameObject.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
@@ -97,15 +106,14 @@ public class ImprintView : MonoBehaviour, IBaseView
         cardPart.loadPartImage(partInfo);
     }
 
-    public void addDraggableToPoker(GameObject partGameObject, Vector3 initPos)
-    {
-        DraggableUI draggableUI = partGameObject.AddComponent<DraggableUI>();
-        draggableUI.initPos(initPos);
-        draggableUI.setCallBack((GameObject gameObject) =>
-        {
-            return false;
-        });
-
+    //设置列表已经被选中的item不可操作
+    private void seLongPressItemState(IPart partInfo, bool disable) {
+        for (int i = 0; i < this.longPressItems.Count; i++) {
+            if (this.longPressItems[i].partInfo == partInfo) {
+                this.longPressItems[i].setEnable(disable);
+                break;
+            }
+        }
     }
 
     // Start is called before the first frame update
@@ -138,10 +146,26 @@ public class ImprintView : MonoBehaviour, IBaseView
     }
 
     public void onBasePartClick(int index) {
-        this.cardPartController.deleteTargetArea(this,index, TargetPart.basePart);
+        this.clearSelectPart(index, TargetPart.basePart);
     }
 
     public void onTriggerPartClick(int index) {
-        this.cardPartController.deleteTargetArea(this,index, TargetPart.triggerPart);
+        this.clearSelectPart(index, TargetPart.triggerPart);
+    }
+
+    private void clearSelectPart(int index, TargetPart targetType) {
+        Transform transform = this.cardPartController.getTargetArea(index, targetType);
+        if (transform != null)
+        {
+            for (int j = transform.childCount - 1; j >= 0; j--)
+            {
+                Destroy(transform.GetChild(j).gameObject);
+            }
+            IPart partInfo = this.cardPartController.getTargetAreaPart(index, targetType);
+            if (partInfo != null) {
+                this.seLongPressItemState(partInfo,true);
+                this.cardPartController.clearTargetAreaPart(partInfo);
+            }
+        }
     }
 }

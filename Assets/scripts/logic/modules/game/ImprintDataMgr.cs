@@ -76,11 +76,9 @@ public class ImprintDataMgr : Singleton<ImprintDataMgr>
             return;
         }
         if (targetType == TargetPart.basePart) {
-            Debug.Log("1111111111111111===="+partId);
             cards[index].setBaseDataId(partId);
         }
         else {
-            Debug.Log("2222222" + partId);
             cards[index].setTriggerId(partId);
         }
     }

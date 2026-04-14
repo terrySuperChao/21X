@@ -29,7 +29,31 @@ public class CardPartController {
         return list;
     }
 
-    public void matchTargetArea(RectTransform targetArea, IPart partInfo) {
+    public RectTransform getTargetArea(int index, TargetPart targetType)
+    {
+        for (int i = 0; i < this._items.Count; i++)
+        {
+            if (this._items[i].index == index && this._items[i].targetType == targetType)
+            {
+                return this._items[i].targetArea;
+            }
+        }
+        return null;
+    }
+
+    public IPart getTargetAreaPart(int index, TargetPart targetType)
+    {
+        for (int i = 0; i < this._items.Count; i++)
+        {
+            if (this._items[i].index == index && this._items[i].targetType == targetType)
+            {
+                return this._items[i].partInfo;
+            }
+        }
+        return null;
+    }
+
+    public void matchTargetAreaPart(RectTransform targetArea, IPart partInfo) {
         for (int i = 0; i < this._items.Count; i++)
         {
             if (this._items[i].targetArea == targetArea)
@@ -41,19 +65,13 @@ public class CardPartController {
         }
     }
 
-    public void deleteTargetArea(MonoBehaviour mono,int index, TargetPart targetType) {
+    public void clearTargetAreaPart(IPart partInfo) {
         for (int i = 0; i < this._items.Count; i++)
         {
-            if (this._items[i].index == index && this._items[i].targetType == targetType)
+            if (this._items[i].partInfo == partInfo)
             {
-                ImprintDataMgr.Instance.addPart(this._items[i].index, this._items[i].targetType, 0);
                 this._items[i].partInfo = null;
-
-                Transform transform = this._items[i].targetArea.gameObject.transform;
-                for (int j = transform.childCount - 1; j >= 0; j--)
-                {
-                    UnityEngine.Object.Destroy(transform.GetChild(j).gameObject);
-                }
+                ImprintDataMgr.Instance.addPart(this._items[i].index, this._items[i].targetType, 0);
                 break;
             }
         }

@@ -19,10 +19,13 @@ public class LongPressCloneSource : MonoBehaviour, IPointerDownHandler, IPointer
 
     private bool isPointerDown;
     private bool hasCloned;
+    private bool hasEnable = true;
     private Coroutine pressCoroutine;
 
     public void OnPointerDown(PointerEventData eventData)
     {
+        if (!hasEnable) return;
+
         isPointerDown = true;
         hasCloned = false;
 
@@ -34,8 +37,9 @@ public class LongPressCloneSource : MonoBehaviour, IPointerDownHandler, IPointer
 
     public void OnPointerUp(PointerEventData eventData)
     {
-        isPointerDown = false;
+        if (!hasEnable) return;
 
+        isPointerDown = false;
         if (pressCoroutine != null)
         {
             StopCoroutine(pressCoroutine);
@@ -45,6 +49,9 @@ public class LongPressCloneSource : MonoBehaviour, IPointerDownHandler, IPointer
 
     public void OnPointerExit(PointerEventData eventData)
     {
+        
+        if (!hasEnable) return;
+        
         // 如果你希望移出 item 后取消长按，就保留
         // 如果你希望按住后移出也能继续触发，可删除这个方法内容
         if (!hasCloned)
@@ -98,14 +105,30 @@ public class LongPressCloneSource : MonoBehaviour, IPointerDownHandler, IPointer
         if (btn != null)
             btn.enabled = false;
 
+        // 禁用 ScrollRect，防止拖动时列表滚动
+        if (this.scrollRect != null)
+            this.scrollRect.enabled = false;
+
         // 添加拖拽脚本
         CloneDragController drag = clone.GetComponent<CloneDragController>();
         if (drag == null)
             drag = clone.AddComponent<CloneDragController>();
 
-        drag.BeginDrag(dragLayer, cardPartController, eventData.pressEventCamera, scrollRect, partInfo);
+        drag.BeginDrag(dragLayer, cardPartController, eventData.pressEventCamera, partInfo,this.onDragCallBack);
 
         // 关键：长按成功后，原对象不再继续这次按压逻辑
         isPointerDown = false;
+    }
+
+    public void setEnable(bool hasEnable) {
+        this.hasEnable = hasEnable;
+    }
+
+    private void onDragCallBack(bool hasEnable) {
+        this.hasEnable = hasEnable;
+        
+        // 禁用 ScrollRect，防止拖动时列表滚动
+        if (this.scrollRect != null)
+            this.scrollRect.enabled = true;
     }
 }
