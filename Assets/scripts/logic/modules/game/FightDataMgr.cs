@@ -1,4 +1,5 @@
 //≈∆∂—
+using Google.Protobuf.WellKnownTypes;
 using Pb;
 using System.Collections.Generic;
 using UnityEngine;
@@ -101,6 +102,7 @@ public class FightDataMgr : Singleton<FightDataMgr>
         this._fight.NpcAsset.IsFilp = 0;
         this._npcCards.Clear();
         this._npcPokers.Clear();
+
 
         this._fight.PlayerAsset.State = 0;
         this._fight.PlayerAsset.Hp = 100;
@@ -232,5 +234,23 @@ public class FightDataMgr : Singleton<FightDataMgr>
 
     public void setIsFilp(FightDealType type,int filpState) {
         this.getAssetInfo(type).IsFilp = filpState;
+    }
+
+    //≥ı ºªØ
+    public void addCardId(FightDealType type,int cardId) {
+        ICard card = CardConfig.getCard(cardId);
+        if (card != null)
+        {
+            if (type == FightDealType.npc)
+            {
+
+                this._npcCards.Add(card);
+
+            }
+            else if (type == FightDealType.player)
+            {
+                this._playerCards.Add(card);
+            }
+        }
     }
 }

@@ -1,10 +1,6 @@
 using Pb;
 using System.Collections.Generic;
-using System.Diagnostics;
-using Unity.Collections.LowLevel.Unsafe;
 using UnityEngine;
-using UnityEngine.UIElements;
-using static UnityEngine.UIElements.UxmlAttributeDescription;
 
 public class GameReqMgr : Singleton<GameReqMgr>
 {
@@ -88,7 +84,16 @@ public class GameReqMgr : Singleton<GameReqMgr>
         }
         else if (suit == PokerSuit.spade) {
             FightDataMgr.Instance.initEntry();
+            //初始化
+            foreach (var item in ImprintDataMgr.Instance.getNpcAssembleCard())
+            {
+                FightDataMgr.Instance.addCardId(FightDealType.npc, item.getTriggerId());
+            }
 
+            foreach (var item in ImprintDataMgr.Instance.getPlayerAssembleCard())
+            {
+                FightDataMgr.Instance.addCardId(FightDealType.player, item.getTriggerId());
+            }
             //初始化资源
             this.requestInitPlayerInfo();
         }

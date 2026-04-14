@@ -73,6 +73,7 @@ public class FightPokerMgr : Singleton<FightPokerMgr>
         switch (state) {
             case FightFlowState.dealCard:
                 {
+                    /* 优化流程
                     ICandidacyCardPara para = null;
                     for (int i = 0; i < this._players.Count; i++)
                     {
@@ -101,7 +102,8 @@ public class FightPokerMgr : Singleton<FightPokerMgr>
                     }
                     else {
                         GameMessage.Instance.addMsg(GameConst.FIGHTFLOWSTATE, FightFlowState.twoHandPoker);
-                    }
+                    }*/
+                    GameMessage.Instance.addMsg(GameConst.FIGHTFLOWSTATE, FightFlowState.twoHandPoker);
                     this.addUserRound();
                 }
                 break;

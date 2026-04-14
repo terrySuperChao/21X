@@ -121,8 +121,8 @@
     <Compile Include="Assets\scripts\logic\modules\user\UserMgr.cs" />
     <Compile Include="Assets\scripts\logic\modules\game\GameDataMgr.cs" />
     <Compile Include="Assets\scripts\logic\modules\settle\IAttackSettle.cs" />
-    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\ChatController.cs" />
     <Compile Include="Assets\scripts\logic\data\IPart.cs" />
+    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\ChatController.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\ObjectSpin.cs" />
     <Compile Include="Assets\scripts\logic\modules\pokerPile\FightPokerPile.cs" />
     <Compile Include="Assets\scripts\logic\data\IUser.cs" />

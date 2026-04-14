@@ -61,25 +61,26 @@ namespace Pb {
             "GAIgASgLMg0ucGIuQXNzZXRJbmZvSACIAQESJwoLcGxheWVyQXNzZXQYAyAB",
             "KAsyDS5wYi5Bc3NldEluZm9IAYgBARISCgVzdGF0ZRgEIAEoBUgCiAEBEhIK",
             "BXJvdW5kGAUgASgFSAOIAQFCCwoJX25wY0Fzc2V0Qg4KDF9wbGF5ZXJBc3Nl",
-            "dEIICgZfc3RhdGVCCAoGX3JvdW5kInoKDEFzc2VtYmxlQ2FyZBIXCgpiYXNl",
-            "RGF0YUlkGAEgASgFSACIAQESFgoJdHJpZ2dlcklkGAIgASgFSAGIAQESEgoF",
-            "bGV2ZWwYAyABKAVIAogBAUINCgtfYmFzZURhdGFJZEIMCgpfdHJpZ2dlcklk",
-            "QggKBl9sZXZlbCKEAQoHSW1wcmludBIbCg5hc3NlbWJsZU9iamVjdBgBIAEo",
-            "BUgAiAEBEiIKCG5wY0NhcmRzGAIgAygLMhAucGIuQXNzZW1ibGVDYXJkEiUK",
-            "C3BsYXllckNhcmRzGAMgAygLMhAucGIuQXNzZW1ibGVDYXJkQhEKD19hc3Nl",
-            "bWJsZU9iamVjdCL4AgoIR2FtZURhdGESFQoIaW5pdFNlZWQYASABKAVIAIgB",
-            "ARIWCglnYW1lU3RhdGUYAiABKAVIAYgBARIWCglwYWdlSW5kZXgYAyABKAVI",
-            "AogBARIfCgZwbGF5ZXIYBCABKAsyCi5wYi5QbGF5ZXJIA4gBARIhCgdiYXJy",
-            "aWVyGAUgASgLMgsucGIuQmFycmllckgEiAEBEhsKBHNob3AYBiABKAsyCC5w",
-            "Yi5TaG9wSAWIAQESHQoFZmlnaHQYByABKAsyCS5wYi5GaWdodEgGiAEBEiEK",
-            "B2ltcHJpbnQYCCABKAsyCy5wYi5JbXByaW50SAeIAQESIwoLZGVmZWF0Um9s",
-            "ZXMYCSADKAsyDi5wYi5EZWZlYXRSb2xlQgsKCV9pbml0U2VlZEIMCgpfZ2Ft",
-            "ZVN0YXRlQgwKCl9wYWdlSW5kZXhCCQoHX3BsYXllckIKCghfYmFycmllckIH",
-            "CgVfc2hvcEIICgZfZmlnaHRCCgoIX2ltcHJpbnQingEKDEdhbWVQcm9wZXJ0",
-            "eRIhCgdhY2NvdW50GAEgASgLMgsucGIuQWNjb3VudEgAiAEBEiEKB3NldHRp",
-            "bmcYAiABKAsyCy5wYi5TZXR0aW5nSAGIAQESIwoIZ2FtZURhdGEYAyABKAsy",
-            "DC5wYi5HYW1lRGF0YUgCiAEBQgoKCF9hY2NvdW50QgoKCF9zZXR0aW5nQgsK",
-            "CV9nYW1lRGF0YWIGcHJvdG8z"));
+            "dEIICgZfc3RhdGVCCAoGX3JvdW5kIqIBCgxBc3NlbWJsZUNhcmQSFwoKYmFz",
+            "ZURhdGFJZBgBIAEoBUgAiAEBEhYKCXRyaWdnZXJJZBgCIAEoBUgBiAEBEhIK",
+            "BWxldmVsGAMgASgFSAKIAQESFwoKdHJpZ2dlck51bRgEIAEoBUgDiAEBQg0K",
+            "C19iYXNlRGF0YUlkQgwKCl90cmlnZ2VySWRCCAoGX2xldmVsQg0KC190cmln",
+            "Z2VyTnVtIoQBCgdJbXByaW50EhsKDmFzc2VtYmxlT2JqZWN0GAEgASgFSACI",
+            "AQESIgoIbnBjQ2FyZHMYAiADKAsyEC5wYi5Bc3NlbWJsZUNhcmQSJQoLcGxh",
+            "eWVyQ2FyZHMYAyADKAsyEC5wYi5Bc3NlbWJsZUNhcmRCEQoPX2Fzc2VtYmxl",
+            "T2JqZWN0IvgCCghHYW1lRGF0YRIVCghpbml0U2VlZBgBIAEoBUgAiAEBEhYK",
+            "CWdhbWVTdGF0ZRgCIAEoBUgBiAEBEhYKCXBhZ2VJbmRleBgDIAEoBUgCiAEB",
+            "Eh8KBnBsYXllchgEIAEoCzIKLnBiLlBsYXllckgDiAEBEiEKB2JhcnJpZXIY",
+            "BSABKAsyCy5wYi5CYXJyaWVySASIAQESGwoEc2hvcBgGIAEoCzIILnBiLlNo",
+            "b3BIBYgBARIdCgVmaWdodBgHIAEoCzIJLnBiLkZpZ2h0SAaIAQESIQoHaW1w",
+            "cmludBgIIAEoCzILLnBiLkltcHJpbnRIB4gBARIjCgtkZWZlYXRSb2xlcxgJ",
+            "IAMoCzIOLnBiLkRlZmVhdFJvbGVCCwoJX2luaXRTZWVkQgwKCl9nYW1lU3Rh",
+            "dGVCDAoKX3BhZ2VJbmRleEIJCgdfcGxheWVyQgoKCF9iYXJyaWVyQgcKBV9z",
+            "aG9wQggKBl9maWdodEIKCghfaW1wcmludCKeAQoMR2FtZVByb3BlcnR5EiEK",
+            "B2FjY291bnQYASABKAsyCy5wYi5BY2NvdW50SACIAQESIQoHc2V0dGluZxgC",
+            "IAEoCzILLnBiLlNldHRpbmdIAYgBARIjCghnYW1lRGF0YRgDIAEoCzIMLnBi",
+            "LkdhbWVEYXRhSAKIAQFCCgoIX2FjY291bnRCCgoIX3NldHRpbmdCCwoJX2dh",
+            "bWVEYXRhYgZwcm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
@@ -91,7 +92,7 @@ namespace Pb {
             new pbr::GeneratedClrTypeInfo(typeof(global::Pb.Shop), global::Pb.Shop.Parser, new[]{ "Goods", "Purchased" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Pb.AssetInfo), global::Pb.AssetInfo.Parser, new[]{ "State", "Pokers", "Cards", "Hp", "MaxHP", "Magic", "MaxMagic", "Attack", "Defense", "IsFilp" }, new[]{ "State", "Hp", "MaxHP", "Magic", "MaxMagic", "Attack", "Defense", "IsFilp" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Pb.Fight), global::Pb.Fight.Parser, new[]{ "PokerPile", "NpcAsset", "PlayerAsset", "State", "Round" }, new[]{ "NpcAsset", "PlayerAsset", "State", "Round" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Pb.AssembleCard), global::Pb.AssembleCard.Parser, new[]{ "BaseDataId", "TriggerId", "Level" }, new[]{ "BaseDataId", "TriggerId", "Level" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Pb.AssembleCard), global::Pb.AssembleCard.Parser, new[]{ "BaseDataId", "TriggerId", "Level", "TriggerNum" }, new[]{ "BaseDataId", "TriggerId", "Level", "TriggerNum" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Pb.Imprint), global::Pb.Imprint.Parser, new[]{ "AssembleObject", "NpcCards", "PlayerCards" }, new[]{ "AssembleObject" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Pb.GameData), global::Pb.GameData.Parser, new[]{ "InitSeed", "GameState", "PageIndex", "Player", "Barrier", "Shop", "Fight", "Imprint", "DefeatRoles" }, new[]{ "InitSeed", "GameState", "PageIndex", "Player", "Barrier", "Shop", "Fight", "Imprint" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Pb.GameProperty), global::Pb.GameProperty.Parser, new[]{ "Account", "Setting", "GameData" }, new[]{ "Account", "Setting", "GameData" }, null, null, null)
@@ -3846,6 +3847,7 @@ namespace Pb {
       baseDataId_ = other.baseDataId_;
       triggerId_ = other.triggerId_;
       level_ = other.level_;
+      triggerNum_ = other.triggerNum_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -3945,6 +3947,36 @@ namespace Pb {
       _hasBits0 &= ~4;
     }
 
+    /// <summary>Field number for the "triggerNum" field.</summary>
+    public const int TriggerNumFieldNumber = 4;
+    private readonly static int TriggerNumDefaultValue = 0;
+
+    private int triggerNum_;
+    /// <summary>
+    ///触发次数
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int TriggerNum {
+      get { if ((_hasBits0 & 8) != 0) { return triggerNum_; } else { return TriggerNumDefaultValue; } }
+      set {
+        _hasBits0 |= 8;
+        triggerNum_ = value;
+      }
+    }
+    /// <summary>Gets whether the "triggerNum" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasTriggerNum {
+      get { return (_hasBits0 & 8) != 0; }
+    }
+    /// <summary>Clears the value of the "triggerNum" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearTriggerNum() {
+      _hasBits0 &= ~8;
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override bool Equals(object other) {
@@ -3963,6 +3995,7 @@ namespace Pb {
       if (BaseDataId != other.BaseDataId) return false;
       if (TriggerId != other.TriggerId) return false;
       if (Level != other.Level) return false;
+      if (TriggerNum != other.TriggerNum) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -3973,6 +4006,7 @@ namespace Pb {
       if (HasBaseDataId) hash ^= BaseDataId.GetHashCode();
       if (HasTriggerId) hash ^= TriggerId.GetHashCode();
       if (HasLevel) hash ^= Level.GetHashCode();
+      if (HasTriggerNum) hash ^= TriggerNum.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -4003,6 +4037,10 @@ namespace Pb {
         output.WriteRawTag(24);
         output.WriteInt32(Level);
       }
+      if (HasTriggerNum) {
+        output.WriteRawTag(32);
+        output.WriteInt32(TriggerNum);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -4025,6 +4063,10 @@ namespace Pb {
         output.WriteRawTag(24);
         output.WriteInt32(Level);
       }
+      if (HasTriggerNum) {
+        output.WriteRawTag(32);
+        output.WriteInt32(TriggerNum);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -4043,6 +4085,9 @@ namespace Pb {
       }
       if (HasLevel) {
         size += 1 + pb::CodedOutputStream.ComputeInt32Size(Level);
+      }
+      if (HasTriggerNum) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(TriggerNum);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -4064,6 +4109,9 @@ namespace Pb {
       }
       if (other.HasLevel) {
         Level = other.Level;
+      }
+      if (other.HasTriggerNum) {
+        TriggerNum = other.TriggerNum;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -4096,6 +4144,10 @@ namespace Pb {
             Level = input.ReadInt32();
             break;
           }
+          case 32: {
+            TriggerNum = input.ReadInt32();
+            break;
+          }
         }
       }
     #endif
@@ -4125,6 +4177,10 @@ namespace Pb {
           }
           case 24: {
             Level = input.ReadInt32();
+            break;
+          }
+          case 32: {
+            TriggerNum = input.ReadInt32();
             break;
           }
         }

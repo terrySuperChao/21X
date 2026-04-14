@@ -70,6 +70,16 @@ public class ImprintDataMgr : Singleton<ImprintDataMgr>
         return this._imprint.AssembleObject == 0 ? this._npcCards : this._playerCards;
     }
 
+    public List<IAssembleCard> getNpcAssembleCard()
+    {
+        return this._npcCards;
+    }
+
+    public List<IAssembleCard> getPlayerAssembleCard()
+    {
+        return this._playerCards;
+    }
+
     public void addPart(int index, TargetPart targetType, int partId) {
         List<IAssembleCard> cards = this.getAssembleCard();
         if (cards.Count < index) {
