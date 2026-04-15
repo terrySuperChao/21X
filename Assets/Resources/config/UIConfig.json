@@ -78,6 +78,12 @@
 		"desc":"选择卡牌"
 	},
 	{
+		"name": "SelectPartView",
+		"resPath": "prefabs/game/SelectPartView",
+		"viewType": 2,
+		"desc":"选择组件"
+	},
+	{
 		"name": "AlertView",
 		"resPath": "prefabs/game/AlertView",
 		"viewType": 2,

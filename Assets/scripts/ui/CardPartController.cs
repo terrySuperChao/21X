@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,6 +10,7 @@ public class CardPartItem {
 }
 
 public class CardPartController {
+    private Action<int, TargetPart> _dragCallBack = null;
     private List<CardPartItem> _items = new List<CardPartItem> ();
     public void addCardPartItem(int index,IPart partInfo, RectTransform targetArea, TargetPart targetType) {
         CardPartItem item = new CardPartItem();
@@ -19,10 +21,14 @@ public class CardPartController {
         this._items.Add(item);
     }
 
+    public void setDragCallBack(Action<int, TargetPart> dragCallBack) { 
+        this._dragCallBack = dragCallBack;
+    }
+
     public List<RectTransform> getTargetAreas(TargetPart targetType) {
         List < RectTransform > list = new List < RectTransform >();
         for (int i = 0; i < this._items.Count; i++) {
-            if (this._items[i].targetType == targetType && this._items[i].partInfo == null) {
+            if (this._items[i].targetType == targetType) {
                 list.Add(this._items[i].targetArea);
             }
         }
@@ -54,14 +60,34 @@ public class CardPartController {
     }
 
     public void matchTargetAreaPart(RectTransform targetArea, IPart partInfo) {
+        CardPartItem item = null;
         for (int i = 0; i < this._items.Count; i++)
         {
             if (this._items[i].targetArea == targetArea)
             {
-                this._items[i].partInfo = partInfo;
-                ImprintDataMgr.Instance.addPart(this._items[i].index, this._items[i].targetType, partInfo.getId());
+                item = this._items[i];
                 break;
             }
+        }
+
+        if (item != null) {
+            if (item.partInfo != null)
+            {
+                if (this._dragCallBack != null)
+                {
+                    this._dragCallBack(item.index, item.partInfo.getTargetPart());
+                }
+            }
+
+            for (int i = 0; i < this._items.Count; i++)
+            {
+                if (this._items[i] != item && this._items[i].index == item.index && this._items[i].partInfo != null) {
+                    this._dragCallBack(this._items[i].index, this._items[i].partInfo.getTargetPart());
+                }
+            }
+
+            item.partInfo = partInfo;
+            ImprintDataMgr.Instance.addPart(item.index, item.targetType, partInfo.getId());
         }
     }
 

@@ -1,8 +1,9 @@
 using UnityEngine;
-
+using UnityEngine.UI;
 
 public class CardPart : MonoBehaviour
 {
+    public Text partName;
     public GameObject partImage;
 
     // Start is called before the first frame update
@@ -29,5 +30,7 @@ public class CardPart : MonoBehaviour
             // 例如，将加载的纹理设置给UI Image组件
             this.partImage.GetComponent<UnityEngine.UI.Image>().sprite = Sprite.Create(myTexture, new Rect(0.0f, 0.0f, myTexture.width, myTexture.height), new Vector2(0.5f, 0.5f));
         }
+
+        this.partName.text = partInfo.getName();
     }
 }   

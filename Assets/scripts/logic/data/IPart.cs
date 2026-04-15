@@ -1,10 +1,13 @@
+using System.Collections.Generic;
+
 public interface IPart
 {
     public int getId();
     public string getName();
-    public int getLevel();
     public int getType();
     public int getValue();
+    public List<int> getPartIds();
+
     public TargetPart getTargetPart();
 }
 

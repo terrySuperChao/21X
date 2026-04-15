@@ -1,10 +1,39 @@
 [
 	{
 		"id":1,
-		"name": "商品1",
-		"level":1,
+		"name": "基础类1",
 		"type":1,
-		"value":1
+		"value":1,
+		"partIds":[5]
+	},
+	{
+		"id":2,
+		"name": "基础类2",
+		"type":1,
+		"value":1,
+		"partIds":[5]
+	},
+	{
+		"id":3,
+		"name": "基础类3",
+		"type":1,
+		"value":1,
+		"partIds":[5]
+	},
+	{
+		"id":4,
+		"name": "基础类4",
+		"type":1,
+		"value":1,
+		"partIds":[5]
+	}
+	,
+	{
+		"id":5,
+		"name": "基础类5",
+		"type":1,
+		"value":1,
+		"partIds":[]
 	}
 ]
 

@@ -1,7 +1,4 @@
-using System;
 using System.Collections.Generic;
-using UnityEngine;
-
 
 [System.Serializable]
 public class TriggerPartInfo:IPart
@@ -10,6 +7,7 @@ public class TriggerPartInfo:IPart
     public string name;
     public int type;
     public int value;
+    public List<int> partIds;
     public int getId()
     {
         return this.id;
@@ -39,6 +37,11 @@ public class TriggerPartInfo:IPart
     {
         return TargetPart.triggerPart;
     }
+
+    public List<int> getPartIds()
+    {
+        return this.partIds;
+    }
 }
 
 public class TriggerPartConfig
@@ -55,6 +58,6 @@ public class TriggerPartConfig
     }
 
     public TriggerPartInfo getTriggerPartId(int id) { 
-        return this._list.Find(x => x.id == id);
+        return this._list.Find(x => x.getId() == id);
     }
 }

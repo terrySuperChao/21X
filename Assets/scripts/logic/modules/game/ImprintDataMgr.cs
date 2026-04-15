@@ -14,6 +14,14 @@ public class ImprintDataMgr : Singleton<ImprintDataMgr>
             imprint.NpcCards.Add(new AssembleCard());
             imprint.PlayerCards.Add(new AssembleCard());
         }
+
+        //初始升级需要的次数
+        List<int> upgradeNumbers = new List<int>() { 3,1,1};
+        for (int i = 0; i<upgradeNumbers.Count; i++) {
+            imprint.NpcCards[i].UpgradeNumber = upgradeNumbers[i];
+            imprint.PlayerCards[i].UpgradeNumber = upgradeNumbers[i];
+        }
+
         return imprint;
     }
     public void deserialized(GameData data)
@@ -27,11 +35,11 @@ public class ImprintDataMgr : Singleton<ImprintDataMgr>
         this._playerCards.Clear();
         foreach (var value in this._imprint.NpcCards)
         {
-            this._npcCards.Add(new AssembleCardObject(value.BaseDataId, value.TriggerId, value.Level));
+            this._npcCards.Add(new AssembleCardObject(value.BaseDataId, value.TriggerId, value.Level,value.TriggerNumber,value.UpgradeNumber));
         }
         foreach (var value in this._imprint.PlayerCards)
         {
-            this._playerCards.Add(new AssembleCardObject(value.BaseDataId, value.TriggerId, value.Level));
+            this._playerCards.Add(new AssembleCardObject(value.BaseDataId, value.TriggerId, value.Level, value.TriggerNumber, value.UpgradeNumber));
         }
     }
 
@@ -55,6 +63,8 @@ public class ImprintDataMgr : Singleton<ImprintDataMgr>
         assembleCard.BaseDataId = card.getBaseDataId();
         assembleCard.TriggerId = card.getTriggerId();
         assembleCard.Level = card.getLevel();
+        assembleCard.TriggerNumber = card.getTriggerNumber();
+        assembleCard.UpgradeNumber = card.getUpgradeNumber();
         return assembleCard;
     }
 
@@ -90,6 +100,26 @@ public class ImprintDataMgr : Singleton<ImprintDataMgr>
         }
         else {
             cards[index].setTriggerId(partId);
+        }
+    }
+
+    public bool addTriggerNumber(bool isNpc,int triggerId) {
+        List<IAssembleCard> list = isNpc ? this._npcCards : this._playerCards;
+
+        IAssembleCard assembleCard = list.Find(card => card.getTriggerId() == triggerId);
+        if (assembleCard != null) {
+            assembleCard.addTriggerNumber();
+        }
+
+        return assembleCard != null && assembleCard.getTriggerNumber() == assembleCard.getUpgradeNumber();
+    }
+
+    public void upgradeBasePartId(bool isNpc, int triggerId,int basePartId) {
+        List<IAssembleCard> list = isNpc ? this._npcCards : this._playerCards;
+        IAssembleCard assembleCard = list.Find(card => card.getTriggerId() == triggerId);
+        if (assembleCard != null)
+        {
+            assembleCard.setBaseDataId(basePartId);
         }
     }
 }

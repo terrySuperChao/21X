@@ -20,11 +20,11 @@ public class CardPartConfig
         this._list = JsonMgr.Instance.readObject<List<CardPartInfo>>(this._path);
     }
 
-    public List<CardPartInfo> getBasePart() {
+    public List<CardPartInfo> getCartPart() {
         return this._list;
     }
 
-    public CardPartInfo getBasePartId(int id) { 
+    public CardPartInfo getCartPartId(int id) { 
         return this._list.Find(x => x.basePartId == id);
     }
 }

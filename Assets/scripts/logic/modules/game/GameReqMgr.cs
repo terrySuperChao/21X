@@ -225,6 +225,20 @@ public class GameReqMgr : Singleton<GameReqMgr>
             EventDispatcher.Instance.emit(GameConst.CANCELSELECTCARD);
         }
     }
+
+    public void requestUpgradePart(bool isOk, int triggerId, IUser user, IPart part, Vector3 position)
+    { 
+        if (isOk)
+        {
+            FightPokerMgr.Instance.upgradeBasePart(triggerId, user, part);
+            EventDispatcher.Instance.emit(GameConst.OKSELECTCARD, new SelectPartPara(user, part, position));
+        }
+        else
+        {
+            EventDispatcher.Instance.emit(GameConst.CANCELSELECTCARD);
+        }
+    }
+
     public void requestNpcOperator(IUser user)
     {
         FightFlowState state;

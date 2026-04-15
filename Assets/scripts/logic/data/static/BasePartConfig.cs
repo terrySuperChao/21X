@@ -1,16 +1,13 @@
-using System;
 using System.Collections.Generic;
-using UnityEngine;
-
 
 [System.Serializable]
 public class BasePartInfo : IPart
 {
     public int id; 
     public string name;
-    public int level;
     public int type;
     public int value;
+    public List<int> partIds;
 
     public int getId() {
         return this.id;
@@ -18,10 +15,6 @@ public class BasePartInfo : IPart
 
     public string getName() { 
         return this.name;
-    }
-
-    public int getLevel() { 
-        return this.level;
     }
 
     public int getType() { 
@@ -34,6 +27,10 @@ public class BasePartInfo : IPart
 
     public TargetPart getTargetPart() { 
         return TargetPart.basePart;
+    }
+
+    public List<int> getPartIds() {
+        return this.partIds;
     }
 }
 
@@ -51,6 +48,6 @@ public class BasePartConfig
     }
 
     public BasePartInfo getBasePartId(int id) { 
-        return this._list.Find(x => x.id == id);
+        return this._list.Find(x => x.getId() == id);
     }
 }

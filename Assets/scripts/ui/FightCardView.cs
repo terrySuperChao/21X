@@ -45,6 +45,7 @@ public class FightCardView : MonoBehaviour
         EventDispatcher.Instance.on(GameConst.GAMECLEAR, this.gameClear);
         EventDispatcher.Instance.on(GameConst.SHOWTIPS, this.onShowTips);
         EventDispatcher.Instance.on(GameConst.EXIT_PAGE, this.exitPageHandle);
+        EventDispatcher.Instance.on(GameConst.CANDIDACYPART, this.candidacyPart);
 
         FightPokerMgr.Instance.init();
         FightPokerMgr.Instance.runFlow();
@@ -80,6 +81,7 @@ public class FightCardView : MonoBehaviour
         EventDispatcher.Instance.off(GameConst.GAMECLEAR, this.gameClear);
         EventDispatcher.Instance.off(GameConst.SHOWTIPS, this.onShowTips);
         EventDispatcher.Instance.off(GameConst.EXIT_PAGE, this.exitPageHandle);
+        EventDispatcher.Instance.off(GameConst.CANDIDACYPART, this.candidacyPart);
     }
     public void exitPageHandle(params System.Object[] obj)
     {
@@ -344,5 +346,11 @@ public class FightCardView : MonoBehaviour
     public void onPopClick()
     {
         UIMgr.Instance.showView("PopView");
+    }
+
+    public void candidacyPart(params System.Object[] obj)
+    {
+        ICandidacyPartPara para = (ICandidacyPartPara)obj[0];
+        UIMgr.Instance.showTips("SelectPartView", obj[0]);
     }
 }

@@ -15,7 +15,7 @@ public class GameConst
     public const string GAMEOVER        = "gameOver";
     public const string FLIPPOKER       = "flipPoker";
     public const string DEALCARD        = "dealCard";
-    public const string CANDIDACYCARD   = "CandidacyCard";
+    public const string CANDIDACYCARD   = "candidacyCard";
     public const string SELECTCARD      = "selectCard";
     public const string CANCELSELECTCARD = "cancelSelectCard";
     public const string OKSELECTCARD     = "onSelectCard";
@@ -31,6 +31,10 @@ public class GameConst
     public const string PLAYERACTION = "playerAction";
     public const string RUN_REFACTORING = "RUN_REFACTORING";
     public const string HIDE_REFACTORING = "HIDE_REFACTORING";
+
+    public const string CANDIDACYPART = "candidacyPart";
+    public const string SELECTPART = "selectPart";
+
     //¹Ø¿¨
     public const string BARRIERVIEW_NEWPOKER = "BARRIERVIEW_NEWPOKER";
     public const string BARRIERVIEW_EXIT = "BARRIERVIEW_EXIT";

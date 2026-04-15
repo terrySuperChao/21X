@@ -6,9 +6,6 @@ using UnityEngine.UI;
 
 public class ImprintView : MonoBehaviour, IBaseView
 {
-    public GameObject item1;
-    public GameObject item2;
-    public GameObject item3;
     public RectTransform drayLayer;
     public RectTransform baseTargetArea1;
     public RectTransform baseTargetArea2;
@@ -18,13 +15,12 @@ public class ImprintView : MonoBehaviour, IBaseView
     public RectTransform triggerTargetArea3;
     public ScrollRect scrollRect;
     public GameObject content;
-    public GameObject root;
     public GameObject cardPartPrefab;
     private CardPartController cardPartController = new CardPartController();
     private List<LongPressCloneSource> longPressItems = new List<LongPressCloneSource>();
     public void init()
     {
-
+        this.cardPartController.setDragCallBack(this.clearSelectPart);
     }
 
     public void beforeShow()
@@ -42,8 +38,19 @@ public class ImprintView : MonoBehaviour, IBaseView
         List<BasePartInfo> baseParts = GameStaticConfigMgr.Instance.getBasePartConfig().getBasePart();
         List<TriggerPartInfo> triggerParts = GameStaticConfigMgr.Instance.getTriggerPartConfig().getTriggerPart();
         List<IPart> parts = new List<IPart>();
-        parts.AddRange(baseParts);
-        parts.AddRange(triggerParts);
+
+        foreach (BasePartInfo part in baseParts) {
+            if (part.getPartIds().Count > 0)
+            {
+                parts.Add(part);
+            }
+        }
+
+        foreach (TriggerPartInfo part in triggerParts)
+        {
+             parts.Add(part);
+        }
+
         
         for (int i = 0; i < parts.Count; i++) {
             GameObject partGameObject = this.createCardPartObject();

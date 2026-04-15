@@ -47,6 +47,38 @@ public class CandidacyCardPara : ICandidacyCardPara
     }
 }
 
+public interface ICandidacyPartPara
+{
+    public int getTriggerId();
+    public IUser getUser();
+    public List<IPart> getParts();
+}
+
+public class CandidacyPartPara : ICandidacyPartPara
+{
+    private IUser _user;
+    private List<IPart> _parts;
+    private int _triggerId;
+    public CandidacyPartPara(IUser user, List<IPart> parts, int triggerId)
+    {
+        this._user = user;
+        this._parts = parts;
+        this._triggerId = triggerId;
+    }
+    public IUser getUser()
+    {
+        return this._user;
+    }
+    public List<IPart> getParts()
+    {
+        return this._parts;
+    }
+
+    public int getTriggerId()
+    {
+        return this._triggerId;
+    }
+}
 
 
 public interface IDealPokerPara
@@ -77,7 +109,7 @@ public class DealPokerPara : IDealPokerPara
     }
 }
 
-public interface ISelectCardPara 
+public interface ISelectCardPara
 {
     public IUser getUser();
     public ICard getCard();
@@ -102,6 +134,39 @@ public class SelectCardPara : ISelectCardPara
     public ICard getCard()
     {
         return this._card;
+    }
+
+    public Vector3 getPosition()
+    {
+        return this._position;
+    }
+}
+
+public interface ISelectPartPara
+{
+    public IUser getUser();
+    public IPart getPart();
+    public Vector3 getPosition();
+}
+
+public class SelectPartPara : ISelectPartPara
+{
+    private IUser _user;
+    private IPart _part;
+    private Vector3 _position;
+    public SelectPartPara(IUser user, IPart part, Vector3 position)
+    {
+        this._user = user;
+        this._part = part;
+        this._position = position;
+    }
+    public IUser getUser()
+    {
+        return this._user;
+    }
+    public IPart getPart()
+    {
+        return this._part;
     }
 
     public Vector3 getPosition()

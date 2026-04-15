@@ -317,6 +317,13 @@ public class FightPokerMgr : Singleton<FightPokerMgr>
         return success;
     }
 
+    public void upgradeBasePart(int triggerId, IUser user, IPart part)
+    {
+        ImprintDataMgr.Instance.upgradeBasePartId(user.isNpc(), triggerId, part.getId());
+        this._gameFlow.addCardAfter(new AddCardAfterPara(this._players));
+        GameMessage.Instance.addMsg(GameConst.FIGHTFLOWSTATE, FightFlowState.twoHandPoker);
+    }
+
     public void reDealHandPoker(IUser user,int suit = -1)
     {
         if (user.isNpc()) {

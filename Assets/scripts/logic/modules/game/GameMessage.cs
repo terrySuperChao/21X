@@ -47,4 +47,8 @@ public class GameMessage : Singleton<GameMessage>
         _canHandleMsg = false;
         _msgCache.Clear();
     }
+
+    public int getMsgCount() {
+        return this._msgCache.Count;
+    }
 }

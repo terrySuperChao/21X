@@ -82,7 +82,8 @@ message AssembleCard{
   optional int32 baseDataId = 1;   //基础数字Id
   optional int32 triggerId = 2;    //触发Id
   optional int32 level = 3;        //等级
-  optional int32 triggerNum = 4;   //触发次数
+  optional int32 triggerNumber = 4;//触发次数
+  optional int32 upgradeNumber = 5;//升级需要次数
 }
 
 

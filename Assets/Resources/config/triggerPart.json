@@ -1,8 +1,16 @@
 [
 	{
 		"id":1,
-		"name": "商品1",
+		"name": "触发类1",
 		"type":1,
-		"value":1
+		"value":1,
+		"partIds":[1,2]
+	},
+	{
+		"id":2,
+		"name": "触发类2",
+		"type":1,
+		"value":1,
+		"partIds":[2,3]
 	}
 ]
