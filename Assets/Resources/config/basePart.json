@@ -4,6 +4,7 @@
 		"name": "基础类1",
 		"type":1,
 		"value":1,
+		"desc":"基础类1描述",
 		"partIds":[5]
 	},
 	{
@@ -11,6 +12,7 @@
 		"name": "基础类2",
 		"type":1,
 		"value":1,
+		"desc":"基础类2描述",
 		"partIds":[5]
 	},
 	{
@@ -18,6 +20,7 @@
 		"name": "基础类3",
 		"type":1,
 		"value":1,
+		"desc":"基础类3描述",
 		"partIds":[5]
 	},
 	{
@@ -25,6 +28,7 @@
 		"name": "基础类4",
 		"type":1,
 		"value":1,
+		"desc":"基础类4描述",
 		"partIds":[5]
 	}
 	,
@@ -33,6 +37,7 @@
 		"name": "基础类5",
 		"type":1,
 		"value":1,
+		"desc":"基础类5描述",
 		"partIds":[]
 	}
 ]

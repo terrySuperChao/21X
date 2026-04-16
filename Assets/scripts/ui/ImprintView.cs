@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class ImprintView : MonoBehaviour, IBaseView
 {
+    public Canvas canvas;
     public RectTransform drayLayer;
     public RectTransform baseTargetArea1;
     public RectTransform baseTargetArea2;
@@ -16,6 +16,7 @@ public class ImprintView : MonoBehaviour, IBaseView
     public ScrollRect scrollRect;
     public GameObject content;
     public GameObject cardPartPrefab;
+    public GameObject cardPartPopup;
     private CardPartController cardPartController = new CardPartController();
     private List<LongPressCloneSource> longPressItems = new List<LongPressCloneSource>();
     public void init()
@@ -63,6 +64,10 @@ public class ImprintView : MonoBehaviour, IBaseView
             longPressItem.scrollRect = this.scrollRect;
             longPressItem.partInfo = parts[i];
             this.longPressItems.Add(longPressItem);
+
+            HoverPopup hover = partGameObject.AddComponent<HoverPopup>();
+            hover.popup = this.cardPartPopup.GetComponent<RectTransform>();
+            hover.canvas = this.canvas;
         }
 
         List<RectTransform> baseTargetAreaList = new List<RectTransform>{ this.baseTargetArea1,this.baseTargetArea2,this.baseTargetArea3 };
@@ -111,6 +116,10 @@ public class ImprintView : MonoBehaviour, IBaseView
 
         CardPart cardPart = partGameObject.GetComponent<CardPart>();
         cardPart.loadPartImage(partInfo);
+
+        HoverPopup hover = partGameObject.AddComponent<HoverPopup>();
+        hover.popup = this.cardPartPopup.GetComponent< RectTransform>();
+        hover.canvas = this.canvas;
     }
 
     //设置列表已经被选中的item不可操作

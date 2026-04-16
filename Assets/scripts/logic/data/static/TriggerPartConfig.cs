@@ -7,6 +7,7 @@ public class TriggerPartInfo:IPart
     public string name;
     public int type;
     public int value;
+    public string desc;
     public List<int> partIds;
     public int getId()
     {
@@ -31,6 +32,11 @@ public class TriggerPartInfo:IPart
     public int getValue()
     {
         return this.value;
+    }
+
+    public string getDesc()
+    {
+        return this.desc;
     }
 
     public TargetPart getTargetPart()
