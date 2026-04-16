@@ -67,7 +67,6 @@ public class ImprintView : MonoBehaviour, IBaseView
 
             HoverPopup hover = partGameObject.AddComponent<HoverPopup>();
             hover.popup = this.cardPartPopup.GetComponent<RectTransform>();
-            hover.canvas = this.canvas;
         }
 
         List<RectTransform> baseTargetAreaList = new List<RectTransform>{ this.baseTargetArea1,this.baseTargetArea2,this.baseTargetArea3 };
@@ -119,7 +118,6 @@ public class ImprintView : MonoBehaviour, IBaseView
 
         HoverPopup hover = partGameObject.AddComponent<HoverPopup>();
         hover.popup = this.cardPartPopup.GetComponent< RectTransform>();
-        hover.canvas = this.canvas;
     }
 
     //设置列表已经被选中的item不可操作

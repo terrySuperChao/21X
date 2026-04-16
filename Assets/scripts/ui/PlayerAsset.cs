@@ -23,7 +23,8 @@ public class PlayerAsset : MonoBehaviour
     public Transform cards;
 
     public GameObject pokerPrefab;
-    public GameObject cardPrefab;
+    public GameObject cartPartPrefab;
+    public GameObject cardPartPopup;
 
     public Transform rootTransform;
     private List<Text> _texts = new List<Text>();
@@ -132,17 +133,20 @@ public class PlayerAsset : MonoBehaviour
         }
     }
     public void addCard(ICard card){
+        IPart part = GameStaticConfigMgr.Instance.getTriggerPartConfig().getTriggerPartId(card.getId());
         int index = getCardForTypeIndex(card);
         Transform cardChild = this.cards.GetChild(index); //
-        GameObject cardObject = Instantiate(this.cardPrefab, this.cards);
-        cardObject.GetComponent<Card>().loadCard(card);
+        GameObject cardObject = Instantiate(this.cartPartPrefab, this.cards);
+        cardObject.GetComponent<CardPart>().loadPartImage(part);
+        cardObject.GetComponent<CardPart>().setCard(card);
         cardObject.transform.position = cardChild.position;
         cardObject.transform.localScale = new Vector3(0.7f, 0.7f, 0.7f);
         cardChild.SetParent(null);
         Destroy(cardChild.gameObject);
-    }
 
-    
+        HoverPopup hover = cardObject.AddComponent<HoverPopup>();
+        hover.popup = this.cardPartPopup.GetComponent<RectTransform>();
+    }
 
     // ------》》》》 1发卡牌
     public void dealCard(params System.Object[] obj)
@@ -243,7 +247,7 @@ public class PlayerAsset : MonoBehaviour
         int index = 0;
         for (int i = 0; i < this.cards.childCount; i++)
         {
-            Card cardComp = this.cards.GetChild(i).GetComponent<Card>();
+            CardPart cardComp = this.cards.GetChild(i).GetComponent<CardPart>();
             if (cardComp != null && cardComp.getCard().getType() == card.getType())
             {
                 index = i;

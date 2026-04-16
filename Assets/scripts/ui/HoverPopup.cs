@@ -3,7 +3,6 @@ using UnityEngine.EventSystems;
 public class HoverPopup : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerMoveHandler
 {
     public RectTransform popup;
-    public Canvas canvas;
     public Vector2 offset = new Vector2(-130, 130);
     private Camera uiCamera;
     private RectTransform canvasRect;
@@ -26,6 +25,7 @@ public class HoverPopup : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
         }
 
         if (this.canvasRect == null) {
+            Canvas canvas = GameObject.Find("Canvas")?.GetComponent<Canvas>();
             if (canvas != null)
                 canvasRect = canvas.GetComponent<RectTransform>();
             if (canvas != null && canvas.renderMode != RenderMode.ScreenSpaceOverlay)

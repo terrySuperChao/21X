@@ -6,6 +6,7 @@ public class CardPart : MonoBehaviour
     public Text partName;
     public GameObject partImage;
     private IPart _partInfo;
+    private ICard _card;
 
     // Start is called before the first frame update
     void Start()
@@ -38,5 +39,13 @@ public class CardPart : MonoBehaviour
 
     public IPart getPartInfo() { 
         return this._partInfo;
+    }
+
+    public void setCard(ICard card) { 
+        this._card = card;
+    }
+
+    public ICard getCard() { 
+        return this._card;
     }
 }   
