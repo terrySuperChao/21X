@@ -1,4 +1,4 @@
-//ÅÆ¶Ñ
+//ï¿½Æ¶ï¿½
 public class GameConst
 {
     public const string RETURNTOLOBBY   = "returnToLobby";
@@ -35,15 +35,15 @@ public class GameConst
     public const string CANDIDACYPART = "candidacyPart";
     public const string SELECTPART = "selectPart";
 
-    //¹Ø¿¨
+    //ï¿½Ø¿ï¿½
     public const string BARRIERVIEW_NEWPOKER = "BARRIERVIEW_NEWPOKER";
     public const string BARRIERVIEW_EXIT = "BARRIERVIEW_EXIT";
 
-    //ÐÝÏ¢
+    //ï¿½ï¿½Ï¢
     public const string RELAXVIEW_RELAX = "RELAXVIEW_RELAX";
-    //ÆæÓö
+    //ï¿½ï¿½ï¿½ï¿½
     public const string ADVENTURE_FOOD = "ADVENTURE_FOOD";
-    //ÉÌµê
+    //ï¿½Ìµï¿½
     public const string SHOPVIEW_PURCHASE = "SHOPVIEW_PURCHASE";
     public const string SHOPVIEW_REFRESH = "SHOPVIEW_REFRESH";
 
@@ -78,9 +78,9 @@ public class GameConst
     }
 
     public readonly static int[] CARDS = {
-    102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114,    // ·½ 2 ~ A
-    202, 203, 204, 205, 206, 207, 208, 209, 210, 211, 212, 213, 214,    // ºì
-    302, 303, 304, 305, 306, 307, 308, 309, 310, 311, 312, 313, 314,    // ºÚ
+    102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114,    // ï¿½ï¿½ 2 ~ A
+    202, 203, 204, 205, 206, 207, 208, 209, 210, 211, 212, 213, 214,    // ï¿½ï¿½
+    302, 303, 304, 305, 306, 307, 308, 309, 310, 311, 312, 313, 314,    // ï¿½ï¿½
     402, 403, 404, 405, 406, 407, 408, 409, 410, 411, 412, 413, 414     // Ã·
     };
 
@@ -94,33 +94,33 @@ public enum GameMode {
 }
 
 public enum CardType { 
-    cardType1=1,//ºÚÌÒ´óÊ¦
-    cardType2,//ºìÌÒÌìÊ¹
-    cardType3,//Ã·»¨·¨Ê¦
-    cardType4,//·½¿é»¤ÎÀ
-    cardType5,// ÅÆÐòÖØ¹¹
-    cardType6,//¿ñÕ½Ê¿Ö®Å­
-    cardType7,//Ä§ÄÜÍâÒç
-    cardType8,//±¬ÅÆÖ®¶Ü
-    cardType9,//ÊÈÑª¿ñ»¶
-    cardType10,//ÃüÔËÀ¡Ôù
+    cardType1=1,//ï¿½ï¿½ï¿½Ò´ï¿½Ê¦
+    cardType2,//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¹
+    cardType3,//Ã·ï¿½ï¿½ï¿½ï¿½Ê¦
+    cardType4,//ï¿½ï¿½ï¿½é»¤ï¿½ï¿½
+    cardType5,// ï¿½ï¿½ï¿½ï¿½ï¿½Ø¹ï¿½
+    cardType6,//ï¿½ï¿½Õ½Ê¿Ö®Å­
+    cardType7,//Ä§ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+    cardType8,//ï¿½ï¿½ï¿½ï¿½Ö®ï¿½ï¿½
+    cardType9,//ï¿½ï¿½Ñªï¿½ï¿½
+    cardType10,//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 }
 
 public enum PokerSuit {
     /**
-    * ·½¿éÅÆ
+    * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     */
     diamond = 1,
     /**
-     * ºìÌÒÅÆ
+     * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
      */
     heart = 2,
     /**
-     * ºÚÌÒÅÆ
+     * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
      */
     spade = 3,
     /**
-     * Ã·»¨ÅÆ
+     * Ã·ï¿½ï¿½ï¿½ï¿½
      */
     club = 4,
 }
@@ -171,12 +171,12 @@ public enum GameState {
 }
 
 public enum BarrierState { 
-    startPoker,  //¿ªÊ¼ÅÆ
-    dragPoker,   //ÍÏÅÆ
-    matchPoker,  //Æ¥ÅäÅÆ
-    dealPoker,   //·¢ÅÆ
-    stopPoker,   //Í£ÅÆ
-    fillPoker,   //²¹ÅÆ
+    startPoker,  //ï¿½ï¿½Ê¼ï¿½ï¿½
+    dragPoker,   //ï¿½ï¿½ï¿½ï¿½
+    matchPoker,  //Æ¥ï¿½ï¿½ï¿½ï¿½
+    dealPoker,   //ï¿½ï¿½ï¿½ï¿½
+    stopPoker,   //Í£ï¿½ï¿½
+    fillPoker,   //ï¿½ï¿½ï¿½ï¿½
 }
 
 public enum BarrierDealType
@@ -216,8 +216,9 @@ public enum FightFlowState {
 
 public enum TargetPart
 {
-    basePart,
-    triggerPart,
+    baseEffect,
+    advancedEffect,
+    trigger,
 }
 
 

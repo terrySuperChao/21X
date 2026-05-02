@@ -1,4 +1,4 @@
-//ÅÆ¶Ñ
+//ï¿½Æ¶ï¿½
 using Pb;
 using System.Collections.Generic;
 using Unity.Collections.LowLevel.Unsafe;
@@ -73,7 +73,7 @@ public class FightPokerMgr : Singleton<FightPokerMgr>
         switch (state) {
             case FightFlowState.dealCard:
                 {
-                    /* ÓÅ»¯Á÷³Ì
+                    /* ï¿½Å»ï¿½ï¿½ï¿½ï¿½ï¿½
                     ICandidacyCardPara para = null;
                     for (int i = 0; i < this._players.Count; i++)
                     {
@@ -127,7 +127,7 @@ public class FightPokerMgr : Singleton<FightPokerMgr>
                         GameMessage.Instance.addMsg(GameConst.TURNPLAYER, user);
                         GameMessage.Instance.addMsg(GameConst.FIGHTFLOWSTATE, FightFlowState.waitOperator);
 
-                        //¿ÕÏÐµÄÇÐ×´Ì¬
+                        //ï¿½ï¿½ï¿½Ðµï¿½ï¿½ï¿½×´Ì¬
                         IUser idleUser = this._players.Find(user => user.getState() == UserState.idle);
                         if (idleUser != null) {
                             this.setUserState(idleUser, UserState.none);
@@ -267,7 +267,7 @@ public class FightPokerMgr : Singleton<FightPokerMgr>
     }
 
     public void clearUserHandPoker(IUser user) {
-        this.getUsetHandPoker(user).Clear(); //Çå³ýÊÖÅÆ
+        this.getUsetHandPoker(user).Clear(); //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         EventDispatcher.Instance.emit(GameConst.CLEARHANDPOKER, user);
     }
 
@@ -286,10 +286,10 @@ public class FightPokerMgr : Singleton<FightPokerMgr>
     }
 
     public void addNpcCard(IUser user,List<ICard> cards) {
-        //ÓÅÑ¡µÚ2¼¶
+        //ï¿½ï¿½Ñ¡ï¿½ï¿½2ï¿½ï¿½
         ICard card = cards.Find(card => card.getLevel() == 2);
         
-        //Ëæ»úµÚ1¼¶
+        //ï¿½ï¿½ï¿½ï¿½ï¿½1ï¿½ï¿½
         if (card == null){
             card = cards[RandomMgr.Instance.getRangeInt(0, cards.Count)];
         }
@@ -319,7 +319,7 @@ public class FightPokerMgr : Singleton<FightPokerMgr>
 
     public void upgradeBasePart(int triggerId, IUser user, IPart part)
     {
-        ImprintDataMgr.Instance.upgradeBasePartId(user.isNpc(), triggerId, part.getId());
+        //ImprintDataMgr.Instance.upgradeBasePartId(user.isNpc(), triggerId, part.getId());
         this._gameFlow.addCardAfter(new AddCardAfterPara(this._players));
         GameMessage.Instance.addMsg(GameConst.FIGHTFLOWSTATE, FightFlowState.twoHandPoker);
     }
@@ -344,7 +344,7 @@ public class FightPokerMgr : Singleton<FightPokerMgr>
     public void clear() {
         foreach (var user in _players){
             this.setUserState(user, UserState.none);
-            this.getUsetHandPoker(user).Clear(); //Çå³ýÊÖÅÆ    
+            this.getUsetHandPoker(user).Clear(); //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½    
         }
         FightDataMgr.Instance.setIsFilp(FightDealType.npc, 0);
     }

@@ -1,7 +1,10 @@
 public interface IAssembleCard
 {
-    public int getBaseDataId();
-    public void setBaseDataId(int id);
+    public int getBaseEffectId();
+    public void setBaseEffectId(int id);
+
+    public int getAdvancedEffectId();
+    public void setAdvancedEffectId(int id);
 
     public int getTriggerId();
     public void setTriggerId(int id);
@@ -13,6 +16,7 @@ public interface IAssembleCard
 
     public void addTriggerNumber();
     public void setTriggerNumber(int number);
+
     public int getUpgradeNumber();
     public void setUpgradeNumber(int number);
 }

@@ -3,12 +3,22 @@ using System.Collections.Generic;
 public interface IPart
 {
     public int getId();
+
     public string getName();
-    public int getType();
-    public int getValue();
 
     public string getDesc();
-    public List<int> getPartIds();
+
+    public string getImage();
+
+    public int getProfession();
+
+    public string getBelongBase();
+
+    public string getCorrespondBase();
+
+    public float getValueDefault();
+
+    public float getValueUpgrade();
 
     public TargetPart getTargetPart();
 }

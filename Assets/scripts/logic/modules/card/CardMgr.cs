@@ -61,29 +61,40 @@ public class CardMgr: Singleton<CardMgr>
 
     //触发升级
     private void triggerUpgrade(ICardHandlePara para, int triggerId) {
-        bool isUpgrade = ImprintDataMgr.Instance.addTriggerNumber(para.getAttackUser().isNpc(), triggerId);
+        bool isNpc = para.getAttackUser().isNpc();
+        bool isUpgrade = ImprintDataMgr.Instance.addTriggerNumber(isNpc, triggerId);
         if (!isUpgrade) return;
 
-        TriggerPartInfo triggerPartInfo = GameStaticConfigMgr.Instance.getTriggerPartConfig().getTriggerPartId(triggerId);
-        if (triggerPartInfo == null ) return;
-        
-        List<IPart> selectBasePart = new List<IPart>();
-        List<int> upgradePartIds = new List<int>();
-        upgradePartIds.AddRange(triggerPartInfo.getPartIds());
-        for (int i = 0; i < MAXSLOT; i++)
-        {
-            int index = RandomMgr.Instance.getRangeInt(0, upgradePartIds.Count);
-            int basePartId = upgradePartIds[index];
-            upgradePartIds.Remove(basePartId);
+        IAssembleCard assembleCard = ImprintDataMgr.Instance.getAssembleCard(isNpc, triggerId);
+        if (assembleCard == null) return;
 
-            IPart basePart = GameStaticConfigMgr.Instance.getBasePartConfig().getBasePartId(basePartId);
-            if (basePart != null) {
-                selectBasePart.Add(basePart);
+        BaseEffectInfo info = GameStaticConfigMgr.Instance.getBaseEffectConfig().getBaseEffectId(assembleCard.getBaseEffectId());
+        if (info == null) return;
+
+        List<IPart> selectPart = new List<IPart>();
+        List<IPart> advancedPart = new List<IPart>();
+
+        List<AdvancedEffectInfo> effectInfos = GameStaticConfigMgr.Instance.getAdvancedEffectConfig().getAdvancedEffect();
+        for (int i = 0; i < effectInfos.Count; i++) {
+            if (effectInfos[i].getBelongBase().IndexOf(info.Correspond_Advanced) == 0) {
+                if (ImprintDataMgr.Instance.hasAdvancedEffect(isNpc, effectInfos[i].getId()))
+                {
+                    advancedPart.Add(effectInfos[i]);
+                }
             }
         }
 
-        ICandidacyPartPara partPara = new CandidacyPartPara(para.getAttackUser(), selectBasePart, triggerId);
+        for (int i = 0; i < MAXSLOT; i++)
+        {
+            int index = RandomMgr.Instance.getRangeInt(0, advancedPart.Count);
+            IPart part = advancedPart[index];
+            selectPart.Add(part);
+            advancedPart.Remove(part);
+        }
+
+        ICandidacyPartPara partPara = new CandidacyPartPara(para.getAttackUser(), selectPart, triggerId);
         GameMessage.Instance.addMsg(GameConst.CANDIDACYCARD, partPara);
+        
     }
 
     //

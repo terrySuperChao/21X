@@ -3,17 +3,17 @@ public class GameStaticConfigMgr : Singleton<GameStaticConfigMgr>
     private ShopConfig _shopConfig = new ShopConfig();
     private ChapterConfig _chapterConfig = new ChapterConfig();
     private PlayerRoleConfig _playerRoleConfig = new PlayerRoleConfig();
-    private BasePartConfig _basePartConfig = new BasePartConfig();
-    private TriggerPartConfig _triggerPartConfig = new TriggerPartConfig();
-    private CardPartConfig _cardPartConfig = new CardPartConfig();
+    private BaseEffectConfig _baseEffectConfig = new BaseEffectConfig();
+    private TriggerConfig _triggerConfig = new TriggerConfig();
+    private AdvancedEffectConfig _advancedEffectConfig = new AdvancedEffectConfig();
 
     public void init() {
         this._shopConfig.init();
         this._chapterConfig.init();
         this._playerRoleConfig.init();
-        this._basePartConfig.init();
-        this._triggerPartConfig.init();
-        this._cardPartConfig.init();
+        this._triggerConfig.init();
+        this._baseEffectConfig.init();
+        this._advancedEffectConfig.init();
     }
 
     public ShopConfig getShopConfig() { 
@@ -26,15 +26,15 @@ public class GameStaticConfigMgr : Singleton<GameStaticConfigMgr>
     public PlayerRoleConfig getPlayerRoleConfig() { 
         return this._playerRoleConfig;
     }
-    public BasePartConfig getBasePartConfig() { 
-        return this._basePartConfig;
+    public BaseEffectConfig getBaseEffectConfig() { 
+        return this._baseEffectConfig;
     }
 
-    public TriggerPartConfig getTriggerPartConfig(){
-        return this._triggerPartConfig;
+    public TriggerConfig getTriggerConfig(){
+        return this._triggerConfig;
     }
 
-    public CardPartConfig getCardPartConfig(){
-        return this._cardPartConfig;
+    public AdvancedEffectConfig getAdvancedEffectConfig(){
+        return this._advancedEffectConfig;
     }
 }

@@ -133,7 +133,7 @@ public class PlayerAsset : MonoBehaviour
         }
     }
     public void addCard(ICard card){
-        IPart part = GameStaticConfigMgr.Instance.getTriggerPartConfig().getTriggerPartId(card.getId());
+        IPart part = GameStaticConfigMgr.Instance.getTriggerConfig().getTriggerId(card.getId());
         int index = getCardForTypeIndex(card);
         Transform cardChild = this.cards.GetChild(index); //
         GameObject cardObject = Instantiate(this.cartPartPrefab, this.cards);

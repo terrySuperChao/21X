@@ -122,7 +122,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 7546451453259774703}
         m_TargetAssemblyTypeName: ImprintView, Assembly-CSharp
-        m_MethodName: onTriggerPartClick
+        m_MethodName: onTriggerClick
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -252,14 +252,14 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: AdventureView, Assembly-CSharp
-        m_MethodName: onExitClick
-        m_Mode: 1
+      - m_Target: {fileID: 7546451453259774703}
+        m_TargetAssemblyTypeName: ImprintView, Assembly-CSharp
+        m_MethodName: onBaseEffectClick
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 1
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -612,10 +612,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: AdventureView, Assembly-CSharp
-        m_MethodName: onExitClick
-        m_Mode: 1
+      - m_Target: {fileID: 7546451453259774703}
+        m_TargetAssemblyTypeName: ImprintView, Assembly-CSharp
+        m_MethodName: onTriggerClick
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -833,7 +833,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -210}
-  m_SizeDelta: {x: 166.64151, y: 70}
+  m_SizeDelta: {x: 0, y: 70}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4512411276717621390
 CanvasRenderer:
@@ -1269,14 +1269,14 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: AdventureView, Assembly-CSharp
-        m_MethodName: onExitClick
-        m_Mode: 1
+      - m_Target: {fileID: 7546451453259774703}
+        m_TargetAssemblyTypeName: ImprintView, Assembly-CSharp
+        m_MethodName: onTriggerClick
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 1
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -1390,7 +1390,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &4460878440086040612
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1558,6 +1558,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1758442897722340130}
   - component: {fileID: 873348750981765535}
+  - component: {fileID: 75563983983248758}
   m_Layer: 5
   m_Name: Content
   m_TagString: Untagged
@@ -1582,7 +1583,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: -0.000056699733}
-  m_SizeDelta: {x: 0, y: 300}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &873348750981765535
 MonoBehaviour:
@@ -1608,6 +1609,20 @@ MonoBehaviour:
   m_Spacing: {x: 0, y: 0}
   m_Constraint: 0
   m_ConstraintCount: 2
+--- !u!114 &75563983983248758
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4830786790074334251}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3245ec927659c4140ac4f8d17403cc18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_HorizontalFit: 0
+  m_VerticalFit: 2
 --- !u!1 &5474458308552490618
 GameObject:
   m_ObjectHideFlags: 0
@@ -1719,7 +1734,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -210}
-  m_SizeDelta: {x: 220.98114, y: 70}
+  m_SizeDelta: {x: 0, y: 70}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2489043696106522637
 CanvasRenderer:
@@ -2077,7 +2092,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &3185074498566727052
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2224,7 +2239,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 7546451453259774703}
         m_TargetAssemblyTypeName: ImprintView, Assembly-CSharp
-        m_MethodName: onBasePartClick
+        m_MethodName: onBaseEffectClick
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2763,10 +2778,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: AdventureView, Assembly-CSharp
-        m_MethodName: onExitClick
-        m_Mode: 1
+      - m_Target: {fileID: 7546451453259774703}
+        m_TargetAssemblyTypeName: ImprintView, Assembly-CSharp
+        m_MethodName: onBaseEffectClick
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -2896,27 +2911,27 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2065977178095356558, guid: 56632a6173406b94f96b0e8a04d69ba9, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 32.603775
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2065977178095356558, guid: 56632a6173406b94f96b0e8a04d69ba9, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 61.584908
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3850498472882579964, guid: 56632a6173406b94f96b0e8a04d69ba9, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 32.603775
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3850498472882579964, guid: 56632a6173406b94f96b0e8a04d69ba9, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 61.584908
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4183389106031595830, guid: 56632a6173406b94f96b0e8a04d69ba9, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 32.603775
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4183389106031595830, guid: 56632a6173406b94f96b0e8a04d69ba9, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 61.584908
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4420529689198618914, guid: 56632a6173406b94f96b0e8a04d69ba9, type: 3}
       propertyPath: m_Pivot.x
@@ -3012,19 +3027,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4746680815142114053, guid: 56632a6173406b94f96b0e8a04d69ba9, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 32.603775
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4746680815142114053, guid: 56632a6173406b94f96b0e8a04d69ba9, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 61.584908
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5113039374358660067, guid: 56632a6173406b94f96b0e8a04d69ba9, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 32.603775
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5113039374358660067, guid: 56632a6173406b94f96b0e8a04d69ba9, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 61.584908
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5257655248267919920, guid: 56632a6173406b94f96b0e8a04d69ba9, type: 3}
       propertyPath: m_Name
@@ -3032,23 +3047,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5257655248267919920, guid: 56632a6173406b94f96b0e8a04d69ba9, type: 3}
       propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5560733979888792121, guid: 56632a6173406b94f96b0e8a04d69ba9, type: 3}
+      propertyPath: m_SizeDelta.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5560733979888792121, guid: 56632a6173406b94f96b0e8a04d69ba9, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 32.603775
-      objectReference: {fileID: 0}
-    - target: {fileID: 5560733979888792121, guid: 56632a6173406b94f96b0e8a04d69ba9, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 61.584908
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8600927324569056840, guid: 56632a6173406b94f96b0e8a04d69ba9, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 94.18868
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8600927324569056840, guid: 56632a6173406b94f96b0e8a04d69ba9, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 54.339626
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

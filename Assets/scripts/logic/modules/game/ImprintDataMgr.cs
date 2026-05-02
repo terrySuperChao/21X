@@ -1,4 +1,4 @@
-//Ó¡¼Ç
+//Ó¡ï¿½ï¿½
 using Pb;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,9 +15,9 @@ public class ImprintDataMgr : Singleton<ImprintDataMgr>
             imprint.PlayerCards.Add(new AssembleCard());
         }
 
-        //³õÊ¼Éý¼¶ÐèÒªµÄ´ÎÊý
-        List<int> upgradeNumbers = new List<int>() { 3,1,1};
-        for (int i = 0; i<upgradeNumbers.Count; i++) {
+        //ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Òªï¿½Ä´ï¿½ï¿½ï¿½
+        List<int> upgradeNumbers = new List<int>() { 3, 1, 1 };
+        for (int i = 0; i < upgradeNumbers.Count; i++) {
             imprint.NpcCards[i].UpgradeNumber = upgradeNumbers[i];
             imprint.PlayerCards[i].UpgradeNumber = upgradeNumbers[i];
         }
@@ -30,12 +30,12 @@ public class ImprintDataMgr : Singleton<ImprintDataMgr>
         if (this._imprint == null) {
             this._imprint = this.newImprint();
         }
-       
+
         this._npcCards.Clear();
         this._playerCards.Clear();
         foreach (var value in this._imprint.NpcCards)
         {
-            this._npcCards.Add(new AssembleCardObject(value.BaseDataId, value.TriggerId, value.Level,value.TriggerNumber,value.UpgradeNumber));
+            this._npcCards.Add(new AssembleCardObject(value.BaseDataId, value.TriggerId, value.Level, value.TriggerNumber, value.UpgradeNumber));
         }
         foreach (var value in this._imprint.PlayerCards)
         {
@@ -60,7 +60,7 @@ public class ImprintDataMgr : Singleton<ImprintDataMgr>
 
     private AssembleCard newAssembleCard(IAssembleCard card) {
         AssembleCard assembleCard = new AssembleCard();
-        assembleCard.BaseDataId = card.getBaseDataId();
+        assembleCard.BaseDataId = card.getBaseEffectId();
         assembleCard.TriggerId = card.getTriggerId();
         assembleCard.Level = card.getLevel();
         assembleCard.TriggerNumber = card.getTriggerNumber();
@@ -68,17 +68,23 @@ public class ImprintDataMgr : Singleton<ImprintDataMgr>
         return assembleCard;
     }
 
-    public void setAssembleObject(int obj) { 
+    public void setAssembleObject(int obj) {
         this._imprint.AssembleObject = obj;
     }
 
-    public int getAssembleObject() { 
+    public int getAssembleObject() {
         return this._imprint.AssembleObject;
     }
 
-    public List<IAssembleCard> getAssembleCard() { 
-        return this._imprint.AssembleObject == 0 ? this._npcCards : this._playerCards;
+    public List<IAssembleCard> getAssembleCard() {
+        return this.getAssembleCard(this._imprint.AssembleObject == 0);
     }
+
+    public List<IAssembleCard> getAssembleCard(bool isNpc)
+    {
+        return isNpc ? this._npcCards : this._playerCards;
+    }
+
 
     public List<IAssembleCard> getNpcAssembleCard()
     {
@@ -95,17 +101,21 @@ public class ImprintDataMgr : Singleton<ImprintDataMgr>
         if (cards.Count < index) {
             return;
         }
-        if (targetType == TargetPart.basePart) {
-            cards[index].setBaseDataId(partId);
+        if (targetType == TargetPart.baseEffect)
+        {
+            cards[index].setBaseEffectId(partId);
         }
-        else {
+        else if (targetType == TargetPart.advancedEffect) {
+            cards[index].setAdvancedEffectId(partId);
+        }
+        else
+        {
             cards[index].setTriggerId(partId);
         }
     }
 
-    public bool addTriggerNumber(bool isNpc,int triggerId) {
-        List<IAssembleCard> list = isNpc ? this._npcCards : this._playerCards;
-
+    public bool addTriggerNumber(bool isNpc, int triggerId) {
+        List<IAssembleCard> list = this.getAssembleCard(isNpc);
         IAssembleCard assembleCard = list.Find(card => card.getTriggerId() == triggerId);
         if (assembleCard != null) {
             assembleCard.addTriggerNumber();
@@ -114,12 +124,28 @@ public class ImprintDataMgr : Singleton<ImprintDataMgr>
         return assembleCard != null && assembleCard.getTriggerNumber() == assembleCard.getUpgradeNumber();
     }
 
-    public void upgradeBasePartId(bool isNpc, int triggerId,int basePartId) {
-        List<IAssembleCard> list = isNpc ? this._npcCards : this._playerCards;
+    public bool setAdvancedEffectId(bool isNpc, int triggerId, int advancedEffectId) {
+        List<IAssembleCard> list = this.getAssembleCard(isNpc);
         IAssembleCard assembleCard = list.Find(card => card.getTriggerId() == triggerId);
         if (assembleCard != null)
         {
-            assembleCard.setBaseDataId(basePartId);
+            assembleCard.setAdvancedEffectId(advancedEffectId);
+            return true;
         }
+        else {
+            return false;
+        }
+    }
+
+    public IAssembleCard getAssembleCard(bool isNpc, int triggerId) {
+        List<IAssembleCard> list = this.getAssembleCard(isNpc);
+        IAssembleCard assembleCard = list.Find(card => card.getTriggerId() == triggerId);
+        return assembleCard;
+    }
+
+    public bool hasAdvancedEffect(bool isNpc,int advancedEffectId) {
+        List<IAssembleCard> list = this.getAssembleCard(isNpc);
+        IAssembleCard assembleCard = list.Find(card => card.getAdvancedEffectId() == advancedEffectId);
+        return assembleCard != null;
     }
 }

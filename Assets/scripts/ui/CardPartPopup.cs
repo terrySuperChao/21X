@@ -22,6 +22,16 @@ public class CardPartPopup : MonoBehaviour
     }
 
     public void loadPartInfo(IPart partInfo) {
-        this.partName.text = partInfo.getDesc();
+        if (partInfo == null)
+            return;
+
+        string desc = partInfo.getDesc();
+        if (desc.IndexOf("%s") == -1)
+        {
+            this.partName.text = desc;
+        }
+        else {
+            this.partName.text = desc.Replace("%s", partInfo.getValueDefault().ToString());
+        }
     }
 }   

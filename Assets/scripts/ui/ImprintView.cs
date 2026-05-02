@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+//印记
 public class ImprintView : MonoBehaviour, IBaseView
 {
     public Canvas canvas;
@@ -36,20 +36,25 @@ public class ImprintView : MonoBehaviour, IBaseView
 
     public void afterShow()
     {
-        List<BasePartInfo> baseParts = GameStaticConfigMgr.Instance.getBasePartConfig().getBasePart();
-        List<TriggerPartInfo> triggerParts = GameStaticConfigMgr.Instance.getTriggerPartConfig().getTriggerPart();
+        List<BaseEffectInfo> baseEffectInfos = GameStaticConfigMgr.Instance.getBaseEffectConfig().getBaseEffect();
+        List<TriggerInfo> triggerInfos = GameStaticConfigMgr.Instance.getTriggerConfig().getTrigger();
         List<IPart> parts = new List<IPart>();
 
-        foreach (BasePartInfo part in baseParts) {
-            if (part.getPartIds().Count > 0)
+        foreach (BaseEffectInfo part in baseEffectInfos) {
+            if(part.getProfession() == 0 || 
+               part.getProfession() == PlayerDataMgr.Instance.getRoleId())
             {
                 parts.Add(part);
             }
         }
 
-        foreach (TriggerPartInfo part in triggerParts)
+        foreach (TriggerInfo part in triggerInfos)
         {
-             parts.Add(part);
+            if(part.getProfession() == 0 || 
+               part.getProfession() == PlayerDataMgr.Instance.getRoleId())
+            {
+                parts.Add(part);
+            }
         }
 
         
@@ -76,10 +81,10 @@ public class ImprintView : MonoBehaviour, IBaseView
         for (int i = 0; i < assembleCard.Count; i++)
         {
             //基础类
-            BasePartInfo baseInfo = GameStaticConfigMgr.Instance.getBasePartConfig().getBasePartId(assembleCard[i].getBaseDataId());
+            BaseEffectInfo baseInfo = GameStaticConfigMgr.Instance.getBaseEffectConfig().getBaseEffectId(assembleCard[i].getBaseEffectId());
             RectTransform baseTargetArea = baseTargetAreaList[i];
             if (baseTargetArea != null) { 
-                this.cardPartController.addCardPartItem(i, baseInfo, baseTargetArea, TargetPart.basePart);
+                this.cardPartController.addCardPartItem(i, baseInfo, baseTargetArea, TargetPart.baseEffect);
                 if (baseInfo != null) {
                     this.createSelectCardPart(baseTargetArea, baseInfo);
                     this.seLongPressItemState(baseInfo,false);
@@ -87,10 +92,10 @@ public class ImprintView : MonoBehaviour, IBaseView
             }
 
             //触发类
-            TriggerPartInfo triggerInfo = GameStaticConfigMgr.Instance.getTriggerPartConfig().getTriggerPartId(assembleCard[i].getTriggerId());
+            TriggerInfo triggerInfo = GameStaticConfigMgr.Instance.getTriggerConfig().getTriggerId(assembleCard[i].getTriggerId());
             RectTransform triggerTargetArea = triggerTargetAreList[i];
             if (triggerTargetArea != null){
-                this.cardPartController.addCardPartItem(i, triggerInfo, triggerTargetArea, TargetPart.triggerPart);
+                this.cardPartController.addCardPartItem(i, triggerInfo, triggerTargetArea, TargetPart.trigger);
                 if (triggerInfo != null)
                 {
                     this.createSelectCardPart(triggerTargetArea, triggerInfo);
@@ -159,12 +164,12 @@ public class ImprintView : MonoBehaviour, IBaseView
         GameMessage.Instance.setHandleMessageComplete();
     }
 
-    public void onBasePartClick(int index) {
-        this.clearSelectPart(index, TargetPart.basePart);
+    public void onBaseEffectClick(int index) {
+        this.clearSelectPart(index, TargetPart.baseEffect);
     }
 
-    public void onTriggerPartClick(int index) {
-        this.clearSelectPart(index, TargetPart.triggerPart);
+    public void onTriggerClick(int index) {
+        this.clearSelectPart(index, TargetPart.trigger);
     }
 
     private void clearSelectPart(int index, TargetPart targetType) {

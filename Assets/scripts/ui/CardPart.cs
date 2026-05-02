@@ -26,15 +26,14 @@ public class CardPart : MonoBehaviour
     }
 
     public void loadPartImage(IPart partInfo) {
-        Texture2D myTexture = Resources.Load<Texture2D>($"UI/pokers/blt_game_poker_01_2_01");
-        if (myTexture != null)
-        {
-            // ÀýÈç£¬½«¼ÓÔØµÄÎÆÀíÉèÖÃ¸øUI Image×é¼þ
-            this.partImage.GetComponent<UnityEngine.UI.Image>().sprite = Sprite.Create(myTexture, new Rect(0.0f, 0.0f, myTexture.width, myTexture.height), new Vector2(0.5f, 0.5f));
-        }
-
         this.partName.text = partInfo.getName();
         this._partInfo = partInfo;
+        Texture2D myTexture = Resources.Load<Texture2D>(partInfo.getImage());
+        if (myTexture != null)
+        {
+            // ï¿½ï¿½ï¿½ç£¬ï¿½ï¿½ï¿½ï¿½ï¿½Øµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã¸ï¿½UI Imageï¿½ï¿½ï¿½
+            this.partImage.GetComponent<UnityEngine.UI.Image>().sprite = Sprite.Create(myTexture, new Rect(0.0f, 0.0f, myTexture.width, myTexture.height), new Vector2(0.5f, 0.5f));
+        }
     }
 
     public IPart getPartInfo() { 

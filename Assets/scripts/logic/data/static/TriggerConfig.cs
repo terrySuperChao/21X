@@ -1,0 +1,79 @@
+using System.Collections.Generic;
+
+[System.Serializable]
+public class TriggerInfo:IPart
+{
+    public int ID;
+    public string Name;
+    public int Quality;
+    public int Priority;
+    public int Profession;
+    public int Trigger;
+    public string Logic;
+    public string Correspond_Base;
+    public string Description;
+    public string Remark;
+    public int getId()
+    {
+        return this.ID;
+    }
+
+    public string getName()
+    {
+        return this.Name;
+    }
+    public int getProfession()
+    {
+        return this.Profession;
+    }
+    public string getDesc()
+    {
+        return this.Description;
+    }
+    public string getImage()
+    {
+        return "UI/pokers/blt_game_poker_01_2_03";
+    }
+    public string getBelongBase()
+    {
+        return "";
+    }
+
+    public string getCorrespondBase()
+    {
+        return this.Correspond_Base;
+    }
+
+    public float getValueDefault()
+    {
+        return 0.0f;
+    }
+
+    public float getValueUpgrade()
+    {
+        return 0.0f;
+    }
+
+    public TargetPart getTargetPart()
+    {
+        return TargetPart.trigger;
+    }
+}
+
+public class TriggerConfig
+{
+    private readonly string _path = "config/Trigger";
+    private List<TriggerInfo> _list = null;
+    public void init()
+    {
+        this._list = JsonMgr.Instance.readObject<List<TriggerInfo>>(this._path);
+    }
+
+    public List<TriggerInfo> getTrigger() {
+        return this._list;
+    }
+
+    public TriggerInfo getTriggerId(int id) { 
+        return this._list.Find(x => x.getId() == id);
+    }
+}
