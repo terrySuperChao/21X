@@ -60,12 +60,12 @@ public class CardMgr: Singleton<CardMgr>
     }
 
     //触发升级
-    private void triggerUpgrade(ICardHandlePara para, int triggerId) {
+    private void triggerUpgrade(ICardHandlePara para,IAssembleCard card) {
         bool isNpc = para.getAttackUser().isNpc();
-        bool isUpgrade = ImprintDataMgr.Instance.addTriggerNumber(isNpc, triggerId);
+        bool isUpgrade = ImprintDataMgr.Instance.addTriggerNumber(isNpc, card.getTriggerId());
         if (!isUpgrade) return;
 
-        IAssembleCard assembleCard = ImprintDataMgr.Instance.getAssembleCard(isNpc, triggerId);
+        IAssembleCard assembleCard = ImprintDataMgr.Instance.getAssembleCard(isNpc, card.getTriggerId());
         if (assembleCard == null) return;
 
         BaseEffectInfo info = GameStaticConfigMgr.Instance.getBaseEffectConfig().getBaseEffectId(assembleCard.getBaseEffectId());
@@ -92,31 +92,35 @@ public class CardMgr: Singleton<CardMgr>
             advancedPart.Remove(part);
         }
 
-        ICandidacyPartPara partPara = new CandidacyPartPara(para.getAttackUser(), selectPart, triggerId);
+        ICandidacyPartPara partPara = new CandidacyPartPara(para.getAttackUser(),card, selectPart);
         GameMessage.Instance.addMsg(GameConst.CANDIDACYCARD, partPara);
         
     }
 
     //
     public void handle(ICardHandlePara para, CardHandleType type) {
-        List<ICard> cards = FightPokerMgr.Instance.getUserCards(para.getUser());
-        List<ICardHandle> handles = CardConfig.getHandle();
+        List<IAssembleCard> cards = ImprintDataMgr.Instance.getAssembleCard(para.getUser().isNpc());
         for (int i = 0; i < cards.Count; i++) {
-            para.setCard(cards[i]);
-            int cardId = cards[i].getId();
-            int index = cardId - 1;
-            if (index >= handles.Count) continue;
+            TriggerInfo info = GameStaticConfigMgr.Instance.getTriggerConfig().getTriggerId(cards[i].getTriggerId());
+            if (info == null) {
+                continue;
+            }
+
+            ITriggerHandle handle = TriggerEvent.getTriggerEventHandle(info.Trigger);
+            if (handle == null) {
+                continue;
+            }
             int beforeCount = GameMessage.Instance.getMsgCount();
-            Type objType = handles[index].GetType();
+            Type objType = handle.GetType();
             string methodName = Enum.GetName(typeof(CardHandleType), type);
             MethodInfo method = objType.GetMethod(methodName + "Handle");
-            method?.Invoke(handles[index], new object[] { para });
+            method?.Invoke(handle, new object[] { para });
             int afterCount = GameMessage.Instance.getMsgCount();
 
             //说明增加了一条数据
             if (afterCount > beforeCount){
                 //触发升级的内容
-                this.triggerUpgrade(para, cardId);
+                this.triggerUpgrade(para, cards[i]);
             }
 
             /*

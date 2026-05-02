@@ -97,7 +97,7 @@ public class PlayerAsset : MonoBehaviour
     }
 
     private void initCards() {
-        List<ICard> cards = FightPokerMgr.Instance.getUserCards(this._user);
+        List<IAssembleCard> cards = FightPokerMgr.Instance.getUserAssembleCards(this._user);
         foreach (var card in cards){
             this.addCard(card);
         }
@@ -132,9 +132,9 @@ public class PlayerAsset : MonoBehaviour
             moveTo(this.pokers.GetChild(i).gameObject, localPos);
         }
     }
-    public void addCard(ICard card){
-        IPart part = GameStaticConfigMgr.Instance.getTriggerConfig().getTriggerId(card.getId());
-        int index = getCardForTypeIndex(card);
+    public void addCard(IAssembleCard card){
+        IPart part = GameStaticConfigMgr.Instance.getTriggerConfig().getTriggerId(card.getTriggerId());
+        int index = this.getCardForTypeIndex(card);
         Transform cardChild = this.cards.GetChild(index); //
         GameObject cardObject = Instantiate(this.cartPartPrefab, this.cards);
         cardObject.GetComponent<CardPart>().loadPartImage(part);
@@ -151,10 +151,11 @@ public class PlayerAsset : MonoBehaviour
     // ------》》》》 1发卡牌
     public void dealCard(params System.Object[] obj)
     {
+        /*
         IDealCardPara para = (IDealCardPara)obj[0];
         if (para.getUser() == this._user) {
             this.addCard(para.getCard());
-        }
+        }*/
     }
 
     // ------》》》》 1.1 选择卡牌
@@ -237,18 +238,18 @@ public class PlayerAsset : MonoBehaviour
         this.pointText.text = point.ToString();
     }
 
-    public Vector3 getCardPosition(ICard card)
+    public Vector3 getCardPosition(IAssembleCard card)
     {
         int index = this.getCardForTypeIndex(card);
         return this.cards.GetChild(index).position;
     }
 
-    private int getCardForTypeIndex(ICard card) {
+    private int getCardForTypeIndex(IAssembleCard card) {
         int index = 0;
         for (int i = 0; i < this.cards.childCount; i++)
         {
             CardPart cardComp = this.cards.GetChild(i).GetComponent<CardPart>();
-            if (cardComp != null && cardComp.getCard().getType() == card.getType())
+            if (cardComp != null && cardComp.getCard().getTriggerId() == card.getTriggerId())
             {
                 index = i;
                 break;

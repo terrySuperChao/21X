@@ -275,6 +275,10 @@ public class FightPokerMgr : Singleton<FightPokerMgr>
         return FightDataMgr.Instance.getCards(this.getDealType(user));
     }
 
+    public List<IAssembleCard> getUserAssembleCards(IUser user) {
+        return ImprintDataMgr.Instance.getAssembleCard(user.isNpc());
+    }
+
     public int getUserRound()
     {
         return FightDataMgr.Instance.getRound();

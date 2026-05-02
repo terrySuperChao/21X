@@ -6,7 +6,7 @@ public class CardPart : MonoBehaviour
     public Text partName;
     public GameObject partImage;
     private IPart _partInfo;
-    private ICard _card;
+    private IAssembleCard _card;
 
     // Start is called before the first frame update
     void Start()
@@ -26,8 +26,10 @@ public class CardPart : MonoBehaviour
     }
 
     public void loadPartImage(IPart partInfo) {
+        if (partInfo == null) return;
         this.partName.text = partInfo.getName();
         this._partInfo = partInfo;
+
         Texture2D myTexture = Resources.Load<Texture2D>(partInfo.getImage());
         if (myTexture != null)
         {
@@ -40,11 +42,11 @@ public class CardPart : MonoBehaviour
         return this._partInfo;
     }
 
-    public void setCard(ICard card) { 
+    public void setCard(IAssembleCard card) { 
         this._card = card;
     }
 
-    public ICard getCard() { 
+    public IAssembleCard getCard() { 
         return this._card;
     }
 }   

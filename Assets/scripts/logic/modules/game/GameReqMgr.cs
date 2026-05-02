@@ -84,17 +84,6 @@ public class GameReqMgr : Singleton<GameReqMgr>
         }
         else if (suit == PokerSuit.spade) {
             FightDataMgr.Instance.initEntry();
-            //³õÊ¼»¯
-            foreach (var item in ImprintDataMgr.Instance.getNpcAssembleCard())
-            {
-                FightDataMgr.Instance.addCardId(FightDealType.npc, item.getTriggerId());
-            }
-
-            foreach (var item in ImprintDataMgr.Instance.getPlayerAssembleCard())
-            {
-                FightDataMgr.Instance.addCardId(FightDealType.player, item.getTriggerId());
-            }
-            //³õÊ¼»¯×ÊÔ´
             this.requestInitPlayerInfo();
         }
 
@@ -226,12 +215,12 @@ public class GameReqMgr : Singleton<GameReqMgr>
         }
     }
 
-    public void requestUpgradePart(bool isOk, int triggerId, IUser user, IPart part, Vector3 position)
+    public void requestUpgradePart(bool isOk,IUser user,IAssembleCard card, IPart part, Vector3 position)
     { 
         if (isOk)
         {
-            FightPokerMgr.Instance.upgradeBasePart(triggerId, user, part);
-            EventDispatcher.Instance.emit(GameConst.OKSELECTCARD, new SelectPartPara(user, part, position));
+            FightPokerMgr.Instance.upgradeBasePart(card.getTriggerId(), user, part);
+            EventDispatcher.Instance.emit(GameConst.OKSELECTCARD, new SelectPartPara(user,card, part, position));
         }
         else
         {
@@ -254,17 +243,17 @@ public class GameReqMgr : Singleton<GameReqMgr>
     }
 
     public void requestSaveFightFlowState(FightFlowState state) {
-        //±£´æÏÂÒ»¸ö×´Ì¬
+        //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½×´Ì¬
         FightPokerMgr.Instance.setFlowState(state);
         GamePropertyMgr.Instance.save();
 
-        //ÏÂÒ»¸öÁ÷³Ì
+        //ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         FightPokerMgr.Instance.runFlow();
     }
 
     
 
-    //±£´æ×´Ì¬
+    //ï¿½ï¿½ï¿½ï¿½×´Ì¬
     public void requestSavePlayerInfo() {
         AssetInfo playerInfo = FightDataMgr.Instance.getAssetInfo(FightDealType.player);
         PlayerDataMgr.Instance.setHP(playerInfo.Hp);

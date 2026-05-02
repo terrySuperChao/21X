@@ -30,12 +30,12 @@ public class SelectPartView : MonoBehaviour, IBaseView
     }
 
     public void cancelClick() {
-        GameReqMgr.Instance.requestUpgradePart(false, this._para.getTriggerId(), this._para.getUser(), this._part, this._position);
+        GameReqMgr.Instance.requestUpgradePart(false, this._para.getUser(),this._para.getAssembleCard(), this._part, this._position);
         UIMgr.Instance.closeView(this.gameObject.name);
     }
 
     public void okClick() {
-        GameReqMgr.Instance.requestUpgradePart(true, this._para.getTriggerId(),this._para.getUser(), this._part, this._position);
+        GameReqMgr.Instance.requestUpgradePart(true,this._para.getUser(),this._para.getAssembleCard(), this._part, this._position);
         UIMgr.Instance.closeView(this.gameObject.name);
     }
 

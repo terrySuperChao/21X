@@ -6,6 +6,7 @@ public class SelectPart : MonoBehaviour
     public Text partName;
     public GameObject selectImage;
 
+    private IAssembleCard _card;
     private IPart _part;
     // Start is called before the first frame update
     void Start()
@@ -24,6 +25,10 @@ public class SelectPart : MonoBehaviour
         EventDispatcher.Instance.off(GameConst.SELECTPART, this.selectPart);
     }
 
+    public void setAssembleCard(IAssembleCard card) {
+        this._card = card;
+    }
+
     public void loadPart(IPart part)
     {
         this._part = part;
@@ -33,7 +38,7 @@ public class SelectPart : MonoBehaviour
 
     public void onClick()
     {
-        EventDispatcher.Instance.emit(GameConst.SELECTPART, new SelectPartPara(null, this._part, this.transform.position));
+        EventDispatcher.Instance.emit(GameConst.SELECTPART, new SelectPartPara(null, this._card,this._part, this.transform.position));
     }
 
     private void selectPart(params System.Object[] obj)

@@ -49,8 +49,8 @@ public class CandidacyCardPara : ICandidacyCardPara
 
 public interface ICandidacyPartPara
 {
-    public int getTriggerId();
     public IUser getUser();
+    public IAssembleCard getAssembleCard();
     public List<IPart> getParts();
 }
 
@@ -58,12 +58,12 @@ public class CandidacyPartPara : ICandidacyPartPara
 {
     private IUser _user;
     private List<IPart> _parts;
-    private int _triggerId;
-    public CandidacyPartPara(IUser user, List<IPart> parts, int triggerId)
+    private IAssembleCard _card;
+    public CandidacyPartPara(IUser user,IAssembleCard card, List<IPart> parts)
     {
         this._user = user;
         this._parts = parts;
-        this._triggerId = triggerId;
+        this._card = card;
     }
     public IUser getUser()
     {
@@ -74,9 +74,9 @@ public class CandidacyPartPara : ICandidacyPartPara
         return this._parts;
     }
 
-    public int getTriggerId()
+    public IAssembleCard getAssembleCard()
     {
-        return this._triggerId;
+        return this._card;
     }
 }
 
@@ -146,6 +146,7 @@ public interface ISelectPartPara
 {
     public IUser getUser();
     public IPart getPart();
+    public IAssembleCard getAssembleCard();
     public Vector3 getPosition();
 }
 
@@ -153,10 +154,12 @@ public class SelectPartPara : ISelectPartPara
 {
     private IUser _user;
     private IPart _part;
+    private IAssembleCard _card;
     private Vector3 _position;
-    public SelectPartPara(IUser user, IPart part, Vector3 position)
+    public SelectPartPara(IUser user, IAssembleCard card,IPart part, Vector3 position)
     {
         this._user = user;
+        this._card = card;
         this._part = part;
         this._position = position;
     }
@@ -168,13 +171,15 @@ public class SelectPartPara : ISelectPartPara
     {
         return this._part;
     }
+    public IAssembleCard getAssembleCard() {
+        return this._card;
+    }
 
     public Vector3 getPosition()
     {
         return this._position;
     }
 }
-
 
 public interface IRefactoringPara
 {

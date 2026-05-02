@@ -135,12 +135,12 @@ public class FightCardView : MonoBehaviour
 
     private IEnumerator okSelectCardHandle(params System.Object[] obj)
     {
-        ISelectCardPara para = (ISelectCardPara)obj[0];
-        ICard card = para.getCard();
+        ISelectPartPara para = (ISelectPartPara)obj[0];
+        IAssembleCard card = para.getAssembleCard();
 
         GameObject cardObject = Instantiate(this.cardPrefab, this.rootTransform);
-        cardObject.GetComponent<Card>().loadCard(card);
-        cardObject.GetComponent<Card>().showNameText(false);
+        //cardObject.GetComponent<CardPart>().loadCard(card);
+        //cardObject.GetComponent<CardPart>().showNameText(false);
         cardObject.transform.position = para.getPosition();
 
         PlayerAsset asset = this.userAsset.GetComponent<PlayerAsset>();
