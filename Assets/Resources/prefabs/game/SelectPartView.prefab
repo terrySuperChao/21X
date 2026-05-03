@@ -288,8 +288,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: SelectCardView, Assembly-CSharp
+      - m_Target: {fileID: 7716503440277011136}
+        m_TargetAssemblyTypeName: SelectPartView, Assembly-CSharp
         m_MethodName: okClick
         m_Mode: 1
         m_Arguments:
@@ -577,7 +577,7 @@ GameObject:
   - component: {fileID: 6497107375530993869}
   - component: {fileID: 5307565073409241612}
   - component: {fileID: 1828666139890872284}
-  - component: {fileID: 7686758194036549125}
+  - component: {fileID: 7716503440277011136}
   m_Layer: 0
   m_Name: SelectPartView
   m_TagString: Untagged
@@ -608,7 +608,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8105682527857957194}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
   m_Name: 
@@ -636,7 +636,7 @@ MonoBehaviour:
   m_InputActionsPerSecond: 10
   m_RepeatDelay: 0.5
   m_ForceModuleActive: 0
---- !u!114 &7686758194036549125
+--- !u!114 &7716503440277011136
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -645,7 +645,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8105682527857957194}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b98de404447e95d498500a6c0fafcc04, type: 3}
+  m_Script: {fileID: 11500000, guid: d118a6b52c037f54c9d72276b8805a6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   content: {fileID: 1947885557245907504}
@@ -772,8 +772,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: SelectCardView, Assembly-CSharp
+      - m_Target: {fileID: 7716503440277011136}
+        m_TargetAssemblyTypeName: SelectPartView, Assembly-CSharp
         m_MethodName: cancelClick
         m_Mode: 1
         m_Arguments:

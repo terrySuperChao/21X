@@ -1,5 +1,5 @@
 public interface ISuitSettle
 {
-    public void settle(ICardHandlePara handlePara, IPoker poker,int baseValue);
+    public void settle(ITriggerHandlePara para, IPoker poker,int baseValue);
     public ISuitSettle setNextSuitSettle(ISuitSettle nextSuitSettle);
 }

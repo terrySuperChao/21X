@@ -133,11 +133,10 @@ public class PlayerAsset : MonoBehaviour
         }
     }
     public void addCard(IAssembleCard card){
-        IPart part = GameStaticConfigMgr.Instance.getTriggerConfig().getTriggerId(card.getTriggerId());
         int index = this.getCardForTypeIndex(card);
         Transform cardChild = this.cards.GetChild(index); //
         GameObject cardObject = Instantiate(this.cartPartPrefab, this.cards);
-        cardObject.GetComponent<CardPart>().loadPartImage(part);
+        cardObject.GetComponent<CardPart>().loadPartImage(card.getTrigger());
         cardObject.GetComponent<CardPart>().setCard(card);
         cardObject.transform.position = cardChild.position;
         cardObject.transform.localScale = new Vector3(0.7f, 0.7f, 0.7f);
@@ -271,12 +270,12 @@ public class PlayerAsset : MonoBehaviour
         return null;
     }
 
-    private Transform getCardIdTransform(ICard card)
+    private Transform getCardIdTransform(IAssembleCard card)
     {
         for (int i = 0; i < this.cards.childCount; i++)
         {
-            Card cardComp = this.cards.GetChild(i).GetComponent<Card>();
-            if (cardComp != null && cardComp.getCard().getId() == card.getId())
+            CardPart cardComp = this.cards.GetChild(i).GetComponent<CardPart>();
+            if (cardComp != null && cardComp.getCard().getTriggerId() == card.getTriggerId())
             {
                 return this.cards.GetChild(i);
             }
@@ -338,7 +337,7 @@ public class PlayerAsset : MonoBehaviour
 
         Text addText = Instantiate(text, rootTransform);
         addText.transform.position = text.transform.position;
-        addText.text = ((bl ? "+" : "-") + para.getValue());
+        addText.text = ((bl ? "+" : "") + para.getValue());
         addText.color = (bl ? Color.green : Color.red);
         Vector3 localPos = addText.transform.localPosition;
         this.moveTo(addText.gameObject, new Vector3(localPos.x, localPos.y + ((bl ? 1 : -1) * 50.0f), localPos.z));
@@ -456,8 +455,8 @@ public class PlayerAsset : MonoBehaviour
     private IEnumerator flyFontHandle(params System.Object[] obj)
     {
         IUIFlyFontPara para = (IUIFlyFontPara)obj[0];
-        Transform child = getCardIdTransform(para.getCard());
-        if (child != null)
+        Transform child = getCardIdTransform(para.getAssembleCard());
+        if (child == null)
         {
             yield return 0;
         }

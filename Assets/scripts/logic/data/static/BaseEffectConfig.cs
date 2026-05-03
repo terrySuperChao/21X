@@ -3,17 +3,17 @@ using System.Collections.Generic;
 [System.Serializable]
 public class BaseEffectInfo : IPart
 {
-    public int ID; 
-    public string Name;
-    public int Quality;
-    public int Profession;
-    public string Belong_Base;
-    public string Action_Genre;
-    public float Value_Default;
-    public float Value_Upgrade;
-    public string Correspond_Advanced;
-    public string Link;
-    public string Description;
+    public int ID = -1; 
+    public string Name = "";
+    public int Quality = 0;
+    public int Profession = 0;
+    public string Belong_Base = "";
+    public string Action_Genre = "";
+    public float Value_Default = 0;
+    public float Value_Upgrade = 0;
+    public string Correspond_Advanced = ""; 
+    public string Link = "";
+    public string Description = "";
 
     public int getId() {
         return this.ID;
@@ -26,6 +26,11 @@ public class BaseEffectInfo : IPart
     public int getProfession()
     {
         return this.Profession;
+    }
+
+    public int getTriggerEvent()
+    {
+        return 0;
     }
 
     public string getDesc() {
@@ -57,6 +62,11 @@ public class BaseEffectInfo : IPart
         return this.Value_Upgrade;
     }
 
+    public string getLogic()
+    {
+        return "";
+    }
+
     public TargetPart getTargetPart() { 
         return TargetPart.baseEffect;
     }
@@ -75,7 +85,11 @@ public class BaseEffectConfig
         return this._list;
     }
 
-    public BaseEffectInfo getBaseEffectId(int id) { 
-        return this._list.Find(x => x.getId() == id);
+    public BaseEffectInfo getBaseEffectId(int id) {
+        BaseEffectInfo info = this._list.Find(x => x.getId() == id);
+        if (info == null) {
+            info = new BaseEffectInfo();
+        }
+        return info;
     }
 }

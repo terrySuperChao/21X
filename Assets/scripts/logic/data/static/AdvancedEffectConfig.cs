@@ -3,13 +3,13 @@ using System.Collections.Generic;
 [System.Serializable]
 public class AdvancedEffectInfo : IPart
 {
-    public int ID; 
-    public string Name;
-    public int Quality;
-    public int Profession;
-    public string Belong_Base;
-    public string Action_Genre;  
-    public string Description;
+    public int ID = -1; 
+    public string Name = "";
+    public int Quality = 0;
+    public int Profession = 0;
+    public string Belong_Base = "";
+    public string Action_Genre = "";  
+    public string Description = "";
 
     public int getId() {
         return this.ID;
@@ -22,6 +22,10 @@ public class AdvancedEffectInfo : IPart
     public int getProfession()
     {
         return this.Profession;
+    }
+
+    public int getTriggerEvent() {
+        return 0;
     }
 
     public string getDesc() {
@@ -48,6 +52,11 @@ public class AdvancedEffectInfo : IPart
 
     public float getValueUpgrade() {
         return 0.0f;
+    }
+
+    public string getLogic()
+    {
+        return "";
     }
 
     public TargetPart getTargetPart() { 

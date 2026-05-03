@@ -1,26 +1,29 @@
 
 public class AssembleCardObject : IAssembleCard
 {
-    private int _baseEffectId = 0;
+    private IPart _baseEffect = null;
     private int _advancedEffectId = 0;
-    private int _triggerId = 0;
+    private IPart _trigger = null;
     private int _level = 0;
     private int _triggerNumber = 0;
     private int _upgradeNumber = 0;
 
     public AssembleCardObject(int baseEffectId, int triggerId, int level,int triggerNumber,int upgradeNumber) {
-        this._baseEffectId = baseEffectId;
-        this._triggerId = triggerId;
         this._level = level;
         this._triggerNumber = triggerNumber;
         this._upgradeNumber = upgradeNumber;
+        this.setBaseEffectId(baseEffectId);
+        this.setTriggerId(triggerId);
     }
 
     public int getBaseEffectId() {
-        return this._baseEffectId;
+        return this._baseEffect.getId();
+    }
+    public IPart getBaseEffect() {
+        return this._baseEffect;
     }
     public void setBaseEffectId(int id) {
-        this._baseEffectId = id;
+        this._baseEffect = GameStaticConfigMgr.Instance.getBaseEffectConfig().getBaseEffectId(id);
     }
     public int getAdvancedEffectId()
     {
@@ -31,11 +34,14 @@ public class AssembleCardObject : IAssembleCard
         this._advancedEffectId = id;
     }
 
+    public IPart getTrigger() {
+        return this._trigger;
+    }
     public int getTriggerId() {
-        return this._triggerId;
+        return this._trigger.getId();
     }
     public void setTriggerId(int id) {
-        this._triggerId = id;
+        this._trigger = GameStaticConfigMgr.Instance.getTriggerConfig().getTriggerId(id);
     }
 
     public int getLevel() { 

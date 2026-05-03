@@ -2,125 +2,124 @@ using System;
 
 public abstract class CardHandleObject : ICardHandle
 {
-
-    //Ìí¼ÓÐÂ¿¨ÅÆ
+    //ï¿½ï¿½ï¿½ï¿½ï¿½Â¿ï¿½ï¿½ï¿½
     public void addNewCardAfterHandle(ICardHandlePara para) {
         _addNewCardAfterHandle(para);
     }
 
-    //ÊÖÅÆºó
+    //ï¿½ï¿½ï¿½Æºï¿½
     public void handPokerAfterHandle(ICardHandlePara para) {
         _handPokerAfterHandle(para);
     }
-    //ÒªÅÆºó
+    //Òªï¿½Æºï¿½
     public void dealPokerAfterHandle(ICardHandlePara para) {
         _dealPokerAfterHandle(para);
     }
 
-    //»ØºÏÇ°
+    //ï¿½Øºï¿½Ç°
     public void roundBeginHandle(ICardHandlePara para)
     {
         _roundBeginHandle(para);
     }
 
-    //»ØºÏÌí¼ÓÖµÇ°
+    //ï¿½Øºï¿½ï¿½ï¿½ï¿½ï¿½ÖµÇ°
     public void roundAddValueBeforeHandle(ICardHandlePara para) {
         _roundAddValueBeforeHandle(para);
     }
 
-    //»ØºÏÌí¼ÓÖµ
+    //ï¿½Øºï¿½ï¿½ï¿½ï¿½ï¿½Öµ
     public void roundAddValueHandle(ICardHandlePara para)
     {
         _roundAddValueHandle(para);
     }
 
-    //»ØºÏÌí¼ÓÄ§·¨Öµ
+    //ï¿½Øºï¿½ï¿½ï¿½ï¿½ï¿½Ä§ï¿½ï¿½Öµ
     public void roundAddMagicHandle(ICardHandlePara para) {
         _roundAddMagicHandle(para);
     }
 
-    //ÌØÊâÊôÐÔ
+    //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     public void roundSpecialAttrHandle(ICardHandlePara para)
     {
         _roundSpecialAttrHandle(para);
     }
-    //»ØºÏ¹¥»÷Ç°
+    //ï¿½ØºÏ¹ï¿½ï¿½ï¿½Ç°
     public void roundAttackBeforeHandle(ICardHandlePara para)
     {
         _roundAttackBeforeHandle(para);
     }
 
-    //¹¥»÷
+    //ï¿½ï¿½ï¿½ï¿½
     public void roundAttackHandle(ICardHandlePara para)
     {
         _roundAttackHandle(para);
     }
 
-    //Ä§·¨¹¥»÷
+    //Ä§ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     public void roundMagicAttackHandle(ICardHandlePara para) {
         _roundMagicAttackHandle(para);
     }
-    //¿Û»¤¼×
+    //ï¿½Û»ï¿½ï¿½ï¿½
     public void roundSubDefenseHandle(ICardHandlePara para)
     {
         _roundSubDefenseHandle(para);
     }
-    //¿ÛÑª
+    //ï¿½ï¿½Ñª
     public void roundSubBloodHandle(ICardHandlePara para)
     {
         _roundSubBloodHandle(para);
     }
 
-    //»ØºÏ¹¥»÷ºó
+    //ï¿½ØºÏ¹ï¿½ï¿½ï¿½ï¿½ï¿½
     public void roundAttackAfterHandle(ICardHandlePara para)
     {
         _roundAttackAfterHandle(para);
     }
-    //»ØºÏ½áÊø
+    //ï¿½ØºÏ½ï¿½ï¿½ï¿½
     public void roundEndHandle(ICardHandlePara para)
     {
         _roundEndHandle(para);
     }
 
-    //Ìí¼ÓÐÂ¿¨ÅÆ
+    //ï¿½ï¿½ï¿½ï¿½ï¿½Â¿ï¿½ï¿½ï¿½
     protected virtual void _addNewCardAfterHandle(ICardHandlePara para) { }
 
-    //ÊÖÅÆºó
+    //ï¿½ï¿½ï¿½Æºï¿½
     protected virtual void _handPokerAfterHandle(ICardHandlePara para) { }
-    //ÒªÅÆ
+    //Òªï¿½ï¿½
     protected virtual void _dealPokerAfterHandle(ICardHandlePara para){ }
 
-    //»ØºÏÇ°
+    //ï¿½Øºï¿½Ç°
     protected virtual void _roundBeginHandle(ICardHandlePara para) { }
-    //»ØºÏÌí¼ÓÖµÇ°
+    //ï¿½Øºï¿½ï¿½ï¿½ï¿½ï¿½ÖµÇ°
     protected virtual void _roundAddValueBeforeHandle(ICardHandlePara para) { }
-    //»ØºÏÌí¼ÓÖµ
+    //ï¿½Øºï¿½ï¿½ï¿½ï¿½ï¿½Öµ
     protected virtual void _roundAddValueHandle(ICardHandlePara para) { }
-    //»ØºÏÌí¼ÓÄ§·¨Öµ
+    //ï¿½Øºï¿½ï¿½ï¿½ï¿½ï¿½Ä§ï¿½ï¿½Öµ
     protected virtual void _roundAddMagicHandle(ICardHandlePara para){ }
 
-    //ÌØÊâÊôÐÔ
+    //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     protected virtual void _roundSpecialAttrHandle(ICardHandlePara para){}
 
-    //»ØºÏ¹¥»÷Ç°
+    //ï¿½ØºÏ¹ï¿½ï¿½ï¿½Ç°
     protected virtual void _roundAttackBeforeHandle(ICardHandlePara para) { }
 
-    //¹¥»÷
+    //ï¿½ï¿½ï¿½ï¿½
     protected virtual void _roundAttackHandle(ICardHandlePara para) { }
 
-    //Ä§·¨¹¥»÷
+    //Ä§ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     protected virtual void _roundMagicAttackHandle(ICardHandlePara para) { }
-    //¿Û»¤¼×
+    //ï¿½Û»ï¿½ï¿½ï¿½
     protected virtual void _roundSubDefenseHandle(ICardHandlePara para) { }
-    //¿ÛÑª
+    //ï¿½ï¿½Ñª
     protected virtual void _roundSubBloodHandle(ICardHandlePara para) { }
 
-    //»ØºÏ¹¥»÷ºó
+    //ï¿½ØºÏ¹ï¿½ï¿½ï¿½ï¿½ï¿½
     protected virtual void _roundAttackAfterHandle(ICardHandlePara para) { }
-    //»ØºÏ½áÊø
+    //ï¿½ØºÏ½ï¿½ï¿½ï¿½
     protected virtual void _roundEndHandle(ICardHandlePara para) { }
 
-    //±£ÁôÒ»Î»Ð¡Êý
+    //ï¿½ï¿½ï¿½ï¿½Ò»Î»Ð¡ï¿½ï¿½
     protected float getNumberDigits(float number)
     {
         return (float)Math.Round((number*10+0.5)/10, 1);

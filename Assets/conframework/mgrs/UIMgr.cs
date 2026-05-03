@@ -29,9 +29,9 @@ public class UIMgr : Singleton<UIMgr>
 
     private GameObject newCreateObject(string name) {
         GameObject newObject = new GameObject(name);
-        // ÐÂ´´½¨µÄ¶ÔÏó×Ô¶¯°üº¬Transform×é¼þ
-        Transform newTransform = newObject.transform; // »ñÈ¡ÆäTransform×é¼þ
-        // ¿ÉÒÔÍ¨¹ýTransform×é¼þÉèÖÃÎ»ÖÃ¡¢Ðý×ª¡¢Ëõ·Å
+        // ï¿½Â´ï¿½ï¿½ï¿½ï¿½Ä¶ï¿½ï¿½ï¿½ï¿½Ô¶ï¿½ï¿½ï¿½ï¿½ï¿½Transformï¿½ï¿½ï¿½
+        Transform newTransform = newObject.transform; // ï¿½ï¿½È¡ï¿½ï¿½Transformï¿½ï¿½ï¿½
+        // ï¿½ï¿½ï¿½ï¿½Í¨ï¿½ï¿½Transformï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î»ï¿½Ã¡ï¿½ï¿½ï¿½×ªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         newTransform.position = new Vector3(0, 0, 0);
         newTransform.rotation = Quaternion.Euler(0, 0, 0);
         return newObject;
@@ -84,7 +84,7 @@ public class UIMgr : Singleton<UIMgr>
                 baseView.afterShow();
             }
 
-            //É¾³ýÍ¬Ò»ÀàÐÍ
+            //É¾ï¿½ï¿½Í¬Ò»ï¿½ï¿½ï¿½ï¿½
             string deleteName = "";
             foreach (var key in this._mapViews.Keys)
             {

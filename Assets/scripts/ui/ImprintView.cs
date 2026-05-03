@@ -77,29 +77,29 @@ public class ImprintView : MonoBehaviour, IBaseView
         List<RectTransform> baseTargetAreaList = new List<RectTransform>{ this.baseTargetArea1,this.baseTargetArea2,this.baseTargetArea3 };
         List<RectTransform> triggerTargetAreList = new List<RectTransform> { this.triggerTargetArea1, this.triggerTargetArea2, this.triggerTargetArea3 };
 
-        List<IAssembleCard> assembleCard = ImprintDataMgr.Instance.getAssembleCard();
-        for (int i = 0; i < assembleCard.Count; i++)
+        List<IAssembleCard> assembleCards = ImprintDataMgr.Instance.getAssembleCard();
+        for (int i = 0; i < assembleCards.Count; i++)
         {
             //基础类
-            BaseEffectInfo baseInfo = GameStaticConfigMgr.Instance.getBaseEffectConfig().getBaseEffectId(assembleCard[i].getBaseEffectId());
+            IPart baseInfo = assembleCards[i].getBaseEffect();
             RectTransform baseTargetArea = baseTargetAreaList[i];
             if (baseTargetArea != null) { 
                 this.cardPartController.addCardPartItem(i, baseInfo, baseTargetArea, TargetPart.baseEffect);
-                if (baseInfo != null) {
+                if (baseInfo.getId() > 0) {
                     this.createSelectCardPart(baseTargetArea, baseInfo);
                     this.seLongPressItemState(baseInfo,false);
                 }
             }
 
             //触发类
-            TriggerInfo triggerInfo = GameStaticConfigMgr.Instance.getTriggerConfig().getTriggerId(assembleCard[i].getTriggerId());
+            IPart trigger = assembleCards[i].getTrigger();
             RectTransform triggerTargetArea = triggerTargetAreList[i];
             if (triggerTargetArea != null){
-                this.cardPartController.addCardPartItem(i, triggerInfo, triggerTargetArea, TargetPart.trigger);
-                if (triggerInfo != null)
+                this.cardPartController.addCardPartItem(i, trigger, triggerTargetArea, TargetPart.trigger);
+                if (trigger.getId() > 0)
                 {
-                    this.createSelectCardPart(triggerTargetArea, triggerInfo);
-                    this.seLongPressItemState(triggerInfo, false);
+                    this.createSelectCardPart(triggerTargetArea, trigger);
+                    this.seLongPressItemState(trigger, false);
                 }
             }
         }

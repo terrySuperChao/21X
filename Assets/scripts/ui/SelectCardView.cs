@@ -45,7 +45,7 @@ public class SelectCardView : MonoBehaviour, IBaseView
         int index = list.FindIndex(card => card.getType() == this._card.getType());
         if (index != -1 && list.Count == 3)
         {
-            UIMgr.Instance.showTips("TipsView", "¿¨²ÛÒÑÂú");
+            UIMgr.Instance.showTips("TipsView", "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
         }
         else {
             GameReqMgr.Instance.requestAddCard(true,_user, _card, _position);

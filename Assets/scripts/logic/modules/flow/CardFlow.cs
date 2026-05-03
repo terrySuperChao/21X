@@ -1,4 +1,4 @@
-//ÅÆ¶Ñ
+//
 using System.Collections.Generic;
 
 public class CardFlow : GameFlowObject
@@ -45,7 +45,7 @@ public class CardFlow : GameFlowObject
     protected bool _gameSettle(IGameSettlePara para) {
         int winIndex = para.getWinIndex();
         int lossIndex = winIndex == 0 ? 1 : 0;
-        if (winIndex == -1) //Æ½¾Ö
+        if (winIndex == -1) //å¹³å±€
         {
             this._specialSettle.settle(null);
             return false;
@@ -53,7 +53,7 @@ public class CardFlow : GameFlowObject
         
         List<IUser> users = para.getUsers();
 
-        ICardHandlePara handlePara = new CardHandleParaObject();
+        ITriggerHandlePara handlePara = new TriggerHandleParaObject();
         handlePara.setUser(users[winIndex]);
         handlePara.setAttackUser(users[winIndex]);
         handlePara.setDefenseUser(users[lossIndex]);
@@ -61,16 +61,16 @@ public class CardFlow : GameFlowObject
 
         CardMgr.Instance.handle( handlePara, CardHandleType.roundBegin);
 
-        //ÅÆµÄ½áËã
+        //ç‰Œç»“ç®—
         this._pokerSettle.settle(handlePara);
         
-        //ÌØÊâ½áËã
+        //ç‰¹æ®Šç»“ç®—
         this._specialSettle.settle(handlePara);
 
-        //¹¥»÷½áËã
-        CardMgr.Instance.handle( handlePara, CardHandleType.roundAttackBegin);
+        //å¡ç‰Œç»“ç®—
+        CardMgr.Instance.handle(handlePara, CardHandleType.roundAttackBegin);
         
-        //½áËã
+        //æ”»å‡»
         this._attackSettle.settle(handlePara);
 
         CardMgr.Instance.handle(handlePara, CardHandleType.roundAttackAfter);

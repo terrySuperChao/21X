@@ -12,6 +12,8 @@ public interface IPart
 
     public int getProfession();
 
+    public int getTriggerEvent();
+
     public string getBelongBase();
 
     public string getCorrespondBase();
@@ -19,6 +21,8 @@ public interface IPart
     public float getValueDefault();
 
     public float getValueUpgrade();
+
+    public string getLogic();
 
     public TargetPart getTargetPart();
 }

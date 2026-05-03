@@ -1,5 +1,5 @@
 
 public interface IAttackSettle
 {
-    public void settle(ICardHandlePara handlePara);
+    public void settle(ITriggerHandlePara para);
 }

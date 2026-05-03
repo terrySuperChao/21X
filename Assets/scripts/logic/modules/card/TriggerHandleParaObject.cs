@@ -1,4 +1,4 @@
-public class CardHandleParaObject : ICardHandlePara
+public class TriggerHandleParaObject : ITriggerHandlePara
 {
     private IAssembleCard _card;
     private IUser _user;
@@ -8,7 +8,7 @@ public class CardHandleParaObject : ICardHandlePara
     private float _baseValue;
     private IRoundResult _roundResult;
 
-    public CardHandleParaObject()
+    public TriggerHandleParaObject()
     {
     }
 
@@ -17,13 +17,6 @@ public class CardHandleParaObject : ICardHandlePara
     }
     public void setUser(IUser user) { 
         _user = user;
-    }
-
-    public void setCard(ICard card) {
-        
-    }
-    public ICard getCard() {
-        return null;
     }
 
     public void setAttackUser(IUser user)
@@ -39,7 +32,6 @@ public class CardHandleParaObject : ICardHandlePara
     {
         _defenseUser =  user;
     }
-
     public IUser getDefenseUser() {
         return _defenseUser;
     }
@@ -47,7 +39,6 @@ public class CardHandleParaObject : ICardHandlePara
     public IPoker getPoker() {
         return _poker;
     }
-
     public void setPoker(IPoker poker) {
         _poker = poker;
     }
@@ -55,23 +46,24 @@ public class CardHandleParaObject : ICardHandlePara
     public float getBaseValue() {
         return _baseValue;
     }
-
     public void setBaseValue(float value) {
         _baseValue = value;
     }
+
     public IRoundResult getRoundResult() {
         return _roundResult;
     }
-
     public void setRoundResult(IRoundResult value) {
         _roundResult = value;
     }
 
+
+    public IAssembleCard getAssembleCard()
+    {
+        return this._card;
+    }
     public void setAssembleCard(IAssembleCard card) {
         this._card = card;
     }
 
-    public IAssembleCard getAssembleCard() {
-        return this._card;
-    }
 }

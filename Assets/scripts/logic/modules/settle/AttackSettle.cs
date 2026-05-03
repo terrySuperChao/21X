@@ -2,16 +2,16 @@ using System.Collections.Generic;
 
 public class AttackSettle: IAttackSettle
 {
-    public void settle(ICardHandlePara handlePara) {
-        this.commonAttack(handlePara);
-        this.magicAttack(handlePara);
+    public void settle(ITriggerHandlePara para) {
+        this.commonAttack(para);
+        this.magicAttack(para);
     }
 
-    //ÆÕÍ¨¹¥»÷
-    private void commonAttack(ICardHandlePara handlePara) {
-        IUser attackUser = handlePara.getAttackUser();
-        IUser defenseUser = handlePara.getDefenseUser();
-        IRoundResult roundResult = handlePara.getRoundResult();
+    //ï¿½ï¿½Í¨ï¿½ï¿½ï¿½ï¿½
+    private void commonAttack(ITriggerHandlePara para) {
+        IUser attackUser = para.getAttackUser();
+        IUser defenseUser = para.getDefenseUser();
+        IRoundResult roundResult = para.getRoundResult();
 
         float attack = attackUser.getAttack();
         if (attack <= 0)
@@ -20,40 +20,40 @@ public class AttackSettle: IAttackSettle
         }
 
         attackUser.setAttack(roundResult.getSaveAttackValue());
-        handlePara.setUser(attackUser);
+        para.setUser(attackUser);
         
         IUICommonPara attackPara = new UICommonParaObject(attackUser, ValueType.attack, attack, attackUser.getAttack());
         GameMessage.Instance.addMsg(GameConst.COMMONATTACK, attackPara);
-        CardMgr.Instance.handle(handlePara, CardHandleType.roundAttack);
+        CardMgr.Instance.handle(para, CardHandleType.roundAttack);
 
-        float remainAttack = this.getRemainAttack(handlePara,attack);
-        //¿Û³ýµÄÑªÁ¿
-        this.setDefenseUserBlood(handlePara, remainAttack);
+        float remainAttack = this.getRemainAttack(para, attack);
+        //ï¿½Û³ï¿½ï¿½ï¿½Ñªï¿½ï¿½
+        this.setDefenseUserBlood(para, remainAttack);
     }
 
-    //Ä§·¨¹¥»÷
-    public void magicAttack(ICardHandlePara handlePara) {
-        IUser attackUser = handlePara.getAttackUser();
-        IUser defenseUser = handlePara.getDefenseUser();
-        IRoundResult roundResult = handlePara.getRoundResult();
+    //Ä§ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+    public void magicAttack(ITriggerHandlePara para) {
+        IUser attackUser = para.getAttackUser();
+        IUser defenseUser = para.getDefenseUser();
+        IRoundResult roundResult = para.getRoundResult();
         if (defenseUser.getBlood() < 0 || attackUser.getMagic() < attackUser.getMaxMagic())
         {
             return;
         }
 
         attackUser.setMagic(roundResult.getSaveMagicValue());
-        handlePara.setUser(attackUser);
+        para.setUser(attackUser);
 
         IUICommonPara attackPara = new UICommonParaObject(attackUser, ValueType.magic, attackUser.getMaxMagic(), attackUser.getMagic());
         GameMessage.Instance.addMsg(GameConst.COMMONATTACK, attackPara);
-        CardMgr.Instance.handle(handlePara, CardHandleType.roundMagicAttack);
+        CardMgr.Instance.handle(para, CardHandleType.roundMagicAttack);
 
-        //50µÄ¹¥»÷Á¦ ¿Û³ýµÄÑªÁ¿
-        this.setDefenseUserBlood(handlePara, 50.0f);
+        //50ï¿½Ä¹ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Û³ï¿½ï¿½ï¿½Ñªï¿½ï¿½
+        this.setDefenseUserBlood(para, 50.0f);
     }
 
-    //¿Û³ý·ÀÓùÕßÑªÁ¿
-    private void setDefenseUserBlood(ICardHandlePara handlePara, float attack) {
+    //ï¿½Û³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ñªï¿½ï¿½
+    private void setDefenseUserBlood(ITriggerHandlePara handlePara, float attack) {
         if (attack <= 0) return;
 
         IUser defenseUser = handlePara.getDefenseUser();
@@ -77,19 +77,19 @@ public class AttackSettle: IAttackSettle
         CardMgr.Instance.handle(handlePara, CardHandleType.roundSubBlood);
     }
 
-    //¿Û³ý·ÀÓùÖ®ºó£¬Ê£Óà¹¥»÷Á¦
-    private float getRemainAttack(ICardHandlePara handlePara,float attack) {
-        IUser attackUser = handlePara.getAttackUser();
-        IUser defenseUser = handlePara.getDefenseUser();
-        IRoundResult roundResult = handlePara.getRoundResult();
+    //ï¿½Û³ï¿½ï¿½ï¿½ï¿½ï¿½Ö®ï¿½ï¿½Ê£ï¿½à¹¥ï¿½ï¿½ï¿½ï¿½
+    private float getRemainAttack(ITriggerHandlePara para,float attack) {
+        IUser attackUser = para.getAttackUser();
+        IUser defenseUser = para.getDefenseUser();
+        IRoundResult roundResult = para.getRoundResult();
 
-        //´©´Ì,100%ÉËº¦
+        //ï¿½ï¿½ï¿½ï¿½,100%ï¿½Ëºï¿½
         if (roundResult.getPenetrateValue() != 0)
         {
             return attack;
         }
 
-        //»¤¼×Îª0£¬100%ÉËº¦
+        //ï¿½ï¿½ï¿½ï¿½Îª0ï¿½ï¿½100%ï¿½Ëºï¿½
         float defense = defenseUser.getDefense();
         if (defense <= 0)
         {
@@ -113,7 +113,7 @@ public class AttackSettle: IAttackSettle
 
         IUICommonPara attackPara = new UICommonParaObject(defenseUser, ValueType.defense, -defenseValue, defenseUser.getDefense());
         GameMessage.Instance.addMsg(GameConst.ADDCARDVALUE, attackPara);
-        CardMgr.Instance.handle(handlePara, CardHandleType.roundSubDefense);
+        CardMgr.Instance.handle(para, CardHandleType.roundSubDefense);
 
         return attack;
     }

@@ -126,7 +126,6 @@
     <Compile Include="Assets/scripts/logic/modules/npc/NpcMgr.cs" />
     <Compile Include="Assets/scripts/logic/modules/card/TriggerEventConfig.cs" />
     <Compile Include="Assets/scripts/logic/modules/user/UserMgr.cs" />
-    <Compile Include="Assets/scripts/logic/modules/card/TriggerEvent.cs" />
     <Compile Include="Assets/scripts/logic/modules/game/GameDataMgr.cs" />
     <Compile Include="Assets/scripts/logic/modules/settle/IAttackSettle.cs" />
     <Compile Include="Assets/scripts/logic/data/IPart.cs" />
@@ -182,6 +181,7 @@
     <Compile Include="Assets/scripts/logic/modules/card/IRoundResult.cs" />
     <Compile Include="Assets/conframework/base/ISerialization.cs" />
     <Compile Include="Assets/scripts/ui/PlayerInfo.cs" />
+    <Compile Include="Assets/scripts/logic/modules/card/event/TransformAttributeHandle.cs" />
     <Compile Include="Assets/scripts/logic/modules/card/handle/HeartCardHandle.cs" />
     <Compile Include="Assets/scripts/logic/modules/card/ITriggerHandle.cs" />
     <Compile Include="Assets/scripts/logic/modules/game/FightDataMgr.cs" />
@@ -199,11 +199,13 @@
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/TextMeshProFloatingText.cs" />
     <Compile Include="Assets/scripts/ui/DraggableUI.cs" />
     <Compile Include="Assets/scripts/ui/CardView.cs" />
+    <Compile Include="Assets/scripts/logic/modules/card/TriggerEventHandle.cs" />
     <Compile Include="Assets/scripts/ui/CardPart.cs" />
     <Compile Include="Assets/scripts/logic/data/ICard.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/ShaderPropAnimator.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/CameraController.cs" />
     <Compile Include="Assets/scripts/logic/modules/settle/suit/SuitSettle.cs" />
+    <Compile Include="Assets/scripts/logic/modules/card/TriggerHandleParaObject.cs" />
     <Compile Include="Assets/scripts/logic/data/static/ChapterConfig.cs" />
     <Compile Include="Assets/scripts/logic/modules/game/GameStaticConfigMgr.cs" />
     <Compile Include="Assets/conframework/ui/AutoText.cs" />
@@ -220,6 +222,7 @@
     <Compile Include="Assets/scripts/logic/modules/card/IUIPokerPara.cs" />
     <Compile Include="Assets/scripts/logic/modules/pokerPile/HandPokerMgr.cs" />
     <Compile Include="Assets/scripts/logic/data/AssembleCardObject.cs" />
+    <Compile Include="Assets/scripts/logic/modules/card/TriggerHandleObject.cs" />
     <Compile Include="Assets/scripts/logic/modules/settle/AttackSettle.cs" />
     <Compile Include="Assets/scripts/logic/modules/settle/suit/DiamondSettle.cs" />
     <Compile Include="Assets/scripts/logic/modules/flow/GameFlowObject.cs" />
@@ -227,6 +230,7 @@
     <Compile Include="Assets/scripts/logic/modules/settle/PokerSettle.cs" />
     <Compile Include="Assets/scripts/logic/modules/game/GamePropertyMgr.cs" />
     <Compile Include="Assets/scripts/logic/modules/card/IUICommonPara.cs" />
+    <Compile Include="Assets/scripts/logic/modules/card/ITriggerHandlePara.cs" />
     <Compile Include="Assets/scripts/logic/modules/game/ImprintDataMgr.cs" />
     <Compile Include="Assets/scripts/logic/modules/settle/suit/ClubSettle.cs" />
     <Compile Include="Assets/scripts/ui/SelectPartView.cs" />

@@ -3,16 +3,16 @@ using System.Collections.Generic;
 [System.Serializable]
 public class TriggerInfo:IPart
 {
-    public int ID;
-    public string Name;
-    public int Quality;
-    public int Priority;
-    public int Profession;
-    public int Trigger;
-    public string Logic;
-    public string Correspond_Base;
-    public string Description;
-    public string Remark;
+    public int ID = -1;
+    public string Name = "";
+    public int Quality = 0;
+    public int Priority = 0;
+    public int Profession = 0;
+    public int Trigger = 0;
+    public string Logic = "";
+    public string Correspond_Base = "";
+    public string Description = "";
+    public string Remark = "";
     public int getId()
     {
         return this.ID;
@@ -22,18 +22,27 @@ public class TriggerInfo:IPart
     {
         return this.Name;
     }
+
     public int getProfession()
     {
         return this.Profession;
     }
+
+    public int getTriggerEvent()
+    {
+        return this.Trigger;
+    }
+
     public string getDesc()
     {
         return this.Description;
     }
+
     public string getImage()
     {
         return "UI/pokers/blt_game_poker_01_2_03";
     }
+
     public string getBelongBase()
     {
         return "";
@@ -52,6 +61,11 @@ public class TriggerInfo:IPart
     public float getValueUpgrade()
     {
         return 0.0f;
+    }
+
+    public string getLogic()
+    {
+        return this.Logic;
     }
 
     public TargetPart getTargetPart()
@@ -73,7 +87,11 @@ public class TriggerConfig
         return this._list;
     }
 
-    public TriggerInfo getTriggerId(int id) { 
-        return this._list.Find(x => x.getId() == id);
+    public TriggerInfo getTriggerId(int id) {
+        TriggerInfo info = this._list.Find(x => x.getId() == id);
+        if (info == null) {
+            info = new TriggerInfo();
+        }
+        return info;
     }
 }

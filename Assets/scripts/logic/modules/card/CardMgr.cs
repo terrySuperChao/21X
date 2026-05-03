@@ -1,8 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Reflection;
-using Unity.Collections.LowLevel.Unsafe;
-using UnityEngine;
 
 public class CardMgr: Singleton<CardMgr>
 {
@@ -51,7 +49,7 @@ public class CardMgr: Singleton<CardMgr>
     {
         IUser attackUser = list.Find(user => user.isNpc() == isNpc);
         IUser defenseUser = list.Find(user => user.isNpc() != isNpc);
-        ICardHandlePara handlePara = new CardHandleParaObject();
+        ITriggerHandlePara handlePara = new TriggerHandleParaObject();
         handlePara.setRoundResult(new RoundResultObject());
         handlePara.setUser(attackUser);
         handlePara.setAttackUser(attackUser);
@@ -60,15 +58,12 @@ public class CardMgr: Singleton<CardMgr>
     }
 
     //触发升级
-    private void triggerUpgrade(ICardHandlePara para,IAssembleCard card) {
+    private void triggerUpgrade(ITriggerHandlePara para,IAssembleCard card) {
         bool isNpc = para.getAttackUser().isNpc();
         bool isUpgrade = ImprintDataMgr.Instance.addTriggerNumber(isNpc, card.getTriggerId());
         if (!isUpgrade) return;
 
-        IAssembleCard assembleCard = ImprintDataMgr.Instance.getAssembleCard(isNpc, card.getTriggerId());
-        if (assembleCard == null) return;
-
-        BaseEffectInfo info = GameStaticConfigMgr.Instance.getBaseEffectConfig().getBaseEffectId(assembleCard.getBaseEffectId());
+        BaseEffectInfo info = GameStaticConfigMgr.Instance.getBaseEffectConfig().getBaseEffectId(card.getBaseEffectId());
         if (info == null) return;
 
         List<IPart> selectPart = new List<IPart>();
@@ -76,16 +71,26 @@ public class CardMgr: Singleton<CardMgr>
 
         List<AdvancedEffectInfo> effectInfos = GameStaticConfigMgr.Instance.getAdvancedEffectConfig().getAdvancedEffect();
         for (int i = 0; i < effectInfos.Count; i++) {
-            if (effectInfos[i].getBelongBase().IndexOf(info.Correspond_Advanced) == 0) {
-                if (ImprintDataMgr.Instance.hasAdvancedEffect(isNpc, effectInfos[i].getId()))
+            if (effectInfos[i].getProfession() == 0 ||
+                effectInfos[i].getProfession() == PlayerDataMgr.Instance.getRoleId())
+            {
+                if (effectInfos[i].getBelongBase().IndexOf(info.Correspond_Advanced) == 0)
                 {
-                    advancedPart.Add(effectInfos[i]);
+                    if (ImprintDataMgr.Instance.hasAdvancedEffect(isNpc, effectInfos[i].getId()))
+                    {
+                        advancedPart.Add(effectInfos[i]);
+                    }
                 }
             }
         }
 
+        if (advancedPart.Count == 0) return;
+
         for (int i = 0; i < MAXSLOT; i++)
         {
+            if (advancedPart.Count == 0){
+                break;
+            }
             int index = RandomMgr.Instance.getRangeInt(0, advancedPart.Count);
             IPart part = advancedPart[index];
             selectPart.Add(part);
@@ -94,22 +99,22 @@ public class CardMgr: Singleton<CardMgr>
 
         ICandidacyPartPara partPara = new CandidacyPartPara(para.getAttackUser(),card, selectPart);
         GameMessage.Instance.addMsg(GameConst.CANDIDACYCARD, partPara);
-        
+    }
+
+
+    public void handle(ICardHandlePara para, CardHandleType type) {
+
     }
 
     //
-    public void handle(ICardHandlePara para, CardHandleType type) {
+    public void handle(ITriggerHandlePara para, CardHandleType type) {
         List<IAssembleCard> cards = ImprintDataMgr.Instance.getAssembleCard(para.getUser().isNpc());
         for (int i = 0; i < cards.Count; i++) {
-            TriggerInfo info = GameStaticConfigMgr.Instance.getTriggerConfig().getTriggerId(cards[i].getTriggerId());
-            if (info == null) {
-                continue;
-            }
+            ITriggerHandle handle = TriggerEventHandle.getTriggerEventHandle(cards[i].getTrigger().getTriggerEvent());
+            if (handle == null) { continue;}
 
-            ITriggerHandle handle = TriggerEvent.getTriggerEventHandle(info.Trigger);
-            if (handle == null) {
-                continue;
-            }
+            para.setAssembleCard(cards[i]);
+
             int beforeCount = GameMessage.Instance.getMsgCount();
             Type objType = handle.GetType();
             string methodName = Enum.GetName(typeof(CardHandleType), type);
@@ -122,55 +127,6 @@ public class CardMgr: Singleton<CardMgr>
                 //触发升级的内容
                 this.triggerUpgrade(para, cards[i]);
             }
-
-            /*
-            switch (type) {
-                case CardHandleType.addNewCardAfter:
-                    handles[index].addNewCardAfterHandle(para);
-                    break;
-                case CardHandleType.handPokerAfter:
-                    handles[index].handPokerAfterHandle(para);
-                    break;
-                case CardHandleType.dealPokerAfter:
-                    handles[index].dealPokerAfterHandle(para);
-                    break;
-                case CardHandleType.roundBegin:
-                    handles[index].roundBeginHandle(para);
-                    break;
-                case CardHandleType.roundAddValueBefore:
-                    handles[index].roundAddValueBeforeHandle(para);
-                    break;
-                case CardHandleType.roundAddValue:
-                    handles[index].roundAddValueHandle(para);
-                    break;
-                case CardHandleType.roundAddMagic:
-                    handles[index].roundAddMagicHandle(para);
-                    break;
-                case CardHandleType.roundSpecialAttr:
-                    handles[index].roundSpecialAttrHandle(para);
-                    break;
-                case CardHandleType.roundAttackBegin:
-                    handles[index].roundAttackBeforeHandle(para);
-                    break;
-                case CardHandleType.roundAttack:
-                    handles[index].roundAttackHandle(para);
-                    break;
-                case CardHandleType.roundMagicAttack:
-                    handles[index].roundMagicAttackHandle(para);
-                    break;
-                case CardHandleType.roundSubDefense:
-                    handles[index].roundSubDefenseHandle(para);
-                    break;
-                case CardHandleType.roundSubBlood:
-                    handles[index].roundSubBloodHandle(para);
-                    break;
-                case CardHandleType.roundAttackAfter:
-                    handles[index].roundAttackAfterHandle(para);
-                    break;
-                case CardHandleType.roundEnd:
-                    handles[index].roundEndHandle(para);
-                    break;
-            }*/
         }
     }
 }

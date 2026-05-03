@@ -1,4 +1,4 @@
-//�ƶ�
+//
 public class GameConst
 {
     public const string RETURNTOLOBBY   = "returnToLobby";
@@ -219,6 +219,10 @@ public enum TargetPart
     baseEffect,
     advancedEffect,
     trigger,
+}
+
+public enum TriggerEvent {
+    transformAttribute = 5,//属性转化
 }
 
 

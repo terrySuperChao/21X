@@ -123,9 +123,7 @@ public class FightCardView : MonoBehaviour
     // ------》》》》 1.1 选择卡牌
     public void candidacyCard(params System.Object[] obj)
     {
-        ICandidacyCardPara para = (ICandidacyCardPara)obj[0];
-        UIMgr.Instance.showTips("SelectCardView", obj[0]);
-
+        UIMgr.Instance.showTips("SelectPartView", obj[0]);
     }
 
     public void okSelectCard(params System.Object[] obj)

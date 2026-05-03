@@ -1,19 +1,13 @@
-//�ƶ�
-
 using System.Collections.Generic;
 
-public class TriggerEvent
+public class TriggerEventHandle
 {
-    private static List<ICard> _config = new List<ICard> { 
-        
-	};
-   
 	private static List<ITriggerHandle> _handle = new List<ITriggerHandle> {
-        
+        new TransformAttributeHandle(),
     };
 
     public static ITriggerHandle getTriggerEventHandle(int trigger)
     {
-        return _handle.Find(handle => handle.getTrigger() == trigger);
+        return _handle.Find(handle => (int)handle.getTrigger() == trigger);
     }
 }

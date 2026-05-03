@@ -1,35 +1,34 @@
 public interface ITriggerHandle
 {
-    public int getTrigger();
-    //�����¿���
-    public void addNewCardAfterHandle(ICardHandlePara para);
-    //����
-    public void handPokerAfterHandle(ICardHandlePara para);
+    public TriggerEvent getTrigger();
+ 
+    public void addNewCardAfterHandle(ITriggerHandlePara para);
 
-    //Ҫ��
-    public void dealPokerAfterHandle(ICardHandlePara para);
-    //�غ�ǰ
-    public void roundBeginHandle(ICardHandlePara para);
-    //�غ�����ֵǰ
-    public void roundAddValueBeforeHandle(ICardHandlePara para);
-    //�غ�����ֵ
-    public void roundAddValueHandle(ICardHandlePara para);
-    //�غ�����ħ��ֵ
-    public void roundAddMagicHandle(ICardHandlePara para);
-    //��������
-    public void roundSpecialAttrHandle(ICardHandlePara para);
-    //�غϹ���ǰ
-    public void roundAttackBeforeHandle(ICardHandlePara para);
-    //����
-    public void roundAttackHandle(ICardHandlePara para);
-    //ħ������
-    public void roundMagicAttackHandle(ICardHandlePara para);
-    //�ۻ���
-    public void roundSubDefenseHandle(ICardHandlePara para);
-    //��Ѫ
-    public void roundSubBloodHandle(ICardHandlePara para);
-    //�غϹ�����
-    public void roundAttackAfterHandle(ICardHandlePara para);
-    //�غϽ���
-    public void roundEndHandle(ICardHandlePara para);
+    public void handPokerAfterHandle(ITriggerHandlePara para);
+
+    public void dealPokerAfterHandle(ITriggerHandlePara para);
+
+    public void roundBeginHandle(ITriggerHandlePara para);
+
+    public void roundAddValueBeforeHandle(ITriggerHandlePara para);
+
+    public void roundAddValueHandle(ITriggerHandlePara para);
+
+    public void roundAddMagicHandle(ITriggerHandlePara para);
+
+    public void roundSpecialAttrHandle(ITriggerHandlePara para);
+
+    public void roundAttackBeforeHandle(ITriggerHandlePara para);
+
+    public void roundAttackHandle(ITriggerHandlePara para);
+
+    public void roundMagicAttackHandle(ITriggerHandlePara para);
+
+    public void roundSubDefenseHandle(ITriggerHandlePara para);
+
+    public void roundSubBloodHandle(ITriggerHandlePara para);
+
+    public void roundAttackAfterHandle(ITriggerHandlePara para);
+
+    public void roundEndHandle(ITriggerHandlePara para);
 }

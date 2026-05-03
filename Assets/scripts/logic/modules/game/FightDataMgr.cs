@@ -1,8 +1,6 @@
-//牌堆
-using Google.Protobuf.WellKnownTypes;
+//
 using Pb;
 using System.Collections.Generic;
-using UnityEngine;
 
 public class FightDataMgr : Singleton<FightDataMgr>
 {
@@ -49,7 +47,7 @@ public class FightDataMgr : Singleton<FightDataMgr>
         }
         this._pokerPile.init(this._fight.PokerPile);
 
-        //设置npc第一个牌反面
+        //
         if (this._fight.NpcAsset.IsFilp == 0 && this._npcPokers.Count > 0) {
             this._npcPokers[0].setBack(true);
         }
@@ -89,7 +87,7 @@ public class FightDataMgr : Singleton<FightDataMgr>
         data.Fight = this._fight;
     }
 
-    //入口
+    //
     public void initEntry() {
         this._fight.State = 0;
         this._fight.NpcAsset.State = 0;
@@ -144,7 +142,7 @@ public class FightDataMgr : Singleton<FightDataMgr>
         List<IPoker> list = this.getPokers(type);
         list.Add(poker);
 
-        //npc的第一张牌是翻面的
+        //npc
         if (list.Count == 1 && this.getAssetInfo(type).IsFilp == 0){
             poker.setBack(true);
         }
@@ -236,16 +234,14 @@ public class FightDataMgr : Singleton<FightDataMgr>
         this.getAssetInfo(type).IsFilp = filpState;
     }
 
-    //初始化
+    //
     public void addCardId(FightDealType type,int cardId) {
         ICard card = CardConfig.getCard(cardId);
         if (card != null)
         {
             if (type == FightDealType.npc)
             {
-
                 this._npcCards.Add(card);
-
             }
             else if (type == FightDealType.player)
             {
