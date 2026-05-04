@@ -1,11 +1,13 @@
 
+using Pb;
+
 public class UserObject : IUser
 {
     private static int global_id = 0;
     private string _userId = "";
     private int _money = 0;
-    private int _playCount = 0;//×Ü´ÎÊý
-    private int _wins = 0; //Ê¤³¡
+    private int _playCount = 0;//ï¿½Ü´ï¿½ï¿½ï¿½
+    private int _wins = 0; //Ê¤ï¿½ï¿½
     private float _blood = 0;
     private float _maxBlood = 0;
     private float _attack = 0;
@@ -146,8 +148,8 @@ public class UserObject : IUser
 
     public void reset() {
         _money = 0;
-        _playCount = 0;//×Ü´ÎÊý
-        _wins = 0; //Ê¤³¡
+        _playCount = 0;//ï¿½Ü´ï¿½ï¿½ï¿½
+        _wins = 0; //Ê¤ï¿½ï¿½
         _blood = 0;
         _attack = 0;
         _defense = 0;
@@ -166,6 +168,7 @@ public class UserObject : IUser
     public void setPoint(int value) { 
         this._point = value;
     }
+
     public int getPoint() {
         return this._point;
     }

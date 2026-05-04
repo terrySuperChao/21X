@@ -43,7 +43,7 @@ public class CardFlow : GameFlowObject
 
     override
     protected bool _gameSettle(IGameSettlePara para) {
-        int winIndex = para.getWinIndex();
+        int winIndex = 1;//para.getWinIndex();
         int lossIndex = winIndex == 0 ? 1 : 0;
         if (winIndex == -1) //平局
         {
@@ -68,7 +68,7 @@ public class CardFlow : GameFlowObject
         this._specialSettle.settle(handlePara);
 
         //卡牌结算
-        CardMgr.Instance.handle(handlePara, CardHandleType.roundAttackBegin);
+        CardMgr.Instance.handle(handlePara, CardHandleType.roundAttackBefore);
         
         //攻击
         this._attackSettle.settle(handlePara);

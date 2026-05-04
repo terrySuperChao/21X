@@ -58,12 +58,12 @@ public class CardMgr: Singleton<CardMgr>
     }
 
     //触发升级
-    private void triggerUpgrade(ITriggerHandlePara para,IAssembleCard card) {
+    private void triggerUpgrade(ITriggerHandlePara para) {
         bool isNpc = para.getAttackUser().isNpc();
-        bool isUpgrade = ImprintDataMgr.Instance.addTriggerNumber(isNpc, card.getTriggerId());
+        bool isUpgrade = ImprintDataMgr.Instance.addTriggerNumber(isNpc, para.getAssembleCard().getTriggerId());
         if (!isUpgrade) return;
 
-        BaseEffectInfo info = GameStaticConfigMgr.Instance.getBaseEffectConfig().getBaseEffectId(card.getBaseEffectId());
+        BaseEffectInfo info = GameStaticConfigMgr.Instance.getBaseEffectConfig().getBaseEffectId(para.getAssembleCard().getBaseEffectId());
         if (info == null) return;
 
         List<IPart> selectPart = new List<IPart>();
@@ -97,7 +97,7 @@ public class CardMgr: Singleton<CardMgr>
             advancedPart.Remove(part);
         }
 
-        ICandidacyPartPara partPara = new CandidacyPartPara(para.getAttackUser(),card, selectPart);
+        ICandidacyPartPara partPara = new CandidacyPartPara(para.getAttackUser(), para.getAssembleCard(), selectPart);
         GameMessage.Instance.addMsg(GameConst.CANDIDACYCARD, partPara);
     }
 
@@ -110,23 +110,37 @@ public class CardMgr: Singleton<CardMgr>
     public void handle(ITriggerHandlePara para, CardHandleType type) {
         List<IAssembleCard> cards = ImprintDataMgr.Instance.getAssembleCard(para.getUser().isNpc());
         for (int i = 0; i < cards.Count; i++) {
-            ITriggerHandle handle = TriggerEventHandle.getTriggerEventHandle(cards[i].getTrigger().getTriggerEvent());
-            if (handle == null) { continue;}
-
             para.setAssembleCard(cards[i]);
 
-            int beforeCount = GameMessage.Instance.getMsgCount();
+            ITriggerHandle handle = TriggerHandle.getTriggerHandle(para);
+            if (handle == null) {
+                continue;
+            }
+
             Type objType = handle.GetType();
             string methodName = Enum.GetName(typeof(CardHandleType), type);
             MethodInfo method = objType.GetMethod(methodName + "Handle");
-            method?.Invoke(handle, new object[] { para });
-            int afterCount = GameMessage.Instance.getMsgCount();
-
+            object success = method?.Invoke(handle, new object[] { para });
+            
             //说明增加了一条数据
-            if (afterCount > beforeCount){
-                //触发升级的内容
-                this.triggerUpgrade(para, cards[i]);
+            if (!(bool)success){
+                continue;
             }
+
+            //初级效果
+            IBaseEffectHandle baseEffectHandle = BaseEffectHandle.getBaseEffectHandle(para);
+            if (baseEffectHandle != null) {
+                baseEffectHandle.handle(para);
+            }
+
+            //高级效果
+            IBaseEffectHandle advancedEffectHandle = BaseEffectHandle.getAdvancedEffectHandle(para);
+            if (advancedEffectHandle != null){
+                advancedEffectHandle.handle(para);
+            }
+
+            //触发升级的内容
+            this.triggerUpgrade(para);
         }
     }
 }

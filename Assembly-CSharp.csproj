@@ -90,7 +90,9 @@
     <Compile Include="Assets/scripts/logic/modules/flow/FightFlow.cs" />
     <Compile Include="Assets/scripts/logic/modules/game/GameMessage.cs" />
     <Compile Include="Assets/scripts/logic/modules/card/handle/DiamondCardPlusHandle.cs" />
+    <Compile Include="Assets/scripts/logic/modules/card/TriggerHandle.cs" />
     <Compile Include="Assets/scripts/logic/modules/card/CardHandleObject.cs" />
+    <Compile Include="Assets/scripts/logic/modules/card/BaseEffectHandle.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/VertexShakeB.cs" />
     <Compile Include="Assets/scripts/logic/modules/game/GameVersion.cs" />
     <Compile Include="Assets/scripts/logic/modules/card/handle/SpadeCardHandle.cs" />
@@ -124,7 +126,6 @@
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/Benchmark04.cs" />
     <Compile Include="Assets/scripts/ui/AlertView.cs" />
     <Compile Include="Assets/scripts/logic/modules/npc/NpcMgr.cs" />
-    <Compile Include="Assets/scripts/logic/modules/card/TriggerEventConfig.cs" />
     <Compile Include="Assets/scripts/logic/modules/user/UserMgr.cs" />
     <Compile Include="Assets/scripts/logic/modules/game/GameDataMgr.cs" />
     <Compile Include="Assets/scripts/logic/modules/settle/IAttackSettle.cs" />
@@ -140,6 +141,7 @@
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/VertexJitter.cs" />
     <Compile Include="Assets/scripts/logic/data/static/BaseEffectConfig.cs" />
     <Compile Include="Assets/scripts/logic/modules/card/handle/BloodthirstyHandle.cs" />
+    <Compile Include="Assets/scripts/logic/modules/card/BaseEffectHandleObject.cs" />
     <Compile Include="Assets/scripts/logic/data/CardObject.cs" />
     <Compile Include="Assets/scripts/ui/PlayerAsset.cs" />
     <Compile Include="Assets/scripts/logic/modules/card/handle/BerserkerHandle.cs" />
@@ -155,6 +157,7 @@
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/TextConsoleSimulator.cs" />
     <Compile Include="Assets/scripts/ui/RelaxView.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/TeleType.cs" />
+    <Compile Include="Assets/scripts/logic/modules/card/triggerHandle/TransformAttributeHandle.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/TMP_TextEventCheck.cs" />
     <Compile Include="Assets/scripts/logic/modules/card/handle/RefactoringPlusHandle.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/TMP_UiFrameRateCounter.cs" />
@@ -181,7 +184,7 @@
     <Compile Include="Assets/scripts/logic/modules/card/IRoundResult.cs" />
     <Compile Include="Assets/conframework/base/ISerialization.cs" />
     <Compile Include="Assets/scripts/ui/PlayerInfo.cs" />
-    <Compile Include="Assets/scripts/logic/modules/card/event/TransformAttributeHandle.cs" />
+    <Compile Include="Assets/scripts/logic/modules/card/baseEffectHandle/AddATKHandle.cs" />
     <Compile Include="Assets/scripts/logic/modules/card/handle/HeartCardHandle.cs" />
     <Compile Include="Assets/scripts/logic/modules/card/ITriggerHandle.cs" />
     <Compile Include="Assets/scripts/logic/modules/game/FightDataMgr.cs" />
@@ -199,7 +202,6 @@
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/TextMeshProFloatingText.cs" />
     <Compile Include="Assets/scripts/ui/DraggableUI.cs" />
     <Compile Include="Assets/scripts/ui/CardView.cs" />
-    <Compile Include="Assets/scripts/logic/modules/card/TriggerEventHandle.cs" />
     <Compile Include="Assets/scripts/ui/CardPart.cs" />
     <Compile Include="Assets/scripts/logic/data/ICard.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/ShaderPropAnimator.cs" />
@@ -208,6 +210,7 @@
     <Compile Include="Assets/scripts/logic/modules/card/TriggerHandleParaObject.cs" />
     <Compile Include="Assets/scripts/logic/data/static/ChapterConfig.cs" />
     <Compile Include="Assets/scripts/logic/modules/game/GameStaticConfigMgr.cs" />
+    <Compile Include="Assets/scripts/logic/modules/card/IBaseEffectHandle.cs" />
     <Compile Include="Assets/conframework/ui/AutoText.cs" />
     <Compile Include="Assets/scripts/ui/CloneDragController.cs" />
     <Compile Include="Assets/scripts/ui/ImprintView.cs" />

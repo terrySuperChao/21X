@@ -59,6 +59,11 @@ public class AdvancedEffectInfo : IPart
         return "";
     }
 
+    public string getActionGenre()
+    {
+        return this.Action_Genre;
+    }
+
     public TargetPart getTargetPart() { 
         return TargetPart.advancedEffect;
     }
@@ -77,7 +82,11 @@ public class AdvancedEffectConfig
         return this._list;
     }
 
-    public AdvancedEffectInfo getAdvancedEffectInfoId(int id) { 
-        return this._list.Find(x => x.getId() == id);
+    public AdvancedEffectInfo getAdvancedEffectInfoId(int id) {
+        AdvancedEffectInfo info = this._list.Find(x => x.getId() == id);
+        if (info == null) {
+            info = new AdvancedEffectInfo();
+        }
+        return info;
     }
 }

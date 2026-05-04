@@ -5,17 +5,14 @@ public interface IAssembleCard
     public void setBaseEffectId(int id);
 
     public int getAdvancedEffectId();
+    public IPart getAdvancedEffect();
     public void setAdvancedEffectId(int id);
 
     public int getTriggerId();
     public IPart getTrigger();
     public void setTriggerId(int id);
 
-    public int getLevel();
-    public void setLevel(int value);
-
     public int getTriggerNumber();
-
     public void addTriggerNumber();
     public void setTriggerNumber(int number);
 

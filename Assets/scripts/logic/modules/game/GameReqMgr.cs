@@ -243,17 +243,14 @@ public class GameReqMgr : Singleton<GameReqMgr>
     }
 
     public void requestSaveFightFlowState(FightFlowState state) {
-        //������һ��״̬
+        //
+        FightPokerMgr.Instance.setUserInfo();
         FightPokerMgr.Instance.setFlowState(state);
         GamePropertyMgr.Instance.save();
-
-        //��һ������
+        //
         FightPokerMgr.Instance.runFlow();
     }
 
-    
-
-    //����״̬
     public void requestSavePlayerInfo() {
         AssetInfo playerInfo = FightDataMgr.Instance.getAssetInfo(FightDealType.player);
         PlayerDataMgr.Instance.setHP(playerInfo.Hp);

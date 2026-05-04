@@ -67,7 +67,10 @@ public class TriggerInfo:IPart
     {
         return this.Logic;
     }
-
+    public string getActionGenre()
+    {
+        return "";
+    }
     public TargetPart getTargetPart()
     {
         return TargetPart.trigger;

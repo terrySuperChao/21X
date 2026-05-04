@@ -1,3 +1,5 @@
+using Pb;
+
 public interface IUser
 {
     public string getUserId();
@@ -48,5 +50,4 @@ public interface IUser
 
     public void setPoint(int value);
     public int getPoint();
-
 }

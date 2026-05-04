@@ -3,6 +3,7 @@ using Pb;
 using System.Collections.Generic;
 using Unity.Collections.LowLevel.Unsafe;
 using UnityEngine;
+using static UnityEngine.UIElements.UxmlAttributeDescription;
 
 
 public class FightPokerMgr : Singleton<FightPokerMgr>
@@ -28,6 +29,17 @@ public class FightPokerMgr : Singleton<FightPokerMgr>
         user.setMaxBlood(info.MaxHP);
         user.setState((UserState)info.State);
         this._players.Add(user);
+    }
+
+    private void saveUser(IUser user) {
+        AssetInfo info = FightDataMgr.Instance.getAssetInfo(this.getDealType(user));
+        info.Hp = (int)user.getBlood();
+        info.MaxHP = (int)user.getMaxBlood();
+        info.Magic = (int)user.getMagic();
+        info.MaxMagic = (int)user.getMaxMagic();
+        info.Attack = (int)user.getAttack();
+        info.Defense = (int)user.getDefense();
+        info.State = (int)user.getState();
     }
 
     public List<IUser> getPlayers()
@@ -66,6 +78,12 @@ public class FightPokerMgr : Singleton<FightPokerMgr>
 
     public void setFlowState(FightFlowState state) {
         FightDataMgr.Instance.setState((int)state);
+    }
+
+    public void setUserInfo() {
+        for (int i = 0; i < this._players.Count; i++) {
+            this.saveUser(this._players[i]);
+        }
     }
    
     public void runFlow() {
@@ -108,7 +126,7 @@ public class FightPokerMgr : Singleton<FightPokerMgr>
                 }
                 break;
             case FightFlowState.twoHandPoker:
-                { 
+                {
                     for (int i = 0; i < 2; i++) {
                         foreach (var user in this._players) {
                             this.userDealPoker(user);
@@ -323,7 +341,7 @@ public class FightPokerMgr : Singleton<FightPokerMgr>
 
     public void upgradeBasePart(int triggerId, IUser user, IPart part)
     {
-        //ImprintDataMgr.Instance.upgradeBasePartId(user.isNpc(), triggerId, part.getId());
+        ImprintDataMgr.Instance.setAdvancedEffectId(user.isNpc(), triggerId, part.getId());
         this._gameFlow.addCardAfter(new AddCardAfterPara(this._players));
         GameMessage.Instance.addMsg(GameConst.FIGHTFLOWSTATE, FightFlowState.twoHandPoker);
     }

@@ -26,7 +26,7 @@ public class CardPart : MonoBehaviour
     }
 
     public void loadPartImage(IPart partInfo) {
-        if (partInfo == null) return;
+        if (partInfo == null || partInfo.getId() <= 0 ) return;
         this.partName.text = partInfo.getName();
         this._partInfo = partInfo;
 

@@ -48,11 +48,11 @@ public class FightCardView : MonoBehaviour
         EventDispatcher.Instance.on(GameConst.CANDIDACYPART, this.candidacyPart);
 
         FightPokerMgr.Instance.init();
-        FightPokerMgr.Instance.runFlow();
-
+       
         this.setBtnInteractable(false);
 
         Invoke("initUserInfo", 0.05f);
+        Invoke("initFlow", 0.1f);
         Invoke("delayMessageComplete", 0.5f);
     }
 
@@ -108,10 +108,15 @@ public class FightCardView : MonoBehaviour
         }
     }
 
+    //先初始化用户信息，再开始流程
+    private void initFlow() {
+        FightPokerMgr.Instance.runFlow();
+    }
+
     private void fightFlowState(params System.Object[] obj) {
         FightFlowState state = (FightFlowState)obj[0];
         GameReqMgr.Instance.requestSaveFightFlowState(state);
-        GameMessage.Instance.setHandleMessageComplete();
+        Invoke("delayMessageComplete", 0.0f);
     }
 
     // ------》》》》 1发卡牌
@@ -137,8 +142,7 @@ public class FightCardView : MonoBehaviour
         IAssembleCard card = para.getAssembleCard();
 
         GameObject cardObject = Instantiate(this.cardPrefab, this.rootTransform);
-        //cardObject.GetComponent<CardPart>().loadCard(card);
-        //cardObject.GetComponent<CardPart>().showNameText(false);
+        cardObject.GetComponent<CardPart>().loadPartImage(para.getPart());
         cardObject.transform.position = para.getPosition();
 
         PlayerAsset asset = this.userAsset.GetComponent<PlayerAsset>();
@@ -146,7 +150,6 @@ public class FightCardView : MonoBehaviour
         iTween.ScaleTo(cardObject, new Vector3(0.7f, 0.7f, 0.7f), 0.5f);
         yield return new WaitForSeconds(0.6f);
         Destroy(cardObject);
-        asset.addCard(card);
 
         Invoke("delayMessageComplete", 0.1f);
     }

@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -133,8 +132,7 @@ public class PlayerAsset : MonoBehaviour
         }
     }
     public void addCard(IAssembleCard card){
-        int index = this.getCardForTypeIndex(card);
-        Transform cardChild = this.cards.GetChild(index); //
+        Transform cardChild = this.cards.GetChild(0); //
         GameObject cardObject = Instantiate(this.cartPartPrefab, this.cards);
         cardObject.GetComponent<CardPart>().loadPartImage(card.getTrigger());
         cardObject.GetComponent<CardPart>().setCard(card);

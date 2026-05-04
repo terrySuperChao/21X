@@ -67,6 +67,11 @@ public class BaseEffectInfo : IPart
         return "";
     }
 
+    public string getActionGenre()
+    {
+        return this.Action_Genre;
+    }
+
     public TargetPart getTargetPart() { 
         return TargetPart.baseEffect;
     }

@@ -11,7 +11,7 @@ public class TransformAttributeHandle : TriggerHandleObject
         return TriggerEvent.transformAttribute;
     }
 
-    protected override void _roundAddValueHandle(ITriggerHandlePara para)
+    protected override bool _roundAddValueHandle(ITriggerHandlePara para)
     {
         UnityEngine.Debug.Log("transform attribute handle");
         string keystr = "";
@@ -23,19 +23,15 @@ public class TransformAttributeHandle : TriggerHandleObject
                 break;
             }
         }
-        
+
         if (this._dic.ContainsKey(keystr) &&
             this._dic[keystr] == (PokerSuit)para.getPoker().getSuit())
         {
             UnityEngine.Debug.Log("transform attribute handle ======" + keystr);
-            float addValue = 1;
-            float finalValue = para.getAttackUser().addMagic(addValue);
-
-            IUIFlyFontPara uiPara1 = new UIFlyFontParaObject(para.getAttackUser(), para.getAssembleCard(), "+" + addValue);
-            GameMessage.Instance.addMsg(GameConst.FLYFONT, uiPara1);
-
-            IUICommonPara uiPara2 = new UICommonParaObject(para.getAttackUser(), GameConst.SuitTransformValueType(this._dic[keystr]), addValue, finalValue);
-            GameMessage.Instance.addMsg(GameConst.ADDCARDVALUE, uiPara2);
+            return true;
+        }
+        else {
+            return false;
         }
     }
 }

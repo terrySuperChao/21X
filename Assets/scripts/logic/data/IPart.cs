@@ -24,6 +24,8 @@ public interface IPart
 
     public string getLogic();
 
+    public string getActionGenre();
+
     public TargetPart getTargetPart();
 }
 
