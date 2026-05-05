@@ -1,6 +1,6 @@
 using System.Collections.Generic;
-//属性转换
-public class TransformAttributeHandle : TriggerHandleObject
+//胜点爆发
+public class WinPointOutbreakHandle : TriggerHandleObject
 {
     private Dictionary<string, PokerSuit> _dic =  new Dictionary<string, PokerSuit>{
         {"方块", PokerSuit.diamond},
@@ -8,7 +8,6 @@ public class TransformAttributeHandle : TriggerHandleObject
         {"黑桃", PokerSuit.spade},
         {"梅花", PokerSuit.club},
     };
-
     protected override TriggerEvent _getTrigger() {
         return TriggerEvent.transformAttribute;
     }

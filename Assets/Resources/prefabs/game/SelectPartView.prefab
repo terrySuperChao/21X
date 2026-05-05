@@ -203,7 +203,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 200, y: -175}
+  m_AnchoredPosition: {x: -200, y: -175}
   m_SizeDelta: {x: 200, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8144469388564705801
@@ -565,7 +565,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u8DF3\u8FC7"
+  m_Text: "\u5237\u65B0"
 --- !u!1 &8105682527857957194
 GameObject:
   m_ObjectHideFlags: 0
@@ -650,7 +650,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   content: {fileID: 1947885557245907504}
   onBtn: {fileID: 198827743492701164}
-  cancelBtn: {fileID: 7877351916687080946}
+  refreshBtn: {fileID: 0}
 --- !u!1 &8255950548039421120
 GameObject:
   m_ObjectHideFlags: 0
@@ -664,7 +664,7 @@ GameObject:
   - component: {fileID: 1786952310005311202}
   - component: {fileID: 7877351916687080946}
   m_Layer: 5
-  m_Name: cancelBtn
+  m_Name: refreshBtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -687,7 +687,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -200, y: -175}
+  m_AnchoredPosition: {x: 200, y: -175}
   m_SizeDelta: {x: 200, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3592466929565874580
@@ -774,7 +774,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 7716503440277011136}
         m_TargetAssemblyTypeName: SelectPartView, Assembly-CSharp
-        m_MethodName: cancelClick
+        m_MethodName: refreshClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

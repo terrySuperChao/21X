@@ -43,8 +43,8 @@ public class SelectPart : MonoBehaviour
 
     private void selectPart(params System.Object[] obj)
     {
-        ISelectCardPara para = (ISelectCardPara)obj[0];
-        selectImage.SetActive(this._part == para.getCard());
+        ISelectPartPara para = (ISelectPartPara)obj[0];
+        selectImage.SetActive(this._part == para.getPart());
     }
 
     public bool isSelected()

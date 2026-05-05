@@ -7,7 +7,7 @@ public class AdvancedEffectInfo : IPart
     public string Name = "";
     public int Quality = 0;
     public int Profession = 0;
-    public string Belong_Base = "";
+    public string Belong_Advanced = "";
     public string Action_Genre = "";  
     public string Description = "";
 
@@ -39,7 +39,11 @@ public class AdvancedEffectInfo : IPart
 
     public string getBelongBase()
     {
-        return this.Belong_Base;
+        return this.Belong_Advanced;
+    }
+
+    public string getCorrespondAdvanced() {
+        return "";
     }
 
     public string getCorrespondBase() {

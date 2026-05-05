@@ -7,7 +7,7 @@ public class AttackSettle: IAttackSettle
         this.magicAttack(para);
     }
 
-    //��ͨ����
+    //普通攻击
     private void commonAttack(ITriggerHandlePara para) {
         IUser attackUser = para.getAttackUser();
         IUser defenseUser = para.getDefenseUser();
@@ -27,11 +27,11 @@ public class AttackSettle: IAttackSettle
         CardMgr.Instance.handle(para, CardHandleType.roundAttack);
 
         float remainAttack = this.getRemainAttack(para, attack);
-        //�۳���Ѫ��
+        //
         this.setDefenseUserBlood(para, remainAttack);
     }
 
-    //ħ������
+    //魔法攻击
     public void magicAttack(ITriggerHandlePara para) {
         IUser attackUser = para.getAttackUser();
         IUser defenseUser = para.getDefenseUser();
@@ -48,11 +48,14 @@ public class AttackSettle: IAttackSettle
         GameMessage.Instance.addMsg(GameConst.COMMONATTACK, attackPara);
         CardMgr.Instance.handle(para, CardHandleType.roundMagicAttack);
 
-        //50�Ĺ����� �۳���Ѫ��
+        //减去50血量
         this.setDefenseUserBlood(para, 50.0f);
+
+        //魔法攻击
+        para.setMagicAttack(true);
     }
 
-    //�۳�������Ѫ��
+    //
     private void setDefenseUserBlood(ITriggerHandlePara handlePara, float attack) {
         if (attack <= 0) return;
 
@@ -77,19 +80,19 @@ public class AttackSettle: IAttackSettle
         CardMgr.Instance.handle(handlePara, CardHandleType.roundSubBlood);
     }
 
-    //�۳�����֮��ʣ�๥����
+    //
     private float getRemainAttack(ITriggerHandlePara para,float attack) {
         IUser attackUser = para.getAttackUser();
         IUser defenseUser = para.getDefenseUser();
         IRoundResult roundResult = para.getRoundResult();
 
-        //����,100%�˺�
+        //
         if (roundResult.getPenetrateValue() != 0)
         {
             return attack;
         }
 
-        //����Ϊ0��100%�˺�
+        //
         float defense = defenseUser.getDefense();
         if (defense <= 0)
         {

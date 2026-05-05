@@ -215,17 +215,15 @@ public class GameReqMgr : Singleton<GameReqMgr>
         }
     }
 
-    public void requestUpgradePart(bool isOk,IUser user,IAssembleCard card, IPart part, Vector3 position)
-    { 
-        if (isOk)
-        {
-            FightPokerMgr.Instance.upgradeBasePart(card.getTriggerId(), user, part);
-            EventDispatcher.Instance.emit(GameConst.OKSELECTCARD, new SelectPartPara(user,card, part, position));
-        }
-        else
-        {
-            EventDispatcher.Instance.emit(GameConst.CANCELSELECTCARD);
-        }
+    public void requestUpgradePart(IUser user,IAssembleCard card, IPart part, Vector3 position)
+    {
+        FightPokerMgr.Instance.setAdvancedEffectId(card.getTriggerId(), user, part);
+        EventDispatcher.Instance.emit(GameConst.OKSELECTCARD, new SelectPartPara(user,card, part, position));
+    }
+
+    public void requestRefreshPart(IUser user, IAssembleCard card)
+    {
+        
     }
 
     public void requestNpcOperator(IUser user)

@@ -113,16 +113,6 @@ public class ImprintDataMgr : Singleton<ImprintDataMgr>
         }
     }
 
-    public bool addTriggerNumber(bool isNpc, int triggerId) {
-        List<IAssembleCard> list = this.getAssembleCard(isNpc);
-        IAssembleCard assembleCard = list.Find(card => card.getTriggerId() == triggerId);
-        if (assembleCard != null) {
-            assembleCard.addTriggerNumber();
-        }
-
-        return assembleCard != null && assembleCard.getTriggerNumber() == assembleCard.getUpgradeNumber();
-    }
-
     public bool setAdvancedEffectId(bool isNpc, int triggerId, int advancedEffectId) {
         List<IAssembleCard> list = this.getAssembleCard(isNpc);
         IAssembleCard assembleCard = list.Find(card => card.getTriggerId() == triggerId);

@@ -48,6 +48,11 @@ public class TriggerInfo:IPart
         return "";
     }
 
+    public string getCorrespondAdvanced()
+    {
+        return "";
+    }
+
     public string getCorrespondBase()
     {
         return this.Correspond_Base;

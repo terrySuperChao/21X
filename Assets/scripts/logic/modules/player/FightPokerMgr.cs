@@ -339,7 +339,7 @@ public class FightPokerMgr : Singleton<FightPokerMgr>
         return success;
     }
 
-    public void upgradeBasePart(int triggerId, IUser user, IPart part)
+    public void setAdvancedEffectId(int triggerId, IUser user, IPart part)
     {
         ImprintDataMgr.Instance.setAdvancedEffectId(user.isNpc(), triggerId, part.getId());
         this._gameFlow.addCardAfter(new AddCardAfterPara(this._players));

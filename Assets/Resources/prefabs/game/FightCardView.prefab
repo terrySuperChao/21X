@@ -835,7 +835,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stopPokerBtn: {fileID: 8522346553186319274}
   dealPokerBtn: {fileID: 2966926314951340627}
-  cardPrefab: {fileID: 5257655248267919920, guid: 0ef6c9186c75fa7468ddf0c91592aa9d, type: 3}
+  cardPrefab: {fileID: 5257655248267919920, guid: ed65b18a2086f8e41bfc28c530c6b505, type: 3}
   userAsset: {fileID: 9035719932944892045}
   npcAsset: {fileID: 1836005626708065776}
   effectImage: {fileID: 6919416927061789772}

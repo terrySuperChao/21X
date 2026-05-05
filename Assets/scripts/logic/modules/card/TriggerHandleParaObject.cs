@@ -5,6 +5,8 @@ public class TriggerHandleParaObject : ITriggerHandlePara
     private IUser _attackUser;
     private IUser _defenseUser;
     private IPoker _poker;
+    private bool _isBlackJock;
+    private bool _isMagicAttack;
     private float _baseValue;
     private IRoundResult _roundResult;
 
@@ -66,4 +68,20 @@ public class TriggerHandleParaObject : ITriggerHandlePara
         this._card = card;
     }
 
+    public void setBlackJock(bool isBlackJock) {
+        this._isBlackJock = isBlackJock;
+    }
+
+    public bool isBlackJock()
+    {
+        return this._isBlackJock;
+    }
+
+    public void setMagicAttack(bool isMagicAttack) {
+        this._isMagicAttack = isMagicAttack;
+    }
+    public bool isMagicAttack()
+    {
+        return this._isMagicAttack;
+    }
 }

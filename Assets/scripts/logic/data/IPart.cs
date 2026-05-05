@@ -16,6 +16,8 @@ public interface IPart
 
     public string getBelongBase();
 
+    public string getCorrespondAdvanced();
+
     public string getCorrespondBase();
 
     public float getValueDefault();

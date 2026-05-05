@@ -1,7 +1,7 @@
 ﻿<Project ToolsVersion="Current">
   <!-- Generated file, do not modify, your changes will be overwritten (use AssetPostprocessor.OnGeneratedCSProject) -->
   <PropertyGroup>
-    <BaseIntermediateOutputPath>Temp/obj/$(Configuration)/$(MSBuildProjectName)</BaseIntermediateOutputPath>
+    <BaseIntermediateOutputPath>Temp\obj\Assembly-CSharp</BaseIntermediateOutputPath>
     <IntermediateOutputPath>$(BaseIntermediateOutputPath)</IntermediateOutputPath>
   </PropertyGroup>
   <Import Project="Sdk.props" Sdk="Microsoft.NET.Sdk" />
@@ -245,6 +245,7 @@
     <Compile Include="Assets/scripts/logic/modules/game/RandomEx.cs" />
     <Compile Include="Assets/conframework/ui/ViewConst.cs" />
     <Compile Include="Assets/scripts/logic/modules/card/handle/MagickaHandle.cs" />
+    <Compile Include="Assets\scripts\logic\modules\card\triggerHandle\WinPointOutbreakHandle.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets/TextMesh Pro/Shaders/TMPro.cginc" />

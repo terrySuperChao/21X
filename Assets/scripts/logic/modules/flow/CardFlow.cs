@@ -57,6 +57,7 @@ public class CardFlow : GameFlowObject
         handlePara.setUser(users[winIndex]);
         handlePara.setAttackUser(users[winIndex]);
         handlePara.setDefenseUser(users[lossIndex]);
+        handlePara.setBlackJock(para.isBackJock());
         handlePara.setRoundResult(new RoundResultObject());
 
         CardMgr.Instance.handle( handlePara, CardHandleType.roundBegin);

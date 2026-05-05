@@ -20,4 +20,10 @@ public interface ITriggerHandlePara
 
     public IAssembleCard getAssembleCard();
     public void setAssembleCard(IAssembleCard card);
+
+    public void setBlackJock(bool isBlackJock);
+    public bool isBlackJock();
+
+    public void setMagicAttack(bool isMagicAttack);
+    public bool isMagicAttack();
 }

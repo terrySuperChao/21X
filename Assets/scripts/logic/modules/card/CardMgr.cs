@@ -58,13 +58,27 @@ public class CardMgr: Singleton<CardMgr>
     }
 
     //触发升级
-    private void triggerUpgrade(ITriggerHandlePara para) {
-        bool isNpc = para.getAttackUser().isNpc();
-        bool isUpgrade = ImprintDataMgr.Instance.addTriggerNumber(isNpc, para.getAssembleCard().getTriggerId());
-        if (!isUpgrade) return;
-
-        BaseEffectInfo info = GameStaticConfigMgr.Instance.getBaseEffectConfig().getBaseEffectId(para.getAssembleCard().getBaseEffectId());
-        if (info == null) return;
+    private void triggerUpgrade(int index,ITriggerHandlePara para) {
+        //添加触发的次数
+        if (index == 0)//触发3次数
+        {
+            para.getAssembleCard().addTriggerNumber();
+        }
+        else if (index == 1)//触发blackJock
+        {
+            if (para.isBlackJock()) {
+                para.getAssembleCard().addTriggerNumber();
+            }
+        }
+        else if (index == 2) {//触发魔法技能
+            if (para.isMagicAttack()) {
+                para.getAssembleCard().addTriggerNumber();
+            }
+        }
+        
+        if (para.getAssembleCard().getTriggerNumber() != para.getAssembleCard().getUpgradeNumber()) {
+            return;
+        }
 
         List<IPart> selectPart = new List<IPart>();
         List<IPart> advancedPart = new List<IPart>();
@@ -74,16 +88,16 @@ public class CardMgr: Singleton<CardMgr>
             if (effectInfos[i].getProfession() == 0 ||
                 effectInfos[i].getProfession() == PlayerDataMgr.Instance.getRoleId())
             {
-                if (effectInfos[i].getBelongBase().IndexOf(info.Correspond_Advanced) == 0)
+                if (effectInfos[i].getBelongBase().IndexOf(para.getAssembleCard().getBaseEffect().getCorrespondAdvanced()) == 0)
                 {
-                    if (ImprintDataMgr.Instance.hasAdvancedEffect(isNpc, effectInfos[i].getId()))
+                    if (!ImprintDataMgr.Instance.hasAdvancedEffect(para.getAttackUser().isNpc(), effectInfos[i].getId()))
                     {
                         advancedPart.Add(effectInfos[i]);
                     }
                 }
             }
         }
-
+        
         if (advancedPart.Count == 0) return;
 
         for (int i = 0; i < MAXSLOT; i++)
@@ -91,8 +105,8 @@ public class CardMgr: Singleton<CardMgr>
             if (advancedPart.Count == 0){
                 break;
             }
-            int index = RandomMgr.Instance.getRangeInt(0, advancedPart.Count);
-            IPart part = advancedPart[index];
+            int idx = RandomMgr.Instance.getRangeInt(0, advancedPart.Count);
+            IPart part = advancedPart[idx];
             selectPart.Add(part);
             advancedPart.Remove(part);
         }
@@ -140,7 +154,7 @@ public class CardMgr: Singleton<CardMgr>
             }
 
             //触发升级的内容
-            this.triggerUpgrade(para);
+            this.triggerUpgrade(i,para);
         }
     }
 }

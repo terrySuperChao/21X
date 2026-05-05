@@ -47,6 +47,11 @@ public class BaseEffectInfo : IPart
         return this.Belong_Base;
     }
 
+    public string getCorrespondAdvanced()
+    {
+        return this.Correspond_Advanced;
+    }
+
     public string getCorrespondBase()
     {
         return "";
