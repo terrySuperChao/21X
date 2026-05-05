@@ -222,7 +222,8 @@ public enum TargetPart
 }
 
 public enum TriggerEvent {
-    transformAttribute = 5,//属性转化
+    settlement = 4,         //结算
+    transformAttribute,     //属性转化
 }
 
 

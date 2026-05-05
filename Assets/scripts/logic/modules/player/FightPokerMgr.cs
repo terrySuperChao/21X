@@ -197,21 +197,24 @@ public class FightPokerMgr : Singleton<FightPokerMgr>
     }
 
     private void fightSettle() {        
-        int number0 = this.getUserHandPokerPoint(this._players[0], false);
-        int number1 = this.getUserHandPokerPoint(this._players[1], false);
+        int point0 = this.getUserHandPokerPoint(this._players[0], false);
+        int point1 = this.getUserHandPokerPoint(this._players[1], false);
         bool isBackJack0 = this.isUserHandPokerBlackJack(this._players[0]);
         bool isBackJack1 = this.isUserHandPokerBlackJack(this._players[1]);
 
         int index = -1;
+        int point = -1;
         bool isBack = false;
-        if (number0 <= 21 && number1 > 21){
+        if (point0 <= 21 && point1 > 21){
             index = 0;
-        } else if (number0 > 21 && number1 <= 21) {
+        } else if (point0 > 21 && point1 <= 21) {
             index = 1;
-        }else if(number0 <= 21 && number1 <= 21){
-            if (number0 > number1){
+        }else if(point0 <= 21 && point1 <= 21){
+            if (point0 > point1)
+            {
                 index = 0;
-            }else if (number0 < number1){
+            }else if (point0 < point1)
+            {
                 index = 1;
             }
         }
@@ -224,6 +227,14 @@ public class FightPokerMgr : Singleton<FightPokerMgr>
             isBack = true;
         }
 
+        if (index == 0)
+        {
+            point = point0;
+        }
+        else if (index == 1) {
+            point = point1;
+        }
+
         IUser user = null;
         for (int i = 0; i < this._players.Count; i++) {
             this._players[i].addPlay();
@@ -233,8 +244,8 @@ public class FightPokerMgr : Singleton<FightPokerMgr>
             }
         }
         GameMessage.Instance.addMsg(GameConst.GAMESETTLE, user);
-
-        bool isOver = this._gameFlow.gameSettle(new GameSettlePara(this._players, index, isBack));
+        UnityEngine.Debug.Log("para.getWinPoint()==" + point);
+        bool isOver = this._gameFlow.gameSettle(new GameSettlePara(this._players, index,point, isBack));
         if (isOver){
             GameMessage.Instance.addMsg(GameConst.GAMEOVER);
             GameMessage.Instance.addMsg(GameConst.FIGHTFLOWSTATE, FightFlowState.fightOver);

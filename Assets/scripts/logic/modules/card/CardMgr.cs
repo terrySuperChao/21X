@@ -126,18 +126,27 @@ public class CardMgr: Singleton<CardMgr>
         for (int i = 0; i < cards.Count; i++) {
             para.setAssembleCard(cards[i]);
 
-            ITriggerHandle handle = TriggerHandle.getTriggerHandle(para);
-            if (handle == null) {
+            List<ITriggerHandle> handles = TriggerHandle.getTriggerHandle(para);
+            if (handles == null) {
                 continue;
             }
 
-            Type objType = handle.GetType();
-            string methodName = Enum.GetName(typeof(CardHandleType), type);
-            MethodInfo method = objType.GetMethod(methodName + "Handle");
-            object success = method?.Invoke(handle, new object[] { para });
-            
+            bool success = false;
+            for (int j = 0; j < handles.Count; j++) { 
+                Type objType = handles[j].GetType();
+                string methodName = Enum.GetName(typeof(CardHandleType), type);
+                MethodInfo method = objType.GetMethod(methodName + "Handle");
+                object state = method?.Invoke(handles[j], new object[] { para });
+
+                //触发了
+                if ((bool)state) {
+                    success = true;
+                    break;
+                }
+            }
+
             //说明增加了一条数据
-            if (!(bool)success){
+            if (!success){
                 continue;
             }
 

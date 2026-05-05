@@ -7,7 +7,6 @@ public class AddATKHandle : BaseEffectHandleObject
 
     protected override void _handle(ITriggerHandlePara para)
     {
-
         UnityEngine.Debug.Log("AddATKHandle=========>>");
         float addValue = this.getAddValue(para);
         float finalValue = para.getAttackUser().addAttack(addValue);
@@ -15,8 +14,7 @@ public class AddATKHandle : BaseEffectHandleObject
         IUIFlyFontPara uiPara1 = new UIFlyFontParaObject(para.getAttackUser(), para.getAssembleCard(), "+" + addValue);
         GameMessage.Instance.addMsg(GameConst.FLYFONT, uiPara1);
 
-        PokerSuit suit = (PokerSuit)para.getPoker().getSuit();
-        IUICommonPara uiPara2 = new UICommonParaObject(para.getAttackUser(), GameConst.SuitTransformValueType(suit), addValue, finalValue);
+        IUICommonPara uiPara2 = new UICommonParaObject(para.getAttackUser(), GameConst.SuitTransformValueType(PokerSuit.spade), addValue, finalValue);
         GameMessage.Instance.addMsg(GameConst.ADDCARDVALUE, uiPara2);
     }
 }

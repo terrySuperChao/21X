@@ -50,13 +50,13 @@ public class CardFlow : GameFlowObject
             this._specialSettle.settle(null);
             return false;
         }
-        
+        UnityEngine.Debug.Log("para.getWinPoint()=="+ para.getWinPoint());
         List<IUser> users = para.getUsers();
-
         ITriggerHandlePara handlePara = new TriggerHandleParaObject();
         handlePara.setUser(users[winIndex]);
         handlePara.setAttackUser(users[winIndex]);
         handlePara.setDefenseUser(users[lossIndex]);
+        handlePara.setWinPoint(para.getWinPoint());
         handlePara.setBlackJock(para.isBackJock());
         handlePara.setRoundResult(new RoundResultObject());
 

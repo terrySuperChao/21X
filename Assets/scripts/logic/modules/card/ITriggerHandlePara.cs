@@ -21,6 +21,9 @@ public interface ITriggerHandlePara
     public IAssembleCard getAssembleCard();
     public void setAssembleCard(IAssembleCard card);
 
+    public void setWinPoint(int winPoint);
+    public int getWinPoint();
+
     public void setBlackJock(bool isBlackJock);
     public bool isBlackJock();
 

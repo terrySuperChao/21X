@@ -5,6 +5,7 @@ public class TriggerHandleParaObject : ITriggerHandlePara
     private IUser _attackUser;
     private IUser _defenseUser;
     private IPoker _poker;
+    private int _winPoint;
     private bool _isBlackJock;
     private bool _isMagicAttack;
     private float _baseValue;
@@ -59,13 +60,19 @@ public class TriggerHandleParaObject : ITriggerHandlePara
         _roundResult = value;
     }
 
-
     public IAssembleCard getAssembleCard()
     {
         return this._card;
     }
     public void setAssembleCard(IAssembleCard card) {
         this._card = card;
+    }
+
+    public void setWinPoint(int winPoint) {
+        this._winPoint = winPoint;
+    }
+    public int getWinPoint() {
+        return this._winPoint;
     }
 
     public void setBlackJock(bool isBlackJock) {

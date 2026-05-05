@@ -1,4 +1,4 @@
-//ÅÆ¶Ñ
+//ï¿½Æ¶ï¿½
 using System.Collections.Generic;
 
 
@@ -103,7 +103,7 @@ public class PlayPokerMgr : Singleton<PlayPokerMgr>
 
          _gameFlow.dealPokerAfter(new DealPokerAfterPara(getPlayers(),user));
       
-        //×îÖÕµÄ·ÖÊý
+        //ï¿½ï¿½ï¿½ÕµÄ·ï¿½ï¿½ï¿½
         int number2 = HandPokerMgr.Instance.getHandPokerPoint(user, false);
         if (number2 <= 21)
         {
@@ -155,7 +155,7 @@ public class PlayPokerMgr : Singleton<PlayPokerMgr>
     }
 
     private void gameSettle() {
-        int maxPoint = 99;//×î´óÖµ
+        int maxPoint = 99;//ï¿½ï¿½ï¿½Öµ
         List<SortItem> list = new List<SortItem>();
         for (int i = 0; i < _players.Count; i++) {
             if (_players[i].state == PlayState.end || _players[i].state == PlayState.none) {
@@ -193,7 +193,7 @@ public class PlayPokerMgr : Singleton<PlayPokerMgr>
         }
         GameMessage.Instance.addMsg(GameConst.GAMESETTLE, user);
 
-        bool isGameOver = _gameFlow.gameSettle(new GameSettlePara(getPlayers(), index, isBack));
+        bool isGameOver = _gameFlow.gameSettle(new GameSettlePara(getPlayers(), index,0, isBack));
 
         GameMessage.Instance.addMsg(isGameOver ? GameConst.GAMEOVER : GameConst.GAMENEXTROUND);
     }

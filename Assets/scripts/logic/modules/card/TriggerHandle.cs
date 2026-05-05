@@ -2,12 +2,14 @@ using System.Collections.Generic;
 
 public class TriggerHandle
 {
-	private static List<ITriggerHandle> _handle = new List<ITriggerHandle> {
+    private static List<ITriggerHandle> _handle = new List<ITriggerHandle> {
+        new SettlementPointHandle(),
         new TransformAttributeHandle(),
+        new TransformAttributeRatioHandle(),
     };
 
-    public static ITriggerHandle getTriggerHandle(ITriggerHandlePara para)
+    public static List<ITriggerHandle> getTriggerHandle(ITriggerHandlePara para)
     {
-        return _handle.Find(handle => (int)handle.getTrigger() == para.getAssembleCard().getTrigger().getTriggerEvent());
+        return _handle.FindAll(handle => (int)handle.getTrigger() == para.getAssembleCard().getTrigger().getTriggerEvent());
     }
 }
