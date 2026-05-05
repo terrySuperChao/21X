@@ -244,7 +244,7 @@ public class FightPokerMgr : Singleton<FightPokerMgr>
             }
         }
         GameMessage.Instance.addMsg(GameConst.GAMESETTLE, user);
-        UnityEngine.Debug.Log("para.getWinPoint()==" + point);
+        
         bool isOver = this._gameFlow.gameSettle(new GameSettlePara(this._players, index,point, isBack));
         if (isOver){
             GameMessage.Instance.addMsg(GameConst.GAMEOVER);
