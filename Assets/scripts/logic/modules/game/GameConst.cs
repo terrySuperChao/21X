@@ -129,7 +129,7 @@ public enum CardHandleType {
     addNewCardAfter,
     handPokerAfter,
     dealPokerAfter,
-    roundAbortion,
+    roundBeginBefore,
     roundBegin,
     roundAddValueBefore,
     roundAddValue,

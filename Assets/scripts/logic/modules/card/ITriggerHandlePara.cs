@@ -15,18 +15,15 @@ public interface ITriggerHandlePara
     public float getBaseValue();
     public void setBaseValue(float baseValue);
 
+    public void setMagicAttack(bool isMagicAttack);
+    public bool isMagicAttack();
+
+    public void setGameSettlePara(IGameSettlePara para);
+    public IGameSettlePara getGameSettlePara();
+
     public IRoundResult getRoundResult();
     public void setRoundResult(IRoundResult value);
 
     public IAssembleCard getAssembleCard();
     public void setAssembleCard(IAssembleCard card);
-
-    public void setWinPoint(int winPoint);
-    public int getWinPoint();
-
-    public void setBlackJock(bool isBlackJock);
-    public bool isBlackJock();
-
-    public void setMagicAttack(bool isMagicAttack);
-    public bool isMagicAttack();
 }

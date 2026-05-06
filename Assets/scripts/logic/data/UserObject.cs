@@ -6,8 +6,8 @@ public class UserObject : IUser
     private static int global_id = 0;
     private string _userId = "";
     private int _money = 0;
-    private int _playCount = 0;//�ܴ���
-    private int _wins = 0; //ʤ��
+    private int _playCount = 0;
+    private int _wins = 0;
     private float _blood = 0;
     private float _maxBlood = 0;
     private float _attack = 0;
@@ -148,8 +148,8 @@ public class UserObject : IUser
 
     public void reset() {
         _money = 0;
-        _playCount = 0;//�ܴ���
-        _wins = 0; //ʤ��
+        _playCount = 0;
+        _wins = 0; 
         _blood = 0;
         _attack = 0;
         _defense = 0;

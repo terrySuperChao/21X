@@ -91,36 +91,6 @@ public class FightPokerMgr : Singleton<FightPokerMgr>
         switch (state) {
             case FightFlowState.dealCard:
                 {
-                    /* �Ż�����
-                    ICandidacyCardPara para = null;
-                    for (int i = 0; i < this._players.Count; i++)
-                    {
-                        if (this.getUserRound() % 2 == 1)
-                            continue;
-
-                        IUser user = this._players[i];
-                        List<ICard> cards = CardMgr.Instance.getRandomCard(user);
-
-                        if (cards.Count == 0)
-                            continue;
-
-                        if (user.isNpc())
-                        {
-                            this.addNpcCard(user, cards);
-                        }
-                        else
-                        {
-                            para = new CandidacyCardPara(user, cards);
-                        }
-                    }
-                    
-                    if (para != null)
-                    {
-                        GameMessage.Instance.addMsg(GameConst.CANDIDACYCARD, para);
-                    }
-                    else {
-                        GameMessage.Instance.addMsg(GameConst.FIGHTFLOWSTATE, FightFlowState.twoHandPoker);
-                    }*/
                     GameMessage.Instance.addMsg(GameConst.FIGHTFLOWSTATE, FightFlowState.twoHandPoker);
                     this.addUserRound();
                 }
@@ -199,12 +169,11 @@ public class FightPokerMgr : Singleton<FightPokerMgr>
     private void fightSettle() {        
         int point0 = this.getUserHandPokerPoint(this._players[0], false);
         int point1 = this.getUserHandPokerPoint(this._players[1], false);
-        bool isBackJack0 = this.isUserHandPokerBlackJack(this._players[0]);
-        bool isBackJack1 = this.isUserHandPokerBlackJack(this._players[1]);
+        bool isBlackJack0 = this.isUserHandPokerBlackJack(this._players[0]);
+        bool isBlackJack1 = this.isUserHandPokerBlackJack(this._players[1]);
 
         int index = -1;
-        int point = -1;
-        bool isBack = false;
+        bool isBlackJack = false;
         if (point0 <= 21 && point1 > 21){
             index = 0;
         } else if (point0 > 21 && point1 <= 21) {
@@ -219,20 +188,12 @@ public class FightPokerMgr : Singleton<FightPokerMgr>
             }
         }
 
-        if (isBackJack0 && !isBackJack1){
+        if (isBlackJack0 && !isBlackJack1){
             index = 0;
-            isBack = true;
-        }else if (!isBackJack0 && isBackJack1){
+            isBlackJack = true;
+        }else if (!isBlackJack0 && isBlackJack1){
             index = 1;
-            isBack = true;
-        }
-
-        if (index == 0)
-        {
-            point = point0;
-        }
-        else if (index == 1) {
-            point = point1;
+            isBlackJack = true;
         }
 
         IUser user = null;
@@ -244,8 +205,8 @@ public class FightPokerMgr : Singleton<FightPokerMgr>
             }
         }
         GameMessage.Instance.addMsg(GameConst.GAMESETTLE, user);
-        
-        bool isOver = this._gameFlow.gameSettle(new GameSettlePara(this._players, index,point, isBack));
+
+        bool isOver = this._gameFlow.gameSettle(new GameSettlePara(this._players, index, isBlackJack));
         if (isOver){
             GameMessage.Instance.addMsg(GameConst.GAMEOVER);
             GameMessage.Instance.addMsg(GameConst.FIGHTFLOWSTATE, FightFlowState.fightOver);
@@ -296,7 +257,7 @@ public class FightPokerMgr : Singleton<FightPokerMgr>
     }
 
     public void clearUserHandPoker(IUser user) {
-        this.getUsetHandPoker(user).Clear(); //�������
+        this.getUsetHandPoker(user).Clear();
         EventDispatcher.Instance.emit(GameConst.CLEARHANDPOKER, user);
     }
 
@@ -319,10 +280,8 @@ public class FightPokerMgr : Singleton<FightPokerMgr>
     }
 
     public void addNpcCard(IUser user,List<ICard> cards) {
-        //��ѡ��2��
         ICard card = cards.Find(card => card.getLevel() == 2);
         
-        //�����1��
         if (card == null){
             card = cards[RandomMgr.Instance.getRangeInt(0, cards.Count)];
         }
@@ -377,7 +336,7 @@ public class FightPokerMgr : Singleton<FightPokerMgr>
     public void clear() {
         foreach (var user in _players){
             this.setUserState(user, UserState.none);
-            this.getUsetHandPoker(user).Clear(); //�������    
+            this.getUsetHandPoker(user).Clear();
         }
         FightDataMgr.Instance.setIsFilp(FightDealType.npc, 0);
     }

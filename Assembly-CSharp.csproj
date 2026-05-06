@@ -1,7 +1,7 @@
 ﻿<Project ToolsVersion="Current">
   <!-- Generated file, do not modify, your changes will be overwritten (use AssetPostprocessor.OnGeneratedCSProject) -->
   <PropertyGroup>
-    <BaseIntermediateOutputPath>Temp/obj/$(Configuration)/$(MSBuildProjectName)</BaseIntermediateOutputPath>
+    <BaseIntermediateOutputPath>Temp\obj\Assembly-CSharp</BaseIntermediateOutputPath>
     <IntermediateOutputPath>$(BaseIntermediateOutputPath)</IntermediateOutputPath>
   </PropertyGroup>
   <Import Project="Sdk.props" Sdk="Microsoft.NET.Sdk" />
@@ -161,7 +161,7 @@
     <Compile Include="Assets/scripts/ui/RelaxView.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/TeleType.cs" />
     <Compile Include="Assets/scripts/logic/modules/card/triggerHandle/TransformAttributeHandle.cs" />
-    <Compile Include="Assets/scripts/logic/modules/card/triggerHandle/SettlementPointHandle.cs" />
+    <Compile Include="Assets\scripts\logic\modules\card\triggerHandle\SettlementWinPointHandle.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/TMP_TextEventCheck.cs" />
     <Compile Include="Assets/scripts/logic/modules/card/handle/RefactoringPlusHandle.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/TMP_UiFrameRateCounter.cs" />
@@ -249,6 +249,7 @@
     <Compile Include="Assets/scripts/logic/modules/game/RandomEx.cs" />
     <Compile Include="Assets/conframework/ui/ViewConst.cs" />
     <Compile Include="Assets/scripts/logic/modules/card/handle/MagickaHandle.cs" />
+    <Compile Include="Assets\scripts\logic\modules\card\triggerHandle\SettlementLossPointHandle.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets/TextMesh Pro/Shaders/TMPro.cginc" />

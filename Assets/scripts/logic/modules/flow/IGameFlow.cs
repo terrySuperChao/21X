@@ -8,8 +8,7 @@ public interface IGameFlowPara
 public interface IGameSettlePara : IGameFlowPara
 {
     public int getWinIndex();
-    public int getWinPoint();
-    public bool isBackJock();
+    public bool isBlackJack();
 }
 
 public interface IHandPokerAfterPara : IGameFlowPara

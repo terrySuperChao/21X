@@ -66,7 +66,7 @@ public class CardMgr: Singleton<CardMgr>
         }
         else if (index == 1)//触发blackJock
         {
-            if (para.isBlackJock()) {
+            if (para.getGameSettlePara().isBlackJack()) {
                 para.getAssembleCard().addTriggerNumber();
             }
         }

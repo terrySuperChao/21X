@@ -51,28 +51,19 @@ public class DealPokerAfterPara : GameFlowPara, IDealPokerAfterPara
 
 public class GameSettlePara : GameFlowPara, IGameSettlePara
 {
-    private int _winIndex;
-    private int _winPoint;
-    private bool _isBackJock;
-    public GameSettlePara(List<IUser> users, int winIndex,int winPoint, bool isBackJock) : base(users)
+    private int _winIndex = -1;
+    private bool _isBlackJack = false;
+    public GameSettlePara(List<IUser> users,int winIndex,bool isBlackJack) : base(users)
     {
         this._winIndex = winIndex;
-        this._winPoint = winPoint;
-        this._isBackJock = isBackJock;
+        this._isBlackJack = isBlackJack;
     }
-
     public int getWinIndex()
     {
         return this._winIndex;
     }
-
-    public int getWinPoint() {
-        return this._winPoint;
-    }
-
-    public bool isBackJock()
-    {
-        return this._isBackJock;
+    public bool isBlackJack() {
+        return this._isBlackJack;
     }
 }
 

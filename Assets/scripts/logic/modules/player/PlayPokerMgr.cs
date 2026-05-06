@@ -175,11 +175,11 @@ public class PlayPokerMgr : Singleton<PlayPokerMgr>
 
         int index = -1;
         IUser user = null;  
-        bool isBack = false;
+        bool isBlackJock = false;
         if (list.Count == 1 || (list.Count == 2 && list[0].point > list[1].point))
         {
             index = list[0].index;
-            isBack = list[0].point == maxPoint;
+            isBlackJock = list[0].point == maxPoint;
             user = _players[index].user;
         }
 
@@ -193,7 +193,7 @@ public class PlayPokerMgr : Singleton<PlayPokerMgr>
         }
         GameMessage.Instance.addMsg(GameConst.GAMESETTLE, user);
 
-        bool isGameOver = _gameFlow.gameSettle(new GameSettlePara(getPlayers(), index,0, isBack));
+        bool isGameOver = _gameFlow.gameSettle(new GameSettlePara(getPlayers(), index, isBlackJock));
 
         GameMessage.Instance.addMsg(isGameOver ? GameConst.GAMEOVER : GameConst.GAMENEXTROUND);
     }

@@ -3,9 +3,7 @@ using System.Collections.Generic;
 public class SpecialSettle : IAttackSettle
 {
     public void settle(ITriggerHandlePara para) {
-        //平局
-        bool isAbort = para == null;
-        if (isAbort)
+        if (para == null)
         {
             List<IUser> users = FightPokerMgr.Instance.getPlayers();
             para = new TriggerHandleParaObject();
@@ -22,20 +20,10 @@ public class SpecialSettle : IAttackSettle
         para.setDefenseUser(defenseUser);
         CardMgr.Instance.handle(para, CardHandleType.roundSpecialAttr);
 
-        if (isAbort)
-        {
-            CardMgr.Instance.handle(para, CardHandleType.roundAbortion);
-        }
-
         para.setUser(defenseUser);
         para.setAttackUser(defenseUser);
         para.setDefenseUser(attackUser);
         CardMgr.Instance.handle(para, CardHandleType.roundSpecialAttr);
-
-        if (isAbort) {
-            CardMgr.Instance.handle(para, CardHandleType.roundAbortion);
-        }
-        
 
         para.setUser(attackUser);
         para.setAttackUser(attackUser);

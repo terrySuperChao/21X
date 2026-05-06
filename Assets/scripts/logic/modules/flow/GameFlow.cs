@@ -1,4 +1,4 @@
-//ÅÆ¶Ñ
+//ï¿½Æ¶ï¿½
 using System;
 using System.Collections.Generic;
 
@@ -14,7 +14,7 @@ public class GameFlow : GameFlowObject
         List<IUser> users = para.getUsers();
 
         int extraMoney = 0;
-        if (para.isBackJock())
+        if (para.isBlackJack())
         {
             int number = 0;
             for (int i = 0; i < users.Count; i++)

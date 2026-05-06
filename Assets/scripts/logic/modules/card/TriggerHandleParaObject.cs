@@ -5,11 +5,10 @@ public class TriggerHandleParaObject : ITriggerHandlePara
     private IUser _attackUser = null;
     private IUser _defenseUser = null;
     private IPoker _poker = null;
-    private int _winPoint = -1;
-    private bool _isBlackJock = false;
     private bool _isMagicAttack = false;
     private float _baseValue = -1;
     private IRoundResult _roundResult = null;
+    private IGameSettlePara gameSettlePara = null;
 
     public TriggerHandleParaObject()
     {
@@ -53,6 +52,15 @@ public class TriggerHandleParaObject : ITriggerHandlePara
         _baseValue = value;
     }
 
+    public void setMagicAttack(bool isMagicAttack)
+    {
+        this._isMagicAttack = isMagicAttack;
+    }
+    public bool isMagicAttack()
+    {
+        return this._isMagicAttack;
+    }
+
     public IRoundResult getRoundResult() {
         return _roundResult;
     }
@@ -68,27 +76,10 @@ public class TriggerHandleParaObject : ITriggerHandlePara
         this._card = card;
     }
 
-    public void setWinPoint(int winPoint) {
-        this._winPoint = winPoint;
+    public void setGameSettlePara(IGameSettlePara para) {
+        this.gameSettlePara = para;
     }
-    public int getWinPoint() {
-        return this._winPoint;
-    }
-
-    public void setBlackJock(bool isBlackJock) {
-        this._isBlackJock = isBlackJock;
-    }
-
-    public bool isBlackJock()
-    {
-        return this._isBlackJock;
-    }
-
-    public void setMagicAttack(bool isMagicAttack) {
-        this._isMagicAttack = isMagicAttack;
-    }
-    public bool isMagicAttack()
-    {
-        return this._isMagicAttack;
+    public IGameSettlePara getGameSettlePara() {
+        return this.gameSettlePara;
     }
 }

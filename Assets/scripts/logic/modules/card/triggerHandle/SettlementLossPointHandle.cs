@@ -1,6 +1,6 @@
 using System.Collections.Generic;
-//平局
-public class SettlementAbortionHandle : TriggerHandleObject
+//对手总点数 >= 22 (爆牌)
+public class SettlementLossPointHandle : TriggerHandleObject
 {
     protected override TriggerEvent _getTrigger() {
         return TriggerEvent.settlement;
@@ -8,19 +8,16 @@ public class SettlementAbortionHandle : TriggerHandleObject
 
     protected override bool _roundBeginBeforeHandle(ITriggerHandlePara para)
     {
-        if (para.getGameSettlePara().getWinIndex() != -1) {
-            return false;
-        }
-
         UnityEngine.Debug.Log("Settlement Point handle");
         string logic = para.getAssembleCard().getTrigger().getLogic();
-        string str = "牌局平局";
+        string str = "对手总点数";
         if (logic.IndexOf(str) != 0)
         {
             return false;
         }
-        else {
-            return true;
-        }
+
+        float point = (float)FightPokerMgr.Instance.getUserHandPokerPoint(para.getDefenseUser(),false);
+        string compareStr = logic.Replace(str, "");
+        return this.compareLogic(compareStr,point);
     }
 }

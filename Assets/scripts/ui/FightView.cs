@@ -356,7 +356,7 @@ public class FightView : MonoBehaviour
                 {
                     addText = Instantiate(text, rootTransform);
                 }
-                if (_gameFlow.isBackJock())
+                if (_gameFlow.isBackJack())
                 {
                     addText.text = "+" + addValue + " X2";
                     addValue *= 2;

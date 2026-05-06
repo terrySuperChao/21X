@@ -1,4 +1,4 @@
-//ÅÆ¶Ñ
+//ï¿½Æ¶ï¿½
 using System.Collections.Generic;
 
 public class FightFlow : GameFlowObject
@@ -6,16 +6,16 @@ public class FightFlow : GameFlowObject
 
     private float _settleAattck = 0;
     private float _settleDefense = 0;
-    private bool _isBackJock = false;
+    private bool _isBlackJack = false;
 
     override
     protected bool _gameSettle(IGameSettlePara para) {
 
         _settleAattck = 0;
         _settleDefense = 0;
-        _isBackJock = para.isBackJock();
+        _isBlackJack = para.isBlackJack();
 
-        int mult = para.isBackJock() ? 2 : 1;
+        int mult = para.isBlackJack() ? 2 : 1;
         int winIndex = para.getWinIndex();
         List<IUser> users = para.getUsers();
         for (int i = 0; i < users.Count; i++) {
@@ -30,13 +30,13 @@ public class FightFlow : GameFlowObject
                 for (int j = 0; j < pokers.Count; j++) {
                     int value = values[j];
                     switch (pokers[j].getSuit()) {
-                        case 1: // ·½
+                        case 1: // ï¿½ï¿½
                             defense += value * 0.5f;
                             break;
-                        case 2: // ºì
+                        case 2: // ï¿½ï¿½
                             blood += value * 0.5f;
                             break;
-                        case 3: // ºÚ
+                        case 3: // ï¿½ï¿½
                             attack += value;
                             break;
                         case 4: // Ã·
@@ -108,7 +108,7 @@ public class FightFlow : GameFlowObject
         return _settleDefense;
     }
 
-    public bool isBackJock() {
-        return _isBackJock;
+    public bool isBackJack() {
+        return _isBlackJack;
     }
 }

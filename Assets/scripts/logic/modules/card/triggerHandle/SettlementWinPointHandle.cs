@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 //获胜且点数 >= 20
-public class SettlementPointHandle : TriggerHandleObject
+public class SettlementWinPointHandle : TriggerHandleObject
 {
     protected override TriggerEvent _getTrigger() {
         return TriggerEvent.settlement;
@@ -15,7 +15,8 @@ public class SettlementPointHandle : TriggerHandleObject
             return false;
         }
 
+        float point = (float)FightPokerMgr.Instance.getUserHandPokerPoint(para.getUser(), false);
         string compareStr = logic.Replace(str, "");
-        return this.compareLogic(compareStr,(float)para.getWinPoint());
+        return this.compareLogic(compareStr,point);
     }
 }

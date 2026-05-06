@@ -43,24 +43,28 @@ public class CardFlow : GameFlowObject
 
     override
     protected bool _gameSettle(IGameSettlePara para) {
+        ITriggerHandlePara handlePara = new TriggerHandleParaObject();
+        handlePara.setGameSettlePara(para);
+        handlePara.setRoundResult(new RoundResultObject());
+
+        //npc
+        this.setTriggerHandleParaUser(handlePara, 0);
+        CardMgr.Instance.handle(handlePara, CardHandleType.roundBeginBefore);
+
+        //player
+        this.setTriggerHandleParaUser(handlePara, 1);
+        CardMgr.Instance.handle(handlePara, CardHandleType.roundBeginBefore);
+
         int winIndex = -1;//para.getWinIndex();
-        int lossIndex = winIndex == 0 ? 1 : 0;
         if (winIndex == -1) //平局
         {
             this._specialSettle.settle(null);
             return false;
         }
-        
-        List<IUser> users = para.getUsers();
-        ITriggerHandlePara handlePara = new TriggerHandleParaObject();
-        handlePara.setUser(users[winIndex]);
-        handlePara.setAttackUser(users[winIndex]);
-        handlePara.setDefenseUser(users[lossIndex]);
-        handlePara.setWinPoint(para.getWinPoint());
-        handlePara.setBlackJock(para.isBackJock());
-        handlePara.setRoundResult(new RoundResultObject());
 
-        CardMgr.Instance.handle( handlePara, CardHandleType.roundBegin);
+        //wins
+        this.setTriggerHandleParaUser(handlePara, winIndex);
+        CardMgr.Instance.handle(handlePara, CardHandleType.roundBegin);
 
         //牌结算
         this._pokerSettle.settle(handlePara);
@@ -79,5 +83,18 @@ public class CardFlow : GameFlowObject
 
         return handlePara.getAttackUser().getBlood() <= 0 ||
                handlePara.getDefenseUser().getBlood() <= 0;
+    }
+
+    //winIndex:0 npc 1:player
+    private void setTriggerHandleParaUser(ITriggerHandlePara handlePara,int winIndex) {
+        List<IUser> users = handlePara.getGameSettlePara().getUsers();
+        IUser npc = users.Find(user => user.isNpc() == true);
+        IUser player = users.Find(user => user.isNpc() == false);
+
+        IUser attackUser = winIndex == 0 ? npc : player;
+        IUser defenseUser = winIndex == 0 ? player : npc;
+        handlePara.setUser(attackUser);
+        handlePara.setAttackUser(attackUser);
+        handlePara.setDefenseUser(defenseUser);
     }
 }
