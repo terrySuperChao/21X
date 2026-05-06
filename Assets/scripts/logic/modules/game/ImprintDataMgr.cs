@@ -34,11 +34,11 @@ public class ImprintDataMgr : Singleton<ImprintDataMgr>
         this._playerCards.Clear();
         foreach (var value in this._imprint.NpcCards)
         {
-            this._npcCards.Add(new AssembleCardObject(value.TriggerId,value.BaseDataId, value.Level, value.TriggerNumber, value.UpgradeNumber));
+            this._npcCards.Add(new AssembleCardObject(value.TriggerId,value.BaseEffectId, value.AdvancedEffectId, value.TriggerNumber, value.UpgradeNumber));
         }
         foreach (var value in this._imprint.PlayerCards)
         {
-            this._playerCards.Add(new AssembleCardObject(value.TriggerId, value.BaseDataId, value.Level, value.TriggerNumber, value.UpgradeNumber));
+            this._playerCards.Add(new AssembleCardObject(value.TriggerId, value.BaseEffectId, value.AdvancedEffectId, value.TriggerNumber, value.UpgradeNumber));
         }
     }
 
@@ -60,8 +60,8 @@ public class ImprintDataMgr : Singleton<ImprintDataMgr>
     private AssembleCard newAssembleCard(IAssembleCard card) {
         AssembleCard assembleCard = new AssembleCard();
         assembleCard.TriggerId = card.getTriggerId();
-        assembleCard.BaseDataId = card.getBaseEffectId();
-        assembleCard.Level = card.getAdvancedEffectId();
+        assembleCard.BaseEffectId = card.getBaseEffectId();
+        assembleCard.AdvancedEffectId = card.getAdvancedEffectId();
         assembleCard.TriggerNumber = card.getTriggerNumber();
         assembleCard.UpgradeNumber = card.getUpgradeNumber();
         return assembleCard;

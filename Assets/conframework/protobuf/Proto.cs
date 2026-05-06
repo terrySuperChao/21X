@@ -32,8 +32,8 @@ namespace Pb {
             "c29sdXRpb25CDQoLX21haW5Wb2x1bWVCDgoMX211c2ljVm9sdW1lQg4KDF9z",
             "b3VuZFZvbHVtZSL6AQoGUGxheWVyEhIKBW1vbmV5GAEgASgFSACIAQESFAoH",
             "ZGlhbW9uZBgCIAEoBUgBiAEBEhMKBnJvbGVJZBgDIAEoBUgCiAEBEg8KAmhw",
-            "GAQgASgFSAOIAQESEgoFbWF4SFAYBSABKAVIBIgBARISCgVtYWdpYxgGIAEo",
-            "BUgFiAEBEhUKCG1heE1hZ2ljGAcgASgFSAaIAQESEAoDZXhwGAggASgFSAeI",
+            "GAQgASgCSAOIAQESEgoFbWF4SFAYBSABKAJIBIgBARISCgVtYWdpYxgGIAEo",
+            "AkgFiAEBEhUKCG1heE1hZ2ljGAcgASgCSAaIAQESEAoDZXhwGAggASgFSAeI",
             "AQFCCAoGX21vbmV5QgoKCF9kaWFtb25kQgkKB19yb2xlSWRCBQoDX2hwQggK",
             "Bl9tYXhIUEIICgZfbWFnaWNCCwoJX21heE1hZ2ljQgYKBF9leHAiQAoKRGVm",
             "ZWF0Um9sZRIPCgJpZBgBIAEoBUgAiAEBEhEKBGRpZmYYAiABKAVIAYgBAUIF",
@@ -52,36 +52,37 @@ namespace Pb {
             "TnVtQhgKFl9yZWZyZXNoUGxheWVyUG9rZXJOdW0iKAoEU2hvcBINCgVnb29k",
             "cxgBIAMoBRIRCglwdXJjaGFzZWQYAiADKAUiogIKCUFzc2V0SW5mbxISCgVz",
             "dGF0ZRgBIAEoBUgAiAEBEg4KBnBva2VycxgCIAMoBRINCgVjYXJkcxgDIAMo",
-            "BRIPCgJocBgEIAEoBUgBiAEBEhIKBW1heEhQGAUgASgFSAKIAQESEgoFbWFn",
-            "aWMYBiABKAVIA4gBARIVCghtYXhNYWdpYxgHIAEoBUgEiAEBEhMKBmF0dGFj",
-            "axgIIAEoBUgFiAEBEhQKB2RlZmVuc2UYCSABKAVIBogBARITCgZpc0ZpbHAY",
+            "BRIPCgJocBgEIAEoAkgBiAEBEhIKBW1heEhQGAUgASgCSAKIAQESEgoFbWFn",
+            "aWMYBiABKAJIA4gBARIVCghtYXhNYWdpYxgHIAEoAkgEiAEBEhMKBmF0dGFj",
+            "axgIIAEoAkgFiAEBEhQKB2RlZmVuc2UYCSABKAJIBogBARITCgZpc0ZpbHAY",
             "CiABKAVIB4gBAUIICgZfc3RhdGVCBQoDX2hwQggKBl9tYXhIUEIICgZfbWFn",
             "aWNCCwoJX21heE1hZ2ljQgkKB19hdHRhY2tCCgoIX2RlZmVuc2VCCQoHX2lz",
             "RmlscCLCAQoFRmlnaHQSEQoJcG9rZXJQaWxlGAEgAygFEiQKCG5wY0Fzc2V0",
             "GAIgASgLMg0ucGIuQXNzZXRJbmZvSACIAQESJwoLcGxheWVyQXNzZXQYAyAB",
             "KAsyDS5wYi5Bc3NldEluZm9IAYgBARISCgVzdGF0ZRgEIAEoBUgCiAEBEhIK",
             "BXJvdW5kGAUgASgFSAOIAQFCCwoJX25wY0Fzc2V0Qg4KDF9wbGF5ZXJBc3Nl",
-            "dEIICgZfc3RhdGVCCAoGX3JvdW5kItYBCgxBc3NlbWJsZUNhcmQSFwoKYmFz",
-            "ZURhdGFJZBgBIAEoBUgAiAEBEhYKCXRyaWdnZXJJZBgCIAEoBUgBiAEBEhIK",
-            "BWxldmVsGAMgASgFSAKIAQESGgoNdHJpZ2dlck51bWJlchgEIAEoBUgDiAEB",
-            "EhoKDXVwZ3JhZGVOdW1iZXIYBSABKAVIBIgBAUINCgtfYmFzZURhdGFJZEIM",
-            "CgpfdHJpZ2dlcklkQggKBl9sZXZlbEIQCg5fdHJpZ2dlck51bWJlckIQCg5f",
-            "dXBncmFkZU51bWJlciKEAQoHSW1wcmludBIbCg5hc3NlbWJsZU9iamVjdBgB",
-            "IAEoBUgAiAEBEiIKCG5wY0NhcmRzGAIgAygLMhAucGIuQXNzZW1ibGVDYXJk",
-            "EiUKC3BsYXllckNhcmRzGAMgAygLMhAucGIuQXNzZW1ibGVDYXJkQhEKD19h",
-            "c3NlbWJsZU9iamVjdCL4AgoIR2FtZURhdGESFQoIaW5pdFNlZWQYASABKAVI",
-            "AIgBARIWCglnYW1lU3RhdGUYAiABKAVIAYgBARIWCglwYWdlSW5kZXgYAyAB",
-            "KAVIAogBARIfCgZwbGF5ZXIYBCABKAsyCi5wYi5QbGF5ZXJIA4gBARIhCgdi",
-            "YXJyaWVyGAUgASgLMgsucGIuQmFycmllckgEiAEBEhsKBHNob3AYBiABKAsy",
-            "CC5wYi5TaG9wSAWIAQESHQoFZmlnaHQYByABKAsyCS5wYi5GaWdodEgGiAEB",
-            "EiEKB2ltcHJpbnQYCCABKAsyCy5wYi5JbXByaW50SAeIAQESIwoLZGVmZWF0",
-            "Um9sZXMYCSADKAsyDi5wYi5EZWZlYXRSb2xlQgsKCV9pbml0U2VlZEIMCgpf",
-            "Z2FtZVN0YXRlQgwKCl9wYWdlSW5kZXhCCQoHX3BsYXllckIKCghfYmFycmll",
-            "ckIHCgVfc2hvcEIICgZfZmlnaHRCCgoIX2ltcHJpbnQingEKDEdhbWVQcm9w",
-            "ZXJ0eRIhCgdhY2NvdW50GAEgASgLMgsucGIuQWNjb3VudEgAiAEBEiEKB3Nl",
-            "dHRpbmcYAiABKAsyCy5wYi5TZXR0aW5nSAGIAQESIwoIZ2FtZURhdGEYAyAB",
-            "KAsyDC5wYi5HYW1lRGF0YUgCiAEBQgoKCF9hY2NvdW50QgoKCF9zZXR0aW5n",
-            "QgsKCV9nYW1lRGF0YWIGcHJvdG8z"));
+            "dEIICgZfc3RhdGVCCAoGX3JvdW5kIvABCgxBc3NlbWJsZUNhcmQSFgoJdHJp",
+            "Z2dlcklkGAEgASgFSACIAQESGQoMYmFzZUVmZmVjdElkGAIgASgFSAGIAQES",
+            "HQoQYWR2YW5jZWRFZmZlY3RJZBgDIAEoBUgCiAEBEhoKDXRyaWdnZXJOdW1i",
+            "ZXIYBCABKAVIA4gBARIaCg11cGdyYWRlTnVtYmVyGAUgASgFSASIAQFCDAoK",
+            "X3RyaWdnZXJJZEIPCg1fYmFzZUVmZmVjdElkQhMKEV9hZHZhbmNlZEVmZmVj",
+            "dElkQhAKDl90cmlnZ2VyTnVtYmVyQhAKDl91cGdyYWRlTnVtYmVyIoQBCgdJ",
+            "bXByaW50EhsKDmFzc2VtYmxlT2JqZWN0GAEgASgFSACIAQESIgoIbnBjQ2Fy",
+            "ZHMYAiADKAsyEC5wYi5Bc3NlbWJsZUNhcmQSJQoLcGxheWVyQ2FyZHMYAyAD",
+            "KAsyEC5wYi5Bc3NlbWJsZUNhcmRCEQoPX2Fzc2VtYmxlT2JqZWN0IvgCCghH",
+            "YW1lRGF0YRIVCghpbml0U2VlZBgBIAEoBUgAiAEBEhYKCWdhbWVTdGF0ZRgC",
+            "IAEoBUgBiAEBEhYKCXBhZ2VJbmRleBgDIAEoBUgCiAEBEh8KBnBsYXllchgE",
+            "IAEoCzIKLnBiLlBsYXllckgDiAEBEiEKB2JhcnJpZXIYBSABKAsyCy5wYi5C",
+            "YXJyaWVySASIAQESGwoEc2hvcBgGIAEoCzIILnBiLlNob3BIBYgBARIdCgVm",
+            "aWdodBgHIAEoCzIJLnBiLkZpZ2h0SAaIAQESIQoHaW1wcmludBgIIAEoCzIL",
+            "LnBiLkltcHJpbnRIB4gBARIjCgtkZWZlYXRSb2xlcxgJIAMoCzIOLnBiLkRl",
+            "ZmVhdFJvbGVCCwoJX2luaXRTZWVkQgwKCl9nYW1lU3RhdGVCDAoKX3BhZ2VJ",
+            "bmRleEIJCgdfcGxheWVyQgoKCF9iYXJyaWVyQgcKBV9zaG9wQggKBl9maWdo",
+            "dEIKCghfaW1wcmludCKeAQoMR2FtZVByb3BlcnR5EiEKB2FjY291bnQYASAB",
+            "KAsyCy5wYi5BY2NvdW50SACIAQESIQoHc2V0dGluZxgCIAEoCzILLnBiLlNl",
+            "dHRpbmdIAYgBARIjCghnYW1lRGF0YRgDIAEoCzIMLnBiLkdhbWVEYXRhSAKI",
+            "AQFCCgoIX2FjY291bnRCCgoIX3NldHRpbmdCCwoJX2dhbWVEYXRhYgZwcm90",
+            "bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
@@ -93,7 +94,7 @@ namespace Pb {
             new pbr::GeneratedClrTypeInfo(typeof(global::Pb.Shop), global::Pb.Shop.Parser, new[]{ "Goods", "Purchased" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Pb.AssetInfo), global::Pb.AssetInfo.Parser, new[]{ "State", "Pokers", "Cards", "Hp", "MaxHP", "Magic", "MaxMagic", "Attack", "Defense", "IsFilp" }, new[]{ "State", "Hp", "MaxHP", "Magic", "MaxMagic", "Attack", "Defense", "IsFilp" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Pb.Fight), global::Pb.Fight.Parser, new[]{ "PokerPile", "NpcAsset", "PlayerAsset", "State", "Round" }, new[]{ "NpcAsset", "PlayerAsset", "State", "Round" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Pb.AssembleCard), global::Pb.AssembleCard.Parser, new[]{ "BaseDataId", "TriggerId", "Level", "TriggerNumber", "UpgradeNumber" }, new[]{ "BaseDataId", "TriggerId", "Level", "TriggerNumber", "UpgradeNumber" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Pb.AssembleCard), global::Pb.AssembleCard.Parser, new[]{ "TriggerId", "BaseEffectId", "AdvancedEffectId", "TriggerNumber", "UpgradeNumber" }, new[]{ "TriggerId", "BaseEffectId", "AdvancedEffectId", "TriggerNumber", "UpgradeNumber" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Pb.Imprint), global::Pb.Imprint.Parser, new[]{ "AssembleObject", "NpcCards", "PlayerCards" }, new[]{ "AssembleObject" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Pb.GameData), global::Pb.GameData.Parser, new[]{ "InitSeed", "GameState", "PageIndex", "Player", "Barrier", "Shop", "Fight", "Imprint", "DefeatRoles" }, new[]{ "InitSeed", "GameState", "PageIndex", "Player", "Barrier", "Shop", "Fight", "Imprint" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Pb.GameProperty), global::Pb.GameProperty.Parser, new[]{ "Account", "Setting", "GameData" }, new[]{ "Account", "Setting", "GameData" }, null, null, null)
@@ -890,15 +891,15 @@ namespace Pb {
 
     /// <summary>Field number for the "hp" field.</summary>
     public const int HpFieldNumber = 4;
-    private readonly static int HpDefaultValue = 0;
+    private readonly static float HpDefaultValue = 0F;
 
-    private int hp_;
+    private float hp_;
     /// <summary>
     ///当前血量
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public int Hp {
+    public float Hp {
       get { if ((_hasBits0 & 8) != 0) { return hp_; } else { return HpDefaultValue; } }
       set {
         _hasBits0 |= 8;
@@ -920,15 +921,15 @@ namespace Pb {
 
     /// <summary>Field number for the "maxHP" field.</summary>
     public const int MaxHPFieldNumber = 5;
-    private readonly static int MaxHPDefaultValue = 0;
+    private readonly static float MaxHPDefaultValue = 0F;
 
-    private int maxHP_;
+    private float maxHP_;
     /// <summary>
     ///最大血量
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public int MaxHP {
+    public float MaxHP {
       get { if ((_hasBits0 & 16) != 0) { return maxHP_; } else { return MaxHPDefaultValue; } }
       set {
         _hasBits0 |= 16;
@@ -950,15 +951,15 @@ namespace Pb {
 
     /// <summary>Field number for the "magic" field.</summary>
     public const int MagicFieldNumber = 6;
-    private readonly static int MagicDefaultValue = 0;
+    private readonly static float MagicDefaultValue = 0F;
 
-    private int magic_;
+    private float magic_;
     /// <summary>
     ///当前魔法
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public int Magic {
+    public float Magic {
       get { if ((_hasBits0 & 32) != 0) { return magic_; } else { return MagicDefaultValue; } }
       set {
         _hasBits0 |= 32;
@@ -980,15 +981,15 @@ namespace Pb {
 
     /// <summary>Field number for the "maxMagic" field.</summary>
     public const int MaxMagicFieldNumber = 7;
-    private readonly static int MaxMagicDefaultValue = 0;
+    private readonly static float MaxMagicDefaultValue = 0F;
 
-    private int maxMagic_;
+    private float maxMagic_;
     /// <summary>
     ///最大魔法
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public int MaxMagic {
+    public float MaxMagic {
       get { if ((_hasBits0 & 64) != 0) { return maxMagic_; } else { return MaxMagicDefaultValue; } }
       set {
         _hasBits0 |= 64;
@@ -1056,10 +1057,10 @@ namespace Pb {
       if (Money != other.Money) return false;
       if (Diamond != other.Diamond) return false;
       if (RoleId != other.RoleId) return false;
-      if (Hp != other.Hp) return false;
-      if (MaxHP != other.MaxHP) return false;
-      if (Magic != other.Magic) return false;
-      if (MaxMagic != other.MaxMagic) return false;
+      if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(Hp, other.Hp)) return false;
+      if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(MaxHP, other.MaxHP)) return false;
+      if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(Magic, other.Magic)) return false;
+      if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(MaxMagic, other.MaxMagic)) return false;
       if (Exp != other.Exp) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
@@ -1071,10 +1072,10 @@ namespace Pb {
       if (HasMoney) hash ^= Money.GetHashCode();
       if (HasDiamond) hash ^= Diamond.GetHashCode();
       if (HasRoleId) hash ^= RoleId.GetHashCode();
-      if (HasHp) hash ^= Hp.GetHashCode();
-      if (HasMaxHP) hash ^= MaxHP.GetHashCode();
-      if (HasMagic) hash ^= Magic.GetHashCode();
-      if (HasMaxMagic) hash ^= MaxMagic.GetHashCode();
+      if (HasHp) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(Hp);
+      if (HasMaxHP) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(MaxHP);
+      if (HasMagic) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(Magic);
+      if (HasMaxMagic) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(MaxMagic);
       if (HasExp) hash ^= Exp.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
@@ -1107,20 +1108,20 @@ namespace Pb {
         output.WriteInt32(RoleId);
       }
       if (HasHp) {
-        output.WriteRawTag(32);
-        output.WriteInt32(Hp);
+        output.WriteRawTag(37);
+        output.WriteFloat(Hp);
       }
       if (HasMaxHP) {
-        output.WriteRawTag(40);
-        output.WriteInt32(MaxHP);
+        output.WriteRawTag(45);
+        output.WriteFloat(MaxHP);
       }
       if (HasMagic) {
-        output.WriteRawTag(48);
-        output.WriteInt32(Magic);
+        output.WriteRawTag(53);
+        output.WriteFloat(Magic);
       }
       if (HasMaxMagic) {
-        output.WriteRawTag(56);
-        output.WriteInt32(MaxMagic);
+        output.WriteRawTag(61);
+        output.WriteFloat(MaxMagic);
       }
       if (HasExp) {
         output.WriteRawTag(64);
@@ -1149,20 +1150,20 @@ namespace Pb {
         output.WriteInt32(RoleId);
       }
       if (HasHp) {
-        output.WriteRawTag(32);
-        output.WriteInt32(Hp);
+        output.WriteRawTag(37);
+        output.WriteFloat(Hp);
       }
       if (HasMaxHP) {
-        output.WriteRawTag(40);
-        output.WriteInt32(MaxHP);
+        output.WriteRawTag(45);
+        output.WriteFloat(MaxHP);
       }
       if (HasMagic) {
-        output.WriteRawTag(48);
-        output.WriteInt32(Magic);
+        output.WriteRawTag(53);
+        output.WriteFloat(Magic);
       }
       if (HasMaxMagic) {
-        output.WriteRawTag(56);
-        output.WriteInt32(MaxMagic);
+        output.WriteRawTag(61);
+        output.WriteFloat(MaxMagic);
       }
       if (HasExp) {
         output.WriteRawTag(64);
@@ -1188,16 +1189,16 @@ namespace Pb {
         size += 1 + pb::CodedOutputStream.ComputeInt32Size(RoleId);
       }
       if (HasHp) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Hp);
+        size += 1 + 4;
       }
       if (HasMaxHP) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(MaxHP);
+        size += 1 + 4;
       }
       if (HasMagic) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Magic);
+        size += 1 + 4;
       }
       if (HasMaxMagic) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(MaxMagic);
+        size += 1 + 4;
       }
       if (HasExp) {
         size += 1 + pb::CodedOutputStream.ComputeInt32Size(Exp);
@@ -1269,20 +1270,20 @@ namespace Pb {
             RoleId = input.ReadInt32();
             break;
           }
-          case 32: {
-            Hp = input.ReadInt32();
+          case 37: {
+            Hp = input.ReadFloat();
             break;
           }
-          case 40: {
-            MaxHP = input.ReadInt32();
+          case 45: {
+            MaxHP = input.ReadFloat();
             break;
           }
-          case 48: {
-            Magic = input.ReadInt32();
+          case 53: {
+            Magic = input.ReadFloat();
             break;
           }
-          case 56: {
-            MaxMagic = input.ReadInt32();
+          case 61: {
+            MaxMagic = input.ReadFloat();
             break;
           }
           case 64: {
@@ -1320,20 +1321,20 @@ namespace Pb {
             RoleId = input.ReadInt32();
             break;
           }
-          case 32: {
-            Hp = input.ReadInt32();
+          case 37: {
+            Hp = input.ReadFloat();
             break;
           }
-          case 40: {
-            MaxHP = input.ReadInt32();
+          case 45: {
+            MaxHP = input.ReadFloat();
             break;
           }
-          case 48: {
-            Magic = input.ReadInt32();
+          case 53: {
+            Magic = input.ReadFloat();
             break;
           }
-          case 56: {
-            MaxMagic = input.ReadInt32();
+          case 61: {
+            MaxMagic = input.ReadFloat();
             break;
           }
           case 64: {
@@ -2851,15 +2852,15 @@ namespace Pb {
 
     /// <summary>Field number for the "hp" field.</summary>
     public const int HpFieldNumber = 4;
-    private readonly static int HpDefaultValue = 0;
+    private readonly static float HpDefaultValue = 0F;
 
-    private int hp_;
+    private float hp_;
     /// <summary>
     ///当前血量
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public int Hp {
+    public float Hp {
       get { if ((_hasBits0 & 2) != 0) { return hp_; } else { return HpDefaultValue; } }
       set {
         _hasBits0 |= 2;
@@ -2881,15 +2882,15 @@ namespace Pb {
 
     /// <summary>Field number for the "maxHP" field.</summary>
     public const int MaxHPFieldNumber = 5;
-    private readonly static int MaxHPDefaultValue = 0;
+    private readonly static float MaxHPDefaultValue = 0F;
 
-    private int maxHP_;
+    private float maxHP_;
     /// <summary>
     ///最大血量
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public int MaxHP {
+    public float MaxHP {
       get { if ((_hasBits0 & 4) != 0) { return maxHP_; } else { return MaxHPDefaultValue; } }
       set {
         _hasBits0 |= 4;
@@ -2911,15 +2912,15 @@ namespace Pb {
 
     /// <summary>Field number for the "magic" field.</summary>
     public const int MagicFieldNumber = 6;
-    private readonly static int MagicDefaultValue = 0;
+    private readonly static float MagicDefaultValue = 0F;
 
-    private int magic_;
+    private float magic_;
     /// <summary>
     ///当前魔法
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public int Magic {
+    public float Magic {
       get { if ((_hasBits0 & 8) != 0) { return magic_; } else { return MagicDefaultValue; } }
       set {
         _hasBits0 |= 8;
@@ -2941,15 +2942,15 @@ namespace Pb {
 
     /// <summary>Field number for the "maxMagic" field.</summary>
     public const int MaxMagicFieldNumber = 7;
-    private readonly static int MaxMagicDefaultValue = 0;
+    private readonly static float MaxMagicDefaultValue = 0F;
 
-    private int maxMagic_;
+    private float maxMagic_;
     /// <summary>
     ///最大魔法
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public int MaxMagic {
+    public float MaxMagic {
       get { if ((_hasBits0 & 16) != 0) { return maxMagic_; } else { return MaxMagicDefaultValue; } }
       set {
         _hasBits0 |= 16;
@@ -2971,15 +2972,15 @@ namespace Pb {
 
     /// <summary>Field number for the "attack" field.</summary>
     public const int AttackFieldNumber = 8;
-    private readonly static int AttackDefaultValue = 0;
+    private readonly static float AttackDefaultValue = 0F;
 
-    private int attack_;
+    private float attack_;
     /// <summary>
     ///攻击力
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public int Attack {
+    public float Attack {
       get { if ((_hasBits0 & 32) != 0) { return attack_; } else { return AttackDefaultValue; } }
       set {
         _hasBits0 |= 32;
@@ -3001,15 +3002,15 @@ namespace Pb {
 
     /// <summary>Field number for the "defense" field.</summary>
     public const int DefenseFieldNumber = 9;
-    private readonly static int DefenseDefaultValue = 0;
+    private readonly static float DefenseDefaultValue = 0F;
 
-    private int defense_;
+    private float defense_;
     /// <summary>
     ///防御力
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public int Defense {
+    public float Defense {
       get { if ((_hasBits0 & 64) != 0) { return defense_; } else { return DefenseDefaultValue; } }
       set {
         _hasBits0 |= 64;
@@ -3077,12 +3078,12 @@ namespace Pb {
       if (State != other.State) return false;
       if(!pokers_.Equals(other.pokers_)) return false;
       if(!cards_.Equals(other.cards_)) return false;
-      if (Hp != other.Hp) return false;
-      if (MaxHP != other.MaxHP) return false;
-      if (Magic != other.Magic) return false;
-      if (MaxMagic != other.MaxMagic) return false;
-      if (Attack != other.Attack) return false;
-      if (Defense != other.Defense) return false;
+      if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(Hp, other.Hp)) return false;
+      if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(MaxHP, other.MaxHP)) return false;
+      if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(Magic, other.Magic)) return false;
+      if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(MaxMagic, other.MaxMagic)) return false;
+      if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(Attack, other.Attack)) return false;
+      if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(Defense, other.Defense)) return false;
       if (IsFilp != other.IsFilp) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
@@ -3094,12 +3095,12 @@ namespace Pb {
       if (HasState) hash ^= State.GetHashCode();
       hash ^= pokers_.GetHashCode();
       hash ^= cards_.GetHashCode();
-      if (HasHp) hash ^= Hp.GetHashCode();
-      if (HasMaxHP) hash ^= MaxHP.GetHashCode();
-      if (HasMagic) hash ^= Magic.GetHashCode();
-      if (HasMaxMagic) hash ^= MaxMagic.GetHashCode();
-      if (HasAttack) hash ^= Attack.GetHashCode();
-      if (HasDefense) hash ^= Defense.GetHashCode();
+      if (HasHp) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(Hp);
+      if (HasMaxHP) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(MaxHP);
+      if (HasMagic) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(Magic);
+      if (HasMaxMagic) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(MaxMagic);
+      if (HasAttack) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(Attack);
+      if (HasDefense) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(Defense);
       if (HasIsFilp) hash ^= IsFilp.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
@@ -3126,28 +3127,28 @@ namespace Pb {
       pokers_.WriteTo(output, _repeated_pokers_codec);
       cards_.WriteTo(output, _repeated_cards_codec);
       if (HasHp) {
-        output.WriteRawTag(32);
-        output.WriteInt32(Hp);
+        output.WriteRawTag(37);
+        output.WriteFloat(Hp);
       }
       if (HasMaxHP) {
-        output.WriteRawTag(40);
-        output.WriteInt32(MaxHP);
+        output.WriteRawTag(45);
+        output.WriteFloat(MaxHP);
       }
       if (HasMagic) {
-        output.WriteRawTag(48);
-        output.WriteInt32(Magic);
+        output.WriteRawTag(53);
+        output.WriteFloat(Magic);
       }
       if (HasMaxMagic) {
-        output.WriteRawTag(56);
-        output.WriteInt32(MaxMagic);
+        output.WriteRawTag(61);
+        output.WriteFloat(MaxMagic);
       }
       if (HasAttack) {
-        output.WriteRawTag(64);
-        output.WriteInt32(Attack);
+        output.WriteRawTag(69);
+        output.WriteFloat(Attack);
       }
       if (HasDefense) {
-        output.WriteRawTag(72);
-        output.WriteInt32(Defense);
+        output.WriteRawTag(77);
+        output.WriteFloat(Defense);
       }
       if (HasIsFilp) {
         output.WriteRawTag(80);
@@ -3170,28 +3171,28 @@ namespace Pb {
       pokers_.WriteTo(ref output, _repeated_pokers_codec);
       cards_.WriteTo(ref output, _repeated_cards_codec);
       if (HasHp) {
-        output.WriteRawTag(32);
-        output.WriteInt32(Hp);
+        output.WriteRawTag(37);
+        output.WriteFloat(Hp);
       }
       if (HasMaxHP) {
-        output.WriteRawTag(40);
-        output.WriteInt32(MaxHP);
+        output.WriteRawTag(45);
+        output.WriteFloat(MaxHP);
       }
       if (HasMagic) {
-        output.WriteRawTag(48);
-        output.WriteInt32(Magic);
+        output.WriteRawTag(53);
+        output.WriteFloat(Magic);
       }
       if (HasMaxMagic) {
-        output.WriteRawTag(56);
-        output.WriteInt32(MaxMagic);
+        output.WriteRawTag(61);
+        output.WriteFloat(MaxMagic);
       }
       if (HasAttack) {
-        output.WriteRawTag(64);
-        output.WriteInt32(Attack);
+        output.WriteRawTag(69);
+        output.WriteFloat(Attack);
       }
       if (HasDefense) {
-        output.WriteRawTag(72);
-        output.WriteInt32(Defense);
+        output.WriteRawTag(77);
+        output.WriteFloat(Defense);
       }
       if (HasIsFilp) {
         output.WriteRawTag(80);
@@ -3213,22 +3214,22 @@ namespace Pb {
       size += pokers_.CalculateSize(_repeated_pokers_codec);
       size += cards_.CalculateSize(_repeated_cards_codec);
       if (HasHp) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Hp);
+        size += 1 + 4;
       }
       if (HasMaxHP) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(MaxHP);
+        size += 1 + 4;
       }
       if (HasMagic) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Magic);
+        size += 1 + 4;
       }
       if (HasMaxMagic) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(MaxMagic);
+        size += 1 + 4;
       }
       if (HasAttack) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Attack);
+        size += 1 + 4;
       }
       if (HasDefense) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Defense);
+        size += 1 + 4;
       }
       if (HasIsFilp) {
         size += 1 + pb::CodedOutputStream.ComputeInt32Size(IsFilp);
@@ -3304,28 +3305,28 @@ namespace Pb {
             cards_.AddEntriesFrom(input, _repeated_cards_codec);
             break;
           }
-          case 32: {
-            Hp = input.ReadInt32();
+          case 37: {
+            Hp = input.ReadFloat();
             break;
           }
-          case 40: {
-            MaxHP = input.ReadInt32();
+          case 45: {
+            MaxHP = input.ReadFloat();
             break;
           }
-          case 48: {
-            Magic = input.ReadInt32();
+          case 53: {
+            Magic = input.ReadFloat();
             break;
           }
-          case 56: {
-            MaxMagic = input.ReadInt32();
+          case 61: {
+            MaxMagic = input.ReadFloat();
             break;
           }
-          case 64: {
-            Attack = input.ReadInt32();
+          case 69: {
+            Attack = input.ReadFloat();
             break;
           }
-          case 72: {
-            Defense = input.ReadInt32();
+          case 77: {
+            Defense = input.ReadFloat();
             break;
           }
           case 80: {
@@ -3365,28 +3366,28 @@ namespace Pb {
             cards_.AddEntriesFrom(ref input, _repeated_cards_codec);
             break;
           }
-          case 32: {
-            Hp = input.ReadInt32();
+          case 37: {
+            Hp = input.ReadFloat();
             break;
           }
-          case 40: {
-            MaxHP = input.ReadInt32();
+          case 45: {
+            MaxHP = input.ReadFloat();
             break;
           }
-          case 48: {
-            Magic = input.ReadInt32();
+          case 53: {
+            Magic = input.ReadFloat();
             break;
           }
-          case 56: {
-            MaxMagic = input.ReadInt32();
+          case 61: {
+            MaxMagic = input.ReadFloat();
             break;
           }
-          case 64: {
-            Attack = input.ReadInt32();
+          case 69: {
+            Attack = input.ReadFloat();
             break;
           }
-          case 72: {
-            Defense = input.ReadInt32();
+          case 77: {
+            Defense = input.ReadFloat();
             break;
           }
           case 80: {
@@ -3845,9 +3846,9 @@ namespace Pb {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public AssembleCard(AssembleCard other) : this() {
       _hasBits0 = other._hasBits0;
-      baseDataId_ = other.baseDataId_;
       triggerId_ = other.triggerId_;
-      level_ = other.level_;
+      baseEffectId_ = other.baseEffectId_;
+      advancedEffectId_ = other.advancedEffectId_;
       triggerNumber_ = other.triggerNumber_;
       upgradeNumber_ = other.upgradeNumber_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
@@ -3859,38 +3860,8 @@ namespace Pb {
       return new AssembleCard(this);
     }
 
-    /// <summary>Field number for the "baseDataId" field.</summary>
-    public const int BaseDataIdFieldNumber = 1;
-    private readonly static int BaseDataIdDefaultValue = 0;
-
-    private int baseDataId_;
-    /// <summary>
-    ///基础数字Id
-    /// </summary>
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public int BaseDataId {
-      get { if ((_hasBits0 & 1) != 0) { return baseDataId_; } else { return BaseDataIdDefaultValue; } }
-      set {
-        _hasBits0 |= 1;
-        baseDataId_ = value;
-      }
-    }
-    /// <summary>Gets whether the "baseDataId" field is set</summary>
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public bool HasBaseDataId {
-      get { return (_hasBits0 & 1) != 0; }
-    }
-    /// <summary>Clears the value of the "baseDataId" field</summary>
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void ClearBaseDataId() {
-      _hasBits0 &= ~1;
-    }
-
     /// <summary>Field number for the "triggerId" field.</summary>
-    public const int TriggerIdFieldNumber = 2;
+    public const int TriggerIdFieldNumber = 1;
     private readonly static int TriggerIdDefaultValue = 0;
 
     private int triggerId_;
@@ -3900,9 +3871,9 @@ namespace Pb {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int TriggerId {
-      get { if ((_hasBits0 & 2) != 0) { return triggerId_; } else { return TriggerIdDefaultValue; } }
+      get { if ((_hasBits0 & 1) != 0) { return triggerId_; } else { return TriggerIdDefaultValue; } }
       set {
-        _hasBits0 |= 2;
+        _hasBits0 |= 1;
         triggerId_ = value;
       }
     }
@@ -3910,42 +3881,72 @@ namespace Pb {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public bool HasTriggerId {
-      get { return (_hasBits0 & 2) != 0; }
+      get { return (_hasBits0 & 1) != 0; }
     }
     /// <summary>Clears the value of the "triggerId" field</summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public void ClearTriggerId() {
-      _hasBits0 &= ~2;
+      _hasBits0 &= ~1;
     }
 
-    /// <summary>Field number for the "level" field.</summary>
-    public const int LevelFieldNumber = 3;
-    private readonly static int LevelDefaultValue = 0;
+    /// <summary>Field number for the "baseEffectId" field.</summary>
+    public const int BaseEffectIdFieldNumber = 2;
+    private readonly static int BaseEffectIdDefaultValue = 0;
 
-    private int level_;
+    private int baseEffectId_;
     /// <summary>
-    ///等级
+    ///基础效果Id
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public int Level {
-      get { if ((_hasBits0 & 4) != 0) { return level_; } else { return LevelDefaultValue; } }
+    public int BaseEffectId {
+      get { if ((_hasBits0 & 2) != 0) { return baseEffectId_; } else { return BaseEffectIdDefaultValue; } }
       set {
-        _hasBits0 |= 4;
-        level_ = value;
+        _hasBits0 |= 2;
+        baseEffectId_ = value;
       }
     }
-    /// <summary>Gets whether the "level" field is set</summary>
+    /// <summary>Gets whether the "baseEffectId" field is set</summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public bool HasLevel {
+    public bool HasBaseEffectId {
+      get { return (_hasBits0 & 2) != 0; }
+    }
+    /// <summary>Clears the value of the "baseEffectId" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearBaseEffectId() {
+      _hasBits0 &= ~2;
+    }
+
+    /// <summary>Field number for the "advancedEffectId" field.</summary>
+    public const int AdvancedEffectIdFieldNumber = 3;
+    private readonly static int AdvancedEffectIdDefaultValue = 0;
+
+    private int advancedEffectId_;
+    /// <summary>
+    ///升级效果Id
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int AdvancedEffectId {
+      get { if ((_hasBits0 & 4) != 0) { return advancedEffectId_; } else { return AdvancedEffectIdDefaultValue; } }
+      set {
+        _hasBits0 |= 4;
+        advancedEffectId_ = value;
+      }
+    }
+    /// <summary>Gets whether the "advancedEffectId" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasAdvancedEffectId {
       get { return (_hasBits0 & 4) != 0; }
     }
-    /// <summary>Clears the value of the "level" field</summary>
+    /// <summary>Clears the value of the "advancedEffectId" field</summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void ClearLevel() {
+    public void ClearAdvancedEffectId() {
       _hasBits0 &= ~4;
     }
 
@@ -4024,9 +4025,9 @@ namespace Pb {
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (BaseDataId != other.BaseDataId) return false;
       if (TriggerId != other.TriggerId) return false;
-      if (Level != other.Level) return false;
+      if (BaseEffectId != other.BaseEffectId) return false;
+      if (AdvancedEffectId != other.AdvancedEffectId) return false;
       if (TriggerNumber != other.TriggerNumber) return false;
       if (UpgradeNumber != other.UpgradeNumber) return false;
       return Equals(_unknownFields, other._unknownFields);
@@ -4036,9 +4037,9 @@ namespace Pb {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override int GetHashCode() {
       int hash = 1;
-      if (HasBaseDataId) hash ^= BaseDataId.GetHashCode();
       if (HasTriggerId) hash ^= TriggerId.GetHashCode();
-      if (HasLevel) hash ^= Level.GetHashCode();
+      if (HasBaseEffectId) hash ^= BaseEffectId.GetHashCode();
+      if (HasAdvancedEffectId) hash ^= AdvancedEffectId.GetHashCode();
       if (HasTriggerNumber) hash ^= TriggerNumber.GetHashCode();
       if (HasUpgradeNumber) hash ^= UpgradeNumber.GetHashCode();
       if (_unknownFields != null) {
@@ -4059,17 +4060,17 @@ namespace Pb {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
-      if (HasBaseDataId) {
-        output.WriteRawTag(8);
-        output.WriteInt32(BaseDataId);
-      }
       if (HasTriggerId) {
-        output.WriteRawTag(16);
+        output.WriteRawTag(8);
         output.WriteInt32(TriggerId);
       }
-      if (HasLevel) {
+      if (HasBaseEffectId) {
+        output.WriteRawTag(16);
+        output.WriteInt32(BaseEffectId);
+      }
+      if (HasAdvancedEffectId) {
         output.WriteRawTag(24);
-        output.WriteInt32(Level);
+        output.WriteInt32(AdvancedEffectId);
       }
       if (HasTriggerNumber) {
         output.WriteRawTag(32);
@@ -4089,17 +4090,17 @@ namespace Pb {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (HasBaseDataId) {
-        output.WriteRawTag(8);
-        output.WriteInt32(BaseDataId);
-      }
       if (HasTriggerId) {
-        output.WriteRawTag(16);
+        output.WriteRawTag(8);
         output.WriteInt32(TriggerId);
       }
-      if (HasLevel) {
+      if (HasBaseEffectId) {
+        output.WriteRawTag(16);
+        output.WriteInt32(BaseEffectId);
+      }
+      if (HasAdvancedEffectId) {
         output.WriteRawTag(24);
-        output.WriteInt32(Level);
+        output.WriteInt32(AdvancedEffectId);
       }
       if (HasTriggerNumber) {
         output.WriteRawTag(32);
@@ -4119,14 +4120,14 @@ namespace Pb {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int CalculateSize() {
       int size = 0;
-      if (HasBaseDataId) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(BaseDataId);
-      }
       if (HasTriggerId) {
         size += 1 + pb::CodedOutputStream.ComputeInt32Size(TriggerId);
       }
-      if (HasLevel) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Level);
+      if (HasBaseEffectId) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(BaseEffectId);
+      }
+      if (HasAdvancedEffectId) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(AdvancedEffectId);
       }
       if (HasTriggerNumber) {
         size += 1 + pb::CodedOutputStream.ComputeInt32Size(TriggerNumber);
@@ -4146,14 +4147,14 @@ namespace Pb {
       if (other == null) {
         return;
       }
-      if (other.HasBaseDataId) {
-        BaseDataId = other.BaseDataId;
-      }
       if (other.HasTriggerId) {
         TriggerId = other.TriggerId;
       }
-      if (other.HasLevel) {
-        Level = other.Level;
+      if (other.HasBaseEffectId) {
+        BaseEffectId = other.BaseEffectId;
+      }
+      if (other.HasAdvancedEffectId) {
+        AdvancedEffectId = other.AdvancedEffectId;
       }
       if (other.HasTriggerNumber) {
         TriggerNumber = other.TriggerNumber;
@@ -4181,15 +4182,15 @@ namespace Pb {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 8: {
-            BaseDataId = input.ReadInt32();
-            break;
-          }
-          case 16: {
             TriggerId = input.ReadInt32();
             break;
           }
+          case 16: {
+            BaseEffectId = input.ReadInt32();
+            break;
+          }
           case 24: {
-            Level = input.ReadInt32();
+            AdvancedEffectId = input.ReadInt32();
             break;
           }
           case 32: {
@@ -4220,15 +4221,15 @@ namespace Pb {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
           case 8: {
-            BaseDataId = input.ReadInt32();
-            break;
-          }
-          case 16: {
             TriggerId = input.ReadInt32();
             break;
           }
+          case 16: {
+            BaseEffectId = input.ReadInt32();
+            break;
+          }
           case 24: {
-            Level = input.ReadInt32();
+            AdvancedEffectId = input.ReadInt32();
             break;
           }
           case 32: {

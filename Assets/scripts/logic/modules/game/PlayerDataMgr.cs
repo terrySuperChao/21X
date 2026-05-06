@@ -43,12 +43,12 @@ public class PlayerDataMgr : Singleton<PlayerDataMgr>
     }
 
 
-    public int getHP()
+    public float getHP()
     {
         return this._player.Hp;
     }
 
-    public void setHP(int value)
+    public void setHP(float value)
     {
         this._player.Hp = value;
     }
@@ -59,27 +59,27 @@ public class PlayerDataMgr : Singleton<PlayerDataMgr>
         this._player.Hp = this._player.Hp > this._player.MaxHP ? this._player.MaxHP : this._player.Hp;
     }
 
-    public int getMaxHP()
+    public float getMaxHP()
     {
         return this._player.MaxHP;
     }
 
-    public void setMaxHP(int value)
+    public void setMaxHP(float value)
     {
         this._player.MaxHP = value;
     }
 
-    public void addMaxHP(int value)
+    public void addMaxHP(float value)
     {
         this._player.MaxHP += value;
     }
 
-    public int getMagic()
+    public float getMagic()
     {
         return this._player.Magic;
     }
 
-    public void setMagic(int value)
+    public void setMagic(float value)
     {
         this._player.Magic = value;
     }
@@ -90,12 +90,12 @@ public class PlayerDataMgr : Singleton<PlayerDataMgr>
         this._player.Magic = this._player.Magic > this._player.MaxMagic ? this._player.MaxMagic : this._player.Magic;
     }
 
-    public int getMaxMagic()
+    public float getMaxMagic()
     {
         return this._player.MaxMagic;
     }
 
-    public void setMaxMagic(int value)
+    public void setMaxMagic(float value)
     {
         this._player.MaxMagic = value;
     }

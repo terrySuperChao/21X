@@ -8,7 +8,7 @@ public class SettlementLossPointHandle : TriggerHandleObject
 
     protected override bool _roundBeginBeforeHandle(ITriggerHandlePara para)
     {
-        UnityEngine.Debug.Log("Settlement Point handle");
+        UnityEngine.Debug.Log("Settlement loss Point handle");
         string logic = para.getAssembleCard().getTrigger().getLogic();
         string str = "对手总点数";
         if (logic.IndexOf(str) != 0)

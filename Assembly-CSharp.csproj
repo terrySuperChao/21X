@@ -1,7 +1,7 @@
 ﻿<Project ToolsVersion="Current">
   <!-- Generated file, do not modify, your changes will be overwritten (use AssetPostprocessor.OnGeneratedCSProject) -->
   <PropertyGroup>
-    <BaseIntermediateOutputPath>Temp\obj\Assembly-CSharp</BaseIntermediateOutputPath>
+    <BaseIntermediateOutputPath>Temp/obj/$(Configuration)/$(MSBuildProjectName)</BaseIntermediateOutputPath>
     <IntermediateOutputPath>$(BaseIntermediateOutputPath)</IntermediateOutputPath>
   </PropertyGroup>
   <Import Project="Sdk.props" Sdk="Microsoft.NET.Sdk" />
@@ -101,6 +101,7 @@
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/DropdownSample.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/VertexColorCycler.cs" />
     <Compile Include="Assets/conframework/event/EventDispatcher.cs" />
+    <Compile Include="Assets/scripts/logic/modules/card/triggerHandle/SettlementLossPointHandle.cs" />
     <Compile Include="Assets/scripts/logic/modules/card/handle/ExplosiveShieldPlusHandle.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/EnvMapAnimator.cs" />
     <Compile Include="Assets/conframework/protobuf/Proto.cs" />
@@ -161,7 +162,6 @@
     <Compile Include="Assets/scripts/ui/RelaxView.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/TeleType.cs" />
     <Compile Include="Assets/scripts/logic/modules/card/triggerHandle/TransformAttributeHandle.cs" />
-    <Compile Include="Assets\scripts\logic\modules\card\triggerHandle\SettlementWinPointHandle.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/TMP_TextEventCheck.cs" />
     <Compile Include="Assets/scripts/logic/modules/card/handle/RefactoringPlusHandle.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/TMP_UiFrameRateCounter.cs" />
@@ -185,6 +185,7 @@
     <Compile Include="Assets/scripts/logic/modules/game/GameReqMgr.cs" />
     <Compile Include="Assets/conframework/base/Singleton.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/TMP_TextSelector_B.cs" />
+    <Compile Include="Assets/scripts/logic/modules/card/triggerHandle/SettlementWinPointHandle.cs" />
     <Compile Include="Assets/scripts/logic/modules/card/IRoundResult.cs" />
     <Compile Include="Assets/conframework/base/ISerialization.cs" />
     <Compile Include="Assets/scripts/ui/PlayerInfo.cs" />
@@ -249,7 +250,6 @@
     <Compile Include="Assets/scripts/logic/modules/game/RandomEx.cs" />
     <Compile Include="Assets/conframework/ui/ViewConst.cs" />
     <Compile Include="Assets/scripts/logic/modules/card/handle/MagickaHandle.cs" />
-    <Compile Include="Assets\scripts\logic\modules\card\triggerHandle\SettlementLossPointHandle.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets/TextMesh Pro/Shaders/TMPro.cginc" />

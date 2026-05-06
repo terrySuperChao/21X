@@ -19,10 +19,10 @@ message Player{
   optional int32 money = 1;     //金币
   optional int32 diamond = 2;   //钻石
   optional int32 roleId = 3; 	  //当前玩角色Id
-  optional int32 hp = 4;        //当前血量
-  optional int32 maxHP = 5;     //最大血量
-  optional int32 magic = 6;     //当前魔法
-  optional int32 maxMagic = 7;  //最大魔法
+  optional float hp = 4;        //当前血量
+  optional float maxHP = 5;     //最大血量
+  optional float magic = 6;     //当前魔法
+  optional float maxMagic = 7;  //最大魔法
   optional int32 exp = 8;   	  //经验
 }
 
@@ -60,9 +60,9 @@ message AssetInfo{
   repeated int32 pokers = 2;    //牌 
   repeated int32 cards = 3;  	  //卡
   optional float hp = 4;        //当前血量
-  optional int32 maxHP = 5;     //最大血量
+  optional float maxHP = 5;     //最大血量
   optional float magic = 6;     //当前魔法
-  optional int32 maxMagic = 7;  //最大魔法
+  optional float maxMagic = 7;  //最大魔法
   optional float attack = 8;    //攻击力
   optional float defense = 9;   //防御力
   optional int32 isFilp = 10;    //是否翻面
