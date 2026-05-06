@@ -1,15 +1,15 @@
 public class TriggerHandleParaObject : ITriggerHandlePara
 {
-    private IAssembleCard _card;
-    private IUser _user;
-    private IUser _attackUser;
-    private IUser _defenseUser;
-    private IPoker _poker;
-    private int _winPoint;
-    private bool _isBlackJock;
-    private bool _isMagicAttack;
-    private float _baseValue;
-    private IRoundResult _roundResult;
+    private IAssembleCard _card = null;
+    private IUser _user = null;
+    private IUser _attackUser = null;
+    private IUser _defenseUser = null;
+    private IPoker _poker = null;
+    private int _winPoint = -1;
+    private bool _isBlackJock = false;
+    private bool _isMagicAttack = false;
+    private float _baseValue = -1;
+    private IRoundResult _roundResult = null;
 
     public TriggerHandleParaObject()
     {

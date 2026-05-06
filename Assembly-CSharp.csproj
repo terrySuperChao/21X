@@ -139,6 +139,7 @@
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/TMP_PhoneNumberValidator.cs" />
     <Compile Include="Assets/scripts/logic/modules/settle/suit/SpadeSettle.cs" />
     <Compile Include="Assets/scripts/logic/data/static/AdvancedEffectConfig.cs" />
+    <Compile Include="Assets/scripts/logic/modules/card/triggerHandle/SettlementAbortionHandle.cs" />
     <Compile Include="Assets/scripts/logic/modules/settle/suit/HeartSettle.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/VertexJitter.cs" />
     <Compile Include="Assets/scripts/logic/data/static/BaseEffectConfig.cs" />

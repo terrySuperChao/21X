@@ -5,6 +5,7 @@ public class TriggerHandle
     private static List<ITriggerHandle> _handle = new List<ITriggerHandle> {
         new SettlementPointHandle(),
         new SettlementIncludePokerHandle(),
+        new SettlementAbortionHandle(),
         new TransformAttributeHandle(),
         new TransformAttributeRatioHandle(),
     };

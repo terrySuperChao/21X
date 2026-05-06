@@ -23,6 +23,10 @@ public abstract class TriggerHandleObject : ITriggerHandle
         return this._dealPokerAfterHandle(para);
     }
 
+    public bool roundAbortionHandle(ITriggerHandlePara para) {
+        return this._roundAbortionHandle(para);
+    }
+
     public bool roundBeginHandle(ITriggerHandlePara para)
     {
         return this._roundBeginHandle(para);
@@ -145,6 +149,7 @@ public abstract class TriggerHandleObject : ITriggerHandle
     protected virtual bool _addNewCardAfterHandle(ITriggerHandlePara para) { return false; }
     protected virtual bool _handPokerAfterHandle(ITriggerHandlePara para) { return false; }
     protected virtual bool _dealPokerAfterHandle(ITriggerHandlePara para) { return false; }
+    protected virtual bool _roundAbortionHandle(ITriggerHandlePara para) { return false; }
     protected virtual bool _roundBeginHandle(ITriggerHandlePara para) { return false; }
     protected virtual bool _roundAddValueBeforeHandle(ITriggerHandlePara para) { return false; }
     protected virtual bool _roundAddValueHandle(ITriggerHandlePara para) { return false; }
