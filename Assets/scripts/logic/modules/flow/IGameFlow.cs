@@ -20,6 +20,11 @@ public interface IDealPokerAfterPara : IGameFlowPara
     public IUser getUser();
 }
 
+public interface IStopPokerAfterPara : IGameFlowPara
+{
+    public IUser getUser();
+}
+
 public interface IGameBeginPara : IGameFlowPara
 {
 }
@@ -36,5 +41,6 @@ public interface IGameFlow
     public void handPokerAfter(IHandPokerAfterPara para);
 
     public void dealPokerAfter(IDealPokerAfterPara para);
+    public void stopPokerAfter(IStopPokerAfterPara para);
     public bool gameSettle(IGameSettlePara para);
 }

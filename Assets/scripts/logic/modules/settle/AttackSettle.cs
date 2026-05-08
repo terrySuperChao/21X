@@ -27,7 +27,6 @@ public class AttackSettle: IAttackSettle
         CardMgr.Instance.handle(para, CardHandleType.roundAttack);
 
         float remainAttack = this.getRemainAttack(para, attack);
-        //
         this.setDefenseUserBlood(para, remainAttack);
     }
 

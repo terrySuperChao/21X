@@ -45,18 +45,6 @@ public class CardMgr: Singleton<CardMgr>
         return MAXSLOT;
     }
 
-    public void cardHandleTypeHandle(List<IUser> list, bool isNpc, CardHandleType type)
-    {
-        IUser attackUser = list.Find(user => user.isNpc() == isNpc);
-        IUser defenseUser = list.Find(user => user.isNpc() != isNpc);
-        ITriggerHandlePara handlePara = new TriggerHandleParaObject();
-        handlePara.setRoundResult(new RoundResultObject());
-        handlePara.setUser(attackUser);
-        handlePara.setAttackUser(attackUser);
-        handlePara.setDefenseUser(defenseUser);
-        this.handle(handlePara, type);
-    }
-
     //触发升级
     private void triggerUpgrade(int index,ITriggerHandlePara para) {
         //添加触发的次数

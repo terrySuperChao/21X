@@ -129,6 +129,7 @@ public enum CardHandleType {
     addNewCardAfter,
     handPokerAfter,
     dealPokerAfter,
+    stopPokerAfter,
     roundBeginBefore,
     roundBegin,
     roundAddValueBefore,
@@ -223,8 +224,15 @@ public enum TargetPart
 }
 
 public enum TriggerEvent {
-    settlement = 4,         //结算
+    dealPoker = 2,          //要牌
+    stopPoker,              //停牌后
+    settlementBefore,       //结算前
     transformAttribute,     //属性转化
+    attackBefore,           //普通攻击前
+    attackAfter,            //普通攻击后
+    magicAfter,             //魔法攻击后
+    settlementAfter,        //结算后
+    other = 100,            //其他
 }
 
 

@@ -1,4 +1,4 @@
-//�ƶ�
+//
 using Pb;
 using System.Collections.Generic;
 using Unity.Collections.LowLevel.Unsafe;
@@ -145,6 +145,7 @@ public class FightPokerMgr : Singleton<FightPokerMgr>
                 {
                     IUser user = this.getUserPlaying();
                     this.setUserState(user, UserState.end);
+                    this._gameFlow.stopPokerAfter(new StopPokerAfterPara(this._players, user));
                     GameMessage.Instance.addMsg(GameConst.STOPDEALPOKER, user);
                     GameMessage.Instance.addMsg(GameConst.FIGHTFLOWSTATE, FightFlowState.turnPlayer);
                 }

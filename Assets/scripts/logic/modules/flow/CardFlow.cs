@@ -23,22 +23,28 @@ public class CardFlow : GameFlowObject
     override
     protected void _addCardAfter(IAddCardAfterPara para)
     {
-        CardMgr.Instance.cardHandleTypeHandle(para.getUsers(), false, CardHandleType.addNewCardAfter);
-        CardMgr.Instance.cardHandleTypeHandle(para.getUsers(), true, CardHandleType.addNewCardAfter);
+        this.execCardHandle(para.getUsers(), false, CardHandleType.addNewCardAfter);
+        this.execCardHandle(para.getUsers(), true, CardHandleType.addNewCardAfter);
     }
 
     override
     protected void _handPokerAfter(IHandPokerAfterPara para)
     {
-        CardMgr.Instance.cardHandleTypeHandle(para.getUsers(), false, CardHandleType.handPokerAfter);
-        CardMgr.Instance.cardHandleTypeHandle(para.getUsers(), true, CardHandleType.handPokerAfter);
+        this.execCardHandle(para.getUsers(), false, CardHandleType.handPokerAfter);
+        this.execCardHandle(para.getUsers(), true, CardHandleType.handPokerAfter);
     }
 
 
     override
     protected void _dealPokerAfter(IDealPokerAfterPara para)
     {
-        CardMgr.Instance.cardHandleTypeHandle(para.getUsers(), !para.getUser().isNpc(), CardHandleType.dealPokerAfter);
+        this.execCardHandle(para.getUsers(), !para.getUser().isNpc(), CardHandleType.dealPokerAfter);
+    }
+
+    override
+    protected void _stopPokerAfter(IStopPokerAfterPara para)
+    {
+        this.execCardHandle(para.getUsers(), para.getUser().isNpc(), CardHandleType.stopPokerAfter);
     }
 
     override
@@ -96,5 +102,14 @@ public class CardFlow : GameFlowObject
         handlePara.setUser(attackUser);
         handlePara.setAttackUser(attackUser);
         handlePara.setDefenseUser(defenseUser);
+    }
+
+    private void execCardHandle(List<IUser> users,bool isNpc, CardHandleType type) {
+        ITriggerHandlePara handlePara = new TriggerHandleParaObject();
+        handlePara.setGameSettlePara(new GameSettlePara(users, -1, false));
+        handlePara.setRoundResult(new RoundResultObject());
+
+        this.setTriggerHandleParaUser(handlePara, isNpc ? 0 : 1);
+        CardMgr.Instance.handle(handlePara, type);
     }
 }

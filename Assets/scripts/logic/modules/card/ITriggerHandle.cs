@@ -7,7 +7,9 @@ public interface ITriggerHandle
     public bool handPokerAfterHandle(ITriggerHandlePara para);
 
     public bool dealPokerAfterHandle(ITriggerHandlePara para);
- 
+
+    public bool stopPokerAfterHandle(ITriggerHandlePara para);
+
     public bool roundBeginBeforeHandle(ITriggerHandlePara para);
 
     public bool roundBeginHandle(ITriggerHandlePara para);

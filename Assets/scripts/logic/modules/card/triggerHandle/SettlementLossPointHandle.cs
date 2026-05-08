@@ -3,7 +3,7 @@ using System.Collections.Generic;
 public class SettlementLossPointHandle : TriggerHandleObject
 {
     protected override TriggerEvent _getTrigger() {
-        return TriggerEvent.settlement;
+        return TriggerEvent.settlementBefore;
     }
 
     protected override bool _roundBeginBeforeHandle(ITriggerHandlePara para)
