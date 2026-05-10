@@ -44,6 +44,6 @@ public class SettlementAfterHandle : TriggerHandleObject
 
     private float getBloodFunc(ITriggerHandlePara para)
     {
-        return para.getUser().getBlood() / para.getUser().getMaxBlood() * 100.0f;
+        return para.getAttackUser().getBlood() / para.getAttackUser().getMaxBlood() * 100.0f;
     }
 }

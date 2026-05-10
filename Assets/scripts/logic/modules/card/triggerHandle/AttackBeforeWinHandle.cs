@@ -44,10 +44,10 @@ public class AttackBeforeWinHandle : TriggerHandleObject
     }
 
     private float getDefenseFunc(ITriggerHandlePara para) {
-        return para.getUser().getDefense();
+        return para.getAttackUser().getDefense();
     }
 
     private float getMagicFunc(ITriggerHandlePara para) {
-        return para.getUser().getMagic();
+        return para.getAttackUser().getMagic();
     }
 }

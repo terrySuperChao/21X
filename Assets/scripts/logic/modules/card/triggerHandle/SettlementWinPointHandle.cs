@@ -15,7 +15,7 @@ public class SettlementWinPointHandle : TriggerHandleObject
             return false;
         }
 
-        float point = (float)FightPokerMgr.Instance.getUserHandPokerPoint(para.getUser(), false);
+        float point = (float)FightPokerMgr.Instance.getUserHandPokerPoint(para.getAttackUser(), false);
         string compareStr = logic.Replace(str, "");
         return this.compareLogic(compareStr,point);
     }

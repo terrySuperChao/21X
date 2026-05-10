@@ -1,3 +1,4 @@
+//削减目标 4/7 点护甲
 public class SubArmorHandle : BaseEffectHandleObject
 {
     protected override string _getActionGenre() {

@@ -1,30 +1,40 @@
 //
 using System.Collections.Generic;
+using static UnityEngine.UIElements.UxmlAttributeDescription;
 
 public class CardFlow : GameFlowObject
 {
     private IAttackSettle _pokerSettle = null;
     private IAttackSettle _attackSettle = null;
     private IAttackSettle _specialSettle = null;
+    private ITriggerHandlePara _handlePara = null;
 
     public  CardFlow()
     {
         this._pokerSettle = new PokerSettle();
         this._attackSettle = new AttackSettle();
         this._specialSettle = new SpecialSettle();
+        this._handlePara = new TriggerHandleParaObject();
     }
 
     override
     protected void _gameBegin(IGameBeginPara para)
     {
-
+        ITriggerHandlePara handlePara = this._handlePara;
+        foreach (IUser user in para.getUsers()) {
+            handlePara.addRoundResult(new RoundResultObject(user));
+        }
+        handlePara.setGameSettlePara(new GameSettlePara(para.getUsers(), -1, false));
     }
 
     override
     protected void _addCardAfter(IAddCardAfterPara para)
     {
-        this.execCardHandle(para.getUsers(), false, TriggerEvent.initPokerBefore);
-        this.execCardHandle(para.getUsers(), true, TriggerEvent.initPokerBefore);
+        ITriggerHandlePara handlePara = this._handlePara;
+        this.setTriggerHandleParaUser(handlePara,0);
+        SwitchParaMgr.Instance.handle(handlePara, () =>{
+            CardMgr.Instance.handle(handlePara, TriggerEvent.initPokerBefore);
+        });
     }
 
     override
@@ -36,22 +46,24 @@ public class CardFlow : GameFlowObject
     override
     protected void _dealPokerAfter(IDealPokerAfterPara para)
     {
-        this.execCardHandle(para.getUsers(), !para.getUser().isNpc(), TriggerEvent.dealPokerAfter);
+        ITriggerHandlePara handlePara = this._handlePara;
+        this.setTriggerHandleParaUser(handlePara, para.getUser().isNpc() ? 0 : 1);
+        CardMgr.Instance.handle(handlePara, TriggerEvent.initPokerBefore);
     }
 
     override
     protected void _stopPokerAfter(IStopPokerAfterPara para)
     {
-        this.execCardHandle(para.getUsers(), para.getUser().isNpc(), TriggerEvent.stopPokerAfter);
+        ITriggerHandlePara handlePara = this._handlePara;
+        this.setTriggerHandleParaUser(handlePara, para.getUser().isNpc() ? 0 :1);
+        CardMgr.Instance.handle(handlePara, TriggerEvent.stopPokerAfter);
     }
 
     override
     protected bool _gameSettle(IGameSettlePara para) {
-        ITriggerHandlePara handlePara = new TriggerHandleParaObject();
-        handlePara.setGameSettlePara(para);
-        handlePara.setRoundResult(new RoundResultObject());
+        ITriggerHandlePara handlePara = this._handlePara;
 
-        //npc
+        //行动前
         this.setTriggerHandleParaUser(handlePara, 0);
         SwitchParaMgr.Instance.handle(handlePara, () =>{
             CardMgr.Instance.handle(handlePara, TriggerEvent.settlementBefore);
@@ -60,6 +72,10 @@ public class CardFlow : GameFlowObject
         int winIndex = para.getWinIndex();
         if (winIndex != -1) //非平局
         {
+            //关键数据
+            handlePara.getGameSettlePara().setWinIndex(para.getWinIndex());
+            handlePara.getGameSettlePara().setBlackJack(para.isBlackJack());
+
             //wins
             this.setTriggerHandleParaUser(handlePara, winIndex);
             CardMgr.Instance.handle(handlePara, TriggerEvent.roundAttackBefore);
@@ -71,9 +87,13 @@ public class CardFlow : GameFlowObject
             this._attackSettle.settle(handlePara);
         }
 
+        //行动后
         SwitchParaMgr.Instance.handle(handlePara, () => {
             CardMgr.Instance.handle(handlePara, TriggerEvent.roundAttackAfter);
         });
+
+        //
+        handlePara.reset();
         
         return handlePara.getAttackUser().getBlood() <= 0 ||
                handlePara.getDefenseUser().getBlood() <= 0;
@@ -90,14 +110,5 @@ public class CardFlow : GameFlowObject
         handlePara.setUser(attackUser);
         handlePara.setAttackUser(attackUser);
         handlePara.setDefenseUser(defenseUser);
-    }
-
-    private void execCardHandle(List<IUser> users,bool isNpc, TriggerEvent type) {
-        ITriggerHandlePara handlePara = new TriggerHandleParaObject();
-        handlePara.setGameSettlePara(new GameSettlePara(users, -1, false));
-        handlePara.setRoundResult(new RoundResultObject());
-
-        this.setTriggerHandleParaUser(handlePara, isNpc ? 0 : 1);
-        CardMgr.Instance.handle(handlePara, type);
     }
 }

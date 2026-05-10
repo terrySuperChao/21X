@@ -18,7 +18,7 @@ public class DealPokerAfterHandle : TriggerHandleObject
             return false;
         }
 
-        string userId = para.getUser().getUserId();
+        string userId = para.getAttackUser().getUserId();
         if (!this._dic.ContainsKey(userId))
         {
             this._dic.Add(userId, 1);

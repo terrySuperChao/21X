@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+using Pb;
 
 public class AttackSettle: IAttackSettle
 {
@@ -10,18 +9,20 @@ public class AttackSettle: IAttackSettle
 
     //普通攻击
     private void commonAttack(ITriggerHandlePara para) {
+        IRoundResult roundResult = para.getRoundResult(para.getAttackUser());
+        if (roundResult == null)
+        {
+            return;
+        }
+
         IUser attackUser = para.getAttackUser();
         IUser defenseUser = para.getDefenseUser();
-        IRoundResult roundResult = para.getRoundResult();
-
         float attack = attackUser.getAttack();
         if (attack <= 0)
         {
             return;
         }
-
-        attackUser.setAttack(roundResult.getSaveAttackValue());
-        para.setUser(attackUser);
+        roundResult.addHurtValue(attack);
         
         IUICommonPara attackPara = new UICommonParaObject(attackUser, ValueType.attack, attack, attackUser.getAttack());
         GameMessage.Instance.addMsg(GameConst.COMMONATTACK, attackPara);
@@ -36,23 +37,34 @@ public class AttackSettle: IAttackSettle
 
     //魔法攻击
     public void magicAttack(ITriggerHandlePara para) {
-        IUser attackUser = para.getAttackUser();
-        IUser defenseUser = para.getDefenseUser();
-        IRoundResult roundResult = para.getRoundResult();
-        if (defenseUser.getBlood() < 0 || attackUser.getMagic() < attackUser.getMaxMagic())
+        IRoundResult roundResult = para.getRoundResult(para.getAttackUser());
+        if (roundResult == null)
         {
             return;
         }
 
-        attackUser.setMagic(roundResult.getSaveMagicValue());
-        para.setUser(attackUser);
+        //添加魔法
+        AssetInfo info = FightPokerMgr.Instance.getAssetInfo(para.getAttackUser());
+        if (info == null)
+        {
+            return;
+        }
+        roundResult.addMagicValue(para.getAttackUser().getMagic() - info.Magic);
+
+        float attack = 50.0f;
+        IUser attackUser = para.getAttackUser();
+        IUser defenseUser = para.getDefenseUser();
+        if (defenseUser.getBlood() < 0 || attackUser.getMagic() < attackUser.getMaxMagic()){
+            return;
+        }
+        roundResult.addHurtValue(attack);
 
         IUICommonPara attackPara = new UICommonParaObject(attackUser, ValueType.magic, attackUser.getMaxMagic(), attackUser.getMagic());
         GameMessage.Instance.addMsg(GameConst.COMMONATTACK, attackPara);
         CardMgr.Instance.handle(para, TriggerEvent.magicAttackAfter);
 
         //减去50血量
-        this.setDefenseUserBlood(para, 50.0f);
+        this.setDefenseUserBlood(para, attack);
 
         //魔法攻击
         para.setMagicAttack(true);
@@ -86,7 +98,7 @@ public class AttackSettle: IAttackSettle
     private float getRemainAttack(ITriggerHandlePara para,float attack) {
         IUser attackUser = para.getAttackUser();
         IUser defenseUser = para.getDefenseUser();
-        IRoundResult roundResult = para.getRoundResult();
+        IRoundResult roundResult = para.getRoundResult(para.getUser());
 
         //
         if (roundResult.getPenetrateValue() != 0)

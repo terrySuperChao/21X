@@ -1,3 +1,4 @@
+//下次攻击额外造成 20%/50% 的伤害
 public class MultATKHandle : BaseEffectHandleObject
 {
     protected override string _getActionGenre() {

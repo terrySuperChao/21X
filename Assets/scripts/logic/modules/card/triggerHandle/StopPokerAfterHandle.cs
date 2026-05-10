@@ -33,7 +33,7 @@ public class StopPokerAfterHandle : TriggerHandleObject
             return false;
         }
 
-        float point = (float)FightPokerMgr.Instance.getUserHandPokerPoint(para.getUser(), false);
+        float point = (float)FightPokerMgr.Instance.getUserHandPokerPoint(para.getAttackUser(), false);
         if (points[0] <= point && points[1] >= point) {
             return true;
         }

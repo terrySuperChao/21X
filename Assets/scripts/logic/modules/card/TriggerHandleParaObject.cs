@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 public class TriggerHandleParaObject : ITriggerHandlePara
 {
     private IAssembleCard _card = null;
@@ -7,8 +9,8 @@ public class TriggerHandleParaObject : ITriggerHandlePara
     private IPoker _poker = null;
     private bool _isMagicAttack = false;
     private float _baseValue = -1;
-    private IRoundResult _roundResult = null;
-    private IGameSettlePara gameSettlePara = null;
+    private List<IRoundResult> _roundResults = new List<IRoundResult>();
+    private IGameSettlePara _gameSettlePara = null;
 
     public TriggerHandleParaObject()
     {
@@ -61,11 +63,15 @@ public class TriggerHandleParaObject : ITriggerHandlePara
         return this._isMagicAttack;
     }
 
-    public IRoundResult getRoundResult() {
-        return _roundResult;
+    public IRoundResult getRoundResult(IUser user) {
+        return this._roundResults.Find(res => res.getUser() == user);
     }
-    public void setRoundResult(IRoundResult value) {
-        _roundResult = value;
+
+    public void addRoundResult(IRoundResult value) {
+        int index = this._roundResults.FindIndex(res => res.getUser() == value.getUser());
+        if (index == -1) {
+            this._roundResults.Add(value);
+        }
     }
 
     public IAssembleCard getAssembleCard()
@@ -77,9 +83,18 @@ public class TriggerHandleParaObject : ITriggerHandlePara
     }
 
     public void setGameSettlePara(IGameSettlePara para) {
-        this.gameSettlePara = para;
+        this._gameSettlePara = para;
     }
     public IGameSettlePara getGameSettlePara() {
-        return this.gameSettlePara;
+        return this._gameSettlePara;
+    }
+    public void reset() {
+        if (this._gameSettlePara != null) {
+            this._gameSettlePara.reset();
+        }
+        
+        foreach (IRoundResult result in this._roundResults){
+            result.reset();
+        }
     }
 }

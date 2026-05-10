@@ -12,10 +12,11 @@ public class FightPokerMgr : Singleton<FightPokerMgr>
     private IGameFlow _gameFlow = new CardFlow();
 
     public void init() {
-        this._gameFlow = new CardFlow();
         this._players = new List<IUser>();
         this.newUser(FightDealType.npc);
         this.newUser(FightDealType.player);
+        this._gameFlow = new CardFlow();
+        this._gameFlow.gameBegin(new GameBeginPara(this._players));
     }
 
     private void newUser(FightDealType type) {
@@ -32,7 +33,7 @@ public class FightPokerMgr : Singleton<FightPokerMgr>
     }
 
     private void saveUser(IUser user) {
-        AssetInfo info = FightDataMgr.Instance.getAssetInfo(this.getDealType(user));
+        AssetInfo info = this.getAssetInfo(user);
         info.Hp = user.getBlood();
         info.MaxHP = user.getMaxBlood();
         info.Magic = user.getMagic();
@@ -40,6 +41,10 @@ public class FightPokerMgr : Singleton<FightPokerMgr>
         info.Attack = user.getAttack();
         info.Defense = user.getDefense();
         info.State = (int)user.getState();
+    }
+
+    public AssetInfo getAssetInfo(IUser user) {
+        return FightDataMgr.Instance.getAssetInfo(this.getDealType(user));
     }
 
     public List<IUser> getPlayers()

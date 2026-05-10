@@ -1,3 +1,4 @@
+//获得 2/4 点真实伤害
 public class AddTrueDMGHandle : BaseEffectHandleObject
 {
     protected override string _getActionGenre() {
@@ -17,6 +18,7 @@ public class AddTrueDMGHandle : BaseEffectHandleObject
             blood = 0;
         }
         defenseUser.setBlood(blood);
+        para.getRoundResult(para.getAttackUser()).addHurtValue(addValue);
 
         string desc = para.getAssembleCard().getBaseEffect().getDesc();
         string text = desc.Replace("%s", addValue.ToString());

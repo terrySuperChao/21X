@@ -42,7 +42,7 @@ public class TransformAttributeRatioHandle : TriggerHandleObject
             return false;
         }
         
-        List<IPoker> pokers = FightPokerMgr.Instance.getUsetHandPoker(para.getUser());
+        List<IPoker> pokers = FightPokerMgr.Instance.getUsetHandPoker(para.getAttackUser());
         if (pokers == null ||
             pokers.Count == 0 ||
             pokers[pokers.Count - 1] != para.getPoker()) {

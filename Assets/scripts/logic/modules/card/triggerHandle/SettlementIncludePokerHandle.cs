@@ -46,7 +46,7 @@ public class SettlementIncludePokerHandle : TriggerHandleObject
             return false;
         }
 
-        List<IPoker> pokers = FightPokerMgr.Instance.getUsetHandPoker(para.getUser());
+        List<IPoker> pokers = FightPokerMgr.Instance.getUsetHandPoker(para.getAttackUser());
         int index = pokers.FindIndex(poker => poker.getRank() == rank);
         return index != -1;
     }

@@ -1,5 +1,4 @@
 using System;
-using System.Reflection;
 using System.Collections.Generic;
 
 public class RoundOtherHandle : TriggerHandleObject
@@ -14,7 +13,8 @@ public class RoundOtherHandle : TriggerHandleObject
         UnityEngine.Debug.Log("Attack Before Loss Handle");
 
         if (this._dic.Count == 0) {
-            this._dic.Add("单次造成伤害", this.getAttackValue);
+            this._dic.Add("单次造成伤害", this.getHurtValue);
+            this._dic.Add("本轮获得法力值", this.getMagicValue);
         }
 
         string keystr = "";
@@ -41,7 +41,11 @@ public class RoundOtherHandle : TriggerHandleObject
         return this.compareLogic(compareStr,number);
     }
 
-    private float getAttackValue(ITriggerHandlePara para) {
-        return para.getRoundResult().getSaveAttackValue();
+    private float getHurtValue(ITriggerHandlePara para) {
+        return para.getRoundResult(para.getAttackUser()).getHurtVaule();
+    }
+
+    private float getMagicValue(ITriggerHandlePara para) {
+        return para.getRoundResult(para.getAttackUser()).getMagicValue();
     }
 }

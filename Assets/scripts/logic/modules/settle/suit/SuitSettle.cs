@@ -14,7 +14,7 @@ public class SuitSettle : ISuitSettle
             return;
         }
 
-        float attrMult = para.getRoundResult().getAttributeMult();
+        float attrMult = para.getRoundResult(para.getAttackUser()).getAttributeMult();
         float addValue = baseValue * attrMult * this._getMult();
         float finalValue = this._getFinalValue(para.getAttackUser(), addValue);
         string text = "+" + (baseValue * this._getMult()) + (attrMult > 1.0f ? " X " + attrMult : "");

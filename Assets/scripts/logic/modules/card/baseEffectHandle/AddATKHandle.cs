@@ -1,3 +1,4 @@
+//获得 3/5 点攻击力
 public class AddATKHandle : BaseEffectHandleObject
 {
     protected override string _getActionGenre() {

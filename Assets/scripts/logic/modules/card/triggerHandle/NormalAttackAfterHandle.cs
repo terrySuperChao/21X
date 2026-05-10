@@ -19,11 +19,11 @@ public class NormalAttackAfterHandle : TriggerHandleObject
             //0:npc 1:player
             if (para.getGameSettlePara().getWinIndex() == 0)
             {
-                return !para.getUser().isNpc();
+                return !para.getAttackUser().isNpc();
             }
             else
             {
-                return para.getUser().isNpc();
+                return para.getAttackUser().isNpc();
             }
         }
     }

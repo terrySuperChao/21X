@@ -75,8 +75,21 @@ public class GameSettlePara : GameFlowPara, IGameSettlePara
     {
         return this._winIndex;
     }
+
+    public void setWinIndex(int winIndex) {
+        this._winIndex = winIndex;
+    }
+
     public bool isBlackJack() {
         return this._isBlackJack;
+    }
+
+    public void setBlackJack(bool blackJack) {
+        this._isBlackJack = blackJack;
+    }
+    public void reset() {
+        this._winIndex = -1;
+        this._isBlackJack = false;
     }
 }
 
