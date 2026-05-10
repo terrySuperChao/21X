@@ -5,10 +5,10 @@ using System.Collections.Generic;
 public class MagicAttackAfterHandle : TriggerHandleObject
 {
     protected override TriggerEvent _getTrigger() {
-        return TriggerEvent.magicAfter;
+        return TriggerEvent.magicAttackAfter;
     }
 
-    protected override bool _roundAttackHandle(ITriggerHandlePara para)
+    protected override bool _magicAttackAfterHandle(ITriggerHandlePara para)
     {
         UnityEngine.Debug.Log("Attack After Win Handle");
         string logic = para.getAssembleCard().getTrigger().getLogic();

@@ -5,7 +5,7 @@ public class DealPokerAfterHandle : TriggerHandleObject
 {
     private Dictionary<string, int> _dic = new Dictionary<string, int>();
     protected override TriggerEvent _getTrigger() {
-        return TriggerEvent.dealPoker;
+        return TriggerEvent.dealPokerAfter;
     }
 
     protected override bool _dealPokerAfterHandle(ITriggerHandlePara para)
@@ -31,12 +31,12 @@ public class DealPokerAfterHandle : TriggerHandleObject
         return this.compareLogic(compareStr, this._dic[userId]);
     }
 
-    protected override bool _roundBeginBeforeHandle(ITriggerHandlePara para)
+    protected override bool _settlementBeforeHandle(ITriggerHandlePara para)
     {
         foreach (var key in this._dic.Keys)
         {
             this._dic[key] = 0;
         }
-        return base._roundBeginBeforeHandle(para); 
+        return base._settlementBeforeHandle(para); 
     }
 }

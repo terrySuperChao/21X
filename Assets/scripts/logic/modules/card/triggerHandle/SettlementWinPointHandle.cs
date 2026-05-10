@@ -6,7 +6,7 @@ public class SettlementWinPointHandle : TriggerHandleObject
         return TriggerEvent.settlementBefore;
     }
 
-    protected override bool _roundBeginHandle(ITriggerHandlePara para)
+    protected override bool _settlementBeforeHandle(ITriggerHandlePara para)
     {
         UnityEngine.Debug.Log("Settlement Point handle");
         string logic = para.getAssembleCard().getTrigger().getLogic();

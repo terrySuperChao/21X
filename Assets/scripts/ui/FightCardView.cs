@@ -249,9 +249,7 @@ public class FightCardView : MonoBehaviour
 
     private void gameOver(params System.Object[] obj)
     {
-        GameReqMgr.Instance.requestSavePlayerInfo();
-        GameReqMgr.Instance.requestExitPage();
-        EventDispatcher.Instance.emit("returnToLobby");
+        GameReqMgr.Instance.requestGameOver();
         GameMessage.Instance.setHandleMessageComplete();
     }
 

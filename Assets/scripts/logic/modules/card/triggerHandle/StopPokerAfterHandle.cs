@@ -4,7 +4,7 @@ using System.Collections.Generic;
 public class StopPokerAfterHandle : TriggerHandleObject
 {
     protected override TriggerEvent _getTrigger() {
-        return TriggerEvent.stopPoker;
+        return TriggerEvent.stopPokerAfter;
     }
 
     protected override bool _stopPokerAfterHandle(ITriggerHandlePara para)
@@ -18,7 +18,7 @@ public class StopPokerAfterHandle : TriggerHandleObject
             return false;
         }
 
-        MatchCollection matches = Regex.Matches(input, @"\d+");
+        MatchCollection matches = Regex.Matches(logic, @"\d+");
         if (matches.Count != 2)
         {
             return false;

@@ -130,7 +130,7 @@ public enum CardHandleType {
     handPokerAfter,
     dealPokerAfter,
     stopPokerAfter,
-    roundBeginBefore,
+    settlementBefore,
     roundBegin,
     roundAddValueBefore,
     roundAddValue,
@@ -143,6 +143,7 @@ public enum CardHandleType {
     roundSubBlood,
     roundAttackAfter,
     roundEnd,
+    settlementAfter,
 }
 
 public enum ValueType { 
@@ -173,12 +174,12 @@ public enum GameState {
 }
 
 public enum BarrierState { 
-    startPoker,  //��ʼ��
-    dragPoker,   //����
-    matchPoker,  //ƥ����
-    dealPoker,   //����
-    stopPoker,   //ͣ��
-    fillPoker,   //����
+    startPoker,  //
+    dragPoker,   //
+    matchPoker,  //
+    dealPoker,   //
+    stopPoker,   //
+    fillPoker,   //
 }
 
 public enum BarrierDealType
@@ -224,17 +225,15 @@ public enum TargetPart
 }
 
 public enum TriggerEvent {
-    dealPoker = 2,          //要牌
-    stopPoker,              //停牌后
-    settlementBefore,       //结算前
+    initPokerBefore,        //发牌前
+    dealPokerBefore,        //要牌前
+    dealPokerAfter,         //要牌后
+    stopPokerAfter,         //停牌后
+    settlementBefore,       //牌局结算前
     transformAttribute,     //属性转化
-    attackBefore,           //普通攻击前
-    attackAfter,            //普通攻击后
-    magicAfter,             //魔法攻击后
-    settlementAfter,        //结算后
-    other = 100,            //其他
+    roundAttackBefore,      //开始行动前
+    normalAttackAfter,      //普通攻击后
+    magicAttackAfter,       //魔法攻击后
+    roundAttackAfter,       //结束行动后
+    roundOther = 100,       //其他
 }
-
-
-
-

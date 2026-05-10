@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 
 public class AttackSettle: IAttackSettle
@@ -24,10 +25,13 @@ public class AttackSettle: IAttackSettle
         
         IUICommonPara attackPara = new UICommonParaObject(attackUser, ValueType.attack, attack, attackUser.getAttack());
         GameMessage.Instance.addMsg(GameConst.COMMONATTACK, attackPara);
-        CardMgr.Instance.handle(para, CardHandleType.roundAttack);
 
         float remainAttack = this.getRemainAttack(para, attack);
         this.setDefenseUserBlood(para, remainAttack);
+
+        SwitchParaMgr.Instance.handle(para, () => {
+            CardMgr.Instance.handle(para, TriggerEvent.normalAttackAfter);
+        }, true);
     }
 
     //魔法攻击
@@ -45,7 +49,7 @@ public class AttackSettle: IAttackSettle
 
         IUICommonPara attackPara = new UICommonParaObject(attackUser, ValueType.magic, attackUser.getMaxMagic(), attackUser.getMagic());
         GameMessage.Instance.addMsg(GameConst.COMMONATTACK, attackPara);
-        CardMgr.Instance.handle(para, CardHandleType.roundMagicAttack);
+        CardMgr.Instance.handle(para, TriggerEvent.magicAttackAfter);
 
         //减去50血量
         this.setDefenseUserBlood(para, 50.0f);
@@ -76,7 +80,6 @@ public class AttackSettle: IAttackSettle
 
         IUICommonPara attackPara = new UICommonParaObject(defenseUser, ValueType.blood, -bloodValue, defenseUser.getBlood());
         GameMessage.Instance.addMsg(GameConst.ADDCARDVALUE, attackPara);
-        CardMgr.Instance.handle(handlePara, CardHandleType.roundSubBlood);
     }
 
     //
@@ -115,8 +118,7 @@ public class AttackSettle: IAttackSettle
 
         IUICommonPara attackPara = new UICommonParaObject(defenseUser, ValueType.defense, -defenseValue, defenseUser.getDefense());
         GameMessage.Instance.addMsg(GameConst.ADDCARDVALUE, attackPara);
-        CardMgr.Instance.handle(para, CardHandleType.roundSubDefense);
-
+        
         return attack;
     }
     

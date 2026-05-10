@@ -1,6 +1,5 @@
 using System;
 using System.Text.RegularExpressions;
-using Google.Protobuf.WellKnownTypes;
 
 public abstract class TriggerHandleObject : ITriggerHandle
 {
@@ -8,89 +7,50 @@ public abstract class TriggerHandleObject : ITriggerHandle
         return this._getTrigger();
     }
 
-    public bool addNewCardAfterHandle(ITriggerHandlePara para)
-    {
-        return this._addNewCardAfterHandle(para);
+    public bool initPokerBeforeHandle(ITriggerHandlePara para) {
+        return this._initPokerBeforeHandle(para);
     }
 
-    public bool handPokerAfterHandle(ITriggerHandlePara para)
-    {
-        return this._handPokerAfterHandle(para);
+    public bool dealPokerBeforeHandle(ITriggerHandlePara para) {
+        return this._dealPokerBeforeHandle(para);
     }
 
-    public bool dealPokerAfterHandle(ITriggerHandlePara para)
-    {
+    public bool dealPokerAfterHandle(ITriggerHandlePara para) {
         return this._dealPokerAfterHandle(para);
     }
 
-    public bool stopPokerAfterHandle(ITriggerHandlePara para)
-    {
-        return _stopPokerAfterHandle(para);
+    public bool stopPokerAfterHandle(ITriggerHandlePara para) {
+        return this._stopPokerAfterHandle(para);
     }
 
-    public bool roundBeginBeforeHandle(ITriggerHandlePara para) {
-        return this._roundBeginBeforeHandle(para);
+    public bool settlementBeforeHandle(ITriggerHandlePara para) {
+        return this._settlementBeforeHandle(para);
     }
 
-    public bool roundBeginHandle(ITriggerHandlePara para)
-    {
-        return this._roundBeginHandle(para);
-    }
-  
-    public bool roundAddValueBeforeHandle(ITriggerHandlePara para)
-    {
-        return this._roundAddValueBeforeHandle(para);
+    public bool transformAttributeHandle(ITriggerHandlePara para) {
+        return this._transformAttributeHandle(para);
     }
 
-    public bool roundAddValueHandle(ITriggerHandlePara para)
-    {
-        return this._roundAddValueHandle(para);
-    }
-
-    public bool roundAddMagicHandle(ITriggerHandlePara para)
-    {
-        return this._roundAddMagicHandle(para);
-    }
-
-    public bool roundSpecialAttrHandle(ITriggerHandlePara para)
-    {
-        return this._roundSpecialAttrHandle(para);
-    }
-    
-    public bool roundAttackBeforeHandle(ITriggerHandlePara para)
-    {
+    public bool roundAttackBeforeHandle(ITriggerHandlePara para) {
         return this._roundAttackBeforeHandle(para);
     }
 
-    public bool roundAttackHandle(ITriggerHandlePara para)
-    {
-        return this._roundAttackHandle(para);
+    public bool normalAttackAfterHandle(ITriggerHandlePara para) {
+        return this._normalAttackAfterHandle(para);
     }
 
-    public bool roundMagicAttackHandle(ITriggerHandlePara para)
-    {
-        return this._roundMagicAttackHandle(para);
+    public bool magicAttackAfterHandle(ITriggerHandlePara para){
+        return this._magicAttackAfterHandle(para);
     }
 
-    public bool roundSubDefenseHandle(ITriggerHandlePara para)
-    {
-        return this._roundSubDefenseHandle(para);
-    }
-
-    public bool roundSubBloodHandle(ITriggerHandlePara para)
-    {
-        return this._roundSubBloodHandle(para);
-    }
-
-    public bool roundAttackAfterHandle(ITriggerHandlePara para)
-    {
+    public bool roundAttackAfterHandle(ITriggerHandlePara para) {
         return this._roundAttackAfterHandle(para);
     }
-    
-    public bool roundEndHandle(ITriggerHandlePara para)
-    {
-        return this._roundEndHandle(para);
+
+    public bool roundOtherHandle(ITriggerHandlePara para) {
+        return this._roundOtherHandle(para);
     }
+
 
     protected float getNumberDigits(float number)
     {
@@ -151,23 +111,16 @@ public abstract class TriggerHandleObject : ITriggerHandle
     }
 
     protected virtual TriggerEvent _getTrigger() { return 0; }
-    protected virtual bool _addNewCardAfterHandle(ITriggerHandlePara para) { return false; }
-    protected virtual bool _handPokerAfterHandle(ITriggerHandlePara para) { return false; }
+
+    protected virtual bool _initPokerBeforeHandle(ITriggerHandlePara para) { return false; }
+    protected virtual bool _dealPokerBeforeHandle(ITriggerHandlePara para) { return false; }
     protected virtual bool _dealPokerAfterHandle(ITriggerHandlePara para) { return false; }
     protected virtual bool _stopPokerAfterHandle(ITriggerHandlePara para) { return false; }
-    protected virtual bool _roundBeginBeforeHandle(ITriggerHandlePara para) { return false; }
-    protected virtual bool _roundBeginHandle(ITriggerHandlePara para) { return false; }
-    protected virtual bool _roundAddValueBeforeHandle(ITriggerHandlePara para) { return false; }
-    protected virtual bool _roundAddValueHandle(ITriggerHandlePara para) { return false; }
-    protected virtual bool _roundAddMagicHandle(ITriggerHandlePara para) { return false; }
-    protected virtual bool _roundSpecialAttrHandle(ITriggerHandlePara para) { return false; }
+    protected virtual bool _settlementBeforeHandle(ITriggerHandlePara para) { return false; }
+    protected virtual bool _transformAttributeHandle(ITriggerHandlePara para) { return false; }
     protected virtual bool _roundAttackBeforeHandle(ITriggerHandlePara para) { return false; }
-    protected virtual bool _roundAttackHandle(ITriggerHandlePara para) { return false; }
-    protected virtual bool _roundMagicAttackHandle(ITriggerHandlePara para) { return false; }
-    protected virtual bool _roundSubDefenseHandle(ITriggerHandlePara para) { return false; }
-    protected virtual bool _roundSubBloodHandle(ITriggerHandlePara para) { return false; }
+    protected virtual bool _normalAttackAfterHandle(ITriggerHandlePara para) { return false; }
+    protected virtual bool _magicAttackAfterHandle(ITriggerHandlePara para) { return false; }
     protected virtual bool _roundAttackAfterHandle(ITriggerHandlePara para) { return false; }
-    protected virtual bool _roundEndHandle(ITriggerHandlePara para) { return false; }
-
-    
+    protected virtual bool _roundOtherHandle(ITriggerHandlePara para) { return false; }
 }

@@ -6,7 +6,7 @@ public class SettlementLossPointHandle : TriggerHandleObject
         return TriggerEvent.settlementBefore;
     }
 
-    protected override bool _roundBeginBeforeHandle(ITriggerHandlePara para)
+    protected override bool _settlementBeforeHandle(ITriggerHandlePara para)
     {
         UnityEngine.Debug.Log("Settlement loss Point handle");
         string logic = para.getAssembleCard().getTrigger().getLogic();

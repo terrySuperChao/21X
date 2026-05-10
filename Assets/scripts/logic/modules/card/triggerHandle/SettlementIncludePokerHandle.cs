@@ -22,7 +22,7 @@ public class SettlementIncludePokerHandle : TriggerHandleObject
         return TriggerEvent.settlementBefore;
     }
 
-    protected override bool _roundBeginHandle(ITriggerHandlePara para)
+    protected override bool _roundAttackBeforeHandle(ITriggerHandlePara para)
     {
         UnityEngine.Debug.Log("Settlement include poker handle");
         string logic = para.getAssembleCard().getTrigger().getLogic();

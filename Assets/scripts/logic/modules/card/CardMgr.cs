@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Reflection;
+using Pb;
 
 public class CardMgr: Singleton<CardMgr>
 {
@@ -109,7 +110,7 @@ public class CardMgr: Singleton<CardMgr>
     }
 
     //
-    public void handle(ITriggerHandlePara para, CardHandleType type) {
+    public void handle(ITriggerHandlePara para, TriggerEvent type) {
         List<IAssembleCard> cards = ImprintDataMgr.Instance.getAssembleCard(para.getUser().isNpc());
         for (int i = 0; i < cards.Count; i++) {
             para.setAssembleCard(cards[i]);
@@ -122,7 +123,7 @@ public class CardMgr: Singleton<CardMgr>
             bool success = false;
             for (int j = 0; j < handles.Count; j++) { 
                 Type objType = handles[j].GetType();
-                string methodName = Enum.GetName(typeof(CardHandleType), type);
+                string methodName = Enum.GetName(typeof(TriggerEvent), type);
                 MethodInfo method = objType.GetMethod(methodName + "Handle");
                 object state = method?.Invoke(handles[j], new object[] { para });
 

@@ -33,12 +33,12 @@ public class FightPokerMgr : Singleton<FightPokerMgr>
 
     private void saveUser(IUser user) {
         AssetInfo info = FightDataMgr.Instance.getAssetInfo(this.getDealType(user));
-        info.Hp = (int)user.getBlood();
-        info.MaxHP = (int)user.getMaxBlood();
-        info.Magic = (int)user.getMagic();
-        info.MaxMagic = (int)user.getMaxMagic();
-        info.Attack = (int)user.getAttack();
-        info.Defense = (int)user.getDefense();
+        info.Hp = user.getBlood();
+        info.MaxHP = user.getMaxBlood();
+        info.Magic = user.getMagic();
+        info.MaxMagic = user.getMaxMagic();
+        info.Attack = user.getAttack();
+        info.Defense = user.getDefense();
         info.State = (int)user.getState();
     }
 
@@ -109,13 +109,16 @@ public class FightPokerMgr : Singleton<FightPokerMgr>
             case FightFlowState.turnPlayer:
                 {
                     IUser user = this._players.Find(user => user.getState() == UserState.none);
+                    if (user == null) {
+                        user = this._players.Find(user => user.getState() == UserState.idle);
+                    }
                     if (user != null)
                     {
                         this.setUserState(user, UserState.play);
                         GameMessage.Instance.addMsg(GameConst.TURNPLAYER, user);
                         GameMessage.Instance.addMsg(GameConst.FIGHTFLOWSTATE, FightFlowState.waitOperator);
 
-                        //���е���״̬
+                        //
                         IUser idleUser = this._players.Find(user => user.getState() == UserState.idle);
                         if (idleUser != null) {
                             this.setUserState(idleUser, UserState.none);
@@ -145,8 +148,9 @@ public class FightPokerMgr : Singleton<FightPokerMgr>
                 {
                     IUser user = this.getUserPlaying();
                     this.setUserState(user, UserState.end);
-                    this._gameFlow.stopPokerAfter(new StopPokerAfterPara(this._players, user));
                     GameMessage.Instance.addMsg(GameConst.STOPDEALPOKER, user);
+
+                    this._gameFlow.stopPokerAfter(new StopPokerAfterPara(this._players, user));
                     GameMessage.Instance.addMsg(GameConst.FIGHTFLOWSTATE, FightFlowState.turnPlayer);
                 }
                 break;
@@ -209,9 +213,10 @@ public class FightPokerMgr : Singleton<FightPokerMgr>
 
         bool isOver = this._gameFlow.gameSettle(new GameSettlePara(this._players, index, isBlackJack));
         if (isOver){
-            GameMessage.Instance.addMsg(GameConst.GAMEOVER);
             GameMessage.Instance.addMsg(GameConst.FIGHTFLOWSTATE, FightFlowState.fightOver);
-        }else {
+            GameMessage.Instance.addMsg(GameConst.GAMEOVER);
+        }
+        else {
             GameMessage.Instance.addMsg(GameConst.GAMECLEAR);
             GameMessage.Instance.addMsg(GameConst.FIGHTFLOWSTATE, FightFlowState.dealCard);
         }

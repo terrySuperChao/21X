@@ -2,11 +2,11 @@ using System;
 using System.Reflection;
 using System.Collections.Generic;
 
-public class OtherwiseHandle : TriggerHandleObject
+public class RoundOtherHandle : TriggerHandleObject
 {
     private Dictionary<string, Func<ITriggerHandlePara, float>> _dic = new Dictionary<string, Func<ITriggerHandlePara, float>>();
     protected override TriggerEvent _getTrigger() {
-        return TriggerEvent.other;
+        return TriggerEvent.roundOther;
     }
 
     protected override bool _roundAttackBeforeHandle(ITriggerHandlePara para)

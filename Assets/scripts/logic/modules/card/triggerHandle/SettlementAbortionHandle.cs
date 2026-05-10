@@ -6,20 +6,18 @@ public class SettlementAbortionHandle : TriggerHandleObject
         return TriggerEvent.settlementBefore;
     }
 
-    protected override bool _roundBeginBeforeHandle(ITriggerHandlePara para)
+    protected override bool _settlementBeforeHandle(ITriggerHandlePara para)
     {
         if (para.getGameSettlePara().getWinIndex() != -1) {
             return false;
         }
 
-        UnityEngine.Debug.Log("Settlement Point handle");
+        UnityEngine.Debug.Log("Settlement Abortion handle");
         string logic = para.getAssembleCard().getTrigger().getLogic();
         string str = "牌局平局";
-        if (logic.IndexOf(str) != 0)
-        {
+        if (logic.IndexOf(str) != 0){
             return false;
-        }
-        else {
+        }else {
             return true;
         }
     }

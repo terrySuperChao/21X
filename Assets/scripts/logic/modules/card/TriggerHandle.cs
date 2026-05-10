@@ -16,7 +16,7 @@ public class TriggerHandle
         new NormalAttackAfterHandle(),
         new MagicAttackAfterHandle(),
         new SettlementAfterHandle(),
-        new OtherwiseHandle(),
+        new RoundOtherHandle(),
     };
 
     public static List<ITriggerHandle> getTriggerHandle(ITriggerHandlePara para)

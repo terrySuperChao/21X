@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 public class AddATKHandle : BaseEffectHandleObject
 {
     protected override string _getActionGenre() {
@@ -11,7 +10,10 @@ public class AddATKHandle : BaseEffectHandleObject
         float addValue = this.getAddValue(para);
         float finalValue = para.getAttackUser().addAttack(addValue);
 
-        IUIFlyFontPara uiPara1 = new UIFlyFontParaObject(para.getAttackUser(), para.getAssembleCard(), "+" + addValue);
+        string desc = para.getAssembleCard().getBaseEffect().getDesc();
+        string text = desc.Replace("%s", addValue.ToString());
+
+        IUIFlyFontPara uiPara1 = new UIFlyFontParaObject(para.getAttackUser(), para.getAssembleCard(), text);
         GameMessage.Instance.addMsg(GameConst.FLYFONT, uiPara1);
 
         IUICommonPara uiPara2 = new UICommonParaObject(para.getAttackUser(), GameConst.SuitTransformValueType(PokerSuit.spade), addValue, finalValue);

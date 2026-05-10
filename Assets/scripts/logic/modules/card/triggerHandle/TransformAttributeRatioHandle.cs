@@ -15,12 +15,12 @@ public class TransformAttributeRatioHandle : TriggerHandleObject
         return TriggerEvent.transformAttribute;
     }
 
-    protected override bool _roundBeginHandle(ITriggerHandlePara para) {
+    protected override bool _settlementBeforeHandle(ITriggerHandlePara para) {
         this._isFirstFlag = true;
-        return base._roundBeginHandle(para);
+        return base._settlementBeforeHandle(para);
     }
 
-    protected override bool _roundAddValueHandle(ITriggerHandlePara para)
+    protected override bool _transformAttributeHandle(ITriggerHandlePara para)
     {
         if (!this._isFirstFlag) return false;
 

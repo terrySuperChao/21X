@@ -6,10 +6,10 @@ public class SettlementAfterHandle : TriggerHandleObject
     private Dictionary<string, Func<ITriggerHandlePara, float>> _dic = new Dictionary<string, Func<ITriggerHandlePara, float>>();
     protected override TriggerEvent _getTrigger()
     {
-        return TriggerEvent.settlementAfter;
+        return TriggerEvent.roundAttackAfter;
     }
 
-    protected override bool _roundAttackBeforeHandle(ITriggerHandlePara para)
+    protected override bool _roundAttackAfterHandle(ITriggerHandlePara para)
     {
         UnityEngine.Debug.Log("Settlement After Handle");
 
@@ -44,6 +44,6 @@ public class SettlementAfterHandle : TriggerHandleObject
 
     private float getBloodFunc(ITriggerHandlePara para)
     {
-        return para.getUser().getBlood() * para.getUser().getMaxBlood() * 100.0f;
+        return para.getUser().getBlood() / para.getUser().getMaxBlood() * 100.0f;
     }
 }

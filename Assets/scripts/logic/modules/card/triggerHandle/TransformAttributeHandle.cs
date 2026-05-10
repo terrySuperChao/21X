@@ -13,7 +13,7 @@ public class TransformAttributeHandle : TriggerHandleObject
         return TriggerEvent.transformAttribute;
     }
 
-    protected override bool _roundAddValueHandle(ITriggerHandlePara para)
+    protected override bool _transformAttributeHandle(ITriggerHandlePara para)
     {
         UnityEngine.Debug.Log("transform attribute handle");
         string keystr = "";
@@ -29,7 +29,6 @@ public class TransformAttributeHandle : TriggerHandleObject
         if (this._dic.ContainsKey(keystr) &&
             this._dic[keystr] == (PokerSuit)para.getPoker().getSuit())
         {
-            UnityEngine.Debug.Log("transform attribute handle ======" + keystr);
             return true;
         }
         else {

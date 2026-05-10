@@ -7,7 +7,7 @@ public class AttackBeforeLossHandle : TriggerHandleObject
 {
     private Dictionary<string, Func<ITriggerHandlePara, float>> _dic = new Dictionary<string, Func<ITriggerHandlePara, float>>();
     protected override TriggerEvent _getTrigger() {
-        return TriggerEvent.attackBefore;
+        return TriggerEvent.roundAttackBefore;
     }
 
     protected override bool _roundAttackBeforeHandle(ITriggerHandlePara para)

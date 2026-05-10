@@ -53,6 +53,17 @@ message Shop{
   repeated int32 goods = 1;        //商品
   repeated int32 purchased = 2;   //已购买列表
 }
+message ExtraInfo{
+  optional float multATK = 1;  //下次攻击额外造成伤害
+  optional float addCrit = 2;  //固定增加暴击率
+  optional float bonusArmor = 3;//下次转化方块属性，额外获得的护甲
+  optional float lifeSteal = 4; //下一次造成伤害的转化为回血
+  repeated float healOverTime = 5;//接下来的2回合每回合回复%s点生命值
+  optional float healtoMP = 6;//下次转化红桃属性，治疗量的 %s 额外转化为法力值
+  optional float skillDamageUp = 7;//下次技能效果提升 %s，可叠加
+  repeated float mpRegen = 8;//接下来的3回合每回合回复 %s 点法力
+  optional float mpMaxSub = 9;//本局技能释放所需 MP 减少 %s
+}
 
 //战斗的资产
 message AssetInfo{
@@ -65,7 +76,8 @@ message AssetInfo{
   optional float maxMagic = 7;  //最大魔法
   optional float attack = 8;    //攻击力
   optional float defense = 9;   //防御力
-  optional int32 isFilp = 10;    //是否翻面
+  optional int32 isFilp = 10;   //是否翻面
+  optional ExtraInfo extra = 11; //额外数据
 }
 
 //战斗

@@ -11,7 +11,7 @@ public class GameReqMgr : Singleton<GameReqMgr>
         GameDataMgr.Instance.setPageIndex(PageIndex.BarrierView);
         PlayerDataMgr.Instance.setRoleId(roleId);
         PlayerDataMgr.Instance.setMoney(ConfigMgr.INIT_MONEY_VALUE);
-        PlayerDataMgr.Instance.setHP(ConfigMgr.INIT_BLOOD_VALUE);
+        PlayerDataMgr.Instance.setHP(ConfigMgr.INIT_BLOOD_VALUE/4);
         PlayerDataMgr.Instance.setMaxHP(ConfigMgr.INIT_BLOOD_VALUE);
         PlayerDataMgr.Instance.setMaxMagic(ConfigMgr.INIT_MAGIC_VALUE);
         GamePropertyMgr.Instance.save();
@@ -249,13 +249,28 @@ public class GameReqMgr : Singleton<GameReqMgr>
         FightPokerMgr.Instance.runFlow();
     }
 
-    public void requestSavePlayerInfo() {
+    public void requestGameOver() {
+        this.requestSavePlayerInfo();
+        if (PlayerDataMgr.Instance.getHP() <= 0){
+            GameDataMgr.Instance.setGameState(GameState.idle);
+            GameDataMgr.Instance.setPageIndex(PageIndex.LobbyView);
+        }else {
+            GameDataMgr.Instance.setGameState(GameState.playing);
+            GameDataMgr.Instance.setPageIndex(PageIndex.BarrierView);
+        }
+        GamePropertyMgr.Instance.save();
+        GameMessage.Instance.clearCacheMessage();
+        GameMessage.Instance.addMsg(GameConst.EXIT_PAGE);
+    }
+
+    private void requestSavePlayerInfo() {
         AssetInfo playerInfo = FightDataMgr.Instance.getAssetInfo(FightDealType.player);
         PlayerDataMgr.Instance.setHP(playerInfo.Hp);
         PlayerDataMgr.Instance.setMaxHP(playerInfo.MaxHP);
         PlayerDataMgr.Instance.setMagic(playerInfo.Magic);
         PlayerDataMgr.Instance.setMaxMagic(playerInfo.MaxMagic);
     }
+
     private void requestInitPlayerInfo() {
         AssetInfo playerInfo = FightDataMgr.Instance.getAssetInfo(FightDealType.player);
         playerInfo.Hp = PlayerDataMgr.Instance.getHP();
