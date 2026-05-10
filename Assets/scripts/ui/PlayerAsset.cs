@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using static UnityEngine.UIElements.UxmlAttributeDescription;
 
 public class PlayerAsset : MonoBehaviour
 {
@@ -91,7 +92,7 @@ public class PlayerAsset : MonoBehaviour
     private void initPokers() {
         List<IPoker> pokers = FightPokerMgr.Instance.getUsetHandPoker(this._user);
         foreach (var poker in pokers){
-            this.addPoker(new DealPokerPara(this._user, poker));
+            this.addPoker(new DealPokerPara(this._user, poker,0));
         }
     }
 
@@ -163,7 +164,7 @@ public class PlayerAsset : MonoBehaviour
         IDealPokerPara para = (IDealPokerPara)obj[0];
         if (para.getUser() == this._user){
             this.addPoker(para);
-            this.showUserState();
+            this.showUserState(para.getPoint());
         }
     }
 
@@ -192,15 +193,15 @@ public class PlayerAsset : MonoBehaviour
         }
     }
 
-    public void showUserState() {
+    public void showUserState(int currentPoint = 0) {
         List<IPoker> pokers = FightPokerMgr.Instance.getUsetHandPoker(this._user);
         int index = pokers.FindIndex(poker => poker.isBack());
-        int point = FightPokerMgr.Instance.getUserHandPokerPoint(this._user, index != -1);
-        bool isBack = FightPokerMgr.Instance.isUserHandPokerBlackJack(this._user);
+        bool isBlackJack = FightPokerMgr.Instance.isUserHandPokerBlackJack(this._user);
+        int point = currentPoint > 0 ? currentPoint :FightPokerMgr.Instance.getUserHandPokerPoint(this._user, index != -1);
 
-        if (isBack)
+        if (isBlackJack)
         {
-            this.tipsText.text = "Blackack";
+            this.tipsText.text = "BlackJack";
             this.tipsText.color = new Color(255, 223, 0);
             this.tipsPanel.SetActive(true);
 

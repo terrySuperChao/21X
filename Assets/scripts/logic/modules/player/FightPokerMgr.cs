@@ -73,7 +73,8 @@ public class FightPokerMgr : Singleton<FightPokerMgr>
         }
 
         IPoker poker = FightDataMgr.Instance.dealPoker(this.getDealType(user), suit);
-        GameMessage.Instance.addMsg(GameConst.DEALPOKER, new DealPokerPara(user, poker));
+        int point = this.getUserHandPokerPoint(user, true);
+        GameMessage.Instance.addMsg(GameConst.DEALPOKER, new DealPokerPara(user, poker, point));
     }
 
     private void setUserState(IUser user,UserState state){

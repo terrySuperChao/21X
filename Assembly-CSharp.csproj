@@ -1,7 +1,7 @@
 ﻿<Project ToolsVersion="Current">
   <!-- Generated file, do not modify, your changes will be overwritten (use AssetPostprocessor.OnGeneratedCSProject) -->
   <PropertyGroup>
-    <BaseIntermediateOutputPath>Temp\obj\Assembly-CSharp</BaseIntermediateOutputPath>
+    <BaseIntermediateOutputPath>Temp/obj/$(Configuration)/$(MSBuildProjectName)</BaseIntermediateOutputPath>
     <IntermediateOutputPath>$(BaseIntermediateOutputPath)</IntermediateOutputPath>
   </PropertyGroup>
   <Import Project="Sdk.props" Sdk="Microsoft.NET.Sdk" />
@@ -230,6 +230,7 @@
     <Compile Include="Assets/scripts/ui/ImprintView.cs" />
     <Compile Include="Assets/scripts/logic/modules/game/PlayerDataMgr.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/Benchmark03.cs" />
+    <Compile Include="Assets/scripts/logic/modules/card/triggerHandle/RoundOtherHandle.cs" />
     <Compile Include="Assets/scripts/logic/modules/game/ShopDataMgr.cs" />
     <Compile Include="Assets/scripts/logic/modules/card/handle/SpadeCardPlusHandle.cs" />
     <Compile Include="Assets/scripts/logic/modules/card/ICardHandlePara.cs" />
@@ -244,7 +245,6 @@
     <Compile Include="Assets/scripts/logic/modules/settle/suit/DiamondSettle.cs" />
     <Compile Include="Assets/scripts/logic/modules/flow/GameFlowObject.cs" />
     <Compile Include="Assets/scripts/ui/CardPartPopup.cs" />
-    <Compile Include="Assets\scripts\logic\modules\card\triggerHandle\RoundOtherHandle.cs" />
     <Compile Include="Assets/scripts/logic/modules/settle/PokerSettle.cs" />
     <Compile Include="Assets/scripts/logic/modules/game/GamePropertyMgr.cs" />
     <Compile Include="Assets/scripts/logic/modules/card/IUICommonPara.cs" />

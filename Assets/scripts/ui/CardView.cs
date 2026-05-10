@@ -157,7 +157,7 @@ public class CardView : MonoBehaviour
             foreach (var poker in pokers)
             {
                 int point = FightPokerMgr.Instance.getUserHandPokerPoint(user, user.isNpc());
-                this.addPoker(new DealPokerPara(user, poker));
+                this.addPoker(new DealPokerPara(user, poker,point));
             }
             this.showUserState(user);
         }

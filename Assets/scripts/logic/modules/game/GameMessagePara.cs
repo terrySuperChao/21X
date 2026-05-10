@@ -85,6 +85,7 @@ public interface IDealPokerPara
 {
     public IUser getUser();
     public IPoker getPoker();
+    public int getPoint();
 }
 
 public class DealPokerPara : IDealPokerPara
@@ -92,12 +93,11 @@ public class DealPokerPara : IDealPokerPara
     private IUser _user;
     private IPoker _poker;
     private int _point;
-    private bool _isBlackJack;
-    public DealPokerPara(IUser user, IPoker poker)
+    public DealPokerPara(IUser user, IPoker poker,int point)
     {
         this._user = user;
         this._poker = poker;
-
+        this._point = point;
     }
     public IUser getUser()
     {
@@ -106,6 +106,9 @@ public class DealPokerPara : IDealPokerPara
     public IPoker getPoker()
     {
         return this._poker;
+    }
+    public int getPoint() {
+        return this._point;
     }
 }
 
