@@ -22,6 +22,7 @@ public class AttackSettle: IAttackSettle
         {
             return;
         }
+        attackUser.setAttack(0);
         roundResult.addHurtValue(attack);
         
         IUICommonPara attackPara = new UICommonParaObject(attackUser, ValueType.attack, attack, attackUser.getAttack());
@@ -57,6 +58,7 @@ public class AttackSettle: IAttackSettle
         if (defenseUser.getBlood() < 0 || attackUser.getMagic() < attackUser.getMaxMagic()){
             return;
         }
+        attackUser.setMagic(0);
         roundResult.addHurtValue(attack);
 
         IUICommonPara attackPara = new UICommonParaObject(attackUser, ValueType.magic, attackUser.getMaxMagic(), attackUser.getMagic());

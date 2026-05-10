@@ -41,11 +41,11 @@ public class CardPart : MonoBehaviour
         return this._partInfo;
     }
 
-    public void setCard(IAssembleCard card) { 
+    public void setAssembleCard(IAssembleCard card) { 
         this._card = card;
     }
 
-    public IAssembleCard getCard() { 
+    public IAssembleCard getAssembleCard() { 
         return this._card;
     }
 }   

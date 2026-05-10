@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using static UnityEngine.UIElements.UxmlAttributeDescription;
 
 public class PlayerAsset : MonoBehaviour
 {
@@ -136,7 +135,7 @@ public class PlayerAsset : MonoBehaviour
         Transform cardChild = this.cards.GetChild(0); //
         GameObject cardObject = Instantiate(this.cartPartPrefab, this.cards);
         cardObject.GetComponent<CardPart>().loadPartImage(card.getTrigger());
-        cardObject.GetComponent<CardPart>().setCard(card);
+        cardObject.GetComponent<CardPart>().setAssembleCard(card);
         cardObject.transform.position = cardChild.position;
         cardObject.transform.localScale = new Vector3(0.7f, 0.7f, 0.7f);
         cardChild.SetParent(null);
@@ -163,9 +162,15 @@ public class PlayerAsset : MonoBehaviour
     {
         IDealPokerPara para = (IDealPokerPara)obj[0];
         if (para.getUser() == this._user){
-            this.addPoker(para);
-            this.showUserState(para.getPoint());
+            StartCoroutine(dealPokerHandle(para));
         }
+    }
+
+    private IEnumerator dealPokerHandle(IDealPokerPara para)
+    {
+        this.addPoker(para);
+        yield return new WaitForSeconds(0.5f);
+        this.showUserState(para.getPoint());
     }
 
     // ------》》》》 3轮到操作者
@@ -247,7 +252,7 @@ public class PlayerAsset : MonoBehaviour
         for (int i = 0; i < this.cards.childCount; i++)
         {
             CardPart cardComp = this.cards.GetChild(i).GetComponent<CardPart>();
-            if (cardComp != null && cardComp.getCard().getTriggerId() == card.getTriggerId())
+            if (cardComp != null && cardComp.getAssembleCard().getTriggerId() == card.getTriggerId())
             {
                 index = i;
                 break;
@@ -274,7 +279,7 @@ public class PlayerAsset : MonoBehaviour
         for (int i = 0; i < this.cards.childCount; i++)
         {
             CardPart cardComp = this.cards.GetChild(i).GetComponent<CardPart>();
-            if (cardComp != null && cardComp.getCard().getTriggerId() == card.getTriggerId())
+            if (cardComp != null && cardComp.getAssembleCard().getTriggerId() == card.getTriggerId())
             {
                 return this.cards.GetChild(i);
             }

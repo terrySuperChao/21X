@@ -35,6 +35,7 @@ public class HoverPopup : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
         CardPartPopup cardPartPopup = this.popup.gameObject.GetComponent<CardPartPopup>();
         if (cardPartPopup != null) {
             cardPartPopup.loadPartInfo(cardPart.getPartInfo());
+            cardPartPopup.setAssembleCard(cardPart.getAssembleCard());
             this.popup.gameObject.SetActive(true);
         }
         this.isHovering = true;
@@ -56,7 +57,7 @@ public class HoverPopup : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
 
     private void Update()
     {
-        // 某些情况下 OnPointerMove 不稳定，Update 里兜底
+        // 
         if (isHovering && popup != null)
         {
             //Vector2 screenPos = Input.mousePosition;
@@ -78,6 +79,13 @@ public class HoverPopup : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
             uiCamera,
             out localPoint
         );
-        popup.anchoredPosition = localPoint + offset;
+
+        localPoint += offset;
+        if (localPoint.x < -canvasRect.rect.width / 2){
+            localPoint.x += 50;
+            offset.x *= -1;
+        }
+        popup.anchoredPosition = localPoint;
+        
     }
 }

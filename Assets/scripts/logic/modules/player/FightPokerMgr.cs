@@ -1,10 +1,6 @@
 //
 using Pb;
 using System.Collections.Generic;
-using Unity.Collections.LowLevel.Unsafe;
-using UnityEngine;
-using static UnityEngine.UIElements.UxmlAttributeDescription;
-
 
 public class FightPokerMgr : Singleton<FightPokerMgr>
 {
@@ -323,9 +319,7 @@ public class FightPokerMgr : Singleton<FightPokerMgr>
 
     public void setAdvancedEffectId(int triggerId, IUser user, IPart part)
     {
-        ImprintDataMgr.Instance.setAdvancedEffectId(user.isNpc(), triggerId, part.getId());
-        this._gameFlow.addCardAfter(new AddCardAfterPara(this._players));
-        GameMessage.Instance.addMsg(GameConst.FIGHTFLOWSTATE, FightFlowState.twoHandPoker);
+        ImprintDataMgr.Instance.setAdvancedEffectId(user.isNpc(), triggerId, part.getId());        
     }
 
     public void reDealHandPoker(IUser user,int suit = -1)

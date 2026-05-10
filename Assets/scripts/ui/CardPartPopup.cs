@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -23,15 +24,41 @@ public class CardPartPopup : MonoBehaviour
 
     public void loadPartInfo(IPart partInfo) {
         if (partInfo == null)
+        {
             return;
+        }
+            
 
         string desc = partInfo.getDesc();
-        if (desc.IndexOf("%s") == -1)
-        {
+        if (desc.IndexOf("%s") == -1){
             this.partName.text = desc;
-        }
-        else {
+        }else {
             this.partName.text = desc.Replace("%s", partInfo.getValueDefault().ToString());
         }
+    }
+
+    public void setAssembleCard(IAssembleCard card) {
+        if (card == null) {
+            return;
+        }
+
+        string str = "";
+        IPart trigger = card.getTrigger();
+        IPart baseEffect = card.getBaseEffect();
+        IPart advanceEffect = card.getAdvancedEffect();
+        if (trigger != null) {
+            str += string.Format("{0}\n{1}\n", trigger.getName(), trigger.getDesc());
+        }
+
+        if (baseEffect != null) {
+            str += string.Format("{0}\n{1}\n", baseEffect.getName(), baseEffect.getDesc());
+        }
+
+        if (advanceEffect != null)
+        {
+            str += string.Format("{0}\n{1}\n", advanceEffect.getName(), advanceEffect.getDesc());
+        }
+
+        this.partName.text = str;
     }
 }   

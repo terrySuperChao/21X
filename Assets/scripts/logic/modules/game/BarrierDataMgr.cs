@@ -1,4 +1,4 @@
-//ÅÆ¶Ñ
+//ï¿½Æ¶ï¿½
 using Google.Protobuf.Collections;
 using Google.Protobuf.WellKnownTypes;
 using Pb;
@@ -218,7 +218,7 @@ public class BarrierDataMgr : Singleton<BarrierDataMgr>
         this._otherPokers.Clear();
     }
 
-    //±¬ÅÆµÄ¸ÅÂÊ
+    //
     public int getBustProbability()
     {
         List<int> list = new List<int>();

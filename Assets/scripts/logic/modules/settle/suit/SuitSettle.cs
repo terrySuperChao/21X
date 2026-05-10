@@ -23,7 +23,8 @@ public class SuitSettle : ISuitSettle
         para.setBaseValue(addValue);
 
         IUIPokerPara pokerPara = new UIPokerPara(para.getAttackUser(), poker, finalValue, text);
-        GameMessage.Instance.addMsg(GameConst.ADDPOKERVALUE, pokerPara);       
+        GameMessage.Instance.addMsg(GameConst.ADDPOKERVALUE, pokerPara);
+        CardMgr.Instance.handle(para, TriggerEvent.transformAttribute);
     }
 
     protected virtual float _getFinalValue(IUser attackUser,float value) { return value; }

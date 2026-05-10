@@ -11,7 +11,7 @@ public class GameReqMgr : Singleton<GameReqMgr>
         GameDataMgr.Instance.setPageIndex(PageIndex.BarrierView);
         PlayerDataMgr.Instance.setRoleId(roleId);
         PlayerDataMgr.Instance.setMoney(ConfigMgr.INIT_MONEY_VALUE);
-        PlayerDataMgr.Instance.setHP(ConfigMgr.INIT_BLOOD_VALUE/4);
+        PlayerDataMgr.Instance.setHP(ConfigMgr.INIT_BLOOD_VALUE);
         PlayerDataMgr.Instance.setMaxHP(ConfigMgr.INIT_BLOOD_VALUE);
         PlayerDataMgr.Instance.setMaxMagic(ConfigMgr.INIT_MAGIC_VALUE);
         GamePropertyMgr.Instance.save();
