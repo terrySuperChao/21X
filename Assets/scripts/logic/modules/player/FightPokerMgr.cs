@@ -17,6 +17,10 @@ public class FightPokerMgr : Singleton<FightPokerMgr>
 
     private void newUser(FightDealType type) {
         AssetInfo info = FightDataMgr.Instance.getAssetInfo(type);
+        IExtraInfo extra = new ExtraInfoObject();
+        extra.setMultATK(info.Extra.MultATK);
+        extra.setAddCrit(info.Extra.AddCrit);
+
         IUser user = new UserObject(type == FightDealType.npc);
         user.setAttack(info.Attack);
         user.setDefense(info.Defense);
@@ -25,6 +29,7 @@ public class FightPokerMgr : Singleton<FightPokerMgr>
         user.setBlood(info.Hp);
         user.setMaxBlood(info.MaxHP);
         user.setState((UserState)info.State);
+        user.setExtraInfo(extra);
         this._players.Add(user);
     }
 
@@ -37,6 +42,8 @@ public class FightPokerMgr : Singleton<FightPokerMgr>
         info.Attack = user.getAttack();
         info.Defense = user.getDefense();
         info.State = (int)user.getState();
+        info.Extra.MultATK = user.getExtraInfo().getMultATK();
+        info.Extra.AddCrit = user.getExtraInfo().getAddCrit();
     }
 
     public AssetInfo getAssetInfo(IUser user) {

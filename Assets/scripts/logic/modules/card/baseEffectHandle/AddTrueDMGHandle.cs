@@ -9,7 +9,7 @@ public class AddTrueDMGHandle : BaseEffectHandleObject
     {
         UnityEngine.Debug.Log("AddTrueDMGHandle=========>>");
         float addValue = this.getAddValue(para);
-
+        
         IUser defenseUser = para.getDefenseUser();
         float blood = defenseUser.getBlood();
         if (blood >= addValue) {
@@ -19,12 +19,6 @@ public class AddTrueDMGHandle : BaseEffectHandleObject
         }
         defenseUser.setBlood(blood);
         para.getRoundResult(para.getAttackUser()).addHurtValue(addValue);
-
-        string desc = para.getAssembleCard().getBaseEffect().getDesc();
-        string text = desc.Replace("%s", addValue.ToString());
-
-        IUIFlyFontPara uiPara = new UIFlyFontParaObject(para.getAttackUser(), para.getAssembleCard(), text);
-        GameMessage.Instance.addMsg(GameConst.FLYFONT, uiPara);
 
         IUICommonPara attackPara = new UICommonParaObject(defenseUser, ValueType.blood, -addValue, defenseUser.getBlood());
         GameMessage.Instance.addMsg(GameConst.ADDCARDVALUE, attackPara);

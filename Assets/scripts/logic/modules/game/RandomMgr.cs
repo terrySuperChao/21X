@@ -1,7 +1,4 @@
-
 using Pb;
-using System.Collections.Generic;
-
 public class RandomMgr : Singleton<RandomMgr>
 {
     private RandomEx _rd = null;
@@ -21,11 +18,11 @@ public class RandomMgr : Singleton<RandomMgr>
         this._rd = new RandomEx(initSeed);
     }
     /**
-      * ·µ»ØËæ»úÕûÊý, Ä¬ÈÏ·¶Î§[min, max)
-      * @param type ÖÖ×ÓµÄÀàÐÍ
-      * @param min ×îÐ¡Öµ
-      * @param max ×î´óÖµ, ²»°üÀ¨´ËÖµ
-      * @returns Ëæ»úµÄÕûÊý
+      * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½, Ä¬ï¿½Ï·ï¿½Î§[min, max)
+      * @param type ï¿½ï¿½ï¿½Óµï¿½ï¿½ï¿½ï¿½ï¿½
+      * @param min ï¿½ï¿½Ð¡Öµ
+      * @param max ï¿½ï¿½ï¿½Öµ, ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Öµ
+      * @returns ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
      */
     public int getRangeInt(int min, int max) {
         return this._rd.rangeInt(min, max);

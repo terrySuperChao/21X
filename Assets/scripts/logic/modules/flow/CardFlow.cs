@@ -70,6 +70,7 @@ public class CardFlow : GameFlowObject
         });
         
         int winIndex = para.getWinIndex();
+        winIndex = 1;
         if (winIndex != -1) //非平局
         {
             //关键数据

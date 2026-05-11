@@ -23,17 +23,9 @@ public class CardPartPopup : MonoBehaviour
     }
 
     public void loadPartInfo(IPart partInfo) {
-        if (partInfo == null)
+        if (partInfo != null)
         {
-            return;
-        }
-            
-
-        string desc = partInfo.getDesc();
-        if (desc.IndexOf("%s") == -1){
-            this.partName.text = desc;
-        }else {
-            this.partName.text = desc.Replace("%s", partInfo.getValueDefault().ToString());
+            this.partName.text = this.getDescription(partInfo, null);
         }
     }
 
@@ -51,7 +43,7 @@ public class CardPartPopup : MonoBehaviour
         }
 
         if (baseEffect != null) {
-            str += string.Format("{0}\n{1}\n", baseEffect.getName(), baseEffect.getDesc());
+            str += string.Format("{0}\n{1}\n", baseEffect.getName(), this.getDescription(baseEffect,advanceEffect));
         }
 
         if (advanceEffect != null)
@@ -60,5 +52,37 @@ public class CardPartPopup : MonoBehaviour
         }
 
         this.partName.text = str;
+    }
+
+    protected float getAddValue(IPart baseEffect,IPart advanceEffect)
+    {
+        //
+        if (advanceEffect != null && advanceEffect.getId() > 0)
+        {
+            return baseEffect.getValueUpgrade();
+        }
+        else
+        {
+            return baseEffect.getValueDefault();
+        }
+    }
+
+    protected string getDescription(IPart baseEffect, IPart advanceEffect)
+    {
+        float addValue = this.getAddValue(baseEffect, advanceEffect);
+        string desc = baseEffect.getDesc().Replace(" ","");
+        int index1 = desc.IndexOf("%s");
+        if (index1 > -1)
+        {
+            int index2 = desc.IndexOf("%s%");
+            if (index2 > -1)
+            {
+                addValue *= 100;
+            }
+            return desc.Replace("%s", addValue.ToString());
+        }
+        else {
+            return desc;
+        }
     }
 }   

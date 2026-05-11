@@ -10,7 +10,7 @@
 		"Value_Upgrade": 5,
 		"Correspond_Advanced": "3_0_1",
 		"Link": "[攻击, 物理]",
-		"Description": "获得 3/5 点攻击力",
+		"Description": "获得 %s 点攻击力",
 		"Remark": "强攻流核心数值"
 	},
 	{
@@ -24,7 +24,7 @@
 		"Value_Upgrade": 4,
 		"Correspond_Advanced": "3_0_1",
 		"Link": "[攻击, 真实]",
-		"Description": "获得 2/4 点真实伤害",
+		"Description": "造成 %s 点真实伤害",
 		"Remark": "无视护甲的利器"
 	},
 	{
@@ -38,7 +38,7 @@
 		"Value_Upgrade": 7,
 		"Correspond_Advanced": "3_0_1",
 		"Link": "[攻击, 削弱]",
-		"Description": "削减目标 4/7 点护甲",
+		"Description": "削减目标 %s 点护甲",
 		"Remark": "针对高防敌人"
 	},
 	{
@@ -48,11 +48,11 @@
 		"Profession": 0,
 		"Belong_Base": "2_0_1",
 		"Action_Genre": "Mult_ATK",
-		"Value_Default": 1.2,
-		"Value_Upgrade": 1.5,
+		"Value_Default": 0.2,
+		"Value_Upgrade": 0.5,
 		"Correspond_Advanced": "3_0_1",
 		"Link": "[攻击, 爆发]",
-		"Description": "下次攻击额外造成 20%/50% 的伤害",
+		"Description": "下次普通攻击额外造成 %s% 的伤害",
 		"Remark": "爆发流核心"
 	},
 	{
@@ -62,11 +62,11 @@
 		"Profession": 0,
 		"Belong_Base": "2_0_1",
 		"Action_Genre": "Add_Crit",
-		"Value_Default": 6,
-		"Value_Upgrade": 10,
+		"Value_Default": 0.06,
+		"Value_Upgrade": 0.1,
 		"Correspond_Advanced": "3_0_1",
 		"Link": "[攻击, 叠加]",
-		"Description": "固定增加 2%/4%暴击率",
+		"Description": "固定增加 %s% 暴击率",
 		"Remark": "后期强力爆发"
 	},
 	{
@@ -108,7 +108,7 @@
 		"Value_Upgrade": 0.5,
 		"Correspond_Advanced": "3_0_2",
 		"Link": "[护甲, 转化]",
-		"Description": "获得 %s 当前护甲的攻击力",
+		"Description": "获得当前护甲 %s% 的攻击力",
 		"Remark": "攻防一体化"
 	},
 	{
@@ -122,7 +122,7 @@
 		"Value_Upgrade": 1,
 		"Correspond_Advanced": "3_0_2",
 		"Link": "[护甲, 结构]",
-		"Description": "下次转化方块属性，额外获得 %s 的护甲",
+		"Description": "下次转化方块属性，额外获得 %s% 的护甲",
 		"Remark": "高额护甲的来源"
 	},
 	{
@@ -136,7 +136,7 @@
 		"Value_Upgrade": 1,
 		"Correspond_Advanced": "3_0_2",
 		"Link": "[护甲, 机械]",
-		"Description": "获得当前护甲 %s 的临时护甲",
+		"Description": "获得当前护甲 %s% 的临时护甲",
 		"Remark": "高压环境下生存必备"
 	},
 	{
@@ -164,7 +164,7 @@
 		"Value_Upgrade": 0.4,
 		"Correspond_Advanced": "3_0_3",
 		"Link": "[治疗, 吸血]",
-		"Description": "下一次造成伤害的 %s 转化为回血",
+		"Description": "下一次造成伤害的 %s% 转化为回血",
 		"Remark": "吸血流核心数值"
 	},
 	{
@@ -192,7 +192,7 @@
 		"Value_Upgrade": 0.5,
 		"Correspond_Advanced": "3_0_3",
 		"Link": "[治疗, 转化]",
-		"Description": "下次转化红桃属性，治疗量的 %s 额外转化为法力值",
+		"Description": "下次转化红桃属性，治疗量的 %s% 额外转化为法力值",
 		"Remark": "跨属性联动"
 	},
 	{
@@ -234,7 +234,7 @@
 		"Value_Upgrade": 0.2,
 		"Correspond_Advanced": "3_0_4",
 		"Link": "[法力, 增强]",
-		"Description": "下次技能效果提升 %s，可叠加",
+		"Description": "下次技能效果提升 %s%，可叠加",
 		"Remark": "强化爆发效果"
 	},
 	{
@@ -262,7 +262,7 @@
 		"Value_Upgrade": 0.5,
 		"Correspond_Advanced": "3_0_4",
 		"Link": "[法力, 爆发]",
-		"Description": "获得当前法力值的 %s",
+		"Description": "额外获得当前法力值的 %s% 的法力值",
 		"Remark": "快速开大核心"
 	},
 	{

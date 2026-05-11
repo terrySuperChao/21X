@@ -4,8 +4,11 @@ public class BaseEffectHandle
 {
 	private static List<IBaseEffectHandle> _baseEffectHandle = new List<IBaseEffectHandle> {
         new AddATKHandle(),
+        new AddCritHandle(),
+        new AddArmorHandle(),
         new AddTrueDMGHandle(),
         new SubArmorHandle(),
+        new MultATKHandle(),
     };
 
     private static List<IBaseEffectHandle> _advancedEffecthandle = new List<IBaseEffectHandle> {

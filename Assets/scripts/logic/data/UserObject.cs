@@ -16,6 +16,8 @@ public class UserObject : IUser
     private float _maxMagic = 0;
     private int _point = 0;
     private bool _isNpc = false;
+
+    private IExtraInfo _extra = null;
     private UserState _state = UserState.none;
 
     public UserObject(bool isNpc) {
@@ -171,5 +173,13 @@ public class UserObject : IUser
 
     public int getPoint() {
         return this._point;
+    }
+
+    public void setExtraInfo(IExtraInfo extra) {
+        this._extra = extra;
+    }
+
+    public IExtraInfo getExtraInfo() {
+        return this._extra;
     }
 }

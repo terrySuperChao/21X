@@ -7,6 +7,7 @@ public class RoundResultObject:IRoundResult
     private float _reflectValue = 0;
     private float _magicValue = 0;
     private float _hurtValue = 0;
+    private float _multATK = 0;
     private float _attributeMult = 1;
 
     public RoundResultObject(IUser user) {
@@ -79,6 +80,14 @@ public class RoundResultObject:IRoundResult
         this._hurtValue += value;
     }
 
+    public float getMultATK() {
+        return this._multATK;
+    }
+
+    public void addMultATK(float value) {
+        this._multATK += value;
+    }
+
     public void reset() {
         this._penetrate = 0;
         this._saveMagic = 0;
@@ -86,5 +95,6 @@ public class RoundResultObject:IRoundResult
         this._reflectValue = 0;
         this._attributeMult = 1;
         this._hurtValue = 0;
+        this._multATK = 0;
     }
 }

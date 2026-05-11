@@ -17,12 +17,22 @@ public class AttackSettle: IAttackSettle
 
         IUser attackUser = para.getAttackUser();
         IUser defenseUser = para.getDefenseUser();
-        float attack = attackUser.getAttack();
+
+        //暴击伤害加+50%
+        float addCrit = 0;
+        float number = RandomMgr.Instance.getRangeInt(1, 101) / 100.0f;//[1,100]
+        if (number <= attackUser.getExtraInfo().getAddCrit()) {
+            addCrit = 0.5f;
+        }
+
+        float multATK = attackUser.getExtraInfo().getMultATK();
+        float attack = attackUser.getAttack() * (1 + multATK + addCrit);
         if (attack <= 0)
         {
             return;
         }
         attackUser.setAttack(0);
+        attackUser.getExtraInfo().setMultATK(-multATK);
         roundResult.addHurtValue(attack);
         
         IUICommonPara attackPara = new UICommonParaObject(attackUser, ValueType.attack, attack, attackUser.getAttack());

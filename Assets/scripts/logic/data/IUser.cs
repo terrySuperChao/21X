@@ -50,4 +50,8 @@ public interface IUser
 
     public void setPoint(int value);
     public int getPoint();
+
+    //下一次
+    public void setExtraInfo(IExtraInfo extra);
+    public IExtraInfo getExtraInfo();
 }

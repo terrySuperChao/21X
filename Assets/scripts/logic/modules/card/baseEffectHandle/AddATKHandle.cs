@@ -10,14 +10,8 @@ public class AddATKHandle : BaseEffectHandleObject
         UnityEngine.Debug.Log("AddATKHandle=========>>");
         float addValue = this.getAddValue(para);
         float finalValue = para.getAttackUser().addAttack(addValue);
-
-        string desc = para.getAssembleCard().getBaseEffect().getDesc();
-        string text = desc.Replace("%s", addValue.ToString());
-
-        IUIFlyFontPara uiPara1 = new UIFlyFontParaObject(para.getAttackUser(), para.getAssembleCard(), text);
-        GameMessage.Instance.addMsg(GameConst.FLYFONT, uiPara1);
-
-        IUICommonPara uiPara2 = new UICommonParaObject(para.getAttackUser(), GameConst.SuitTransformValueType(PokerSuit.spade), addValue, finalValue);
-        GameMessage.Instance.addMsg(GameConst.ADDCARDVALUE, uiPara2);
+      
+        IUICommonPara uiPara = new UICommonParaObject(para.getAttackUser(), GameConst.SuitTransformValueType(PokerSuit.spade), addValue, finalValue);
+        GameMessage.Instance.addMsg(GameConst.ADDCARDVALUE, uiPara);
     }
 }
