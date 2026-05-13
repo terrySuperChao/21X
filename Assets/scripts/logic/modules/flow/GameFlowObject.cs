@@ -29,6 +29,15 @@ public class AddCardAfterPara : GameFlowPara, IAddCardAfterPara
     }
 }
 
+public class HandPokerBeforePara : GameFlowPara, IHandPokerBeforePara
+{
+    public HandPokerBeforePara(List<IUser> users) : base(users)
+    {
+
+    }
+}
+
+
 public class HandPokerAfterPara : GameFlowPara, IHandPokerAfterPara
 {
     public HandPokerAfterPara(List<IUser> users) : base(users)
@@ -99,9 +108,9 @@ public class GameFlowObject : IGameFlow
         this._gameBegin(para);
     }
 
-    public void addCardAfter(IAddCardAfterPara para)
+    public void handPokerBefore(IHandPokerBeforePara para)
     {
-        this._addCardAfter(para);
+        this._handPokerBefore(para);
     }
 
     public void handPokerAfter(IHandPokerAfterPara para)
@@ -123,7 +132,7 @@ public class GameFlowObject : IGameFlow
     }
 
     protected virtual void _gameBegin(IGameBeginPara para){}
-    protected virtual void _addCardAfter(IAddCardAfterPara para) { }
+    protected virtual void _handPokerBefore(IHandPokerBeforePara para) { }
     protected virtual void _handPokerAfter(IHandPokerAfterPara para){}
     protected virtual void _dealPokerAfter(IDealPokerAfterPara para){}
     protected virtual void _stopPokerAfter(IStopPokerAfterPara para) { }

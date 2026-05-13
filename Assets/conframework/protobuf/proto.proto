@@ -56,13 +56,15 @@ message Shop{
 message ExtraInfo{
   optional float multATK = 1;  //下次攻击额外造成伤害
   optional float addCrit = 2;  //固定增加暴击率
-  optional float bonusArmor = 3;//下次转化方块属性，额外获得的护甲
-  optional float lifeSteal = 4; //下一次造成伤害的转化为回血
-  repeated float healOverTime = 5;//接下来的2回合每回合回复%s点生命值
-  optional float healtoMP = 6;//下次转化红桃属性，治疗量的 %s 额外转化为法力值
-  optional float skillDamageUp = 7;//下次技能效果提升 %s，可叠加
-  repeated float mpRegen = 8;//接下来的3回合每回合回复 %s 点法力
-  optional float mpMaxSub = 9;//本局技能释放所需 MP 减少 %s
+  optional float reflectDMG = 3;//受到攻击时反弹%s点伤害
+  optional float bonusArmor = 4;//下次转化方块属性，额外获得的护甲
+  optional float temporaryArmor = 5;//获得当前护甲 %s% 的临时护甲
+  optional float lifeSteal = 6; //下一次造成伤害的转化为回血
+  repeated float healOverTime = 7;//接下来的2回合每回合回复%s点生命值
+  optional float healtoMP = 8;//下次转化红桃属性，治疗量的 %s 额外转化为法力值
+  optional float skillDamageUp = 9;//下次技能效果提升 %s，可叠加
+  repeated float mpRegen = 10;//接下来的3回合每回合回复 %s 点法力
+  optional float mpMaxSub = 11;//本局技能释放所需 MP 减少 %s
 }
 
 //战斗的资产

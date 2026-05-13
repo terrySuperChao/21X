@@ -2,11 +2,11 @@ public class SuitSettle : ISuitSettle
 {
     private ISuitSettle _nextSuitSettle;
 
-    public ISuitSettle setNextSuitSettle(ISuitSettle nextSuitSettle) { 
+    public ISuitSettle setNextSuitSettle(ISuitSettle nextSuitSettle) {
         return this._nextSuitSettle = nextSuitSettle;
     }
 
-    public void settle(ITriggerHandlePara para, IPoker poker,int baseValue) {
+    public void settle(ITriggerHandlePara para, IPoker poker, int baseValue) {
         if (!this._matchSuit(poker.getSuit())) {
             if (this._nextSuitSettle != null) {
                 this._nextSuitSettle.settle(para, poker, baseValue);
@@ -25,9 +25,12 @@ public class SuitSettle : ISuitSettle
         IUIPokerPara pokerPara = new UIPokerPara(para.getAttackUser(), poker, finalValue, text);
         GameMessage.Instance.addMsg(GameConst.ADDPOKERVALUE, pokerPara);
         CardMgr.Instance.handle(para, TriggerEvent.transformAttribute);
+
+        this._settle(para, poker, baseValue);
     }
 
-    protected virtual float _getFinalValue(IUser attackUser,float value) { return value; }
+    protected virtual float _getFinalValue(IUser attackUser, float value) { return value; }
     protected virtual bool _matchSuit(int suit) { return false; }
     protected virtual float _getMult() { return 1.0f; }
+    protected virtual void _settle(ITriggerHandlePara para, IPoker poker, int baseValue) { }
 }

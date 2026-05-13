@@ -205,8 +205,8 @@ public enum UserState
 }
 
 
-public enum FightFlowState { 
-    dealCard,
+public enum FightFlowState {
+    handPokerBefore,
     twoHandPoker,
     turnPlayer,
     waitOperator,

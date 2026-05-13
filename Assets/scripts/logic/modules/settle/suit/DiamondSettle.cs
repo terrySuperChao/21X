@@ -12,4 +12,14 @@ public class DiamondSettle: SuitSettle
 
     override
     protected float _getMult() { return 0.5f; }
+
+    override
+    protected void _settle(ITriggerHandlePara para, IPoker poker, int baseValue) {
+        float addValue = baseValue * para.getAttackUser().getExtraInfo().getBonusArmor();
+        if (addValue <= 0) return;
+        para.getAttackUser().addDefense(addValue);
+
+        IUICommonPara attackPara = new UICommonParaObject(para.getAttackUser(), ValueType.defense, addValue, para.getAttackUser().getDefense());
+        GameMessage.Instance.addMsg(GameConst.ADDCARDVALUE, attackPara);
+    }
 }

@@ -50,47 +50,49 @@ namespace Pb {
             "DAoKX3Bva2VyUG9zWUINCgtfZmluYWxQb2ludEIMCgpfYmxhY2tqYWNrQgwK",
             "Cl9jaGFwdGVySWRCDAoKX2JhcnJpZXJJZEIVChNfcmVmcmVzaE5wY1Bva2Vy",
             "TnVtQhgKFl9yZWZyZXNoUGxheWVyUG9rZXJOdW0iKAoEU2hvcBINCgVnb29k",
-            "cxgBIAMoBRIRCglwdXJjaGFzZWQYAiADKAUiugIKCUV4dHJhSW5mbxIUCgdt",
-            "dWx0QVRLGAEgASgCSACIAQESFAoHYWRkQ3JpdBgCIAEoAkgBiAEBEhcKCmJv",
-            "bnVzQXJtb3IYAyABKAJIAogBARIWCglsaWZlU3RlYWwYBCABKAJIA4gBARIU",
-            "CgxoZWFsT3ZlclRpbWUYBSADKAISFQoIaGVhbHRvTVAYBiABKAJIBIgBARIa",
-            "Cg1za2lsbERhbWFnZVVwGAcgASgCSAWIAQESDwoHbXBSZWdlbhgIIAMoAhIV",
-            "CghtcE1heFN1YhgJIAEoAkgGiAEBQgoKCF9tdWx0QVRLQgoKCF9hZGRDcml0",
-            "Qg0KC19ib251c0FybW9yQgwKCl9saWZlU3RlYWxCCwoJX2hlYWx0b01QQhAK",
-            "Dl9za2lsbERhbWFnZVVwQgsKCV9tcE1heFN1YiLPAgoJQXNzZXRJbmZvEhIK",
-            "BXN0YXRlGAEgASgFSACIAQESDgoGcG9rZXJzGAIgAygFEg0KBWNhcmRzGAMg",
-            "AygFEg8KAmhwGAQgASgCSAGIAQESEgoFbWF4SFAYBSABKAJIAogBARISCgVt",
-            "YWdpYxgGIAEoAkgDiAEBEhUKCG1heE1hZ2ljGAcgASgCSASIAQESEwoGYXR0",
-            "YWNrGAggASgCSAWIAQESFAoHZGVmZW5zZRgJIAEoAkgGiAEBEhMKBmlzRmls",
-            "cBgKIAEoBUgHiAEBEiEKBWV4dHJhGAsgASgLMg0ucGIuRXh0cmFJbmZvSAiI",
-            "AQFCCAoGX3N0YXRlQgUKA19ocEIICgZfbWF4SFBCCAoGX21hZ2ljQgsKCV9t",
-            "YXhNYWdpY0IJCgdfYXR0YWNrQgoKCF9kZWZlbnNlQgkKB19pc0ZpbHBCCAoG",
-            "X2V4dHJhIsIBCgVGaWdodBIRCglwb2tlclBpbGUYASADKAUSJAoIbnBjQXNz",
-            "ZXQYAiABKAsyDS5wYi5Bc3NldEluZm9IAIgBARInCgtwbGF5ZXJBc3NldBgD",
-            "IAEoCzINLnBiLkFzc2V0SW5mb0gBiAEBEhIKBXN0YXRlGAQgASgFSAKIAQES",
-            "EgoFcm91bmQYBSABKAVIA4gBAUILCglfbnBjQXNzZXRCDgoMX3BsYXllckFz",
-            "c2V0QggKBl9zdGF0ZUIICgZfcm91bmQi8AEKDEFzc2VtYmxlQ2FyZBIWCgl0",
-            "cmlnZ2VySWQYASABKAVIAIgBARIZCgxiYXNlRWZmZWN0SWQYAiABKAVIAYgB",
-            "ARIdChBhZHZhbmNlZEVmZmVjdElkGAMgASgFSAKIAQESGgoNdHJpZ2dlck51",
-            "bWJlchgEIAEoBUgDiAEBEhoKDXVwZ3JhZGVOdW1iZXIYBSABKAVIBIgBAUIM",
-            "CgpfdHJpZ2dlcklkQg8KDV9iYXNlRWZmZWN0SWRCEwoRX2FkdmFuY2VkRWZm",
-            "ZWN0SWRCEAoOX3RyaWdnZXJOdW1iZXJCEAoOX3VwZ3JhZGVOdW1iZXIihAEK",
-            "B0ltcHJpbnQSGwoOYXNzZW1ibGVPYmplY3QYASABKAVIAIgBARIiCghucGND",
-            "YXJkcxgCIAMoCzIQLnBiLkFzc2VtYmxlQ2FyZBIlCgtwbGF5ZXJDYXJkcxgD",
-            "IAMoCzIQLnBiLkFzc2VtYmxlQ2FyZEIRCg9fYXNzZW1ibGVPYmplY3Qi+AIK",
-            "CEdhbWVEYXRhEhUKCGluaXRTZWVkGAEgASgFSACIAQESFgoJZ2FtZVN0YXRl",
-            "GAIgASgFSAGIAQESFgoJcGFnZUluZGV4GAMgASgFSAKIAQESHwoGcGxheWVy",
-            "GAQgASgLMgoucGIuUGxheWVySAOIAQESIQoHYmFycmllchgFIAEoCzILLnBi",
-            "LkJhcnJpZXJIBIgBARIbCgRzaG9wGAYgASgLMggucGIuU2hvcEgFiAEBEh0K",
-            "BWZpZ2h0GAcgASgLMgkucGIuRmlnaHRIBogBARIhCgdpbXByaW50GAggASgL",
-            "MgsucGIuSW1wcmludEgHiAEBEiMKC2RlZmVhdFJvbGVzGAkgAygLMg4ucGIu",
-            "RGVmZWF0Um9sZUILCglfaW5pdFNlZWRCDAoKX2dhbWVTdGF0ZUIMCgpfcGFn",
-            "ZUluZGV4QgkKB19wbGF5ZXJCCgoIX2JhcnJpZXJCBwoFX3Nob3BCCAoGX2Zp",
-            "Z2h0QgoKCF9pbXByaW50Ip4BCgxHYW1lUHJvcGVydHkSIQoHYWNjb3VudBgB",
-            "IAEoCzILLnBiLkFjY291bnRIAIgBARIhCgdzZXR0aW5nGAIgASgLMgsucGIu",
-            "U2V0dGluZ0gBiAEBEiMKCGdhbWVEYXRhGAMgASgLMgwucGIuR2FtZURhdGFI",
-            "AogBAUIKCghfYWNjb3VudEIKCghfc2V0dGluZ0ILCglfZ2FtZURhdGFiBnBy",
-            "b3RvMw=="));
+            "cxgBIAMoBRIRCglwdXJjaGFzZWQYAiADKAUikgMKCUV4dHJhSW5mbxIUCgdt",
+            "dWx0QVRLGAEgASgCSACIAQESFAoHYWRkQ3JpdBgCIAEoAkgBiAEBEhcKCnJl",
+            "ZmxlY3RETUcYAyABKAJIAogBARIXCgpib251c0FybW9yGAQgASgCSAOIAQES",
+            "GwoOdGVtcG9yYXJ5QXJtb3IYBSABKAJIBIgBARIWCglsaWZlU3RlYWwYBiAB",
+            "KAJIBYgBARIUCgxoZWFsT3ZlclRpbWUYByADKAISFQoIaGVhbHRvTVAYCCAB",
+            "KAJIBogBARIaCg1za2lsbERhbWFnZVVwGAkgASgCSAeIAQESDwoHbXBSZWdl",
+            "bhgKIAMoAhIVCghtcE1heFN1YhgLIAEoAkgIiAEBQgoKCF9tdWx0QVRLQgoK",
+            "CF9hZGRDcml0Qg0KC19yZWZsZWN0RE1HQg0KC19ib251c0FybW9yQhEKD190",
+            "ZW1wb3JhcnlBcm1vckIMCgpfbGlmZVN0ZWFsQgsKCV9oZWFsdG9NUEIQCg5f",
+            "c2tpbGxEYW1hZ2VVcEILCglfbXBNYXhTdWIizwIKCUFzc2V0SW5mbxISCgVz",
+            "dGF0ZRgBIAEoBUgAiAEBEg4KBnBva2VycxgCIAMoBRINCgVjYXJkcxgDIAMo",
+            "BRIPCgJocBgEIAEoAkgBiAEBEhIKBW1heEhQGAUgASgCSAKIAQESEgoFbWFn",
+            "aWMYBiABKAJIA4gBARIVCghtYXhNYWdpYxgHIAEoAkgEiAEBEhMKBmF0dGFj",
+            "axgIIAEoAkgFiAEBEhQKB2RlZmVuc2UYCSABKAJIBogBARITCgZpc0ZpbHAY",
+            "CiABKAVIB4gBARIhCgVleHRyYRgLIAEoCzINLnBiLkV4dHJhSW5mb0gIiAEB",
+            "QggKBl9zdGF0ZUIFCgNfaHBCCAoGX21heEhQQggKBl9tYWdpY0ILCglfbWF4",
+            "TWFnaWNCCQoHX2F0dGFja0IKCghfZGVmZW5zZUIJCgdfaXNGaWxwQggKBl9l",
+            "eHRyYSLCAQoFRmlnaHQSEQoJcG9rZXJQaWxlGAEgAygFEiQKCG5wY0Fzc2V0",
+            "GAIgASgLMg0ucGIuQXNzZXRJbmZvSACIAQESJwoLcGxheWVyQXNzZXQYAyAB",
+            "KAsyDS5wYi5Bc3NldEluZm9IAYgBARISCgVzdGF0ZRgEIAEoBUgCiAEBEhIK",
+            "BXJvdW5kGAUgASgFSAOIAQFCCwoJX25wY0Fzc2V0Qg4KDF9wbGF5ZXJBc3Nl",
+            "dEIICgZfc3RhdGVCCAoGX3JvdW5kIvABCgxBc3NlbWJsZUNhcmQSFgoJdHJp",
+            "Z2dlcklkGAEgASgFSACIAQESGQoMYmFzZUVmZmVjdElkGAIgASgFSAGIAQES",
+            "HQoQYWR2YW5jZWRFZmZlY3RJZBgDIAEoBUgCiAEBEhoKDXRyaWdnZXJOdW1i",
+            "ZXIYBCABKAVIA4gBARIaCg11cGdyYWRlTnVtYmVyGAUgASgFSASIAQFCDAoK",
+            "X3RyaWdnZXJJZEIPCg1fYmFzZUVmZmVjdElkQhMKEV9hZHZhbmNlZEVmZmVj",
+            "dElkQhAKDl90cmlnZ2VyTnVtYmVyQhAKDl91cGdyYWRlTnVtYmVyIoQBCgdJ",
+            "bXByaW50EhsKDmFzc2VtYmxlT2JqZWN0GAEgASgFSACIAQESIgoIbnBjQ2Fy",
+            "ZHMYAiADKAsyEC5wYi5Bc3NlbWJsZUNhcmQSJQoLcGxheWVyQ2FyZHMYAyAD",
+            "KAsyEC5wYi5Bc3NlbWJsZUNhcmRCEQoPX2Fzc2VtYmxlT2JqZWN0IvgCCghH",
+            "YW1lRGF0YRIVCghpbml0U2VlZBgBIAEoBUgAiAEBEhYKCWdhbWVTdGF0ZRgC",
+            "IAEoBUgBiAEBEhYKCXBhZ2VJbmRleBgDIAEoBUgCiAEBEh8KBnBsYXllchgE",
+            "IAEoCzIKLnBiLlBsYXllckgDiAEBEiEKB2JhcnJpZXIYBSABKAsyCy5wYi5C",
+            "YXJyaWVySASIAQESGwoEc2hvcBgGIAEoCzIILnBiLlNob3BIBYgBARIdCgVm",
+            "aWdodBgHIAEoCzIJLnBiLkZpZ2h0SAaIAQESIQoHaW1wcmludBgIIAEoCzIL",
+            "LnBiLkltcHJpbnRIB4gBARIjCgtkZWZlYXRSb2xlcxgJIAMoCzIOLnBiLkRl",
+            "ZmVhdFJvbGVCCwoJX2luaXRTZWVkQgwKCl9nYW1lU3RhdGVCDAoKX3BhZ2VJ",
+            "bmRleEIJCgdfcGxheWVyQgoKCF9iYXJyaWVyQgcKBV9zaG9wQggKBl9maWdo",
+            "dEIKCghfaW1wcmludCKeAQoMR2FtZVByb3BlcnR5EiEKB2FjY291bnQYASAB",
+            "KAsyCy5wYi5BY2NvdW50SACIAQESIQoHc2V0dGluZxgCIAEoCzILLnBiLlNl",
+            "dHRpbmdIAYgBARIjCghnYW1lRGF0YRgDIAEoCzIMLnBiLkdhbWVEYXRhSAKI",
+            "AQFCCgoIX2FjY291bnRCCgoIX3NldHRpbmdCCwoJX2dhbWVEYXRhYgZwcm90",
+            "bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
@@ -100,7 +102,7 @@ namespace Pb {
             new pbr::GeneratedClrTypeInfo(typeof(global::Pb.DefeatRole), global::Pb.DefeatRole.Parser, new[]{ "Id", "Diff" }, new[]{ "Id", "Diff" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Pb.Barrier), global::Pb.Barrier.Parser, new[]{ "PokerPile", "NpcPokers", "PlayerPokers", "OtherPokers", "State", "MatchPointA", "MatchPointB", "PokerPosX", "PokerPosY", "FinalPoint", "Blackjack", "ChapterId", "BarrierId", "RefreshNpcPokerNum", "RefreshPlayerPokerNum" }, new[]{ "State", "MatchPointA", "MatchPointB", "PokerPosX", "PokerPosY", "FinalPoint", "Blackjack", "ChapterId", "BarrierId", "RefreshNpcPokerNum", "RefreshPlayerPokerNum" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Pb.Shop), global::Pb.Shop.Parser, new[]{ "Goods", "Purchased" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Pb.ExtraInfo), global::Pb.ExtraInfo.Parser, new[]{ "MultATK", "AddCrit", "BonusArmor", "LifeSteal", "HealOverTime", "HealtoMP", "SkillDamageUp", "MpRegen", "MpMaxSub" }, new[]{ "MultATK", "AddCrit", "BonusArmor", "LifeSteal", "HealtoMP", "SkillDamageUp", "MpMaxSub" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Pb.ExtraInfo), global::Pb.ExtraInfo.Parser, new[]{ "MultATK", "AddCrit", "ReflectDMG", "BonusArmor", "TemporaryArmor", "LifeSteal", "HealOverTime", "HealtoMP", "SkillDamageUp", "MpRegen", "MpMaxSub" }, new[]{ "MultATK", "AddCrit", "ReflectDMG", "BonusArmor", "TemporaryArmor", "LifeSteal", "HealtoMP", "SkillDamageUp", "MpMaxSub" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Pb.AssetInfo), global::Pb.AssetInfo.Parser, new[]{ "State", "Pokers", "Cards", "Hp", "MaxHP", "Magic", "MaxMagic", "Attack", "Defense", "IsFilp", "Extra" }, new[]{ "State", "Hp", "MaxHP", "Magic", "MaxMagic", "Attack", "Defense", "IsFilp", "Extra" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Pb.Fight), global::Pb.Fight.Parser, new[]{ "PokerPile", "NpcAsset", "PlayerAsset", "State", "Round" }, new[]{ "NpcAsset", "PlayerAsset", "State", "Round" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Pb.AssembleCard), global::Pb.AssembleCard.Parser, new[]{ "TriggerId", "BaseEffectId", "AdvancedEffectId", "TriggerNumber", "UpgradeNumber" }, new[]{ "TriggerId", "BaseEffectId", "AdvancedEffectId", "TriggerNumber", "UpgradeNumber" }, null, null, null),
@@ -2784,7 +2786,9 @@ namespace Pb {
       _hasBits0 = other._hasBits0;
       multATK_ = other.multATK_;
       addCrit_ = other.addCrit_;
+      reflectDMG_ = other.reflectDMG_;
       bonusArmor_ = other.bonusArmor_;
+      temporaryArmor_ = other.temporaryArmor_;
       lifeSteal_ = other.lifeSteal_;
       healOverTime_ = other.healOverTime_.Clone();
       healtoMP_ = other.healtoMP_;
@@ -2860,8 +2864,38 @@ namespace Pb {
       _hasBits0 &= ~2;
     }
 
+    /// <summary>Field number for the "reflectDMG" field.</summary>
+    public const int ReflectDMGFieldNumber = 3;
+    private readonly static float ReflectDMGDefaultValue = 0F;
+
+    private float reflectDMG_;
+    /// <summary>
+    ///受到攻击时反弹%s点伤害
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public float ReflectDMG {
+      get { if ((_hasBits0 & 4) != 0) { return reflectDMG_; } else { return ReflectDMGDefaultValue; } }
+      set {
+        _hasBits0 |= 4;
+        reflectDMG_ = value;
+      }
+    }
+    /// <summary>Gets whether the "reflectDMG" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasReflectDMG {
+      get { return (_hasBits0 & 4) != 0; }
+    }
+    /// <summary>Clears the value of the "reflectDMG" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearReflectDMG() {
+      _hasBits0 &= ~4;
+    }
+
     /// <summary>Field number for the "bonusArmor" field.</summary>
-    public const int BonusArmorFieldNumber = 3;
+    public const int BonusArmorFieldNumber = 4;
     private readonly static float BonusArmorDefaultValue = 0F;
 
     private float bonusArmor_;
@@ -2871,9 +2905,9 @@ namespace Pb {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public float BonusArmor {
-      get { if ((_hasBits0 & 4) != 0) { return bonusArmor_; } else { return BonusArmorDefaultValue; } }
+      get { if ((_hasBits0 & 8) != 0) { return bonusArmor_; } else { return BonusArmorDefaultValue; } }
       set {
-        _hasBits0 |= 4;
+        _hasBits0 |= 8;
         bonusArmor_ = value;
       }
     }
@@ -2881,17 +2915,47 @@ namespace Pb {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public bool HasBonusArmor {
-      get { return (_hasBits0 & 4) != 0; }
+      get { return (_hasBits0 & 8) != 0; }
     }
     /// <summary>Clears the value of the "bonusArmor" field</summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public void ClearBonusArmor() {
-      _hasBits0 &= ~4;
+      _hasBits0 &= ~8;
+    }
+
+    /// <summary>Field number for the "temporaryArmor" field.</summary>
+    public const int TemporaryArmorFieldNumber = 5;
+    private readonly static float TemporaryArmorDefaultValue = 0F;
+
+    private float temporaryArmor_;
+    /// <summary>
+    ///获得当前护甲 %s% 的临时护甲
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public float TemporaryArmor {
+      get { if ((_hasBits0 & 16) != 0) { return temporaryArmor_; } else { return TemporaryArmorDefaultValue; } }
+      set {
+        _hasBits0 |= 16;
+        temporaryArmor_ = value;
+      }
+    }
+    /// <summary>Gets whether the "temporaryArmor" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasTemporaryArmor {
+      get { return (_hasBits0 & 16) != 0; }
+    }
+    /// <summary>Clears the value of the "temporaryArmor" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearTemporaryArmor() {
+      _hasBits0 &= ~16;
     }
 
     /// <summary>Field number for the "lifeSteal" field.</summary>
-    public const int LifeStealFieldNumber = 4;
+    public const int LifeStealFieldNumber = 6;
     private readonly static float LifeStealDefaultValue = 0F;
 
     private float lifeSteal_;
@@ -2901,9 +2965,9 @@ namespace Pb {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public float LifeSteal {
-      get { if ((_hasBits0 & 8) != 0) { return lifeSteal_; } else { return LifeStealDefaultValue; } }
+      get { if ((_hasBits0 & 32) != 0) { return lifeSteal_; } else { return LifeStealDefaultValue; } }
       set {
-        _hasBits0 |= 8;
+        _hasBits0 |= 32;
         lifeSteal_ = value;
       }
     }
@@ -2911,19 +2975,19 @@ namespace Pb {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public bool HasLifeSteal {
-      get { return (_hasBits0 & 8) != 0; }
+      get { return (_hasBits0 & 32) != 0; }
     }
     /// <summary>Clears the value of the "lifeSteal" field</summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public void ClearLifeSteal() {
-      _hasBits0 &= ~8;
+      _hasBits0 &= ~32;
     }
 
     /// <summary>Field number for the "healOverTime" field.</summary>
-    public const int HealOverTimeFieldNumber = 5;
+    public const int HealOverTimeFieldNumber = 7;
     private static readonly pb::FieldCodec<float> _repeated_healOverTime_codec
-        = pb::FieldCodec.ForFloat(42);
+        = pb::FieldCodec.ForFloat(58);
     private readonly pbc::RepeatedField<float> healOverTime_ = new pbc::RepeatedField<float>();
     /// <summary>
     ///接下来的2回合每回合回复%s点生命值
@@ -2935,7 +2999,7 @@ namespace Pb {
     }
 
     /// <summary>Field number for the "healtoMP" field.</summary>
-    public const int HealtoMPFieldNumber = 6;
+    public const int HealtoMPFieldNumber = 8;
     private readonly static float HealtoMPDefaultValue = 0F;
 
     private float healtoMP_;
@@ -2945,9 +3009,9 @@ namespace Pb {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public float HealtoMP {
-      get { if ((_hasBits0 & 16) != 0) { return healtoMP_; } else { return HealtoMPDefaultValue; } }
+      get { if ((_hasBits0 & 64) != 0) { return healtoMP_; } else { return HealtoMPDefaultValue; } }
       set {
-        _hasBits0 |= 16;
+        _hasBits0 |= 64;
         healtoMP_ = value;
       }
     }
@@ -2955,17 +3019,17 @@ namespace Pb {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public bool HasHealtoMP {
-      get { return (_hasBits0 & 16) != 0; }
+      get { return (_hasBits0 & 64) != 0; }
     }
     /// <summary>Clears the value of the "healtoMP" field</summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public void ClearHealtoMP() {
-      _hasBits0 &= ~16;
+      _hasBits0 &= ~64;
     }
 
     /// <summary>Field number for the "skillDamageUp" field.</summary>
-    public const int SkillDamageUpFieldNumber = 7;
+    public const int SkillDamageUpFieldNumber = 9;
     private readonly static float SkillDamageUpDefaultValue = 0F;
 
     private float skillDamageUp_;
@@ -2975,9 +3039,9 @@ namespace Pb {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public float SkillDamageUp {
-      get { if ((_hasBits0 & 32) != 0) { return skillDamageUp_; } else { return SkillDamageUpDefaultValue; } }
+      get { if ((_hasBits0 & 128) != 0) { return skillDamageUp_; } else { return SkillDamageUpDefaultValue; } }
       set {
-        _hasBits0 |= 32;
+        _hasBits0 |= 128;
         skillDamageUp_ = value;
       }
     }
@@ -2985,19 +3049,19 @@ namespace Pb {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public bool HasSkillDamageUp {
-      get { return (_hasBits0 & 32) != 0; }
+      get { return (_hasBits0 & 128) != 0; }
     }
     /// <summary>Clears the value of the "skillDamageUp" field</summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public void ClearSkillDamageUp() {
-      _hasBits0 &= ~32;
+      _hasBits0 &= ~128;
     }
 
     /// <summary>Field number for the "mpRegen" field.</summary>
-    public const int MpRegenFieldNumber = 8;
+    public const int MpRegenFieldNumber = 10;
     private static readonly pb::FieldCodec<float> _repeated_mpRegen_codec
-        = pb::FieldCodec.ForFloat(66);
+        = pb::FieldCodec.ForFloat(82);
     private readonly pbc::RepeatedField<float> mpRegen_ = new pbc::RepeatedField<float>();
     /// <summary>
     ///接下来的3回合每回合回复 %s 点法力
@@ -3009,7 +3073,7 @@ namespace Pb {
     }
 
     /// <summary>Field number for the "mpMaxSub" field.</summary>
-    public const int MpMaxSubFieldNumber = 9;
+    public const int MpMaxSubFieldNumber = 11;
     private readonly static float MpMaxSubDefaultValue = 0F;
 
     private float mpMaxSub_;
@@ -3019,9 +3083,9 @@ namespace Pb {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public float MpMaxSub {
-      get { if ((_hasBits0 & 64) != 0) { return mpMaxSub_; } else { return MpMaxSubDefaultValue; } }
+      get { if ((_hasBits0 & 256) != 0) { return mpMaxSub_; } else { return MpMaxSubDefaultValue; } }
       set {
-        _hasBits0 |= 64;
+        _hasBits0 |= 256;
         mpMaxSub_ = value;
       }
     }
@@ -3029,13 +3093,13 @@ namespace Pb {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public bool HasMpMaxSub {
-      get { return (_hasBits0 & 64) != 0; }
+      get { return (_hasBits0 & 256) != 0; }
     }
     /// <summary>Clears the value of the "mpMaxSub" field</summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public void ClearMpMaxSub() {
-      _hasBits0 &= ~64;
+      _hasBits0 &= ~256;
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -3055,7 +3119,9 @@ namespace Pb {
       }
       if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(MultATK, other.MultATK)) return false;
       if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(AddCrit, other.AddCrit)) return false;
+      if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(ReflectDMG, other.ReflectDMG)) return false;
       if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(BonusArmor, other.BonusArmor)) return false;
+      if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(TemporaryArmor, other.TemporaryArmor)) return false;
       if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(LifeSteal, other.LifeSteal)) return false;
       if(!healOverTime_.Equals(other.healOverTime_)) return false;
       if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(HealtoMP, other.HealtoMP)) return false;
@@ -3071,7 +3137,9 @@ namespace Pb {
       int hash = 1;
       if (HasMultATK) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(MultATK);
       if (HasAddCrit) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(AddCrit);
+      if (HasReflectDMG) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(ReflectDMG);
       if (HasBonusArmor) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(BonusArmor);
+      if (HasTemporaryArmor) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(TemporaryArmor);
       if (HasLifeSteal) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(LifeSteal);
       hash ^= healOverTime_.GetHashCode();
       if (HasHealtoMP) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(HealtoMP);
@@ -3104,26 +3172,34 @@ namespace Pb {
         output.WriteRawTag(21);
         output.WriteFloat(AddCrit);
       }
-      if (HasBonusArmor) {
+      if (HasReflectDMG) {
         output.WriteRawTag(29);
+        output.WriteFloat(ReflectDMG);
+      }
+      if (HasBonusArmor) {
+        output.WriteRawTag(37);
         output.WriteFloat(BonusArmor);
       }
+      if (HasTemporaryArmor) {
+        output.WriteRawTag(45);
+        output.WriteFloat(TemporaryArmor);
+      }
       if (HasLifeSteal) {
-        output.WriteRawTag(37);
+        output.WriteRawTag(53);
         output.WriteFloat(LifeSteal);
       }
       healOverTime_.WriteTo(output, _repeated_healOverTime_codec);
       if (HasHealtoMP) {
-        output.WriteRawTag(53);
+        output.WriteRawTag(69);
         output.WriteFloat(HealtoMP);
       }
       if (HasSkillDamageUp) {
-        output.WriteRawTag(61);
+        output.WriteRawTag(77);
         output.WriteFloat(SkillDamageUp);
       }
       mpRegen_.WriteTo(output, _repeated_mpRegen_codec);
       if (HasMpMaxSub) {
-        output.WriteRawTag(77);
+        output.WriteRawTag(93);
         output.WriteFloat(MpMaxSub);
       }
       if (_unknownFields != null) {
@@ -3144,26 +3220,34 @@ namespace Pb {
         output.WriteRawTag(21);
         output.WriteFloat(AddCrit);
       }
-      if (HasBonusArmor) {
+      if (HasReflectDMG) {
         output.WriteRawTag(29);
+        output.WriteFloat(ReflectDMG);
+      }
+      if (HasBonusArmor) {
+        output.WriteRawTag(37);
         output.WriteFloat(BonusArmor);
       }
+      if (HasTemporaryArmor) {
+        output.WriteRawTag(45);
+        output.WriteFloat(TemporaryArmor);
+      }
       if (HasLifeSteal) {
-        output.WriteRawTag(37);
+        output.WriteRawTag(53);
         output.WriteFloat(LifeSteal);
       }
       healOverTime_.WriteTo(ref output, _repeated_healOverTime_codec);
       if (HasHealtoMP) {
-        output.WriteRawTag(53);
+        output.WriteRawTag(69);
         output.WriteFloat(HealtoMP);
       }
       if (HasSkillDamageUp) {
-        output.WriteRawTag(61);
+        output.WriteRawTag(77);
         output.WriteFloat(SkillDamageUp);
       }
       mpRegen_.WriteTo(ref output, _repeated_mpRegen_codec);
       if (HasMpMaxSub) {
-        output.WriteRawTag(77);
+        output.WriteRawTag(93);
         output.WriteFloat(MpMaxSub);
       }
       if (_unknownFields != null) {
@@ -3182,7 +3266,13 @@ namespace Pb {
       if (HasAddCrit) {
         size += 1 + 4;
       }
+      if (HasReflectDMG) {
+        size += 1 + 4;
+      }
       if (HasBonusArmor) {
+        size += 1 + 4;
+      }
+      if (HasTemporaryArmor) {
         size += 1 + 4;
       }
       if (HasLifeSteal) {
@@ -3217,8 +3307,14 @@ namespace Pb {
       if (other.HasAddCrit) {
         AddCrit = other.AddCrit;
       }
+      if (other.HasReflectDMG) {
+        ReflectDMG = other.ReflectDMG;
+      }
       if (other.HasBonusArmor) {
         BonusArmor = other.BonusArmor;
+      }
+      if (other.HasTemporaryArmor) {
+        TemporaryArmor = other.TemporaryArmor;
       }
       if (other.HasLifeSteal) {
         LifeSteal = other.LifeSteal;
@@ -3262,32 +3358,40 @@ namespace Pb {
             break;
           }
           case 29: {
-            BonusArmor = input.ReadFloat();
+            ReflectDMG = input.ReadFloat();
             break;
           }
           case 37: {
-            LifeSteal = input.ReadFloat();
+            BonusArmor = input.ReadFloat();
             break;
           }
-          case 42:
           case 45: {
-            healOverTime_.AddEntriesFrom(input, _repeated_healOverTime_codec);
+            TemporaryArmor = input.ReadFloat();
             break;
           }
           case 53: {
+            LifeSteal = input.ReadFloat();
+            break;
+          }
+          case 58:
+          case 61: {
+            healOverTime_.AddEntriesFrom(input, _repeated_healOverTime_codec);
+            break;
+          }
+          case 69: {
             HealtoMP = input.ReadFloat();
             break;
           }
-          case 61: {
+          case 77: {
             SkillDamageUp = input.ReadFloat();
             break;
           }
-          case 66:
-          case 69: {
+          case 82:
+          case 85: {
             mpRegen_.AddEntriesFrom(input, _repeated_mpRegen_codec);
             break;
           }
-          case 77: {
+          case 93: {
             MpMaxSub = input.ReadFloat();
             break;
           }
@@ -3319,32 +3423,40 @@ namespace Pb {
             break;
           }
           case 29: {
-            BonusArmor = input.ReadFloat();
+            ReflectDMG = input.ReadFloat();
             break;
           }
           case 37: {
-            LifeSteal = input.ReadFloat();
+            BonusArmor = input.ReadFloat();
             break;
           }
-          case 42:
           case 45: {
-            healOverTime_.AddEntriesFrom(ref input, _repeated_healOverTime_codec);
+            TemporaryArmor = input.ReadFloat();
             break;
           }
           case 53: {
+            LifeSteal = input.ReadFloat();
+            break;
+          }
+          case 58:
+          case 61: {
+            healOverTime_.AddEntriesFrom(ref input, _repeated_healOverTime_codec);
+            break;
+          }
+          case 69: {
             HealtoMP = input.ReadFloat();
             break;
           }
-          case 61: {
+          case 77: {
             SkillDamageUp = input.ReadFloat();
             break;
           }
-          case 66:
-          case 69: {
+          case 82:
+          case 85: {
             mpRegen_.AddEntriesFrom(ref input, _repeated_mpRegen_codec);
             break;
           }
-          case 77: {
+          case 93: {
             MpMaxSub = input.ReadFloat();
             break;
           }

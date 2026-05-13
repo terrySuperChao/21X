@@ -9,4 +9,13 @@ public class ClubSettle : SuitSettle
     protected bool _matchSuit(int suit) { 
         return suit == (int)PokerSuit.club; 
     }
+
+    override
+    protected void _settle(ITriggerHandlePara para, IPoker poker, int baseValue)
+    {
+        IRoundResult roundResult = para.getRoundResult(para.getAttackUser());
+        if (roundResult != null){
+            roundResult.addMagicValue(baseValue);
+        }
+    }
 }

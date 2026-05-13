@@ -39,8 +39,15 @@ public class AttackSettle: IAttackSettle
         GameMessage.Instance.addMsg(GameConst.COMMONATTACK, attackPara);
 
         float remainAttack = this.getRemainAttack(para, attack);
-        this.setDefenseUserBlood(para, remainAttack);
-
+        GameLossBloodMgr.Instance.handle(para.getAttackUser(), para.getDefenseUser(), remainAttack);
+        
+        //反射
+        float reflectDMG = defenseUser.getExtraInfo().getReflectDMG();
+        if (reflectDMG > 0) {
+            defenseUser.getExtraInfo().setReflectDMG(-reflectDMG);
+            GameLossBloodMgr.Instance.handle(para.getDefenseUser(), para.getAttackUser(), reflectDMG);
+        }
+        
         SwitchParaMgr.Instance.handle(para, () => {
             CardMgr.Instance.handle(para, TriggerEvent.normalAttackAfter);
         }, true);
@@ -48,24 +55,19 @@ public class AttackSettle: IAttackSettle
 
     //魔法攻击
     public void magicAttack(ITriggerHandlePara para) {
-        IRoundResult roundResult = para.getRoundResult(para.getAttackUser());
-        if (roundResult == null)
-        {
+        if (GameLossBloodMgr.Instance.checkGameOver(para)) {
             return;
         }
 
-        //添加魔法
-        AssetInfo info = FightPokerMgr.Instance.getAssetInfo(para.getAttackUser());
-        if (info == null)
-        {
+        IRoundResult roundResult = para.getRoundResult(para.getAttackUser());
+        if (roundResult == null){
             return;
         }
-        roundResult.addMagicValue(para.getAttackUser().getMagic() - info.Magic);
 
         float attack = 50.0f;
         IUser attackUser = para.getAttackUser();
         IUser defenseUser = para.getDefenseUser();
-        if (defenseUser.getBlood() < 0 || attackUser.getMagic() < attackUser.getMaxMagic()){
+        if (attackUser.getMagic() < attackUser.getMaxMagic()){
             return;
         }
         attackUser.setMagic(0);
@@ -76,7 +78,7 @@ public class AttackSettle: IAttackSettle
         CardMgr.Instance.handle(para, TriggerEvent.magicAttackAfter);
 
         //减去50血量
-        this.setDefenseUserBlood(para, attack);
+        GameLossBloodMgr.Instance.handle(para.getAttackUser(), para.getDefenseUser(), attack);
 
         //魔法攻击
         para.setMagicAttack(true);
@@ -108,10 +110,10 @@ public class AttackSettle: IAttackSettle
 
     //
     private float getRemainAttack(ITriggerHandlePara para,float attack) {
-        IUser attackUser = para.getAttackUser();
         IUser defenseUser = para.getDefenseUser();
         IRoundResult roundResult = para.getRoundResult(para.getUser());
-
+        //
+        defenseUser.getExtraInfo().setTemporaryArmor(-attack);
         //
         if (roundResult.getPenetrateValue() != 0)
         {
@@ -139,6 +141,7 @@ public class AttackSettle: IAttackSettle
             attack = 0;
         }
         defenseUser.setDefense(defense);
+        
 
         IUICommonPara attackPara = new UICommonParaObject(defenseUser, ValueType.defense, -defenseValue, defenseUser.getDefense());
         GameMessage.Instance.addMsg(GameConst.ADDCARDVALUE, attackPara);

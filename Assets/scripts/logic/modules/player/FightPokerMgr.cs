@@ -20,7 +20,10 @@ public class FightPokerMgr : Singleton<FightPokerMgr>
         IExtraInfo extra = new ExtraInfoObject();
         extra.setMultATK(info.Extra.MultATK);
         extra.setAddCrit(info.Extra.AddCrit);
-
+        extra.setBonusArmor(info.Extra.BonusArmor);
+        extra.setTemporaryArmor(info.Extra.TemporaryArmor);
+        extra.setLifeSteal(info.Extra.LifeSteal);
+       
         IUser user = new UserObject(type == FightDealType.npc);
         user.setAttack(info.Attack);
         user.setDefense(info.Defense);
@@ -44,6 +47,9 @@ public class FightPokerMgr : Singleton<FightPokerMgr>
         info.State = (int)user.getState();
         info.Extra.MultATK = user.getExtraInfo().getMultATK();
         info.Extra.AddCrit = user.getExtraInfo().getAddCrit();
+        info.Extra.BonusArmor = user.getExtraInfo().getBonusArmor();
+        info.Extra.TemporaryArmor = user.getExtraInfo().getTemporaryArmor();
+        info.Extra.LifeSteal = user.getExtraInfo().getLifeSteal();
     }
 
     public AssetInfo getAssetInfo(IUser user) {
@@ -98,10 +104,11 @@ public class FightPokerMgr : Singleton<FightPokerMgr>
     public void runFlow() {
         FightFlowState state = (FightFlowState)FightDataMgr.Instance.getState();
         switch (state) {
-            case FightFlowState.dealCard:
+            case FightFlowState.handPokerBefore:
                 {
-                    GameMessage.Instance.addMsg(GameConst.FIGHTFLOWSTATE, FightFlowState.twoHandPoker);
                     this.addUserRound();
+                    this._gameFlow.handPokerBefore(new HandPokerBeforePara(this._players));
+                    GameMessage.Instance.addMsg(GameConst.FIGHTFLOWSTATE, FightFlowState.twoHandPoker);
                 }
                 break;
             case FightFlowState.twoHandPoker:
@@ -227,7 +234,7 @@ public class FightPokerMgr : Singleton<FightPokerMgr>
         }
         else {
             GameMessage.Instance.addMsg(GameConst.GAMECLEAR);
-            GameMessage.Instance.addMsg(GameConst.FIGHTFLOWSTATE, FightFlowState.dealCard);
+            GameMessage.Instance.addMsg(GameConst.FIGHTFLOWSTATE, FightFlowState.handPokerBefore);
         }
         FightDataMgr.Instance.setIsFilp(FightDealType.npc, 1);   
     }
@@ -305,7 +312,7 @@ public class FightPokerMgr : Singleton<FightPokerMgr>
         if (success)
         {
             GameMessage.Instance.addMsg(GameConst.DEALCARD, new DealCardPara(user, card));
-            this._gameFlow.addCardAfter(new AddCardAfterPara(this._players));
+            //this._gameFlow.addCardAfter(new AddCardAfterPara(this._players));
         }
     }
 
@@ -318,7 +325,7 @@ public class FightPokerMgr : Singleton<FightPokerMgr>
         }
         if (success)
         {
-            this._gameFlow.addCardAfter(new AddCardAfterPara(this._players));
+            //this._gameFlow.addCardAfter(new AddCardAfterPara(this._players));
         }
         GameMessage.Instance.addMsg(GameConst.FIGHTFLOWSTATE, FightFlowState.twoHandPoker);
         return success;

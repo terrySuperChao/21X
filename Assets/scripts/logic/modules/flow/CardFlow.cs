@@ -1,6 +1,5 @@
 //
 using System.Collections.Generic;
-using static UnityEngine.UIElements.UxmlAttributeDescription;
 
 public class CardFlow : GameFlowObject
 {
@@ -28,8 +27,20 @@ public class CardFlow : GameFlowObject
     }
 
     override
-    protected void _addCardAfter(IAddCardAfterPara para)
+    protected void _handPokerBefore(IHandPokerBeforePara para)
     {
+        for (int i = 0; i < para.getUsers().Count; i++)
+        {
+            IUser user = para.getUsers()[i];
+            float addValue = user.getExtraInfo().getHealOverTime();
+            if (addValue > 0)
+            {
+                user.addBlood(addValue);
+                IUICommonPara attackPara = new UICommonParaObject(user, ValueType.blood, addValue, user.getBlood());
+                GameMessage.Instance.addMsg(GameConst.ADDCARDVALUE, attackPara);
+            }
+        }
+
         ITriggerHandlePara handlePara = this._handlePara;
         this.setTriggerHandleParaUser(handlePara,0);
         SwitchParaMgr.Instance.handle(handlePara, () =>{
@@ -93,9 +104,8 @@ public class CardFlow : GameFlowObject
             CardMgr.Instance.handle(handlePara, TriggerEvent.roundAttackAfter);
         });
 
-        //
-        handlePara.reset();
-        
+        this._specialSettle.settle(handlePara);
+     
         return handlePara.getAttackUser().getBlood() <= 0 ||
                handlePara.getDefenseUser().getBlood() <= 0;
     }

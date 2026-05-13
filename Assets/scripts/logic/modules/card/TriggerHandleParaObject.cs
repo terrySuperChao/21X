@@ -96,5 +96,8 @@ public class TriggerHandleParaObject : ITriggerHandlePara
         foreach (IRoundResult result in this._roundResults){
             result.reset();
         }
+
+        this._attackUser.getExtraInfo().clearTemporaryArmor();
+        this._defenseUser.getExtraInfo().clearTemporaryArmor();
     }
 }

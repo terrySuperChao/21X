@@ -144,11 +144,17 @@ public class CardMgr: Singleton<CardMgr>
             if (baseEffectHandle != null) {
                 baseEffectHandle.handle(para);
             }
+            if (GameLossBloodMgr.Instance.checkGameOver(para)) {
+                break;
+            }
 
             //高级效果
             IBaseEffectHandle advancedEffectHandle = BaseEffectHandle.getAdvancedEffectHandle(para);
             if (advancedEffectHandle != null){
                 advancedEffectHandle.handle(para);
+            }
+            if (GameLossBloodMgr.Instance.checkGameOver(para)){
+                break;
             }
 
             //触发升级的内容

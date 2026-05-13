@@ -14,6 +14,10 @@ public interface IGameSettlePara : IGameFlowPara
     public void reset();
 }
 
+public interface IHandPokerBeforePara : IGameFlowPara
+{
+}
+
 public interface IHandPokerAfterPara : IGameFlowPara
 {
 }
@@ -40,7 +44,7 @@ public interface IGameFlow
 {
     public void gameBegin(IGameBeginPara para);
 
-    public void addCardAfter(IAddCardAfterPara para);
+    public void handPokerBefore(IHandPokerBeforePara para);
     public void handPokerAfter(IHandPokerAfterPara para);
 
     public void dealPokerAfter(IDealPokerAfterPara para);

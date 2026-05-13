@@ -21,85 +21,82 @@ public class UserObject : IUser
     private UserState _state = UserState.none;
 
     public UserObject(bool isNpc) {
-        _isNpc = isNpc;
-        _userId = (++global_id).ToString();
+        this._isNpc = isNpc;
+        this._userId = (++global_id).ToString();
     }
 
     public string getUserId() {
-        return _userId;
+        return this._userId;
     }
 
     public int getMoney() {
-        return _money;
+        return this._money;
     }
 
     public void setMoney(int value) {
-        _money = value;
+        this._money = value;
     }
 
     public void addMoney(int value) {
-        _money += value;
+        this._money += value;
     }
 
     public void addPlay() {
-        _playCount++;
+        this._playCount++;
     }
     public int getWins() {
-        return _wins;
+        return this._wins;
     }
 
     public void addWins() {
-        _wins++;
+        this._wins++;
     }
 
     public double getWinRate()
     {
-        if (_playCount == 0)
+        if (this._playCount == 0)
         {
             return 0;
         }
         else
         {
-            return _wins * 1.0 / _playCount;
+            return this._wins * 1.0 / this._playCount;
         }
     }
 
     public bool isNpc() {
-        return _isNpc;
+        return this._isNpc;
     }
 
     public void setBlood(float value) {
-        _blood = value;
+        this._blood = value;
     }
 
     public void setMaxBlood(float value) {
-        _maxBlood = value;
+        this._maxBlood = value;
     }
 
     public float getMaxBlood() {
-        return _maxBlood;
+        return this._maxBlood;
     }
 
     public float addBlood(float value) {
-        _blood += value;
-        if (_blood > _maxBlood) {
-            _blood = _maxBlood;
-        }
-        if (_blood < 0) {
-            _blood = 0;
-        }
-        return _blood;
+        this._blood += value;
+        this._blood = this._blood > this._maxBlood ? this._maxBlood : this._attack;
+        this._blood = this._blood < 0 ? 0 : this._blood;
+        return this._blood;
     }
 
     public float getBlood() {
-        return _blood;
+        return this._blood;
     }
 
     public void setAttack(float value) {
-        _attack = value;
+        this._attack = value;
     }
     public float addAttack(float value) {
-        _attack += value;
+        this._attack += value;
+        this._attack = this._attack < 0 ? 0 : this._attack;
         return _attack;
     }
     public float getAttack() {
@@ -107,56 +104,52 @@ public class UserObject : IUser
     }
 
     public void setDefense(float value) {
-        _defense = value;
+        this._defense = value;
     }
 
     public float addDefense(float value) {
-        _defense += value;
+        this._defense += value;
+        this._defense = this._defense < 0 ? 0 : this._defense;
         return _defense;
     }
 
     public float getDefense() {
-        return _defense;
+        return this._defense;
     }
 
     public void setMaxMagic(float value) {
-        _maxMagic = value;
+        this._maxMagic = value;
     }
 
     public float getMaxMagic() {
-        return _maxMagic;
+        return this._maxMagic;
     }
 
     public float addMagic(float value) {
-        _magic += value;
-        if (_magic > _maxMagic) {
-            _magic = _maxMagic;
-        }
-        if (_magic < 0)
-        {
-            _magic = 0;
-        }
+        this._magic += value;
+        this._magic = this._magic > this._maxMagic ? this._maxMagic : this._magic;
+        this._magic = this._magic < 0 ? 0 : this._magic;
         return _magic;
     }
 
     public void setMagic(float value)
     {
-        _magic = value;
+        this._magic = value;
     }
 
     public float getMagic() {
-        return _magic;
+        return this._magic;
     }
 
     public void reset() {
-        _money = 0;
-        _playCount = 0;
-        _wins = 0; 
-        _blood = 0;
-        _attack = 0;
-        _defense = 0;
-        _magic = 0;
-        _state = UserState.none;
+        this._money = 0;
+        this._playCount = 0;
+        this._wins = 0;
+        this._blood = 0;
+        this._attack = 0;
+        this._defense = 0;
+        this._magic = 0;
+        this._state = UserState.none;
     }
 
     public void setState(UserState state) { 
