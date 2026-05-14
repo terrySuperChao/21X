@@ -29,18 +29,7 @@ public class CardFlow : GameFlowObject
     override
     protected void _handPokerBefore(IHandPokerBeforePara para)
     {
-        for (int i = 0; i < para.getUsers().Count; i++)
-        {
-            IUser user = para.getUsers()[i];
-            float addValue = user.getExtraInfo().getHealOverTime();
-            if (addValue > 0)
-            {
-                user.addBlood(addValue);
-                IUICommonPara attackPara = new UICommonParaObject(user, ValueType.blood, addValue, user.getBlood());
-                GameMessage.Instance.addMsg(GameConst.ADDCARDVALUE, attackPara);
-            }
-        }
-
+        GameBloodMgr.Instance.addBloodHandle(para.getUsers());
         ITriggerHandlePara handlePara = this._handlePara;
         this.setTriggerHandleParaUser(handlePara,0);
         SwitchParaMgr.Instance.handle(handlePara, () =>{

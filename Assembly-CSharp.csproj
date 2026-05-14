@@ -267,7 +267,7 @@
     <Compile Include="Assets\scripts\logic\modules\card\baseEffectHandle\AddCritHandle.cs" />
     <Compile Include="Assets\scripts\logic\modules\card\baseEffectHandle\AddArmorHandle.cs" />
     <Compile Include="Assets\scripts\logic\modules\card\baseEffectHandle\ReflectDMGHandle.cs" />
-    <Compile Include="Assets\scripts\logic\modules\game\GameLossBloodMgr.cs" />
+    <Compile Include="Assets\scripts\logic\modules\game\GameBloodMgr.cs" />
     <Compile Include="Assets\scripts\logic\modules\card\baseEffectHandle\ArmorToATKHandle.cs" />
     <Compile Include="Assets\scripts\logic\modules\card\baseEffectHandle\BonusArmorHandle.cs" />
     <Compile Include="Assets\scripts\logic\modules\card\baseEffectHandle\AddHealHandle.cs" />

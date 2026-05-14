@@ -11,7 +11,6 @@ public class AddTrueDMGHandle : BaseEffectHandleObject
         
         float addValue = this.getAddValue(para);
         para.getRoundResult(para.getAttackUser()).addHurtValue(addValue);
-
-        GameLossBloodMgr.Instance.handle(para.getAttackUser(), para.getDefenseUser(), addValue);
+        GameBloodMgr.Instance.lessBloodHandle(para.getAttackUser(), para.getDefenseUser(), addValue);
     }
 }

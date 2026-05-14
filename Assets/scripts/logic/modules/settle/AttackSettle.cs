@@ -39,13 +39,13 @@ public class AttackSettle: IAttackSettle
         GameMessage.Instance.addMsg(GameConst.COMMONATTACK, attackPara);
 
         float remainAttack = this.getRemainAttack(para, attack);
-        GameLossBloodMgr.Instance.handle(para.getAttackUser(), para.getDefenseUser(), remainAttack);
+        GameBloodMgr.Instance.lessBloodHandle(para.getAttackUser(), para.getDefenseUser(), remainAttack);
         
         //反射
         float reflectDMG = defenseUser.getExtraInfo().getReflectDMG();
         if (reflectDMG > 0) {
             defenseUser.getExtraInfo().setReflectDMG(-reflectDMG);
-            GameLossBloodMgr.Instance.handle(para.getDefenseUser(), para.getAttackUser(), reflectDMG);
+            GameBloodMgr.Instance.lessBloodHandle(para.getDefenseUser(), para.getAttackUser(), reflectDMG);
         }
         
         SwitchParaMgr.Instance.handle(para, () => {
@@ -55,7 +55,7 @@ public class AttackSettle: IAttackSettle
 
     //魔法攻击
     public void magicAttack(ITriggerHandlePara para) {
-        if (GameLossBloodMgr.Instance.checkGameOver(para)) {
+        if (GameBloodMgr.Instance.checkGameOver(para)) {
             return;
         }
 
@@ -78,7 +78,7 @@ public class AttackSettle: IAttackSettle
         CardMgr.Instance.handle(para, TriggerEvent.magicAttackAfter);
 
         //减去50血量
-        GameLossBloodMgr.Instance.handle(para.getAttackUser(), para.getDefenseUser(), attack);
+        GameBloodMgr.Instance.lessBloodHandle(para.getAttackUser(), para.getDefenseUser(), attack);
 
         //魔法攻击
         para.setMagicAttack(true);

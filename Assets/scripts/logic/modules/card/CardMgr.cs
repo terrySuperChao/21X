@@ -144,7 +144,7 @@ public class CardMgr: Singleton<CardMgr>
             if (baseEffectHandle != null) {
                 baseEffectHandle.handle(para);
             }
-            if (GameLossBloodMgr.Instance.checkGameOver(para)) {
+            if (GameBloodMgr.Instance.checkGameOver(para)) {
                 break;
             }
 
@@ -153,7 +153,7 @@ public class CardMgr: Singleton<CardMgr>
             if (advancedEffectHandle != null){
                 advancedEffectHandle.handle(para);
             }
-            if (GameLossBloodMgr.Instance.checkGameOver(para)){
+            if (GameBloodMgr.Instance.checkGameOver(para)){
                 break;
             }
 

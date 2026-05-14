@@ -1,6 +1,23 @@
-public class GameLossBloodMgr : Singleton<GameLossBloodMgr>
+using System.Collections.Generic;
+
+public class GameBloodMgr : Singleton<GameBloodMgr>
 {
-    public void handle(IUser attackUser, IUser defenseUser, float attack)
+    public void addBloodHandle(List<IUser> users)
+    {
+        for (int i = 0; i < users.Count; i++)
+        {
+            IUser user = users[i];
+            float addValue = user.getExtraInfo().getHealOverTime();
+            if (addValue > 0)
+            {
+                user.addBlood(addValue);
+                IUICommonPara attackPara = new UICommonParaObject(user, ValueType.blood, addValue, user.getBlood());
+                GameMessage.Instance.addMsg(GameConst.ADDCARDVALUE, attackPara);
+            }
+        }
+    }
+
+    public void lessBloodHandle(IUser attackUser, IUser defenseUser, float attack)
     {
         if (attack <= 0) return;
 
@@ -42,4 +59,6 @@ public class GameLossBloodMgr : Singleton<GameLossBloodMgr>
         return para.getAttackUser().getBlood() <= 0 ||
                para.getDefenseUser().getBlood() <= 0;
     }
+
+    
 }
