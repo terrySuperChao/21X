@@ -1,6 +1,7 @@
 //
 using Pb;
 using System.Collections.Generic;
+using static UnityEngine.EventSystems.EventTrigger;
 
 public class FightPokerMgr : Singleton<FightPokerMgr>
 {
@@ -23,7 +24,18 @@ public class FightPokerMgr : Singleton<FightPokerMgr>
         extra.setBonusArmor(info.Extra.BonusArmor);
         extra.setTemporaryArmor(info.Extra.TemporaryArmor);
         extra.setLifeSteal(info.Extra.LifeSteal);
-       
+        extra.setHealToMP(info.Extra.HealtoMP);
+        extra.setSkillDamageUp(info.Extra.SkillDamageUp);
+        extra.setMpMaxSub(info.Extra.MpMaxSub);
+        extra.setAddBleeding(info.Extra.AddBleeding);
+        foreach (float item in info.Extra.MpRegen) {
+            extra.setMpRegen(item);
+        }
+        foreach (float item in info.Extra.HealOverTime)
+        {
+            extra.setHealOverTime(item);
+        }
+
         IUser user = new UserObject(type == FightDealType.npc);
         user.setAttack(info.Attack);
         user.setDefense(info.Defense);
@@ -50,6 +62,20 @@ public class FightPokerMgr : Singleton<FightPokerMgr>
         info.Extra.BonusArmor = user.getExtraInfo().getBonusArmor();
         info.Extra.TemporaryArmor = user.getExtraInfo().getTemporaryArmor();
         info.Extra.LifeSteal = user.getExtraInfo().getLifeSteal();
+        info.Extra.HealtoMP = user.getExtraInfo().getHealToMP();
+        info.Extra.SkillDamageUp = user.getExtraInfo().getSkillDamageUp();
+        info.Extra.MpMaxSub = user.getExtraInfo().getMpMaxSub();
+        info.Extra.AddBleeding = user.getExtraInfo().getAddBleeding();
+        info.Extra.MpRegen.Clear();
+        info.Extra.HealOverTime.Clear();
+        foreach (float item in user.getExtraInfo().getMpRegens())
+        {
+            info.Extra.MpRegen.Add(item);
+        }
+        foreach (float item in user.getExtraInfo().getHealOverTimes())
+        {
+            info.Extra.HealOverTime.Add(item);
+        }
     }
 
     public AssetInfo getAssetInfo(IUser user) {

@@ -9,14 +9,23 @@ public class AttackSettle: IAttackSettle
 
     //普通攻击
     private void commonAttack(ITriggerHandlePara para) {
-        IRoundResult roundResult = para.getRoundResult(para.getAttackUser());
-        if (roundResult == null)
-        {
+        IUser attackUser = para.getAttackUser();
+        IUser defenseUser = para.getDefenseUser();
+
+        float addBleeding = attackUser.getExtraInfo().getAddBleeding();
+        if (addBleeding > 0){
+            GameBloodMgr.Instance.lessBloodHandle(defenseUser, attackUser, addBleeding);
+            attackUser.getExtraInfo().setAddBleeding(-1);
+        }
+
+        if (GameBloodMgr.Instance.checkGameOver(para)){
             return;
         }
 
-        IUser attackUser = para.getAttackUser();
-        IUser defenseUser = para.getDefenseUser();
+        IRoundResult roundResult = para.getRoundResult(para.getAttackUser());
+        if (roundResult == null){
+            return;
+        }
 
         //暴击伤害加+50%
         float addCrit = 0;
@@ -64,12 +73,14 @@ public class AttackSettle: IAttackSettle
             return;
         }
 
-        float attack = 50.0f;
         IUser attackUser = para.getAttackUser();
         IUser defenseUser = para.getDefenseUser();
         if (attackUser.getMagic() < attackUser.getMaxMagic()){
             return;
         }
+
+        float skillDamageUp = attackUser.getExtraInfo().getSkillDamageUp();
+        float attack = 50.0f * (1 + skillDamageUp);
         attackUser.setMagic(0);
         roundResult.addHurtValue(attack);
 

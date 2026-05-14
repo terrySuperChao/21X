@@ -30,4 +30,30 @@ public interface IExtraInfo
     //接下来的2回合每回合回复 %s 点生命值
     public void setHealOverTime(float value);
     public float getHealOverTime();
+    public List<float> getHealOverTimes();
+
+    //下次转化红桃属性，治疗量的 %s% 额外转化为法力值
+    public void setHealToMP(float value);
+    public float getHealToMP();
+
+    //回复 %s 点生命值，一场战斗仅生效一次
+    public void setHealSuper(float value);
+    public float getHealSuper();
+
+    //下次技能效果提升 %s%，可叠加
+    public void setSkillDamageUp(float value);
+    public float getSkillDamageUp();
+
+    //接下来的3回合每回合回复 %s 点法力
+    public void setMpRegen(float value);
+    public float getMpRegen();
+    public List<float> getMpRegens();
+
+    //本局技能释放所需 MP 减少 %s
+    public void setMpMaxSub(float value);
+    public float getMpMaxSub();
+
+    //下次普通攻击使敌方获得 3 层流血状态
+    public void setAddBleeding(float value);
+    public float getAddBleeding();
 }

@@ -10,10 +10,16 @@ public class GameBloodMgr : Singleton<GameBloodMgr>
             float addValue = user.getExtraInfo().getHealOverTime();
             if (addValue > 0)
             {
-                user.addBlood(addValue);
-                IUICommonPara attackPara = new UICommonParaObject(user, ValueType.blood, addValue, user.getBlood());
-                GameMessage.Instance.addMsg(GameConst.ADDCARDVALUE, attackPara);
+                this.addBloodHandle(user,addValue);
             }
+        }
+    }
+
+    public void addBloodHandle(IUser user,float addValue) {
+        if (user != null) {
+            user.addBlood(addValue);
+            IUICommonPara attackPara = new UICommonParaObject(user, ValueType.blood, addValue, user.getBlood());
+            GameMessage.Instance.addMsg(GameConst.ADDCARDVALUE, attackPara);
         }
     }
 

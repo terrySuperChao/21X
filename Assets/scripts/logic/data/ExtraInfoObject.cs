@@ -7,7 +7,13 @@ public class ExtraInfoObject : IExtraInfo
     private float _bonusArmor = 0;
     private float _temporaryArmor = 0;
     private float _lifeSteal = 0;
+    private float _healToMP = 0;
+    private float _healSuper = 0;
+    private float _skillDamageUp = 0;
+    private float _mpMaxSub = 0;
+    private float _addBleeding = 0;
     private List<float> _healOverTime = new List<float>();
+    private List<float> _mpRegen = new List<float>();
     public void setMultATK(float value) {
         this._multATK += value;
         this._multATK = this._multATK < 0 ? 0 : this._multATK;
@@ -72,5 +78,64 @@ public class ExtraInfoObject : IExtraInfo
             this._healOverTime.RemoveAt(0);
         }
         return value;
+    }
+
+    public List<float> getHealOverTimes() {
+        return this._healOverTime;
+    }
+
+    public void setHealToMP(float value) {
+        this._healToMP += value;
+        this._healToMP = this._healToMP < 0 ? 0 : this._healToMP;
+    }
+    public float getHealToMP() {
+        return this._healToMP;
+    }
+
+    public void setHealSuper(float value) {
+        this._healSuper = value;
+    }
+    public float getHealSuper() {
+        return this._healSuper;
+    }
+
+    public void setSkillDamageUp(float value) {
+        this._skillDamageUp += value;
+        this._skillDamageUp = this._skillDamageUp < 0 ? 0 : this._skillDamageUp;
+    }
+    public float getSkillDamageUp() {
+        return this._skillDamageUp;
+    }
+
+    public void setMpRegen(float value) {
+        this._mpRegen.Add(value);
+    }
+    public float getMpRegen() {
+        float value = 0;
+        if (this._mpRegen.Count > 0)
+        {
+            value = this._mpRegen[0];
+            this._mpRegen.RemoveAt(0);
+        }
+        return value;
+    }
+    public List<float> getMpRegens() {
+        return this._mpRegen;
+    }
+
+    public void setMpMaxSub(float value) {
+        this._mpMaxSub += value;
+        this._mpMaxSub = this._mpMaxSub < 0 ? 0 : this._mpMaxSub;
+    }
+    public float getMpMaxSub() {
+        return this._mpMaxSub;
+    }
+
+    public void setAddBleeding(float value) {
+        this._addBleeding += value;
+        this._addBleeding = this._addBleeding < 0 ? 0 : this._addBleeding;
+    }
+    public float getAddBleeding() {
+        return this._addBleeding;
     }
 }

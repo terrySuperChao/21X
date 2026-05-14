@@ -11,7 +11,7 @@ public class AddATKHandle : BaseEffectHandleObject
         float addValue = this.getAddValue(para);
         float finalValue = para.getAttackUser().addAttack(addValue);
       
-        IUICommonPara uiPara = new UICommonParaObject(para.getAttackUser(), GameConst.SuitTransformValueType(PokerSuit.spade), addValue, finalValue);
+        IUICommonPara uiPara = new UICommonParaObject(para.getAttackUser(), ValueType.attack, addValue, para.getAttackUser().getAttack());
         GameMessage.Instance.addMsg(GameConst.ADDCARDVALUE, uiPara);
     }
 }

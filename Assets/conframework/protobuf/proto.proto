@@ -61,10 +61,31 @@ message ExtraInfo{
   optional float temporaryArmor = 5;//获得当前护甲 %s% 的临时护甲
   optional float lifeSteal = 6; //下一次造成伤害的转化为回血
   repeated float healOverTime = 7;//接下来的2回合每回合回复%s点生命值
-  optional float healtoMP = 8;//下次转化红桃属性，治疗量的 %s 额外转化为法力值
-  optional float skillDamageUp = 9;//下次技能效果提升 %s，可叠加
-  repeated float mpRegen = 10;//接下来的3回合每回合回复 %s 点法力
-  optional float mpMaxSub = 11;//本局技能释放所需 MP 减少 %s
+  optional float healSuper = 8;//回复 %s 点生命值，一场战斗仅生效一次
+  optional float healtoMP = 9;//下次转化红桃属性，治疗量的 %s 额外转化为法力值
+  optional float skillDamageUp = 10;//下次技能效果提升 %s，可叠加
+  repeated float mpRegen = 11;//接下来的3回合每回合回复 %s 点法力
+  optional float mpMaxSub = 12;//本局技能释放所需 MP 减少 %s
+  optional float addBleeding = 100;//下次普通攻击使敌方获得 3 层流血状态
+  optional float doubleProc = 101;//下次普通攻击连续触发两次
+  optional float ignoreArmor = 102;//下次普通攻击无视对手护甲
+  optional float execute = 103;//下次普通攻击时若对手血量低于 15% 直接处决
+  optional float retainATK = 104;//若下次普通攻击暴击，则保留50%的攻击力
+  optional float reflectPercent = 105;//将下次对手普通攻击的 50% 反弹给对手
+  optional float magicImmunity = 106;//获得 1个技能免疫的护盾，无法叠加
+  optional float armorATK = 107;//每次获得护甲对对手造成 5 点伤害
+  optional float immunityDeBuff = 108;//下回合免疫负面状态的伤害
+  optional float freezeArmor = 109;//下次消耗的护甲会完全恢复
+  optional float removeDeBuff = 110;//随机移除自身 1 个/层负面状态
+  optional float overHealATK = 111;//下次溢出的治疗量转化为等额攻击力
+  optional float healToDMG = 112;//下次治疗效果改为对对手造成等量伤害
+  optional float healBoost = 113;//下次治疗效果提升50%
+  optional float rebirth = 114;//受到致命伤时保留 1 血并回复 50点法力值
+  optional float conversionDecline = 115;//使对手下次属性转化效率降低 50%
+  optional float mPRefund = 116;//技能释放后返还 30% 消耗
+  optional float mPBurn = 117;//下次对对手造成普通攻击伤害时扣除对手等量法力值
+  optional float mPMaxLower = 118;//下次技能释放后释放技能所需 MP 永久减少5
+  optional float doubleCast = 119;//下次技能释放将触发两次
 }
 
 //战斗的资产
