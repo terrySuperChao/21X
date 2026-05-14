@@ -3,7 +3,10 @@ using Pb;
 public class AttackSettle: IAttackSettle
 {
     public void settle(ITriggerHandlePara para) {
-        this.commonAttack(para);
+        float attackNum = 1 + para.getAttackUser().getExtraInfo().getDoubleProc();
+        for (int i = 0; i < attackNum; i++) {
+            this.commonAttack(para);
+        }
         this.magicAttack(para);
     }
 
@@ -36,11 +39,20 @@ public class AttackSettle: IAttackSettle
 
         float multATK = attackUser.getExtraInfo().getMultATK();
         float attack = attackUser.getAttack() * (1 + multATK + addCrit);
+        float retainATK = attackUser.getExtraInfo().getRetainATK();
+        //终结技
+        float execute = attackUser.getExtraInfo().getExecute();
+        float percent = defenseUser.getBlood() / defenseUser.getMaxBlood() * 100;
+        if (execute > percent)
+        {
+            attack = defenseUser.getBlood();
+        }
+        
         if (attack <= 0)
         {
             return;
         }
-        attackUser.setAttack(0);
+        attackUser.setAttack(attack * retainATK);
         attackUser.getExtraInfo().setMultATK(-multATK);
         roundResult.addHurtValue(attack);
         
@@ -60,6 +72,8 @@ public class AttackSettle: IAttackSettle
         SwitchParaMgr.Instance.handle(para, () => {
             CardMgr.Instance.handle(para, TriggerEvent.normalAttackAfter);
         }, true);
+
+        
     }
 
     //魔法攻击
@@ -128,6 +142,10 @@ public class AttackSettle: IAttackSettle
         //
         if (roundResult.getPenetrateValue() != 0)
         {
+            return attack;
+        }
+
+        if (para.getAttackUser().getExtraInfo().getIgnoreArmor() > 0) {
             return attack;
         }
 

@@ -56,4 +56,23 @@ public interface IExtraInfo
     //下次普通攻击使敌方获得 3 层流血状态
     public void setAddBleeding(float value);
     public float getAddBleeding();
+
+    //下次普通攻击连续触发两次
+    public void setDoubleProc(float value);
+    public float getDoubleProc();
+    public void clearDoubleProc();
+
+    //下次普通攻击无视对手护甲
+    public void setIgnoreArmor(float value);
+    public float getIgnoreArmor();
+    public void clearIgnoreArmor();
+
+    //下次普通攻击时若对手血量低于 15% 直接处决
+    public void setExecute(float value);
+    public float getExecute();
+
+    //若下次普通攻击暴击，则保留50%的攻击力
+    public void setRetainATK(float value);
+    public float getRetainATK();
+    public void clearRetainATK();
 }

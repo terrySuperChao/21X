@@ -28,6 +28,8 @@ public class FightPokerMgr : Singleton<FightPokerMgr>
         extra.setSkillDamageUp(info.Extra.SkillDamageUp);
         extra.setMpMaxSub(info.Extra.MpMaxSub);
         extra.setAddBleeding(info.Extra.AddBleeding);
+        extra.setIgnoreArmor(info.Extra.IgnoreArmor);
+        extra.setExecute(info.Extra.Execute);
         foreach (float item in info.Extra.MpRegen) {
             extra.setMpRegen(item);
         }
@@ -66,6 +68,8 @@ public class FightPokerMgr : Singleton<FightPokerMgr>
         info.Extra.SkillDamageUp = user.getExtraInfo().getSkillDamageUp();
         info.Extra.MpMaxSub = user.getExtraInfo().getMpMaxSub();
         info.Extra.AddBleeding = user.getExtraInfo().getAddBleeding();
+        info.Extra.IgnoreArmor = user.getExtraInfo().getIgnoreArmor();
+        info.Extra.Execute = user.getExtraInfo().getExecute();
         info.Extra.MpRegen.Clear();
         info.Extra.HealOverTime.Clear();
         foreach (float item in user.getExtraInfo().getMpRegens())

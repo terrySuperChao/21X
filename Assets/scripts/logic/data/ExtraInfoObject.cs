@@ -12,6 +12,10 @@ public class ExtraInfoObject : IExtraInfo
     private float _skillDamageUp = 0;
     private float _mpMaxSub = 0;
     private float _addBleeding = 0;
+    private float _doubleProc = 0;
+    private float _ignoreArmor = 0;
+    private float _execute = 0;
+    private float _retainATK = 0;
     private List<float> _healOverTime = new List<float>();
     private List<float> _mpRegen = new List<float>();
     public void setMultATK(float value) {
@@ -137,5 +141,46 @@ public class ExtraInfoObject : IExtraInfo
     }
     public float getAddBleeding() {
         return this._addBleeding;
+    }
+
+    public void setDoubleProc(float value) {
+        this._doubleProc += value;
+        this._doubleProc = this._doubleProc < 0 ? 0 : this._doubleProc;
+    }
+    public float getDoubleProc() {
+        return this._doubleProc;
+    }
+    public void clearDoubleProc() {
+        this._doubleProc = 0;
+    }
+
+    public void setIgnoreArmor(float value) {
+        this._ignoreArmor += value;
+        this._ignoreArmor = this._ignoreArmor < 0 ? 0 : this._ignoreArmor;
+    }
+    public float getIgnoreArmor() {
+        return this._ignoreArmor;
+    }
+    public void clearIgnoreArmor() {
+        this._ignoreArmor = 0;
+    }
+
+    public void setExecute(float value) {
+        this._execute += 0;
+        this._execute = this._execute < 0 ? 0 : this._execute; 
+    }
+    public float getExecute() {
+        return this._execute;
+    }
+
+    public void setRetainATK(float value) {
+        this._retainATK += value;
+        this._retainATK = this._retainATK < 0 ? 0 : this._retainATK;
+    }
+    public float getRetainATK() {
+        return this._retainATK;
+    }
+    public void clearRetainATK() {
+        this._retainATK = 0;
     }
 }

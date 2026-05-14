@@ -282,6 +282,10 @@
     <Compile Include="Assets\scripts\logic\modules\card\baseEffectHandle\AddMPPerHandle.cs" />
     <Compile Include="Assets\scripts\logic\modules\card\baseEffectHandle\MPMaxSubHandle.cs" />
     <Compile Include="Assets\scripts\logic\modules\card\advancedEffectHandle\AddBleedingHandle.cs" />
+    <Compile Include="Assets\scripts\logic\modules\card\advancedEffectHandle\DoubleProcHandle.cs" />
+    <Compile Include="Assets\scripts\logic\modules\card\advancedEffectHandle\IgnoreArmorHandle.cs" />
+    <Compile Include="Assets\scripts\logic\modules\card\advancedEffectHandle\ExecuteHandle.cs" />
+    <Compile Include="Assets\scripts\logic\modules\card\advancedEffectHandle\RetainATKHandle.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets/TextMesh Pro/Shaders/TMPro.cginc" />
