@@ -71,7 +71,6 @@ public class AttackSettle: IAttackSettle
         }
 
         //单次造成伤害
-        UnityEngine.Debug.Log("fffffffff");
         CardMgr.Instance.handle(para, TriggerEvent.roundOther);
 
         //普通攻击后
@@ -105,7 +104,6 @@ public class AttackSettle: IAttackSettle
         CardMgr.Instance.handle(para, TriggerEvent.magicAttackAfter);
 
         //单次造成伤害
-        UnityEngine.Debug.Log("fffffffff1111111");
         CardMgr.Instance.handle(para, TriggerEvent.roundOther);
 
         float magicImmunity = defenseUser.getExtraInfo().getMagicImmunity();

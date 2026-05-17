@@ -64,7 +64,6 @@ public class GameConst
         }
         else if (suit == PokerSuit.spade)
         {
-
             return ValueType.attack;
         }
         else if (suit == PokerSuit.heart)

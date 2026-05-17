@@ -48,7 +48,7 @@ public class CardFlow : GameFlowObject
     {
         ITriggerHandlePara handlePara = this._handlePara;
         this.setTriggerHandleParaUser(handlePara, para.getUser().isNpc() ? 0 : 1);
-        CardMgr.Instance.handle(handlePara, TriggerEvent.initPokerBefore);
+        CardMgr.Instance.handle(handlePara, TriggerEvent.dealPokerAfter);
     }
 
     override

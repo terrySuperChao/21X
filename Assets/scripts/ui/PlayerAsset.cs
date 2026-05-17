@@ -40,6 +40,7 @@ public class PlayerAsset : MonoBehaviour
         EventDispatcher.Instance.on(GameConst.ADDPOKERVALUE, this.addPokerValue);
         EventDispatcher.Instance.on(GameConst.ADDCARDVALUE, this.addCardValue);
         EventDispatcher.Instance.on(GameConst.CLEARHANDPOKER, this.clearHandPoker);
+        EventDispatcher.Instance.on(GameConst.COMMONATTACK, this.commonAttack);
         EventDispatcher.Instance.on(GameConst.FLYFONT, this.flyFont);
         EventDispatcher.Instance.on(GameConst.GAMECLEAR, this.gameClear);
 
@@ -62,6 +63,7 @@ public class PlayerAsset : MonoBehaviour
         EventDispatcher.Instance.off(GameConst.ADDPOKERVALUE, this.addPokerValue);
         EventDispatcher.Instance.off(GameConst.ADDCARDVALUE, this.addCardValue);
         EventDispatcher.Instance.off(GameConst.CLEARHANDPOKER, this.clearHandPoker);
+        EventDispatcher.Instance.off(GameConst.COMMONATTACK, this.commonAttack);
         EventDispatcher.Instance.off(GameConst.FLYFONT, this.flyFont);
         EventDispatcher.Instance.off(GameConst.GAMECLEAR, this.gameClear);
     }
@@ -298,8 +300,13 @@ public class PlayerAsset : MonoBehaviour
     {
         IUIPokerPara para = (IUIPokerPara)obj[0];
         PokerSuit suit = (PokerSuit)para.getPoker().getSuit();
-        ValueType type = GameConst.SuitTransformValueType(suit);
-        Text textChild = this._texts[(int)type];
+        ValueType valueType = GameConst.SuitTransformValueType(suit);
+        int indexType = (int)valueType;
+        if (this._texts.Count <= indexType) {
+            yield return 0;
+        }
+
+        Text textChild = this._texts[indexType];
         Transform pokerChild = this.getPokerIdTransform(para.getPoker());
         if (pokerChild == null || textChild == null)
         {
@@ -317,7 +324,7 @@ public class PlayerAsset : MonoBehaviour
         yield return new WaitForSeconds(0.51f);
         iTween.ScaleTo(pokerChild.gameObject, new Vector3(0.6f, 0.6f, 0.6f), 0.1f);
         Destroy(addText.gameObject);
-        textChild.text = this.getFinalContent(type, para.getFinalValue());
+        textChild.text = this.getFinalContent(valueType, para.getFinalValue());
     }
 
     public void addCardValue(params System.Object[] obj)
@@ -365,7 +372,7 @@ public class PlayerAsset : MonoBehaviour
             value = this._user.getAttack().ToString();
                 break;
             case ValueType.magic: // 梅
-            value = this._user.getMagic() + "/ " + this._user.getMaxMagic();
+            value = this._user.getMagic() + "/" + this._user.getMaxMagic();
                 break;
             case ValueType.winRate: //赢率
             value = string.Format("{0:P1}", this._user.getWinRate());
@@ -485,5 +492,24 @@ public class PlayerAsset : MonoBehaviour
 
     private void moveTo(GameObject gameObject, Vector3 position) {
         iTween.MoveTo(gameObject, iTween.Hash("position", position, "time", 0.5f, "isLocal", true, "easeType", iTween.EaseType.linear));
+    }
+
+    public void commonAttack(params System.Object[] obj)
+    {
+        StartCoroutine(commonAttackHandle(obj));
+        
+    }
+
+    private IEnumerator commonAttackHandle(params System.Object[] obj)
+    {
+        yield return new WaitForSeconds(1.1f);
+        IUICommonPara para = (IUICommonPara)obj[0];
+        int indexType = (int)para.getValueType();
+        if (this._texts.Count <= indexType || indexType < 0)
+        {
+            yield return 0;
+        }
+        Text textChild = this._texts[indexType];
+        textChild.text = getFinalContent(para.getValueType(), para.getFinalValue());
     }
 }

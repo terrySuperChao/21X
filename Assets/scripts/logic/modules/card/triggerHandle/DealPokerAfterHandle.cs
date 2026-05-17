@@ -33,10 +33,7 @@ public class DealPokerAfterHandle : TriggerHandleObject
 
     protected override bool _settlementBeforeHandle(ITriggerHandlePara para)
     {
-        foreach (var key in this._dic.Keys)
-        {
-            this._dic[key] = 0;
-        }
+        this._dic.Clear();
         return base._settlementBeforeHandle(para); 
     }
 }

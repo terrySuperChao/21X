@@ -13,9 +13,6 @@ public class ClubSettle : SuitSettle
     override
     protected void _settle(ITriggerHandlePara para, IPoker poker, int baseValue)
     {
-        IRoundResult roundResult = para.getRoundResult(para.getAttackUser());
-        if (roundResult != null){
-            roundResult.addMagicValue(baseValue);
-        }
+        para.getAttackUser().getExtraInfo().setRtMagicValue(baseValue);
     }
 }
