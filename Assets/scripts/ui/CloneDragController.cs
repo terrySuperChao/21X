@@ -1,8 +1,6 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
-using static UnityEngine.RuleTile.TilingRuleOutput;
 
 public class CloneDragController : MonoBehaviour
 {
@@ -32,9 +30,6 @@ public class CloneDragController : MonoBehaviour
 
         // 不阻挡射线，防止遮住目标区域
         canvasGroup.blocksRaycasts = false;
-
-
-
         isDragging = true;
 
         // 立刻更新一次位置
@@ -47,7 +42,7 @@ public class CloneDragController : MonoBehaviour
 
         Vector2 pointerPos = GetPointerPosition();
         UpdatePosition(pointerPos);
-
+        
         if (IsPointerReleased())
         {
             EndDrag(pointerPos);
@@ -102,7 +97,7 @@ public class CloneDragController : MonoBehaviour
         for (int i = 0; i < targetAreas.Count; i++) {
             success = RectTransformUtility.RectangleContainsScreenPoint(
                 targetAreas[i],
-                screenPos,
+                rectTransform.position,
                 uiCamera
             );
             if (success) {
