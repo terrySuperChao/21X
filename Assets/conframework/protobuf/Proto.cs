@@ -50,7 +50,7 @@ namespace Pb {
             "DAoKX3Bva2VyUG9zWUINCgtfZmluYWxQb2ludEIMCgpfYmxhY2tqYWNrQgwK",
             "Cl9jaGFwdGVySWRCDAoKX2JhcnJpZXJJZEIVChNfcmVmcmVzaE5wY1Bva2Vy",
             "TnVtQhgKFl9yZWZyZXNoUGxheWVyUG9rZXJOdW0iKAoEU2hvcBINCgVnb29k",
-            "cxgBIAMoBRIRCglwdXJjaGFzZWQYAiADKAUi5gkKCUV4dHJhSW5mbxIUCgdt",
+            "cxgBIAMoBRIRCglwdXJjaGFzZWQYAiADKAUivgoKCUV4dHJhSW5mbxIUCgdt",
             "dWx0QVRLGAEgASgCSACIAQESFAoHYWRkQ3JpdBgCIAEoAkgBiAEBEhcKCnJl",
             "ZmxlY3RETUcYAyABKAJIAogBARIXCgpib251c0FybW9yGAQgASgCSAOIAQES",
             "GwoOdGVtcG9yYXJ5QXJtb3IYBSABKAJIBIgBARIWCglsaWZlU3RlYWwYBiAB",
@@ -68,49 +68,51 @@ namespace Pb {
             "ASgCSBeIAQESFAoHcmViaXJ0aBhyIAEoAkgYiAEBEh4KEWNvbnZlcnNpb25E",
             "ZWNsaW5lGHMgASgCSBmIAQESFQoIbVBSZWZ1bmQYdCABKAJIGogBARITCgZt",
             "UEJ1cm4YdSABKAJIG4gBARIXCgptUE1heExvd2VyGHYgASgCSByIAQESFwoK",
-            "ZG91YmxlQ2FzdBh3IAEoAkgdiAEBQgoKCF9tdWx0QVRLQgoKCF9hZGRDcml0",
-            "Qg0KC19yZWZsZWN0RE1HQg0KC19ib251c0FybW9yQhEKD190ZW1wb3JhcnlB",
-            "cm1vckIMCgpfbGlmZVN0ZWFsQgwKCl9oZWFsU3VwZXJCCwoJX2hlYWx0b01Q",
-            "QhAKDl9za2lsbERhbWFnZVVwQgsKCV9tcE1heFN1YkIOCgxfYWRkQmxlZWRp",
-            "bmdCDQoLX2RvdWJsZVByb2NCDgoMX2lnbm9yZUFybW9yQgoKCF9leGVjdXRl",
-            "QgwKCl9yZXRhaW5BVEtCEQoPX3JlZmxlY3RQZXJjZW50QhAKDl9tYWdpY0lt",
-            "bXVuaXR5QgsKCV9hcm1vckFUS0IRCg9faW1tdW5pdHlEZUJ1ZmZCDgoMX2Zy",
-            "ZWV6ZUFybW9yQg8KDV9yZW1vdmVEZUJ1ZmZCDgoMX292ZXJIZWFsQVRLQgwK",
-            "Cl9oZWFsVG9ETUdCDAoKX2hlYWxCb29zdEIKCghfcmViaXJ0aEIUChJfY29u",
-            "dmVyc2lvbkRlY2xpbmVCCwoJX21QUmVmdW5kQgkKB19tUEJ1cm5CDQoLX21Q",
-            "TWF4TG93ZXJCDQoLX2RvdWJsZUNhc3QizwIKCUFzc2V0SW5mbxISCgVzdGF0",
-            "ZRgBIAEoBUgAiAEBEg4KBnBva2VycxgCIAMoBRINCgVjYXJkcxgDIAMoBRIP",
-            "CgJocBgEIAEoAkgBiAEBEhIKBW1heEhQGAUgASgCSAKIAQESEgoFbWFnaWMY",
-            "BiABKAJIA4gBARIVCghtYXhNYWdpYxgHIAEoAkgEiAEBEhMKBmF0dGFjaxgI",
-            "IAEoAkgFiAEBEhQKB2RlZmVuc2UYCSABKAJIBogBARITCgZpc0ZpbHAYCiAB",
-            "KAVIB4gBARIhCgVleHRyYRgLIAEoCzINLnBiLkV4dHJhSW5mb0gIiAEBQggK",
-            "Bl9zdGF0ZUIFCgNfaHBCCAoGX21heEhQQggKBl9tYWdpY0ILCglfbWF4TWFn",
-            "aWNCCQoHX2F0dGFja0IKCghfZGVmZW5zZUIJCgdfaXNGaWxwQggKBl9leHRy",
-            "YSLCAQoFRmlnaHQSEQoJcG9rZXJQaWxlGAEgAygFEiQKCG5wY0Fzc2V0GAIg",
-            "ASgLMg0ucGIuQXNzZXRJbmZvSACIAQESJwoLcGxheWVyQXNzZXQYAyABKAsy",
-            "DS5wYi5Bc3NldEluZm9IAYgBARISCgVzdGF0ZRgEIAEoBUgCiAEBEhIKBXJv",
-            "dW5kGAUgASgFSAOIAQFCCwoJX25wY0Fzc2V0Qg4KDF9wbGF5ZXJBc3NldEII",
-            "CgZfc3RhdGVCCAoGX3JvdW5kIvABCgxBc3NlbWJsZUNhcmQSFgoJdHJpZ2dl",
-            "cklkGAEgASgFSACIAQESGQoMYmFzZUVmZmVjdElkGAIgASgFSAGIAQESHQoQ",
-            "YWR2YW5jZWRFZmZlY3RJZBgDIAEoBUgCiAEBEhoKDXRyaWdnZXJOdW1iZXIY",
-            "BCABKAVIA4gBARIaCg11cGdyYWRlTnVtYmVyGAUgASgFSASIAQFCDAoKX3Ry",
-            "aWdnZXJJZEIPCg1fYmFzZUVmZmVjdElkQhMKEV9hZHZhbmNlZEVmZmVjdElk",
-            "QhAKDl90cmlnZ2VyTnVtYmVyQhAKDl91cGdyYWRlTnVtYmVyIoQBCgdJbXBy",
-            "aW50EhsKDmFzc2VtYmxlT2JqZWN0GAEgASgFSACIAQESIgoIbnBjQ2FyZHMY",
-            "AiADKAsyEC5wYi5Bc3NlbWJsZUNhcmQSJQoLcGxheWVyQ2FyZHMYAyADKAsy",
-            "EC5wYi5Bc3NlbWJsZUNhcmRCEQoPX2Fzc2VtYmxlT2JqZWN0IvgCCghHYW1l",
-            "RGF0YRIVCghpbml0U2VlZBgBIAEoBUgAiAEBEhYKCWdhbWVTdGF0ZRgCIAEo",
-            "BUgBiAEBEhYKCXBhZ2VJbmRleBgDIAEoBUgCiAEBEh8KBnBsYXllchgEIAEo",
-            "CzIKLnBiLlBsYXllckgDiAEBEiEKB2JhcnJpZXIYBSABKAsyCy5wYi5CYXJy",
-            "aWVySASIAQESGwoEc2hvcBgGIAEoCzIILnBiLlNob3BIBYgBARIdCgVmaWdo",
-            "dBgHIAEoCzIJLnBiLkZpZ2h0SAaIAQESIQoHaW1wcmludBgIIAEoCzILLnBi",
-            "LkltcHJpbnRIB4gBARIjCgtkZWZlYXRSb2xlcxgJIAMoCzIOLnBiLkRlZmVh",
-            "dFJvbGVCCwoJX2luaXRTZWVkQgwKCl9nYW1lU3RhdGVCDAoKX3BhZ2VJbmRl",
-            "eEIJCgdfcGxheWVyQgoKCF9iYXJyaWVyQgcKBV9zaG9wQggKBl9maWdodEIK",
-            "CghfaW1wcmludCKeAQoMR2FtZVByb3BlcnR5EiEKB2FjY291bnQYASABKAsy",
-            "Cy5wYi5BY2NvdW50SACIAQESIQoHc2V0dGluZxgCIAEoCzILLnBiLlNldHRp",
-            "bmdIAYgBARIjCghnYW1lRGF0YRgDIAEoCzIMLnBiLkdhbWVEYXRhSAKIAQFC",
-            "CgoIX2FjY291bnRCCgoIX3NldHRpbmdCCwoJX2dhbWVEYXRhYgZwcm90bzM="));
+            "ZG91YmxlQ2FzdBh3IAEoAkgdiAEBEhkKC3J0SHVydFZhbHVlGOkHIAEoAkge",
+            "iAEBEhoKDHJ0TWFnaWNWYWx1ZRjqByABKAJIH4gBAUIKCghfbXVsdEFUS0IK",
+            "CghfYWRkQ3JpdEINCgtfcmVmbGVjdERNR0INCgtfYm9udXNBcm1vckIRCg9f",
+            "dGVtcG9yYXJ5QXJtb3JCDAoKX2xpZmVTdGVhbEIMCgpfaGVhbFN1cGVyQgsK",
+            "CV9oZWFsdG9NUEIQCg5fc2tpbGxEYW1hZ2VVcEILCglfbXBNYXhTdWJCDgoM",
+            "X2FkZEJsZWVkaW5nQg0KC19kb3VibGVQcm9jQg4KDF9pZ25vcmVBcm1vckIK",
+            "CghfZXhlY3V0ZUIMCgpfcmV0YWluQVRLQhEKD19yZWZsZWN0UGVyY2VudEIQ",
+            "Cg5fbWFnaWNJbW11bml0eUILCglfYXJtb3JBVEtCEQoPX2ltbXVuaXR5RGVC",
+            "dWZmQg4KDF9mcmVlemVBcm1vckIPCg1fcmVtb3ZlRGVCdWZmQg4KDF9vdmVy",
+            "SGVhbEFUS0IMCgpfaGVhbFRvRE1HQgwKCl9oZWFsQm9vc3RCCgoIX3JlYmly",
+            "dGhCFAoSX2NvbnZlcnNpb25EZWNsaW5lQgsKCV9tUFJlZnVuZEIJCgdfbVBC",
+            "dXJuQg0KC19tUE1heExvd2VyQg0KC19kb3VibGVDYXN0Qg4KDF9ydEh1cnRW",
+            "YWx1ZUIPCg1fcnRNYWdpY1ZhbHVlIs8CCglBc3NldEluZm8SEgoFc3RhdGUY",
+            "ASABKAVIAIgBARIOCgZwb2tlcnMYAiADKAUSDQoFY2FyZHMYAyADKAUSDwoC",
+            "aHAYBCABKAJIAYgBARISCgVtYXhIUBgFIAEoAkgCiAEBEhIKBW1hZ2ljGAYg",
+            "ASgCSAOIAQESFQoIbWF4TWFnaWMYByABKAJIBIgBARITCgZhdHRhY2sYCCAB",
+            "KAJIBYgBARIUCgdkZWZlbnNlGAkgASgCSAaIAQESEwoGaXNGaWxwGAogASgF",
+            "SAeIAQESIQoFZXh0cmEYCyABKAsyDS5wYi5FeHRyYUluZm9ICIgBAUIICgZf",
+            "c3RhdGVCBQoDX2hwQggKBl9tYXhIUEIICgZfbWFnaWNCCwoJX21heE1hZ2lj",
+            "QgkKB19hdHRhY2tCCgoIX2RlZmVuc2VCCQoHX2lzRmlscEIICgZfZXh0cmEi",
+            "wgEKBUZpZ2h0EhEKCXBva2VyUGlsZRgBIAMoBRIkCghucGNBc3NldBgCIAEo",
+            "CzINLnBiLkFzc2V0SW5mb0gAiAEBEicKC3BsYXllckFzc2V0GAMgASgLMg0u",
+            "cGIuQXNzZXRJbmZvSAGIAQESEgoFc3RhdGUYBCABKAVIAogBARISCgVyb3Vu",
+            "ZBgFIAEoBUgDiAEBQgsKCV9ucGNBc3NldEIOCgxfcGxheWVyQXNzZXRCCAoG",
+            "X3N0YXRlQggKBl9yb3VuZCLwAQoMQXNzZW1ibGVDYXJkEhYKCXRyaWdnZXJJ",
+            "ZBgBIAEoBUgAiAEBEhkKDGJhc2VFZmZlY3RJZBgCIAEoBUgBiAEBEh0KEGFk",
+            "dmFuY2VkRWZmZWN0SWQYAyABKAVIAogBARIaCg10cmlnZ2VyTnVtYmVyGAQg",
+            "ASgFSAOIAQESGgoNdXBncmFkZU51bWJlchgFIAEoBUgEiAEBQgwKCl90cmln",
+            "Z2VySWRCDwoNX2Jhc2VFZmZlY3RJZEITChFfYWR2YW5jZWRFZmZlY3RJZEIQ",
+            "Cg5fdHJpZ2dlck51bWJlckIQCg5fdXBncmFkZU51bWJlciKEAQoHSW1wcmlu",
+            "dBIbCg5hc3NlbWJsZU9iamVjdBgBIAEoBUgAiAEBEiIKCG5wY0NhcmRzGAIg",
+            "AygLMhAucGIuQXNzZW1ibGVDYXJkEiUKC3BsYXllckNhcmRzGAMgAygLMhAu",
+            "cGIuQXNzZW1ibGVDYXJkQhEKD19hc3NlbWJsZU9iamVjdCL4AgoIR2FtZURh",
+            "dGESFQoIaW5pdFNlZWQYASABKAVIAIgBARIWCglnYW1lU3RhdGUYAiABKAVI",
+            "AYgBARIWCglwYWdlSW5kZXgYAyABKAVIAogBARIfCgZwbGF5ZXIYBCABKAsy",
+            "Ci5wYi5QbGF5ZXJIA4gBARIhCgdiYXJyaWVyGAUgASgLMgsucGIuQmFycmll",
+            "ckgEiAEBEhsKBHNob3AYBiABKAsyCC5wYi5TaG9wSAWIAQESHQoFZmlnaHQY",
+            "ByABKAsyCS5wYi5GaWdodEgGiAEBEiEKB2ltcHJpbnQYCCABKAsyCy5wYi5J",
+            "bXByaW50SAeIAQESIwoLZGVmZWF0Um9sZXMYCSADKAsyDi5wYi5EZWZlYXRS",
+            "b2xlQgsKCV9pbml0U2VlZEIMCgpfZ2FtZVN0YXRlQgwKCl9wYWdlSW5kZXhC",
+            "CQoHX3BsYXllckIKCghfYmFycmllckIHCgVfc2hvcEIICgZfZmlnaHRCCgoI",
+            "X2ltcHJpbnQingEKDEdhbWVQcm9wZXJ0eRIhCgdhY2NvdW50GAEgASgLMgsu",
+            "cGIuQWNjb3VudEgAiAEBEiEKB3NldHRpbmcYAiABKAsyCy5wYi5TZXR0aW5n",
+            "SAGIAQESIwoIZ2FtZURhdGEYAyABKAsyDC5wYi5HYW1lRGF0YUgCiAEBQgoK",
+            "CF9hY2NvdW50QgoKCF9zZXR0aW5nQgsKCV9nYW1lRGF0YWIGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
@@ -120,7 +122,7 @@ namespace Pb {
             new pbr::GeneratedClrTypeInfo(typeof(global::Pb.DefeatRole), global::Pb.DefeatRole.Parser, new[]{ "Id", "Diff" }, new[]{ "Id", "Diff" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Pb.Barrier), global::Pb.Barrier.Parser, new[]{ "PokerPile", "NpcPokers", "PlayerPokers", "OtherPokers", "State", "MatchPointA", "MatchPointB", "PokerPosX", "PokerPosY", "FinalPoint", "Blackjack", "ChapterId", "BarrierId", "RefreshNpcPokerNum", "RefreshPlayerPokerNum" }, new[]{ "State", "MatchPointA", "MatchPointB", "PokerPosX", "PokerPosY", "FinalPoint", "Blackjack", "ChapterId", "BarrierId", "RefreshNpcPokerNum", "RefreshPlayerPokerNum" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Pb.Shop), global::Pb.Shop.Parser, new[]{ "Goods", "Purchased" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Pb.ExtraInfo), global::Pb.ExtraInfo.Parser, new[]{ "MultATK", "AddCrit", "ReflectDMG", "BonusArmor", "TemporaryArmor", "LifeSteal", "HealOverTime", "HealSuper", "HealtoMP", "SkillDamageUp", "MpRegen", "MpMaxSub", "AddBleeding", "DoubleProc", "IgnoreArmor", "Execute", "RetainATK", "ReflectPercent", "MagicImmunity", "ArmorATK", "ImmunityDeBuff", "FreezeArmor", "RemoveDeBuff", "OverHealATK", "HealToDMG", "HealBoost", "Rebirth", "ConversionDecline", "MPRefund", "MPBurn", "MPMaxLower", "DoubleCast" }, new[]{ "MultATK", "AddCrit", "ReflectDMG", "BonusArmor", "TemporaryArmor", "LifeSteal", "HealSuper", "HealtoMP", "SkillDamageUp", "MpMaxSub", "AddBleeding", "DoubleProc", "IgnoreArmor", "Execute", "RetainATK", "ReflectPercent", "MagicImmunity", "ArmorATK", "ImmunityDeBuff", "FreezeArmor", "RemoveDeBuff", "OverHealATK", "HealToDMG", "HealBoost", "Rebirth", "ConversionDecline", "MPRefund", "MPBurn", "MPMaxLower", "DoubleCast" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Pb.ExtraInfo), global::Pb.ExtraInfo.Parser, new[]{ "MultATK", "AddCrit", "ReflectDMG", "BonusArmor", "TemporaryArmor", "LifeSteal", "HealOverTime", "HealSuper", "HealtoMP", "SkillDamageUp", "MpRegen", "MpMaxSub", "AddBleeding", "DoubleProc", "IgnoreArmor", "Execute", "RetainATK", "ReflectPercent", "MagicImmunity", "ArmorATK", "ImmunityDeBuff", "FreezeArmor", "RemoveDeBuff", "OverHealATK", "HealToDMG", "HealBoost", "Rebirth", "ConversionDecline", "MPRefund", "MPBurn", "MPMaxLower", "DoubleCast", "RtHurtValue", "RtMagicValue" }, new[]{ "MultATK", "AddCrit", "ReflectDMG", "BonusArmor", "TemporaryArmor", "LifeSteal", "HealSuper", "HealtoMP", "SkillDamageUp", "MpMaxSub", "AddBleeding", "DoubleProc", "IgnoreArmor", "Execute", "RetainATK", "ReflectPercent", "MagicImmunity", "ArmorATK", "ImmunityDeBuff", "FreezeArmor", "RemoveDeBuff", "OverHealATK", "HealToDMG", "HealBoost", "Rebirth", "ConversionDecline", "MPRefund", "MPBurn", "MPMaxLower", "DoubleCast", "RtHurtValue", "RtMagicValue" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Pb.AssetInfo), global::Pb.AssetInfo.Parser, new[]{ "State", "Pokers", "Cards", "Hp", "MaxHP", "Magic", "MaxMagic", "Attack", "Defense", "IsFilp", "Extra" }, new[]{ "State", "Hp", "MaxHP", "Magic", "MaxMagic", "Attack", "Defense", "IsFilp", "Extra" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Pb.Fight), global::Pb.Fight.Parser, new[]{ "PokerPile", "NpcAsset", "PlayerAsset", "State", "Round" }, new[]{ "NpcAsset", "PlayerAsset", "State", "Round" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Pb.AssembleCard), global::Pb.AssembleCard.Parser, new[]{ "TriggerId", "BaseEffectId", "AdvancedEffectId", "TriggerNumber", "UpgradeNumber" }, new[]{ "TriggerId", "BaseEffectId", "AdvancedEffectId", "TriggerNumber", "UpgradeNumber" }, null, null, null),
@@ -2774,6 +2776,7 @@ namespace Pb {
     private static readonly pb::MessageParser<ExtraInfo> _parser = new pb::MessageParser<ExtraInfo>(() => new ExtraInfo());
     private pb::UnknownFieldSet _unknownFields;
     private int _hasBits0;
+    private int _hasBits1;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pb::MessageParser<ExtraInfo> Parser { get { return _parser; } }
@@ -2802,6 +2805,7 @@ namespace Pb {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public ExtraInfo(ExtraInfo other) : this() {
       _hasBits0 = other._hasBits0;
+      _hasBits1 = other._hasBits1;
       multATK_ = other.multATK_;
       addCrit_ = other.addCrit_;
       reflectDMG_ = other.reflectDMG_;
@@ -2834,6 +2838,8 @@ namespace Pb {
       mPBurn_ = other.mPBurn_;
       mPMaxLower_ = other.mPMaxLower_;
       doubleCast_ = other.doubleCast_;
+      rtHurtValue_ = other.rtHurtValue_;
+      rtMagicValue_ = other.rtMagicValue_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -3177,7 +3183,7 @@ namespace Pb {
 
     private float addBleeding_;
     /// <summary>
-    ///下次普通攻击使敌方获得 3 层流血状态
+    ///进阶效果
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -3771,6 +3777,66 @@ namespace Pb {
       _hasBits0 &= ~536870912;
     }
 
+    /// <summary>Field number for the "rtHurtValue" field.</summary>
+    public const int RtHurtValueFieldNumber = 1001;
+    private readonly static float RtHurtValueDefaultValue = 0F;
+
+    private float rtHurtValue_;
+    /// <summary>
+    ///运行过程中数据
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public float RtHurtValue {
+      get { if ((_hasBits0 & 1073741824) != 0) { return rtHurtValue_; } else { return RtHurtValueDefaultValue; } }
+      set {
+        _hasBits0 |= 1073741824;
+        rtHurtValue_ = value;
+      }
+    }
+    /// <summary>Gets whether the "rtHurtValue" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasRtHurtValue {
+      get { return (_hasBits0 & 1073741824) != 0; }
+    }
+    /// <summary>Clears the value of the "rtHurtValue" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearRtHurtValue() {
+      _hasBits0 &= ~1073741824;
+    }
+
+    /// <summary>Field number for the "rtMagicValue" field.</summary>
+    public const int RtMagicValueFieldNumber = 1002;
+    private readonly static float RtMagicValueDefaultValue = 0F;
+
+    private float rtMagicValue_;
+    /// <summary>
+    ///魔法值
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public float RtMagicValue {
+      get { if ((_hasBits0 & -2147483648) != 0) { return rtMagicValue_; } else { return RtMagicValueDefaultValue; } }
+      set {
+        _hasBits0 |= -2147483648;
+        rtMagicValue_ = value;
+      }
+    }
+    /// <summary>Gets whether the "rtMagicValue" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasRtMagicValue {
+      get { return (_hasBits0 & -2147483648) != 0; }
+    }
+    /// <summary>Clears the value of the "rtMagicValue" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearRtMagicValue() {
+      _hasBits0 &= ~-2147483648;
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override bool Equals(object other) {
@@ -3818,6 +3884,8 @@ namespace Pb {
       if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(MPBurn, other.MPBurn)) return false;
       if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(MPMaxLower, other.MPMaxLower)) return false;
       if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(DoubleCast, other.DoubleCast)) return false;
+      if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(RtHurtValue, other.RtHurtValue)) return false;
+      if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(RtMagicValue, other.RtMagicValue)) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -3857,6 +3925,8 @@ namespace Pb {
       if (HasMPBurn) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(MPBurn);
       if (HasMPMaxLower) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(MPMaxLower);
       if (HasDoubleCast) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(DoubleCast);
+      if (HasRtHurtValue) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(RtHurtValue);
+      if (HasRtMagicValue) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(RtMagicValue);
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -3997,6 +4067,14 @@ namespace Pb {
         output.WriteRawTag(189, 7);
         output.WriteFloat(DoubleCast);
       }
+      if (HasRtHurtValue) {
+        output.WriteRawTag(205, 62);
+        output.WriteFloat(RtHurtValue);
+      }
+      if (HasRtMagicValue) {
+        output.WriteRawTag(213, 62);
+        output.WriteFloat(RtMagicValue);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -4129,6 +4207,14 @@ namespace Pb {
         output.WriteRawTag(189, 7);
         output.WriteFloat(DoubleCast);
       }
+      if (HasRtHurtValue) {
+        output.WriteRawTag(205, 62);
+        output.WriteFloat(RtHurtValue);
+      }
+      if (HasRtMagicValue) {
+        output.WriteRawTag(213, 62);
+        output.WriteFloat(RtMagicValue);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -4229,6 +4315,12 @@ namespace Pb {
         size += 2 + 4;
       }
       if (HasDoubleCast) {
+        size += 2 + 4;
+      }
+      if (HasRtHurtValue) {
+        size += 2 + 4;
+      }
+      if (HasRtMagicValue) {
         size += 2 + 4;
       }
       if (_unknownFields != null) {
@@ -4334,6 +4426,12 @@ namespace Pb {
       }
       if (other.HasDoubleCast) {
         DoubleCast = other.DoubleCast;
+      }
+      if (other.HasRtHurtValue) {
+        RtHurtValue = other.RtHurtValue;
+      }
+      if (other.HasRtMagicValue) {
+        RtMagicValue = other.RtMagicValue;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -4484,6 +4582,14 @@ namespace Pb {
             DoubleCast = input.ReadFloat();
             break;
           }
+          case 8013: {
+            RtHurtValue = input.ReadFloat();
+            break;
+          }
+          case 8021: {
+            RtMagicValue = input.ReadFloat();
+            break;
+          }
         }
       }
     #endif
@@ -4631,6 +4737,14 @@ namespace Pb {
           }
           case 957: {
             DoubleCast = input.ReadFloat();
+            break;
+          }
+          case 8013: {
+            RtHurtValue = input.ReadFloat();
+            break;
+          }
+          case 8021: {
+            RtMagicValue = input.ReadFloat();
             break;
           }
         }

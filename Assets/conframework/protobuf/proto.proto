@@ -66,6 +66,7 @@ message ExtraInfo{
   optional float skillDamageUp = 10;//下次技能效果提升 %s，可叠加
   repeated float mpRegen = 11;//接下来的3回合每回合回复 %s 点法力
   optional float mpMaxSub = 12;//本局技能释放所需 MP 减少 %s
+  //进阶效果
   optional float addBleeding = 100;//下次普通攻击使敌方获得 3 层流血状态
   optional float doubleProc = 101;//下次普通攻击连续触发两次
   optional float ignoreArmor = 102;//下次普通攻击无视对手护甲
@@ -86,6 +87,9 @@ message ExtraInfo{
   optional float mPBurn = 117;//下次对对手造成普通攻击伤害时扣除对手等量法力值
   optional float mPMaxLower = 118;//下次技能释放后释放技能所需 MP 永久减少5
   optional float doubleCast = 119;//下次技能释放将触发两次
+  //运行过程中数据
+  optional float rtHurtValue = 1001;//伤害=普通攻击+魔法攻击+直接扣血
+  optional float rtMagicValue = 1002;//魔法值
 }
 
 //战斗的资产

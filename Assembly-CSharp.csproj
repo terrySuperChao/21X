@@ -1,7 +1,7 @@
 ﻿<Project ToolsVersion="Current">
   <!-- Generated file, do not modify, your changes will be overwritten (use AssetPostprocessor.OnGeneratedCSProject) -->
   <PropertyGroup>
-    <BaseIntermediateOutputPath>Temp\obj\Assembly-CSharp</BaseIntermediateOutputPath>
+    <BaseIntermediateOutputPath>Temp/obj/$(Configuration)/$(MSBuildProjectName)</BaseIntermediateOutputPath>
     <IntermediateOutputPath>$(BaseIntermediateOutputPath)</IntermediateOutputPath>
   </PropertyGroup>
   <Import Project="Sdk.props" Sdk="Microsoft.NET.Sdk" />
@@ -64,15 +64,21 @@
     <Analyzer Include="/Applications/Unity/Hub/Editor/2022.3.61f1c1/Unity.app/Contents/Tools/Unity.SourceGenerators/Unity.Properties.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets/scripts/logic/modules/card/baseEffectHandle/TemporaryArmorHandle.cs" />
     <Compile Include="Assets/scripts/ui/SelectPart.cs" />
     <Compile Include="Assets/scripts/ui/LoadingView.cs" />
     <Compile Include="Assets/conframework/mgrs/UIMgr.cs" />
     <Compile Include="Assets/scripts/logic/modules/settle/SpecialSettle.cs" />
+    <Compile Include="Assets/scripts/logic/modules/card/advancedEffectHandle/AddBleedingHandle.cs" />
     <Compile Include="Assets/scripts/logic/modules/pokerPile/BasePokerPile.cs" />
+    <Compile Include="Assets/scripts/logic/modules/card/advancedEffectHandle/ExecuteHandle.cs" />
+    <Compile Include="Assets/scripts/logic/modules/card/baseEffectHandle/AddArmorHandle.cs" />
+    <Compile Include="Assets/scripts/logic/modules/card/baseEffectHandle/AddCritHandle.cs" />
     <Compile Include="Assets/scripts/logic/modules/game/RandomMgr.cs" />
     <Compile Include="Assets/scripts/logic/modules/card/triggerHandle/SettlementIncludePokerHandle.cs" />
     <Compile Include="Assets/scripts/logic/modules/card/UICommonParaObject.cs" />
     <Compile Include="Assets/scripts/Main.cs" />
+    <Compile Include="Assets/scripts/logic/modules/card/baseEffectHandle/MPMaxSubHandle.cs" />
     <Compile Include="Assets/scripts/logic/data/PokerObject.cs" />
     <Compile Include="Assets/scripts/logic/modules/card/SwitchParaMgr.cs" />
     <Compile Include="Assets/scripts/logic/modules/card/handle/MagickaPlusHandle.cs" />
@@ -104,12 +110,15 @@
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/DropdownSample.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/VertexColorCycler.cs" />
     <Compile Include="Assets/conframework/event/EventDispatcher.cs" />
+    <Compile Include="Assets/scripts/logic/modules/game/GameBloodMgr.cs" />
     <Compile Include="Assets/scripts/logic/modules/card/triggerHandle/SettlementLossPointHandle.cs" />
     <Compile Include="Assets/scripts/logic/modules/card/handle/ExplosiveShieldPlusHandle.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/EnvMapAnimator.cs" />
     <Compile Include="Assets/conframework/protobuf/Proto.cs" />
+    <Compile Include="Assets/scripts/logic/modules/card/baseEffectHandle/MPRegenHandle.cs" />
     <Compile Include="Assets/scripts/ui/SelectCardView.cs" />
     <Compile Include="Assets/scripts/logic/modules/card/handle/ClubCardHandle.cs" />
+    <Compile Include="Assets/scripts/logic/modules/card/advancedEffectHandle/ReflectPercentHandle.cs" />
     <Compile Include="Assets/scripts/logic/modules/pokerPile/PokerPointMgr.cs" />
     <Compile Include="Assets/scripts/logic/modules/card/handle/FateLuckyPlusHandle.cs" />
     <Compile Include="Assets/scripts/logic/data/IAssembleCard.cs" />
@@ -150,17 +159,22 @@
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/VertexJitter.cs" />
     <Compile Include="Assets/scripts/logic/data/static/BaseEffectConfig.cs" />
     <Compile Include="Assets/scripts/logic/modules/card/handle/BloodthirstyHandle.cs" />
+    <Compile Include="Assets/scripts/logic/data/ExtraInfoObject.cs" />
     <Compile Include="Assets/scripts/logic/modules/card/BaseEffectHandleObject.cs" />
     <Compile Include="Assets/scripts/logic/data/CardObject.cs" />
     <Compile Include="Assets/scripts/ui/PlayerAsset.cs" />
     <Compile Include="Assets/scripts/logic/modules/card/handle/BerserkerHandle.cs" />
     <Compile Include="Assets/scripts/logic/modules/card/UIPokerPara.cs" />
+    <Compile Include="Assets/scripts/logic/modules/card/advancedEffectHandle/DoubleProcHandle.cs" />
+    <Compile Include="Assets/scripts/logic/modules/card/baseEffectHandle/ArmorToATKHandle.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/TMP_DigitValidator.cs" />
     <Compile Include="Assets/scripts/logic/modules/config/ConfigMgr.cs" />
     <Compile Include="Assets/scripts/logic/modules/card/triggerHandle/AttackBeforeLossHandle.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/TMP_FrameRateCounter.cs" />
     <Compile Include="Assets/scripts/logic/modules/card/baseEffectHandle/SubArmorHandle.cs" />
     <Compile Include="Assets/conframework/ui/LanguageCom.cs" />
+    <Compile Include="Assets/scripts/logic/modules/card/baseEffectHandle/SkillDamageUpHandle.cs" />
+    <Compile Include="Assets/scripts/logic/data/IExtraInfo.cs" />
     <Compile Include="Assets/scripts/logic/modules/player/PlayPokerMgr.cs" />
     <Compile Include="Assets/scripts/logic/modules/settle/suit/ISuitSettle.cs" />
     <Compile Include="Assets/scripts/logic/modules/card/handle/BloodthirstyPlusHandle.cs" />
@@ -181,6 +195,7 @@
     <Compile Include="Assets/scripts/logic/modules/card/triggerHandle/StopPokerAfterHandle.cs" />
     <Compile Include="Assets/scripts/logic/modules/card/handle/FateLuckyHandle.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/VertexZoom.cs" />
+    <Compile Include="Assets/scripts/logic/modules/card/baseEffectHandle/AddAMPHandle.cs" />
     <Compile Include="Assets/scripts/ui/FightView.cs" />
     <Compile Include="Assets/scripts/logic/data/static/TriggerConfig.cs" />
     <Compile Include="Assets/scripts/ui/FightCardView.cs" />
@@ -188,7 +203,10 @@
     <Compile Include="Assets/scripts/logic/modules/card/RoundResultObject.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/Benchmark02.cs" />
     <Compile Include="Assets/scripts/ui/LongPressCloneSource.cs" />
+    <Compile Include="Assets/scripts/logic/modules/card/advancedEffectHandle/ArmorATKHandle.cs" />
     <Compile Include="Assets/scripts/logic/data/static/CardPartConfig.cs" />
+    <Compile Include="Assets/scripts/logic/modules/card/baseEffectHandle/HealSuperHandle.cs" />
+    <Compile Include="Assets/scripts/logic/modules/card/advancedEffectHandle/ImmunityDeBuffHandle.cs" />
     <Compile Include="Assets/scripts/logic/data/UserObject.cs" />
     <Compile Include="Assets/scripts/ui/Poker.cs" />
     <Compile Include="Assets/scripts/logic/modules/game/GameReqMgr.cs" />
@@ -197,7 +215,9 @@
     <Compile Include="Assets/scripts/logic/modules/card/triggerHandle/SettlementWinPointHandle.cs" />
     <Compile Include="Assets/scripts/logic/modules/card/IRoundResult.cs" />
     <Compile Include="Assets/conframework/base/ISerialization.cs" />
+    <Compile Include="Assets/scripts/logic/modules/card/advancedEffectHandle/MagicImmunityHandle.cs" />
     <Compile Include="Assets/scripts/ui/PlayerInfo.cs" />
+    <Compile Include="Assets/scripts/logic/modules/card/baseEffectHandle/AddHealHandle.cs" />
     <Compile Include="Assets/scripts/logic/modules/card/baseEffectHandle/AddATKHandle.cs" />
     <Compile Include="Assets/scripts/logic/modules/card/handle/HeartCardHandle.cs" />
     <Compile Include="Assets/scripts/logic/modules/card/ITriggerHandle.cs" />
@@ -216,13 +236,17 @@
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/TextMeshProFloatingText.cs" />
     <Compile Include="Assets/scripts/ui/DraggableUI.cs" />
     <Compile Include="Assets/scripts/ui/CardView.cs" />
+    <Compile Include="Assets/scripts/logic/modules/card/baseEffectHandle/LifeStealHandle.cs" />
     <Compile Include="Assets/scripts/ui/CardPart.cs" />
     <Compile Include="Assets/scripts/logic/data/ICard.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/ShaderPropAnimator.cs" />
+    <Compile Include="Assets/scripts/logic/modules/card/advancedEffectHandle/RetainATKHandle.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/CameraController.cs" />
+    <Compile Include="Assets/scripts/logic/modules/card/advancedEffectHandle/IgnoreArmorHandle.cs" />
     <Compile Include="Assets/scripts/logic/modules/settle/suit/SuitSettle.cs" />
     <Compile Include="Assets/scripts/logic/modules/card/TriggerHandleParaObject.cs" />
     <Compile Include="Assets/scripts/logic/data/static/ChapterConfig.cs" />
+    <Compile Include="Assets/scripts/logic/modules/card/baseEffectHandle/ReflectDMGHandle.cs" />
     <Compile Include="Assets/scripts/logic/modules/game/GameStaticConfigMgr.cs" />
     <Compile Include="Assets/scripts/logic/modules/card/IBaseEffectHandle.cs" />
     <Compile Include="Assets/conframework/ui/AutoText.cs" />
@@ -239,6 +263,7 @@
     <Compile Include="Assets/scripts/ui/EntryView.cs" />
     <Compile Include="Assets/scripts/logic/modules/card/IUIPokerPara.cs" />
     <Compile Include="Assets/scripts/logic/modules/pokerPile/HandPokerMgr.cs" />
+    <Compile Include="Assets/scripts/logic/modules/card/baseEffectHandle/BonusArmorHandle.cs" />
     <Compile Include="Assets/scripts/logic/data/AssembleCardObject.cs" />
     <Compile Include="Assets/scripts/logic/modules/card/TriggerHandleObject.cs" />
     <Compile Include="Assets/scripts/logic/modules/settle/AttackSettle.cs" />
@@ -247,6 +272,7 @@
     <Compile Include="Assets/scripts/ui/CardPartPopup.cs" />
     <Compile Include="Assets/scripts/logic/modules/settle/PokerSettle.cs" />
     <Compile Include="Assets/scripts/logic/modules/game/GamePropertyMgr.cs" />
+    <Compile Include="Assets/scripts/logic/modules/card/baseEffectHandle/HealToMPHandle.cs" />
     <Compile Include="Assets/scripts/logic/modules/card/IUICommonPara.cs" />
     <Compile Include="Assets/scripts/logic/modules/card/ITriggerHandlePara.cs" />
     <Compile Include="Assets/scripts/logic/modules/card/triggerHandle/NormalAttackAfterHandle.cs" />
@@ -254,38 +280,16 @@
     <Compile Include="Assets/scripts/logic/modules/settle/suit/ClubSettle.cs" />
     <Compile Include="Assets/scripts/ui/SelectPartView.cs" />
     <Compile Include="Assets/scripts/logic/modules/card/baseEffectHandle/AddTrueDMGHandle.cs" />
+    <Compile Include="Assets/scripts/logic/modules/card/baseEffectHandle/AddMPPerHandle.cs" />
     <Compile Include="Assets/scripts/ui/BarrierView.cs" />
     <Compile Include="Assets/conframework/mgrs/JsonMgr.cs" />
+    <Compile Include="Assets/scripts/logic/modules/card/baseEffectHandle/HealOverTimeHandle.cs" />
     <Compile Include="Assets/scripts/ui/LobbyView.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/TMP_TextInfoDebugTool.cs" />
     <Compile Include="Assets/conframework/ui/IBaseView.cs" />
     <Compile Include="Assets/scripts/logic/modules/game/RandomEx.cs" />
     <Compile Include="Assets/conframework/ui/ViewConst.cs" />
     <Compile Include="Assets/scripts/logic/modules/card/handle/MagickaHandle.cs" />
-    <Compile Include="Assets\scripts\logic\data\IExtraInfo.cs" />
-    <Compile Include="Assets\scripts\logic\data\ExtraInfoObject.cs" />
-    <Compile Include="Assets\scripts\logic\modules\card\baseEffectHandle\AddCritHandle.cs" />
-    <Compile Include="Assets\scripts\logic\modules\card\baseEffectHandle\AddArmorHandle.cs" />
-    <Compile Include="Assets\scripts\logic\modules\card\baseEffectHandle\ReflectDMGHandle.cs" />
-    <Compile Include="Assets\scripts\logic\modules\game\GameBloodMgr.cs" />
-    <Compile Include="Assets\scripts\logic\modules\card\baseEffectHandle\ArmorToATKHandle.cs" />
-    <Compile Include="Assets\scripts\logic\modules\card\baseEffectHandle\BonusArmorHandle.cs" />
-    <Compile Include="Assets\scripts\logic\modules\card\baseEffectHandle\AddHealHandle.cs" />
-    <Compile Include="Assets\scripts\logic\modules\card\baseEffectHandle\TemporaryArmorHandle.cs" />
-    <Compile Include="Assets\scripts\logic\modules\card\baseEffectHandle\LifeStealHandle.cs" />
-    <Compile Include="Assets\scripts\logic\modules\card\baseEffectHandle\HealOverTimeHandle.cs" />
-    <Compile Include="Assets\scripts\logic\modules\card\baseEffectHandle\HealToMPHandle.cs" />
-    <Compile Include="Assets\scripts\logic\modules\card\baseEffectHandle\HealSuperHandle.cs" />
-    <Compile Include="Assets\scripts\logic\modules\card\baseEffectHandle\AddAMPHandle.cs" />
-    <Compile Include="Assets\scripts\logic\modules\card\baseEffectHandle\SkillDamageUpHandle.cs" />
-    <Compile Include="Assets\scripts\logic\modules\card\baseEffectHandle\MPRegenHandle.cs" />
-    <Compile Include="Assets\scripts\logic\modules\card\baseEffectHandle\AddMPPerHandle.cs" />
-    <Compile Include="Assets\scripts\logic\modules\card\baseEffectHandle\MPMaxSubHandle.cs" />
-    <Compile Include="Assets\scripts\logic\modules\card\advancedEffectHandle\AddBleedingHandle.cs" />
-    <Compile Include="Assets\scripts\logic\modules\card\advancedEffectHandle\DoubleProcHandle.cs" />
-    <Compile Include="Assets\scripts\logic\modules\card\advancedEffectHandle\IgnoreArmorHandle.cs" />
-    <Compile Include="Assets\scripts\logic\modules\card\advancedEffectHandle\ExecuteHandle.cs" />
-    <Compile Include="Assets\scripts\logic\modules\card\advancedEffectHandle\RetainATKHandle.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets/TextMesh Pro/Shaders/TMPro.cginc" />
@@ -1346,8 +1350,5 @@
     <ProjectCapability Remove="ReferenceManagerCOM" />
     <ProjectCapability Remove="AssemblyReferences" />
     <ProjectCapability Remove="ReferenceManagerAssemblies" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Assets\scripts\logic\modules\card\advancedEffectHandle\" />
   </ItemGroup>
 </Project>

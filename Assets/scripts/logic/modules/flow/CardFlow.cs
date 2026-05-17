@@ -63,6 +63,10 @@ public class CardFlow : GameFlowObject
     protected bool _gameSettle(IGameSettlePara para) {
         ITriggerHandlePara handlePara = this._handlePara;
 
+        //关键数据
+        handlePara.getGameSettlePara().setWinIndex(para.getWinIndex());
+        handlePara.getGameSettlePara().setBlackJack(para.isBlackJack());
+
         //行动前
         this.setTriggerHandleParaUser(handlePara, 0);
         SwitchParaMgr.Instance.handle(handlePara, () =>{
@@ -70,13 +74,8 @@ public class CardFlow : GameFlowObject
         });
         
         int winIndex = para.getWinIndex();
-        winIndex = 1;
         if (winIndex != -1) //非平局
         {
-            //关键数据
-            handlePara.getGameSettlePara().setWinIndex(para.getWinIndex());
-            handlePara.getGameSettlePara().setBlackJack(para.isBlackJack());
-
             //wins
             this.setTriggerHandleParaUser(handlePara, winIndex);
             CardMgr.Instance.handle(handlePara, TriggerEvent.roundAttackBefore);

@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using Google.Protobuf.WellKnownTypes;
+
 public class ExtraInfoObject : IExtraInfo
 {
     private float _multATK = 0;
@@ -16,6 +18,12 @@ public class ExtraInfoObject : IExtraInfo
     private float _ignoreArmor = 0;
     private float _execute = 0;
     private float _retainATK = 0;
+    private float _reflectPercent = 0;
+    private float _magicImmunity = 0;
+    private float _armorATK = 0;
+    private float _immunityDeBuff = 0;
+    private float _rtMagicValue = 0;
+    private float _rtHurtValue = 0;
     private List<float> _healOverTime = new List<float>();
     private List<float> _mpRegen = new List<float>();
     public void setMultATK(float value) {
@@ -25,6 +33,10 @@ public class ExtraInfoObject : IExtraInfo
 
     public float getMultATK() {
         return this._multATK;
+    }
+
+    public void clearMultATK() {
+        this._multATK = 0;
     }
 
     public void setAddCrit(float value) {
@@ -43,6 +55,9 @@ public class ExtraInfoObject : IExtraInfo
 
     public float getReflectDMG() {
         return this._reflectDMG;
+    }
+    public void clearReflectDMG() {
+        this._reflectDMG = 0;
     }
 
     public void setBonusArmor(float value) {
@@ -77,7 +92,7 @@ public class ExtraInfoObject : IExtraInfo
     }
     public float getHealOverTime() {
         float value = 0;
-        if (this._healOverTime.Count > 0){
+        if (this._healOverTime.Count > 0) {
             value = this._healOverTime[0];
             this._healOverTime.RemoveAt(0);
         }
@@ -167,7 +182,7 @@ public class ExtraInfoObject : IExtraInfo
 
     public void setExecute(float value) {
         this._execute += 0;
-        this._execute = this._execute < 0 ? 0 : this._execute; 
+        this._execute = this._execute < 0 ? 0 : this._execute;
     }
     public float getExecute() {
         return this._execute;
@@ -182,5 +197,62 @@ public class ExtraInfoObject : IExtraInfo
     }
     public void clearRetainATK() {
         this._retainATK = 0;
+    }
+
+    public void setReflectPercent(float value) {
+        this._reflectPercent += value;
+        this._reflectPercent = this._reflectPercent < 0 ? 0 : this._reflectPercent;
+    }
+    public float getReflectPercent() {
+        return this._reflectPercent;
+    }
+    public void clearReflectPercent() {
+        this._reflectPercent = 0;
+    }
+
+    public void setMagicImmunity(float value) {
+        this._magicImmunity = value;
+    }
+    public float getMagicImmunity() {
+        return this._magicImmunity;
+    }
+    public void clearMagicImmunity() {
+        this._magicImmunity = 0;
+    }
+
+    public void setArmorATK(float value) {
+        this._armorATK += value;
+        this._armorATK = this._armorATK < 0 ? 0 : this._armorATK;
+    }
+    public float getArmorATK() {
+        return this._armorATK;
+    }
+
+    public void setImmunityDeBuff(float value) {
+        this._immunityDeBuff = value;
+    }
+    public float getImmunityDeBuff() {
+        return this._immunityDeBuff;
+    }
+    public void clearImmunityDeBuff() {
+        this._immunityDeBuff = 0;
+    }
+
+    public float getRtMagicValue()
+    {
+        return this._rtMagicValue;
+    }
+    public void setRtMagicValue(float value)
+    {
+        this._rtMagicValue += value;
+    }
+
+    public float getRtHurtVaule()
+    {
+        return this._rtHurtValue;
+    }
+    public void setRtHurtValue(float value)
+    {
+        this._rtHurtValue += value;
     }
 }

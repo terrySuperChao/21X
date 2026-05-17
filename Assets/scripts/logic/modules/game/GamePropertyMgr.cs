@@ -50,7 +50,7 @@ public class GamePropertyMgr : Singleton<GamePropertyMgr>
     private void serialized() {
         GameDataMgr.Instance.serialized();
         SettingDataMgr.Instance.serialized();
-        //±£´æ
+        //ï¿½ï¿½ï¿½ï¿½
         ProtobufMgr.Instance.serializeToFile(_fileName, this._gameProperty.ToByteArray());
     }
 }

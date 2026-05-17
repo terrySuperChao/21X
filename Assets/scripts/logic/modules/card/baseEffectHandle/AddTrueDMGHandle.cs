@@ -10,7 +10,7 @@ public class AddTrueDMGHandle : BaseEffectHandleObject
         UnityEngine.Debug.Log("AddTrueDMGHandle=========>>");
         
         float addValue = this.getAddValue(para);
-        para.getRoundResult(para.getAttackUser()).addHurtValue(addValue);
+        para.getAttackUser().getExtraInfo().setRtHurtValue(addValue);
         GameBloodMgr.Instance.lessBloodHandle(para.getAttackUser(), para.getDefenseUser(), addValue);
     }
 }

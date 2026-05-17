@@ -12,11 +12,13 @@ public class FightDataMgr : Singleton<FightDataMgr>
     private List<ICard> _playerCards = new List<ICard>();
     private FightPokerPile _pokerPile = new FightPokerPile();
 
-    
     public Fight newFight() {
         Fight fight = new Fight();
         fight.NpcAsset = new AssetInfo();
+        fight.NpcAsset.Extra = new ExtraInfo();
+
         fight.PlayerAsset = new AssetInfo();
+        fight.PlayerAsset.Extra = new ExtraInfo();
         return fight;
     }
 

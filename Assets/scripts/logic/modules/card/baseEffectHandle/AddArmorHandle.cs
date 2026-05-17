@@ -13,5 +13,10 @@ public class AddArmorHandle : BaseEffectHandleObject
 
         IUICommonPara attackPara = new UICommonParaObject(para.getAttackUser(), ValueType.defense, addValue, para.getAttackUser().getDefense());
         GameMessage.Instance.addMsg(GameConst.ADDCARDVALUE, attackPara);
+
+        float armorATK = para.getAttackUser().getExtraInfo().getArmorATK();
+        if (armorATK > 0) {
+            GameBloodMgr.Instance.lessBloodHandle(para.getAttackUser(), para.getDefenseUser(), armorATK);
+        }
     }
 }

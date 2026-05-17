@@ -97,10 +97,14 @@ public class TriggerHandleParaObject : ITriggerHandlePara
             result.reset();
         }
 
+        
         this._attackUser.getExtraInfo().clearTemporaryArmor();
         this._attackUser.getExtraInfo().clearDoubleProc();
         this._attackUser.getExtraInfo().clearIgnoreArmor();
         this._attackUser.getExtraInfo().clearRetainATK();
+        this._attackUser.getExtraInfo().clearReflectPercent();
+        this._attackUser.getExtraInfo().clearImmunityDeBuff();
+        this._defenseUser.getExtraInfo().clearReflectDMG();
         this._defenseUser.getExtraInfo().clearTemporaryArmor();
     }
 }

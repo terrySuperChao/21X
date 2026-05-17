@@ -5,6 +5,7 @@ public interface IExtraInfo
     //下次攻击额外造成伤害
     public void setMultATK(float value);
     public float getMultATK();
+    public void clearMultATK();
 
     //固定增加 %s% 暴击率
     public void setAddCrit(float value);
@@ -13,6 +14,7 @@ public interface IExtraInfo
     //受到攻击时反弹 %s 点伤害
     public void setReflectDMG(float value);
     public float getReflectDMG();
+    public void clearReflectDMG();
 
     //下次转化方块属性，额外获得的护甲
     public void setBonusArmor(float value);
@@ -75,4 +77,32 @@ public interface IExtraInfo
     public void setRetainATK(float value);
     public float getRetainATK();
     public void clearRetainATK();
+
+    //将下次对手普通攻击的 50% 反弹给对手
+    public void setReflectPercent(float value);
+    public float getReflectPercent();
+    public void clearReflectPercent();
+
+    //获得 1个技能免疫的护盾，无法叠加
+    public void setMagicImmunity(float value);
+    public float getMagicImmunity();
+    public void clearMagicImmunity();
+
+    //每次获得护甲对对手造成 5 点伤害
+    public void setArmorATK(float value);
+    public float getArmorATK();
+
+    //下回合免疫负面状态的伤害
+    public void setImmunityDeBuff(float value);
+    public float getImmunityDeBuff();
+    public void clearImmunityDeBuff();
+
+    //运行过程中数据 rt前缀
+    //魔法值
+    public float getRtMagicValue();
+    public void setRtMagicValue(float value);
+
+    //伤害=普通攻击+魔法攻击+直接扣血
+    public float getRtHurtVaule();
+    public void setRtHurtValue(float value);
 }

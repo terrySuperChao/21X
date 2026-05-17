@@ -15,6 +15,19 @@ public class SettlementWinPointHandle : TriggerHandleObject
             return false;
         }
 
+        //获胜的判断
+        if (para.getGameSettlePara().getWinIndex() == -1) {
+            return false;
+        }
+
+        if (para.getGameSettlePara().getWinIndex() == 0 && !para.getAttackUser().isNpc()) {
+            return false;
+        }
+
+        if (para.getGameSettlePara().getWinIndex() == 1 && para.getAttackUser().isNpc()) {
+            return false;
+        }
+
         float point = (float)FightPokerMgr.Instance.getUserHandPokerPoint(para.getAttackUser(), false);
         string compareStr = logic.Replace(str, "");
         return this.compareLogic(compareStr,point);

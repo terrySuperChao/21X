@@ -31,6 +31,22 @@ public class SettlementIncludePokerHandle : TriggerHandleObject
             return false;
         }
 
+        //获胜的判断
+        if (para.getGameSettlePara().getWinIndex() == -1)
+        {
+            return false;
+        }
+
+        if (para.getGameSettlePara().getWinIndex() == 0 && !para.getAttackUser().isNpc())
+        {
+            return false;
+        }
+
+        if (para.getGameSettlePara().getWinIndex() == 1 && para.getAttackUser().isNpc())
+        {
+            return false;
+        }
+
         int rank = -1;
         string compareStr = logic.Replace(str, "");
         foreach (var key in this._dic.Keys)

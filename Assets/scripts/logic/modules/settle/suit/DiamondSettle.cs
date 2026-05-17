@@ -15,11 +15,20 @@ public class DiamondSettle: SuitSettle
 
     override
     protected void _settle(ITriggerHandlePara para, IPoker poker, int baseValue) {
-        float addValue = baseValue * para.getAttackUser().getExtraInfo().getBonusArmor();
-        if (addValue <= 0) return;
-        para.getAttackUser().addDefense(addValue);
+        float armorATK = para.getAttackUser().getExtraInfo().getArmorATK();
+        if (armorATK > 0){
+            GameBloodMgr.Instance.lessBloodHandle(para.getAttackUser(), para.getDefenseUser(), armorATK);
+        }
 
-        IUICommonPara attackPara = new UICommonParaObject(para.getAttackUser(), ValueType.defense, addValue, para.getAttackUser().getDefense());
-        GameMessage.Instance.addMsg(GameConst.ADDCARDVALUE, attackPara);
+        float addValue = baseValue * para.getAttackUser().getExtraInfo().getBonusArmor();
+        if (addValue > 0) {
+            para.getAttackUser().addDefense(addValue);
+            IUICommonPara attackPara = new UICommonParaObject(para.getAttackUser(), ValueType.defense, addValue, para.getAttackUser().getDefense());
+            GameMessage.Instance.addMsg(GameConst.ADDCARDVALUE, attackPara);
+
+            if (armorATK > 0){
+                GameBloodMgr.Instance.lessBloodHandle(para.getAttackUser(), para.getDefenseUser(), armorATK);
+            }
+        }        
     }
 }

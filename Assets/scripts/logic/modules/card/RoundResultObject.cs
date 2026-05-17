@@ -74,7 +74,9 @@ public class RoundResultObject:IRoundResult
     }
 
     public float getHurtVaule() {
-        return this._hurtValue;
+        float hurtValue = this._hurtValue;
+        this._hurtValue = 0;
+        return hurtValue;
     }
     public void addHurtValue(float value) {
         this._hurtValue += value;

@@ -8,9 +8,9 @@ public class RoundOtherHandle : TriggerHandleObject
         return TriggerEvent.roundOther;
     }
 
-    protected override bool _roundAttackBeforeHandle(ITriggerHandlePara para)
+    protected override bool _roundOtherHandle(ITriggerHandlePara para)
     {
-        UnityEngine.Debug.Log("Attack Before Loss Handle");
+        UnityEngine.Debug.Log("Round Other Handle");
 
         if (this._dic.Count == 0) {
             this._dic.Add("单次造成伤害", this.getHurtValue);
@@ -42,10 +42,10 @@ public class RoundOtherHandle : TriggerHandleObject
     }
 
     private float getHurtValue(ITriggerHandlePara para) {
-        return para.getRoundResult(para.getAttackUser()).getHurtVaule();
+        return para.getAttackUser().getExtraInfo().getRtHurtVaule();
     }
 
     private float getMagicValue(ITriggerHandlePara para) {
-        return para.getRoundResult(para.getAttackUser()).getMagicValue();
+        return para.getAttackUser().getExtraInfo().getRtMagicValue();
     }
 }

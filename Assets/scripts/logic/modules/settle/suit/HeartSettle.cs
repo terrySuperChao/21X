@@ -1,5 +1,3 @@
-using static UnityEngine.UIElements.UxmlAttributeDescription;
-
 public class HeartSettle : SuitSettle
 {
     override

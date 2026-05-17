@@ -82,7 +82,7 @@ public class UserObject : IUser
 
     public float addBlood(float value) {
         this._blood += value;
-        this._blood = this._blood > this._maxBlood ? this._maxBlood : this._attack;
+        this._blood = this._blood > this._maxBlood ? this._maxBlood : this._blood;
         this._blood = this._blood < 0 ? 0 : this._blood;
         return this._blood;
     }

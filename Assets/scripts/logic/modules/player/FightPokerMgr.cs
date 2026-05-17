@@ -30,6 +30,12 @@ public class FightPokerMgr : Singleton<FightPokerMgr>
         extra.setAddBleeding(info.Extra.AddBleeding);
         extra.setIgnoreArmor(info.Extra.IgnoreArmor);
         extra.setExecute(info.Extra.Execute);
+        extra.setReflectPercent(info.Extra.ReflectPercent);
+        extra.setMagicImmunity(info.Extra.MagicImmunity);
+        extra.setArmorATK(info.Extra.ArmorATK);
+        extra.setImmunityDeBuff(info.Extra.ImmunityDeBuff);
+        extra.setRtHurtValue(info.Extra.RtHurtValue);
+        extra.setRtMagicValue(info.Extra.RtMagicValue);
         foreach (float item in info.Extra.MpRegen) {
             extra.setMpRegen(item);
         }
@@ -70,6 +76,12 @@ public class FightPokerMgr : Singleton<FightPokerMgr>
         info.Extra.AddBleeding = user.getExtraInfo().getAddBleeding();
         info.Extra.IgnoreArmor = user.getExtraInfo().getIgnoreArmor();
         info.Extra.Execute = user.getExtraInfo().getExecute();
+        info.Extra.ReflectPercent = user.getExtraInfo().getReflectPercent();
+        info.Extra.MagicImmunity = user.getExtraInfo().getMagicImmunity();
+        info.Extra.ArmorATK = user.getExtraInfo().getArmorATK();
+        info.Extra.ImmunityDeBuff = user.getExtraInfo().getImmunityDeBuff();
+        info.Extra.RtHurtValue = user.getExtraInfo().getRtHurtVaule();
+        info.Extra.RtMagicValue = user.getExtraInfo().getRtMagicValue();
         info.Extra.MpRegen.Clear();
         info.Extra.HealOverTime.Clear();
         foreach (float item in user.getExtraInfo().getMpRegens())
