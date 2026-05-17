@@ -51,7 +51,7 @@ public abstract class TriggerHandleObject : ITriggerHandle
         return this._roundOtherHandle(para);
     }
 
-
+    //保留一位小数，四舍五入
     protected float getNumberDigits(float number)
     {
         return (float)Math.Round((number * 10 + 0.5) / 10, 1);

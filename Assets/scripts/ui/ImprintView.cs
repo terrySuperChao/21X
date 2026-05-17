@@ -70,7 +70,7 @@ public class ImprintView : MonoBehaviour, IBaseView
             longPressItem.partInfo = parts[i];
             this.longPressItems.Add(longPressItem);
 
-            HoverPopup hover = partGameObject.AddComponent<HoverPopup>();
+            HoverCardPopup hover = partGameObject.AddComponent<HoverCardPopup>();
             hover.popup = this.cardPartPopup.GetComponent<RectTransform>();
         }
 
@@ -121,7 +121,7 @@ public class ImprintView : MonoBehaviour, IBaseView
         CardPart cardPart = partGameObject.GetComponent<CardPart>();
         cardPart.loadPartImage(partInfo);
 
-        HoverPopup hover = partGameObject.AddComponent<HoverPopup>();
+        HoverCardPopup hover = partGameObject.AddComponent<HoverCardPopup>();
         hover.popup = this.cardPartPopup.GetComponent< RectTransform>();
     }
 

@@ -20,10 +20,13 @@ public class PlayerAsset : MonoBehaviour
 
     public Transform pokers;
     public Transform cards;
+    public Transform buffs;
 
     public GameObject pokerPrefab;
     public GameObject cartPartPrefab;
+    public GameObject buffPartPrefab;
     public GameObject cardPartPopup;
+    public GameObject buffPartPopup;
 
     public Transform rootTransform;
     private List<Text> _texts = new List<Text>();
@@ -77,6 +80,7 @@ public class PlayerAsset : MonoBehaviour
         this._pokerPos = pokerPos;
         this.initPokers();
         this.initCards();
+        this.initBuffs();
         this.initAdjust();
         this.initUserValue();
         this.showUserState();
@@ -102,6 +106,12 @@ public class PlayerAsset : MonoBehaviour
         foreach (var card in cards){
             this.addCard(card);
         }
+    }
+
+    private void initBuffs() {
+        this.addBuff("111");
+        this.addBuff("222");
+        this.addBuff("333");
     }
 
     private void initAdjust() {
@@ -143,8 +153,16 @@ public class PlayerAsset : MonoBehaviour
         cardChild.SetParent(null);
         Destroy(cardChild.gameObject);
 
-        HoverPopup hover = cardObject.AddComponent<HoverPopup>();
+        HoverCardPopup hover = cardObject.AddComponent<HoverCardPopup>();
         hover.popup = this.cardPartPopup.GetComponent<RectTransform>();
+    }
+
+    public void addBuff(string buff) {
+        GameObject buffObject = Instantiate(this.buffPartPrefab, this.buffs);
+        buffObject.GetComponent<BuffPart>().setBuff(buff);
+
+        HoverBuffPopup hover = buffObject.AddComponent<HoverBuffPopup>();
+        hover.popup = this.buffPartPopup.GetComponent<RectTransform>();
     }
 
     // ------》》》》 1发卡牌

@@ -1,6 +1,6 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
-public class HoverPopup : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerMoveHandler
+public class HoverBasePopup : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerMoveHandler
 {
     public RectTransform popup;
     public Vector2 offset = new Vector2(-130, 130);
@@ -19,11 +19,7 @@ public class HoverPopup : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
             return;
         }
 
-        CardPart cardPart = this.gameObject.GetComponent<CardPart>();
-        if (cardPart == null) { 
-            return;
-        }
-
+       
         if (this.canvasRect == null) {
             Canvas canvas = GameObject.Find("Canvas")?.GetComponent<Canvas>();
             if (canvas != null)
@@ -32,12 +28,10 @@ public class HoverPopup : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
                 uiCamera = canvas.worldCamera;
         }
 
-        CardPartPopup cardPartPopup = this.popup.gameObject.GetComponent<CardPartPopup>();
-        if (cardPartPopup != null) {
-            cardPartPopup.loadPartInfo(cardPart.getPartInfo());
-            cardPartPopup.setAssembleCard(cardPart.getAssembleCard());
+        if (this._onPointerEnterHandle()) {
             this.popup.gameObject.SetActive(true);
         }
+
         this.isHovering = true;
         this.UpdatePopupPosition(eventData);
     }
@@ -86,6 +80,9 @@ public class HoverPopup : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
             offset.x *= -1;
         }
         popup.anchoredPosition = localPoint;
-        
+    }
+
+    protected virtual bool _onPointerEnterHandle() {
+        return false;
     }
 }

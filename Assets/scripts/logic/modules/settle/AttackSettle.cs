@@ -27,7 +27,8 @@ public class AttackSettle: IAttackSettle
         }
 
         float multATK = attackUser.getExtraInfo().getMultATK();
-        float attack = attackUser.getAttack() * (1 + multATK + addCrit);
+        float attackN = attackUser.getAttack() * (1 + multATK + addCrit);
+        float attack = GameConst.getNumberDigits(attackN);
         float retainATK = attackUser.getExtraInfo().getRetainATK();
         //终结技
         float execute = attackUser.getExtraInfo().getExecute();
@@ -40,7 +41,7 @@ public class AttackSettle: IAttackSettle
         if (attack <= 0){
             return;
         }
-        attackUser.setAttack(attack * retainATK);
+        attackUser.setAttack(GameConst.getNumberDigits(attack * retainATK));
         attackUser.getExtraInfo().setRtHurtValue(attack);
         
         IUICommonPara attackPara = new UICommonParaObject(attackUser, ValueType.attack, attack, attackUser.getAttack());
@@ -93,7 +94,7 @@ public class AttackSettle: IAttackSettle
 
         float attack = 50.0f;
         float skillDamageUp = attackUser.getExtraInfo().getSkillDamageUp();
-        float remainAttack = attack * (1 + skillDamageUp);
+        float remainAttack = GameConst.getNumberDigits(attack * (1 + skillDamageUp));
 
         attackUser.setMagic(0);
         attackUser.getExtraInfo().setRtHurtValue(remainAttack);
