@@ -101,8 +101,10 @@ public interface IExtraInfo
     //魔法值
     public float getRtMagicValue();
     public void setRtMagicValue(float value);
+    public void clearRtMagicValue();
 
     //伤害=普通攻击+魔法攻击+直接扣血
     public float getRtHurtVaule();
     public void setRtHurtValue(float value);
+    public void clearRtHurtValue();
 }

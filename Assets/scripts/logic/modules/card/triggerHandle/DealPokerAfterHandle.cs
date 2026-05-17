@@ -1,4 +1,3 @@
-using System.Text.RegularExpressions;
 using System.Collections.Generic;
 //要牌 >= 3
 public class DealPokerAfterHandle : TriggerHandleObject
@@ -34,6 +33,7 @@ public class DealPokerAfterHandle : TriggerHandleObject
     protected override bool _settlementBeforeHandle(ITriggerHandlePara para)
     {
         this._dic.Clear();
+        UnityEngine.Debug.Log("FFFFFFFFFFFFFF");
         return base._settlementBeforeHandle(para); 
     }
 }

@@ -11,41 +11,26 @@ public class RoundOtherHandle : TriggerHandleObject
     protected override bool _roundOtherHandle(ITriggerHandlePara para)
     {
         UnityEngine.Debug.Log("Round Other Handle");
-
-        if (this._dic.Count == 0) {
-            this._dic.Add("单次造成伤害", this.getHurtValue);
-            this._dic.Add("本轮获得法力值", this.getMagicValue);
-        }
-
-        string keystr = "";
-        string remainStr = "";
         string logic = para.getAssembleCard().getTrigger().getLogic();
-        foreach (var key in this._dic.Keys)
-        {
-            string str = key;
-            if (logic.IndexOf(str) > -1)
-            {
-                keystr = key;
-                remainStr = logic.Replace(str, "");
-                break;
-            }
-        }
-
-        if (!this._dic.ContainsKey(keystr))
-        {
+        string str = "单次造成伤害";
+        if (logic.IndexOf(str) != 0){
             return false;
         }
+        float number = para.getAttackUser().getExtraInfo().getRtHurtVaule();
+        para.getAttackUser().getExtraInfo().clearRtHurtValue();//
 
-        float number = this._dic[keystr](para);
-        string compareStr = remainStr;
+        string compareStr = logic.Replace(str, "");
         return this.compareLogic(compareStr,number);
     }
 
-    private float getHurtValue(ITriggerHandlePara para) {
-        return para.getAttackUser().getExtraInfo().getRtHurtVaule();
-    }
-
-    private float getMagicValue(ITriggerHandlePara para) {
-        return para.getAttackUser().getExtraInfo().getRtMagicValue();
+    protected override bool _roundAttackAfterHandle(ITriggerHandlePara para) {
+        string logic = para.getAssembleCard().getTrigger().getLogic();
+        string str = "本轮获得法力值";
+        if (logic.IndexOf(str) != 0){
+            return false;
+        }
+        float number = para.getAttackUser().getExtraInfo().getRtMagicValue();
+        string compareStr = logic.Replace(str, "");
+        return this.compareLogic(compareStr, number);
     }
 }

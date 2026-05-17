@@ -246,6 +246,9 @@ public class ExtraInfoObject : IExtraInfo
     {
         this._rtMagicValue += value;
     }
+    public void clearRtMagicValue() {
+        this._rtMagicValue = 0;
+    }
 
     public float getRtHurtVaule()
     {
@@ -254,5 +257,8 @@ public class ExtraInfoObject : IExtraInfo
     public void setRtHurtValue(float value)
     {
         this._rtHurtValue += value;
+    }
+    public void clearRtHurtValue() {
+        this._rtHurtValue = 0;
     }
 }
