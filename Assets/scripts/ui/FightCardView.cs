@@ -46,6 +46,8 @@ public class FightCardView : MonoBehaviour
         EventDispatcher.Instance.on(GameConst.SHOWTIPS, this.onShowTips);
         EventDispatcher.Instance.on(GameConst.EXIT_PAGE, this.exitPageHandle);
         EventDispatcher.Instance.on(GameConst.CANDIDACYPART, this.candidacyPart);
+        EventDispatcher.Instance.on(GameConst.ADDBUFFTYPE, this.addBuffType);
+        EventDispatcher.Instance.on(GameConst.REMOVEBUFFTYPE, this.removeBuffType);
 
         FightPokerMgr.Instance.init();
        
@@ -82,6 +84,8 @@ public class FightCardView : MonoBehaviour
         EventDispatcher.Instance.off(GameConst.SHOWTIPS, this.onShowTips);
         EventDispatcher.Instance.off(GameConst.EXIT_PAGE, this.exitPageHandle);
         EventDispatcher.Instance.off(GameConst.CANDIDACYPART, this.candidacyPart);
+        EventDispatcher.Instance.off(GameConst.ADDBUFFTYPE, this.addBuffType);
+        EventDispatcher.Instance.off(GameConst.REMOVEBUFFTYPE, this.removeBuffType);
     }
     public void exitPageHandle(params System.Object[] obj)
     {
@@ -351,5 +355,14 @@ public class FightCardView : MonoBehaviour
     {
         ICandidacyPartPara para = (ICandidacyPartPara)obj[0];
         UIMgr.Instance.showTips("SelectPartView", obj[0]);
+    }
+    public void addBuffType(params System.Object[] obj)
+    {
+        Invoke("delayMessageComplete", 0.5f);
+    }
+
+    public void removeBuffType(params System.Object[] obj)
+    {
+        Invoke("delayMessageComplete", 0.5f);
     }
 }

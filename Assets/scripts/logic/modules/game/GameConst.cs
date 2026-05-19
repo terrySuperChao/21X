@@ -224,6 +224,12 @@ public enum BuffAction
 
 public enum BuffType {
     multATK,
+    bonusArmor,
+    lifeSteal,
+    healToMP,
+    reflectDMG,
+    skillDamageUp,
+    mpRegen,
     addCrit,
     temporaryArmor,
 }

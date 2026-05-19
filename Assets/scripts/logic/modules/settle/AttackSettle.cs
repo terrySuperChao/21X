@@ -60,7 +60,6 @@ public class AttackSettle: IAttackSettle
         //反射
         float reflectDMG = defenseUser.getExtraInfo().getReflectDMG();
         if (reflectDMG > 0) {
-            defenseUser.getExtraInfo().clearReflectDMG();
             GameBloodMgr.Instance.lessBloodHandle(defenseUser, attackUser, reflectDMG);
         }
 

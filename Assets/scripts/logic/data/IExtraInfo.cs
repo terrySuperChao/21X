@@ -5,7 +5,7 @@ public interface IExtraInfo
 {
     public void setBuffAction(Action<BuffAction, BuffType> callback);
     public List<BuffType> getBuffs();
-    //下次攻击额外造成伤害
+    //下次攻击额外造成伤害 不可叠加
     public void setMultATK(float value);
     public float getMultATK();
     public void clearMultATK();
@@ -19,27 +19,30 @@ public interface IExtraInfo
     public float getReflectDMG();
     public void clearReflectDMG();
 
-    //下次转化方块属性，额外获得的护甲
+    //下次转化方块属性，额外获得的护甲 不可叠加
     public void setBonusArmor(float value);
     public float getBonusArmor();
+    public void clearBonusArmor();
 
     //获得当前护甲 %s% 的临时护甲
     public void setTemporaryArmor(float value);
     public float getTemporaryArmor();
     public void clearTemporaryArmor();
 
-    //下一次造成伤害的 %s% 转化为回血
+    //下一次造成伤害的 %s% 转化为回血 不可叠加
     public void setLifeSteal(float value);
     public float getLifeSteal();
+    public void clearLifeSteal();
 
     //接下来的2回合每回合回复 %s 点生命值
     public void setHealOverTime(float value);
     public float getHealOverTime();
     public List<float> getHealOverTimes();
 
-    //下次转化红桃属性，治疗量的 %s% 额外转化为法力值
+    //下次转化红桃属性，治疗量的 %s% 额外转化为法力值,不可叠加
     public void setHealToMP(float value);
     public float getHealToMP();
+    public void clearHealToMP();
 
     //回复 %s 点生命值，一场战斗仅生效一次
     public void setHealSuper(float value);
@@ -48,6 +51,7 @@ public interface IExtraInfo
     //下次技能效果提升 %s%，可叠加
     public void setSkillDamageUp(float value);
     public float getSkillDamageUp();
+    public void clearSkillDamageUp();
 
     //接下来的3回合每回合回复 %s 点法力
     public void setMpRegen(float value);

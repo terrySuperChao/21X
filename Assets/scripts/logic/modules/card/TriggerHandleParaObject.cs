@@ -103,8 +103,7 @@ public class TriggerHandleParaObject : ITriggerHandlePara
         this._attackUser.getExtraInfo().clearIgnoreArmor();
         this._attackUser.getExtraInfo().clearRetainATK();
         this._attackUser.getExtraInfo().clearReflectPercent();
-        this._attackUser.getExtraInfo().clearImmunityDeBuff();
-        this._defenseUser.getExtraInfo().clearReflectDMG();
+        this._attackUser.getExtraInfo().clearImmunityDeBuff();       
         this._defenseUser.getExtraInfo().clearRtMagicValue();
         this._defenseUser.getExtraInfo().clearTemporaryArmor();
     }

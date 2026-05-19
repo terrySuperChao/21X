@@ -163,7 +163,7 @@ public class PlayerAsset : MonoBehaviour
         hover.popup = this.cardPartPopup.GetComponent<RectTransform>();
     }
 
-    public void addBuff(BuffType buffType) {
+    private void addBuff(BuffType buffType) {
         GameObject buffObject = Instantiate(this.buffPartPrefab, this.buffs);
         buffObject.GetComponent<BuffPart>().setUser(this._user);
         buffObject.GetComponent<BuffPart>().setBuffType(buffType);
@@ -171,6 +171,16 @@ public class PlayerAsset : MonoBehaviour
         HoverBuffPopup hover = buffObject.AddComponent<HoverBuffPopup>();
         hover.popup = this.buffPartPopup.GetComponent<RectTransform>();
     }
+
+    private void removeBuff(BuffType buffType) {
+        for (int i = 0; i < this.buffs.childCount; i++) {
+            if (this.buffs.GetChild(i).GetComponent<BuffPart>().getBuffType() == buffType) {
+                Destroy(this.buffs.GetChild(i).gameObject);
+                break;
+            }
+        }
+    }
+    
 
     // ------》》》》 1发卡牌
     public void dealCard(params System.Object[] obj)
@@ -385,20 +395,19 @@ public class PlayerAsset : MonoBehaviour
 
     public void addBuffType(params System.Object[] obj)
     {
-        IUICommonPara para = (IUICommonPara)obj[0];
+        IUIBuffPara para = (IUIBuffPara)obj[0];
         if (para.getUser() == this._user)
         {
-            StartCoroutine(addBuffTypeHandle(obj));
+            this.addBuff(para.getBuffType());
         }
     }
 
-    private IEnumerator addBuffTypeHandle(params System.Object[] obj)
-    {
-        yield return 0;
-    }
-
     public void removeBuffType(params System.Object[] obj) {
-
+        IUIBuffPara para = (IUIBuffPara)obj[0];
+        if (para.getUser() == this._user)
+        {
+            this.removeBuff(para.getBuffType());
+        }
     }
 
     private void setUserInfo(ValueType type) {

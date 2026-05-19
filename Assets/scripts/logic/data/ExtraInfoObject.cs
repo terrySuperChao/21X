@@ -37,7 +37,7 @@ public class ExtraInfoObject : IExtraInfo
     }
 
     public void setMultATK(float value) {
-        this._multATK += value;
+        this._multATK = value;
         this._multATK = this._multATK < 0 ? 0 : this._multATK;
         this.addBuffType(BuffType.multATK, value);
     }
@@ -63,6 +63,7 @@ public class ExtraInfoObject : IExtraInfo
     public void setReflectDMG(float value) {
         this._reflectDMG += value;
         this._reflectDMG = this._reflectDMG < 0 ? 0 : this._reflectDMG;
+        this.addBuffType(BuffType.reflectDMG,value);
     }
 
     public float getReflectDMG() {
@@ -73,11 +74,16 @@ public class ExtraInfoObject : IExtraInfo
     }
 
     public void setBonusArmor(float value) {
-        this._bonusArmor += value;
+        this._bonusArmor = value;
         this._bonusArmor = this._bonusArmor < 0 ? 0 : this._bonusArmor;
+        this.addBuffType(BuffType.multATK, value);
     }
     public float getBonusArmor() {
         return this._bonusArmor;
+    }
+    public void clearBonusArmor() {
+        this._bonusArmor = 0;
+        this.removeBuffType(BuffType.multATK);
     }
 
     public void setTemporaryArmor(float value) {
@@ -94,11 +100,16 @@ public class ExtraInfoObject : IExtraInfo
     }
 
     public void setLifeSteal(float value) {
-        this._lifeSteal += value;
+        this._lifeSteal = value;
         this._lifeSteal = this._lifeSteal < 0 ? 0 : this._lifeSteal;
+        this.addBuffType(BuffType.lifeSteal, value);
     }
     public float getLifeSteal() {
         return this._lifeSteal;
+    }
+    public void clearLifeSteal() {
+        this._lifeSteal = 0;
+        this.removeBuffType(BuffType.lifeSteal);
     }
 
     public void setHealOverTime(float value) {
@@ -118,11 +129,16 @@ public class ExtraInfoObject : IExtraInfo
     }
 
     public void setHealToMP(float value) {
-        this._healToMP += value;
+        this._healToMP = value;
         this._healToMP = this._healToMP < 0 ? 0 : this._healToMP;
+        this.addBuffType(BuffType.healToMP,value);
     }
     public float getHealToMP() {
         return this._healToMP;
+    }
+    public void clearHealToMP() {
+        this._healToMP = 0;
+        this.removeBuffType(BuffType.healToMP);
     }
 
     public void setHealSuper(float value) {
@@ -135,13 +151,19 @@ public class ExtraInfoObject : IExtraInfo
     public void setSkillDamageUp(float value) {
         this._skillDamageUp += value;
         this._skillDamageUp = this._skillDamageUp < 0 ? 0 : this._skillDamageUp;
+        this.addBuffType(BuffType.skillDamageUp, value);
     }
     public float getSkillDamageUp() {
         return this._skillDamageUp;
     }
+    public void clearSkillDamageUp() {
+        this._skillDamageUp = 0;
+        this.removeBuffType(BuffType.skillDamageUp);
+    }
 
     public void setMpRegen(float value) {
         this._mpRegen.Add(value);
+        this.addBuffType(BuffType.mpRegen, value);
     }
     public float getMpRegen() {
         float value = 0;
@@ -149,6 +171,9 @@ public class ExtraInfoObject : IExtraInfo
         {
             value = this._mpRegen[0];
             this._mpRegen.RemoveAt(0);
+        }
+        else {
+            this.removeBuffType(BuffType.mpRegen);
         }
         return value;
     }
