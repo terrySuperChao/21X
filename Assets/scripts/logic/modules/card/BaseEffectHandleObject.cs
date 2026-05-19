@@ -24,19 +24,7 @@ public class BaseEffectHandleObject:IBaseEffectHandle
     protected string getDescription(ITriggerHandlePara para) {
         float addValue = this.getAddValue(para);
         string desc = para.getAssembleCard().getBaseEffect().getDesc();
-        int index1 = desc.IndexOf("%s");
-        if (index1 > -1)
-        {
-            int index = desc.IndexOf("%s%");
-            if (index > -1)
-            {
-                addValue *= 100;
-            }
-            return desc.Replace("%s", addValue.ToString());
-        }
-        else {
-            return desc;
-        }
+        return GameUtils.formatDescription(desc, addValue);
     }
 
     protected virtual string _getActionGenre() { return ""; }
