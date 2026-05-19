@@ -1,11 +1,11 @@
-//ºìÌÒ´óÊ¦
+//ï¿½ï¿½ï¿½Ò´ï¿½Ê¦
 public class HeartCardPlusHandle : HeartCardHandle
 {
     override
     protected void _roundAddValueHandle(ICardHandlePara para) {
         PokerSuit suit = (PokerSuit)para.getPoker().getSuit();
         if (suit == PokerSuit.heart)
-        { //ºìÌÒ
+        { //ï¿½ï¿½ï¿½ï¿½
             float addDefense = 0;
             float addValue = getNumberDigits(para.getBaseValue() * 0.5f);
             if (para.getAttackUser().getBlood() + addValue >= para.getAttackUser().getMaxBlood())
@@ -14,16 +14,16 @@ public class HeartCardPlusHandle : HeartCardHandle
             }
             addValue -= addDefense;
 
-            IUIFlyFontPara uiPara1 = new UIFlyFontParaObject(para.getAttackUser(), para.getCard(), "ÖÎÁÆ+" + addValue);
+            IUIFlyFontPara uiPara1 = new UIFlyFontParaObject(para.getAttackUser(), para.getCard(), "ï¿½ï¿½ï¿½ï¿½+" + addValue);
             GameMessage.Instance.addMsg(GameConst.FLYFONT, uiPara1);
 
             float finalValue = para.getAttackUser().addBlood(addValue);
-            IUICommonPara uiPara2 = new UICommonParaObject(para.getAttackUser(), GameConst.SuitTransformValueType(suit), addValue, finalValue);
+            IUICommonPara uiPara2 = new UICommonParaObject(para.getAttackUser(), GameUtils.SuitTransformValueType(suit), addValue, finalValue);
             GameMessage.Instance.addMsg(GameConst.ADDCARDVALUE, uiPara2);
             
             if (addDefense > 0)
             {
-                IUIFlyFontPara uiPara3 = new UIFlyFontParaObject(para.getAttackUser(), para.getCard(), "»¤¼×+" + addDefense);
+                IUIFlyFontPara uiPara3 = new UIFlyFontParaObject(para.getAttackUser(), para.getCard(), "ï¿½ï¿½ï¿½ï¿½+" + addDefense);
                 GameMessage.Instance.addMsg(GameConst.FLYFONT, uiPara3);
 
                 float finalDefense = para.getAttackUser().addDefense(addDefense);

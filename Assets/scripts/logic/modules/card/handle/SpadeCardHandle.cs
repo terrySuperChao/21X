@@ -1,4 +1,4 @@
-//ºÚÌÒ´óÊ¦
+//ï¿½ï¿½ï¿½Ò´ï¿½Ê¦
 using UnityEngine;
 
 public class SpadeCardHandle:CardHandleObject
@@ -7,13 +7,13 @@ public class SpadeCardHandle:CardHandleObject
     protected void _roundAddValueHandle(ICardHandlePara para) {
         PokerSuit suit = (PokerSuit)para.getPoker().getSuit();
         if (suit == PokerSuit.spade)
-        {   //ºÚÌÒ
+        {   //ï¿½ï¿½ï¿½ï¿½
             float addValue = getNumber();
             float finalValue = para.getAttackUser().addAttack(addValue);
-            IUIFlyFontPara uiPara1 = new UIFlyFontParaObject(para.getAttackUser(),para.getCard(), "¹¥»÷Á¦+" + addValue);
+            IUIFlyFontPara uiPara1 = new UIFlyFontParaObject(para.getAttackUser(),para.getCard(), "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½+" + addValue);
             GameMessage.Instance.addMsg(GameConst.FLYFONT, uiPara1);
 
-            IUICommonPara uiPara2 = new UICommonParaObject(para.getAttackUser(), GameConst.SuitTransformValueType(suit), addValue, finalValue);
+            IUICommonPara uiPara2 = new UICommonParaObject(para.getAttackUser(), GameUtils.SuitTransformValueType(suit), addValue, finalValue);
             GameMessage.Instance.addMsg(GameConst.ADDCARDVALUE, uiPara2);
         }
     }

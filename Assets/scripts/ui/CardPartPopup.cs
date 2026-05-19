@@ -70,19 +70,7 @@ public class CardPartPopup : MonoBehaviour
     protected string getDescription(IPart baseEffect, IPart advanceEffect)
     {
         float addValue = this.getAddValue(baseEffect, advanceEffect);
-        string desc = baseEffect.getDesc().Replace(" ","");
-        int index1 = desc.IndexOf("%s");
-        if (index1 > -1)
-        {
-            int index2 = desc.IndexOf("%s%");
-            if (index2 > -1)
-            {
-                addValue *= 100;
-            }
-            return desc.Replace("%s", addValue.ToString());
-        }
-        else {
-            return desc;
-        }
+        string desc = baseEffect.getDesc();
+        return GameUtils.formatDescription(desc, addValue);
     }
 }   

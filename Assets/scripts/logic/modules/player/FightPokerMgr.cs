@@ -1,7 +1,7 @@
 //
 using Pb;
+using System.Collections;
 using System.Collections.Generic;
-using static UnityEngine.EventSystems.EventTrigger;
 
 public class FightPokerMgr : Singleton<FightPokerMgr>
 {
@@ -54,6 +54,11 @@ public class FightPokerMgr : Singleton<FightPokerMgr>
         user.setState((UserState)info.State);
         user.setExtraInfo(extra);
         this._players.Add(user);
+
+        //添加注册
+        extra.setBuffAction((BuffAction buffAction, BuffType buffType) => {
+            this.buffHandle(user,buffAction,buffType);
+        });
     }
 
     private void saveUser(IUser user) {
@@ -401,5 +406,11 @@ public class FightPokerMgr : Singleton<FightPokerMgr>
             this.getUsetHandPoker(user).Clear();
         }
         FightDataMgr.Instance.setIsFilp(FightDealType.npc, 0);
+    }
+
+    public void buffHandle(IUser user,BuffAction buffAction,BuffType buffType) {
+        string key = buffAction == BuffAction.add ? GameConst.ADDBUFFTYPE : GameConst.REMOVEBUFFTYPE;
+        IUIBuffPara buffPara = new UIBuffParaObject(user, buffType);
+        GameMessage.Instance.addMsg(key, buffPara);
     }
 }

@@ -1,17 +1,17 @@
-//ºìÌÒ´óÊ¦
+//ï¿½ï¿½ï¿½Ò´ï¿½Ê¦
 public class HeartCardHandle: CardHandleObject
 {
     override
     protected void _roundAddValueHandle(ICardHandlePara para) {
         PokerSuit suit = (PokerSuit)para.getPoker().getSuit();
         if (suit == PokerSuit.heart)
-        { //ºìÌÒ
+        { //ï¿½ï¿½ï¿½ï¿½
             float addValue = getNumberDigits(para.getBaseValue() * 0.2f);
             float finalValue = para.getAttackUser().addBlood(addValue);
-            IUIFlyFontPara uiPara1 = new UIFlyFontParaObject(para.getAttackUser(), para.getCard(), "ÖÎÁÆ+" + addValue);
+            IUIFlyFontPara uiPara1 = new UIFlyFontParaObject(para.getAttackUser(), para.getCard(), "ï¿½ï¿½ï¿½ï¿½+" + addValue);
             GameMessage.Instance.addMsg(GameConst.FLYFONT, uiPara1);
 
-            IUICommonPara uiPara2 = new UICommonParaObject(para.getAttackUser(), GameConst.SuitTransformValueType(suit), addValue, finalValue);
+            IUICommonPara uiPara2 = new UICommonParaObject(para.getAttackUser(), GameUtils.SuitTransformValueType(suit), addValue, finalValue);
             GameMessage.Instance.addMsg(GameConst.ADDCARDVALUE, uiPara2);
         }
     }

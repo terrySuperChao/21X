@@ -513,7 +513,7 @@ public class CardView : MonoBehaviour
     {
         IUIPokerPara para = (IUIPokerPara)obj[0];
         PokerSuit suit = (PokerSuit)para.getPoker().getSuit();
-        Text text = getText(para.getUser(), GameConst.SuitTransformValueType(suit));
+        Text text = getText(para.getUser(), GameUtils.SuitTransformValueType(suit));
         Transform child = getPokerIdTransform(para.getUser(), para.getPoker());
         if (child != null && text != null)
         {
@@ -528,7 +528,7 @@ public class CardView : MonoBehaviour
             yield return new WaitForSeconds(0.51f);
             iTween.ScaleTo(child.gameObject, new Vector3(0.6f, 0.6f, 0.6f), 0.1f);
             Destroy(addText.gameObject);
-            text.text = getFinalContent(para.getUser(), GameConst.SuitTransformValueType(suit), para.getFinalValue());
+            text.text = getFinalContent(para.getUser(), GameUtils.SuitTransformValueType(suit), para.getFinalValue());
         }
         GameMessage.Instance.setHandleMessageComplete();
     }

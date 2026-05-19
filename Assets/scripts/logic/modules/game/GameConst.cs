@@ -32,6 +32,8 @@ public class GameConst
     public const string PLAYERACTION = "playerAction";
     public const string RUN_REFACTORING = "RUN_REFACTORING";
     public const string HIDE_REFACTORING = "HIDE_REFACTORING";
+    public const string ADDBUFFTYPE     = "addBuffType";
+    public const string REMOVEBUFFTYPE  = "removeBuffType";
 
     public const string CANDIDACYPART = "candidacyPart";
     public const string SELECTPART = "selectPart";
@@ -52,36 +54,6 @@ public class GameConst
     public const string UPDATE_PLAYER_INFO = "UPDATE_PLAYER_INFO";
 
     public const string IMPRINT_SELECT_PART = "Imprint_select_part";
-
-    public static ValueType SuitTransformValueType(PokerSuit suit)
-    {
-        if (suit == PokerSuit.club)
-        {
-            return ValueType.magic;
-        }
-        else if (suit == PokerSuit.diamond)
-        {
-            return ValueType.defense;
-        }
-        else if (suit == PokerSuit.spade)
-        {
-            return ValueType.attack;
-        }
-        else if (suit == PokerSuit.heart)
-        {
-            return ValueType.blood;
-        }
-        else
-        {
-            return ValueType.nil;
-        }
-    }
-    //保留一位小数，四舍五入
-    public static float getNumberDigits(float number)
-    {
-        return number;
-        //return (float)Math.Round((number * 10 + 0.5) / 10, 1);
-    }
 
     public readonly static int[] CARDS = {
     102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114,    //  2 ~ A
@@ -242,4 +214,16 @@ public enum TriggerEvent {
     magicAttackAfter,       //魔法攻击后
     roundAttackAfter,       //结束行动后
     roundOther = 100,       //其他
+}
+
+public enum BuffAction
+{
+    add,
+    remove,
+}
+
+public enum BuffType {
+    multATK,
+    addCrit,
+    temporaryArmor,
 }

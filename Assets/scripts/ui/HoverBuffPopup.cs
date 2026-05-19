@@ -8,7 +8,8 @@ public class HoverBuffPopup : HoverBasePopup
         if (buffPartPopup != null) {
             BuffPart buffPart = this.gameObject.GetComponent<BuffPart>();
             if (buffPart != null){
-                buffPartPopup.setBuff(buffPart.getBuff());
+                buffPartPopup.setUser(buffPart.getUser());
+                buffPartPopup.setBuffType(buffPart.getBuffType());
                 return true;
             }
         }

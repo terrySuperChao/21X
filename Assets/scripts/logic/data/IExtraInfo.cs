@@ -1,7 +1,10 @@
+using System;
 using System.Collections.Generic;
 
 public interface IExtraInfo
 {
+    public void setBuffAction(Action<BuffAction, BuffType> callback);
+    public List<BuffType> getBuffs();
     //下次攻击额外造成伤害
     public void setMultATK(float value);
     public float getMultATK();

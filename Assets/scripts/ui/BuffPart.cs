@@ -5,7 +5,8 @@ public class BuffPart : MonoBehaviour
 {
     public Text partName;
     public GameObject partImage;
-    private string _buff;
+    private IUser _user;
+    private BuffType _buffType;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,11 +24,19 @@ public class BuffPart : MonoBehaviour
         
     }
 
-    public void setBuff(string buff) {
-        this._buff = buff;
+    public void setBuffType(BuffType buffType) {
+        this._buffType = buffType;
     }
 
-    public string getBuff() {
-        return this._buff;
+    public BuffType getBuffType() {
+        return this._buffType;
+    }
+
+    public void setUser(IUser user) {
+        this._user = user;
+    }
+
+    public IUser getUser() {
+        return this._user;
     }
 }   

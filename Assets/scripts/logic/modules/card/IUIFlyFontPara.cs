@@ -1,7 +1,5 @@
-public interface IUIFlyFontPara
+public interface IUIBuffPara
 {
     public IUser getUser();
-    public ICard getCard();
-    public IAssembleCard getAssembleCard();
-    public string getText();
+    public BuffType getBuffType();
 }

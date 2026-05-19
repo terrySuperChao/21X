@@ -42,6 +42,8 @@ public class PlayerAsset : MonoBehaviour
         EventDispatcher.Instance.on(GameConst.TOTALPOKERPOINT, this.totalPokerPoint);
         EventDispatcher.Instance.on(GameConst.ADDPOKERVALUE, this.addPokerValue);
         EventDispatcher.Instance.on(GameConst.ADDCARDVALUE, this.addCardValue);
+        EventDispatcher.Instance.on(GameConst.ADDBUFFTYPE, this.addBuffType);
+        EventDispatcher.Instance.on(GameConst.REMOVEBUFFTYPE, this.removeBuffType);
         EventDispatcher.Instance.on(GameConst.CLEARHANDPOKER, this.clearHandPoker);
         EventDispatcher.Instance.on(GameConst.COMMONATTACK, this.commonAttack);
         EventDispatcher.Instance.on(GameConst.FLYFONT, this.flyFont);
@@ -65,6 +67,8 @@ public class PlayerAsset : MonoBehaviour
         EventDispatcher.Instance.off(GameConst.TOTALPOKERPOINT, this.totalPokerPoint);
         EventDispatcher.Instance.off(GameConst.ADDPOKERVALUE, this.addPokerValue);
         EventDispatcher.Instance.off(GameConst.ADDCARDVALUE, this.addCardValue);
+        EventDispatcher.Instance.off(GameConst.ADDBUFFTYPE, this.addBuffType);
+        EventDispatcher.Instance.off(GameConst.REMOVEBUFFTYPE, this.removeBuffType);
         EventDispatcher.Instance.off(GameConst.CLEARHANDPOKER, this.clearHandPoker);
         EventDispatcher.Instance.off(GameConst.COMMONATTACK, this.commonAttack);
         EventDispatcher.Instance.off(GameConst.FLYFONT, this.flyFont);
@@ -109,9 +113,11 @@ public class PlayerAsset : MonoBehaviour
     }
 
     private void initBuffs() {
-        this.addBuff("111");
-        this.addBuff("222");
-        this.addBuff("333");
+        List<BuffType> buffs = this._user.getExtraInfo().getBuffs();
+        foreach (var buff in buffs)
+        {
+            this.addBuff(buff);
+        }
     }
 
     private void initAdjust() {
@@ -157,10 +163,11 @@ public class PlayerAsset : MonoBehaviour
         hover.popup = this.cardPartPopup.GetComponent<RectTransform>();
     }
 
-    public void addBuff(string buff) {
+    public void addBuff(BuffType buffType) {
         GameObject buffObject = Instantiate(this.buffPartPrefab, this.buffs);
-        buffObject.GetComponent<BuffPart>().setBuff(buff);
-
+        buffObject.GetComponent<BuffPart>().setUser(this._user);
+        buffObject.GetComponent<BuffPart>().setBuffType(buffType);
+        
         HoverBuffPopup hover = buffObject.AddComponent<HoverBuffPopup>();
         hover.popup = this.buffPartPopup.GetComponent<RectTransform>();
     }
@@ -318,7 +325,7 @@ public class PlayerAsset : MonoBehaviour
     {
         IUIPokerPara para = (IUIPokerPara)obj[0];
         PokerSuit suit = (PokerSuit)para.getPoker().getSuit();
-        ValueType valueType = GameConst.SuitTransformValueType(suit);
+        ValueType valueType = GameUtils.SuitTransformValueType(suit);
         int indexType = (int)valueType;
         if (this._texts.Count <= indexType) {
             yield return 0;
@@ -374,6 +381,24 @@ public class PlayerAsset : MonoBehaviour
         yield return new WaitForSeconds(0.51f);
         Destroy(addText.gameObject);
         text.text = getFinalContent(para.getValueType(), para.getFinalValue());
+    }
+
+    public void addBuffType(params System.Object[] obj)
+    {
+        IUICommonPara para = (IUICommonPara)obj[0];
+        if (para.getUser() == this._user)
+        {
+            StartCoroutine(addBuffTypeHandle(obj));
+        }
+    }
+
+    private IEnumerator addBuffTypeHandle(params System.Object[] obj)
+    {
+        yield return 0;
+    }
+
+    public void removeBuffType(params System.Object[] obj) {
+
     }
 
     private void setUserInfo(ValueType type) {

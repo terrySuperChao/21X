@@ -1,8 +1,8 @@
+using System;
 using System.Collections.Generic;
-using Google.Protobuf.WellKnownTypes;
 
 public class ExtraInfoObject : IExtraInfo
-{
+{    
     private float _multATK = 0;
     private float _addCrit = 0;
     private float _reflectDMG = 0;
@@ -26,9 +26,20 @@ public class ExtraInfoObject : IExtraInfo
     private float _rtHurtValue = 0;
     private List<float> _healOverTime = new List<float>();
     private List<float> _mpRegen = new List<float>();
+    private List<BuffType> _buffTypes = new List<BuffType>();
+    private Action<BuffAction, BuffType> _callback = null;
+    public void setBuffAction(Action<BuffAction, BuffType> callback) {
+        this._callback = callback;
+    }
+
+    public List<BuffType> getBuffs() {
+        return this._buffTypes;
+    }
+
     public void setMultATK(float value) {
         this._multATK += value;
         this._multATK = this._multATK < 0 ? 0 : this._multATK;
+        this.addBuffType(BuffType.multATK, value);
     }
 
     public float getMultATK() {
@@ -37,6 +48,7 @@ public class ExtraInfoObject : IExtraInfo
 
     public void clearMultATK() {
         this._multATK = 0;
+        this.removeBuffType(BuffType.multATK);
     }
 
     public void setAddCrit(float value) {
@@ -71,12 +83,14 @@ public class ExtraInfoObject : IExtraInfo
     public void setTemporaryArmor(float value) {
         this._temporaryArmor += value;
         this._temporaryArmor = this._temporaryArmor < 0 ? 0 : this._temporaryArmor;
+        this.addBuffType(BuffType.temporaryArmor,value);
     }
     public float getTemporaryArmor() {
         return this._temporaryArmor;
     }
     public void clearTemporaryArmor() {
         this._temporaryArmor = 0;
+        this.removeBuffType(BuffType.temporaryArmor);
     }
 
     public void setLifeSteal(float value) {
@@ -260,5 +274,24 @@ public class ExtraInfoObject : IExtraInfo
     }
     public void clearRtHurtValue() {
         this._rtHurtValue = 0;
+    }
+
+    private void addBuffType(BuffType type,float value) {
+        if (value <= 0) return;
+
+        int index = this._buffTypes.FindIndex(buffType => buffType == type);
+        if (index == -1) {
+            this._buffTypes.Add(type);
+            this._callback?.Invoke(BuffAction.add, type);
+        }
+    }
+
+    private void removeBuffType(BuffType type) {
+        int index = this._buffTypes.FindIndex(buffType => buffType == type);
+        if(index != -1)
+        {
+            this._buffTypes.RemoveAt(index);
+            this._callback?.Invoke(BuffAction.remove, type);
+        }
     }
 }
