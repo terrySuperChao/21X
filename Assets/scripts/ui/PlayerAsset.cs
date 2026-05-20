@@ -313,10 +313,26 @@ public class PlayerAsset : MonoBehaviour
 
     private Transform getCardIdTransform(IAssembleCard card)
     {
+        if (card == null) {
+            return null;
+        }
         for (int i = 0; i < this.cards.childCount; i++)
         {
             CardPart cardComp = this.cards.GetChild(i).GetComponent<CardPart>();
             if (cardComp != null && cardComp.getAssembleCard().getTriggerId() == card.getTriggerId())
+            {
+                return this.cards.GetChild(i);
+            }
+        }
+        return null;
+    }
+
+    private Transform getBuffTransform(BuffType buffType)
+    {
+        for (int i = 0; i < this.buffs.childCount; i++)
+        {
+            BuffPart buffComp = this.buffs.GetChild(i).GetComponent<BuffPart>();
+            if (buffComp != null && buffComp.getBuffType() == buffType)
             {
                 return this.cards.GetChild(i);
             }
@@ -518,9 +534,11 @@ public class PlayerAsset : MonoBehaviour
     private IEnumerator flyFontHandle(params System.Object[] obj)
     {
         IUIFlyFontPara para = (IUIFlyFontPara)obj[0];
-        Transform child = getCardIdTransform(para.getAssembleCard());
-        if (child == null)
-        {
+        Transform child = this.getCardIdTransform(para.getAssembleCard());
+        if (child == null) {
+            child = this.getBuffTransform(para.getBuffType());
+        }
+        if (child == null){
             yield return 0;
         }
 

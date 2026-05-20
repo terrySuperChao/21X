@@ -59,7 +59,13 @@ public class AttackSettle: IAttackSettle
         //流血
         float addBleeding = attackUser.getExtraInfo().getAddBleeding();
         if (addBleeding > 0){
-            GameBloodMgr.Instance.lessBloodHandle(defenseUser, attackUser, addBleeding);
+            float immunityDeBuff = attackUser.getExtraInfo().getImmunityDeBuff();
+            if (immunityDeBuff == 0){
+                GameBloodMgr.Instance.lessBloodHandle(defenseUser, attackUser, addBleeding);
+            }else {
+                IUIFlyFontPara uiPara = new UIFlyFontParaObject(defenseUser, BuffType.immunityDeBuff, "免疫的流血");
+                GameMessage.Instance.addMsg(GameConst.FLYFONT, uiPara);
+            }
             attackUser.getExtraInfo().setAddBleeding(-1);
         }
 
@@ -116,7 +122,7 @@ public class AttackSettle: IAttackSettle
         {
             defenseUser.getExtraInfo().clearMagicImmunity();
 
-            IUIFlyFontPara uiPara = new UIFlyFontParaObject(defenseUser, para.getAssembleCard(), "免疫的护盾");
+            IUIFlyFontPara uiPara = new UIFlyFontParaObject(defenseUser, BuffType.magicImmunity, "免疫的护盾");
             GameMessage.Instance.addMsg(GameConst.FLYFONT, uiPara);
         }
         else
