@@ -13,6 +13,9 @@ public interface ITriggerHandlePara
     public IPoker getPoker();
     public void setPoker(IPoker poker);
 
+    public void setPokerSuit(PokerSuit pokerSuit);
+    public PokerSuit getPokerSuit();
+
     public float getBaseValue();
     public void setBaseValue(float baseValue);
 

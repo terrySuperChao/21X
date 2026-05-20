@@ -330,20 +330,20 @@ public class FightView : MonoBehaviour
                 float maxValue = 999999;
                 switch (pokers[i].getSuit())
                 {
-                    case 1: // 方
+                    case PokerSuit.diamond: // 方
                         addValue *= 0.5f;
                         text = user.isNpc() ? npcDefenseText : userDefenseText;
                         break;
-                    case 2: // 红
+                    case PokerSuit.heart: // 红
                         addValue *= 0.5f;
                         text = user.isNpc() ? npcBloodText : userBloodText;
                         maxValue = user.getMaxBlood();
                         break;
-                    case 3: // 黑
+                    case PokerSuit.spade: // 黑
                         addValue *= 1.0f;
                         text = user.isNpc() ? npcAttackText : userAttackText;
                         break;
-                    case 4: // 梅
+                    case PokerSuit.club: // 梅
                         addValue *= 1.0f;
                         text = user.isNpc() ? npcMagicText : userMagicText;
                         maxValue = user.getMaxMagic();

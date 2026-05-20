@@ -4,8 +4,8 @@ public class HeartSettle : SuitSettle
         return attackUser.addBlood(value);
     }
 
-    protected override bool _matchSuit(int suit) { 
-        return suit == (int)PokerSuit.heart; 
+    protected override bool _matchSuit(PokerSuit suit) { 
+        return suit == PokerSuit.heart; 
     }
 
     protected override float _getMult() { return 0.5f; }

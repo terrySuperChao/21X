@@ -223,6 +223,7 @@ public enum BuffAction
 }
 
 public enum BuffType {
+    //基础
     multATK,
     bonusArmor,
     lifeSteal,
@@ -232,4 +233,14 @@ public enum BuffType {
     mpRegen,
     addCrit,
     temporaryArmor,
+    //进阶
+    addBleeding,
+    doubleProc,
+    ignoreArmor,
+    execute,
+    retainATK,
+    reflectPercent,
+    magicImmunity,
+    armorATK,
+    immunityDeBuff,
 }

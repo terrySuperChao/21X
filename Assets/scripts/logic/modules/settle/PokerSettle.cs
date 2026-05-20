@@ -17,5 +17,19 @@ public class PokerSettle: IAttackSettle
         {
             this._suitSettle.settle(handlePara, pokers[i], values[i]);
         }
+
+        List<PokerSuit> suits = new List<PokerSuit>(){
+             PokerSuit.spade,
+             PokerSuit.heart,
+             PokerSuit.club,
+             PokerSuit.diamond,
+        };
+        for (int i = 0; i < suits.Count; i++) {
+            int index = pokers.FindIndex(poker => poker.getSuit() == suits[i]);
+            if (index != -1) {
+                handlePara.setPokerSuit(suits[i]);
+                CardMgr.Instance.handle(handlePara, TriggerEvent.transformAttribute);
+            }
+        }
     }
 }

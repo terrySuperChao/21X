@@ -16,8 +16,8 @@ public class PokerObject : IPoker
         _value = value;
     }
 
-    public int getSuit() {
-        return (_value - _value % 100) / 100;
+    public PokerSuit getSuit() {
+        return (PokerSuit)((_value - _value % 100) / 100);
     }
 
     public int getRank() { 

@@ -4,7 +4,7 @@ public class SpadeSettle : SuitSettle
         return attackUser.addAttack(value);
     }
 
-    protected override bool _matchSuit(int suit) { 
-        return suit == (int)PokerSuit.spade; 
+    protected override bool _matchSuit(PokerSuit suit) { 
+        return suit == PokerSuit.spade; 
     }
 }

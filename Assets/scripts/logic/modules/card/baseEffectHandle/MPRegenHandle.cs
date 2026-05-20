@@ -10,8 +10,8 @@ public class MPRegenHandle : BaseEffectHandleObject
         UnityEngine.Debug.Log("MPRegenHandle=========>>");
         float addValue = this.getAddValue(para);
         //添加3次
-        para.getAttackUser().getExtraInfo().setMpRegen(addValue);
-        para.getAttackUser().getExtraInfo().setMpRegen(addValue);
-        para.getAttackUser().getExtraInfo().setMpRegen(addValue);
+        for (int i = 0; i < 3; i++) {
+            para.getAttackUser().getExtraInfo().setMpRegen(addValue);
+        }
     }
 }

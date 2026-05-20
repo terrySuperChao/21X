@@ -129,11 +129,11 @@ public class FightDataMgr : Singleton<FightDataMgr>
         return this._npcPokers;
     }
 
-    public IPoker dealPoker(FightDealType type,int suit) {
+    public IPoker dealPoker(FightDealType type, int suit) {
         int index = 0;
 
         if (suit > 0) {
-            index = this._pokerPile.getRemainCards().FindIndex(poker => poker.getSuit() == suit);
+            index = this._pokerPile.getRemainCards().FindIndex(poker => poker.getSuit() == (PokerSuit)suit);
         }
 
         if (index < 0) { 

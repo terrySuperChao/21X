@@ -66,19 +66,20 @@ public interface IExtraInfo
     public void setAddBleeding(float value);
     public float getAddBleeding();
 
-    //下次普通攻击连续触发两次
+    //下次普通攻击连续触发两次，不可叠加
     public void setDoubleProc(float value);
     public float getDoubleProc();
     public void clearDoubleProc();
 
-    //下次普通攻击无视对手护甲
+    //下次普通攻击无视对手护甲,不可叠加
     public void setIgnoreArmor(float value);
     public float getIgnoreArmor();
     public void clearIgnoreArmor();
 
-    //下次普通攻击时若对手血量低于 15% 直接处决
+    //下次普通攻击时若对手血量低于 15% 直接处决，不可叠加
     public void setExecute(float value);
     public float getExecute();
+    public void clearExecute();
 
     //若下次普通攻击暴击，则保留50%的攻击力
     public void setRetainATK(float value);
@@ -95,11 +96,12 @@ public interface IExtraInfo
     public float getMagicImmunity();
     public void clearMagicImmunity();
 
-    //每次获得护甲对对手造成 5 点伤害
+    //每次获得护甲对对手造成 5 点伤害,无法叠加
     public void setArmorATK(float value);
     public float getArmorATK();
+    public void clearArmorATK();
 
-    //下回合免疫负面状态的伤害
+    //下回合免疫负面状态的伤害,无法叠加
     public void setImmunityDeBuff(float value);
     public float getImmunityDeBuff();
     public void clearImmunityDeBuff();

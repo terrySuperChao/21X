@@ -27,7 +27,7 @@ public class TransformAttributeHandle : TriggerHandleObject
         }
 
         if (this._dic.ContainsKey(keystr) &&
-            this._dic[keystr] == (PokerSuit)para.getPoker().getSuit())
+            this._dic[keystr] == para.getPokerSuit())
         {
             return true;
         }

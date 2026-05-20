@@ -4,8 +4,8 @@ public class DiamondSettle: SuitSettle
         return attackUser.addDefense(value);
     }
 
-    protected override bool _matchSuit(int suit) { 
-        return suit == (int)PokerSuit.diamond; 
+    protected override bool _matchSuit(PokerSuit suit) { 
+        return suit == PokerSuit.diamond; 
     }
 
     protected override float _getMult() { return 0.5f; }

@@ -1,4 +1,4 @@
-//ÅÆ¶Ñ
+//ï¿½Æ¶ï¿½
 using System;
 using System.Collections.Generic;
 using System.Reflection;
@@ -6,9 +6,9 @@ using System.Reflection;
 public class PokerPileMgr : Singleton<PokerPileMgr>
 {
     public readonly static int[] CARDS = {
-        102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114,    // ·½ 2 ~ A
-        202, 203, 204, 205, 206, 207, 208, 209, 210, 211, 212, 213, 214,    // ºì
-        302, 303, 304, 305, 306, 307, 308, 309, 310, 311, 312, 313, 314,    // ºÚ
+        102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114,    // ï¿½ï¿½ 2 ~ A
+        202, 203, 204, 205, 206, 207, 208, 209, 210, 211, 212, 213, 214,    // ï¿½ï¿½
+        302, 303, 304, 305, 306, 307, 308, 309, 310, 311, 312, 313, 314,    // ï¿½ï¿½
         402, 403, 404, 405, 406, 407, 408, 409, 410, 411, 412, 413, 414     // Ã·
     };
 
@@ -28,7 +28,7 @@ public class PokerPileMgr : Singleton<PokerPileMgr>
     }
 
     public void shuffle() {
-        //½»»»
+        //ï¿½ï¿½ï¿½ï¿½
         Random rd = new Random();
 
         _remainCards.AddRange(_playedTableCards);
@@ -49,8 +49,8 @@ public class PokerPileMgr : Singleton<PokerPileMgr>
         return _remainCards.Count;
     }
 
-    //·¢Ö¸¶¨»¨É«µÄÅÆ
-    public IPoker dealSuitPoker(int suit) {
+    //
+    public IPoker dealSuitPoker(PokerSuit suit) {
         IPoker poker = null;
         if (_remainCards.Count > 0)
         {

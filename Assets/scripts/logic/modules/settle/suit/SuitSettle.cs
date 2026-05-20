@@ -24,13 +24,12 @@ public class SuitSettle : ISuitSettle
 
         IUIPokerPara pokerPara = new UIPokerPara(para.getAttackUser(), poker, finalValue, text);
         GameMessage.Instance.addMsg(GameConst.ADDPOKERVALUE, pokerPara);
-        CardMgr.Instance.handle(para, TriggerEvent.transformAttribute);
-
+        
         this._settle(para, poker, baseValue);
     }
 
     protected virtual float _getFinalValue(IUser attackUser, float value) { return value; }
-    protected virtual bool _matchSuit(int suit) { return false; }
+    protected virtual bool _matchSuit(PokerSuit suit) { return false; }
     protected virtual float _getMult() { return 1.0f; }
     protected virtual void _settle(ITriggerHandlePara para, IPoker poker, int baseValue) { }
 }

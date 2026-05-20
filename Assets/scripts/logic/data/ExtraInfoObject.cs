@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Google.Protobuf.WellKnownTypes;
 
 public class ExtraInfoObject : IExtraInfo
 {    
@@ -13,6 +14,7 @@ public class ExtraInfoObject : IExtraInfo
     private float _healSuper = 0;
     private float _skillDamageUp = 0;
     private float _mpMaxSub = 0;
+    //进阶
     private float _addBleeding = 0;
     private float _doubleProc = 0;
     private float _ignoreArmor = 0;
@@ -192,89 +194,119 @@ public class ExtraInfoObject : IExtraInfo
     public void setAddBleeding(float value) {
         this._addBleeding += value;
         this._addBleeding = this._addBleeding < 0 ? 0 : this._addBleeding;
+        if (this._addBleeding > 0)
+        {
+            this.addBuffType(BuffType.addBleeding, value);
+        }
+        else {
+            this.removeBuffType(BuffType.addBleeding);
+        }
     }
     public float getAddBleeding() {
         return this._addBleeding;
     }
 
     public void setDoubleProc(float value) {
-        this._doubleProc += value;
+        this._doubleProc = value;
         this._doubleProc = this._doubleProc < 0 ? 0 : this._doubleProc;
+        this.addBuffType(BuffType.doubleProc, value);
     }
     public float getDoubleProc() {
         return this._doubleProc;
     }
     public void clearDoubleProc() {
         this._doubleProc = 0;
+        this.removeBuffType(BuffType.doubleProc);
     }
 
     public void setIgnoreArmor(float value) {
-        this._ignoreArmor += value;
+        this._ignoreArmor = value;
         this._ignoreArmor = this._ignoreArmor < 0 ? 0 : this._ignoreArmor;
+        this.addBuffType(BuffType.ignoreArmor,value);
     }
     public float getIgnoreArmor() {
         return this._ignoreArmor;
     }
     public void clearIgnoreArmor() {
         this._ignoreArmor = 0;
+        this.removeBuffType(BuffType.ignoreArmor);
     }
 
     public void setExecute(float value) {
-        this._execute += 0;
+        this._execute = value;
         this._execute = this._execute < 0 ? 0 : this._execute;
+        this.addBuffType(BuffType.execute, value);
     }
     public float getExecute() {
         return this._execute;
     }
+    public void clearExecute() {
+        this._execute = 0;
+        this.removeBuffType(BuffType.execute);
+    }
 
     public void setRetainATK(float value) {
-        this._retainATK += value;
+        this._retainATK = value;
         this._retainATK = this._retainATK < 0 ? 0 : this._retainATK;
+        this.addBuffType(BuffType.retainATK,value);
     }
     public float getRetainATK() {
         return this._retainATK;
     }
     public void clearRetainATK() {
         this._retainATK = 0;
+        this.removeBuffType(BuffType.retainATK);
     }
 
     public void setReflectPercent(float value) {
-        this._reflectPercent += value;
+        this._reflectPercent = value;
         this._reflectPercent = this._reflectPercent < 0 ? 0 : this._reflectPercent;
+        this.addBuffType(BuffType.reflectPercent,value);
     }
     public float getReflectPercent() {
         return this._reflectPercent;
     }
     public void clearReflectPercent() {
         this._reflectPercent = 0;
+        this.removeBuffType(BuffType.reflectPercent);
     }
 
     public void setMagicImmunity(float value) {
         this._magicImmunity = value;
+        this.addBuffType(BuffType.magicImmunity, value);
     }
     public float getMagicImmunity() {
         return this._magicImmunity;
     }
     public void clearMagicImmunity() {
         this._magicImmunity = 0;
+        this.removeBuffType(BuffType.magicImmunity);
     }
 
     public void setArmorATK(float value) {
-        this._armorATK += value;
+        this._armorATK = value;
         this._armorATK = this._armorATK < 0 ? 0 : this._armorATK;
+        this.addBuffType(BuffType.armorATK, value);
     }
     public float getArmorATK() {
         return this._armorATK;
     }
+    public void clearArmorATK() {
+        this._armorATK = 0;
+        this.removeBuffType(BuffType.armorATK);
+    }
 
     public void setImmunityDeBuff(float value) {
         this._immunityDeBuff = value;
+        this._immunityDeBuff = this._immunityDeBuff < 0 ? 0 : this._immunityDeBuff;
+        this.addBuffType(BuffType.immunityDeBuff, value);
     }
     public float getImmunityDeBuff() {
         return this._immunityDeBuff;
     }
     public void clearImmunityDeBuff() {
         this._immunityDeBuff = 0;
+        this.removeBuffType(BuffType.immunityDeBuff);
     }
 
     public float getRtMagicValue()

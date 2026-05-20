@@ -30,16 +30,16 @@ public class FightFlow : GameFlowObject
                 for (int j = 0; j < pokers.Count; j++) {
                     int value = values[j];
                     switch (pokers[j].getSuit()) {
-                        case 1: // ��
+                        case PokerSuit.diamond:
                             defense += value * 0.5f;
                             break;
-                        case 2: // ��
+                        case PokerSuit.heart:
                             blood += value * 0.5f;
                             break;
-                        case 3: // ��
+                        case PokerSuit.spade:
                             attack += value;
                             break;
-                        case 4: // ÷
+                        case PokerSuit.club:
                             magic += value;
                             break;
                         default:

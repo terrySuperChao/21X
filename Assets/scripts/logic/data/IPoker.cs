@@ -6,7 +6,7 @@ public interface IPoker
     public void setValue(int value);
 
     public int getRank();
-    public int getSuit();
+    public PokerSuit getSuit();
 
     public bool isBack();
 

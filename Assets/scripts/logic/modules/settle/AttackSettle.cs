@@ -3,11 +3,7 @@ using Pb;
 public class AttackSettle: IAttackSettle
 {
     public void settle(ITriggerHandlePara para) {
-        float attackNum = 1;
-        float doubleProc = para.getAttackUser().getExtraInfo().getDoubleProc();
-        for (int i = 0; i < attackNum + doubleProc; i++) {
-            this.commonAttack(para);
-        }
+        this.commonAttack(para);
         this.magicAttack(para);
     }
 
@@ -17,8 +13,13 @@ public class AttackSettle: IAttackSettle
             return;
         }
 
+        if (para.getAttackUser().getAttack() <= 0) {
+            return;
+        }
+
         IUser attackUser = para.getAttackUser();
         IUser defenseUser = para.getDefenseUser();
+
         //暴击伤害加+50%
         float addCrit = 0;
         float number = RandomMgr.Instance.getRangeInt(1, 101) / 100.0f;//[1,100]
@@ -29,18 +30,23 @@ public class AttackSettle: IAttackSettle
         float multATK = attackUser.getExtraInfo().getMultATK();
         float attackN = attackUser.getAttack() * (1 + multATK + addCrit);
         float attack = GameUtils.getNumberDigits(attackN);
+
+        //保留
         float retainATK = attackUser.getExtraInfo().getRetainATK();
-        //终结技
-        float execute = attackUser.getExtraInfo().getExecute();
-        float percent = defenseUser.getBlood() / defenseUser.getMaxBlood() * 100;
-        if (execute > percent)
-        {
-            attack = defenseUser.getBlood();
+        if (addCrit > 0){
+            attackUser.getExtraInfo().clearRetainATK();
+        }else {
+            retainATK = 0.0f;
         }
 
-        if (attack <= 0){
-            return;
+        //终结技
+        float execute = attackUser.getExtraInfo().getExecute();
+        float percent = defenseUser.getBlood() / defenseUser.getMaxBlood() * 100.0f;
+        if (execute > percent){
+            attack = defenseUser.getBlood();
+            attackUser.getExtraInfo().clearExecute();
         }
+
         attackUser.setAttack(GameUtils.getNumberDigits(attack * retainATK));
         attackUser.getExtraInfo().setRtHurtValue(attack);
         
@@ -57,13 +63,13 @@ public class AttackSettle: IAttackSettle
             attackUser.getExtraInfo().setAddBleeding(-1);
         }
 
-        //反射
+        //反弹
         float reflectDMG = defenseUser.getExtraInfo().getReflectDMG();
         if (reflectDMG > 0) {
             GameBloodMgr.Instance.lessBloodHandle(defenseUser, attackUser, reflectDMG);
         }
 
-        //反弹
+        //反弹百分比
         float reflectPercent = defenseUser.getExtraInfo().getReflectPercent();
         if (reflectPercent > 0){
             defenseUser.getExtraInfo().clearReflectPercent();
@@ -76,7 +82,17 @@ public class AttackSettle: IAttackSettle
         //普通攻击后
         SwitchParaMgr.Instance.handle(para, () => {
             CardMgr.Instance.handle(para, TriggerEvent.normalAttackAfter);
-        }, true);  
+        }, true);
+
+        //清空状态
+        
+
+        //普通攻击两次
+        float doubleProc = attackUser.getExtraInfo().getDoubleProc();
+        if (doubleProc > 0) {
+            attackUser.getExtraInfo().clearDoubleProc();
+            this.commonAttack(para);
+        }
     }
 
     //魔法攻击
@@ -90,15 +106,29 @@ public class AttackSettle: IAttackSettle
         if (attackUser.getMagic() < attackUser.getMaxMagic()){
             return;
         }
-
-        float attack = 50.0f;
-        float skillDamageUp = attackUser.getExtraInfo().getSkillDamageUp();
-        float remainAttack = GameUtils.getNumberDigits(attack * (1 + skillDamageUp));
-
         attackUser.setMagic(0);
-        attackUser.getExtraInfo().setRtHurtValue(remainAttack);
+        
         IUICommonPara attackPara = new UICommonParaObject(attackUser, ValueType.magic, attackUser.getMaxMagic(), attackUser.getMagic());
         GameMessage.Instance.addMsg(GameConst.COMMONATTACK, attackPara);
+
+        float magicImmunity = defenseUser.getExtraInfo().getMagicImmunity();
+        if (magicImmunity > 0)
+        {
+            defenseUser.getExtraInfo().clearMagicImmunity();
+
+            IUIFlyFontPara uiPara = new UIFlyFontParaObject(defenseUser, para.getAssembleCard(), "免疫的护盾");
+            GameMessage.Instance.addMsg(GameConst.FLYFONT, uiPara);
+        }
+        else
+        {
+            //减去50血量
+            float attack = 50.0f;
+            float skillDamageUp = attackUser.getExtraInfo().getSkillDamageUp();
+            float remainAttack = GameUtils.getNumberDigits(attack * (1 + skillDamageUp));
+            attackUser.getExtraInfo().setRtHurtValue(remainAttack);
+
+            GameBloodMgr.Instance.lessBloodHandle(para.getAttackUser(), para.getDefenseUser(), remainAttack);
+        }
 
         //魔法攻击后
         CardMgr.Instance.handle(para, TriggerEvent.magicAttackAfter);
@@ -106,19 +136,6 @@ public class AttackSettle: IAttackSettle
         //单次造成伤害
         CardMgr.Instance.handle(para, TriggerEvent.roundOther);
 
-        float magicImmunity = defenseUser.getExtraInfo().getMagicImmunity();
-        if (magicImmunity > 0)
-        {
-            defenseUser.getExtraInfo().clearMagicImmunity();
-            IUIFlyFontPara uiPara = new UIFlyFontParaObject(defenseUser, para.getAssembleCard(), "免疫的护盾");
-            GameMessage.Instance.addMsg(GameConst.FLYFONT, uiPara);
-        }
-        else
-        {
-            //减去50血量
-            GameBloodMgr.Instance.lessBloodHandle(para.getAttackUser(), para.getDefenseUser(), remainAttack);
-        }
-       
         //魔法攻击
         para.setMagicAttack(true);
     }
@@ -162,7 +179,6 @@ public class AttackSettle: IAttackSettle
         }
         defenseUser.setDefense(defense);
         
-
         IUICommonPara attackPara = new UICommonParaObject(defenseUser, ValueType.defense, -defenseValue, defenseUser.getDefense());
         GameMessage.Instance.addMsg(GameConst.ADDCARDVALUE, attackPara);
         

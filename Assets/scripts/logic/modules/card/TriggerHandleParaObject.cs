@@ -7,6 +7,7 @@ public class TriggerHandleParaObject : ITriggerHandlePara
     private IUser _attackUser = null;
     private IUser _defenseUser = null;
     private IPoker _poker = null;
+    private PokerSuit _pokerSuit = PokerSuit.club;
     private bool _isMagicAttack = false;
     private float _baseValue = -1;
     private List<IRoundResult> _roundResults = new List<IRoundResult>();
@@ -45,6 +46,13 @@ public class TriggerHandleParaObject : ITriggerHandlePara
     }
     public void setPoker(IPoker poker) {
         _poker = poker;
+    }
+
+    public void setPokerSuit(PokerSuit pokerSuit) {
+        this._pokerSuit = pokerSuit;
+    }
+    public PokerSuit getPokerSuit() {
+        return this._pokerSuit;
     }
 
     public float getBaseValue() {
@@ -97,12 +105,12 @@ public class TriggerHandleParaObject : ITriggerHandlePara
             result.reset();
         }
 
+        this._attackUser.getExtraInfo().clearArmorATK();
+        this._defenseUser.getExtraInfo().clearArmorATK();
+
+        //
         this._attackUser.getExtraInfo().clearRtMagicValue();
         this._attackUser.getExtraInfo().clearTemporaryArmor();
-        this._attackUser.getExtraInfo().clearDoubleProc();
-        this._attackUser.getExtraInfo().clearIgnoreArmor();
-        this._attackUser.getExtraInfo().clearRetainATK();
-        this._attackUser.getExtraInfo().clearReflectPercent();
         this._attackUser.getExtraInfo().clearImmunityDeBuff();       
         this._defenseUser.getExtraInfo().clearRtMagicValue();
         this._defenseUser.getExtraInfo().clearTemporaryArmor();
