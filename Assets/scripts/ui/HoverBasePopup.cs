@@ -3,7 +3,7 @@ using UnityEngine.EventSystems;
 public class HoverBasePopup : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerMoveHandler
 {
     public RectTransform popup;
-    public Vector2 offset = new Vector2(-130, 130);
+    public Vector2 offset = new Vector2(-210, 130);
     private Camera uiCamera;
     private RectTransform canvasRect;
     private bool isHovering;

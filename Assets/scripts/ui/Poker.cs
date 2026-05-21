@@ -23,13 +23,13 @@ public class Poker : MonoBehaviour
     public void loadPokerRes(IPoker poker) {
         _poker = poker;
         if (poker == null || poker.isBack()) return;
-        // ¼ÓÔØÃûÎª"MyImage"µÄÍ¼Æ¬
-        string suit = System.String.Format("{0:00}", poker.getSuit()); 
+        //
+        string suit = System.String.Format("{0:00}", (int)poker.getSuit()); 
         string rank = poker.getRank().ToString();
         Texture2D myTexture = Resources.Load<Texture2D>($"UI/pokers/blt_game_poker_01_{rank}_{suit}");
         if (myTexture != null)
         {
-            // ÀıÈç£¬½«¼ÓÔØµÄÎÆÀíÉèÖÃ¸øUI Image×é¼ş
+            // 
             GetComponent<UnityEngine.UI.Image>().sprite = Sprite.Create(myTexture, new Rect(0.0f, 0.0f, myTexture.width, myTexture.height), new Vector2(0.5f, 0.5f));
         }
     }
@@ -45,7 +45,7 @@ public class Poker : MonoBehaviour
         Texture2D myTexture = Resources.Load<Texture2D>($"UI/pokers/blt_game_poker_00");
         if (myTexture != null)
         {
-            // ÀıÈç£¬½«¼ÓÔØµÄÎÆÀíÉèÖÃ¸øUI Image×é¼ş
+            // ï¿½ï¿½ï¿½ç£¬ï¿½ï¿½ï¿½ï¿½ï¿½Øµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã¸ï¿½UI Imageï¿½ï¿½ï¿½
             GetComponent<UnityEngine.UI.Image>().sprite = Sprite.Create(myTexture, new Rect(0.0f, 0.0f, myTexture.width, myTexture.height), new Vector2(0.5f, 0.5f));
         }
     }

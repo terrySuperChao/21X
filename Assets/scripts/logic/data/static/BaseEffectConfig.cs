@@ -39,7 +39,7 @@ public class BaseEffectInfo : IPart
 
     public string getImage()
     {
-        return "UI/pokers/blt_game_poker_01_2_01";
+        return "UI/game/plb_game_btn_04";
     }
 
     public string getBelongBase()

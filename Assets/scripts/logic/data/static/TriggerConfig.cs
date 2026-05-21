@@ -40,7 +40,7 @@ public class TriggerInfo:IPart
 
     public string getImage()
     {
-        return "UI/pokers/blt_game_poker_01_2_03";
+        return "UI/game/plb_game_btn_05";
     }
 
     public string getBelongBase()
