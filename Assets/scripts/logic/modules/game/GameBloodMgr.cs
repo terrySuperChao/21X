@@ -16,9 +16,20 @@ public class GameBloodMgr : Singleton<GameBloodMgr>
     }
 
     public void addBloodHandle(IUser user,float addValue) {
-        if (user != null) {
-            user.addBlood(addValue);
-            IUICommonPara attackPara = new UICommonParaObject(user, ValueType.blood, addValue, user.getBlood());
+        if (user == null) {
+            return;
+        }
+        float maxValue = user.getBlood() + addValue;
+        user.addBlood(addValue);
+        IUICommonPara bloodPara = new UICommonParaObject(user, ValueType.blood, addValue, user.getBlood());
+        GameMessage.Instance.addMsg(GameConst.ADDCARDVALUE, bloodPara);
+
+        //转换成攻击力
+        addValue = maxValue - user.getMaxBlood();
+        float overHealATK = user.getExtraInfo().getOverHealATK();
+        if (addValue > 0 && overHealATK > 0) {
+            user.addAttack(addValue);
+            IUICommonPara attackPara = new UICommonParaObject(user, ValueType.attack, addValue, user.getAttack());
             GameMessage.Instance.addMsg(GameConst.ADDCARDVALUE, attackPara);
         }
     }

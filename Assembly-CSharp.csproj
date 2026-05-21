@@ -298,6 +298,9 @@
     <Compile Include="Assets/scripts/logic/modules/card/handle/MagickaHandle.cs" />
     <Compile Include="Assets/scripts/ui/HoverBasePopup.cs" />
     <Compile Include="Assets\scripts\logic\modules\card\advancedEffectHandle\FreezeArmorHandle.cs" />
+    <Compile Include="Assets\scripts\logic\modules\card\advancedEffectHandle\RemoveDeBuffHandle.cs" />
+    <Compile Include="Assets\scripts\logic\modules\card\advancedEffectHandle\OverHealATKHandle.cs" />
+    <Compile Include="Assets\scripts\logic\modules\card\advancedEffectHandle\OverHealATKHandle %28复制%29.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets/TextMesh Pro/Shaders/TMPro.cginc" />

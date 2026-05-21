@@ -25,6 +25,8 @@ public class ExtraInfoObject : IExtraInfo
     private float _armorATK = 0;
     private float _immunityDeBuff = 0;
     private float _freezeArmor = 0;
+    private float _overHealATK = 0;
+    private float _healToDMG = 0;
     //运行时
     private float _rtMagicValue = 0;
     private float _rtHurtValue = 0;
@@ -326,6 +328,36 @@ public class ExtraInfoObject : IExtraInfo
     {
         this._freezeArmor = 0;
         this.removeBuffType(BuffType.freezeArmor);
+    }
+
+    public void setOverHealATK(float value)
+    {
+        this._overHealATK = value;
+        this._overHealATK = this._overHealATK < 0 ? 0 : this._overHealATK;
+        this.addBuffType(BuffType.overHealATK, value);
+    }
+    public float getOverHealATK() {
+        return this._overHealATK;
+    }
+    public void clearOverHealATK() {
+        this._overHealATK = 0;
+        this.removeBuffType(BuffType.overHealATK);
+    }
+
+    public void setHealToDMG(float value)
+    {
+        this._healToDMG = value;
+        this._healToDMG = this._healToDMG < 0 ? 0 : this._healToDMG;
+        this.addBuffType(BuffType.overHealATK, value);
+    }
+    public float getHealToDMG()
+    {
+        return this._healToDMG;
+    }
+    public void clearHealToDMG()
+    {
+        this._healToDMG = 0;
+        this.removeBuffType(BuffType.overHealATK);
     }
 
     public void setRtMagicValue(float value)

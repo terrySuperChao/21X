@@ -111,6 +111,16 @@ public interface IExtraInfo
     public float getFreezeArmor();
     public void clearFreezeArmor();
 
+    //下次溢出的治疗量转化为等额攻击力,无法叠加
+    public void setOverHealATK(float value);
+    public float getOverHealATK();
+    public void clearOverHealATK();
+
+    //下次治疗效果改为对对手造成等量伤害,无法叠加
+    public void setHealToDMG(float value);
+    public float getHealToDMG();
+    public void clearHealToDMG();
+
     //运行过程中数据 rt前缀
     //魔法值
     public void setRtMagicValue(float value);
