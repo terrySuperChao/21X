@@ -9,6 +9,6 @@ public class RetainATKHandle : BaseEffectHandleObject
     {
         UnityEngine.Debug.Log("RetainATKHandle=========>>");
         float addValue = 0.5f;
-        para.getDefenseUser().getExtraInfo().setRetainATK(addValue);   
+        para.getAttackUser().getExtraInfo().setRetainATK(addValue);   
     }
 }

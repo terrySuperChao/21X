@@ -9,6 +9,6 @@ public class ReflectPercentHandle : BaseEffectHandleObject
     {
         UnityEngine.Debug.Log("RetainATKHandle=========>>");
         float addValue = 0.5f;
-        para.getDefenseUser().getExtraInfo().setReflectPercent(addValue);   
+        para.getAttackUser().getExtraInfo().setReflectPercent(addValue);   
     }
 }

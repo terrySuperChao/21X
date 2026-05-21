@@ -9,6 +9,6 @@ public class MagicImmunityHandle : BaseEffectHandleObject
     {
         UnityEngine.Debug.Log("MagicImmunityHandle=========>>");
         float addValue = 1;
-        para.getDefenseUser().getExtraInfo().setMagicImmunity(addValue);   
+        para.getAttackUser().getExtraInfo().setMagicImmunity(addValue);   
     }
 }

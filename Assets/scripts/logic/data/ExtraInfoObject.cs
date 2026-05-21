@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
-using Google.Protobuf.WellKnownTypes;
 
 public class ExtraInfoObject : IExtraInfo
-{    
+{
+    //基础
     private float _multATK = 0;
     private float _addCrit = 0;
     private float _reflectDMG = 0;
@@ -24,8 +24,11 @@ public class ExtraInfoObject : IExtraInfo
     private float _magicImmunity = 0;
     private float _armorATK = 0;
     private float _immunityDeBuff = 0;
+    private float _freezeArmor = 0;
+    //运行时
     private float _rtMagicValue = 0;
     private float _rtHurtValue = 0;
+    private float _rtFreezeArmorValue = 0;
     private List<float> _healOverTime = new List<float>();
     private List<float> _mpRegen = new List<float>();
     private List<BuffType> _buffTypes = new List<BuffType>();
@@ -309,28 +312,65 @@ public class ExtraInfoObject : IExtraInfo
         this.removeBuffType(BuffType.immunityDeBuff);
     }
 
+    public void setFreezeArmor(float value)
+    {
+        this._freezeArmor = value;
+        this._freezeArmor = this._freezeArmor < 0 ? 0 : this._freezeArmor;
+        this.addBuffType(BuffType.freezeArmor, value);
+    }
+    public float getFreezeArmor()
+    {
+        return this._freezeArmor;
+    }
+    public void clearFreezeArmor()
+    {
+        this._freezeArmor = 0;
+        this.removeBuffType(BuffType.freezeArmor);
+    }
+
+    public void setRtMagicValue(float value)
+    {
+        this._rtMagicValue += value;
+        this._rtMagicValue = this._rtMagicValue < 0 ? 0 : this._rtMagicValue;
+        this.addBuffType(BuffType.rtMagicValue, value);
+    }
     public float getRtMagicValue()
     {
         return this._rtMagicValue;
     }
-    public void setRtMagicValue(float value)
-    {
-        this._rtMagicValue += value;
-    }
     public void clearRtMagicValue() {
         this._rtMagicValue = 0;
+        this.removeBuffType(BuffType.rtMagicValue);
     }
 
+    public void setRtHurtValue(float value)
+    {
+        this._rtHurtValue += value;
+        this._rtHurtValue = this._rtHurtValue < 0 ? 0 : this._rtHurtValue;
+        this.addBuffType(BuffType.rtHurtValue, value);
+    }
     public float getRtHurtVaule()
     {
         return this._rtHurtValue;
     }
-    public void setRtHurtValue(float value)
-    {
-        this._rtHurtValue += value;
-    }
     public void clearRtHurtValue() {
         this._rtHurtValue = 0;
+        this.removeBuffType(BuffType.rtHurtValue);
+    }
+
+    public void setRtFreezeArmorValue(float value)
+    {
+        this._rtFreezeArmorValue = value;
+        this._rtFreezeArmorValue = this._rtFreezeArmorValue < 0 ? 0 : this._rtFreezeArmorValue;
+        this.addBuffType(BuffType.rtFreezeArmorValue, value);
+    }
+    public float getRtFreezeArmorValue()
+    {
+        return this._rtFreezeArmorValue;
+    }
+    public void clearRtFreezeArmorValue() {
+        this._rtFreezeArmorValue = 0;
+        this.removeBuffType(BuffType.rtFreezeArmorValue);
     }
 
     private void addBuffType(BuffType type,float value) {

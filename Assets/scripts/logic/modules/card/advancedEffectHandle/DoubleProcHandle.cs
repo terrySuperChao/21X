@@ -9,6 +9,6 @@ public class DoubleProcHandle : BaseEffectHandleObject
     {
         UnityEngine.Debug.Log("AddBleedingHandle=========>>");
         float addValue = 1;
-        para.getDefenseUser().getExtraInfo().setDoubleProc(addValue);   
+        para.getAttackUser().getExtraInfo().setDoubleProc(addValue);   
     }
 }

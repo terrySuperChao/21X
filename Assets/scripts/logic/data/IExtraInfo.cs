@@ -106,14 +106,24 @@ public interface IExtraInfo
     public float getImmunityDeBuff();
     public void clearImmunityDeBuff();
 
+    //下次消耗的护甲会完全恢复,无法叠加
+    public void setFreezeArmor(float value);
+    public float getFreezeArmor();
+    public void clearFreezeArmor();
+
     //运行过程中数据 rt前缀
     //魔法值
-    public float getRtMagicValue();
     public void setRtMagicValue(float value);
+    public float getRtMagicValue();
     public void clearRtMagicValue();
 
     //伤害=普通攻击+魔法攻击+直接扣血
-    public float getRtHurtVaule();
     public void setRtHurtValue(float value);
+    public float getRtHurtVaule();
     public void clearRtHurtValue();
+
+    //消耗的护甲
+    public void setRtFreezeArmorValue(float value);
+    public float getRtFreezeArmorValue();    
+    public void clearRtFreezeArmorValue();
 }

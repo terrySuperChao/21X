@@ -148,19 +148,22 @@ public class AttackSettle: IAttackSettle
 
     //
     private float getRemainAttack(ITriggerHandlePara para,float attack) {
+        IUser attackUser = para.getAttackUser();
         IUser defenseUser = para.getDefenseUser();
-        IRoundResult roundResult = para.getRoundResult(para.getUser());
-        //
         defenseUser.getExtraInfo().setTemporaryArmor(-attack);
-        //
-        if (roundResult.getPenetrateValue() != 0)
-        {
+
+        //忽略护甲
+        if (attackUser.getExtraInfo().getIgnoreArmor() > 0) {
+            attackUser.getExtraInfo().clearIgnoreArmor();
             return attack;
         }
 
-        if (para.getAttackUser().getExtraInfo().getIgnoreArmor() > 0) {
-            para.getAttackUser().getExtraInfo().clearIgnoreArmor();
-            return attack;
+        float rtFreezeArmorValue = defenseUser.getExtraInfo().getRtFreezeArmorValue();
+        if (rtFreezeArmorValue > 0) {
+            defenseUser.addDefense(rtFreezeArmorValue);
+            defenseUser.getExtraInfo().clearRtFreezeArmorValue();
+            IUICommonPara defensePara = new UICommonParaObject(defenseUser, ValueType.defense, rtFreezeArmorValue, defenseUser.getDefense());
+            GameMessage.Instance.addMsg(GameConst.ADDCARDVALUE, defensePara);
         }
 
         //
@@ -182,6 +185,11 @@ public class AttackSettle: IAttackSettle
             defenseValue = attack;
             defense -= attack;
             attack = 0;
+        }
+        float freezeArmor = defenseUser.getExtraInfo().getFreezeArmor();
+        if (freezeArmor > 0) {
+            defenseUser.getExtraInfo().clearFreezeArmor();
+            defenseUser.getExtraInfo().setRtFreezeArmorValue(defenseUser.getDefense() - defense);
         }
         defenseUser.setDefense(defense);
         

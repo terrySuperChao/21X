@@ -9,6 +9,6 @@ public class ExecuteHandle : BaseEffectHandleObject
     {
         UnityEngine.Debug.Log("ExecuteHandle=========>>");
         float addValue = 15;
-        para.getDefenseUser().getExtraInfo().setExecute(addValue);   
+        para.getAttackUser().getExtraInfo().setExecute(addValue);   
     }
 }

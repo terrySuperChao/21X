@@ -9,6 +9,6 @@ public class ImmunityDeBuffHandle : BaseEffectHandleObject
     {
         UnityEngine.Debug.Log("AddBleedingHandle=========>>");
         float addValue = 1;
-        para.getDefenseUser().getExtraInfo().setImmunityDeBuff(addValue);   
+        para.getAttackUser().getExtraInfo().setImmunityDeBuff(addValue);   
     }
 }

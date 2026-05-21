@@ -34,8 +34,11 @@ public class FightPokerMgr : Singleton<FightPokerMgr>
         extra.setMagicImmunity(info.Extra.MagicImmunity);
         extra.setArmorATK(info.Extra.ArmorATK);
         extra.setImmunityDeBuff(info.Extra.ImmunityDeBuff);
+        extra.setFreezeArmor(info.Extra.FreezeArmor);
+
         extra.setRtHurtValue(info.Extra.RtHurtValue);
         extra.setRtMagicValue(info.Extra.RtMagicValue);
+        extra.setRtFreezeArmorValue(info.Extra.RtFreezeArmorValue);
         foreach (float item in info.Extra.MpRegen) {
             extra.setMpRegen(item);
         }
@@ -85,8 +88,10 @@ public class FightPokerMgr : Singleton<FightPokerMgr>
         info.Extra.MagicImmunity = user.getExtraInfo().getMagicImmunity();
         info.Extra.ArmorATK = user.getExtraInfo().getArmorATK();
         info.Extra.ImmunityDeBuff = user.getExtraInfo().getImmunityDeBuff();
+        info.Extra.FreezeArmor = user.getExtraInfo().getFreezeArmor();
         info.Extra.RtHurtValue = user.getExtraInfo().getRtHurtVaule();
         info.Extra.RtMagicValue = user.getExtraInfo().getRtMagicValue();
+        info.Extra.RtFreezeArmorValue = user.getExtraInfo().getRtFreezeArmorValue();
         info.Extra.MpRegen.Clear();
         info.Extra.HealOverTime.Clear();
         foreach (float item in user.getExtraInfo().getMpRegens())

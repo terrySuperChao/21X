@@ -9,6 +9,6 @@ public class ArmorATKHandle : BaseEffectHandleObject
     {
         UnityEngine.Debug.Log("RetainATKHandle=========>>");
         float addValue = 5.0f;
-        para.getDefenseUser().getExtraInfo().setArmorATK(addValue);   
+        para.getAttackUser().getExtraInfo().setArmorATK(addValue);   
     }
 }

@@ -9,6 +9,6 @@ public class IgnoreArmorHandle : BaseEffectHandleObject
     {
         UnityEngine.Debug.Log("IgnoreArmorHandle=========>>");
         float addValue = 1;
-        para.getDefenseUser().getExtraInfo().setIgnoreArmor(addValue);   
+        para.getAttackUser().getExtraInfo().setIgnoreArmor(addValue);   
     }
 }

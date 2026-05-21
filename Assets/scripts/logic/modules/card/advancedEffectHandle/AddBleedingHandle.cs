@@ -9,6 +9,6 @@ public class AddBleedingHandle : BaseEffectHandleObject
     {
         UnityEngine.Debug.Log("AddBleedingHandle=========>>");
         float addValue = 3;
-        para.getDefenseUser().getExtraInfo().setAddBleeding(addValue);   
+        para.getAttackUser().getExtraInfo().setAddBleeding(addValue);   
     }
 }

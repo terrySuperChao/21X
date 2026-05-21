@@ -243,4 +243,9 @@ public enum BuffType {
     magicImmunity,
     armorATK,
     immunityDeBuff,
+    freezeArmor,
+    //运行时
+    rtHurtValue,
+    rtMagicValue,
+    rtFreezeArmorValue,
 }

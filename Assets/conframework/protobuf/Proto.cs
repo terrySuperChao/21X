@@ -50,7 +50,7 @@ namespace Pb {
             "DAoKX3Bva2VyUG9zWUINCgtfZmluYWxQb2ludEIMCgpfYmxhY2tqYWNrQgwK",
             "Cl9jaGFwdGVySWRCDAoKX2JhcnJpZXJJZEIVChNfcmVmcmVzaE5wY1Bva2Vy",
             "TnVtQhgKFl9yZWZyZXNoUGxheWVyUG9rZXJOdW0iKAoEU2hvcBINCgVnb29k",
-            "cxgBIAMoBRIRCglwdXJjaGFzZWQYAiADKAUivgoKCUV4dHJhSW5mbxIUCgdt",
+            "cxgBIAMoBRIRCglwdXJjaGFzZWQYAiADKAUi9woKCUV4dHJhSW5mbxIUCgdt",
             "dWx0QVRLGAEgASgCSACIAQESFAoHYWRkQ3JpdBgCIAEoAkgBiAEBEhcKCnJl",
             "ZmxlY3RETUcYAyABKAJIAogBARIXCgpib251c0FybW9yGAQgASgCSAOIAQES",
             "GwoOdGVtcG9yYXJ5QXJtb3IYBSABKAJIBIgBARIWCglsaWZlU3RlYWwYBiAB",
@@ -69,50 +69,52 @@ namespace Pb {
             "ZWNsaW5lGHMgASgCSBmIAQESFQoIbVBSZWZ1bmQYdCABKAJIGogBARITCgZt",
             "UEJ1cm4YdSABKAJIG4gBARIXCgptUE1heExvd2VyGHYgASgCSByIAQESFwoK",
             "ZG91YmxlQ2FzdBh3IAEoAkgdiAEBEhkKC3J0SHVydFZhbHVlGOkHIAEoAkge",
-            "iAEBEhoKDHJ0TWFnaWNWYWx1ZRjqByABKAJIH4gBAUIKCghfbXVsdEFUS0IK",
-            "CghfYWRkQ3JpdEINCgtfcmVmbGVjdERNR0INCgtfYm9udXNBcm1vckIRCg9f",
-            "dGVtcG9yYXJ5QXJtb3JCDAoKX2xpZmVTdGVhbEIMCgpfaGVhbFN1cGVyQgsK",
-            "CV9oZWFsdG9NUEIQCg5fc2tpbGxEYW1hZ2VVcEILCglfbXBNYXhTdWJCDgoM",
-            "X2FkZEJsZWVkaW5nQg0KC19kb3VibGVQcm9jQg4KDF9pZ25vcmVBcm1vckIK",
-            "CghfZXhlY3V0ZUIMCgpfcmV0YWluQVRLQhEKD19yZWZsZWN0UGVyY2VudEIQ",
-            "Cg5fbWFnaWNJbW11bml0eUILCglfYXJtb3JBVEtCEQoPX2ltbXVuaXR5RGVC",
-            "dWZmQg4KDF9mcmVlemVBcm1vckIPCg1fcmVtb3ZlRGVCdWZmQg4KDF9vdmVy",
-            "SGVhbEFUS0IMCgpfaGVhbFRvRE1HQgwKCl9oZWFsQm9vc3RCCgoIX3JlYmly",
-            "dGhCFAoSX2NvbnZlcnNpb25EZWNsaW5lQgsKCV9tUFJlZnVuZEIJCgdfbVBC",
-            "dXJuQg0KC19tUE1heExvd2VyQg0KC19kb3VibGVDYXN0Qg4KDF9ydEh1cnRW",
-            "YWx1ZUIPCg1fcnRNYWdpY1ZhbHVlIs8CCglBc3NldEluZm8SEgoFc3RhdGUY",
-            "ASABKAVIAIgBARIOCgZwb2tlcnMYAiADKAUSDQoFY2FyZHMYAyADKAUSDwoC",
-            "aHAYBCABKAJIAYgBARISCgVtYXhIUBgFIAEoAkgCiAEBEhIKBW1hZ2ljGAYg",
-            "ASgCSAOIAQESFQoIbWF4TWFnaWMYByABKAJIBIgBARITCgZhdHRhY2sYCCAB",
-            "KAJIBYgBARIUCgdkZWZlbnNlGAkgASgCSAaIAQESEwoGaXNGaWxwGAogASgF",
-            "SAeIAQESIQoFZXh0cmEYCyABKAsyDS5wYi5FeHRyYUluZm9ICIgBAUIICgZf",
-            "c3RhdGVCBQoDX2hwQggKBl9tYXhIUEIICgZfbWFnaWNCCwoJX21heE1hZ2lj",
-            "QgkKB19hdHRhY2tCCgoIX2RlZmVuc2VCCQoHX2lzRmlscEIICgZfZXh0cmEi",
-            "wgEKBUZpZ2h0EhEKCXBva2VyUGlsZRgBIAMoBRIkCghucGNBc3NldBgCIAEo",
-            "CzINLnBiLkFzc2V0SW5mb0gAiAEBEicKC3BsYXllckFzc2V0GAMgASgLMg0u",
-            "cGIuQXNzZXRJbmZvSAGIAQESEgoFc3RhdGUYBCABKAVIAogBARISCgVyb3Vu",
-            "ZBgFIAEoBUgDiAEBQgsKCV9ucGNBc3NldEIOCgxfcGxheWVyQXNzZXRCCAoG",
-            "X3N0YXRlQggKBl9yb3VuZCLwAQoMQXNzZW1ibGVDYXJkEhYKCXRyaWdnZXJJ",
-            "ZBgBIAEoBUgAiAEBEhkKDGJhc2VFZmZlY3RJZBgCIAEoBUgBiAEBEh0KEGFk",
-            "dmFuY2VkRWZmZWN0SWQYAyABKAVIAogBARIaCg10cmlnZ2VyTnVtYmVyGAQg",
-            "ASgFSAOIAQESGgoNdXBncmFkZU51bWJlchgFIAEoBUgEiAEBQgwKCl90cmln",
-            "Z2VySWRCDwoNX2Jhc2VFZmZlY3RJZEITChFfYWR2YW5jZWRFZmZlY3RJZEIQ",
-            "Cg5fdHJpZ2dlck51bWJlckIQCg5fdXBncmFkZU51bWJlciKEAQoHSW1wcmlu",
-            "dBIbCg5hc3NlbWJsZU9iamVjdBgBIAEoBUgAiAEBEiIKCG5wY0NhcmRzGAIg",
-            "AygLMhAucGIuQXNzZW1ibGVDYXJkEiUKC3BsYXllckNhcmRzGAMgAygLMhAu",
-            "cGIuQXNzZW1ibGVDYXJkQhEKD19hc3NlbWJsZU9iamVjdCL4AgoIR2FtZURh",
-            "dGESFQoIaW5pdFNlZWQYASABKAVIAIgBARIWCglnYW1lU3RhdGUYAiABKAVI",
-            "AYgBARIWCglwYWdlSW5kZXgYAyABKAVIAogBARIfCgZwbGF5ZXIYBCABKAsy",
-            "Ci5wYi5QbGF5ZXJIA4gBARIhCgdiYXJyaWVyGAUgASgLMgsucGIuQmFycmll",
-            "ckgEiAEBEhsKBHNob3AYBiABKAsyCC5wYi5TaG9wSAWIAQESHQoFZmlnaHQY",
-            "ByABKAsyCS5wYi5GaWdodEgGiAEBEiEKB2ltcHJpbnQYCCABKAsyCy5wYi5J",
-            "bXByaW50SAeIAQESIwoLZGVmZWF0Um9sZXMYCSADKAsyDi5wYi5EZWZlYXRS",
-            "b2xlQgsKCV9pbml0U2VlZEIMCgpfZ2FtZVN0YXRlQgwKCl9wYWdlSW5kZXhC",
-            "CQoHX3BsYXllckIKCghfYmFycmllckIHCgVfc2hvcEIICgZfZmlnaHRCCgoI",
-            "X2ltcHJpbnQingEKDEdhbWVQcm9wZXJ0eRIhCgdhY2NvdW50GAEgASgLMgsu",
-            "cGIuQWNjb3VudEgAiAEBEiEKB3NldHRpbmcYAiABKAsyCy5wYi5TZXR0aW5n",
-            "SAGIAQESIwoIZ2FtZURhdGEYAyABKAsyDC5wYi5HYW1lRGF0YUgCiAEBQgoK",
-            "CF9hY2NvdW50QgoKCF9zZXR0aW5nQgsKCV9nYW1lRGF0YWIGcHJvdG8z"));
+            "iAEBEhoKDHJ0TWFnaWNWYWx1ZRjqByABKAJIH4gBARIgChJydEZyZWV6ZUFy",
+            "bW9yVmFsdWUY6wcgASgCSCCIAQFCCgoIX211bHRBVEtCCgoIX2FkZENyaXRC",
+            "DQoLX3JlZmxlY3RETUdCDQoLX2JvbnVzQXJtb3JCEQoPX3RlbXBvcmFyeUFy",
+            "bW9yQgwKCl9saWZlU3RlYWxCDAoKX2hlYWxTdXBlckILCglfaGVhbHRvTVBC",
+            "EAoOX3NraWxsRGFtYWdlVXBCCwoJX21wTWF4U3ViQg4KDF9hZGRCbGVlZGlu",
+            "Z0INCgtfZG91YmxlUHJvY0IOCgxfaWdub3JlQXJtb3JCCgoIX2V4ZWN1dGVC",
+            "DAoKX3JldGFpbkFUS0IRCg9fcmVmbGVjdFBlcmNlbnRCEAoOX21hZ2ljSW1t",
+            "dW5pdHlCCwoJX2FybW9yQVRLQhEKD19pbW11bml0eURlQnVmZkIOCgxfZnJl",
+            "ZXplQXJtb3JCDwoNX3JlbW92ZURlQnVmZkIOCgxfb3ZlckhlYWxBVEtCDAoK",
+            "X2hlYWxUb0RNR0IMCgpfaGVhbEJvb3N0QgoKCF9yZWJpcnRoQhQKEl9jb252",
+            "ZXJzaW9uRGVjbGluZUILCglfbVBSZWZ1bmRCCQoHX21QQnVybkINCgtfbVBN",
+            "YXhMb3dlckINCgtfZG91YmxlQ2FzdEIOCgxfcnRIdXJ0VmFsdWVCDwoNX3J0",
+            "TWFnaWNWYWx1ZUIVChNfcnRGcmVlemVBcm1vclZhbHVlIs8CCglBc3NldElu",
+            "Zm8SEgoFc3RhdGUYASABKAVIAIgBARIOCgZwb2tlcnMYAiADKAUSDQoFY2Fy",
+            "ZHMYAyADKAUSDwoCaHAYBCABKAJIAYgBARISCgVtYXhIUBgFIAEoAkgCiAEB",
+            "EhIKBW1hZ2ljGAYgASgCSAOIAQESFQoIbWF4TWFnaWMYByABKAJIBIgBARIT",
+            "CgZhdHRhY2sYCCABKAJIBYgBARIUCgdkZWZlbnNlGAkgASgCSAaIAQESEwoG",
+            "aXNGaWxwGAogASgFSAeIAQESIQoFZXh0cmEYCyABKAsyDS5wYi5FeHRyYUlu",
+            "Zm9ICIgBAUIICgZfc3RhdGVCBQoDX2hwQggKBl9tYXhIUEIICgZfbWFnaWNC",
+            "CwoJX21heE1hZ2ljQgkKB19hdHRhY2tCCgoIX2RlZmVuc2VCCQoHX2lzRmls",
+            "cEIICgZfZXh0cmEiwgEKBUZpZ2h0EhEKCXBva2VyUGlsZRgBIAMoBRIkCghu",
+            "cGNBc3NldBgCIAEoCzINLnBiLkFzc2V0SW5mb0gAiAEBEicKC3BsYXllckFz",
+            "c2V0GAMgASgLMg0ucGIuQXNzZXRJbmZvSAGIAQESEgoFc3RhdGUYBCABKAVI",
+            "AogBARISCgVyb3VuZBgFIAEoBUgDiAEBQgsKCV9ucGNBc3NldEIOCgxfcGxh",
+            "eWVyQXNzZXRCCAoGX3N0YXRlQggKBl9yb3VuZCLwAQoMQXNzZW1ibGVDYXJk",
+            "EhYKCXRyaWdnZXJJZBgBIAEoBUgAiAEBEhkKDGJhc2VFZmZlY3RJZBgCIAEo",
+            "BUgBiAEBEh0KEGFkdmFuY2VkRWZmZWN0SWQYAyABKAVIAogBARIaCg10cmln",
+            "Z2VyTnVtYmVyGAQgASgFSAOIAQESGgoNdXBncmFkZU51bWJlchgFIAEoBUgE",
+            "iAEBQgwKCl90cmlnZ2VySWRCDwoNX2Jhc2VFZmZlY3RJZEITChFfYWR2YW5j",
+            "ZWRFZmZlY3RJZEIQCg5fdHJpZ2dlck51bWJlckIQCg5fdXBncmFkZU51bWJl",
+            "ciKEAQoHSW1wcmludBIbCg5hc3NlbWJsZU9iamVjdBgBIAEoBUgAiAEBEiIK",
+            "CG5wY0NhcmRzGAIgAygLMhAucGIuQXNzZW1ibGVDYXJkEiUKC3BsYXllckNh",
+            "cmRzGAMgAygLMhAucGIuQXNzZW1ibGVDYXJkQhEKD19hc3NlbWJsZU9iamVj",
+            "dCL4AgoIR2FtZURhdGESFQoIaW5pdFNlZWQYASABKAVIAIgBARIWCglnYW1l",
+            "U3RhdGUYAiABKAVIAYgBARIWCglwYWdlSW5kZXgYAyABKAVIAogBARIfCgZw",
+            "bGF5ZXIYBCABKAsyCi5wYi5QbGF5ZXJIA4gBARIhCgdiYXJyaWVyGAUgASgL",
+            "MgsucGIuQmFycmllckgEiAEBEhsKBHNob3AYBiABKAsyCC5wYi5TaG9wSAWI",
+            "AQESHQoFZmlnaHQYByABKAsyCS5wYi5GaWdodEgGiAEBEiEKB2ltcHJpbnQY",
+            "CCABKAsyCy5wYi5JbXByaW50SAeIAQESIwoLZGVmZWF0Um9sZXMYCSADKAsy",
+            "Di5wYi5EZWZlYXRSb2xlQgsKCV9pbml0U2VlZEIMCgpfZ2FtZVN0YXRlQgwK",
+            "Cl9wYWdlSW5kZXhCCQoHX3BsYXllckIKCghfYmFycmllckIHCgVfc2hvcEII",
+            "CgZfZmlnaHRCCgoIX2ltcHJpbnQingEKDEdhbWVQcm9wZXJ0eRIhCgdhY2Nv",
+            "dW50GAEgASgLMgsucGIuQWNjb3VudEgAiAEBEiEKB3NldHRpbmcYAiABKAsy",
+            "Cy5wYi5TZXR0aW5nSAGIAQESIwoIZ2FtZURhdGEYAyABKAsyDC5wYi5HYW1l",
+            "RGF0YUgCiAEBQgoKCF9hY2NvdW50QgoKCF9zZXR0aW5nQgsKCV9nYW1lRGF0",
+            "YWIGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
@@ -122,7 +124,7 @@ namespace Pb {
             new pbr::GeneratedClrTypeInfo(typeof(global::Pb.DefeatRole), global::Pb.DefeatRole.Parser, new[]{ "Id", "Diff" }, new[]{ "Id", "Diff" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Pb.Barrier), global::Pb.Barrier.Parser, new[]{ "PokerPile", "NpcPokers", "PlayerPokers", "OtherPokers", "State", "MatchPointA", "MatchPointB", "PokerPosX", "PokerPosY", "FinalPoint", "Blackjack", "ChapterId", "BarrierId", "RefreshNpcPokerNum", "RefreshPlayerPokerNum" }, new[]{ "State", "MatchPointA", "MatchPointB", "PokerPosX", "PokerPosY", "FinalPoint", "Blackjack", "ChapterId", "BarrierId", "RefreshNpcPokerNum", "RefreshPlayerPokerNum" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Pb.Shop), global::Pb.Shop.Parser, new[]{ "Goods", "Purchased" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Pb.ExtraInfo), global::Pb.ExtraInfo.Parser, new[]{ "MultATK", "AddCrit", "ReflectDMG", "BonusArmor", "TemporaryArmor", "LifeSteal", "HealOverTime", "HealSuper", "HealtoMP", "SkillDamageUp", "MpRegen", "MpMaxSub", "AddBleeding", "DoubleProc", "IgnoreArmor", "Execute", "RetainATK", "ReflectPercent", "MagicImmunity", "ArmorATK", "ImmunityDeBuff", "FreezeArmor", "RemoveDeBuff", "OverHealATK", "HealToDMG", "HealBoost", "Rebirth", "ConversionDecline", "MPRefund", "MPBurn", "MPMaxLower", "DoubleCast", "RtHurtValue", "RtMagicValue" }, new[]{ "MultATK", "AddCrit", "ReflectDMG", "BonusArmor", "TemporaryArmor", "LifeSteal", "HealSuper", "HealtoMP", "SkillDamageUp", "MpMaxSub", "AddBleeding", "DoubleProc", "IgnoreArmor", "Execute", "RetainATK", "ReflectPercent", "MagicImmunity", "ArmorATK", "ImmunityDeBuff", "FreezeArmor", "RemoveDeBuff", "OverHealATK", "HealToDMG", "HealBoost", "Rebirth", "ConversionDecline", "MPRefund", "MPBurn", "MPMaxLower", "DoubleCast", "RtHurtValue", "RtMagicValue" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Pb.ExtraInfo), global::Pb.ExtraInfo.Parser, new[]{ "MultATK", "AddCrit", "ReflectDMG", "BonusArmor", "TemporaryArmor", "LifeSteal", "HealOverTime", "HealSuper", "HealtoMP", "SkillDamageUp", "MpRegen", "MpMaxSub", "AddBleeding", "DoubleProc", "IgnoreArmor", "Execute", "RetainATK", "ReflectPercent", "MagicImmunity", "ArmorATK", "ImmunityDeBuff", "FreezeArmor", "RemoveDeBuff", "OverHealATK", "HealToDMG", "HealBoost", "Rebirth", "ConversionDecline", "MPRefund", "MPBurn", "MPMaxLower", "DoubleCast", "RtHurtValue", "RtMagicValue", "RtFreezeArmorValue" }, new[]{ "MultATK", "AddCrit", "ReflectDMG", "BonusArmor", "TemporaryArmor", "LifeSteal", "HealSuper", "HealtoMP", "SkillDamageUp", "MpMaxSub", "AddBleeding", "DoubleProc", "IgnoreArmor", "Execute", "RetainATK", "ReflectPercent", "MagicImmunity", "ArmorATK", "ImmunityDeBuff", "FreezeArmor", "RemoveDeBuff", "OverHealATK", "HealToDMG", "HealBoost", "Rebirth", "ConversionDecline", "MPRefund", "MPBurn", "MPMaxLower", "DoubleCast", "RtHurtValue", "RtMagicValue", "RtFreezeArmorValue" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Pb.AssetInfo), global::Pb.AssetInfo.Parser, new[]{ "State", "Pokers", "Cards", "Hp", "MaxHP", "Magic", "MaxMagic", "Attack", "Defense", "IsFilp", "Extra" }, new[]{ "State", "Hp", "MaxHP", "Magic", "MaxMagic", "Attack", "Defense", "IsFilp", "Extra" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Pb.Fight), global::Pb.Fight.Parser, new[]{ "PokerPile", "NpcAsset", "PlayerAsset", "State", "Round" }, new[]{ "NpcAsset", "PlayerAsset", "State", "Round" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Pb.AssembleCard), global::Pb.AssembleCard.Parser, new[]{ "TriggerId", "BaseEffectId", "AdvancedEffectId", "TriggerNumber", "UpgradeNumber" }, new[]{ "TriggerId", "BaseEffectId", "AdvancedEffectId", "TriggerNumber", "UpgradeNumber" }, null, null, null),
@@ -2840,6 +2842,7 @@ namespace Pb {
       doubleCast_ = other.doubleCast_;
       rtHurtValue_ = other.rtHurtValue_;
       rtMagicValue_ = other.rtMagicValue_;
+      rtFreezeArmorValue_ = other.rtFreezeArmorValue_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -3837,6 +3840,36 @@ namespace Pb {
       _hasBits0 &= ~-2147483648;
     }
 
+    /// <summary>Field number for the "rtFreezeArmorValue" field.</summary>
+    public const int RtFreezeArmorValueFieldNumber = 1003;
+    private readonly static float RtFreezeArmorValueDefaultValue = 0F;
+
+    private float rtFreezeArmorValue_;
+    /// <summary>
+    ///消耗的护甲
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public float RtFreezeArmorValue {
+      get { if ((_hasBits1 & 1) != 0) { return rtFreezeArmorValue_; } else { return RtFreezeArmorValueDefaultValue; } }
+      set {
+        _hasBits1 |= 1;
+        rtFreezeArmorValue_ = value;
+      }
+    }
+    /// <summary>Gets whether the "rtFreezeArmorValue" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasRtFreezeArmorValue {
+      get { return (_hasBits1 & 1) != 0; }
+    }
+    /// <summary>Clears the value of the "rtFreezeArmorValue" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearRtFreezeArmorValue() {
+      _hasBits1 &= ~1;
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override bool Equals(object other) {
@@ -3886,6 +3919,7 @@ namespace Pb {
       if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(DoubleCast, other.DoubleCast)) return false;
       if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(RtHurtValue, other.RtHurtValue)) return false;
       if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(RtMagicValue, other.RtMagicValue)) return false;
+      if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(RtFreezeArmorValue, other.RtFreezeArmorValue)) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -3927,6 +3961,7 @@ namespace Pb {
       if (HasDoubleCast) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(DoubleCast);
       if (HasRtHurtValue) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(RtHurtValue);
       if (HasRtMagicValue) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(RtMagicValue);
+      if (HasRtFreezeArmorValue) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(RtFreezeArmorValue);
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -4075,6 +4110,10 @@ namespace Pb {
         output.WriteRawTag(213, 62);
         output.WriteFloat(RtMagicValue);
       }
+      if (HasRtFreezeArmorValue) {
+        output.WriteRawTag(221, 62);
+        output.WriteFloat(RtFreezeArmorValue);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -4215,6 +4254,10 @@ namespace Pb {
         output.WriteRawTag(213, 62);
         output.WriteFloat(RtMagicValue);
       }
+      if (HasRtFreezeArmorValue) {
+        output.WriteRawTag(221, 62);
+        output.WriteFloat(RtFreezeArmorValue);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -4321,6 +4364,9 @@ namespace Pb {
         size += 2 + 4;
       }
       if (HasRtMagicValue) {
+        size += 2 + 4;
+      }
+      if (HasRtFreezeArmorValue) {
         size += 2 + 4;
       }
       if (_unknownFields != null) {
@@ -4432,6 +4478,9 @@ namespace Pb {
       }
       if (other.HasRtMagicValue) {
         RtMagicValue = other.RtMagicValue;
+      }
+      if (other.HasRtFreezeArmorValue) {
+        RtFreezeArmorValue = other.RtFreezeArmorValue;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -4590,6 +4639,10 @@ namespace Pb {
             RtMagicValue = input.ReadFloat();
             break;
           }
+          case 8029: {
+            RtFreezeArmorValue = input.ReadFloat();
+            break;
+          }
         }
       }
     #endif
@@ -4745,6 +4798,10 @@ namespace Pb {
           }
           case 8021: {
             RtMagicValue = input.ReadFloat();
+            break;
+          }
+          case 8029: {
+            RtFreezeArmorValue = input.ReadFloat();
             break;
           }
         }
