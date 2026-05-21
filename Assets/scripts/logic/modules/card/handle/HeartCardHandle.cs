@@ -6,7 +6,7 @@ public class HeartCardHandle: CardHandleObject
         PokerSuit suit = (PokerSuit)para.getPoker().getSuit();
         if (suit == PokerSuit.heart)
         { //����
-            float addValue = getNumberDigits(para.getBaseValue() * 0.2f);
+            float addValue = (para.getBaseValue() * 0.2f);
             float finalValue = para.getAttackUser().addBlood(addValue);
             IUIFlyFontPara uiPara1 = new UIFlyFontParaObject(para.getAttackUser(), para.getCard(), "����+" + addValue);
             GameMessage.Instance.addMsg(GameConst.FLYFONT, uiPara1);

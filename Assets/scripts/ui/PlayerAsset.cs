@@ -154,6 +154,7 @@ public class PlayerAsset : MonoBehaviour
         GameObject cardObject = Instantiate(this.cartPartPrefab, this.cards);
         cardObject.GetComponent<CardPart>().loadPartImage(card.getTrigger());
         cardObject.GetComponent<CardPart>().setAssembleCard(card);
+        cardObject.GetComponent<CardPart>().setUser(this._user);
         cardObject.transform.position = cardChild.position;
         cardObject.transform.localScale = new Vector3(0.7f, 0.7f, 0.7f);
         cardChild.SetParent(null);

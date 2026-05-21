@@ -37,7 +37,7 @@ public class GameUtils
             {
                 value *= 100;
             }
-            return desc.Replace("%s", value.ToString());
+            return desc.Replace("%s", "<color=red>"+value+"</color>");
         }
         else
         {

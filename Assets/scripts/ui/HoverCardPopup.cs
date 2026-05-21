@@ -8,6 +8,7 @@ public class HoverCardPopup : HoverBasePopup
         if (cardPartPopup != null) {
             CardPart cardPart = this.gameObject.GetComponent<CardPart>();
             if (cardPart != null){
+                cardPartPopup.setUser(cardPart.getUser());
                 cardPartPopup.loadPartInfo(cardPart.getPartInfo());
                 cardPartPopup.setAssembleCard(cardPart.getAssembleCard());
                 return true;

@@ -7,7 +7,7 @@ public class DiamondCardHandle : CardHandleObject
         if (suit == PokerSuit.diamond)
         { //����
             
-            float addValue = getNumberDigits(para.getBaseValue() * getNumber());
+            float addValue = (para.getBaseValue() * getNumber());
             float finalValue = para.getAttackUser().addDefense(addValue);
 
             IUIFlyFontPara uiPara1 = new UIFlyFontParaObject(para.getAttackUser(), para.getCard(), "����+" + addValue);

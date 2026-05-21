@@ -7,6 +7,7 @@ public class CardPart : MonoBehaviour
     public GameObject partImage;
     private IPart _partInfo;
     private IAssembleCard _card;
+    private IUser _user;
 
     // Start is called before the first frame update
     void Start()
@@ -47,5 +48,13 @@ public class CardPart : MonoBehaviour
 
     public IAssembleCard getAssembleCard() { 
         return this._card;
+    }
+
+    public void setUser(IUser user) {
+        this._user = user;
+    }
+
+    public IUser getUser() {
+        return this._user;
     }
 }   

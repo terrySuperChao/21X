@@ -1,9 +1,11 @@
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class CardPartPopup : MonoBehaviour
 {
+    private IUser _user;
     public Text partName;
     // Start is called before the first frame update
     void Start()
@@ -22,6 +24,10 @@ public class CardPartPopup : MonoBehaviour
         
     }
 
+    public void setUser(IUser user) {
+        this._user = user;
+    }
+
     public void loadPartInfo(IPart partInfo) {
         if (partInfo != null)
         {
@@ -29,15 +35,15 @@ public class CardPartPopup : MonoBehaviour
         }
     }
 
-    public void setAssembleCard(IAssembleCard card) {
-        if (card == null) {
+    public void setAssembleCard(IAssembleCard assembleCard) {
+        if (assembleCard == null) {
             return;
         }
 
         string str = "";
-        IPart trigger = card.getTrigger();
-        IPart baseEffect = card.getBaseEffect();
-        IPart advanceEffect = card.getAdvancedEffect();
+        IPart trigger = assembleCard.getTrigger();
+        IPart baseEffect = assembleCard.getBaseEffect();
+        IPart advanceEffect = assembleCard.getAdvancedEffect();
         if (trigger != null) {
             str += string.Format("{0}\n{1}\n", trigger.getName(), trigger.getDesc());
         }
@@ -48,8 +54,29 @@ public class CardPartPopup : MonoBehaviour
 
         if (advanceEffect != null)
         {
-            str += string.Format("{0}\n{1}\n", advanceEffect.getName(), advanceEffect.getDesc());
+            if (advanceEffect.getId() == 0) {
+                List<IAssembleCard> cards = FightPokerMgr.Instance.getUserAssembleCards(this._user);
+                int index = cards.FindIndex(card => card == assembleCard);
+                switch (index)
+                {
+                    case 0:
+                        str += string.Format("解锁：触发<color=red>{0}</color>/{1}次数\n",assembleCard.getTriggerNumber(), assembleCard.getUpgradeNumber());
+                        break;
+                    case 1:
+                        str += string.Format("解锁：触发<color=red>blackJock</color>\n");
+                        break;
+                    case 2:
+                        str += string.Format("解锁：触发<color=red>魔法技能</color>\n");
+                        break;
+                }
+            }
+            else
+            {
+                str += string.Format("{0}\n{1}\n", advanceEffect.getName(), advanceEffect.getDesc());
+            }            
         }
+
+        
 
         this.partName.text = str;
     }

@@ -1,4 +1,4 @@
-//¿ñÕ½Ê¿Ö®Å­
+//ï¿½ï¿½Õ½Ê¿Ö®Å­
 
 public class BerserkerHandle : CardHandleObject
 {
@@ -6,7 +6,7 @@ public class BerserkerHandle : CardHandleObject
     override
     protected void _roundAttackBeforeHandle(ICardHandlePara para)
     {
-        _saveAttackValue = getNumberDigits(para.getAttackUser().getAttack() * getNumber() / 100.0f);
+        _saveAttackValue = GameUtils.getNumberDigits(para.getAttackUser().getAttack() * getNumber() / 100.0f);
         if (_saveAttackValue >= 0.1f)
         {
             para.getRoundResult().setSaveAttackValue(_saveAttackValue);
@@ -16,7 +16,7 @@ public class BerserkerHandle : CardHandleObject
     override
     protected void _roundAttackHandle(ICardHandlePara para) {
         if (_saveAttackValue >= 0.1f) {
-            IUIFlyFontPara uiPara1 = new UIFlyFontParaObject(para.getAttackUser(), para.getCard(), "¹¥»÷Á¦±£Áô"+ getNumber() + "%");
+            IUIFlyFontPara uiPara1 = new UIFlyFontParaObject(para.getAttackUser(), para.getCard(), "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½"+ getNumber() + "%");
             GameMessage.Instance.addMsg(GameConst.FLYFONT, uiPara1);
 
             lossBlood(para);

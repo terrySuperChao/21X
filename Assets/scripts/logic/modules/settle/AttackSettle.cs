@@ -1,5 +1,3 @@
-using Pb;
-
 public class AttackSettle: IAttackSettle
 {
     public void settle(ITriggerHandlePara para) {

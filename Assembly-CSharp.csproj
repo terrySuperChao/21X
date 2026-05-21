@@ -71,9 +71,11 @@
     <Compile Include="Assets/scripts/logic/modules/settle/SpecialSettle.cs" />
     <Compile Include="Assets/scripts/logic/modules/card/advancedEffectHandle/AddBleedingHandle.cs" />
     <Compile Include="Assets/scripts/logic/modules/pokerPile/BasePokerPile.cs" />
+    <Compile Include="Assets/scripts/logic/modules/card/advancedEffectHandle/OverHealATKHandle.cs" />
     <Compile Include="Assets/scripts/logic/modules/card/advancedEffectHandle/ExecuteHandle.cs" />
     <Compile Include="Assets/scripts/logic/modules/card/baseEffectHandle/AddArmorHandle.cs" />
     <Compile Include="Assets/scripts/logic/modules/card/baseEffectHandle/AddCritHandle.cs" />
+    <Compile Include="Assets/scripts/logic/modules/card/advancedEffectHandle/RemoveDeBuffHandle.cs" />
     <Compile Include="Assets/scripts/logic/modules/game/RandomMgr.cs" />
     <Compile Include="Assets/scripts/logic/modules/card/triggerHandle/SettlementIncludePokerHandle.cs" />
     <Compile Include="Assets/scripts/logic/modules/card/UICommonParaObject.cs" />
@@ -125,6 +127,7 @@
     <Compile Include="Assets/scripts/logic/modules/card/IUIFlyFontPara.cs" />
     <Compile Include="Assets/scripts/logic/modules/game/BarrierDataMgr.cs" />
     <Compile Include="Assets/scripts/logic/modules/card/handle/DiamondCardHandle.cs" />
+    <Compile Include="Assets/scripts/logic/modules/card/advancedEffectHandle/FreezeArmorHandle.cs" />
     <Compile Include="Assets/scripts/ui/SettingView.cs" />
     <Compile Include="Assets/scripts/logic/modules/pokerPile/BarrierPokerPile.cs" />
     <Compile Include="Assets/scripts/logic/modules/pokerPile/PokerPileMgr.cs" />
@@ -137,6 +140,7 @@
     <Compile Include="Assets/scripts/logic/modules/card/UIFlyFontParaObject.cs" />
     <Compile Include="Assets/scripts/logic/data/IPoker.cs" />
     <Compile Include="Assets/scripts/logic/modules/card/handle/ExplosiveShieldHandle.cs" />
+    <Compile Include="Assets\scripts\logic\modules\card\advancedEffectHandle\HealToDMGHandle.cs" />
     <Compile Include="Assets/scripts/ui/PopView.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/Benchmark04.cs" />
     <Compile Include="Assets/scripts/ui/AlertView.cs" />
@@ -297,10 +301,6 @@
     <Compile Include="Assets/conframework/ui/ViewConst.cs" />
     <Compile Include="Assets/scripts/logic/modules/card/handle/MagickaHandle.cs" />
     <Compile Include="Assets/scripts/ui/HoverBasePopup.cs" />
-    <Compile Include="Assets\scripts\logic\modules\card\advancedEffectHandle\FreezeArmorHandle.cs" />
-    <Compile Include="Assets\scripts\logic\modules\card\advancedEffectHandle\RemoveDeBuffHandle.cs" />
-    <Compile Include="Assets\scripts\logic\modules\card\advancedEffectHandle\OverHealATKHandle.cs" />
-    <Compile Include="Assets\scripts\logic\modules\card\advancedEffectHandle\OverHealATKHandle %28复制%29.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets/TextMesh Pro/Shaders/TMPro.cginc" />

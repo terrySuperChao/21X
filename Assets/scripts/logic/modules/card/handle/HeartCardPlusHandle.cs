@@ -7,7 +7,7 @@ public class HeartCardPlusHandle : HeartCardHandle
         if (suit == PokerSuit.heart)
         { //����
             float addDefense = 0;
-            float addValue = getNumberDigits(para.getBaseValue() * 0.5f);
+            float addValue = (para.getBaseValue() * 0.5f);
             if (para.getAttackUser().getBlood() + addValue >= para.getAttackUser().getMaxBlood())
             {
                 addDefense = para.getAttackUser().getBlood() + addValue - para.getAttackUser().getMaxBlood();
