@@ -365,9 +365,10 @@ public class PlayerAsset : MonoBehaviour
             yield return 0;
         }
 
+        float addValue = GameUtils.getNumberDigits(para.getValue());
         Text addText = Instantiate(textChild, rootTransform);
         addText.transform.position = textChild.transform.position;
-        addText.text = para.getText();
+        addText.text = "+" + addValue;
         addText.color = Color.green;
 
         Vector3 localPos = addText.transform.localPosition;
@@ -396,11 +397,12 @@ public class PlayerAsset : MonoBehaviour
             yield return 0;
         }
 
-        bool bl = para.getValue() > 0;
+        float addValue = GameUtils.getNumberDigits(para.getValue());
+        bool bl = addValue > 0;
 
         Text addText = Instantiate(text, rootTransform);
         addText.transform.position = text.transform.position;
-        addText.text = ((bl ? "+" : "") + para.getValue());
+        addText.text = ((bl ? "+" : "") + addValue);
         addText.color = (bl ? Color.green : Color.red);
         Vector3 localPos = addText.transform.localPosition;
         this.moveTo(addText.gameObject, new Vector3(localPos.x, localPos.y + ((bl ? 1 : -1) * 50.0f), localPos.z));
@@ -456,10 +458,9 @@ public class PlayerAsset : MonoBehaviour
         }
     }
 
-    private string getFinalContent(ValueType type, float value)
+    private string getFinalContent(ValueType type, float finalValue)
     {
         float maxValue = -1;
-        float finalValue = (float)Math.Round((value * 10 + 0.5) / 10, 1);
         switch (type)
         {
             case ValueType.defense: // 方

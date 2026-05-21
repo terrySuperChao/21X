@@ -48,7 +48,6 @@ public class GameUtils
     //保留一位小数，四舍五入
     public static float getNumberDigits(float number)
     {
-        return number;
-        //return (float)Math.Round((number * 10 + 0.5) / 10, 1);
+        return (float)Math.Round((number * 10 + 0.5) / 10, 1);
     }
 }

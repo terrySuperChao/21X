@@ -41,8 +41,6 @@ public class GameBloodMgr : Singleton<GameBloodMgr>
         float blood = defenseUser.getBlood();
         float bloodValue = 0;
 
-        attack = GameUtils.getNumberDigits(attack);
-
         if (attack > blood)
         {
             bloodValue = blood;

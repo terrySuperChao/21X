@@ -2,15 +2,17 @@ public class UIPokerPara : IUIPokerPara
 {
     private IUser _user;
     private IPoker _poker;
+    private float _value;
     private float _finalValue;
-    private string _text;
+    private float _mult;
     
-    public UIPokerPara(IUser user, IPoker poker, float finalValue, string text)
+    public UIPokerPara(IUser user, IPoker poker,float value, float finalValue, float mult)
     {
-        _user = user;
-        _poker = poker;
-        _finalValue = finalValue;
-        _text = text;
+        this._user = user;
+        this._poker = poker;
+        this._value = value;
+        this._finalValue = finalValue;
+        this._mult = mult;
     }
 
     public IUser getUser()
@@ -23,13 +25,17 @@ public class UIPokerPara : IUIPokerPara
         return _poker;
     }
 
+    public float getValue() {
+        return this._value;
+    }
+
     public float getFinalValue()
     {
         return _finalValue;
     }
 
-    public string getText()
+    public float getMult()
     {
-        return _text;
+        return this._mult;
     }
 }

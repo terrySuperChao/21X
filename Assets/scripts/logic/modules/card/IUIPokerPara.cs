@@ -2,6 +2,7 @@ public interface IUIPokerPara
 {
     public IUser getUser();
     public IPoker getPoker();
+    public float getValue();
     public float getFinalValue();
-    public string getText();
+    public float getMult();
 }

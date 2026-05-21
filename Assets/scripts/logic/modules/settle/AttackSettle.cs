@@ -26,9 +26,8 @@ public class AttackSettle: IAttackSettle
         }
 
         float multATK = attackUser.getExtraInfo().getMultATK();
-        float attackN = attackUser.getAttack() * (1 + multATK + addCrit);
-        float attack = GameUtils.getNumberDigits(attackN);
-
+        float attack = attackUser.getAttack() * (1 + multATK + addCrit);
+        
         //保留
         float retainATK = attackUser.getExtraInfo().getRetainATK();
         if (addCrit > 0){
@@ -45,7 +44,7 @@ public class AttackSettle: IAttackSettle
             attackUser.getExtraInfo().clearExecute();
         }
 
-        attackUser.setAttack(GameUtils.getNumberDigits(attack * retainATK));
+        attackUser.setAttack(attack * retainATK);
         attackUser.getExtraInfo().setRtHurtValue(attack);
         
         IUICommonPara attackPara = new UICommonParaObject(attackUser, ValueType.attack, attack, attackUser.getAttack());
@@ -128,7 +127,7 @@ public class AttackSettle: IAttackSettle
             //减去50血量
             float attack = 50.0f;
             float skillDamageUp = attackUser.getExtraInfo().getSkillDamageUp();
-            float remainAttack = GameUtils.getNumberDigits(attack * (1 + skillDamageUp));
+            float remainAttack = attack * (1 + skillDamageUp);
             attackUser.getExtraInfo().setRtHurtValue(remainAttack);
 
             GameBloodMgr.Instance.lessBloodHandle(para.getAttackUser(), para.getDefenseUser(), remainAttack);

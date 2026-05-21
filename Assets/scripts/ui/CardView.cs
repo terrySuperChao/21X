@@ -519,7 +519,7 @@ public class CardView : MonoBehaviour
         {
             Text addText = Instantiate(text, rootTransform);
             addText.transform.position = text.transform.position;
-            addText.text = para.getText();
+            addText.text = para.getValue().ToString();
             addText.color = Color.green;
 
             Vector3 localPos = addText.transform.localPosition;

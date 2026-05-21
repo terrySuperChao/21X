@@ -69,11 +69,11 @@ public class UserObject : IUser
     }
 
     public void setBlood(float value) {
-        this._blood = value;
+        this._blood = GameUtils.getNumberDigits(value);
     }
 
     public void setMaxBlood(float value) {
-        this._maxBlood = value;
+        this._maxBlood = GameUtils.getNumberDigits(value);
     }
 
     public float getMaxBlood() {
@@ -83,7 +83,7 @@ public class UserObject : IUser
     public float addBlood(float value) {
         this._blood += value;
         this._blood = this._blood > this._maxBlood ? this._maxBlood : this._blood;
-        this._blood = this._blood < 0 ? 0 : this._blood;
+        this._blood = this._blood < 0 ? 0 : GameUtils.getNumberDigits(this._blood);
         return this._blood;
     }
 
@@ -92,11 +92,11 @@ public class UserObject : IUser
     }
 
     public void setAttack(float value) {
-        this._attack = value;
+        this._attack = GameUtils.getNumberDigits(value);
     }
     public float addAttack(float value) {
         this._attack += value;
-        this._attack = this._attack < 0 ? 0 : this._attack;
+        this._attack = this._attack < 0 ? 0 : GameUtils.getNumberDigits(this._attack);
         return _attack;
     }
     public float getAttack() {
@@ -104,12 +104,12 @@ public class UserObject : IUser
     }
 
     public void setDefense(float value) {
-        this._defense = value;
+        this._defense = GameUtils.getNumberDigits(value);
     }
 
     public float addDefense(float value) {
         this._defense += value;
-        this._defense = this._defense < 0 ? 0 : this._defense;
+        this._defense = this._defense < 0 ? 0 : GameUtils.getNumberDigits(this._defense);
         return _defense;
     }
 
@@ -118,7 +118,7 @@ public class UserObject : IUser
     }
 
     public void setMaxMagic(float value) {
-        this._maxMagic = value;
+        this._maxMagic = GameUtils.getNumberDigits(value);
     }
 
     public float getMaxMagic() {
@@ -128,13 +128,13 @@ public class UserObject : IUser
     public float addMagic(float value) {
         this._magic += value;
         this._magic = this._magic > this._maxMagic ? this._maxMagic : this._magic;
-        this._magic = this._magic < 0 ? 0 : this._magic;
+        this._magic = this._magic < 0 ? 0 : GameUtils.getNumberDigits(this._magic);
         return _magic;
     }
 
     public void setMagic(float value)
     {
-        this._magic = value;
+        this._magic = GameUtils.getNumberDigits(value);
     }
 
     public float getMagic() {

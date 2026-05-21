@@ -17,12 +17,12 @@ public class SuitSettle : ISuitSettle
         float attrMult = para.getRoundResult(para.getAttackUser()).getAttributeMult();
         float addValue = baseValue * attrMult * this._getMult();
         float finalValue = this._getFinalValue(para.getAttackUser(), addValue);
-        string text = "+" + (baseValue * this._getMult()) + (attrMult > 1.0f ? " X " + attrMult : "");
-
+        float showValue = baseValue * this._getMult();
+       
         para.setPoker(poker);
         para.setBaseValue(addValue);
 
-        IUIPokerPara pokerPara = new UIPokerPara(para.getAttackUser(), poker, finalValue, text);
+        IUIPokerPara pokerPara = new UIPokerPara(para.getAttackUser(), poker, showValue, finalValue, this._getMult());
         GameMessage.Instance.addMsg(GameConst.ADDPOKERVALUE, pokerPara);
         
         this._settle(para, poker, baseValue);
