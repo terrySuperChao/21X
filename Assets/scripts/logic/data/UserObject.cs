@@ -121,6 +121,11 @@ public class UserObject : IUser
         this._maxMagic = GameUtils.getNumberDigits(value);
     }
 
+    public void addMaxMagic(float value){
+        this._maxMagic += value;
+        this._maxMagic = this._maxMagic < 0 ? 0 : this._maxMagic;
+    }
+
     public float getMaxMagic() {
         return this._maxMagic;
     }

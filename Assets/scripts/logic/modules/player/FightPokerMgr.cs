@@ -22,6 +22,7 @@ public class FightPokerMgr : Singleton<FightPokerMgr>
         extra.setMultATK(info.Extra.MultATK);
         extra.setAddCrit(info.Extra.AddCrit);
         extra.setBonusArmor(info.Extra.BonusArmor);
+        extra.setReflectDMG(info.Extra.ReflectDMG);
         extra.setTemporaryArmor(info.Extra.TemporaryArmor);
         extra.setLifeSteal(info.Extra.LifeSteal);
         extra.setHealToMP(info.Extra.HealtoMP);
@@ -76,6 +77,7 @@ public class FightPokerMgr : Singleton<FightPokerMgr>
         info.Extra.MultATK = user.getExtraInfo().getMultATK();
         info.Extra.AddCrit = user.getExtraInfo().getAddCrit();
         info.Extra.BonusArmor = user.getExtraInfo().getBonusArmor();
+        info.Extra.ReflectDMG = user.getExtraInfo().getReflectDMG();
         info.Extra.TemporaryArmor = user.getExtraInfo().getTemporaryArmor();
         info.Extra.LifeSteal = user.getExtraInfo().getLifeSteal();
         info.Extra.HealtoMP = user.getExtraInfo().getHealToMP();
@@ -234,6 +236,11 @@ public class FightPokerMgr : Singleton<FightPokerMgr>
             case FightFlowState.fightSettle: 
                 {
                     this.fightSettle();
+                }
+                break;
+            case FightFlowState.fightOver:
+                {
+                    GameMessage.Instance.addMsg(GameConst.GAMEOVER);
                 }
                 break;
         }

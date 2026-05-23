@@ -11,6 +11,23 @@ public class GameBloodMgr : Singleton<GameBloodMgr>
             if (addValue > 0)
             {
                 this.addBloodHandle(user,addValue);
+                user.getExtraInfo().lessHealOverTime();
+            }
+        }
+    }
+
+    public void addMagicHandle(List<IUser> users)
+    {
+        for (int i = 0; i < users.Count; i++)
+        {
+            IUser user = users[i];
+            float addValue = user.getExtraInfo().getMpRegen();
+            if (addValue > 0)
+            {
+                user.addMagic(addValue);
+                IUICommonPara paraPara = new UICommonParaObject(user, ValueType.magic, addValue, user.getMagic());
+                GameMessage.Instance.addMsg(GameConst.ADDCARDVALUE, paraPara);
+                user.getExtraInfo().lessMpRegen();
             }
         }
     }

@@ -176,7 +176,10 @@ public class PlayerAsset : MonoBehaviour
     private void removeBuff(BuffType buffType) {
         for (int i = 0; i < this.buffs.childCount; i++) {
             if (this.buffs.GetChild(i).GetComponent<BuffPart>().getBuffType() == buffType) {
-                Destroy(this.buffs.GetChild(i).gameObject);
+                GameObject buffObject = this.buffs.GetChild(i).gameObject;
+                HoverBuffPopup hover = buffObject.AddComponent<HoverBuffPopup>();
+                hover.popup = null;
+                Destroy(buffObject);
                 break;
             }
         }
@@ -351,7 +354,7 @@ public class PlayerAsset : MonoBehaviour
     private IEnumerator addPokerValueHandle(params System.Object[] obj)
     {
         IUIPokerPara para = (IUIPokerPara)obj[0];
-        PokerSuit suit = (PokerSuit)para.getPoker().getSuit();
+        PokerSuit suit = para.getPoker().getSuit();
         ValueType valueType = GameUtils.SuitTransformValueType(suit);
         int indexType = (int)valueType;
         if (this._texts.Count <= indexType) {

@@ -12,7 +12,7 @@ public class TemporaryArmorHandle : BaseEffectHandleObject
         float defense = para.getAttackUser().getDefense();
         addValue *= defense;
         para.getAttackUser().getExtraInfo().setTemporaryArmor(addValue);
-        para.getAttackUser().setDefense(addValue);
+        para.getAttackUser().addDefense(addValue);
 
         IUICommonPara attackPara = new UICommonParaObject(para.getAttackUser(), ValueType.defense, addValue, para.getAttackUser().getDefense());
         GameMessage.Instance.addMsg(GameConst.ADDCARDVALUE, attackPara);

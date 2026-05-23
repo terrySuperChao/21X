@@ -233,6 +233,8 @@ public enum BuffType {
     mpRegen,
     addCrit,
     temporaryArmor,
+    healOverTime,
+    addMPPer,
     //进阶
     addBleeding,
     doubleProc,

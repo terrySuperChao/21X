@@ -193,6 +193,10 @@ public class BarrierView : MonoBehaviour, IBaseView
                     pointLocal2.y - pokerHeight * scaleY / 2 < pointLocal1.y &&
                     pointLocal2.y + pokerHeight * scaleY / 2 > pointLocal1.y)
                 {
+                    gameObject.transform.position = new Vector3(npcPoker.transform.position.x + 20,
+                                                                npcPoker.transform.position.y - 20,
+                                                                0);
+                    
                     int matchPointA = npcPoker.GetComponent<Poker>().getPoker().getValue();
                     int matchPointB = gameObject.GetComponent<Poker>().getPoker().getValue();
                     int pokerPosX = (int)gameObject.transform.position.x;
@@ -204,7 +208,6 @@ public class BarrierView : MonoBehaviour, IBaseView
                     {
                         if (this.playerPokers.transform.GetChild(z).gameObject.name != gameObject.name)
                         {
-
                             this.playerPokers.transform.GetChild(z).GetComponent<DraggableUI>().resetInitPos();
                         }
                     }

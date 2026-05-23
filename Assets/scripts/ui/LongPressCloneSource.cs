@@ -94,7 +94,7 @@ public class LongPressCloneSource : MonoBehaviour, IPointerDownHandler, IPointer
         // 生成克隆体
         GameObject clone = Instantiate(gameObject, dragLayer);
         clone.name = gameObject.name + "_Clone";
-
+        clone.GetComponent<CardPart>().loadPartImage(this.partInfo);
         // 删除源对象脚本，防止克隆体再次触发长按
         LongPressCloneSource source = clone.GetComponent<LongPressCloneSource>();
         if (source != null)

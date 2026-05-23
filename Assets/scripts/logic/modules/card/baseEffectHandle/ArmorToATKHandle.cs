@@ -13,7 +13,7 @@ public class ArmorToATKHandle : BaseEffectHandleObject
         float attck = para.getAttackUser().getDefense() * addValue;
         para.getAttackUser().addAttack(attck);
 
-        IUICommonPara attackPara = new UICommonParaObject(para.getAttackUser(), ValueType.attack, addValue, para.getAttackUser().getAttack());
+        IUICommonPara attackPara = new UICommonParaObject(para.getAttackUser(), ValueType.attack, attck, para.getAttackUser().getAttack());
         GameMessage.Instance.addMsg(GameConst.ADDCARDVALUE, attackPara);
     }
 }

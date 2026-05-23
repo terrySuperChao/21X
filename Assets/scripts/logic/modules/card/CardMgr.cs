@@ -100,8 +100,15 @@ public class CardMgr: Singleton<CardMgr>
             advancedPart.Remove(part);
         }
 
-        ICandidacyPartPara partPara = new CandidacyPartPara(para.getAttackUser(), para.getAssembleCard(), selectPart);
-        GameMessage.Instance.addMsg(GameConst.CANDIDACYCARD, partPara);
+        if (para.getAttackUser().isNpc())
+        {
+            int idx =RandomMgr.Instance.getRangeInt(0, selectPart.Count);
+            GameReqMgr.Instance.requestUpgradePart(para.getAttackUser(), para.getAssembleCard(), selectPart[idx]);
+        }
+        else {
+            ICandidacyPartPara partPara = new CandidacyPartPara(para.getAttackUser(), para.getAssembleCard(), selectPart);
+            GameMessage.Instance.addMsg(GameConst.CANDIDACYCARD, partPara);
+        }
     }
 
 

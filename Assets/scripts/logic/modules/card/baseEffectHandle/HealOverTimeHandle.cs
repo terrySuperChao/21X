@@ -10,7 +10,8 @@ public class HealOverTimeHandle : BaseEffectHandleObject
         UnityEngine.Debug.Log("HealOverTimeHandle=========>>");
         float addValue = this.getAddValue(para);
         //添加两次
-        para.getAttackUser().getExtraInfo().setHealOverTime(addValue);
-        para.getAttackUser().getExtraInfo().setHealOverTime(addValue);
+        for (int i = 0; i < 2; i++){
+            para.getAttackUser().getExtraInfo().setHealOverTime(addValue);
+        }
     }
 }

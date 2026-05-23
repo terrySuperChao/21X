@@ -53,6 +53,9 @@ public class AttackSettle: IAttackSettle
         float remainAttack = this.getRemainAttack(para, attack);
         GameBloodMgr.Instance.lessBloodHandle(para.getAttackUser(), para.getDefenseUser(), remainAttack);
 
+        //清空状态
+        attackUser.getExtraInfo().clearMultATK();
+
         //流血
         float addBleeding = attackUser.getExtraInfo().getAddBleeding();
         if (addBleeding > 0){
@@ -86,9 +89,6 @@ public class AttackSettle: IAttackSettle
         SwitchParaMgr.Instance.handle(para, () => {
             CardMgr.Instance.handle(para, TriggerEvent.normalAttackAfter);
         }, true);
-
-        //清空状态
-        
 
         //普通攻击两次
         float doubleProc = attackUser.getExtraInfo().getDoubleProc();
@@ -129,6 +129,7 @@ public class AttackSettle: IAttackSettle
             float skillDamageUp = attackUser.getExtraInfo().getSkillDamageUp();
             float remainAttack = attack * (1 + skillDamageUp);
             attackUser.getExtraInfo().setRtHurtValue(remainAttack);
+            attackUser.getExtraInfo().clearSkillDamageUp();
 
             GameBloodMgr.Instance.lessBloodHandle(para.getAttackUser(), para.getDefenseUser(), remainAttack);
         }

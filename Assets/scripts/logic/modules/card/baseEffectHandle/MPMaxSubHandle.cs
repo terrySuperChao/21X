@@ -8,7 +8,11 @@ public class MPMaxSubHandle : BaseEffectHandleObject
     protected override void _handle(ITriggerHandlePara para)
     {
         UnityEngine.Debug.Log("AddAMPHandle=========>>");
-        float addValue = this.getAddValue(para);
+        float addValue = -this.getAddValue(para);
+        para.getAttackUser().addMaxMagic(addValue);
         para.getAttackUser().getExtraInfo().setMpMaxSub(addValue);
+
+        IUICommonPara attackPara = new UICommonParaObject(para.getAttackUser(), ValueType.magic, addValue, para.getAttackUser().getMagic());
+        GameMessage.Instance.addMsg(GameConst.ADDCARDVALUE, attackPara);
     }
 }

@@ -221,6 +221,11 @@ public class GameReqMgr : Singleton<GameReqMgr>
         EventDispatcher.Instance.emit(GameConst.OKSELECTCARD, new SelectPartPara(user,card, part, position));
     }
 
+    public void requestUpgradePart(IUser user, IAssembleCard card, IPart part) {
+        FightPokerMgr.Instance.setAdvancedEffectId(card.getTriggerId(), user, part);
+        GamePropertyMgr.Instance.save();
+    }
+
     public void requestRefreshPart(IUser user, IAssembleCard card)
     {
         

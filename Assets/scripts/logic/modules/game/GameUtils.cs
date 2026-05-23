@@ -32,12 +32,20 @@ public class GameUtils
         int index1 = desc.IndexOf("%s");
         if (index1 > -1)
         {
+            string oldStr = "";
+            string newStr = "";
             int index2 = desc.IndexOf("%s%");
             if (index2 > -1)
             {
                 value *= 100;
+                oldStr = "%s%";
+                newStr = value + "%";
             }
-            return desc.Replace("%s", "<color=red>"+value+"</color>");
+            else {
+                oldStr = "%s";
+                newStr = value + "";
+            }
+            return desc.Replace(oldStr, "<color=red>"+ newStr + "</color>");
         }
         else
         {

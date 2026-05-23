@@ -34,6 +34,7 @@ public interface IUser
     public float getDefense();
 
     public void setMaxMagic(float value);
+    public void addMaxMagic(float value);
     public void setMagic(float value);
     public float getMaxMagic();
     public float addMagic(float value);

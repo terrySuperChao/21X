@@ -30,6 +30,8 @@ public class CardFlow : GameFlowObject
     protected void _handPokerBefore(IHandPokerBeforePara para)
     {
         GameBloodMgr.Instance.addBloodHandle(para.getUsers());
+        GameBloodMgr.Instance.addMagicHandle(para.getUsers());
+
         ITriggerHandlePara handlePara = this._handlePara;
         this.setTriggerHandleParaUser(handlePara,0);
         SwitchParaMgr.Instance.handle(handlePara, () =>{

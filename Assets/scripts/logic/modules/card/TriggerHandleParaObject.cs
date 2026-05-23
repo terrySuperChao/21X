@@ -110,9 +110,9 @@ public class TriggerHandleParaObject : ITriggerHandlePara
 
         //
         this._attackUser.getExtraInfo().clearRtMagicValue();
-        this._attackUser.getExtraInfo().clearTemporaryArmor();
+        //this._attackUser.getExtraInfo().clearTemporaryArmor();
         this._attackUser.getExtraInfo().clearImmunityDeBuff();       
         this._defenseUser.getExtraInfo().clearRtMagicValue();
-        this._defenseUser.getExtraInfo().clearTemporaryArmor();
+        //this._defenseUser.getExtraInfo().clearTemporaryArmor();
     }
 }

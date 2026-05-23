@@ -3,12 +3,26 @@ using System.Collections.Generic;
 public class BaseEffectHandle
 {
 	private static List<IBaseEffectHandle> _baseEffectHandle = new List<IBaseEffectHandle> {
+        new AddAMPHandle(),
+        new AddArmorHandle(),
         new AddATKHandle(),
         new AddCritHandle(),
-        new AddArmorHandle(),
+        new AddHealHandle(),
+        new AddMPPerHandle(),
         new AddTrueDMGHandle(),
-        new SubArmorHandle(),
+        new ArmorToATKHandle(),
+        new BonusArmorHandle(),
+        new HealOverTimeHandle(),
+        new HealSuperHandle(),
+        new HealToMPHandle(),
+        new LifeStealHandle(),
+        new MPMaxSubHandle(),
+        new MPRegenHandle(),
         new MultATKHandle(),
+        new ReflectDMGHandle(),
+        new SkillDamageUpHandle(),
+        new SubArmorHandle(),
+        new TemporaryArmorHandle(),
     };
 
     private static List<IBaseEffectHandle> _advancedEffecthandle = new List<IBaseEffectHandle> {

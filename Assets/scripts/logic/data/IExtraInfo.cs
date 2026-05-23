@@ -37,6 +37,7 @@ public interface IExtraInfo
     //接下来的2回合每回合回复 %s 点生命值
     public void setHealOverTime(float value);
     public float getHealOverTime();
+    public void lessHealOverTime();
     public List<float> getHealOverTimes();
 
     //下次转化红桃属性，治疗量的 %s% 额外转化为法力值,不可叠加
@@ -56,7 +57,12 @@ public interface IExtraInfo
     //接下来的3回合每回合回复 %s 点法力
     public void setMpRegen(float value);
     public float getMpRegen();
+    public void lessMpRegen();
     public List<float> getMpRegens();
+
+    //额外获得当前法力值的 %s% 的法力值
+    public void setAddMPPer(float value);
+    public float getAddMPPer();
 
     //本局技能释放所需 MP 减少 %s
     public void setMpMaxSub(float value);

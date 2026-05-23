@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Google.Protobuf.WellKnownTypes;
 
 public class ExtraInfoObject : IExtraInfo
 {
@@ -13,6 +14,7 @@ public class ExtraInfoObject : IExtraInfo
     private float _healToMP = 0;
     private float _healSuper = 0;
     private float _skillDamageUp = 0;
+    private float _addMPPer = 0;
     private float _mpMaxSub = 0;
     //进阶
     private float _addBleeding = 0;
@@ -70,7 +72,7 @@ public class ExtraInfoObject : IExtraInfo
     public void setReflectDMG(float value) {
         this._reflectDMG += value;
         this._reflectDMG = this._reflectDMG < 0 ? 0 : this._reflectDMG;
-        this.addBuffType(BuffType.reflectDMG,value);
+        this.addBuffType(BuffType.reflectDMG, value);
     }
 
     public float getReflectDMG() {
@@ -83,20 +85,20 @@ public class ExtraInfoObject : IExtraInfo
     public void setBonusArmor(float value) {
         this._bonusArmor = value;
         this._bonusArmor = this._bonusArmor < 0 ? 0 : this._bonusArmor;
-        this.addBuffType(BuffType.multATK, value);
+        this.addBuffType(BuffType.bonusArmor, value);
     }
     public float getBonusArmor() {
         return this._bonusArmor;
     }
     public void clearBonusArmor() {
         this._bonusArmor = 0;
-        this.removeBuffType(BuffType.multATK);
+        this.removeBuffType(BuffType.bonusArmor);
     }
 
     public void setTemporaryArmor(float value) {
         this._temporaryArmor += value;
         this._temporaryArmor = this._temporaryArmor < 0 ? 0 : this._temporaryArmor;
-        this.addBuffType(BuffType.temporaryArmor,value);
+        this.addBuffType(BuffType.temporaryArmor, value);
     }
     public float getTemporaryArmor() {
         return this._temporaryArmor;
@@ -121,18 +123,37 @@ public class ExtraInfoObject : IExtraInfo
 
     public void setHealOverTime(float value) {
         this._healOverTime.Add(value);
+        this.addBuffType(BuffType.healOverTime, value);
     }
+
     public float getHealOverTime() {
-        float value = 0;
-        if (this._healOverTime.Count > 0) {
-            value = this._healOverTime[0];
+        if (this._healOverTime.Count > 0)
+        {
+            return this._healOverTime[0];
+        }
+        else {
+            return 0;
+        }
+    }
+
+    public void lessHealOverTime(){
+        if (this._healOverTime.Count > 0){
             this._healOverTime.RemoveAt(0);
         }
-        return value;
+        if (this._healOverTime.Count == 0) {
+            this.removeBuffType(BuffType.healOverTime);
+        }
     }
 
     public List<float> getHealOverTimes() {
         return this._healOverTime;
+    }
+
+    public void setAddMPPer(float value) {
+        this._addMPPer = value;
+    }
+    public float getAddMPPer() {
+        return this._addMPPer;
     }
 
     public void setHealToMP(float value) {
@@ -173,17 +194,25 @@ public class ExtraInfoObject : IExtraInfo
         this.addBuffType(BuffType.mpRegen, value);
     }
     public float getMpRegen() {
-        float value = 0;
         if (this._mpRegen.Count > 0)
         {
-            value = this._mpRegen[0];
-            this._mpRegen.RemoveAt(0);
+            return this._mpRegen[0];
         }
         else {
+            return 0;
+        }
+    }
+    public void lessMpRegen() {
+        if (this._mpRegen.Count > 0)
+        {
+            this._mpRegen.RemoveAt(0);
+        }
+        if (this._mpRegen.Count == 0)
+        {
             this.removeBuffType(BuffType.mpRegen);
         }
-        return value;
     }
+
     public List<float> getMpRegens() {
         return this._mpRegen;
     }
@@ -364,7 +393,7 @@ public class ExtraInfoObject : IExtraInfo
     {
         this._rtMagicValue += value;
         this._rtMagicValue = this._rtMagicValue < 0 ? 0 : this._rtMagicValue;
-        this.addBuffType(BuffType.rtMagicValue, value);
+        //this.addBuffType(BuffType.rtMagicValue, value);
     }
     public float getRtMagicValue()
     {
@@ -372,14 +401,14 @@ public class ExtraInfoObject : IExtraInfo
     }
     public void clearRtMagicValue() {
         this._rtMagicValue = 0;
-        this.removeBuffType(BuffType.rtMagicValue);
+        //this.removeBuffType(BuffType.rtMagicValue);
     }
 
     public void setRtHurtValue(float value)
     {
         this._rtHurtValue += value;
         this._rtHurtValue = this._rtHurtValue < 0 ? 0 : this._rtHurtValue;
-        this.addBuffType(BuffType.rtHurtValue, value);
+        //this.addBuffType(BuffType.rtHurtValue, value);
     }
     public float getRtHurtVaule()
     {
@@ -387,7 +416,7 @@ public class ExtraInfoObject : IExtraInfo
     }
     public void clearRtHurtValue() {
         this._rtHurtValue = 0;
-        this.removeBuffType(BuffType.rtHurtValue);
+        //this.removeBuffType(BuffType.rtHurtValue);
     }
 
     public void setRtFreezeArmorValue(float value)
@@ -410,6 +439,7 @@ public class ExtraInfoObject : IExtraInfo
 
         int index = this._buffTypes.FindIndex(buffType => buffType == type);
         if (index == -1) {
+            UnityEngine.Debug.Log("============="+type);
             this._buffTypes.Add(type);
             this._callback?.Invoke(BuffAction.add, type);
         }
