@@ -1,11 +1,12 @@
 using System;
 using System.Collections.Generic;
 using System.Reflection;
-using Pb;
+using System.Runtime.CompilerServices;
 
 public class CardMgr: Singleton<CardMgr>
 {
     private const int MAXSLOT = 3;
+    private string callFuncPath = "";
     public void init()
     {
     
@@ -118,6 +119,7 @@ public class CardMgr: Singleton<CardMgr>
 
     //
     public void handle(ITriggerHandlePara para, TriggerEvent type) {
+        
         List<IAssembleCard> cards = ImprintDataMgr.Instance.getAssembleCard(para.getUser().isNpc());
         for (int i = 0; i < cards.Count; i++) {
             para.setAssembleCard(cards[i]);
@@ -136,18 +138,24 @@ public class CardMgr: Singleton<CardMgr>
 
                 //触发了
                 if ((bool)state) {
-                    success = true;
-                    break;
+                    if (this.checkCycleCall(para, handles[j], type)){
+                        return;
+                    }
+                    else {
+                        success = true;
+                        break;
+                    }
                 }
             }
 
-            //说明增加了一条数据
-            if (!success){
+            //触发了
+            if (!success)
+            {
                 continue;
             }
 
             //初级效果
-            IBaseEffectHandle baseEffectHandle = BaseEffectHandle.getBaseEffectHandle(para);
+            IBaseEffectHandle baseEffectHandle = BaseEffectHandle.getBaseEffectHandle(para); 
             if (baseEffectHandle != null) {
                 baseEffectHandle.handle(para);
             }
@@ -166,6 +174,27 @@ public class CardMgr: Singleton<CardMgr>
 
             //触发升级的内容
             this.triggerUpgrade(i,para);
+        }
+        this.callFuncPath = "";
+    }
+
+    //防止递归调用,
+    private bool checkCycleCall(ITriggerHandlePara para, ITriggerHandle handle, TriggerEvent type) {
+        string callFuncPathTmp = para.getAttackUser().GetHashCode().ToString() +
+                          para.getDefenseUser().GetHashCode().ToString() +
+                          para.getAssembleCard().GetHashCode().ToString() +
+                          handle.GetHashCode().ToString() +
+                          type.ToString();
+        if (callFuncPathTmp == this.callFuncPath)
+        {
+            UnityEngine.Debug.Log("callFuncPathTmp=====>>>" + callFuncPathTmp);
+            UnityEngine.Debug.Log("callFuncPath=====>>>" + this.callFuncPath);
+            return true;
+        }
+        else
+        {
+            this.callFuncPath = callFuncPathTmp;
+            return false;
         }
     }
 }
