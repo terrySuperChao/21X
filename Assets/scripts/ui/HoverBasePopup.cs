@@ -79,6 +79,10 @@ public class HoverBasePopup : MonoBehaviour, IPointerEnterHandler, IPointerExitH
             localPoint.x += 50;
             offset.x *= -1;
         }
+        if (localPoint.y > canvasRect.rect.height / 2) {
+            localPoint.x -= 50;
+            offset.y *= -1;
+        }
         popup.anchoredPosition = localPoint;
     }
 
