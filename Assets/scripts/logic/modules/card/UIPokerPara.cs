@@ -1,7 +1,10 @@
+using System.Collections.Generic;
+
 public class UIPokerPara : IUIPokerPara
 {
     private IUser _user;
     private IPoker _poker;
+    private List<IPoker> _pokers;
     private float _value;
     private float _finalValue;
     private float _mult;
@@ -10,6 +13,14 @@ public class UIPokerPara : IUIPokerPara
     {
         this._user = user;
         this._poker = poker;
+        this._value = value;
+        this._finalValue = finalValue;
+        this._mult = mult;
+    }
+    public UIPokerPara(IUser user, List<IPoker> pokers, float value, float finalValue, float mult)
+    {
+        this._user = user;
+        this._pokers = pokers;
         this._value = value;
         this._finalValue = finalValue;
         this._mult = mult;
@@ -25,6 +36,10 @@ public class UIPokerPara : IUIPokerPara
         return _poker;
     }
 
+    public List<IPoker> getPokers()
+    {
+        return this._pokers;
+    }
     public float getValue() {
         return this._value;
     }

@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 public interface ITriggerHandlePara
 {
     public IUser getUser();

@@ -267,6 +267,7 @@
     <Compile Include="Assets/scripts/logic/modules/game/ShopDataMgr.cs" />
     <Compile Include="Assets/scripts/logic/modules/card/handle/SpadeCardPlusHandle.cs" />
     <Compile Include="Assets/scripts/logic/modules/card/ICardHandlePara.cs" />
+    <Compile Include="Assets/scripts/logic/modules/card/HandPokerSuitObject.cs" />
     <Compile Include="Assets/scripts/logic/modules/flow/CardFlow.cs" />
     <Compile Include="Assets/scripts/logic/modules/game/GameMessagePara.cs" />
     <Compile Include="Assets/scripts/ui/EntryView.cs" />
@@ -293,6 +294,7 @@
     <Compile Include="Assets/scripts/logic/modules/card/baseEffectHandle/AddMPPerHandle.cs" />
     <Compile Include="Assets/scripts/ui/BarrierView.cs" />
     <Compile Include="Assets/conframework/mgrs/JsonMgr.cs" />
+    <Compile Include="Assets/scripts/logic/modules/card/IHandPokerSuit.cs" />
     <Compile Include="Assets/scripts/logic/modules/card/baseEffectHandle/HealOverTimeHandle.cs" />
     <Compile Include="Assets/scripts/ui/LobbyView.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/TMP_TextInfoDebugTool.cs" />

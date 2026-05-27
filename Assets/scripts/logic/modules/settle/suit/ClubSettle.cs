@@ -8,8 +8,8 @@ public class ClubSettle : SuitSettle
         return suit == PokerSuit.club; 
     }
 
-    protected override void _settle(ITriggerHandlePara para, IPoker poker, int baseValue)
+    protected override void _settle(ITriggerHandlePara para, IHandPokerSuit handPoker)
     {
-        para.getAttackUser().getExtraInfo().setRtMagicValue(baseValue);
+        para.getAttackUser().getExtraInfo().setRtMagicValue(handPoker.getBaseValue());
     }
 }

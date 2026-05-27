@@ -354,34 +354,48 @@ public class PlayerAsset : MonoBehaviour
     private IEnumerator addPokerValueHandle(params System.Object[] obj)
     {
         IUIPokerPara para = (IUIPokerPara)obj[0];
-        PokerSuit suit = para.getPoker().getSuit();
+        List<IPoker> pokers = para.getPokers();
+        if (pokers.Count == 0) {
+            yield return 0;
+        }
+
+        for (int i = 0; i < pokers.Count; i++) {
+            Transform pokerChild = this.getPokerIdTransform(pokers[i]);
+            if (pokerChild != null){
+                iTween.ScaleTo(pokerChild.gameObject, new Vector3(0.5f, 0.5f, 0.5f), 0.5f);   
+            }
+        }
+
+        yield return new WaitForSeconds(0.51f);
+
+        for (int i = 0; i < pokers.Count; i++)
+        {
+            Transform pokerChild = this.getPokerIdTransform(pokers[i]);
+            if (pokerChild != null){
+                iTween.ScaleTo(pokerChild.gameObject, new Vector3(0.6f, 0.6f, 0.6f), 0.1f);
+            }
+        }
+
+        PokerSuit suit = pokers[0].getSuit();
         ValueType valueType = GameUtils.SuitTransformValueType(suit);
         int indexType = (int)valueType;
-        if (this._texts.Count <= indexType) {
-            yield return 0;
-        }
-
-        Text textChild = this._texts[indexType];
-        Transform pokerChild = this.getPokerIdTransform(para.getPoker());
-        if (pokerChild == null || textChild == null)
+        if (indexType < this._texts.Count)
         {
-            yield return 0;
+            Text textChild = this._texts[indexType];
+            float addValue = GameUtils.getNumberDigits(para.getValue());
+            Text addText = Instantiate(textChild, rootTransform);
+            addText.transform.position = textChild.transform.position;
+            addText.text = "+" + addValue;
+            addText.color = Color.green;
+
+            Vector3 localPos = addText.transform.localPosition;
+            moveTo(addText.gameObject, new Vector3(localPos.x, localPos.y + 50, localPos.z));
+            yield return new WaitForSeconds(0.51f);
+            Destroy(addText.gameObject);
+            textChild.text = this.getFinalContent(valueType, para.getFinalValue());
         }
-
-        float addValue = GameUtils.getNumberDigits(para.getValue());
-        Text addText = Instantiate(textChild, rootTransform);
-        addText.transform.position = textChild.transform.position;
-        addText.text = "+" + addValue;
-        addText.color = Color.green;
-
-        Vector3 localPos = addText.transform.localPosition;
-        moveTo(addText.gameObject, new Vector3(localPos.x, localPos.y + 50, localPos.z));
-        iTween.ScaleTo(pokerChild.gameObject, new Vector3(0.5f, 0.5f, 0.5f), 0.5f);
-        yield return new WaitForSeconds(0.51f);
-        iTween.ScaleTo(pokerChild.gameObject, new Vector3(0.6f, 0.6f, 0.6f), 0.1f);
-        Destroy(addText.gameObject);
-        textChild.text = this.getFinalContent(valueType, para.getFinalValue());
     }
+    
 
     public void addCardValue(params System.Object[] obj)
     {

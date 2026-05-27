@@ -10,9 +10,9 @@ public class HeartSettle : SuitSettle
 
     protected override float _getMult() { return 0.5f; }
 
-    protected override void _settle(ITriggerHandlePara para, IPoker poker, int baseValue)
+    protected override void _settle(ITriggerHandlePara para, IHandPokerSuit handPoker)
     {
-        float addValue = baseValue * para.getAttackUser().getExtraInfo().getHealToMP();
+        float addValue = handPoker.getBaseValue() * para.getAttackUser().getExtraInfo().getHealToMP();
         if (addValue > 0)
         {
             para.getAttackUser().addMagic(addValue);
