@@ -15,9 +15,8 @@ public class SuitSettle : ISuitSettle
         }
 
         float baseValue = handPoker.getBaseValue();
-        float attrMult = para.getRoundResult(para.getAttackUser()).getAttributeMult();
-        float addValue = baseValue * attrMult * this._getMult();
-        float finalValue = this._getFinalValue(para.getAttackUser(), addValue);
+        float addValue = baseValue * this._getMult();
+        float finalValue = this._getFinalValue(para.getAttackUser(),para.getDefenseUser(), addValue);
         float showValue = baseValue * this._getMult();
       
         para.setBaseValue(addValue);
@@ -28,10 +27,10 @@ public class SuitSettle : ISuitSettle
 
         this._settle(para, handPoker);
 
-        CardMgr.Instance.handle(para, TriggerEvent.transformAttribute);
+        CardMgr.Instance.handle(para, TriggerEvent.POST_SUIT_ATTRIBUTE_CONVERSION);
     }
 
-    protected virtual float _getFinalValue(IUser attackUser, float value) { return value; }
+    protected virtual float _getFinalValue(IUser attackUser,IUser defenseUser, float value) { return value; }
     protected virtual bool _matchSuit(PokerSuit suit) { return false; }
     protected virtual float _getMult() { return 1.0f; }
     protected virtual void _settle(ITriggerHandlePara para, IHandPokerSuit handPoker) { }

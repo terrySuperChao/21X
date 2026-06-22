@@ -92,7 +92,7 @@ public class PlayerAsset : MonoBehaviour
 
     private void initUserValue()
     {
-        for (ValueType i = ValueType.blood; i < ValueType.winRate; i++)
+        for (ValueType i = ValueType.blood; i < ValueType.maxMagic; i++)
         {
             this.setUserInfo(i);
         }
@@ -462,9 +462,6 @@ public class PlayerAsset : MonoBehaviour
             case ValueType.magic: // 梅
             value = this._user.getMagic() + "/" + this._user.getMaxMagic();
                 break;
-            case ValueType.winRate: //赢率
-            value = string.Format("{0:P1}", this._user.getWinRate());
-                break;
             default:
                 break;
         }
@@ -488,6 +485,9 @@ public class PlayerAsset : MonoBehaviour
             case ValueType.attack: // 黑
                 break;
             case ValueType.magic: // 梅
+                maxValue = this._user.getMaxMagic();
+                break;
+            case ValueType.maxMagic: // 梅
                 maxValue = this._user.getMaxMagic();
                 break;
             default:

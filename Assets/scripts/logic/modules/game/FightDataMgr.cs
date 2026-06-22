@@ -25,22 +25,10 @@ public class FightDataMgr : Singleton<FightDataMgr>
     public void deserialized(GameData data)
     {
         this._fight = data.Fight;
-        this._npcCards.Clear();
-        foreach (var value in this._fight.NpcAsset.Cards)
-        {
-            this._npcCards.Add(CardConfig.getCard(value));
-        }
-
         this._npcPokers.Clear();
         foreach (var value in this._fight.NpcAsset.Pokers)
         {
             this._npcPokers.Add(this._pokerPile.createPoker(value));
-        }
-
-        this._playerCards.Clear();
-        foreach (var value in this._fight.PlayerAsset.Cards)
-        {
-            this._playerCards.Add(CardConfig.getCard(value));
         }
         this._playerPokers.Clear();
         foreach (var value in this._fight.PlayerAsset.Pokers)
@@ -63,22 +51,10 @@ public class FightDataMgr : Singleton<FightDataMgr>
             this._fight.PokerPile.Add(value.getValue());
         }
 
-        this._fight.NpcAsset.Cards.Clear();
-        foreach (var value in this._npcCards)
-        {
-            this._fight.NpcAsset.Cards.Add(value.getId());
-        }
-
         this._fight.NpcAsset.Pokers.Clear();
         foreach (var value in this._npcPokers)
         {
             this._fight.NpcAsset.Pokers.Add(value.getValue());
-        }
-
-        this._fight.PlayerAsset.Cards.Clear();
-        foreach (var value in this._playerCards)
-        {
-            this._fight.PlayerAsset.Cards.Add(value.getId());
         }
 
         this._fight.PlayerAsset.Pokers.Clear();
@@ -234,21 +210,5 @@ public class FightDataMgr : Singleton<FightDataMgr>
 
     public void setIsFilp(FightDealType type,int filpState) {
         this.getAssetInfo(type).IsFilp = filpState;
-    }
-
-    //
-    public void addCardId(FightDealType type,int cardId) {
-        ICard card = CardConfig.getCard(cardId);
-        if (card != null)
-        {
-            if (type == FightDealType.npc)
-            {
-                this._npcCards.Add(card);
-            }
-            else if (type == FightDealType.player)
-            {
-                this._playerCards.Add(card);
-            }
-        }
     }
 }

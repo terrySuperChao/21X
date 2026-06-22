@@ -1,6 +1,6 @@
 public class SpadeSettle : SuitSettle
 {
-    protected override float _getFinalValue(IUser attackUser, float value) {
+    protected override float _getFinalValue(IUser attackUser, IUser defenseUser, float value) {
         return attackUser.addAttack(value);
     }
 

@@ -8,7 +8,6 @@ public class AdvancedEffectInfo : IPart
     public int Quality = 0;
     public int Profession = 0;
     public string Belong_Advanced = "";
-    public string Action_Genre = "";  
     public string Description = "";
 
     public int getId() {
@@ -65,7 +64,7 @@ public class AdvancedEffectInfo : IPart
 
     public string getActionGenre()
     {
-        return this.Action_Genre;
+        return "";
     }
 
     public TargetPart getTargetPart() { 

@@ -1,202 +1,164 @@
 [
 	{
 		"ID": 3001,
-		"Name": "伤口撕裂",
+		"Name": "处决共振",
 		"Quality": 2,
 		"Profession": 0,
-		"Belong_Advanced": "3_0_1",
-		"Action_Genre": "Add_Bleeding",
-		"Description": "下次普通攻击使敌方获得 3 层流血状态",
-		"Remark": "增加持续伤害"
+		"Belong_Advanced": "3_0",
+		"Description": "基础零件主数值提高30%；敌人每损失10%生命值，额外提高10%，最高提高到130%。",
+		"Remark": "【数值共振】敌人越残，斩杀味越强"
 	},
 	{
 		"ID": 3002,
-		"Name": "残暴连击",
+		"Name": "余刃留存",
 		"Quality": 3,
 		"Profession": 0,
-		"Belong_Advanced": "3_0_1",
-		"Action_Genre": "Double_Proc",
-		"Description": "下次普通攻击连续触发两次",
-		"Remark": "强攻流质变零件"
+		"Belong_Advanced": "3_0",
+		"Description": "下次普通攻击后，保留50%的攻击力；不可叠加，普通攻击后清空。",
+		"Remark": "【机制外延】对机制的暂时修改，适合持续进攻"
 	},
 	{
 		"ID": 3003,
 		"Name": "弱点贯穿",
-		"Quality": 3,
-		"Profession": 0,
-		"Belong_Advanced": "3_0_1",
-		"Action_Genre": "Ignore_Armor",
-		"Description": "下次普通攻击无视对手护甲",
-		"Remark": "针对高甲敌人必选"
-	},
-	{
-		"ID": 3004,
-		"Name": "死神之镰",
 		"Quality": 4,
 		"Profession": 0,
-		"Belong_Advanced": "3_0_1",
-		"Action_Genre": "Execute",
-		"Description": "下次普通攻击时若对手血量低于 15% 直接处决",
-		"Remark": "终结技"
-	},
-	{
-		"ID": 3005,
-		"Name": "暴力美学",
-		"Quality": 5,
-		"Profession": 0,
-		"Belong_Advanced": "3_0_1",
-		"Action_Genre": "Retain_ATK",
-		"Description": "若下次普通攻击暴击，则保留50%的攻击力",
-		"Remark": "收割型奖励"
-	},
-	{
-		"ID": 3006,
-		"Name": "反震洪流",
-		"Quality": 2,
-		"Profession": 0,
-		"Belong_Advanced": "3_0_2",
-		"Action_Genre": "Reflect_Percent",
-		"Description": "将下次对手普通攻击的 50% 反弹给对手",
-		"Remark": "反伤流质变"
-	},
-	{
-		"ID": 3007,
-		"Name": "绝缘装甲",
-		"Quality": 3,
-		"Profession": 0,
-		"Belong_Advanced": "3_0_2",
-		"Action_Genre": "Magic_Immunity",
-		"Description": "获得 1个技能免疫的护盾，无法叠加",
-		"Remark": "应对敌方高爆发的技能"
-	},
-	{
-		"ID": 3008,
-		"Name": "钢铁洪流",
-		"Quality": 3,
-		"Profession": 0,
-		"Belong_Advanced": "3_0_2",
-		"Action_Genre": "Armor_ATK",
-		"Description": "每次获得护甲对对手造成 5 点伤害",
-		"Remark": "防御即进攻"
-	},
-	{
-		"ID": 3009,
-		"Name": "重整旗鼓",
-		"Quality": 4,
-		"Profession": 0,
-		"Belong_Advanced": "3_0_2",
-		"Action_Genre": "Immunity_DeBuff",
-		"Description": "下回合免疫负面状态的伤害",
-		"Remark": "提升防御deBuff的效果"
-	},
-	{
-		"ID": 3010,
-		"Name": "绝对零度",
-		"Quality": 5,
-		"Profession": 0,
-		"Belong_Advanced": "3_0_2",
-		"Action_Genre": "Freeze_Armor",
-		"Description": "下次消耗的护甲会完全恢复",
-		"Remark": "护甲高额恢复"
+		"Belong_Advanced": "3_0",
+		"Description": "下次普通攻击无视对手护甲；不可叠加，普通攻击后清空。",
+		"Remark": "【规则质变】针对高甲敌人必选"
 	},
 	{
 		"ID": 3011,
-		"Name": "代谢加速",
+		"Name": "铁壁共振",
 		"Quality": 2,
 		"Profession": 0,
-		"Belong_Advanced": "3_0_3",
-		"Action_Genre": "Remove_DeBuff",
-		"Description": "随机移除自身 1 个/层负面状态",
-		"Remark": "抗性增强"
+		"Belong_Advanced": "3_1",
+		"Description": "基础零件主数值提高30%；自身每有5点护甲，额外提高10%，最高提高到130%。",
+		"Remark": "【数值共振】越厚越强，很符合重甲流"
 	},
 	{
 		"ID": 3012,
-		"Name": "血液过载",
-		"Quality": 3,
+		"Name": "坚甲反击",
+		"Quality": 4,
 		"Profession": 0,
-		"Belong_Advanced": "3_0_3",
-		"Action_Genre": "Over_Heal_ATK",
-		"Description": "下次溢出的治疗量转化为等额攻击力",
-		"Remark": "复苏流进攻手段"
+		"Belong_Advanced": "3_1",
+		"Description": "获得4点护甲，并造成当前护甲50%的真实伤害。",
+		"Remark": "【机制外延】防御不只是挨打，而是在蓄压反击。"
 	},
 	{
 		"ID": 3013,
-		"Name": "生命剥离",
-		"Quality": 3,
-		"Profession": 0,
-		"Belong_Advanced": "3_0_3",
-		"Action_Genre": "Heal_to_DMG",
-		"Description": "下次治疗效果改为对对手造成等量伤害",
-		"Remark": "奇效攻击"
-	},
-	{
-		"ID": 3014,
-		"Name": "复苏之风",
+		"Name": "临甲固化",
 		"Quality": 4,
 		"Profession": 0,
-		"Belong_Advanced": "3_0_3",
-		"Action_Genre": "Heal_Boost",
-		"Description": "下次治疗效果提升50%",
-		"Remark": "加强治疗效果"
+		"Belong_Advanced": "3_1",
+		"Description": "获得8点临时护甲，本回合结束时，当前所有剩余临时护甲转化为普通护甲。",
+		"Remark": "【规则质变】把“临时防御”变成“永久壁垒”。"
 	},
 	{
-		"ID": 3015,
-		"Name": "不死鸟契约",
-		"Quality": 5,
-		"Profession": 0,
-		"Belong_Advanced": "3_0_3",
-		"Action_Genre": "Rebirth",
-		"Description": "受到致命伤时保留 1 血并回复 50点法力值",
-		"Remark": "终极翻盘神技"
-	},
-	{
-		"ID": 3016,
-		"Name": "逻辑锁定",
+		"ID": 3021,
+		"Name": "求生共振",
 		"Quality": 2,
 		"Profession": 0,
-		"Belong_Advanced": "3_0_4",
-		"Action_Genre": "Conversion_Decline",
-		"Description": "使对手下次属性转化效率降低 50%",
-		"Remark": "干扰对手"
+		"Belong_Advanced": "3_2",
+		"Description": "基础零件主数值提高30%；自己每损失10%生命值，额外提高10%，最高提高到130%。",
+		"Remark": "【数值共振】血越少越能翻盘，适合复苏、控血、赌命玩法。"
 	},
 	{
-		"ID": 3017,
-		"Name": "思维涟漪",
+		"ID": 3022,
+		"Name": "过量回收",
 		"Quality": 3,
 		"Profession": 0,
-		"Belong_Advanced": "3_0_4",
-		"Action_Genre": "MP_Refund",
-		"Description": "技能释放后返还 30% 消耗",
-		"Remark": "技能连发核心"
+		"Belong_Advanced": "3_2",
+		"Description": "回复8点生命，本回合溢出的治疗量转化为攻击力。",
+		"Remark": "【机制外延】从“不死”转向“反杀”。"
 	},
 	{
-		"ID": 3018,
-		"Name": "能量侵蚀",
-		"Quality": 3,
-		"Profession": 0,
-		"Belong_Advanced": "3_0_4",
-		"Action_Genre": "MP_Burn",
-		"Description": "下次对对手造成普通攻击伤害时扣除对手等量法力值",
-		"Remark": "控制敌方技能"
-	},
-	{
-		"ID": 3019,
-		"Name": "奥术洪流",
-		"Quality": 4,
-		"Profession": 0,
-		"Belong_Advanced": "3_0_4",
-		"Action_Genre": "MP_Max_Lower",
-		"Description": "下次技能释放后释放技能所需 MP 永久减少5",
-		"Remark": "跨关卡长线收益"
-	},
-	{
-		"ID": 3020,
-		"Name": "法术共鸣",
+		"ID": 3023,
+		"Name": "不灭缝合",
 		"Quality": 5,
 		"Profession": 0,
-		"Belong_Advanced": "3_0_4",
-		"Action_Genre": "Double_Cast",
-		"Description": "下次技能释放将触发两次",
-		"Remark": "技能爆发质变"
+		"Belong_Advanced": "3_2",
+		"Description": "本场战斗首次受到致命伤时，不会死亡，且回复30点生命值",
+		"Remark": "【规则质变】复活一次，复苏流最直观的质变"
+	},
+	{
+		"ID": 3031,
+		"Name": "蓄能共振",
+		"Quality": 2,
+		"Profession": 0,
+		"Belong_Advanced": "3_3",
+		"Description": "基础零件主数值提高30%；当前每有10点法力，额外提高10%，最高提高到130%。",
+		"Remark": "【数值共振】蓝越多，印记越强"
+	},
+	{
+		"ID": 3032,
+		"Name": "法力折射",
+		"Quality": 3,
+		"Profession": 0,
+		"Belong_Advanced": "3_3",
+		"Description": "下一次玩家获得的法力值*2，且额外对敌人造成获得法力值50%的真实伤害，不可叠加，触发后清空",
+		"Remark": "【机制外延】加强法力获取，且造成伤害，按翻倍后的计算"
+	},
+	{
+		"ID": 3033,
+		"Name": "思维涟漪",
+		"Quality": 4,
+		"Profession": 0,
+		"Belong_Advanced": "3_3",
+		"Description": "下一次技能释放后返还30%消耗的法力值，不可叠加，触发后清空",
+		"Remark": "【规则质变】法术过载流的核心爽点，技能开始形成循环。"
+	},
+	{
+		"ID": 3801,
+		"Name": "稳定增幅",
+		"Quality": 3,
+		"Profession": 0,
+		"Belong_Advanced": "3_80",
+		"Description": "基础零件主数值提高50%",
+		"Remark": "【纯数值通用】简单直接的强数值进阶，这里是乘不是加"
+	},
+	{
+		"ID": 3802,
+		"Name": "渐进共振",
+		"Quality": 4,
+		"Profession": 0,
+		"Belong_Advanced": "3_80",
+		"Description": "基础零件主数值提高30%；本场战斗中该印记每触发一次，加成提高10%，最高提高到130%。",
+		"Remark": "【纯数值通用】长线成长的数值进阶，适合高频触发构筑"
+	},
+	{
+		"ID": 3901,
+		"Name": "四色馈赠",
+		"Quality": 3,
+		"Profession": 0,
+		"Belong_Advanced": "3_90",
+		"Description": "随机获得以下一种效果：攻击力+10或回复6点生命值或回复10点法力值或护甲+6",
+		"Remark": "【全能通用】真随机、真肉鸽，且完全不挑的万能搭配"
+	},
+	{
+		"ID": 3902,
+		"Name": "强制推进",
+		"Quality": 4,
+		"Profession": 0,
+		"Belong_Advanced": "3_90",
+		"Description": "额外获得8点攻击力，同时造成8点真实伤害。",
+		"Remark": "【全能通用】纯进攻通用进阶"
+	},
+	{
+		"ID": 3903,
+		"Name": "稳固阵线",
+		"Quality": 4,
+		"Profession": 0,
+		"Belong_Advanced": "3_90",
+		"Description": "额外获得4点护甲和4点临时护甲。",
+		"Remark": "【全能通用】纯防守通用进阶"
+	},
+	{
+		"ID": 3904,
+		"Name": "资源回路",
+		"Quality": 4,
+		"Profession": 0,
+		"Belong_Advanced": "3_90",
+		"Description": "额外回复4点生命值和8点法力值。",
+		"Remark": "【全能通用】纯资源通用进阶"
 	}
 ]

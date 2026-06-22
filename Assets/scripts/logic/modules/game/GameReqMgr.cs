@@ -203,18 +203,7 @@ public class GameReqMgr : Singleton<GameReqMgr>
         ShopDataMgr.Instance.refreshShop();
         GameMessage.Instance.addMsg(GameConst.SHOPVIEW_REFRESH);
     }
-    public void requestAddCard(bool isOk, IUser user, ICard card, Vector3 position) {
-        bool success = FightPokerMgr.Instance.addUserCard(isOk, user, card);
-        if (success)
-        {
-            EventDispatcher.Instance.emit(GameConst.OKSELECTCARD, new SelectCardPara(user, card, position));
-        }
-        else
-        {
-            EventDispatcher.Instance.emit(GameConst.CANCELSELECTCARD);
-        }
-    }
-
+   
     public void requestUpgradePart(IUser user,IAssembleCard card, IPart part, Vector3 position)
     {
         FightPokerMgr.Instance.setAdvancedEffectId(card.getTriggerId(), user, part);

@@ -1,4 +1,5 @@
 using System;
+using System.Text.RegularExpressions;
 //
 public class GameUtils
 {
@@ -57,5 +58,60 @@ public class GameUtils
     public static float getNumberDigits(float number)
     {
         return (float)Math.Round((number * 10 + 0.5) / 10, 1);
+    }
+
+    //对比逻辑中的数字
+    public static bool compareNumber(string compareStr, float currentNum)
+    {
+        string targetStr = extractNumbersWithDecimal(compareStr);
+        int index = compareStr.IndexOf(targetStr);
+        if (index == -1) return false;
+
+        bool success = false;
+        float targetNum = float.Parse(targetStr);
+        string symbol = compareStr.Substring(0, index).Trim();
+        UnityEngine.Debug.Log(string.Format("targetNum={0},currentNum={1}", targetNum, currentNum));
+        switch (symbol)
+        {
+            case ">":
+                if (currentNum > targetNum)
+                {
+                    success = true;
+                }
+                break;
+            case ">=":
+                if (currentNum >= targetNum)
+                {
+                    success = true;
+                }
+                break;
+            case "=":
+                if (currentNum == targetNum)
+                {
+                    success = true;
+                }
+                break;
+            case "<=":
+                if (currentNum <= targetNum)
+                {
+                    success = true;
+                }
+                break;
+            case "<":
+                if (currentNum < targetNum)
+                {
+                    success = true;
+                }
+                break;
+            default:
+                break;
+        }
+        return success;
+    }
+
+    //正则表达式（保留小数点）
+    public static string extractNumbersWithDecimal(string input)
+    {
+        return Regex.Replace(input, @"[^\d.]", "");
     }
 }

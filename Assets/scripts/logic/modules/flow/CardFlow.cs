@@ -19,23 +19,19 @@ public class CardFlow : GameFlowObject
     override
     protected void _gameBegin(IGameBeginPara para)
     {
-        ITriggerHandlePara handlePara = this._handlePara;
-        foreach (IUser user in para.getUsers()) {
-            handlePara.addRoundResult(new RoundResultObject(user));
-        }
-        handlePara.setGameSettlePara(new GameSettlePara(para.getUsers(), -1, false));
+        this._handlePara.setGameSettlePara(new GameSettlePara(para.getUsers(), -1, false));
     }
 
     override
     protected void _handPokerBefore(IHandPokerBeforePara para)
     {
-        GameBloodMgr.Instance.addBloodHandle(para.getUsers());
-        GameBloodMgr.Instance.addMagicHandle(para.getUsers());
+        GameBloodMgr.Instance.handle(para.getUsers());
+        GameMagicMgr.Instance.handle(para.getUsers());
 
         ITriggerHandlePara handlePara = this._handlePara;
         this.setTriggerHandleParaUser(handlePara,0);
         SwitchParaMgr.Instance.handle(handlePara, () =>{
-            CardMgr.Instance.handle(handlePara, TriggerEvent.initPokerBefore);
+            CardMgr.Instance.handle(handlePara, TriggerEvent.POST_INITIAL_DRAW);
         });
     }
 
@@ -50,7 +46,7 @@ public class CardFlow : GameFlowObject
     {
         ITriggerHandlePara handlePara = this._handlePara;
         this.setTriggerHandleParaUser(handlePara, para.getUser().isNpc() ? 0 : 1);
-        CardMgr.Instance.handle(handlePara, TriggerEvent.dealPokerAfter);
+        CardMgr.Instance.handle(handlePara, TriggerEvent.POST_CARD_DRAW);
     }
 
     override
@@ -58,7 +54,7 @@ public class CardFlow : GameFlowObject
     {
         ITriggerHandlePara handlePara = this._handlePara;
         this.setTriggerHandleParaUser(handlePara, para.getUser().isNpc() ? 0 :1);
-        CardMgr.Instance.handle(handlePara, TriggerEvent.stopPokerAfter);
+        CardMgr.Instance.handle(handlePara, TriggerEvent.POST_STAND_OR_FINAL_SCORE);
     }
 
     override
@@ -72,7 +68,7 @@ public class CardFlow : GameFlowObject
         //行动前
         this.setTriggerHandleParaUser(handlePara, 0);
         SwitchParaMgr.Instance.handle(handlePara, () =>{
-            CardMgr.Instance.handle(handlePara, TriggerEvent.settlementBefore);
+            CardMgr.Instance.handle(handlePara, TriggerEvent.PRE_ACTION);
         });
         
         int winIndex = para.getWinIndex();
@@ -80,8 +76,7 @@ public class CardFlow : GameFlowObject
         {
             //wins
             this.setTriggerHandleParaUser(handlePara, winIndex);
-            CardMgr.Instance.handle(handlePara, TriggerEvent.roundAttackBefore);
-
+            
             //牌结算
             this._pokerSettle.settle(handlePara);
 
@@ -91,7 +86,7 @@ public class CardFlow : GameFlowObject
 
         //行动后
         SwitchParaMgr.Instance.handle(handlePara, () => {
-            CardMgr.Instance.handle(handlePara, TriggerEvent.roundAttackAfter);
+            CardMgr.Instance.handle(handlePara, TriggerEvent.TURN_END);
         });
 
         this._specialSettle.settle(handlePara);
@@ -108,7 +103,6 @@ public class CardFlow : GameFlowObject
 
         IUser attackUser = winIndex == 0 ? npc : player;
         IUser defenseUser = winIndex == 0 ? player : npc;
-        handlePara.setUser(attackUser);
         handlePara.setAttackUser(attackUser);
         handlePara.setDefenseUser(defenseUser);
     }

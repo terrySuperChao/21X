@@ -130,8 +130,7 @@ public enum ValueType {
     attack,
     defense,
     magic,
-    point,
-    winRate,
+    maxMagic,
 }
 
 public enum PageIndex {
@@ -203,17 +202,20 @@ public enum TargetPart
 }
 
 public enum TriggerEvent {
-    initPokerBefore,        //发牌前
-    dealPokerBefore,        //要牌前
-    dealPokerAfter,         //要牌后
-    stopPokerAfter,         //停牌后
-    settlementBefore,       //牌局结算前
-    transformAttribute,     //属性转化
-    roundAttackBefore,      //开始行动前
-    normalAttackAfter,      //普通攻击后
-    magicAttackAfter,       //魔法攻击后
-    roundAttackAfter,       //结束行动后
-    roundOther = 100,       //其他
+    UNDEFINED,                      //未定义
+    BATTLE_START,                   //战斗开始
+    TURN_START,                     //回合开始
+    POST_INITIAL_DRAW,              //初始发牌完成后
+    POST_CARD_DRAW,                 //要牌后
+    POST_STAND_OR_FINAL_SCORE,      //停牌/最终点数确定后
+    POST_BATTLE_RESULT,             //牌局结果确定后
+    POST_SUIT_ATTRIBUTE_CONVERSION, //每次单花色属性转化后
+    PRE_ACTION,                     //行动开始前
+    POST_BASIC_ATTACK,              //普通攻击结算后
+    POST_MAIN_SKILL,                //主技能释放后
+    TURN_END,                       //回合结束时
+    BATTLE_END,                     //战斗结束/胜利结算
+    CUSTOM_EVENT = 100              //自定义事件（优先级全部为0）
 }
 
 public enum BuffAction
@@ -251,4 +253,47 @@ public enum BuffType {
     rtHurtValue,
     rtMagicValue,
     rtFreezeArmorValue,
+}
+
+//基础效果类型
+public enum BaseEffectType
+{
+    addLevel,//叠加等级
+    multATK,
+    bonusArmor,
+    lifeSteal,
+    healToMP,
+    reflectDMG,
+    skillDamageUp,//技能效果提升
+    mpRegen,
+    addCrit,
+    temporaryArmor,//临时护甲
+    healOverTime,
+    addMPPer,
+    
+    //进阶效果
+    baseDataUp,//基础属性值提升
+    internalValue,//内部类型，
+    magicDouble,//法力值X2
+    magicHurt,//法力值的真实伤害
+    retainATK,//保留攻击力
+
+    //运行时
+    rtHurtValue,
+    rtMagicValue,
+    rtMagicTotal,
+    rtFreezeArmorValue,
+}
+
+//进阶效果类型
+public enum AdvancedEffectType {
+    roundStartAddBlood,//回合开始时回复生命值
+    roundStartAddMagic,//回合开始时回复法力
+    enemyLessBlood, //敌方每损失10%生命值
+    selfLessBlood,//自身每损失10%生命值
+    addDefense,//每有5点护甲
+    addMagic,//每有10点法力
+    releaseMagic,//技能释放
+    transformCommonDefense,//普通护甲
+    overflowBloodValue,//溢出的治疗量
 }

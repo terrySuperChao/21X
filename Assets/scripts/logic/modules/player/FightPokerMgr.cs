@@ -1,6 +1,5 @@
 //
 using Pb;
-using System.Collections;
 using System.Collections.Generic;
 
 public class FightPokerMgr : Singleton<FightPokerMgr>
@@ -19,35 +18,28 @@ public class FightPokerMgr : Singleton<FightPokerMgr>
     private void newUser(FightDealType type) {
         AssetInfo info = FightDataMgr.Instance.getAssetInfo(type);
         IExtraInfo extra = new ExtraInfoObject();
-        extra.setMultATK(info.Extra.MultATK);
-        extra.setAddCrit(info.Extra.AddCrit);
-        extra.setBonusArmor(info.Extra.BonusArmor);
-        extra.setReflectDMG(info.Extra.ReflectDMG);
-        extra.setTemporaryArmor(info.Extra.TemporaryArmor);
-        extra.setLifeSteal(info.Extra.LifeSteal);
-        extra.setHealToMP(info.Extra.HealtoMP);
-        extra.setSkillDamageUp(info.Extra.SkillDamageUp);
-        extra.setMpMaxSub(info.Extra.MpMaxSub);
-        extra.setAddBleeding(info.Extra.AddBleeding);
-        extra.setIgnoreArmor(info.Extra.IgnoreArmor);
-        extra.setExecute(info.Extra.Execute);
-        extra.setReflectPercent(info.Extra.ReflectPercent);
-        extra.setMagicImmunity(info.Extra.MagicImmunity);
-        extra.setArmorATK(info.Extra.ArmorATK);
-        extra.setImmunityDeBuff(info.Extra.ImmunityDeBuff);
-        extra.setFreezeArmor(info.Extra.FreezeArmor);
-
+        
         extra.setRtHurtValue(info.Extra.RtHurtValue);
-        extra.setRtMagicValue(info.Extra.RtMagicValue);
         extra.setRtFreezeArmorValue(info.Extra.RtFreezeArmorValue);
-        foreach (float item in info.Extra.MpRegen) {
-            extra.setMpRegen(item);
-        }
-        foreach (float item in info.Extra.HealOverTime)
+        extra.setRtAddDefenseValue(info.Extra.RtAddDefenseValue);
+        extra.setBaseEffectDataInstance((int id) =>
         {
-            extra.setHealOverTime(item);
+            return new BaseEffectDataObject(id);
+        });
+        foreach (BaseEffectData item in info.Extra.BaseEffectDatas)
+        {
+            extra.addBaseEffectData(item);
+            IBaseEffectData baseEffectData = extra.getBaseEffectData(item.Id);
+            foreach (Pb.BaseEffectValue value in item.BaseEffectValues)
+            {
+                IBaseEffectValue baseEffectValue = new BaseEffectValueObject();
+                baseEffectValue.setType((BaseEffectType)value.Type);
+                baseEffectValue.setValue(value.Value);
+                baseEffectValue.setMaxValue(value.MaxValue);
+                baseEffectData.setBaseEffectValue(baseEffectValue);
+            }
         }
-
+        
         IUser user = new UserObject(type == FightDealType.npc);
         user.setAttack(info.Attack);
         user.setDefense(info.Defense);
@@ -74,35 +66,27 @@ public class FightPokerMgr : Singleton<FightPokerMgr>
         info.Attack = user.getAttack();
         info.Defense = user.getDefense();
         info.State = (int)user.getState();
-        info.Extra.MultATK = user.getExtraInfo().getMultATK();
-        info.Extra.AddCrit = user.getExtraInfo().getAddCrit();
-        info.Extra.BonusArmor = user.getExtraInfo().getBonusArmor();
-        info.Extra.ReflectDMG = user.getExtraInfo().getReflectDMG();
-        info.Extra.TemporaryArmor = user.getExtraInfo().getTemporaryArmor();
-        info.Extra.LifeSteal = user.getExtraInfo().getLifeSteal();
-        info.Extra.HealtoMP = user.getExtraInfo().getHealToMP();
-        info.Extra.SkillDamageUp = user.getExtraInfo().getSkillDamageUp();
-        info.Extra.MpMaxSub = user.getExtraInfo().getMpMaxSub();
-        info.Extra.AddBleeding = user.getExtraInfo().getAddBleeding();
-        info.Extra.IgnoreArmor = user.getExtraInfo().getIgnoreArmor();
-        info.Extra.Execute = user.getExtraInfo().getExecute();
-        info.Extra.ReflectPercent = user.getExtraInfo().getReflectPercent();
-        info.Extra.MagicImmunity = user.getExtraInfo().getMagicImmunity();
-        info.Extra.ArmorATK = user.getExtraInfo().getArmorATK();
-        info.Extra.ImmunityDeBuff = user.getExtraInfo().getImmunityDeBuff();
-        info.Extra.FreezeArmor = user.getExtraInfo().getFreezeArmor();
+        
         info.Extra.RtHurtValue = user.getExtraInfo().getRtHurtVaule();
-        info.Extra.RtMagicValue = user.getExtraInfo().getRtMagicValue();
         info.Extra.RtFreezeArmorValue = user.getExtraInfo().getRtFreezeArmorValue();
-        info.Extra.MpRegen.Clear();
-        info.Extra.HealOverTime.Clear();
-        foreach (float item in user.getExtraInfo().getMpRegens())
+        info.Extra.RtAddDefenseValue = user.getExtraInfo().getRtAddDefenseValue();
+        info.Extra.BaseEffectDatas.Clear();
+        
+        foreach (IBaseEffectData item in user.getExtraInfo().getBaseEffectDatas())
         {
-            info.Extra.MpRegen.Add(item);
-        }
-        foreach (float item in user.getExtraInfo().getHealOverTimes())
-        {
-            info.Extra.HealOverTime.Add(item);
+            BaseEffectData baseEffectData = new BaseEffectData();
+            baseEffectData.Id = item.getId();
+            baseEffectData.State = item.getState();
+
+            foreach (IBaseEffectValue value in item.getBaseEffectValues())
+            {
+                BaseEffectValue baseEffectValue = new BaseEffectValue();
+                baseEffectValue.Type = (int)value.getType();
+                baseEffectValue.Value = value.getValue();
+                baseEffectValue.MaxValue = value.getValue();
+                baseEffectData.BaseEffectValues.Add(baseEffectValue);
+            }
+            info.Extra.BaseEffectDatas.Add(baseEffectData);
         }
     }
 
@@ -278,10 +262,8 @@ public class FightPokerMgr : Singleton<FightPokerMgr>
 
         IUser user = null;
         for (int i = 0; i < this._players.Count; i++) {
-            this._players[i].addPlay();
             if (index == i) {
                 user = this._players[i];
-                user.addWins();
             }
         }
         GameMessage.Instance.addMsg(GameConst.GAMESETTLE, user);
@@ -358,36 +340,6 @@ public class FightPokerMgr : Singleton<FightPokerMgr>
     public int addUserRound()
     {
         return FightDataMgr.Instance.addRound();
-    }
-
-    public void addNpcCard(IUser user,List<ICard> cards) {
-        ICard card = cards.Find(card => card.getLevel() == 2);
-        
-        if (card == null){
-            card = cards[RandomMgr.Instance.getRangeInt(0, cards.Count)];
-        }
-
-        bool success = FightDataMgr.Instance.addCard(this.getDealType(user), card);
-        if (success)
-        {
-            GameMessage.Instance.addMsg(GameConst.DEALCARD, new DealCardPara(user, card));
-            //this._gameFlow.addCardAfter(new AddCardAfterPara(this._players));
-        }
-    }
-
-    public bool addUserCard(bool isOk, IUser user, ICard card)
-    {
-        bool success = isOk;
-        if (success)
-        {
-            success = FightDataMgr.Instance.addCard(this.getDealType(user), card);
-        }
-        if (success)
-        {
-            //this._gameFlow.addCardAfter(new AddCardAfterPara(this._players));
-        }
-        GameMessage.Instance.addMsg(GameConst.FIGHTFLOWSTATE, FightFlowState.twoHandPoker);
-        return success;
     }
 
     public void setAdvancedEffectId(int triggerId, IUser user, IPart part)

@@ -21,29 +21,15 @@ public class AttackSettle: IAttackSettle
         //暴击伤害加+50%
         float addCrit = 0;
         float number = RandomMgr.Instance.getRangeInt(1, 101) / 100.0f;//[1,100]
-        if (number <= attackUser.getExtraInfo().getAddCrit()) {
+        if (number <= CardMgr.Instance.getBaseEffectValue(attackUser,BaseEffectType.addCrit)) {
             addCrit = 0.5f;
         }
 
-        float multATK = attackUser.getExtraInfo().getMultATK();
+        float multATK = CardMgr.Instance.getBaseEffectValue(attackUser, BaseEffectType.multATK);
         float attack = attackUser.getAttack() * (1 + multATK + addCrit);
-        
+
         //保留
-        float retainATK = attackUser.getExtraInfo().getRetainATK();
-        if (addCrit > 0){
-            attackUser.getExtraInfo().clearRetainATK();
-        }else {
-            retainATK = 0.0f;
-        }
-
-        //终结技
-        float execute = attackUser.getExtraInfo().getExecute();
-        float percent = defenseUser.getBlood() / defenseUser.getMaxBlood() * 100.0f;
-        if (execute > percent){
-            attack = defenseUser.getBlood();
-            attackUser.getExtraInfo().clearExecute();
-        }
-
+        float retainATK = CardMgr.Instance.getBaseEffectValue(attackUser, BaseEffectType.retainATK);
         attackUser.setAttack(attack * retainATK);
         attackUser.getExtraInfo().setRtHurtValue(attack);
         
@@ -51,51 +37,25 @@ public class AttackSettle: IAttackSettle
         GameMessage.Instance.addMsg(GameConst.COMMONATTACK, attackPara);
 
         float remainAttack = this.getRemainAttack(para, attack);
-        GameBloodMgr.Instance.lessBloodHandle(para.getAttackUser(), para.getDefenseUser(), remainAttack);
-
-        //清空状态
-        attackUser.getExtraInfo().clearMultATK();
-
-        //流血
-        float addBleeding = attackUser.getExtraInfo().getAddBleeding();
-        if (addBleeding > 0){
-            float immunityDeBuff = attackUser.getExtraInfo().getImmunityDeBuff();
-            if (immunityDeBuff == 0){
-                GameBloodMgr.Instance.lessBloodHandle(defenseUser, attackUser, addBleeding);
-            }else {
-                IUIFlyFontPara uiPara = new UIFlyFontParaObject(defenseUser, BuffType.immunityDeBuff, "免疫的流血");
-                GameMessage.Instance.addMsg(GameConst.FLYFONT, uiPara);
-            }
-            attackUser.getExtraInfo().setAddBleeding(-1);
-        }
+        GameBloodMgr.Instance.handle(para.getAttackUser(), para.getDefenseUser(), remainAttack);
 
         //反弹
-        float reflectDMG = defenseUser.getExtraInfo().getReflectDMG();
+        float reflectDMG = CardMgr.Instance.getBaseEffectValue(defenseUser,BaseEffectType.reflectDMG);
         if (reflectDMG > 0) {
-            GameBloodMgr.Instance.lessBloodHandle(defenseUser, attackUser, reflectDMG);
-        }
-
-        //反弹百分比
-        float reflectPercent = defenseUser.getExtraInfo().getReflectPercent();
-        if (reflectPercent > 0){
-            defenseUser.getExtraInfo().clearReflectPercent();
-            GameBloodMgr.Instance.lessBloodHandle(defenseUser, attackUser, attack * reflectPercent);
+            GameBloodMgr.Instance.handle(defenseUser, attackUser, reflectDMG);
         }
 
         //单次造成伤害
-        CardMgr.Instance.handle(para, TriggerEvent.roundOther);
+        CardMgr.Instance.handle(para, TriggerEvent.CUSTOM_EVENT);
 
         //普通攻击后
         SwitchParaMgr.Instance.handle(para, () => {
-            CardMgr.Instance.handle(para, TriggerEvent.normalAttackAfter);
+            CardMgr.Instance.handle(para, TriggerEvent.POST_BASIC_ATTACK);
         }, true);
 
-        //普通攻击两次
-        float doubleProc = attackUser.getExtraInfo().getDoubleProc();
-        if (doubleProc > 0) {
-            attackUser.getExtraInfo().clearDoubleProc();
-            this.commonAttack(para);
-        }
+        //清空
+        CardMgr.Instance.clearBaseEffectValue(attackUser, BaseEffectType.multATK);
+        CardMgr.Instance.clearBaseEffectValue(attackUser, BaseEffectType.retainATK);
     }
 
     //魔法攻击
@@ -114,31 +74,27 @@ public class AttackSettle: IAttackSettle
         IUICommonPara attackPara = new UICommonParaObject(attackUser, ValueType.magic, attackUser.getMaxMagic(), attackUser.getMagic());
         GameMessage.Instance.addMsg(GameConst.COMMONATTACK, attackPara);
 
-        float magicImmunity = defenseUser.getExtraInfo().getMagicImmunity();
-        if (magicImmunity > 0)
-        {
-            defenseUser.getExtraInfo().clearMagicImmunity();
-
-            IUIFlyFontPara uiPara = new UIFlyFontParaObject(defenseUser, BuffType.magicImmunity, "免疫的护盾");
-            GameMessage.Instance.addMsg(GameConst.FLYFONT, uiPara);
-        }
-        else
-        {
-            //减去50血量
-            float attack = 50.0f;
-            float skillDamageUp = attackUser.getExtraInfo().getSkillDamageUp();
-            float remainAttack = attack * (1 + skillDamageUp);
-            attackUser.getExtraInfo().setRtHurtValue(remainAttack);
-            attackUser.getExtraInfo().clearSkillDamageUp();
-
-            GameBloodMgr.Instance.lessBloodHandle(para.getAttackUser(), para.getDefenseUser(), remainAttack);
-        }
-
+        //减去50血量
+        float attack = 50.0f;
+        float skillDamageUp = CardMgr.Instance.getBaseEffectValue(attackUser, BaseEffectType.skillDamageUp);
+        float remainAttack = attack * (1 + skillDamageUp);
+        attackUser.getExtraInfo().setRtHurtValue(remainAttack);
+        
+        GameBloodMgr.Instance.handle(para.getAttackUser(), para.getDefenseUser(), remainAttack);
+        
         //魔法攻击后
-        CardMgr.Instance.handle(para, TriggerEvent.magicAttackAfter);
+        CardMgr.Instance.handle(para, TriggerEvent.POST_MAIN_SKILL);
 
         //单次造成伤害
-        CardMgr.Instance.handle(para, TriggerEvent.roundOther);
+        CardMgr.Instance.handle(para, TriggerEvent.CUSTOM_EVENT);
+
+        //释放
+        IBaseEffectHandlePara baseEffectHandlePara = new BaseEffectHandleParaObject();
+        baseEffectHandlePara.setAttackUser(attackUser);
+        baseEffectHandlePara.setDefenseUser(defenseUser);
+        baseEffectHandlePara.setEffectType(AdvancedEffectType.releaseMagic);
+        baseEffectHandlePara.setExtralValue(0);
+        CardMgr.Instance.handle(baseEffectHandlePara);
 
         //魔法攻击
         para.setMagicAttack(true);
@@ -148,20 +104,18 @@ public class AttackSettle: IAttackSettle
     private float getRemainAttack(ITriggerHandlePara para,float attack) {
         IUser attackUser = para.getAttackUser();
         IUser defenseUser = para.getDefenseUser();
-        defenseUser.getExtraInfo().setTemporaryArmor(-attack);
-
+        
         //忽略护甲
-        if (attackUser.getExtraInfo().getIgnoreArmor() > 0) {
-            attackUser.getExtraInfo().clearIgnoreArmor();
+        IBaseEffectData advancedEffectData = attackUser.getExtraInfo().getBaseEffectData(AdvancedEffectHandleMgr.advancedEffectId3003);
+        if (advancedEffectData.isState()) {
+            advancedEffectData.setState(0);
             return attack;
         }
 
         float rtFreezeArmorValue = defenseUser.getExtraInfo().getRtFreezeArmorValue();
         if (rtFreezeArmorValue > 0) {
-            defenseUser.addDefense(rtFreezeArmorValue);
-            defenseUser.getExtraInfo().clearRtFreezeArmorValue();
-            IUICommonPara defensePara = new UICommonParaObject(defenseUser, ValueType.defense, rtFreezeArmorValue, defenseUser.getDefense());
-            GameMessage.Instance.addMsg(GameConst.ADDCARDVALUE, defensePara);
+            GameDefenseMgr.Instance.handle(defenseUser, attackUser, rtFreezeArmorValue);
+            defenseUser.getExtraInfo().clearRtFreezeArmorValue();   
         }
 
         //
@@ -176,24 +130,14 @@ public class AttackSettle: IAttackSettle
         {
             defenseValue = defense;
             attack -= defense;
-            defense = 0;
         }
         else
         {
             defenseValue = attack;
-            defense -= attack;
             attack = 0;
         }
-        float freezeArmor = defenseUser.getExtraInfo().getFreezeArmor();
-        if (freezeArmor > 0) {
-            defenseUser.getExtraInfo().clearFreezeArmor();
-            defenseUser.getExtraInfo().setRtFreezeArmorValue(defenseUser.getDefense() - defense);
-        }
-        defenseUser.setDefense(defense);
-        
-        IUICommonPara attackPara = new UICommonParaObject(defenseUser, ValueType.defense, -defenseValue, defenseUser.getDefense());
-        GameMessage.Instance.addMsg(GameConst.ADDCARDVALUE, attackPara);
-        
+        GameDefenseMgr.Instance.handle(defenseUser, attackUser, -defenseValue);
+         
         return attack;
     }
     
