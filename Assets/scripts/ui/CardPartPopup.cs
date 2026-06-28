@@ -55,6 +55,12 @@ public class CardPartPopup : MonoBehaviour
             if (baseEffectValue != null && baseEffectValue.getValue() > 0) {
                 str += string.Format("当前{0}/{1}层\n", baseEffectValue.getValue(), baseEffectValue.getMaxValue());
             }
+
+            if (data.getId() == BaseEffectHandleMgr.baseEffectId2025) {
+                if (data.isState()) {
+                    str += "<color=red>首次已触发</color>\n";
+                }
+            }
         }
 
         if (assembleCard.getAdvancedEffectId() <= 0)
