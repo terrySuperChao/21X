@@ -82,31 +82,22 @@ public class CardPartPopup : MonoBehaviour
         this.partName.text = str;
     }
 
-    protected float getAddValue(IPart baseEffect,IPart advanceEffect)
+    protected List<float> getAddValue(IPart baseEffect,IPart advanceEffect)
     {
-        List<float> addValues = null;
         if (advanceEffect != null && advanceEffect.getId() > 0)
         {
-            addValues = baseEffect.getValueUpgrade();
+            return baseEffect.getValueUpgrade();
         }
         else
         {
-            addValues = baseEffect.getValueDefault();
-        }
-
-        if (addValues == null)
-        {
-            return 0;
-        }
-        else {
-            return addValues[0];
-        }   
+            return baseEffect.getValueDefault();
+        }  
     }
 
     protected string getDescription(IPart baseEffect, IPart advanceEffect)
     {
-        float addValue = this.getAddValue(baseEffect, advanceEffect);
+        List<float> values = this.getAddValue(baseEffect, advanceEffect);
         string desc = baseEffect.getDesc();
-        return GameUtils.formatDescription(desc, addValue);
+        return GameUtils.formatDescription(desc, values);
     }
 }   

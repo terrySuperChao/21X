@@ -1,5 +1,9 @@
 using System;
 using System.Text.RegularExpressions;
+using System.Collections.Generic;
+using Google.Protobuf.WellKnownTypes;
+using Unity.VisualScripting;
+using System.Runtime.ConstrainedExecution;
 //
 public class GameUtils
 {
@@ -27,6 +31,30 @@ public class GameUtils
         }
     }
 
+    public static string formatDescription(string description, List<float> values)
+    {
+        string desc = description.Replace(" ", "");
+        string[] list = desc.Split("%s");
+        if (list.Length <= 1)
+        {
+            return desc;
+        }
+        
+        string str = list[0];
+        for (int i = 1; i < list.Length; i++) {
+            if (list[i] == "") continue;
+            if (list[i].Substring(0, 1) == "%")
+            {
+                str += "<color=red>" + (values[i - 1] * 100) + "%</color>" + list[i].Substring(1, list[i].Length - 1);
+            }
+            else {
+                str += "<color=red>" + (values[i - 1]) + "</color>" + list[i];
+            }   
+        }
+        
+        return str;
+    }
+
     public static string formatDescription(string description, float value)
     {
         string desc = description.Replace(" ", "");
@@ -42,14 +70,14 @@ public class GameUtils
                 oldStr = "%s%";
                 newStr = value + "%";
             }
-            else {
+            else
+            {
                 oldStr = "%s";
                 newStr = value + "";
             }
-            return desc.Replace(oldStr, "<color=red>"+ newStr + "</color>");
+            return desc.Replace(oldStr, "<color=red>" + newStr + "</color>");
         }
-        else
-        {
+        else {
             return desc;
         }
     }

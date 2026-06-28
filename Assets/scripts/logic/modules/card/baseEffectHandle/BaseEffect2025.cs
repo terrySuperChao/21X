@@ -9,14 +9,15 @@ public class BaseEffect2025 : BaseEffectHandleObject
 
     protected override void _handle(ITriggerHandlePara para)
     {
-        float addValue = this.getAddValue(para);
         IBaseEffectData data = para.getAttackUser().getExtraInfo().getBaseEffectData(this._id);
         if (!data.isState()) {
             data.setState(1);
+            float addValue = this.getAddValue(para);
             GameBloodMgr.Instance.handle(para.getAttackUser(), addValue);
         }
         else
         {
+            float addValue = this.getAddValue(para,1);
             GameBloodMgr.Instance.handle(para.getAttackUser(), addValue);
         }
     }

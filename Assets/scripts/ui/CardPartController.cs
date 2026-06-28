@@ -60,50 +60,45 @@ public class CardPartController {
     }
 
     public void matchTargetAreaPart(RectTransform targetArea, IPart partInfo) {
-        CardPartItem item = null;
+        CardPartItem item = this._items.Find(item => item.targetArea == targetArea);
+        if (item == null)
+        {
+            return;
+        }
+
+        if (item.partInfo != null)
+        {
+            if (this._dragCallBack != null)
+            {
+                this._dragCallBack(item.index, item.partInfo.getTargetPart());
+            }
+        }
+
         for (int i = 0; i < this._items.Count; i++)
         {
-            if (this._items[i].targetArea == targetArea)
-            {
-                item = this._items[i];
+            if (this._items[i] != item &&
+                this._items[i].index == item.index &&
+                this._items[i].partInfo != null) {
+                IPart part = this._items[i].partInfo;
+                if (part.getTargetPart() == TargetPart.trigger) {
+                    if (part.getCorrespondBase().IndexOf(partInfo.getBelongBase()) == -1) {
+                        this._dragCallBack(this._items[i].index, this._items[i].partInfo.getTargetPart());
+                    }
+                }
+                else
+                {
+                    if (partInfo.getCorrespondBase().IndexOf(part.getBelongBase()) == -1)
+                    {
+                        this._dragCallBack(this._items[i].index, this._items[i].partInfo.getTargetPart());
+                    }
+                }
                 break;
             }
         }
 
-        if (item != null) {
-            if (item.partInfo != null)
-            {
-                if (this._dragCallBack != null)
-                {
-                    this._dragCallBack(item.index, item.partInfo.getTargetPart());
-                }
-            }
-
-            for (int i = 0; i < this._items.Count; i++)
-            {
-                if (this._items[i] != item &&
-                    this._items[i].index == item.index &&
-                    this._items[i].partInfo != null) {
-                    IPart part = this._items[i].partInfo;
-                    if (part.getTargetPart() == TargetPart.trigger) {
-                        if (part.getCorrespondBase().IndexOf(partInfo.getBelongBase()) != 0) {
-                            this._dragCallBack(this._items[i].index, this._items[i].partInfo.getTargetPart());
-                        }
-                    }
-                    else
-                    {
-                        if (partInfo.getCorrespondBase().IndexOf(part.getBelongBase()) != 0)
-                        {
-                            this._dragCallBack(this._items[i].index, this._items[i].partInfo.getTargetPart());
-                        }
-                    }
-                    break;
-                }
-            }
-
-            item.partInfo = partInfo;
-            ImprintDataMgr.Instance.addPart(item.index, item.targetType, partInfo.getId());
-        }
+        item.partInfo = partInfo;
+        ImprintDataMgr.Instance.addPart(item.index, item.targetType, partInfo.getId());
+        
     }
 
     public void clearTargetAreaPart(IPart partInfo) {

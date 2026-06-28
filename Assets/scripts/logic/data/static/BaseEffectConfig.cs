@@ -86,7 +86,7 @@ public class BaseEffectInfo : IPart
         string[] list = str.Split(",");
         for (int i = 0; i < list.Length; i++) {
             float addValue;
-            float.TryParse(list[0], out addValue);
+            float.TryParse(list[i], out addValue);
             values.Add(addValue);
         }
     }
