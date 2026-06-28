@@ -217,7 +217,6 @@ public class CardMgr: Singleton<CardMgr>
             IBaseEffectValue baseEffectValue = data.getBaseEffectValues().Find(value=> value.getType() == type);
             if (baseEffectValue != null) {
                 value += baseEffectValue.getValue();
-                UnityEngine.Debug.Log("111111======"+value);
             }
         }
         return value;
@@ -225,6 +224,9 @@ public class CardMgr: Singleton<CardMgr>
 
     public float clearBaseEffectValue(IUser user, BaseEffectType type)
     {
+        //移除
+        FightPokerMgr.Instance.getBuffEffect().removeBuffType(user, type);
+
         float value = 0;
         List<IAssembleCard> cards = ImprintDataMgr.Instance.getAssembleCard(user.isNpc());
         for (int i = 0; i < cards.Count; i++)

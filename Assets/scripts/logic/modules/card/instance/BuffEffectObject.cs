@@ -54,7 +54,8 @@ public class BuffEffectObject : IBuffEffect
 
     private bool isFilter(BaseEffectType type)
     {
-        if (type == BaseEffectType.addLevel)
+        if (type == BaseEffectType.addLevel ||
+            type == BaseEffectType.internalValue)
         {
             return true;
         }

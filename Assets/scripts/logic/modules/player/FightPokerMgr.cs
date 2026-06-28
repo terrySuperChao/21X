@@ -382,7 +382,7 @@ public class FightPokerMgr : Singleton<FightPokerMgr>
         return baseEffectValue;
     }
 
-    public List<BaseEffectType> getUserBuff(IUser user) {
-        return this._buffEffect.getBuffs(user);
+    public IBuffEffect getBuffEffect() {
+        return this._buffEffect;
     }
 }

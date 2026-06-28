@@ -113,7 +113,7 @@ public class PlayerAsset : MonoBehaviour
     }
 
     private void initBuffs() {
-        List<BaseEffectType> buffs = FightPokerMgr.Instance.getUserBuff(this._user);
+        List<BaseEffectType> buffs = FightPokerMgr.Instance.getBuffEffect().getBuffs(this._user);
         foreach (var buff in buffs)
         {
             this.addBuff(buff);
