@@ -218,43 +218,6 @@ public enum TriggerEvent {
     CUSTOM_EVENT = 100              //自定义事件（优先级全部为0）
 }
 
-public enum BuffAction
-{
-    add,
-    remove,
-}
-
-public enum BuffType {
-    //基础
-    multATK,
-    bonusArmor,
-    lifeSteal,
-    healToMP,
-    reflectDMG,
-    skillDamageUp,
-    mpRegen,
-    addCrit,
-    temporaryArmor,
-    healOverTime,
-    addMPPer,
-    //进阶
-    addBleeding,
-    doubleProc,
-    ignoreArmor,
-    execute,
-    retainATK,
-    reflectPercent,
-    magicImmunity,
-    armorATK,
-    immunityDeBuff,
-    freezeArmor,
-    overHealATK,
-    //运行时
-    rtHurtValue,
-    rtMagicValue,
-    rtFreezeArmorValue,
-}
-
 //基础效果类型
 public enum BaseEffectType
 {
@@ -270,7 +233,8 @@ public enum BaseEffectType
     temporaryArmor,//临时护甲
     healOverTime,
     addMPPer,
-    
+    addBleeding,
+
     //进阶效果
     baseDataUp,//基础属性值提升
     internalValue,//内部类型，

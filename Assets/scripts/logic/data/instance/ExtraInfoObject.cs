@@ -9,21 +9,10 @@ public class ExtraInfoObject : IExtraInfo
     private float _rtAddDefenseValue = 0;
     private float _rtOverflowBloodValue = 0;
 
-    private List<BuffType> _buffTypes = new List<BuffType>();
-    private Action<BuffAction, BuffType> _callback = null;
-
     //效果
     private List<IBaseEffectData> _baseEffect = new List<IBaseEffectData>();
-    private Func<int,IBaseEffectData> _baseEffectEvent = null;
-    
-    public void setBuffAction(Action<BuffAction, BuffType> callback) {
-        this._callback = callback;
-    }
-
-    public List<BuffType> getBuffs() {
-        return this._buffTypes;
-    }
-
+    private Func<int,IBaseEffectData> _baseEffectDataInstance = null;
+       
     public void setRtHurtValue(float value)
     {
         this._rtHurtValue += value;
@@ -41,7 +30,6 @@ public class ExtraInfoObject : IExtraInfo
     {
         this._rtFreezeArmorValue = value;
         this._rtFreezeArmorValue = this._rtFreezeArmorValue < 0 ? 0 : this._rtFreezeArmorValue;
-        this.addBuffType(BuffType.rtFreezeArmorValue, value);
     }
 
     public float getRtFreezeArmorValue()
@@ -51,7 +39,6 @@ public class ExtraInfoObject : IExtraInfo
 
     public void clearRtFreezeArmorValue() {
         this._rtFreezeArmorValue = 0;
-        this.removeBuffType(BuffType.rtFreezeArmorValue);
     }
 
     //添加的护甲值
@@ -94,7 +81,7 @@ public class ExtraInfoObject : IExtraInfo
         }
         if (data == null)
         {
-            data = this._baseEffectEvent(id);
+            data = this._baseEffectDataInstance(id);
             this._baseEffect.Add(data);
         }
         return data;
@@ -102,32 +89,12 @@ public class ExtraInfoObject : IExtraInfo
 
     public void addBaseEffectData(Pb.BaseEffectData value)
     {
-        IBaseEffectData data = this._baseEffectEvent(value.Id);
+        IBaseEffectData data = this._baseEffectDataInstance(value.Id);
         data.setState(value.State);        
         this._baseEffect.Add(data);
     }
 
     public void setBaseEffectDataInstance(Func<int,IBaseEffectData> func) {
-        this._baseEffectEvent = func;
-    }
-
-    private void addBuffType(BuffType type,float value) {
-        if (value <= 0) return;
-
-        int index = this._buffTypes.FindIndex(buffType => buffType == type);
-        if (index == -1) {
-            UnityEngine.Debug.Log("============="+type);
-            this._buffTypes.Add(type);
-            this._callback?.Invoke(BuffAction.add, type);
-        }
-    }
-
-    private void removeBuffType(BuffType type) {
-        int index = this._buffTypes.FindIndex(buffType => buffType == type);
-        if(index != -1)
-        {
-            this._buffTypes.RemoveAt(index);
-            this._callback?.Invoke(BuffAction.remove, type);
-        }
+        this._baseEffectDataInstance = func;
     }
 }

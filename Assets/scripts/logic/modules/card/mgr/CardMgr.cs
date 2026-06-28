@@ -212,16 +212,12 @@ public class CardMgr: Singleton<CardMgr>
         List<IAssembleCard> cards = ImprintDataMgr.Instance.getAssembleCard(user.isNpc());
         for (int i = 0; i < cards.Count; i++) {
             IBaseEffectData data = user.getExtraInfo().getBaseEffectData(cards[i].getBaseEffectId());
-            if (data.isState()) {
-                List<IBaseEffectValue> baseEffectValues = data.getBaseEffectValues();
-                for (int j = 0; j < baseEffectValues.Count; i++)
-                {
-                    if (baseEffectValues[i].getType() == type)
-                    {
-                        value += baseEffectValues[i].getValue();
-                        break;
-                    }
-                }
+            if (!data.isState()) continue;
+
+            IBaseEffectValue baseEffectValue = data.getBaseEffectValues().Find(value=> value.getType() == type);
+            if (baseEffectValue != null) {
+                value += baseEffectValue.getValue();
+                UnityEngine.Debug.Log("111111======"+value);
             }
         }
         return value;
@@ -234,18 +230,12 @@ public class CardMgr: Singleton<CardMgr>
         for (int i = 0; i < cards.Count; i++)
         {
             IBaseEffectData data = user.getExtraInfo().getBaseEffectData(cards[i].getBaseEffectId());
-            if (data.isState())
-            {
-                List<IBaseEffectValue> baseEffectValues = data.getBaseEffectValues();
-                for (int j = 0; j < baseEffectValues.Count; i++)
-                {
-                    if (baseEffectValues[i].getType() == type)
-                    {
-                        data.setState(0);
-                        baseEffectValues[i].clearValue();
-                        break;
-                    }
-                }
+            if (!data.isState()) continue;
+
+            IBaseEffectValue baseEffectValue = data.getBaseEffectValues().Find(value => value.getType() == type);
+            if (baseEffectValue != null) {
+                data.setState(0);
+                baseEffectValue.clearValue();
             }
         }
         return value;

@@ -3,9 +3,6 @@ using System.Collections.Generic;
 
 public interface IExtraInfo
 {
-    public void setBuffAction(Action<BuffAction, BuffType> callback);
-    public List<BuffType> getBuffs();
-    
     //运行过程中数据 rt前缀
     //伤害=普通攻击+魔法攻击+直接扣血
     public void setRtHurtValue(float value);

@@ -167,6 +167,7 @@
     <Compile Include="Assets/scripts/ui/RelaxView.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/TeleType.cs" />
     <Compile Include="Assets/scripts/logic/modules/card/advancedEffectHandle/AdvancedEffect3032.cs" />
+    <Compile Include="Assets/scripts/logic/modules/card/interface/IBuffEffect.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/TMP_TextEventCheck.cs" />
     <Compile Include="Assets/scripts/logic/modules/card/instance/UICommonParaObject.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/TMP_UiFrameRateCounter.cs" />
@@ -264,6 +265,7 @@
     <Compile Include="Assets/scripts/logic/modules/settle/PokerSettle.cs" />
     <Compile Include="Assets/scripts/logic/modules/game/GamePropertyMgr.cs" />
     <Compile Include="Assets/scripts/logic/modules/card/interface/IUIPokerPara.cs" />
+    <Compile Include="Assets/scripts/logic/modules/card/instance/BuffEffectObject.cs" />
     <Compile Include="Assets/scripts/logic/modules/game/ImprintDataMgr.cs" />
     <Compile Include="Assets/scripts/logic/modules/settle/suit/ClubSettle.cs" />
     <Compile Include="Assets/scripts/logic/modules/card/advancedEffectHandle/AdvancedEffect3002.cs" />

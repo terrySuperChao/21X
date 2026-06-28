@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 public interface IBaseEffectData
@@ -10,4 +11,5 @@ public interface IBaseEffectData
     public void setBaseEffectValue(IBaseEffectValue value);
     public List<IBaseEffectValue> getBaseEffectValues();
     public IBaseEffectValue getBaseEffectValue(BaseEffectType type);
+    public void setBaseEffectValueInstance(Func<BaseEffectType, IBaseEffectValue> func);
 }

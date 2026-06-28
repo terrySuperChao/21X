@@ -3,7 +3,7 @@ public class UIFlyFontParaObject : IUIFlyFontPara
     private IUser _user;
     private ICard _card;
     private IAssembleCard _assembleCard;
-    private BuffType _buffType;
+    private BaseEffectType _buffType;
     private string _text;
     public UIFlyFontParaObject(IUser user, ICard card,string text) {
         _user = user;
@@ -15,7 +15,7 @@ public class UIFlyFontParaObject : IUIFlyFontPara
         this._text = text;
         this._assembleCard = card;
     }
-    public UIFlyFontParaObject(IUser user, BuffType buffType, string text)
+    public UIFlyFontParaObject(IUser user, BaseEffectType buffType, string text)
     {
         this._user = user;
         this._text = text;
@@ -34,7 +34,7 @@ public class UIFlyFontParaObject : IUIFlyFontPara
     public IAssembleCard getAssembleCard() {
         return this._assembleCard;
     }
-    public BuffType getBuffType()
+    public BaseEffectType getBuffType()
     {
         return this._buffType;
     }

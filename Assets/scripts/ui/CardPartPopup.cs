@@ -74,9 +74,6 @@ public class CardPartPopup : MonoBehaviour
                 str += string.Format("{0}\n{1}\n", advanceEffect.getName(), advanceEffect.getDesc());
             }            
         }
-
-        
-
         this.partName.text = str;
     }
 

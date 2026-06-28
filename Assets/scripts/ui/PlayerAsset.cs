@@ -113,7 +113,7 @@ public class PlayerAsset : MonoBehaviour
     }
 
     private void initBuffs() {
-        List<BuffType> buffs = this._user.getExtraInfo().getBuffs();
+        List<BaseEffectType> buffs = FightPokerMgr.Instance.getUserBuff(this._user);
         foreach (var buff in buffs)
         {
             this.addBuff(buff);
@@ -164,7 +164,7 @@ public class PlayerAsset : MonoBehaviour
         hover.popup = this.cardPartPopup.GetComponent<RectTransform>();
     }
 
-    private void addBuff(BuffType buffType) {
+    private void addBuff(BaseEffectType buffType) {
         GameObject buffObject = Instantiate(this.buffPartPrefab, this.buffs);
         buffObject.GetComponent<BuffPart>().setUser(this._user);
         buffObject.GetComponent<BuffPart>().setBuffType(buffType);
@@ -173,7 +173,7 @@ public class PlayerAsset : MonoBehaviour
         hover.popup = this.buffPartPopup.GetComponent<RectTransform>();
     }
 
-    private void removeBuff(BuffType buffType) {
+    private void removeBuff(BaseEffectType buffType) {
         for (int i = 0; i < this.buffs.childCount; i++) {
             if (this.buffs.GetChild(i).GetComponent<BuffPart>().getBuffType() == buffType) {
                 GameObject buffObject = this.buffs.GetChild(i).gameObject;
@@ -331,7 +331,7 @@ public class PlayerAsset : MonoBehaviour
         return null;
     }
 
-    private Transform getBuffTransform(BuffType buffType)
+    private Transform getBuffTransform(BaseEffectType buffType)
     {
         for (int i = 0; i < this.buffs.childCount; i++)
         {
@@ -523,6 +523,7 @@ public class PlayerAsset : MonoBehaviour
         this.tipsPanel.SetActive(false);
         this.tipsText.text = "爆牌！！";
         this.tipsText.color = Color.red;
+        this.pointText.text = "0";
         this.pointText.color = Color.white;
         this.initUserValue();
 

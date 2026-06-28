@@ -1,11 +1,13 @@
+using System;
 using System.Collections.Generic;
 
 public class BaseEffectDataObject : IBaseEffectData
 {
     private int _id = 0;
     private int _state = 0;
+    private Func<BaseEffectType, IBaseEffectValue> _baseEffectValueInstance = null;
     private List<IBaseEffectValue> _baseEffectValues = new List<IBaseEffectValue>();
-
+    
     public BaseEffectDataObject(int id) {
         this._id = id;
     }
@@ -42,10 +44,14 @@ public class BaseEffectDataObject : IBaseEffectData
     public IBaseEffectValue getBaseEffectValue(BaseEffectType type) {
         IBaseEffectValue baseEffectValue =  this._baseEffectValues.Find(item => item.getType() == type);
         if (baseEffectValue == null) {
-            baseEffectValue = new BaseEffectValueObject();
-            baseEffectValue.setType(type);
+            baseEffectValue = this._baseEffectValueInstance(type);
+            this._baseEffectValues.Add(baseEffectValue);
         }
         return baseEffectValue;
+    }
+
+    public void setBaseEffectValueInstance(Func<BaseEffectType, IBaseEffectValue> func) {
+        this._baseEffectValueInstance = func;
     }
 
 }

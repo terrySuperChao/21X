@@ -6,9 +6,11 @@ public class FightPokerMgr : Singleton<FightPokerMgr>
 {
     private List<IUser> _players = null;
     private IGameFlow _gameFlow = new CardFlow();
+    private IBuffEffect _buffEffect = new BuffEffectObject();
 
     public void init() {
         this._players = new List<IUser>();
+        this._buffEffect = new BuffEffectObject();
         this.newUser(FightDealType.npc);
         this.newUser(FightDealType.player);
         this._gameFlow = new CardFlow();
@@ -17,29 +19,6 @@ public class FightPokerMgr : Singleton<FightPokerMgr>
 
     private void newUser(FightDealType type) {
         AssetInfo info = FightDataMgr.Instance.getAssetInfo(type);
-        IExtraInfo extra = new ExtraInfoObject();
-        
-        extra.setRtHurtValue(info.Extra.RtHurtValue);
-        extra.setRtFreezeArmorValue(info.Extra.RtFreezeArmorValue);
-        extra.setRtAddDefenseValue(info.Extra.RtAddDefenseValue);
-        extra.setBaseEffectDataInstance((int id) =>
-        {
-            return new BaseEffectDataObject(id);
-        });
-        foreach (BaseEffectData item in info.Extra.BaseEffectDatas)
-        {
-            extra.addBaseEffectData(item);
-            IBaseEffectData baseEffectData = extra.getBaseEffectData(item.Id);
-            foreach (Pb.BaseEffectValue value in item.BaseEffectValues)
-            {
-                IBaseEffectValue baseEffectValue = new BaseEffectValueObject();
-                baseEffectValue.setType((BaseEffectType)value.Type);
-                baseEffectValue.setValue(value.Value);
-                baseEffectValue.setMaxValue(value.MaxValue);
-                baseEffectData.setBaseEffectValue(baseEffectValue);
-            }
-        }
-        
         IUser user = new UserObject(type == FightDealType.npc);
         user.setAttack(info.Attack);
         user.setDefense(info.Defense);
@@ -48,13 +27,37 @@ public class FightPokerMgr : Singleton<FightPokerMgr>
         user.setBlood(info.Hp);
         user.setMaxBlood(info.MaxHP);
         user.setState((UserState)info.State);
-        user.setExtraInfo(extra);
         this._players.Add(user);
 
-        //添加注册
-        extra.setBuffAction((BuffAction buffAction, BuffType buffType) => {
-            this.buffHandle(user,buffAction,buffType);
+        IExtraInfo extra = new ExtraInfoObject();
+        user.setExtraInfo(extra);
+
+        extra.setRtHurtValue(info.Extra.RtHurtValue);
+        extra.setRtFreezeArmorValue(info.Extra.RtFreezeArmorValue);
+        extra.setRtAddDefenseValue(info.Extra.RtAddDefenseValue);
+        extra.setBaseEffectDataInstance((int id) =>{
+            IBaseEffectData baseEffectData = new BaseEffectDataObject(id);
+            baseEffectData.setBaseEffectValueInstance((BaseEffectType effectType) =>{
+                this._buffEffect.addBuffType(user, effectType);
+                return this.createBaseEffectValue(effectType);
+            });
+            return baseEffectData;
         });
+
+        foreach (BaseEffectData item in info.Extra.BaseEffectDatas)
+        {
+            extra.addBaseEffectData(item);
+            IBaseEffectData baseEffectData = extra.getBaseEffectData(item.Id);
+            foreach (Pb.BaseEffectValue value in item.BaseEffectValues)
+            {
+                BaseEffectType effectType = (BaseEffectType)value.Type;
+                IBaseEffectValue baseEffectValue = this.createBaseEffectValue(effectType);
+                baseEffectValue.setValue(value.Value);
+                baseEffectValue.setMaxValue(value.MaxValue);
+                baseEffectData.setBaseEffectValue(baseEffectValue);
+                this._buffEffect.addBuffType(user, effectType,false);
+            }
+        }
     }
 
     private void saveUser(IUser user) {
@@ -66,12 +69,12 @@ public class FightPokerMgr : Singleton<FightPokerMgr>
         info.Attack = user.getAttack();
         info.Defense = user.getDefense();
         info.State = (int)user.getState();
-        
+
         info.Extra.RtHurtValue = user.getExtraInfo().getRtHurtVaule();
         info.Extra.RtFreezeArmorValue = user.getExtraInfo().getRtFreezeArmorValue();
         info.Extra.RtAddDefenseValue = user.getExtraInfo().getRtAddDefenseValue();
         info.Extra.BaseEffectDatas.Clear();
-        
+
         foreach (IBaseEffectData item in user.getExtraInfo().getBaseEffectDatas())
         {
             BaseEffectData baseEffectData = new BaseEffectData();
@@ -372,9 +375,14 @@ public class FightPokerMgr : Singleton<FightPokerMgr>
         FightDataMgr.Instance.setIsFilp(FightDealType.npc, 0);
     }
 
-    public void buffHandle(IUser user,BuffAction buffAction,BuffType buffType) {
-        string key = buffAction == BuffAction.add ? GameConst.ADDBUFFTYPE : GameConst.REMOVEBUFFTYPE;
-        IUIBuffPara buffPara = new UIBuffParaObject(user, buffType);
-        GameMessage.Instance.addMsg(key, buffPara);
+    private IBaseEffectValue createBaseEffectValue(BaseEffectType type)
+    {
+        IBaseEffectValue baseEffectValue = new BaseEffectValueObject();
+        baseEffectValue.setType(type);
+        return baseEffectValue;
+    }
+
+    public List<BaseEffectType> getUserBuff(IUser user) {
+        return this._buffEffect.getBuffs(user);
     }
 }
