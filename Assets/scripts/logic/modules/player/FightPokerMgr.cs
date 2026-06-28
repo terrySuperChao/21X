@@ -86,7 +86,7 @@ public class FightPokerMgr : Singleton<FightPokerMgr>
                 BaseEffectValue baseEffectValue = new BaseEffectValue();
                 baseEffectValue.Type = (int)value.getType();
                 baseEffectValue.Value = value.getValue();
-                baseEffectValue.MaxValue = value.getValue();
+                baseEffectValue.MaxValue = value.getMaxValue();
                 baseEffectData.BaseEffectValues.Add(baseEffectValue);
             }
             info.Extra.BaseEffectDatas.Add(baseEffectData);

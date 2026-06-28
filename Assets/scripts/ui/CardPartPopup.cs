@@ -49,31 +49,36 @@ public class CardPartPopup : MonoBehaviour
         
         if (baseEffect != null) {
             str += string.Format("{0}\n{1}\n", baseEffect.getName(), this.getDescription(baseEffect,advanceEffect));
-        }
-        
-        if (advanceEffect != null)
-        {
-            if (advanceEffect.getId() == 0) {
-                List<IAssembleCard> cards = FightPokerMgr.Instance.getUserAssembleCards(this._user);
-                int index = cards.FindIndex(card => card == assembleCard);
-                switch (index)
-                {
-                    case 0:
-                        str += string.Format("解锁：触发<color=red>{0}</color>/{1}次数\n",assembleCard.getTriggerNumber(), assembleCard.getUpgradeNumber());
-                        break;
-                    case 1:
-                        str += string.Format("解锁：触发<color=red>blackJock</color>\n");
-                        break;
-                    case 2:
-                        str += string.Format("解锁：触发<color=red>魔法技能</color>\n");
-                        break;
-                }
+
+            IBaseEffectData data = this._user.getExtraInfo().getBaseEffectData(baseEffect.getId());
+            IBaseEffectValue baseEffectValue = data.getBaseEffectValue(BaseEffectType.addLevel);
+            if (baseEffectValue != null && baseEffectValue.getValue() > 0) {
+                str += string.Format("当前{0}/{1}层\n", baseEffectValue.getValue(), baseEffectValue.getMaxValue());
             }
-            else
-            {
-                str += string.Format("{0}\n{1}\n", advanceEffect.getName(), advanceEffect.getDesc());
-            }            
         }
+
+        if (assembleCard.getAdvancedEffectId() <= 0)
+        {
+            List<IAssembleCard> cards = FightPokerMgr.Instance.getUserAssembleCards(this._user);
+            int index = cards.FindIndex(card => card == assembleCard);
+            switch (index)
+            {
+                case 0:
+                    str += string.Format("解锁：触发<color=red>{0}</color>/{1}次数\n",assembleCard.getTriggerNumber(), assembleCard.getUpgradeNumber());
+                    break;
+                case 1:
+                    str += string.Format("解锁：触发<color=red>blackJock</color>\n");
+                    break;
+                case 2:
+                    str += string.Format("解锁：触发<color=red>魔法技能</color>\n");
+                    break;
+            }
+        }
+        else
+        {
+            str += string.Format("{0}\n{1}\n", advanceEffect.getName(), advanceEffect.getDesc());
+        }            
+        
         this.partName.text = str;
     }
 
