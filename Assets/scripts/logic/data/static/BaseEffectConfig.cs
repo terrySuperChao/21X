@@ -8,13 +8,13 @@ public class BaseEffectInfo : IPart
     public int Quality = 0;
     public int Profession = 0;
     public string Belong_Base = "";
-    public string Action_Genre = "";
-    public float Value_Default = 0;
-    public float Value_Upgrade = 0;
+    public string Value_Default = "";
+    public string Value_Upgrade = "";
     public string Correspond_Advanced = ""; 
     public string Link = "";
     public string Description = "";
-
+    private List<float> _valueDefaultArray = new List<float>();
+    private List<float> _valueUpgradeArray = new List<float>();
     public int getId() {
         return this.ID;
     }
@@ -57,14 +57,20 @@ public class BaseEffectInfo : IPart
         return "";
     }
 
-    public float getValueDefault()
+    public List<float> getValueDefault()
     {
-        return this.Value_Default;
+        if (this._valueDefaultArray.Count == 0) {
+            this.stringToList(this.Value_Default, this._valueDefaultArray);
+        }
+        return this._valueDefaultArray;
     }
 
-    public float getValueUpgrade()
+    public List<float> getValueUpgrade()
     {
-        return this.Value_Upgrade;
+        if (this._valueUpgradeArray.Count == 0) {
+            this.stringToList(this.Value_Upgrade, this._valueUpgradeArray);
+        }
+        return this._valueUpgradeArray;
     }
 
     public string getLogic()
@@ -72,13 +78,17 @@ public class BaseEffectInfo : IPart
         return "";
     }
 
-    public string getActionGenre()
-    {
-        return this.Action_Genre;
-    }
-
     public TargetPart getTargetPart() { 
         return TargetPart.baseEffect;
+    }
+
+    private void stringToList(string str, List<float> values) {
+        string[] list = str.Split(",");
+        for (int i = 0; i < list.Length; i++) {
+            float addValue;
+            float.TryParse(list[0], out addValue);
+            values.Add(addValue);
+        }
     }
 }
 

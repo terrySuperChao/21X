@@ -21,7 +21,7 @@ public class AssembleCardObject : IAssembleCard
     public IPart getBaseEffect() {
         return this._baseEffect;
     }
-    public void setBaseEffectId(int id) {
+    public void setBaseEffectId(int id) {        
         this._baseEffect = GameStaticConfigMgr.Instance.getBaseEffectConfig().getBaseEffectId(id);
     }
     public int getAdvancedEffectId()

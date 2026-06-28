@@ -58,24 +58,21 @@ public class TriggerInfo:IPart
         return this.Correspond_Base;
     }
 
-    public float getValueDefault()
+    public List<float> getValueDefault()
     {
-        return 0.0f;
+        return null;
     }
 
-    public float getValueUpgrade()
+    public List<float> getValueUpgrade()
     {
-        return 0.0f;
+        return null;
     }
 
     public string getLogic()
     {
         return this.Logic;
     }
-    public string getActionGenre()
-    {
-        return "";
-    }
+
     public TargetPart getTargetPart()
     {
         return TargetPart.trigger;

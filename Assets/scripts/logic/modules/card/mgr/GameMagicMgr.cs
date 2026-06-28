@@ -20,7 +20,7 @@ public class GameMagicMgr : Singleton<GameMagicMgr>
         CardMgr.Instance.handle(para);
     }
 
-    public float handle(IUser attackUser, IUser defenseUser, float addValue) {
+    public float handle(IUser attackUser, IUser defenseUser, float addValue, bool addMsg = true) {
         if (attackUser == null) {
             return 0;
         }
@@ -38,8 +38,10 @@ public class GameMagicMgr : Singleton<GameMagicMgr>
         para.setExtralValue(addValue);
         CardMgr.Instance.handle(para);
 
-        IUICommonPara magicPara = new UICommonParaObject(para.getAttackUser(), ValueType.magic, addValue, finalValue);
-        GameMessage.Instance.addMsg(GameConst.ADDCARDVALUE, magicPara);
+        if (addMsg){
+            IUICommonPara magicPara = new UICommonParaObject(para.getAttackUser(), ValueType.magic, addValue, finalValue);
+            GameMessage.Instance.addMsg(GameConst.ADDCARDVALUE, magicPara);
+        }
 
         return finalValue;
     }

@@ -23,7 +23,7 @@ public class GameBloodMgr : Singleton<GameBloodMgr>
     }
 
     //加血
-    public float handle(IUser user,float addValue) {
+    public float handle(IUser user,float addValue, bool addMsg = true) {
         if (user == null) {
             return 0;
         }
@@ -34,9 +34,11 @@ public class GameBloodMgr : Singleton<GameBloodMgr>
 
         float maxValue = user.getBlood() + addValue;
         float value = user.addBlood(addValue);
-        IUICommonPara bloodPara = new UICommonParaObject(user, ValueType.blood, addValue, user.getBlood());
-        GameMessage.Instance.addMsg(GameConst.ADDCARDVALUE, bloodPara);
-
+        if (addMsg) {
+            IUICommonPara bloodPara = new UICommonParaObject(user, ValueType.blood, addValue, user.getBlood());
+            GameMessage.Instance.addMsg(GameConst.ADDCARDVALUE, bloodPara);
+        }
+        
         //保存溢出的血量
         IBaseEffectHandlePara para = new BaseEffectHandleParaObject();
         para.setAttackUser(user);

@@ -86,13 +86,13 @@ public class CardPartController {
                     this._items[i].partInfo != null) {
                     IPart part = this._items[i].partInfo;
                     if (part.getTargetPart() == TargetPart.trigger) {
-                        if (partInfo.getBelongBase().IndexOf(part.getCorrespondBase()) != 0) {
+                        if (part.getCorrespondBase().IndexOf(partInfo.getBelongBase()) != 0) {
                             this._dragCallBack(this._items[i].index, this._items[i].partInfo.getTargetPart());
                         }
                     }
                     else
                     {
-                        if (part.getBelongBase().IndexOf(partInfo.getCorrespondBase()) != 0)
+                        if (partInfo.getCorrespondBase().IndexOf(part.getBelongBase()) != 0)
                         {
                             this._dragCallBack(this._items[i].index, this._items[i].partInfo.getTargetPart());
                         }

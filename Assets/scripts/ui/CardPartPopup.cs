@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -39,7 +38,7 @@ public class CardPartPopup : MonoBehaviour
         if (assembleCard == null) {
             return;
         }
-
+        
         string str = "";
         IPart trigger = assembleCard.getTrigger();
         IPart baseEffect = assembleCard.getBaseEffect();
@@ -47,11 +46,11 @@ public class CardPartPopup : MonoBehaviour
         if (trigger != null) {
             str += string.Format("{0}\n{1}\n", trigger.getName(), trigger.getDesc());
         }
-
+        
         if (baseEffect != null) {
             str += string.Format("{0}\n{1}\n", baseEffect.getName(), this.getDescription(baseEffect,advanceEffect));
         }
-
+        
         if (advanceEffect != null)
         {
             if (advanceEffect.getId() == 0) {
@@ -83,15 +82,23 @@ public class CardPartPopup : MonoBehaviour
 
     protected float getAddValue(IPart baseEffect,IPart advanceEffect)
     {
-        //
+        List<float> addValues = null;
         if (advanceEffect != null && advanceEffect.getId() > 0)
         {
-            return baseEffect.getValueUpgrade();
+            addValues = baseEffect.getValueUpgrade();
         }
         else
         {
-            return baseEffect.getValueDefault();
+            addValues = baseEffect.getValueDefault();
         }
+
+        if (addValues == null)
+        {
+            return 0;
+        }
+        else {
+            return addValues[0];
+        }   
     }
 
     protected string getDescription(IPart baseEffect, IPart advanceEffect)

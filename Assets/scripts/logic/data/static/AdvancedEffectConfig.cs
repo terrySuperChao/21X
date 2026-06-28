@@ -49,20 +49,15 @@ public class AdvancedEffectInfo : IPart
         return "";
     }
 
-    public float getValueDefault() {
-        return 0.0f;
+    public List<float> getValueDefault() {
+        return null;
     }
 
-    public float getValueUpgrade() {
-        return 0.0f;
+    public List<float> getValueUpgrade() {
+        return null;
     }
 
     public string getLogic()
-    {
-        return "";
-    }
-
-    public string getActionGenre()
     {
         return "";
     }

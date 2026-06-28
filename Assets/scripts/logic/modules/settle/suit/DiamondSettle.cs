@@ -1,10 +1,7 @@
-using Google.Protobuf.WellKnownTypes;
-using Unity.VisualScripting;
-
 public class DiamondSettle: SuitSettle
 {
     protected override float _getFinalValue(IUser attackUser, IUser defenseUser, float value) {
-        return GameDefenseMgr.Instance.handle(attackUser, defenseUser, value);
+        return GameDefenseMgr.Instance.handle(attackUser, defenseUser, value, false);
     }
 
     protected override bool _matchSuit(PokerSuit suit) { 

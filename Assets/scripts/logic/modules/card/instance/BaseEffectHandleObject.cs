@@ -1,4 +1,6 @@
 
+using System.Collections.Generic;
+
 public class BaseEffectHandleObject:IBaseEffectHandle
 {
     public int getId() {
@@ -21,19 +23,32 @@ public class BaseEffectHandleObject:IBaseEffectHandle
         return this._getAdvancedValue(para);
     }
 
-    protected float getAddValue(ITriggerHandlePara para) {
+    protected float getAddValue(ITriggerHandlePara para,int index = 0) {
+        bool isUpgrade = para.getAssembleCard().getAdvancedEffect().getId() > 0;
+        List<float> addValues = isUpgrade ? para.getAssembleCard().getBaseEffect().getValueUpgrade()
+                                          : para.getAssembleCard().getBaseEffect().getValueDefault();
+   
         float value = 0;
-        if (para.getAssembleCard().getAdvancedEffect().getId() > 0){       
-            value = para.getAssembleCard().getBaseEffect().getValueUpgrade();
-
+        if (addValues == null || addValues.Count == 0)
+        {
+            value = 0;
+        }else {
+            if (index < 0){
+                index = 0;
+            }else if(addValues.Count <= index) {
+                index = addValues.Count - 1;
+            }
+            value = addValues[index];
+        }
+        
+        if (isUpgrade)
+        {       
             IBaseEffectHandle handle = AdvancedEffectHandleMgr.Instance.getAdvancedEffectHandle(para.getAssembleCard().getAdvancedEffectId());
             if (handle != null) {
                 value *= 1 + handle.getAdvancedValue(para);
             }
         }
-        else {
-            value = para.getAssembleCard().getBaseEffect().getValueDefault();
-        }
+        
         return value;
     }
 

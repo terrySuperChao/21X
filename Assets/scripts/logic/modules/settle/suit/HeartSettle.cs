@@ -1,7 +1,7 @@
 public class HeartSettle : SuitSettle
 {
     protected override float _getFinalValue(IUser attackUser, IUser defenseUser, float value) {
-        return attackUser.addBlood(value);
+        return GameBloodMgr.Instance.handle(attackUser, value,false);
     }
 
     protected override bool _matchSuit(PokerSuit suit) { 

@@ -20,13 +20,11 @@ public interface IPart
 
     public string getCorrespondBase();
 
-    public float getValueDefault();
+    public List<float> getValueDefault();
 
-    public float getValueUpgrade();
+    public List<float> getValueUpgrade();
 
     public string getLogic();
-
-    public string getActionGenre();
 
     public TargetPart getTargetPart();
 }
