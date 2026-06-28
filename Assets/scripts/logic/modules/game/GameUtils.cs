@@ -42,8 +42,8 @@ public class GameUtils
         
         string str = list[0];
         for (int i = 1; i < list.Length; i++) {
-            if (list[i] == "") continue;
-            if (list[i].Substring(0, 1) == "%")
+            
+            if (list[i] != "" &&list[i].Substring(0, 1) == "%")
             {
                 str += "<color=red>" + (values[i - 1] * 100) + "%</color>" + list[i].Substring(1, list[i].Length - 1);
             }

@@ -30,7 +30,7 @@ public class CardPartPopup : MonoBehaviour
     public void loadPartInfo(IPart partInfo) {
         if (partInfo != null)
         {
-            this.partName.text = this.getDescription(partInfo, null);
+            this.partName.text = this.getDescription(partInfo);
         }
     }
 
@@ -105,5 +105,21 @@ public class CardPartPopup : MonoBehaviour
         List<float> values = this.getAddValue(baseEffect, advanceEffect);
         string desc = baseEffect.getDesc();
         return GameUtils.formatDescription(desc, values);
+    }
+
+    protected string getDescription(IPart baseEffect)
+    {
+        List<float> valueDefault = baseEffect.getValueDefault();
+        string desc = baseEffect.getDesc();
+        string descDefault = GameUtils.formatDescription(desc, valueDefault);
+        if (baseEffect.getTargetPart() == TargetPart.baseEffect)
+        {
+            List<float> valueUpgrade = baseEffect.getValueUpgrade();
+            string descUpgrade = GameUtils.formatDescription(desc, valueUpgrade);
+            return descDefault + "\n<color=red>升级后效果：</color>\n" + descUpgrade;
+        }
+        else {
+            return descDefault;
+        }
     }
 }   
