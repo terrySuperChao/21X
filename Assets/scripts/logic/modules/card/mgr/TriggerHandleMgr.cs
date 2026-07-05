@@ -2,6 +2,7 @@ using System.Collections.Generic;
 
 public class TriggerHandleMgr : Singleton<TriggerHandleMgr>
 {
+    public const int TriggerEffectId1005 = 1005;
     private List<ITriggerHandle> _handle = new List<ITriggerHandle> {
         new CustomEventHandle(),
         new PostBasicAttackHandle(),

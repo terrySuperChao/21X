@@ -13,25 +13,21 @@ public class SuitSettle : ISuitSettle
             }
             return;
         }
+        para.setPokerSuit(handPoker.getSuit());
 
         float baseValue = handPoker.getBaseValue();
         float addValue = baseValue * this._getMult();
-        float finalValue = this._getFinalValue(para.getAttackUser(),para.getDefenseUser(), addValue);
-        float showValue = baseValue * this._getMult();
-      
-        para.setBaseValue(addValue);
-        para.setPokerSuit(handPoker.getSuit());
-
-        IUIPokerPara pokerPara = new UIPokerPara(para.getAttackUser(), handPoker.getPokers(), showValue, finalValue, this._getMult());
+        float finalValue = this._getFinalValue(para, addValue);
+     
+        IUIPokerPara pokerPara = new UIPokerPara(para.getAttackUser(), handPoker.getPokers(), addValue, finalValue, this._getMult());
         GameMessage.Instance.addMsg(GameConst.ADDPOKERVALUE, pokerPara);
-
-        this._settle(para, handPoker);
-
         CardMgr.Instance.handle(para, TriggerEvent.POST_SUIT_ATTRIBUTE_CONVERSION);
+
+        this._suitSettle(para, handPoker, addValue);
     }
 
-    protected virtual float _getFinalValue(IUser attackUser,IUser defenseUser, float value) { return value; }
-    protected virtual bool _matchSuit(PokerSuit suit) { return false; }
     protected virtual float _getMult() { return 1.0f; }
-    protected virtual void _settle(ITriggerHandlePara para, IHandPokerSuit handPoker) { }
+    protected virtual bool _matchSuit(PokerSuit suit) { return false; }
+    protected virtual float _getFinalValue(ITriggerHandlePara para, float value) { return value; }
+    protected virtual void _suitSettle(ITriggerHandlePara para, IHandPokerSuit handPoker,float addValue) { }
 }

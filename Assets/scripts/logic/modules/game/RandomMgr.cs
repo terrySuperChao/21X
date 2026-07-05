@@ -1,3 +1,4 @@
+using System;
 using Pb;
 public class RandomMgr : Singleton<RandomMgr>
 {
@@ -26,5 +27,9 @@ public class RandomMgr : Singleton<RandomMgr>
      */
     public int getRangeInt(int min, int max) {
         return this._rd.rangeInt(min, max);
+    }
+
+    public int getInitSeed() {
+        return (int)DateTimeOffset.Now.ToUnixTimeSeconds();
     }
 }

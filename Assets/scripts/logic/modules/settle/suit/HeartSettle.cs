@@ -1,7 +1,7 @@
 public class HeartSettle : SuitSettle
 {
-    protected override float _getFinalValue(IUser attackUser, IUser defenseUser, float value) {
-        return GameBloodMgr.Instance.handle(attackUser, value,false);
+    protected override float _getFinalValue(ITriggerHandlePara para, float value) {
+        return GameBloodMgr.Instance.handle(para.getAttackUser(), value,false);
     }
 
     protected override bool _matchSuit(PokerSuit suit) { 
@@ -10,10 +10,9 @@ public class HeartSettle : SuitSettle
 
     protected override float _getMult() { return 0.5f; }
 
-    protected override void _settle(ITriggerHandlePara para, IHandPokerSuit handPoker)
+    protected override void _suitSettle(ITriggerHandlePara para, IHandPokerSuit handPoker,float addValue)
     {
-        float healToMP = CardMgr.Instance.getBaseEffectValue(para.getAttackUser(), BaseEffectType.healToMP);
-        float addValue = healToMP * handPoker.getBaseValue();
+        addValue *= CardMgr.Instance.getBaseEffectValue(para.getAttackUser(), BaseEffectType.healToMP);
         if (addValue > 0)
         {
             para.getAttackUser().addMagic(addValue);

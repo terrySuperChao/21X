@@ -27,6 +27,7 @@ public class BaseEffectValueObject : IBaseEffectValue
     }
     public void addValue(float value) {
         this._value += value;
+        this._value = this._value < 0 ? 0 : this._value;
         this._value = this._value > this._maxValue ? this._maxValue : this._value;
     }
 

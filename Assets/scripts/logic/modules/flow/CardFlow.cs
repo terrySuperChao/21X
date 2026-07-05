@@ -65,22 +65,28 @@ public class CardFlow : GameFlowObject
         handlePara.getGameSettlePara().setWinIndex(para.getWinIndex());
         handlePara.getGameSettlePara().setBlackJack(para.isBlackJack());
 
-        //行动前
+        //牌局结果确定后
         this.setTriggerHandleParaUser(handlePara, 0);
-        SwitchParaMgr.Instance.handle(handlePara, () =>{
-            CardMgr.Instance.handle(handlePara, TriggerEvent.PRE_ACTION);
+        SwitchParaMgr.Instance.handle(handlePara, () => {
+            CardMgr.Instance.handle(handlePara, TriggerEvent.POST_BATTLE_RESULT);
         });
-        
+
         int winIndex = para.getWinIndex();
         if (winIndex != -1) //非平局
         {
             //wins
-            this.setTriggerHandleParaUser(handlePara, winIndex);
-            
             //牌结算
+            this.setTriggerHandleParaUser(handlePara, winIndex);
             this._pokerSettle.settle(handlePara);
 
+            //行动前
+            this.setTriggerHandleParaUser(handlePara, 0);
+            SwitchParaMgr.Instance.handle(handlePara, () => {
+                CardMgr.Instance.handle(handlePara, TriggerEvent.PRE_ACTION);
+            });
+
             //攻击
+            this.setTriggerHandleParaUser(handlePara, winIndex);
             this._attackSettle.settle(handlePara);
         }
 

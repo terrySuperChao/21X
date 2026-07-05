@@ -99,7 +99,7 @@ public class PlayerAsset : MonoBehaviour
     }
 
     private void initPokers() {
-        List<IPoker> pokers = FightPokerMgr.Instance.getUsetHandPoker(this._user);
+        List<IPoker> pokers = FightPokerMgr.Instance.getUserHandPoker(this._user);
         foreach (var poker in pokers){
             this.addPoker(new DealPokerPara(this._user, poker,0));
         }
@@ -240,7 +240,7 @@ public class PlayerAsset : MonoBehaviour
     }
 
     public void showUserState(int currentPoint = 0) {
-        List<IPoker> pokers = FightPokerMgr.Instance.getUsetHandPoker(this._user);
+        List<IPoker> pokers = FightPokerMgr.Instance.getUserHandPoker(this._user);
         int index = pokers.FindIndex(poker => poker.isBack());
         bool isBlackJack = FightPokerMgr.Instance.isUserHandPokerBlackJack(this._user);
         int point = currentPoint > 0 ? currentPoint :FightPokerMgr.Instance.getUserHandPokerPoint(this._user, index != -1);

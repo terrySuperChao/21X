@@ -6,14 +6,8 @@ public interface ITriggerHandlePara
     public void setDefenseUser(IUser user);
     public IUser getDefenseUser();
 
-    public IPoker getPoker();
-    public void setPoker(IPoker poker);
-
     public void setPokerSuit(PokerSuit pokerSuit);
     public PokerSuit getPokerSuit();
-
-    public float getBaseValue();
-    public void setBaseValue(float baseValue);
 
     public void setMagicAttack(bool isMagicAttack);
     public bool isMagicAttack();

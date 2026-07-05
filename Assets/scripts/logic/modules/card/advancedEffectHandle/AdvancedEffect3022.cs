@@ -15,7 +15,7 @@ public class AdvancedEffect3022 : BaseEffectHandleObject
         IBaseEffectValue baseEffectValue = data.getBaseEffectValue(BaseEffectType.internalValue);
         float addValue = baseEffectValue.getValue();
         if (addValue > 0) {
-            GameAttackMgr.Instance.handle(para.getAttackUser(), para.getDefenseUser(), addValue);
+            GameAttackMgr.Instance.handle(para, addValue);
             baseEffectValue.clearValue();
         }
     }

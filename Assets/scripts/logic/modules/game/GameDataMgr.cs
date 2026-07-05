@@ -16,6 +16,7 @@ public class GameDataMgr : Singleton<GameDataMgr>
         gameData.Player = PlayerDataMgr.Instance.newPlayer();
         gameData.Fight = FightDataMgr.Instance.newFight();
         gameData.Imprint = ImprintDataMgr.Instance.newImprint();
+        gameData.InitSeed = RandomMgr.Instance.getInitSeed();
         return gameData;
     }
 

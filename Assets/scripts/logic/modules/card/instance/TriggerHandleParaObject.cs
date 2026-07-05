@@ -3,10 +3,8 @@ public class TriggerHandleParaObject : ITriggerHandlePara
     private IAssembleCard _card = null;
     private IUser _attackUser = null;
     private IUser _defenseUser = null;
-    private IPoker _poker = null;
     private PokerSuit _pokerSuit = PokerSuit.club;
     private bool _isMagicAttack = false;
-    private float _baseValue = -1;
     private IGameSettlePara _gameSettlePara = null;
 
     public TriggerHandleParaObject()
@@ -30,25 +28,11 @@ public class TriggerHandleParaObject : ITriggerHandlePara
         return _defenseUser;
     }
 
-    public IPoker getPoker() {
-        return _poker;
-    }
-    public void setPoker(IPoker poker) {
-        _poker = poker;
-    }
-
     public void setPokerSuit(PokerSuit pokerSuit) {
         this._pokerSuit = pokerSuit;
     }
     public PokerSuit getPokerSuit() {
         return this._pokerSuit;
-    }
-
-    public float getBaseValue() {
-        return _baseValue;
-    }
-    public void setBaseValue(float value) {
-        _baseValue = value;
     }
 
     public void setMagicAttack(bool isMagicAttack)

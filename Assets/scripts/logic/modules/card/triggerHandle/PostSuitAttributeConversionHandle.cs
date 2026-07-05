@@ -74,10 +74,8 @@ public class PostSuitAttributeConversionHandle : TriggerHandleObject
             return false;
         }
 
-        List<IPoker> pokers = FightPokerMgr.Instance.getUsetHandPoker(para.getAttackUser());
-        if (pokers == null ||
-            pokers.Count == 0 ||
-            pokers[pokers.Count - 1] != para.getPoker())
+        List<IPoker> pokers = FightPokerMgr.Instance.getUserHandPoker(para.getAttackUser());
+        if (pokers == null ||pokers.Count == 0)
         {
             return false;
         }
@@ -89,7 +87,7 @@ public class PostSuitAttributeConversionHandle : TriggerHandleObject
         int denom = 0;//分母
         for (int i = 0; i < pokers.Count; i++)
         {
-            if (this._dic[keystr] == (PokerSuit)pokers[i].getSuit())
+            if (this._dic[keystr] == pokers[i].getSuit())
             {
                 mol += pokers[i].getRank();
             }

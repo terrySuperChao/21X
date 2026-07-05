@@ -9,6 +9,6 @@ public class BaseEffect2001 : BaseEffectHandleObject
     protected override void _handle(ITriggerHandlePara para)
     {
         float addValue = this.getAddValue(para);
-        GameAttackMgr.Instance.handle(para.getAttackUser(),para.getDefenseUser(), addValue);
+        GameAttackMgr.Instance.handle(para, addValue);
     }
 }

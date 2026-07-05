@@ -1,9 +1,6 @@
-using System;
-using UnityEngine;
-
 public class RandomEx
 {
-    /** Ëæ»úÖÖ×Ó */
+    /** ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ */
     private long _seed  = 0;
 
     public RandomEx(int seed = 123456)
@@ -12,7 +9,7 @@ public class RandomEx
     }
 
     /**
-     * Ê¹ÓÃ Hull-Dobell Ëã·¨µÄÏßÐÔÍ¬ÓàÉú³ÉÆ÷¹¹ÔìÎ±Ëæ»úÊý
+     * Ê¹ï¿½ï¿½ Hull-Dobell ï¿½ã·¨ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î±ï¿½ï¿½ï¿½ï¿½ï¿½
      */
     private double _random()
     {
@@ -20,12 +17,12 @@ public class RandomEx
         return this._seed / 233280.0;
     }
 
-    /** ·µ»Ø×îÐ¡(°üº¬)ºÍ×î´ó(²»°üº¬)Ö®¼äµÄÕûµãÎ±Ëæ»úÊý */
+    /** ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð¡(ï¿½ï¿½ï¿½ï¿½)ï¿½ï¿½ï¿½ï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½)Ö®ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î±ï¿½ï¿½ï¿½ï¿½ï¿½ */
     public int rangeInt(int min, int max){
         return (int)this.range(min, max);
     }
 
-    /** ·µ»Ø×îÐ¡(°üº¬)ºÍ×î´ó(²»°üº¬)Ö®¼äµÄ¸¡µãÎ±Ëæ»úÊý */
+    /** ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð¡(ï¿½ï¿½ï¿½ï¿½)ï¿½ï¿½ï¿½ï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½)Ö®ï¿½ï¿½Ä¸ï¿½ï¿½ï¿½Î±ï¿½ï¿½ï¿½ï¿½ï¿½ */
     public double range(int min = 0, int max = 1) {
         return (this._random() * (max - min) + min);
     }

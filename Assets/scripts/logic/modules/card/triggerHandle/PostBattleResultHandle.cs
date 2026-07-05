@@ -131,7 +131,7 @@ public class PostBattleResultHandle : TriggerHandleObject
             return false;
         }
 
-        List<IPoker> pokers = FightPokerMgr.Instance.getUsetHandPoker(para.getAttackUser());
+        List<IPoker> pokers = FightPokerMgr.Instance.getUserHandPoker(para.getAttackUser());
         int index = pokers.FindIndex(poker => poker.getRank() == rank);
         return index != -1;
     }

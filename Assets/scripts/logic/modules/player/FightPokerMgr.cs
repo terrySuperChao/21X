@@ -318,12 +318,12 @@ public class FightPokerMgr : Singleton<FightPokerMgr>
         return user.isNpc() ? FightDealType.npc : FightDealType.player;
     }
 
-    public List<IPoker> getUsetHandPoker(IUser user) {
+    public List<IPoker> getUserHandPoker(IUser user) {
         return FightDataMgr.Instance.getPokers(this.getDealType(user));
     }
 
     public void clearUserHandPoker(IUser user) {
-        this.getUsetHandPoker(user).Clear();
+        this.getUserHandPoker(user).Clear();
         EventDispatcher.Instance.emit(GameConst.CLEARHANDPOKER, user);
     }
 
@@ -370,7 +370,7 @@ public class FightPokerMgr : Singleton<FightPokerMgr>
     public void clear() {
         foreach (var user in _players){
             this.setUserState(user, UserState.none);
-            this.getUsetHandPoker(user).Clear();
+            this.getUserHandPoker(user).Clear();
         }
         FightDataMgr.Instance.setIsFilp(FightDealType.npc, 0);
     }
@@ -384,5 +384,31 @@ public class FightPokerMgr : Singleton<FightPokerMgr>
 
     public IBuffEffect getBuffEffect() {
         return this._buffEffect;
+    }
+
+    public bool isNpcStopPoker()
+    {
+        IUser player = this._players.Find(user => !user.isNpc());
+        IUser npc = this._players.Find(user => user.isNpc());
+        float playerPoint = this.getUserHandPokerPoint(player, false);
+        float npcPoint = this.getUserHandPokerPoint(npc, false);
+        if (player.getState() == UserState.death)
+        {
+            return true;
+        }
+        else if (player.getState() == UserState.end)
+        {
+            if (npcPoint > playerPoint)
+            {
+                return true;
+            }
+        }
+        else {
+            if (npcPoint >= 17) {
+                return true;
+            }
+        }
+
+        return false;
     }
 }

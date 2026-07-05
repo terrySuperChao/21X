@@ -247,6 +247,7 @@ public enum BaseEffectType
     rtMagicValue,
     rtMagicTotal,
     rtFreezeArmorValue,
+    rtCountAttack
 }
 
 //进阶效果类型

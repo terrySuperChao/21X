@@ -11,6 +11,6 @@ public class BaseEffect2013 : BaseEffectHandleObject
     {
         float addValue = this.getAddValue(para);        
         float attackValue = para.getAttackUser().getDefense() * addValue;
-        GameAttackMgr.Instance.handle(para.getAttackUser(), para.getDefenseUser(), attackValue);
+        GameAttackMgr.Instance.handle(para, attackValue);
     }
 }

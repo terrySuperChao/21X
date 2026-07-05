@@ -17,7 +17,7 @@ public class AdvancedEffect3901 : BaseEffectHandleObject
         int index = RandomMgr.Instance.getRangeInt(0, 4);
         if (index == 0)
         {
-            GameAttackMgr.Instance.handle(para.getAttackUser(), para.getDefenseUser(), this._attackValue);
+            GameAttackMgr.Instance.handle(para, this._attackValue);
         }
         else if (index == 1)
         {

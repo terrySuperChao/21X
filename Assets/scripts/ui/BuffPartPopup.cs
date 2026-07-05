@@ -38,13 +38,21 @@ public class BuffPartPopup : MonoBehaviour
             desc = this._buffDic[buffType];
         }
 
-        float value = CardMgr.Instance.getBaseEffectValue(this._user, buffType);
+        float value = 0;
         if (buffType == BaseEffectType.healOverTime)
         {
             //desc = string.Format(desc, this._user.getExtraInfo().getHealOverTimes().Count);
         }
-        else if (buffType == BaseEffectType.mpRegen) {
+        else if (buffType == BaseEffectType.mpRegen)
+        {
             //desc = string.Format(desc, this._user.getExtraInfo().getMpRegens().Count);
+        }
+        else if (buffType == BaseEffectType.rtCountAttack)
+        {
+            value = GameRunTimeMgr.Instance.getRunTimeCountAttack(this._user);
+        }
+        else {
+            value = CardMgr.Instance.getBaseEffectValue(this._user, buffType);
         }
         this.partName.text = GameUtils.formatDescription(desc, value);
     }
@@ -62,5 +70,6 @@ public class BuffPartPopup : MonoBehaviour
         this._buffDic.Add(BaseEffectType.skillDamageUp, "技能效果提升%s%");
         this._buffDic.Add(BaseEffectType.mpRegen, "接下来的<color=red>{0}</color>回合,回复%s点法力");
         this._buffDic.Add(BaseEffectType.addBleeding, "获得当前法力值的%s%的法力值");
+        this._buffDic.Add(BaseEffectType.rtCountAttack, "每累计获得攻击力%s点");
     }
 }   

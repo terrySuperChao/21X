@@ -132,6 +132,10 @@ public class GameUtils
                 }
                 break;
             default:
+                if (currentNum >= targetNum)
+                {
+                    success = true;
+                }
                 break;
         }
         return success;

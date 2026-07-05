@@ -223,7 +223,7 @@ public class GameReqMgr : Singleton<GameReqMgr>
     public void requestNpcOperator(IUser user)
     {
         FightFlowState state;
-        if (FightPokerMgr.Instance.getUserHandPokerPoint(user, false) >= 17)
+        if (FightPokerMgr.Instance.isNpcStopPoker())
         {
             state = FightFlowState.stopDealPoker;
         }

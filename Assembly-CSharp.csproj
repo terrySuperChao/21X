@@ -104,6 +104,7 @@
     <Compile Include="Assets/scripts/logic/modules/card/instance/BaseEffectHandleObject.cs" />
     <Compile Include="Assets/scripts/logic/modules/card/instance/HandPokerSuitObject.cs" />
     <Compile Include="Assets/scripts/logic/modules/card/triggerHandle/PreActionHandle.cs" />
+    <Compile Include="Assets/scripts/logic/modules/card/mgr/GameRunTimeMgr.cs" />
     <Compile Include="Assets/scripts/logic/modules/pokerPile/PokerPointMgr.cs" />
     <Compile Include="Assets/scripts/logic/modules/game/BarrierDataMgr.cs" />
     <Compile Include="Assets/scripts/ui/SettingView.cs" />

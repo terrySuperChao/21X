@@ -17,7 +17,7 @@ public class PokerSettle: IAttackSettle
     }
 
     public void settle(ITriggerHandlePara handlePara) {
-        List<IPoker> pokers = FightPokerMgr.Instance.getUsetHandPoker(handlePara.getAttackUser());
+        List<IPoker> pokers = FightPokerMgr.Instance.getUserHandPoker(handlePara.getAttackUser());
         List<int> values = PokerPointMgr.Instance.getPokerValue(pokers);
         for (int i = 0; i < this._handPokerSuits.Count; i++)
         {

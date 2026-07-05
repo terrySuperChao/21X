@@ -1,18 +1,32 @@
 using System;
 using System.Collections.Generic;
-//敌方当前护甲 > 0
-//敌方当前血量 < 40%
+//开始行动时，敌方当前护甲 > 0
+//开始行动时，敌方当前血量 < 40%
 public class PreActionHandle : TriggerHandleObject
 {
     private Dictionary<string, Func<ITriggerHandlePara, float>> _dic = new Dictionary<string, Func<ITriggerHandlePara, float>>();
 
     protected override bool _preActionHandle(ITriggerHandlePara para)
     {
-        UnityEngine.Debug.Log("Attack Before Loss Handle");
-
         if (this._dic.Count == 0) {
-            this._dic.Add("敌方当前护甲", this.getDefenseFunc);
-            this._dic.Add("敌方当前血量", this.getBloodFunc);
+            this._dic.Add("开始行动时，敌方当前护甲", this.getDefenseFunc);
+            this._dic.Add("开始行动时，敌方当前血量", this.getBloodFunc);
+        }
+
+        //获胜的判断
+        if (para.getGameSettlePara().getWinIndex() == -1)
+        {
+            return false;
+        }
+
+        if (para.getGameSettlePara().getWinIndex() == 0 && !para.getAttackUser().isNpc())
+        {
+            return false;
+        }
+
+        if (para.getGameSettlePara().getWinIndex() == 1 && para.getAttackUser().isNpc())
+        {
+            return false;
         }
 
         string keystr = "";
