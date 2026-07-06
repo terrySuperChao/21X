@@ -315,7 +315,7 @@ public class FightPokerMgr : Singleton<FightPokerMgr>
     }
 
     private FightDealType getDealType(IUser user) {
-        return user.isNpc() ? FightDealType.npc : FightDealType.player;
+        return user != null && user.isNpc() ? FightDealType.npc : FightDealType.player;
     }
 
     public List<IPoker> getUserHandPoker(IUser user) {

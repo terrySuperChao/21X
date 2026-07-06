@@ -80,13 +80,11 @@ public class CardFlow : GameFlowObject
             this._pokerSettle.settle(handlePara);
 
             //行动前
-            this.setTriggerHandleParaUser(handlePara, 0);
             SwitchParaMgr.Instance.handle(handlePara, () => {
                 CardMgr.Instance.handle(handlePara, TriggerEvent.PRE_ACTION);
             });
 
             //攻击
-            this.setTriggerHandleParaUser(handlePara, winIndex);
             this._attackSettle.settle(handlePara);
         }
 

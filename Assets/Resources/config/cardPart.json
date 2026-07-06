@@ -1,7 +1,0 @@
-[
-	{
-		"basePartId": 1,	
-		"upgradePartIds":[1,1,2,3],
-		"triggerIds":[1,2,3,4]
-	}
-]

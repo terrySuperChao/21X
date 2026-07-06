@@ -37,6 +37,7 @@ public class AttackSettle: IAttackSettle
         GameMessage.Instance.addMsg(GameConst.COMMONATTACK, attackPara);
 
         float remainAttack = this.getRemainAttack(para, attack);
+        GameRunTimeMgr.Instance.runTimeConsumeDefense(para.getDefenseUser());
         GameBloodMgr.Instance.handle(para.getAttackUser(), para.getDefenseUser(), remainAttack);
 
         //反弹
