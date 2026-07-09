@@ -1,7 +1,7 @@
 //获得 %s 点护甲
 public class BaseEffect2011 : BaseEffectHandleObject
 {
-    private readonly int _id = BaseEffectHandleMgr.baseEffectId2011;
+    private readonly int _id = GameCardConst.baseEffectId2011;
     protected override int _getId()
     {
         return this._id;

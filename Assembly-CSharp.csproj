@@ -75,6 +75,7 @@
     <Compile Include="Assets/scripts/logic/modules/card/baseEffectHandle/BaseEffect2033.cs" />
     <Compile Include="Assets/scripts/logic/modules/card/instance/CardHandleParaObject.cs" />
     <Compile Include="Assets/scripts/Main.cs" />
+    <Compile Include="Assets/scripts/logic/modules/card/triggerHandle/TriggerEffect1033.cs" />
     <Compile Include="Assets/scripts/logic/modules/card/advancedEffectHandle/AdvancedEffect3003.cs" />
     <Compile Include="Assets/scripts/logic/modules/card/baseEffectHandle/BaseEffect2023.cs" />
     <Compile Include="Assets/scripts/logic/data/interface/ICard.cs" />
@@ -141,6 +142,7 @@
     <Compile Include="Assets/scripts/logic/modules/pokerPile/FightPokerPile.cs" />
     <Compile Include="Assets/scripts/logic/data/instance/CardObject.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/TMP_PhoneNumberValidator.cs" />
+    <Compile Include="Assets/scripts/logic/modules/card/mgr/GameCardConst.cs" />
     <Compile Include="Assets/scripts/logic/modules/card/baseEffectHandle/BaseEffect2003.cs" />
     <Compile Include="Assets/scripts/logic/modules/settle/suit/SpadeSettle.cs" />
     <Compile Include="Assets/scripts/logic/data/static/AdvancedEffectConfig.cs" />
@@ -148,6 +150,7 @@
     <Compile Include="Assets/scripts/logic/modules/card/interface/ICardHandle.cs" />
     <Compile Include="Assets/scripts/logic/modules/card/baseEffectHandle/BaseEffect2002.cs" />
     <Compile Include="Assets/scripts/logic/modules/card/advancedEffectHandle/AdvancedEffect3901.cs" />
+    <Compile Include="Assets/scripts/logic/modules/card/mgr/GameCardMgr.cs" />
     <Compile Include="Assets/scripts/logic/modules/card/advancedEffectHandle/AdvancedEffect3031.cs" />
     <Compile Include="Assets/scripts/logic/modules/settle/suit/HeartSettle.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/VertexJitter.cs" />
@@ -237,7 +240,6 @@
     <Compile Include="Assets/scripts/logic/data/interface/IExtraInfo.cs" />
     <Compile Include="Assets/scripts/logic/modules/card/baseEffectHandle/BaseEffect2011.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/ShaderPropAnimator.cs" />
-    <Compile Include="Assets/scripts/logic/modules/card/mgr/CardMgr.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/CameraController.cs" />
     <Compile Include="Assets/scripts/logic/modules/card/baseEffectHandle/BaseEffect2015.cs" />
     <Compile Include="Assets/scripts/logic/modules/settle/suit/SuitSettle.cs" />

@@ -8,6 +8,7 @@ public class ExtraInfoObject : IExtraInfo
     private float _rtFreezeArmorValue = 0;
     private float _rtAddDefenseValue = 0;
     private float _rtOverflowBloodValue = 0;
+    private bool _isMagicAttack = false;
 
     //效果
     private List<IBaseEffectData> _baseEffect = new List<IBaseEffectData>();
@@ -60,6 +61,15 @@ public class ExtraInfoObject : IExtraInfo
     }
     public void clearRtOverflowBloodValue() {
         this._rtOverflowBloodValue = 0;
+    }
+
+    public void setMagicAttack(bool isMagicAttack)
+    {
+        this._isMagicAttack = isMagicAttack;
+    }
+    public bool isMagicAttack()
+    {
+        return this._isMagicAttack;
     }
 
     //基础效果

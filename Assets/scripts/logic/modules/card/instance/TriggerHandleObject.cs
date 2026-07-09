@@ -1,5 +1,8 @@
 public abstract class TriggerHandleObject : ITriggerHandle
 {
+    public int getId() {
+        return this._getId();
+    }
     public TriggerEvent getTrigger() {
         return this._getTrigger();
     }
@@ -67,6 +70,8 @@ public abstract class TriggerHandleObject : ITriggerHandle
     {
         return GameUtils.extractNumbersWithDecimal(input);
     }
+
+    protected virtual int _getId() { return 0; }
 
     protected virtual TriggerEvent _getTrigger() { return 0; }
     //战斗开始

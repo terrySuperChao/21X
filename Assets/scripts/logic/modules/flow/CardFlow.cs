@@ -31,7 +31,7 @@ public class CardFlow : GameFlowObject
         ITriggerHandlePara handlePara = this._handlePara;
         this.setTriggerHandleParaUser(handlePara,0);
         SwitchParaMgr.Instance.handle(handlePara, () =>{
-            CardMgr.Instance.handle(handlePara, TriggerEvent.POST_INITIAL_DRAW);
+            GameCardMgr.Instance.handle(handlePara, TriggerEvent.POST_INITIAL_DRAW);
         });
     }
 
@@ -46,7 +46,7 @@ public class CardFlow : GameFlowObject
     {
         ITriggerHandlePara handlePara = this._handlePara;
         this.setTriggerHandleParaUser(handlePara, para.getUser().isNpc() ? 0 : 1);
-        CardMgr.Instance.handle(handlePara, TriggerEvent.POST_CARD_DRAW);
+        GameCardMgr.Instance.handle(handlePara, TriggerEvent.POST_CARD_DRAW);
     }
 
     override
@@ -54,7 +54,7 @@ public class CardFlow : GameFlowObject
     {
         ITriggerHandlePara handlePara = this._handlePara;
         this.setTriggerHandleParaUser(handlePara, para.getUser().isNpc() ? 0 :1);
-        CardMgr.Instance.handle(handlePara, TriggerEvent.POST_STAND_OR_FINAL_SCORE);
+        GameCardMgr.Instance.handle(handlePara, TriggerEvent.POST_STAND_OR_FINAL_SCORE);
     }
 
     override
@@ -68,7 +68,7 @@ public class CardFlow : GameFlowObject
         //牌局结果确定后
         this.setTriggerHandleParaUser(handlePara, 0);
         SwitchParaMgr.Instance.handle(handlePara, () => {
-            CardMgr.Instance.handle(handlePara, TriggerEvent.POST_BATTLE_RESULT);
+            GameCardMgr.Instance.handle(handlePara, TriggerEvent.POST_BATTLE_RESULT);
         });
 
         int winIndex = para.getWinIndex();
@@ -81,7 +81,7 @@ public class CardFlow : GameFlowObject
 
             //行动前
             SwitchParaMgr.Instance.handle(handlePara, () => {
-                CardMgr.Instance.handle(handlePara, TriggerEvent.PRE_ACTION);
+                GameCardMgr.Instance.handle(handlePara, TriggerEvent.PRE_ACTION);
             });
 
             //攻击
@@ -90,7 +90,7 @@ public class CardFlow : GameFlowObject
 
         //行动后
         SwitchParaMgr.Instance.handle(handlePara, () => {
-            CardMgr.Instance.handle(handlePara, TriggerEvent.TURN_END);
+            GameCardMgr.Instance.handle(handlePara, TriggerEvent.TURN_END);
         });
 
         this._specialSettle.settle(handlePara);

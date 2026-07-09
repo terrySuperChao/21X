@@ -12,7 +12,7 @@ public class HeartSettle : SuitSettle
 
     protected override void _suitSettle(ITriggerHandlePara para, IHandPokerSuit handPoker,float addValue)
     {
-        addValue *= CardMgr.Instance.getBaseEffectValue(para.getAttackUser(), BaseEffectType.healToMP);
+        addValue *= GameCardMgr.Instance.getBaseEffectValue(para.getAttackUser(), BaseEffectType.healToMP);
         if (addValue > 0)
         {
             para.getAttackUser().addMagic(addValue);

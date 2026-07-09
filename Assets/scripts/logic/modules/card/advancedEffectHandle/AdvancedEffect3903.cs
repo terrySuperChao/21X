@@ -3,7 +3,7 @@ public class AdvancedEffect3903 : BaseEffectHandleObject
 {
     private readonly int _initDefense = 4;
     private readonly int _initTemporaryDefense = 4;
-    private readonly int _id = AdvancedEffectHandleMgr.advancedEffectId3903;
+    private readonly int _id = GameCardConst.advancedEffectId3903;
     protected override int _getId()
     {
         return this._id;

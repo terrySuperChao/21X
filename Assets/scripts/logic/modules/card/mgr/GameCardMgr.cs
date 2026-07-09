@@ -1,10 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Reflection;
-using System.Runtime.CompilerServices;
-using Pb;
 
-public class CardMgr: Singleton<CardMgr>
+public class GameCardMgr : Singleton<GameCardMgr>
 {
     private const int MAXSLOT = 3;
     private string callFuncPath = "";
@@ -12,11 +10,6 @@ public class CardMgr: Singleton<CardMgr>
     {
     
     }
-
-    public int getMaxSlot() {
-        return MAXSLOT;
-    }
-
     //触发升级
     private void triggerUpgrade(int index,ITriggerHandlePara para) {
         //添加触发的次数
@@ -31,7 +24,7 @@ public class CardMgr: Singleton<CardMgr>
             }
         }
         else if (index == 2) {//触发魔法技能
-            if (para.isMagicAttack()) {
+            if (para.getAttackUser().getExtraInfo().isMagicAttack()) {
                 para.getAssembleCard().addTriggerNumber();
             }
         }
@@ -82,11 +75,6 @@ public class CardMgr: Singleton<CardMgr>
         }
     }
 
-
-    public void handle(ICardHandlePara para, CardHandleType type) {
-
-    }
-
     public void handle(IBaseEffectHandlePara para)
     {
         List<IAssembleCard> cards = ImprintDataMgr.Instance.getAssembleCard(para.getAttackUser().isNpc());
@@ -108,10 +96,11 @@ public class CardMgr: Singleton<CardMgr>
     }
 
     //
-    public void handle(ITriggerHandlePara para, TriggerEvent type) {
+    public void handle(ITriggerHandlePara para, TriggerEvent type, float temporaryValue = 0) {
         List<IAssembleCard> cards = ImprintDataMgr.Instance.getAssembleCard(para.getAttackUser().isNpc());
         for (int i = 0; i < cards.Count; i++) {
             para.setAssembleCard(cards[i]);
+            para.setTemporaryValue(temporaryValue);
 
             List<ITriggerHandle> handles = TriggerHandleMgr.Instance.getTriggerHandle(para);
             if (handles == null) {

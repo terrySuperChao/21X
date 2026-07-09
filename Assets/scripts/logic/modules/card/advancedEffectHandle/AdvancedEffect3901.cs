@@ -5,7 +5,7 @@ public class AdvancedEffect3901 : BaseEffectHandleObject
     private readonly int _bloodValue = 6;
     private readonly int _magicValue = 10;
     private readonly int _defenseValue = 6;
-    private readonly int _id = AdvancedEffectHandleMgr.advancedEffectId3901;
+    private readonly int _id = GameCardConst.advancedEffectId3901;
     protected override int _getId()
     {
         return this._id;

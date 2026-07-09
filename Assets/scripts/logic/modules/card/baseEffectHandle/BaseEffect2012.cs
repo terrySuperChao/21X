@@ -1,7 +1,7 @@
 //受到攻击时反弹 %s 点伤害
 public class BaseEffect2012 : BaseEffectHandleObject
 {
-    private readonly int _id = BaseEffectHandleMgr.baseEffectId2012;
+    private readonly int _id = GameCardConst.baseEffectId2012;
     protected override int _getId()
     {
         return this._id;

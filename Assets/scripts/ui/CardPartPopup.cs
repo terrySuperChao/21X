@@ -56,7 +56,7 @@ public class CardPartPopup : MonoBehaviour
                 str += string.Format("当前{0}/{1}层\n", baseEffectValue.getValue(), baseEffectValue.getMaxValue());
             }
 
-            if (data.getId() == BaseEffectHandleMgr.baseEffectId2025) {
+            if (data.getId() == GameCardConst.baseEffectId2025) {
                 if (data.isState()) {
                     str += "<color=red>首次已触发</color>\n";
                 }

@@ -4,7 +4,7 @@ public class BaseEffect2023 : BaseEffectHandleObject
     private readonly int _initValue = 1;
     private readonly int _stepValue = 1;
     private readonly int _maxValue = 2;
-    private readonly int _id = BaseEffectHandleMgr.baseEffectId2023;
+    private readonly int _id = GameCardConst.baseEffectId2023;
     protected override int _getId()
     {
         return this._id;

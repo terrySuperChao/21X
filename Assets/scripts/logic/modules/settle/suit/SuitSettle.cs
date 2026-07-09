@@ -21,7 +21,7 @@ public class SuitSettle : ISuitSettle
      
         IUIPokerPara pokerPara = new UIPokerPara(para.getAttackUser(), handPoker.getPokers(), addValue, finalValue, this._getMult());
         GameMessage.Instance.addMsg(GameConst.ADDPOKERVALUE, pokerPara);
-        CardMgr.Instance.handle(para, TriggerEvent.POST_SUIT_ATTRIBUTE_CONVERSION);
+        GameCardMgr.Instance.handle(para, TriggerEvent.POST_SUIT_ATTRIBUTE_CONVERSION);
 
         this._suitSettle(para, handPoker, addValue);
     }

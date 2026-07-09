@@ -2,27 +2,7 @@ using System.Collections.Generic;
 
 public class BaseEffectHandleMgr : Singleton<BaseEffectHandleMgr>
 {
-    public const int baseEffectId2001 = 2001;
-    public const int baseEffectId2002 = 2002;
-    public const int baseEffectId2003 = 2003;
-    public const int baseEffectId2004 = 2004;
-    public const int baseEffectId2005 = 2005;
-    public const int baseEffectId2006 = 2006;
-    public const int baseEffectId2011 = 2011;
-    public const int baseEffectId2012 = 2012;
-    public const int baseEffectId2013 = 2013;
-    public const int baseEffectId2014 = 2014;
-    public const int baseEffectId2015 = 2015;
-    public const int baseEffectId2021 = 2021;
-    public const int baseEffectId2022 = 2022;
-    public const int baseEffectId2023 = 2023;
-    public const int baseEffectId2024 = 2024;
-    public const int baseEffectId2025 = 2025;
-    public const int baseEffectId2031 = 2031;
-    public const int baseEffectId2032 = 2032;
-    public const int baseEffectId2033 = 2033;
-    public const int baseEffectId2034 = 2034;
-    public const int baseEffectId2035 = 2035;
+    
 
     private List<IBaseEffectHandle> _baseEffectHandle = new List<IBaseEffectHandle> {
         new BaseEffect2001(),

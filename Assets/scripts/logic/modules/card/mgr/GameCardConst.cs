@@ -1,0 +1,61 @@
+public class GameCardConst
+{
+    public const int TriggerEffectId1005 = 1005;
+    public const int TriggerEffectId1012 = 1012;
+    public const int TriggerEffectId1033 = 1033;
+
+    public const int baseEffectId2001 = 2001;
+    public const int baseEffectId2002 = 2002;
+    public const int baseEffectId2003 = 2003;
+    public const int baseEffectId2004 = 2004;
+    public const int baseEffectId2005 = 2005;
+    public const int baseEffectId2006 = 2006;
+    public const int baseEffectId2011 = 2011;
+    public const int baseEffectId2012 = 2012;
+    public const int baseEffectId2013 = 2013;
+    public const int baseEffectId2014 = 2014;
+    public const int baseEffectId2015 = 2015;
+    public const int baseEffectId2021 = 2021;
+    public const int baseEffectId2022 = 2022;
+    public const int baseEffectId2023 = 2023;
+    public const int baseEffectId2024 = 2024;
+    public const int baseEffectId2025 = 2025;
+    public const int baseEffectId2031 = 2031;
+    public const int baseEffectId2032 = 2032;
+    public const int baseEffectId2033 = 2033;
+    public const int baseEffectId2034 = 2034;
+    public const int baseEffectId2035 = 2035;
+
+    public const int advancedEffectId3001 = 3001;
+    public const int advancedEffectId3002 = 3002;
+    public const int advancedEffectId3003 = 3003;
+    public const int advancedEffectId3004 = 3004;
+    public const int advancedEffectId3005 = 3005;
+    public const int advancedEffectId3006 = 3006;
+    public const int advancedEffectId3007 = 3007;
+    public const int advancedEffectId3008 = 3008;
+    public const int advancedEffectId3009 = 3009;
+    public const int advancedEffectId3010 = 3010;
+    public const int advancedEffectId3011 = 3011;
+    public const int advancedEffectId3012 = 3012;
+    public const int advancedEffectId3013 = 3013;
+    public const int advancedEffectId3014 = 3014;
+    public const int advancedEffectId3015 = 3015;
+    public const int advancedEffectId3016 = 3016;
+    public const int advancedEffectId3017 = 3017;
+    public const int advancedEffectId3018 = 3018;
+    public const int advancedEffectId3019 = 3019;
+    public const int advancedEffectId3020 = 3020;
+    public const int advancedEffectId3021 = 3021;
+    public const int advancedEffectId3022 = 3022;
+    public const int advancedEffectId3023 = 3023;
+    public const int advancedEffectId3031 = 3031;
+    public const int advancedEffectId3032 = 3032;
+    public const int advancedEffectId3033 = 3033;
+    public const int advancedEffectId3801 = 3801;
+    public const int advancedEffectId3802 = 3802;
+    public const int advancedEffectId3901 = 3901;
+    public const int advancedEffectId3902 = 3902;
+    public const int advancedEffectId3903 = 3903;
+    public const int advancedEffectId3904 = 3904;
+}

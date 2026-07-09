@@ -14,7 +14,7 @@ public class GameDefenseMgr : Singleton<GameDefenseMgr>
         para.setDefenseUser(defenseUser);
         para.setEffectType(AdvancedEffectType.addDefense);
         para.setExtralValue(addValue);
-        CardMgr.Instance.handle(para);
+        GameCardMgr.Instance.handle(para);
 
         if (addMsg) {
             IUICommonPara defensePara = new UICommonParaObject(attackUser, ValueType.defense, addValue, finalValue);

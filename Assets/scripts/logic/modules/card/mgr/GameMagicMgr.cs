@@ -13,11 +13,11 @@ public class GameMagicMgr : Singleton<GameMagicMgr>
         para.setDefenseUser(defenseUser);
         para.setEffectType(AdvancedEffectType.roundStartAddMagic);
         para.setExtralValue(0);
-        CardMgr.Instance.handle(para);
+        GameCardMgr.Instance.handle(para);
 
         para.setAttackUser(defenseUser);
         para.setDefenseUser(attackUser);
-        CardMgr.Instance.handle(para);
+        GameCardMgr.Instance.handle(para);
     }
 
     public float handle(IUser attackUser, IUser defenseUser, float addValue, bool addMsg = true) {
@@ -25,7 +25,7 @@ public class GameMagicMgr : Singleton<GameMagicMgr>
             return 0;
         }
 
-        float magicDouble = CardMgr.Instance.getBaseEffectValue(attackUser, BaseEffectType.magicDouble);
+        float magicDouble = GameCardMgr.Instance.getBaseEffectValue(attackUser, BaseEffectType.magicDouble);
         if (magicDouble > 0) {
             addValue *= magicDouble;
         }
@@ -36,7 +36,7 @@ public class GameMagicMgr : Singleton<GameMagicMgr>
         para.setDefenseUser(defenseUser);
         para.setEffectType(AdvancedEffectType.addMagic);
         para.setExtralValue(addValue);
-        CardMgr.Instance.handle(para);
+        GameCardMgr.Instance.handle(para);
 
         if (addMsg){
             IUICommonPara magicPara = new UICommonParaObject(para.getAttackUser(), ValueType.magic, addValue, finalValue);

@@ -3,7 +3,7 @@ public class AdvancedEffect3012 : BaseEffectHandleObject
 {
     private readonly int _initValue = 4;
     private readonly float _initHurt = 0.5f;
-    private readonly int _id = AdvancedEffectHandleMgr.advancedEffectId3012;
+    private readonly int _id = GameCardConst.advancedEffectId3012;
     protected override int _getId()
     {
         return this._id;

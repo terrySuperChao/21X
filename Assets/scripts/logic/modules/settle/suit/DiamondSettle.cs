@@ -11,7 +11,7 @@ public class DiamondSettle: SuitSettle
     protected override float _getMult() { return 0.5f; }
 
     protected override void _suitSettle(ITriggerHandlePara para, IHandPokerSuit handPoker,float addValue) {
-        addValue *= CardMgr.Instance.getBaseEffectValue(para.getAttackUser(), BaseEffectType.bonusArmor);
+        addValue *= GameCardMgr.Instance.getBaseEffectValue(para.getAttackUser(), BaseEffectType.bonusArmor);
         if (addValue > 0) {
             GameDefenseMgr.Instance.handle(para.getAttackUser(), para.getDefenseUser(), addValue);
         }

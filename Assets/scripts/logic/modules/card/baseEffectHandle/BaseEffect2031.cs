@@ -1,7 +1,7 @@
 //获得 %s 点法力值
 public class BaseEffect2031 : BaseEffectHandleObject
 {
-    private readonly int _id = BaseEffectHandleMgr.baseEffectId2031;
+    private readonly int _id = GameCardConst.baseEffectId2031;
     protected override int _getId()
     {
         return this._id;

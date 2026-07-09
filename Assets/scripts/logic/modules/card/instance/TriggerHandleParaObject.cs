@@ -4,7 +4,7 @@ public class TriggerHandleParaObject : ITriggerHandlePara
     private IUser _attackUser = null;
     private IUser _defenseUser = null;
     private PokerSuit _pokerSuit = PokerSuit.club;
-    private bool _isMagicAttack = false;
+    private float _temporaryValue = 0.0f;
     private IGameSettlePara _gameSettlePara = null;
 
     public TriggerHandleParaObject()
@@ -22,7 +22,7 @@ public class TriggerHandleParaObject : ITriggerHandlePara
 
     public void setDefenseUser(IUser user)
     {
-        _defenseUser =  user;
+        _defenseUser = user;
     }
     public IUser getDefenseUser() {
         return _defenseUser;
@@ -33,15 +33,6 @@ public class TriggerHandleParaObject : ITriggerHandlePara
     }
     public PokerSuit getPokerSuit() {
         return this._pokerSuit;
-    }
-
-    public void setMagicAttack(bool isMagicAttack)
-    {
-        this._isMagicAttack = isMagicAttack;
-    }
-    public bool isMagicAttack()
-    {
-        return this._isMagicAttack;
     }
 
     public IAssembleCard getAssembleCard()
@@ -57,6 +48,14 @@ public class TriggerHandleParaObject : ITriggerHandlePara
     }
     public IGameSettlePara getGameSettlePara() {
         return this._gameSettlePara;
+    }
+
+    public void setTemporaryValue(float value) {
+        this._temporaryValue = value;
+    }
+
+    public float getTemporaryValue() {
+         return this._temporaryValue;
     }
 
     public void reset() {

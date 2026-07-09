@@ -18,6 +18,9 @@ public interface IExtraInfo
     public void setRtAddDefenseValue(float value);
     public float getRtAddDefenseValue();
 
+    public void setMagicAttack(bool isMagicAttack);
+    public bool isMagicAttack();
+
     //效果
     public IBaseEffectData getBaseEffectData(int id);
     public List<IBaseEffectData> getBaseEffectDatas();

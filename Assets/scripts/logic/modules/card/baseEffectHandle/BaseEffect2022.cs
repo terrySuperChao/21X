@@ -4,7 +4,7 @@ public class BaseEffect2022 : BaseEffectHandleObject
     private readonly int _initValue = 1;
     private readonly int _stepValue = 1;
     private readonly int _maxValue = 5;
-    private readonly int _id = BaseEffectHandleMgr.baseEffectId2022;
+    private readonly int _id = GameCardConst.baseEffectId2022;
     protected override int _getId()
     {
         return this._id;
@@ -40,7 +40,7 @@ public class BaseEffect2022 : BaseEffectHandleObject
         }
 
         //使用真实血量
-        float lifeSteal = CardMgr.Instance.getBaseEffectValue(para.getAttackUser(), BaseEffectType.lifeSteal);
+        float lifeSteal = GameCardMgr.Instance.getBaseEffectValue(para.getAttackUser(), BaseEffectType.lifeSteal);
         float addValue = lifeSteal * para.getExtralValue();
         GameBloodMgr.Instance.handle(para.getAttackUser(), addValue);
     }

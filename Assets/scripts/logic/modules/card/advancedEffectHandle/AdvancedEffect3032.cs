@@ -3,7 +3,7 @@ public class AdvancedEffect3032 : BaseEffectHandleObject
 {
     private readonly float _initValue = 2;
     private readonly float _initHurt = 0.5f;
-    private readonly int _id = AdvancedEffectHandleMgr.advancedEffectId3032;
+    private readonly int _id = GameCardConst.advancedEffectId3032;
     protected override int _getId()
     {
         return this._id;
@@ -38,7 +38,7 @@ public class AdvancedEffect3032 : BaseEffectHandleObject
         }
 
         float addValue = para.getExtralValue();
-        float magicHurt = CardMgr.Instance.getBaseEffectValue(para.getAttackUser(),BaseEffectType.magicHurt);
+        float magicHurt = GameCardMgr.Instance.getBaseEffectValue(para.getAttackUser(),BaseEffectType.magicHurt);
         GameBloodMgr.Instance.handle(para.getAttackUser(), para.getDefenseUser(), addValue * magicHurt);
         data.setState(0);
     }

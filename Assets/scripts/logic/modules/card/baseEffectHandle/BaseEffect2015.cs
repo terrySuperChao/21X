@@ -1,7 +1,7 @@
 //获得当前护甲 %s% 的临时护甲
 public class BaseEffect2015 : BaseEffectHandleObject
 {
-    private readonly int _id = BaseEffectHandleMgr.baseEffectId2015;
+    private readonly int _id = GameCardConst.baseEffectId2015;
     protected override int _getId()
     {
         return this._id;

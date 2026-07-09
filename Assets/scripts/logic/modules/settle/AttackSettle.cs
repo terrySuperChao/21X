@@ -21,15 +21,15 @@ public class AttackSettle: IAttackSettle
         //暴击伤害加+50%
         float addCrit = 0;
         float number = RandomMgr.Instance.getRangeInt(1, 101) / 100.0f;//[1,100]
-        if (number <= CardMgr.Instance.getBaseEffectValue(attackUser,BaseEffectType.addCrit)) {
+        if (number <= GameCardMgr.Instance.getBaseEffectValue(attackUser,BaseEffectType.addCrit)) {
             addCrit = 0.5f;
         }
 
-        float multATK = CardMgr.Instance.getBaseEffectValue(attackUser, BaseEffectType.multATK);
+        float multATK = GameCardMgr.Instance.getBaseEffectValue(attackUser, BaseEffectType.multATK);
         float attack = attackUser.getAttack() * (1 + multATK + addCrit);
 
         //保留
-        float retainATK = CardMgr.Instance.getBaseEffectValue(attackUser, BaseEffectType.retainATK);
+        float retainATK = GameCardMgr.Instance.getBaseEffectValue(attackUser, BaseEffectType.retainATK);
         attackUser.setAttack(attack * retainATK);
         attackUser.getExtraInfo().setRtHurtValue(attack);
         
@@ -41,22 +41,22 @@ public class AttackSettle: IAttackSettle
         GameBloodMgr.Instance.handle(para.getAttackUser(), para.getDefenseUser(), remainAttack);
 
         //反弹
-        float reflectDMG = CardMgr.Instance.getBaseEffectValue(defenseUser,BaseEffectType.reflectDMG);
+        float reflectDMG = GameCardMgr.Instance.getBaseEffectValue(defenseUser,BaseEffectType.reflectDMG);
         if (reflectDMG > 0) {
             GameBloodMgr.Instance.handle(defenseUser, attackUser, reflectDMG);
         }
 
         //单次造成伤害
-        CardMgr.Instance.handle(para, TriggerEvent.CUSTOM_EVENT);
+        GameCardMgr.Instance.handle(para, TriggerEvent.CUSTOM_EVENT);
 
         //普通攻击后
         SwitchParaMgr.Instance.handle(para, () => {
-            CardMgr.Instance.handle(para, TriggerEvent.POST_BASIC_ATTACK);
+            GameCardMgr.Instance.handle(para, TriggerEvent.POST_BASIC_ATTACK);
         }, true);
 
         //清空
-        CardMgr.Instance.clearBaseEffectValue(attackUser, BaseEffectType.multATK);
-        CardMgr.Instance.clearBaseEffectValue(attackUser, BaseEffectType.retainATK);
+        GameCardMgr.Instance.clearBaseEffectValue(attackUser, BaseEffectType.multATK);
+        GameCardMgr.Instance.clearBaseEffectValue(attackUser, BaseEffectType.retainATK);
     }
 
     //魔法攻击
@@ -77,17 +77,18 @@ public class AttackSettle: IAttackSettle
 
         //减去50血量
         float attack = 50.0f;
-        float skillDamageUp = CardMgr.Instance.getBaseEffectValue(attackUser, BaseEffectType.skillDamageUp);
+        float skillDamageUp = GameCardMgr.Instance.getBaseEffectValue(attackUser, BaseEffectType.skillDamageUp);
         float remainAttack = attack * (1 + skillDamageUp);
         attackUser.getExtraInfo().setRtHurtValue(remainAttack);
+        attackUser.getExtraInfo().setMagicAttack(true);
         
         GameBloodMgr.Instance.handle(para.getAttackUser(), para.getDefenseUser(), remainAttack);
         
         //魔法攻击后
-        CardMgr.Instance.handle(para, TriggerEvent.POST_MAIN_SKILL);
+        GameCardMgr.Instance.handle(para, TriggerEvent.POST_MAIN_SKILL);
 
         //单次造成伤害
-        CardMgr.Instance.handle(para, TriggerEvent.CUSTOM_EVENT);
+        GameCardMgr.Instance.handle(para, TriggerEvent.CUSTOM_EVENT);
 
         //释放
         IBaseEffectHandlePara baseEffectHandlePara = new BaseEffectHandleParaObject();
@@ -95,10 +96,7 @@ public class AttackSettle: IAttackSettle
         baseEffectHandlePara.setDefenseUser(defenseUser);
         baseEffectHandlePara.setEffectType(AdvancedEffectType.releaseMagic);
         baseEffectHandlePara.setExtralValue(0);
-        CardMgr.Instance.handle(baseEffectHandlePara);
-
-        //魔法攻击
-        para.setMagicAttack(true);
+        GameCardMgr.Instance.handle(baseEffectHandlePara);
     }
 
     //
@@ -107,7 +105,7 @@ public class AttackSettle: IAttackSettle
         IUser defenseUser = para.getDefenseUser();
         
         //忽略护甲
-        IBaseEffectData advancedEffectData = attackUser.getExtraInfo().getBaseEffectData(AdvancedEffectHandleMgr.advancedEffectId3003);
+        IBaseEffectData advancedEffectData = attackUser.getExtraInfo().getBaseEffectData(GameCardConst.advancedEffectId3003);
         if (advancedEffectData.isState()) {
             advancedEffectData.setState(0);
             return attack;

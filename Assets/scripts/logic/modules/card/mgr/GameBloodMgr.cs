@@ -15,11 +15,11 @@ public class GameBloodMgr : Singleton<GameBloodMgr>
         para.setDefenseUser(defenseUser);
         para.setEffectType(AdvancedEffectType.roundStartAddBlood);
         para.setExtralValue(0);
-        CardMgr.Instance.handle(para);
+        GameCardMgr.Instance.handle(para);
 
         para.setAttackUser(defenseUser);
         para.setDefenseUser(attackUser);
-        CardMgr.Instance.handle(para);
+        GameCardMgr.Instance.handle(para);
     }
 
     //加血
@@ -45,7 +45,7 @@ public class GameBloodMgr : Singleton<GameBloodMgr>
         para.setDefenseUser(null);
         para.setEffectType(AdvancedEffectType.overflowBloodValue);
         para.setExtralValue(maxValue - user.getMaxBlood());
-        CardMgr.Instance.handle(para);
+        GameCardMgr.Instance.handle(para);
        
         return value;
     }
@@ -82,12 +82,12 @@ public class GameBloodMgr : Singleton<GameBloodMgr>
         para.setDefenseUser(defenseUser);
         para.setEffectType(AdvancedEffectType.enemyLessBlood);
         para.setExtralValue(bloodValue);
-        CardMgr.Instance.handle(para);
+        GameCardMgr.Instance.handle(para);
 
         para.setAttackUser(defenseUser);
         para.setDefenseUser(attackUser);
         para.setEffectType(AdvancedEffectType.selfLessBlood);
-        CardMgr.Instance.handle(para);
+        GameCardMgr.Instance.handle(para);
 
         if (blood <= 0)
         {

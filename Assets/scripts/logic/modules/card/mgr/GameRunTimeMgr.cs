@@ -1,11 +1,11 @@
 public class GameRunTimeMgr : Singleton<GameRunTimeMgr>
 {
     //1005
-    private readonly int _id1005 = TriggerHandleMgr.TriggerEffectId1005;
+    private readonly int _id1005 = GameCardConst.TriggerEffectId1005;
     private readonly int _maxValue1005 = 20;//每累计获得攻击力20点
 
     //1012
-    private readonly int _id1012 = TriggerHandleMgr.TriggerEffectId1012;
+    private readonly int _id1012 = GameCardConst.TriggerEffectId1012;
 
     //运行时:获得攻击力
     public void runTimeCountAttack(ITriggerHandlePara para, float addValue) {
@@ -24,7 +24,7 @@ public class GameRunTimeMgr : Singleton<GameRunTimeMgr>
         //每累计获得攻击力20点
         if (baseEffectValue.getValue() >= this._maxValue1005)
         {
-            CardMgr.Instance.handle(para, TriggerEvent.CUSTOM_EVENT);
+            GameCardMgr.Instance.handle(para, TriggerEvent.CUSTOM_EVENT);
         }
     }
 

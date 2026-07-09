@@ -6,7 +6,7 @@ public class CustomEventHandle : TriggerHandleObject
     private Dictionary<string, Func<ITriggerHandlePara, float>> _dic = new Dictionary<string, Func<ITriggerHandlePara, float>>();
     protected override bool _turnStartHandle(ITriggerHandlePara para)
     {
-        CardMgr.Instance.clearBaseEffectValue(para.getAttackUser(), BaseEffectType.rtMagicTotal);
+        GameCardMgr.Instance.clearBaseEffectValue(para.getAttackUser(), BaseEffectType.rtMagicTotal);
         return base._turnStartHandle(para);
     }
 
@@ -57,7 +57,7 @@ public class CustomEventHandle : TriggerHandleObject
         if (logic.IndexOf(str) != 0){
             return false;
         }
-        float number = CardMgr.Instance.getBaseEffectValue(para.getAttackUser(), BaseEffectType.rtMagicTotal);
+        float number = GameCardMgr.Instance.getBaseEffectValue(para.getAttackUser(), BaseEffectType.rtMagicTotal);
         string compareStr = logic.Replace(str, "");
         return this.compareLogic(compareStr, number);
     }

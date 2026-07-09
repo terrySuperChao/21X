@@ -5,7 +5,7 @@ public class AdvancedEffect3011 : BaseEffectHandleObject
     private readonly float _maxValue = 1.3f;
     private readonly float _stepValue = 0.1f;
     private readonly float _logicValue = 5f;
-    private readonly int _id = AdvancedEffectHandleMgr.advancedEffectId3011;
+    private readonly int _id = GameCardConst.advancedEffectId3011;
     protected override int _getId()
     {
         return this._id;

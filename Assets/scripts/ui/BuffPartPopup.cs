@@ -52,7 +52,7 @@ public class BuffPartPopup : MonoBehaviour
             value = GameRunTimeMgr.Instance.getRunTimeCountAttack(this._user);
         }
         else {
-            value = CardMgr.Instance.getBaseEffectValue(this._user, buffType);
+            value = GameCardMgr.Instance.getBaseEffectValue(this._user, buffType);
         }
         this.partName.text = GameUtils.formatDescription(desc, value);
     }
