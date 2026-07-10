@@ -43,10 +43,11 @@ public class GameMagicMgr : Singleton<GameMagicMgr>
         float finalValue = this.handle(para.getAttackUser(), addValue, out outVaule);
 
         this.addMagicMessage(para.getAttackUser(), ValueType.magic, outVaule, finalValue);
-        this.triggerEffect(para, outVaule);
+        this.execAdvancedEffectHandle(para, outVaule);
     }
 
-    public void triggerEffect(ITriggerHandlePara para, float addValue)
+    //进阶效果
+    public void execAdvancedEffectHandle(ITriggerHandlePara para, float addValue)
     {
         IBaseEffectHandlePara paras = new BaseEffectHandleParaObject();
         paras.setAttackUser(para.getAttackUser());

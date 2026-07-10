@@ -35,7 +35,7 @@ public class AdvancedEffect3013 : BaseEffectHandleObject
             return;
         }
 
-        IBaseEffectValue baseEffectValue = data.getBaseEffectValue(BaseEffectType.temporaryArmor);
-        GameDefenseMgr.Instance.handle(para.getAttackUser(),para.getDefenseUser(),baseEffectValue.getValue());
+        //IBaseEffectValue baseEffectValue = data.getBaseEffectValue(BaseEffectType.temporaryArmor);
+        //GameDefenseMgr.Instance.handle(para.getAttackUser(),para.getDefenseUser(),baseEffectValue.getValue());
     }
 }

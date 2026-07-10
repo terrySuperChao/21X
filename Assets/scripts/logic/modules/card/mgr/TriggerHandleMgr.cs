@@ -32,6 +32,6 @@ public class TriggerHandleMgr : Singleton<TriggerHandleMgr>
 
     public ITriggerHandle getTriggerHandle(int id)
     {
-        return this._triggerHandle.Find(handle => handle.getId() == id); ;
+        return this._triggerHandle.Find(handle => handle.getId() == id);
     }
 }

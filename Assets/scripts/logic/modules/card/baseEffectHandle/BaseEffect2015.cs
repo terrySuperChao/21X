@@ -21,6 +21,6 @@ public class BaseEffect2015 : BaseEffectHandleObject
         else {
             baseEffectValue.addValue(defenseValue);
         }
-        GameDefenseMgr.Instance.handle(para.getAttackUser(), para.getDefenseUser(), defenseValue);
+        GameDefenseMgr.Instance.handle(para, defenseValue);
     }
 }

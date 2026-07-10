@@ -28,7 +28,7 @@ public class AdvancedEffect3901 : BaseEffectHandleObject
             GameMagicMgr.Instance.handle(para, this._magicValue);
         }
         else if (index == 3) {
-            GameDefenseMgr.Instance.handle(para.getAttackUser(), para.getDefenseUser(), this._defenseValue);
+            GameDefenseMgr.Instance.handle(para, this._defenseValue);
         }
     }
 }

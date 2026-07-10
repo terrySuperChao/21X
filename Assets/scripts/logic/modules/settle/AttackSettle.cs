@@ -110,7 +110,9 @@ public class AttackSettle: IAttackSettle
 
         float rtFreezeArmorValue = defenseUser.getExtraInfo().getRtFreezeArmorValue();
         if (rtFreezeArmorValue > 0) {
-            GameDefenseMgr.Instance.handle(defenseUser, attackUser, rtFreezeArmorValue);
+            SwitchParaMgr.Instance.handle(para, () =>{
+                GameDefenseMgr.Instance.handle(para, rtFreezeArmorValue);
+            }, true);
             defenseUser.getExtraInfo().clearRtFreezeArmorValue();   
         }
 
@@ -132,7 +134,10 @@ public class AttackSettle: IAttackSettle
             defenseValue = attack;
             attack = 0;
         }
-        GameDefenseMgr.Instance.handle(defenseUser, attackUser, -defenseValue);
+
+        SwitchParaMgr.Instance.handle(para, () => {
+            GameDefenseMgr.Instance.handle(para, -defenseValue);
+        }, true);
          
         return attack;
     }

@@ -10,6 +10,6 @@ public class ClubSettle : SuitSettle
 
     protected override void _suitSettle(ITriggerHandlePara para, IHandPokerSuit handPoker, float addValue)
     {
-        GameMagicMgr.Instance.triggerEffect(para, addValue);
+        GameMagicMgr.Instance.execAdvancedEffectHandle(para, addValue);
     }
 }

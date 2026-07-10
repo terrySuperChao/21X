@@ -10,7 +10,7 @@ public class SpecialSettle : IAttackSettle
     private void removeTemporaryArmor(IUser attackUser,IUser defenseUser) {
         float addValue = GameCardMgr.Instance.getBaseEffectValue(attackUser, BaseEffectType.temporaryArmor);
         if (addValue > 0) {
-            GameDefenseMgr.Instance.handle(attackUser, defenseUser, -addValue);
+            //GameDefenseMgr.Instance.handle(attackUser, defenseUser, -addValue);
             GameCardMgr.Instance.clearBaseEffectValue(attackUser, BaseEffectType.temporaryArmor);
         }
     }

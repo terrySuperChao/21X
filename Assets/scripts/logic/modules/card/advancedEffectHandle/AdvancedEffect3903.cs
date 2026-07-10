@@ -21,6 +21,6 @@ public class AdvancedEffect3903 : BaseEffectHandleObject
         else {
             baseEffectValue.addValue(this._initTemporaryDefense);
         }
-        GameDefenseMgr.Instance.handle(para.getAttackUser(), para.getDefenseUser(), this._initDefense);        
+        GameDefenseMgr.Instance.handle(para, this._initDefense);        
     }
 }

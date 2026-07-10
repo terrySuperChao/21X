@@ -11,7 +11,7 @@ public class AdvancedEffect3012 : BaseEffectHandleObject
 
     protected override void _handle(ITriggerHandlePara para)
     {
-        GameDefenseMgr.Instance.handle(para.getAttackUser(),para.getDefenseUser(), this._initValue);
+        GameDefenseMgr.Instance.handle(para, this._initValue);
 
         float attack = para.getAttackUser().getDefense() * this._initHurt;
         GameBloodMgr.Instance.handle(para, attack);
