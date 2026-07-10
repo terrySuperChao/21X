@@ -3,7 +3,6 @@ using System.Collections.Generic;
 
 public class TriggerEffect1024 : TriggerHandleObject
 {
-    private bool _isFirstFlag = false;
     private readonly int _max = 50;
     private readonly int _id = GameCardConst.TriggerEffectId1024;
     protected override int _getId()
@@ -13,22 +12,24 @@ public class TriggerEffect1024 : TriggerHandleObject
 
     protected override bool _preActionHandle(ITriggerHandlePara para)
     {
-        this._isFirstFlag = true;
+        IBaseEffectData data = para.getAttackUser().getExtraInfo().getBaseEffectData(this._id);
+        data.setState(0);
         return base._preActionHandle(para);
     }
 
     protected override bool _postSuitAttributeConversionHandle(ITriggerHandlePara para)
     {
-        if (!this._isFirstFlag) return false;
-
         List<IPoker> pokers = FightPokerMgr.Instance.getUserHandPoker(para.getAttackUser());
         if (pokers == null || pokers.Count == 0)
         {
             return false;
         }
 
-        //设置标志位
-        this._isFirstFlag = true;
+        IBaseEffectData data = para.getAttackUser().getExtraInfo().getBaseEffectData(this._id);
+        if (data.isState()) {
+            return false;
+        }
+        data.setState(1);
 
         int mol = 0;//分子
         int denom = 0;//分母
