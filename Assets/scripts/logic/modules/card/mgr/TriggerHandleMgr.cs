@@ -2,22 +2,36 @@ using System.Collections.Generic;
 
 public class TriggerHandleMgr : Singleton<TriggerHandleMgr>
 {
-    
+    private List<ITriggerHandle> _triggerHandle = new List<ITriggerHandle> {
+        new TriggerEffect1001(),
+        new TriggerEffect1002(),
+        new TriggerEffect1003(),
+        new TriggerEffect1004(),
+        new TriggerEffect1005(),
 
-    private List<ITriggerHandle> _handle = new List<ITriggerHandle> {
-        new CustomEventHandle(),
-        new PostBasicAttackHandle(),
-        new PostBattleResultHandle(),
-        new PostCardDrawHandle(),
-        new PostMainSkillHandle(),
-        new PostStandOrFinalScore(),
-        new PostSuitAttributeConversionHandle(),
-        new PreActionHandle(),
-        new TurnEndHandle(),
+        new TriggerEffect1011(),
+        new TriggerEffect1012(),
+        new TriggerEffect1013(),
+        new TriggerEffect1014(),
+        new TriggerEffect1015(),
+
+        new TriggerEffect1021(),
+        new TriggerEffect1022(),
+        new TriggerEffect1023(),
+        new TriggerEffect1024(),
+        new TriggerEffect1025(),
+
+        new TriggerEffect1031(),
+        new TriggerEffect1032(),
+        new TriggerEffect1033(),
+        new TriggerEffect1034(),
+        new TriggerEffect1035(),
+
+        new TriggerEffect1051(),
     };
 
-    public List<ITriggerHandle> getTriggerHandle(ITriggerHandlePara para)
+    public ITriggerHandle getTriggerHandle(int id)
     {
-        return _handle;
+        return this._triggerHandle.Find(handle => handle.getId() == id); ;
     }
 }

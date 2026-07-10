@@ -10,6 +10,6 @@ public class BaseEffect2035 : BaseEffectHandleObject
     protected override void _handle(ITriggerHandlePara para)
     {
         float addValue = this.getAddValue(para);
-        GameMagicMgr.Instance.handle(para.getAttackUser(), -addValue);
+        GameMagicMgr.Instance.addmaxMagicHandle(para.getAttackUser(), -addValue);
     }
 }

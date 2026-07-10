@@ -1,8 +1,26 @@
 public class GameCardConst
 {
+    public const int TriggerEffectId1001 = 1001;
+    public const int TriggerEffectId1002 = 1002;
+    public const int TriggerEffectId1003 = 1003;
+    public const int TriggerEffectId1004 = 1004;
     public const int TriggerEffectId1005 = 1005;
+    public const int TriggerEffectId1011 = 1011;
     public const int TriggerEffectId1012 = 1012;
+    public const int TriggerEffectId1013 = 1013;
+    public const int TriggerEffectId1014 = 1014;
+    public const int TriggerEffectId1015 = 1015;
+    public const int TriggerEffectId1021 = 1021;
+    public const int TriggerEffectId1022 = 1022;
+    public const int TriggerEffectId1023 = 1023;
+    public const int TriggerEffectId1024 = 1024;
+    public const int TriggerEffectId1025 = 1025;
+    public const int TriggerEffectId1031 = 1031;
+    public const int TriggerEffectId1032 = 1032;
     public const int TriggerEffectId1033 = 1033;
+    public const int TriggerEffectId1034 = 1034;
+    public const int TriggerEffectId1035 = 1035;
+    public const int TriggerEffectId1051 = 1051;
 
     public const int baseEffectId2001 = 2001;
     public const int baseEffectId2002 = 2002;

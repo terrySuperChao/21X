@@ -1,6 +1,7 @@
 public class HeartSettle : SuitSettle
 {
-    protected override float _getFinalValue(ITriggerHandlePara para, float value) {
+    protected override float _getFinalValue(ITriggerHandlePara para, float value,out float outValue) {
+        outValue = value;
         return GameBloodMgr.Instance.handle(para.getAttackUser(), value,false);
     }
 

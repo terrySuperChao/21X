@@ -5,9 +5,6 @@ public interface IExtraInfo
 {
     //运行过程中数据 rt前缀
     //伤害=普通攻击+魔法攻击+直接扣血
-    public void setRtHurtValue(float value);
-    public float getRtHurtVaule();
-    public void clearRtHurtValue();
 
     //消耗的护甲
     public void setRtFreezeArmorValue(float value);

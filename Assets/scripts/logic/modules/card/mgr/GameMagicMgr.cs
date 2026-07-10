@@ -20,40 +20,56 @@ public class GameMagicMgr : Singleton<GameMagicMgr>
         GameCardMgr.Instance.handle(para);
     }
 
-    public float handle(IUser attackUser, IUser defenseUser, float addValue, bool addMsg = true) {
-        if (attackUser == null) {
-            return 0;
-        }
-
-        float magicDouble = GameCardMgr.Instance.getBaseEffectValue(attackUser, BaseEffectType.magicDouble);
-        if (magicDouble > 0) {
-            addValue *= magicDouble;
-        }
+    public void handle(IUser attackUser, float addValue)
+    {
         float finalValue = attackUser.addMagic(addValue);
-
-        IBaseEffectHandlePara para = new BaseEffectHandleParaObject();
-        para.setAttackUser(attackUser);
-        para.setDefenseUser(defenseUser);
-        para.setEffectType(AdvancedEffectType.addMagic);
-        para.setExtralValue(addValue);
-        GameCardMgr.Instance.handle(para);
-
-        if (addMsg){
-            IUICommonPara magicPara = new UICommonParaObject(para.getAttackUser(), ValueType.magic, addValue, finalValue);
-            GameMessage.Instance.addMsg(GameConst.ADDCARDVALUE, magicPara);
-        }
-
-        return finalValue;
+        this.addMagicMessage(attackUser, ValueType.magic, addValue, finalValue);
     }
 
-    public void handle(IUser attackUser, float addValue)
+    public float handle(IUser attackUser, float addValue,out float outValue) {
+        float magicDouble = GameCardMgr.Instance.getBaseEffectValue(attackUser, BaseEffectType.magicDouble);
+        if (magicDouble > 0)
+        {
+            outValue = addValue * magicDouble;
+        }
+        else {
+            outValue = addValue;
+        }
+        return attackUser.addMagic(outValue);
+    }
+
+    public void handle(ITriggerHandlePara para, float addValue) {
+        float outVaule = 0;
+        float finalValue = this.handle(para.getAttackUser(), addValue, out outVaule);
+
+        this.addMagicMessage(para.getAttackUser(), ValueType.magic, outVaule, finalValue);
+        this.triggerEffect(para, outVaule);
+    }
+
+    public void triggerEffect(ITriggerHandlePara para, float addValue)
+    {
+        IBaseEffectHandlePara paras = new BaseEffectHandleParaObject();
+        paras.setAttackUser(para.getAttackUser());
+        paras.setDefenseUser(para.getDefenseUser());
+        paras.setEffectType(AdvancedEffectType.addMagic);
+        paras.setExtralValue(addValue);
+        GameCardMgr.Instance.handle(paras);
+
+        //单次获得法力值
+        GameCardMgr.Instance.handle(para, TriggerEvent.CUSTOM_EVENT,GameCardConst.TriggerEffectId1033,addValue);
+    }
+
+    public void addmaxMagicHandle(IUser attackUser, float addValue)
     {
         if (attackUser == null){
             return;
         }
         attackUser.addMaxMagic(addValue);
-      
-        IUICommonPara magicPara = new UICommonParaObject(attackUser, ValueType.maxMagic, attackUser.getMagic(), attackUser.getMaxMagic());
+        this.addMagicMessage(attackUser, ValueType.maxMagic, attackUser.getMagic(), attackUser.getMaxMagic());
+    }
+
+    private void addMagicMessage(IUser user, ValueType type, float value, float finalValue) {
+        IUICommonPara magicPara = new UICommonParaObject(user, type, value, finalValue);
         GameMessage.Instance.addMsg(GameConst.ADDCARDVALUE, magicPara);
     }
 }

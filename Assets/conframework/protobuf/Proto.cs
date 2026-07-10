@@ -55,44 +55,43 @@ namespace Pb {
             "eFZhbHVlGAMgASgCSAKIAQFCBwoFX3R5cGVCCAoGX3ZhbHVlQgsKCV9tYXhW",
             "YWx1ZSJ1Cg5CYXNlRWZmZWN0RGF0YRIPCgJpZBgBIAEoBUgAiAEBEhIKBXN0",
             "YXRlGAIgASgFSAGIAQESLQoQYmFzZUVmZmVjdFZhbHVlcxgDIAMoCzITLnBi",
-            "LkJhc2VFZmZlY3RWYWx1ZUIFCgNfaWRCCAoGX3N0YXRlItQBCglFeHRyYUlu",
-            "Zm8SGQoLcnRIdXJ0VmFsdWUY6QcgASgCSACIAQESIAoScnRGcmVlemVBcm1v",
-            "clZhbHVlGOoHIAEoAkgBiAEBEh8KEXJ0QWRkRGVmZW5zZVZhbHVlGOsHIAEo",
-            "AkgCiAEBEiwKD2Jhc2VFZmZlY3REYXRhcxjsByADKAsyEi5wYi5CYXNlRWZm",
-            "ZWN0RGF0YUIOCgxfcnRIdXJ0VmFsdWVCFQoTX3J0RnJlZXplQXJtb3JWYWx1",
-            "ZUIUChJfcnRBZGREZWZlbnNlVmFsdWUiwAIKCUFzc2V0SW5mbxISCgVzdGF0",
-            "ZRgBIAEoBUgAiAEBEg4KBnBva2VycxgCIAMoBRIPCgJocBgDIAEoAkgBiAEB",
-            "EhIKBW1heEhQGAQgASgCSAKIAQESEgoFbWFnaWMYBSABKAJIA4gBARIVCght",
-            "YXhNYWdpYxgGIAEoAkgEiAEBEhMKBmF0dGFjaxgHIAEoAkgFiAEBEhQKB2Rl",
-            "ZmVuc2UYCCABKAJIBogBARITCgZpc0ZpbHAYCSABKAVIB4gBARIhCgVleHRy",
-            "YRgKIAEoCzINLnBiLkV4dHJhSW5mb0gIiAEBQggKBl9zdGF0ZUIFCgNfaHBC",
-            "CAoGX21heEhQQggKBl9tYWdpY0ILCglfbWF4TWFnaWNCCQoHX2F0dGFja0IK",
-            "CghfZGVmZW5zZUIJCgdfaXNGaWxwQggKBl9leHRyYSLCAQoFRmlnaHQSEQoJ",
-            "cG9rZXJQaWxlGAEgAygFEiQKCG5wY0Fzc2V0GAIgASgLMg0ucGIuQXNzZXRJ",
-            "bmZvSACIAQESJwoLcGxheWVyQXNzZXQYAyABKAsyDS5wYi5Bc3NldEluZm9I",
-            "AYgBARISCgVzdGF0ZRgEIAEoBUgCiAEBEhIKBXJvdW5kGAUgASgFSAOIAQFC",
-            "CwoJX25wY0Fzc2V0Qg4KDF9wbGF5ZXJBc3NldEIICgZfc3RhdGVCCAoGX3Jv",
-            "dW5kIvABCgxBc3NlbWJsZUNhcmQSFgoJdHJpZ2dlcklkGAEgASgFSACIAQES",
-            "GQoMYmFzZUVmZmVjdElkGAIgASgFSAGIAQESHQoQYWR2YW5jZWRFZmZlY3RJ",
-            "ZBgDIAEoBUgCiAEBEhoKDXRyaWdnZXJOdW1iZXIYBCABKAVIA4gBARIaCg11",
-            "cGdyYWRlTnVtYmVyGAUgASgFSASIAQFCDAoKX3RyaWdnZXJJZEIPCg1fYmFz",
-            "ZUVmZmVjdElkQhMKEV9hZHZhbmNlZEVmZmVjdElkQhAKDl90cmlnZ2VyTnVt",
-            "YmVyQhAKDl91cGdyYWRlTnVtYmVyIoQBCgdJbXByaW50EhsKDmFzc2VtYmxl",
-            "T2JqZWN0GAEgASgFSACIAQESIgoIbnBjQ2FyZHMYAiADKAsyEC5wYi5Bc3Nl",
-            "bWJsZUNhcmQSJQoLcGxheWVyQ2FyZHMYAyADKAsyEC5wYi5Bc3NlbWJsZUNh",
-            "cmRCEQoPX2Fzc2VtYmxlT2JqZWN0IvgCCghHYW1lRGF0YRIVCghpbml0U2Vl",
-            "ZBgBIAEoBUgAiAEBEhYKCWdhbWVTdGF0ZRgCIAEoBUgBiAEBEhYKCXBhZ2VJ",
-            "bmRleBgDIAEoBUgCiAEBEh8KBnBsYXllchgEIAEoCzIKLnBiLlBsYXllckgD",
-            "iAEBEiEKB2JhcnJpZXIYBSABKAsyCy5wYi5CYXJyaWVySASIAQESGwoEc2hv",
-            "cBgGIAEoCzIILnBiLlNob3BIBYgBARIdCgVmaWdodBgHIAEoCzIJLnBiLkZp",
-            "Z2h0SAaIAQESIQoHaW1wcmludBgIIAEoCzILLnBiLkltcHJpbnRIB4gBARIj",
-            "CgtkZWZlYXRSb2xlcxgJIAMoCzIOLnBiLkRlZmVhdFJvbGVCCwoJX2luaXRT",
-            "ZWVkQgwKCl9nYW1lU3RhdGVCDAoKX3BhZ2VJbmRleEIJCgdfcGxheWVyQgoK",
-            "CF9iYXJyaWVyQgcKBV9zaG9wQggKBl9maWdodEIKCghfaW1wcmludCKeAQoM",
-            "R2FtZVByb3BlcnR5EiEKB2FjY291bnQYASABKAsyCy5wYi5BY2NvdW50SACI",
-            "AQESIQoHc2V0dGluZxgCIAEoCzILLnBiLlNldHRpbmdIAYgBARIjCghnYW1l",
-            "RGF0YRgDIAEoCzIMLnBiLkdhbWVEYXRhSAKIAQFCCgoIX2FjY291bnRCCgoI",
-            "X3NldHRpbmdCCwoJX2dhbWVEYXRhYgZwcm90bzM="));
+            "LkJhc2VFZmZlY3RWYWx1ZUIFCgNfaWRCCAoGX3N0YXRlIqkBCglFeHRyYUlu",
+            "Zm8SIAoScnRGcmVlemVBcm1vclZhbHVlGOkHIAEoAkgAiAEBEh8KEXJ0QWRk",
+            "RGVmZW5zZVZhbHVlGOoHIAEoAkgBiAEBEiwKD2Jhc2VFZmZlY3REYXRhcxjr",
+            "ByADKAsyEi5wYi5CYXNlRWZmZWN0RGF0YUIVChNfcnRGcmVlemVBcm1vclZh",
+            "bHVlQhQKEl9ydEFkZERlZmVuc2VWYWx1ZSLAAgoJQXNzZXRJbmZvEhIKBXN0",
+            "YXRlGAEgASgFSACIAQESDgoGcG9rZXJzGAIgAygFEg8KAmhwGAMgASgCSAGI",
+            "AQESEgoFbWF4SFAYBCABKAJIAogBARISCgVtYWdpYxgFIAEoAkgDiAEBEhUK",
+            "CG1heE1hZ2ljGAYgASgCSASIAQESEwoGYXR0YWNrGAcgASgCSAWIAQESFAoH",
+            "ZGVmZW5zZRgIIAEoAkgGiAEBEhMKBmlzRmlscBgJIAEoBUgHiAEBEiEKBWV4",
+            "dHJhGAogASgLMg0ucGIuRXh0cmFJbmZvSAiIAQFCCAoGX3N0YXRlQgUKA19o",
+            "cEIICgZfbWF4SFBCCAoGX21hZ2ljQgsKCV9tYXhNYWdpY0IJCgdfYXR0YWNr",
+            "QgoKCF9kZWZlbnNlQgkKB19pc0ZpbHBCCAoGX2V4dHJhIsIBCgVGaWdodBIR",
+            "Cglwb2tlclBpbGUYASADKAUSJAoIbnBjQXNzZXQYAiABKAsyDS5wYi5Bc3Nl",
+            "dEluZm9IAIgBARInCgtwbGF5ZXJBc3NldBgDIAEoCzINLnBiLkFzc2V0SW5m",
+            "b0gBiAEBEhIKBXN0YXRlGAQgASgFSAKIAQESEgoFcm91bmQYBSABKAVIA4gB",
+            "AUILCglfbnBjQXNzZXRCDgoMX3BsYXllckFzc2V0QggKBl9zdGF0ZUIICgZf",
+            "cm91bmQi8AEKDEFzc2VtYmxlQ2FyZBIWCgl0cmlnZ2VySWQYASABKAVIAIgB",
+            "ARIZCgxiYXNlRWZmZWN0SWQYAiABKAVIAYgBARIdChBhZHZhbmNlZEVmZmVj",
+            "dElkGAMgASgFSAKIAQESGgoNdHJpZ2dlck51bWJlchgEIAEoBUgDiAEBEhoK",
+            "DXVwZ3JhZGVOdW1iZXIYBSABKAVIBIgBAUIMCgpfdHJpZ2dlcklkQg8KDV9i",
+            "YXNlRWZmZWN0SWRCEwoRX2FkdmFuY2VkRWZmZWN0SWRCEAoOX3RyaWdnZXJO",
+            "dW1iZXJCEAoOX3VwZ3JhZGVOdW1iZXIihAEKB0ltcHJpbnQSGwoOYXNzZW1i",
+            "bGVPYmplY3QYASABKAVIAIgBARIiCghucGNDYXJkcxgCIAMoCzIQLnBiLkFz",
+            "c2VtYmxlQ2FyZBIlCgtwbGF5ZXJDYXJkcxgDIAMoCzIQLnBiLkFzc2VtYmxl",
+            "Q2FyZEIRCg9fYXNzZW1ibGVPYmplY3Qi+AIKCEdhbWVEYXRhEhUKCGluaXRT",
+            "ZWVkGAEgASgFSACIAQESFgoJZ2FtZVN0YXRlGAIgASgFSAGIAQESFgoJcGFn",
+            "ZUluZGV4GAMgASgFSAKIAQESHwoGcGxheWVyGAQgASgLMgoucGIuUGxheWVy",
+            "SAOIAQESIQoHYmFycmllchgFIAEoCzILLnBiLkJhcnJpZXJIBIgBARIbCgRz",
+            "aG9wGAYgASgLMggucGIuU2hvcEgFiAEBEh0KBWZpZ2h0GAcgASgLMgkucGIu",
+            "RmlnaHRIBogBARIhCgdpbXByaW50GAggASgLMgsucGIuSW1wcmludEgHiAEB",
+            "EiMKC2RlZmVhdFJvbGVzGAkgAygLMg4ucGIuRGVmZWF0Um9sZUILCglfaW5p",
+            "dFNlZWRCDAoKX2dhbWVTdGF0ZUIMCgpfcGFnZUluZGV4QgkKB19wbGF5ZXJC",
+            "CgoIX2JhcnJpZXJCBwoFX3Nob3BCCAoGX2ZpZ2h0QgoKCF9pbXByaW50Ip4B",
+            "CgxHYW1lUHJvcGVydHkSIQoHYWNjb3VudBgBIAEoCzILLnBiLkFjY291bnRI",
+            "AIgBARIhCgdzZXR0aW5nGAIgASgLMgsucGIuU2V0dGluZ0gBiAEBEiMKCGdh",
+            "bWVEYXRhGAMgASgLMgwucGIuR2FtZURhdGFIAogBAUIKCghfYWNjb3VudEIK",
+            "Cghfc2V0dGluZ0ILCglfZ2FtZURhdGFiBnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
@@ -104,7 +103,7 @@ namespace Pb {
             new pbr::GeneratedClrTypeInfo(typeof(global::Pb.Shop), global::Pb.Shop.Parser, new[]{ "Goods", "Purchased" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Pb.BaseEffectValue), global::Pb.BaseEffectValue.Parser, new[]{ "Type", "Value", "MaxValue" }, new[]{ "Type", "Value", "MaxValue" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Pb.BaseEffectData), global::Pb.BaseEffectData.Parser, new[]{ "Id", "State", "BaseEffectValues" }, new[]{ "Id", "State" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Pb.ExtraInfo), global::Pb.ExtraInfo.Parser, new[]{ "RtHurtValue", "RtFreezeArmorValue", "RtAddDefenseValue", "BaseEffectDatas" }, new[]{ "RtHurtValue", "RtFreezeArmorValue", "RtAddDefenseValue" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Pb.ExtraInfo), global::Pb.ExtraInfo.Parser, new[]{ "RtFreezeArmorValue", "RtAddDefenseValue", "BaseEffectDatas" }, new[]{ "RtFreezeArmorValue", "RtAddDefenseValue" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Pb.AssetInfo), global::Pb.AssetInfo.Parser, new[]{ "State", "Pokers", "Hp", "MaxHP", "Magic", "MaxMagic", "Attack", "Defense", "IsFilp", "Extra" }, new[]{ "State", "Hp", "MaxHP", "Magic", "MaxMagic", "Attack", "Defense", "IsFilp", "Extra" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Pb.Fight), global::Pb.Fight.Parser, new[]{ "PokerPile", "NpcAsset", "PlayerAsset", "State", "Round" }, new[]{ "NpcAsset", "PlayerAsset", "State", "Round" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Pb.AssembleCard), global::Pb.AssembleCard.Parser, new[]{ "TriggerId", "BaseEffectId", "AdvancedEffectId", "TriggerNumber", "UpgradeNumber" }, new[]{ "TriggerId", "BaseEffectId", "AdvancedEffectId", "TriggerNumber", "UpgradeNumber" }, null, null, null),
@@ -3419,7 +3418,6 @@ namespace Pb {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public ExtraInfo(ExtraInfo other) : this() {
       _hasBits0 = other._hasBits0;
-      rtHurtValue_ = other.rtHurtValue_;
       rtFreezeArmorValue_ = other.rtFreezeArmorValue_;
       rtAddDefenseValue_ = other.rtAddDefenseValue_;
       baseEffectDatas_ = other.baseEffectDatas_.Clone();
@@ -3432,50 +3430,20 @@ namespace Pb {
       return new ExtraInfo(this);
     }
 
-    /// <summary>Field number for the "rtHurtValue" field.</summary>
-    public const int RtHurtValueFieldNumber = 1001;
-    private readonly static float RtHurtValueDefaultValue = 0F;
+    /// <summary>Field number for the "rtFreezeArmorValue" field.</summary>
+    public const int RtFreezeArmorValueFieldNumber = 1001;
+    private readonly static float RtFreezeArmorValueDefaultValue = 0F;
 
-    private float rtHurtValue_;
+    private float rtFreezeArmorValue_;
     /// <summary>
     ///运行过程中数据
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public float RtHurtValue {
-      get { if ((_hasBits0 & 1) != 0) { return rtHurtValue_; } else { return RtHurtValueDefaultValue; } }
+    public float RtFreezeArmorValue {
+      get { if ((_hasBits0 & 1) != 0) { return rtFreezeArmorValue_; } else { return RtFreezeArmorValueDefaultValue; } }
       set {
         _hasBits0 |= 1;
-        rtHurtValue_ = value;
-      }
-    }
-    /// <summary>Gets whether the "rtHurtValue" field is set</summary>
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public bool HasRtHurtValue {
-      get { return (_hasBits0 & 1) != 0; }
-    }
-    /// <summary>Clears the value of the "rtHurtValue" field</summary>
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void ClearRtHurtValue() {
-      _hasBits0 &= ~1;
-    }
-
-    /// <summary>Field number for the "rtFreezeArmorValue" field.</summary>
-    public const int RtFreezeArmorValueFieldNumber = 1002;
-    private readonly static float RtFreezeArmorValueDefaultValue = 0F;
-
-    private float rtFreezeArmorValue_;
-    /// <summary>
-    ///消耗的护甲
-    /// </summary>
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public float RtFreezeArmorValue {
-      get { if ((_hasBits0 & 2) != 0) { return rtFreezeArmorValue_; } else { return RtFreezeArmorValueDefaultValue; } }
-      set {
-        _hasBits0 |= 2;
         rtFreezeArmorValue_ = value;
       }
     }
@@ -3483,17 +3451,17 @@ namespace Pb {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public bool HasRtFreezeArmorValue {
-      get { return (_hasBits0 & 2) != 0; }
+      get { return (_hasBits0 & 1) != 0; }
     }
     /// <summary>Clears the value of the "rtFreezeArmorValue" field</summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public void ClearRtFreezeArmorValue() {
-      _hasBits0 &= ~2;
+      _hasBits0 &= ~1;
     }
 
     /// <summary>Field number for the "rtAddDefenseValue" field.</summary>
-    public const int RtAddDefenseValueFieldNumber = 1003;
+    public const int RtAddDefenseValueFieldNumber = 1002;
     private readonly static float RtAddDefenseValueDefaultValue = 0F;
 
     private float rtAddDefenseValue_;
@@ -3503,9 +3471,9 @@ namespace Pb {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public float RtAddDefenseValue {
-      get { if ((_hasBits0 & 4) != 0) { return rtAddDefenseValue_; } else { return RtAddDefenseValueDefaultValue; } }
+      get { if ((_hasBits0 & 2) != 0) { return rtAddDefenseValue_; } else { return RtAddDefenseValueDefaultValue; } }
       set {
-        _hasBits0 |= 4;
+        _hasBits0 |= 2;
         rtAddDefenseValue_ = value;
       }
     }
@@ -3513,19 +3481,19 @@ namespace Pb {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public bool HasRtAddDefenseValue {
-      get { return (_hasBits0 & 4) != 0; }
+      get { return (_hasBits0 & 2) != 0; }
     }
     /// <summary>Clears the value of the "rtAddDefenseValue" field</summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public void ClearRtAddDefenseValue() {
-      _hasBits0 &= ~4;
+      _hasBits0 &= ~2;
     }
 
     /// <summary>Field number for the "baseEffectDatas" field.</summary>
-    public const int BaseEffectDatasFieldNumber = 1004;
+    public const int BaseEffectDatasFieldNumber = 1003;
     private static readonly pb::FieldCodec<global::Pb.BaseEffectData> _repeated_baseEffectDatas_codec
-        = pb::FieldCodec.ForMessage(8034, global::Pb.BaseEffectData.Parser);
+        = pb::FieldCodec.ForMessage(8026, global::Pb.BaseEffectData.Parser);
     private readonly pbc::RepeatedField<global::Pb.BaseEffectData> baseEffectDatas_ = new pbc::RepeatedField<global::Pb.BaseEffectData>();
     /// <summary>
     ///效果值
@@ -3551,7 +3519,6 @@ namespace Pb {
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(RtHurtValue, other.RtHurtValue)) return false;
       if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(RtFreezeArmorValue, other.RtFreezeArmorValue)) return false;
       if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(RtAddDefenseValue, other.RtAddDefenseValue)) return false;
       if(!baseEffectDatas_.Equals(other.baseEffectDatas_)) return false;
@@ -3562,7 +3529,6 @@ namespace Pb {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override int GetHashCode() {
       int hash = 1;
-      if (HasRtHurtValue) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(RtHurtValue);
       if (HasRtFreezeArmorValue) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(RtFreezeArmorValue);
       if (HasRtAddDefenseValue) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(RtAddDefenseValue);
       hash ^= baseEffectDatas_.GetHashCode();
@@ -3584,16 +3550,12 @@ namespace Pb {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
-      if (HasRtHurtValue) {
-        output.WriteRawTag(205, 62);
-        output.WriteFloat(RtHurtValue);
-      }
       if (HasRtFreezeArmorValue) {
-        output.WriteRawTag(213, 62);
+        output.WriteRawTag(205, 62);
         output.WriteFloat(RtFreezeArmorValue);
       }
       if (HasRtAddDefenseValue) {
-        output.WriteRawTag(221, 62);
+        output.WriteRawTag(213, 62);
         output.WriteFloat(RtAddDefenseValue);
       }
       baseEffectDatas_.WriteTo(output, _repeated_baseEffectDatas_codec);
@@ -3607,16 +3569,12 @@ namespace Pb {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (HasRtHurtValue) {
-        output.WriteRawTag(205, 62);
-        output.WriteFloat(RtHurtValue);
-      }
       if (HasRtFreezeArmorValue) {
-        output.WriteRawTag(213, 62);
+        output.WriteRawTag(205, 62);
         output.WriteFloat(RtFreezeArmorValue);
       }
       if (HasRtAddDefenseValue) {
-        output.WriteRawTag(221, 62);
+        output.WriteRawTag(213, 62);
         output.WriteFloat(RtAddDefenseValue);
       }
       baseEffectDatas_.WriteTo(ref output, _repeated_baseEffectDatas_codec);
@@ -3630,9 +3588,6 @@ namespace Pb {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int CalculateSize() {
       int size = 0;
-      if (HasRtHurtValue) {
-        size += 2 + 4;
-      }
       if (HasRtFreezeArmorValue) {
         size += 2 + 4;
       }
@@ -3651,9 +3606,6 @@ namespace Pb {
     public void MergeFrom(ExtraInfo other) {
       if (other == null) {
         return;
-      }
-      if (other.HasRtHurtValue) {
-        RtHurtValue = other.RtHurtValue;
       }
       if (other.HasRtFreezeArmorValue) {
         RtFreezeArmorValue = other.RtFreezeArmorValue;
@@ -3682,18 +3634,14 @@ namespace Pb {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 8013: {
-            RtHurtValue = input.ReadFloat();
-            break;
-          }
-          case 8021: {
             RtFreezeArmorValue = input.ReadFloat();
             break;
           }
-          case 8029: {
+          case 8021: {
             RtAddDefenseValue = input.ReadFloat();
             break;
           }
-          case 8034: {
+          case 8026: {
             baseEffectDatas_.AddEntriesFrom(input, _repeated_baseEffectDatas_codec);
             break;
           }
@@ -3717,18 +3665,14 @@ namespace Pb {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
           case 8013: {
-            RtHurtValue = input.ReadFloat();
-            break;
-          }
-          case 8021: {
             RtFreezeArmorValue = input.ReadFloat();
             break;
           }
-          case 8029: {
+          case 8021: {
             RtAddDefenseValue = input.ReadFloat();
             break;
           }
-          case 8034: {
+          case 8026: {
             baseEffectDatas_.AddEntriesFrom(ref input, _repeated_baseEffectDatas_codec);
             break;
           }

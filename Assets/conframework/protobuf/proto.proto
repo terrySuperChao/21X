@@ -69,10 +69,9 @@ message BaseEffectData{
 
 message ExtraInfo{
   //运行过程中数据
-  optional float rtHurtValue = 1001;//伤害=普通攻击+魔法攻击+直接扣血
-  optional float rtFreezeArmorValue = 1002;//消耗的护甲
-  optional float rtAddDefenseValue = 1003;//添加的护甲值
-  repeated BaseEffectData baseEffectDatas = 1004;//效果值
+  optional float rtFreezeArmorValue = 1001;//消耗的护甲
+  optional float rtAddDefenseValue = 1002;//添加的护甲值
+  repeated BaseEffectData baseEffectDatas = 1003;//效果值
 }
 
 //战斗的资产

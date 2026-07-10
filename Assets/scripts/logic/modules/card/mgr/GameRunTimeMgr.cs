@@ -24,7 +24,7 @@ public class GameRunTimeMgr : Singleton<GameRunTimeMgr>
         //每累计获得攻击力20点
         if (baseEffectValue.getValue() >= this._maxValue1005)
         {
-            GameCardMgr.Instance.handle(para, TriggerEvent.CUSTOM_EVENT);
+            GameCardMgr.Instance.handle(para, TriggerEvent.CUSTOM_EVENT,this._id1005);
         }
     }
 

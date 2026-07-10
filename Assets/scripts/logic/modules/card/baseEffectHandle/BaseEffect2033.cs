@@ -40,7 +40,7 @@ public class BaseEffect2033 : BaseEffectHandleObject
         if (baseEffectValue1.getValue() <= baseEffectValue1.getMaxValue())
         {
             baseEffectValue1.addValue(this._stepValue);
-            GameMagicMgr.Instance.handle(para.getAttackUser(),para.getDefenseUser(), baseEffectValue2.getValue());
+            GameMagicMgr.Instance.handle(para.getAttackUser(), baseEffectValue2.getValue());
         }
     }
 }

@@ -11,6 +11,6 @@ public class BaseEffect2034 : BaseEffectHandleObject
     {
         float addValue = this.getAddValue(para);
         float magicValue = addValue * para.getAttackUser().getMagic();
-        GameMagicMgr.Instance.handle(para.getAttackUser(), para.getDefenseUser(), magicValue);
+        GameMagicMgr.Instance.handle(para, magicValue);
     }
 }

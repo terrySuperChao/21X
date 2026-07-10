@@ -1,8 +1,10 @@
 public class GameAttackMgr : Singleton<GameAttackMgr>
 {
-    public float handle(IUser attackUser, float addValue)
+    public float handle(IUser attackUser, float addValue,out float outValue)
     {
-        return attackUser.addAttack(addValue);
+        outValue = addValue;
+
+        return attackUser.addAttack(outValue);
     }
 
     public void handle(ITriggerHandlePara para, float addValue) {

@@ -12,6 +12,6 @@ public class AdvancedEffect3904 : BaseEffectHandleObject
     protected override void _handle(ITriggerHandlePara para)
     {
         GameBloodMgr.Instance.handle(para.getAttackUser(), this._initBlood);
-        GameMagicMgr.Instance.handle(para.getAttackUser(), para.getDefenseUser(), this._initMagic);
+        GameMagicMgr.Instance.handle(para, this._initMagic);
     }
 }

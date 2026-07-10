@@ -2,6 +2,7 @@
 public class TriggerEffect1033 : TriggerHandleObject
 {
     private readonly int _id = GameCardConst.TriggerEffectId1033;
+    private readonly int _max = 10;
     protected override int _getId()
     {
         return this._id;
@@ -9,8 +10,7 @@ public class TriggerEffect1033 : TriggerHandleObject
 
     protected override bool _customEventHandle(ITriggerHandlePara para)
     {
-        string compareStr = para.getAssembleCard().getTrigger().getLogic();
         float number = para.getTemporaryValue();
-        return this.compareLogic(compareStr, number);
+        return number > this._max;
     }
 }

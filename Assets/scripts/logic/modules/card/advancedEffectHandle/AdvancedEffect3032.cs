@@ -36,10 +36,20 @@ public class AdvancedEffect3032 : BaseEffectHandleObject
         {
             return;
         }
+        IBaseEffectValue baseEffectValue1 = data.getBaseEffectValue(BaseEffectType.magicDouble);
+        IBaseEffectValue baseEffectValue2 = data.getBaseEffectValue(BaseEffectType.magicHurt);
+
+        //创建
+        ITriggerHandlePara handlePara = new TriggerHandleParaObject();
+        handlePara.setAttackUser(para.getAttackUser());
+        handlePara.setDefenseUser(para.getDefenseUser());
 
         float addValue = para.getExtralValue();
         float magicHurt = GameCardMgr.Instance.getBaseEffectValue(para.getAttackUser(),BaseEffectType.magicHurt);
-        GameBloodMgr.Instance.handle(para.getAttackUser(), para.getDefenseUser(), addValue * magicHurt);
+
+        GameBloodMgr.Instance.handle(handlePara, addValue * magicHurt);
         data.setState(0);
+        baseEffectValue1.setValue(0);
+        baseEffectValue2.setValue(0);
     }
 }

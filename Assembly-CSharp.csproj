@@ -1,7 +1,7 @@
 ﻿<Project ToolsVersion="Current">
   <!-- Generated file, do not modify, your changes will be overwritten (use AssetPostprocessor.OnGeneratedCSProject) -->
   <PropertyGroup>
-    <BaseIntermediateOutputPath>Temp/obj/$(Configuration)/$(MSBuildProjectName)</BaseIntermediateOutputPath>
+    <BaseIntermediateOutputPath>Temp\obj\Assembly-CSharp</BaseIntermediateOutputPath>
     <IntermediateOutputPath>$(BaseIntermediateOutputPath)</IntermediateOutputPath>
   </PropertyGroup>
   <Import Project="Sdk.props" Sdk="Microsoft.NET.Sdk" />
@@ -286,6 +286,26 @@
     <Compile Include="Assets/scripts/logic/data/instance/AssembleCardObject.cs" />
     <Compile Include="Assets/scripts/logic/modules/card/baseEffectHandle/BaseEffect2013.cs" />
     <Compile Include="Assets/scripts/ui/HoverBasePopup.cs" />
+    <Compile Include="Assets\scripts\logic\modules\card\triggerHandle\TriggerEffect1005.cs" />
+    <Compile Include="Assets\scripts\logic\modules\card\triggerHandle\TriggerEffect1023.cs" />
+    <Compile Include="Assets\scripts\logic\modules\card\triggerHandle\TriggerEffect1001.cs" />
+    <Compile Include="Assets\scripts\logic\modules\card\triggerHandle\TriggerEffect1011.cs" />
+    <Compile Include="Assets\scripts\logic\modules\card\triggerHandle\TriggerEffect1021.cs" />
+    <Compile Include="Assets\scripts\logic\modules\card\triggerHandle\TriggerEffect1031.cs" />
+    <Compile Include="Assets\scripts\logic\modules\card\triggerHandle\TriggerEffect1024.cs" />
+    <Compile Include="Assets\scripts\logic\modules\card\triggerHandle\TriggerEffect1002.cs" />
+    <Compile Include="Assets\scripts\logic\modules\card\triggerHandle\TriggerEffect1003.cs" />
+    <Compile Include="Assets\scripts\logic\modules\card\triggerHandle\TriggerEffect1004.cs" />
+    <Compile Include="Assets\scripts\logic\modules\card\triggerHandle\TriggerEffect1012.cs" />
+    <Compile Include="Assets\scripts\logic\modules\card\triggerHandle\TriggerEffect1013.cs" />
+    <Compile Include="Assets\scripts\logic\modules\card\triggerHandle\TriggerEffect1014.cs" />
+    <Compile Include="Assets\scripts\logic\modules\card\triggerHandle\TriggerEffect1022.cs" />
+    <Compile Include="Assets\scripts\logic\modules\card\triggerHandle\TriggerEffect1015.cs" />
+    <Compile Include="Assets\scripts\logic\modules\card\triggerHandle\TriggerEffect1025.cs" />
+    <Compile Include="Assets\scripts\logic\modules\card\triggerHandle\TriggerEffect1032.cs" />
+    <Compile Include="Assets\scripts\logic\modules\card\triggerHandle\TriggerEffect1034.cs" />
+    <Compile Include="Assets\scripts\logic\modules\card\triggerHandle\TriggerEffect1035.cs" />
+    <Compile Include="Assets\scripts\logic\modules\card\triggerHandle\TriggerEffect1051.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets/TextMesh Pro/Shaders/TMPro.cginc" />

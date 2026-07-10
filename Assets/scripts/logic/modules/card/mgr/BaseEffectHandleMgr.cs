@@ -36,6 +36,6 @@ public class BaseEffectHandleMgr : Singleton<BaseEffectHandleMgr>
 
     public IBaseEffectHandle getBaseEffectHandle(int id)
     {
-        return _baseEffectHandle.Find(handle => handle.getId() == id);
+        return this._baseEffectHandle.Find(handle => handle.getId() == id);
     }
 }

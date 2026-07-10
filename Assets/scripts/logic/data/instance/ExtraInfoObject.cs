@@ -4,7 +4,6 @@ using System.Collections.Generic;
 public class ExtraInfoObject : IExtraInfo
 {
     //运行时
-    private float _rtHurtValue = 0;
     private float _rtFreezeArmorValue = 0;
     private float _rtAddDefenseValue = 0;
     private float _rtOverflowBloodValue = 0;
@@ -14,19 +13,6 @@ public class ExtraInfoObject : IExtraInfo
     private List<IBaseEffectData> _baseEffect = new List<IBaseEffectData>();
     private Func<int,IBaseEffectData> _baseEffectDataInstance = null;
        
-    public void setRtHurtValue(float value)
-    {
-        this._rtHurtValue += value;
-        this._rtHurtValue = this._rtHurtValue < 0 ? 0 : this._rtHurtValue;
-    }
-    public float getRtHurtVaule()
-    {
-        return this._rtHurtValue;
-    }
-    public void clearRtHurtValue() {
-        this._rtHurtValue = 0;
-    }
-
     public void setRtFreezeArmorValue(float value)
     {
         this._rtFreezeArmorValue = value;

@@ -42,9 +42,7 @@ public class CustomEventHandle : TriggerHandleObject
     }
 
     private float getSingleHurtFunc(ITriggerHandlePara para) {
-        float number = para.getAttackUser().getExtraInfo().getRtHurtVaule();
-        para.getAttackUser().getExtraInfo().clearRtHurtValue();//
-        return number;
+        return 0;
     }
 
     private float getCountAttackFunc(ITriggerHandlePara para) {

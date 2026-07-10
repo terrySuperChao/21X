@@ -96,36 +96,38 @@ public class GameCardMgr : Singleton<GameCardMgr>
     }
 
     //
-    public void handle(ITriggerHandlePara para, TriggerEvent type, float temporaryValue = 0) {
+    public void handle(ITriggerHandlePara para, TriggerEvent type,int triggerId = 0, float temporaryValue = 0) {
         List<IAssembleCard> cards = ImprintDataMgr.Instance.getAssembleCard(para.getAttackUser().isNpc());
         for (int i = 0; i < cards.Count; i++) {
             para.setAssembleCard(cards[i]);
             para.setTemporaryValue(temporaryValue);
 
-            List<ITriggerHandle> handles = TriggerHandleMgr.Instance.getTriggerHandle(para);
-            if (handles == null) {
+            if (triggerId == 0)
+            {
+                triggerId = cards[i].getTriggerId();
+            }
+
+            ITriggerHandle handle = TriggerHandleMgr.Instance.getTriggerHandle(triggerId);
+            if (handle == null) {
                 continue;
             }
 
-            bool success = false;
-            for (int j = 0; j < handles.Count; j++) { 
-                Type objType = handles[j].GetType();
-                string methodName = Enum.GetName(typeof(TriggerEvent), type);
-                MethodInfo method = objType.GetMethod(this.snakeToCamel(methodName) + "Handle");
-                object state = method?.Invoke(handles[j], new object[] { para });
+            Type objType = handle.GetType();
+            string methodName = Enum.GetName(typeof(TriggerEvent), type);
+            MethodInfo method = objType.GetMethod(this.snakeToCamel(methodName) + "Handle");
+            object state = method?.Invoke(handle, new object[] { para });
 
-                //触发了
-                if ((bool)state) {
-                    if (this.checkCycleCall(para, handles[j], type)){
-                        return;
-                    }
-                    else {
-                        success = true;
-                        break;
-                    }
+            //触发了
+            bool success = false;
+            if ((bool)state) {
+                if (this.checkCycleCall(para, handle, type)){
+                    return;
+                }
+                else {
+                    success = true;
                 }
             }
-
+            
             //触发了
             if (!success)
             {

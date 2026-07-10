@@ -31,23 +31,21 @@ public class AttackSettle: IAttackSettle
         //保留
         float retainATK = GameCardMgr.Instance.getBaseEffectValue(attackUser, BaseEffectType.retainATK);
         attackUser.setAttack(attack * retainATK);
-        attackUser.getExtraInfo().setRtHurtValue(attack);
-        
+       
         IUICommonPara attackPara = new UICommonParaObject(attackUser, ValueType.attack, attack, attackUser.getAttack());
         GameMessage.Instance.addMsg(GameConst.COMMONATTACK, attackPara);
 
         float remainAttack = this.getRemainAttack(para, attack);
         GameRunTimeMgr.Instance.runTimeConsumeDefense(para.getDefenseUser());
-        GameBloodMgr.Instance.handle(para.getAttackUser(), para.getDefenseUser(), remainAttack);
+        GameBloodMgr.Instance.handle(para, remainAttack);
 
         //反弹
         float reflectDMG = GameCardMgr.Instance.getBaseEffectValue(defenseUser,BaseEffectType.reflectDMG);
         if (reflectDMG > 0) {
-            GameBloodMgr.Instance.handle(defenseUser, attackUser, reflectDMG);
+            SwitchParaMgr.Instance.handle(para, () => {
+                GameBloodMgr.Instance.handle(para, reflectDMG);
+            }, true);
         }
-
-        //单次造成伤害
-        GameCardMgr.Instance.handle(para, TriggerEvent.CUSTOM_EVENT);
 
         //普通攻击后
         SwitchParaMgr.Instance.handle(para, () => {
@@ -79,16 +77,15 @@ public class AttackSettle: IAttackSettle
         float attack = 50.0f;
         float skillDamageUp = GameCardMgr.Instance.getBaseEffectValue(attackUser, BaseEffectType.skillDamageUp);
         float remainAttack = attack * (1 + skillDamageUp);
-        attackUser.getExtraInfo().setRtHurtValue(remainAttack);
         attackUser.getExtraInfo().setMagicAttack(true);
         
-        GameBloodMgr.Instance.handle(para.getAttackUser(), para.getDefenseUser(), remainAttack);
+        GameBloodMgr.Instance.handle(para, remainAttack);
         
         //魔法攻击后
         GameCardMgr.Instance.handle(para, TriggerEvent.POST_MAIN_SKILL);
 
         //单次造成伤害
-        GameCardMgr.Instance.handle(para, TriggerEvent.CUSTOM_EVENT);
+        GameCardMgr.Instance.handle(para, TriggerEvent.CUSTOM_EVENT, GameCardConst.TriggerEffectId1023, remainAttack);
 
         //释放
         IBaseEffectHandlePara baseEffectHandlePara = new BaseEffectHandleParaObject();

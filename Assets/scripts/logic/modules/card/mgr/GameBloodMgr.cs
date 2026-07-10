@@ -51,9 +51,11 @@ public class GameBloodMgr : Singleton<GameBloodMgr>
     }
 
     //扣血
-    public void handle(IUser attackUser, IUser defenseUser, float attack)
+    public void handle(ITriggerHandlePara para, float attack)
     {
         if (attack <= 0) return;
+        IUser attackUser = para.getAttackUser();
+        IUser defenseUser = para.getDefenseUser();
 
         float blood = defenseUser.getBlood();
         float bloodValue = 0;
@@ -70,24 +72,24 @@ public class GameBloodMgr : Singleton<GameBloodMgr>
         }
         defenseUser.setBlood(blood);
 
-        //伤害
-        attackUser.getExtraInfo().setRtHurtValue(bloodValue);
-
         IUICommonPara attackPara = new UICommonParaObject(defenseUser, ValueType.blood, -bloodValue, defenseUser.getBlood());
         GameMessage.Instance.addMsg(GameConst.ADDCARDVALUE, attackPara);
 
-        //攻击方
-        IBaseEffectHandlePara para = new BaseEffectHandleParaObject();
-        para.setAttackUser(attackUser);
-        para.setDefenseUser(defenseUser);
-        para.setEffectType(AdvancedEffectType.enemyLessBlood);
-        para.setExtralValue(bloodValue);
-        GameCardMgr.Instance.handle(para);
+        //单次造成伤害
+        GameCardMgr.Instance.handle(para, TriggerEvent.CUSTOM_EVENT, GameCardConst.TriggerEffectId1023, bloodValue);
 
-        para.setAttackUser(defenseUser);
-        para.setDefenseUser(attackUser);
-        para.setEffectType(AdvancedEffectType.selfLessBlood);
-        GameCardMgr.Instance.handle(para);
+        //攻击方
+        IBaseEffectHandlePara paras = new BaseEffectHandleParaObject();
+        paras.setAttackUser(attackUser);
+        paras.setDefenseUser(defenseUser);
+        paras.setEffectType(AdvancedEffectType.enemyLessBlood);
+        paras.setExtralValue(bloodValue);
+        GameCardMgr.Instance.handle(paras);
+
+        paras.setAttackUser(defenseUser);
+        paras.setDefenseUser(attackUser);
+        paras.setEffectType(AdvancedEffectType.selfLessBlood);
+        GameCardMgr.Instance.handle(paras);
 
         if (blood <= 0)
         {

@@ -37,6 +37,6 @@ public class AdvancedEffect3033 : BaseEffectHandleObject
 
         IBaseEffectValue baseEffectValue = data.getBaseEffectValue(BaseEffectType.internalValue);
         float addValue = para.getAttackUser().getMaxMagic() * baseEffectValue.getValue();
-        GameMagicMgr.Instance.handle(para.getAttackUser(), para.getDefenseUser(), addValue);       
+        GameMagicMgr.Instance.handle(para.getAttackUser(), addValue);       
     }
 }

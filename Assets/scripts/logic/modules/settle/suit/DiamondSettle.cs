@@ -1,6 +1,7 @@
 public class DiamondSettle: SuitSettle
 {
-    protected override float _getFinalValue(ITriggerHandlePara para, float value) {
+    protected override float _getFinalValue(ITriggerHandlePara para, float value, out float outValue) {
+        outValue = value;
         return GameDefenseMgr.Instance.handle(para.getAttackUser(), para.getDefenseUser(), value, false);
     }
 
