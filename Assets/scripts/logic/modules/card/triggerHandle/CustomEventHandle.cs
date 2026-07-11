@@ -6,7 +6,7 @@ public class CustomEventHandle : TriggerHandleObject
     private Dictionary<string, Func<ITriggerHandlePara, float>> _dic = new Dictionary<string, Func<ITriggerHandlePara, float>>();
     protected override bool _turnStartHandle(ITriggerHandlePara para)
     {
-        GameCardMgr.Instance.clearBaseEffectValue(para.getAttackUser(), BaseEffectType.rtMagicTotal);
+        GameEffectMgr.Instance.clearBaseEffectValue(para.getAttackUser(), BaseEffectType.rtMagicTotal);
         return base._turnStartHandle(para);
     }
 
@@ -15,7 +15,6 @@ public class CustomEventHandle : TriggerHandleObject
         if (this._dic.Count == 0)
         {
             this._dic.Add("单次造成伤害", this.getSingleHurtFunc);
-            this._dic.Add("每累计获得攻击力", this.getCountAttackFunc);
         }
 
         string keystr = "";
@@ -45,9 +44,6 @@ public class CustomEventHandle : TriggerHandleObject
         return 0;
     }
 
-    private float getCountAttackFunc(ITriggerHandlePara para) {
-        return GameRunTimeMgr.Instance.getRunTimeCountAttack(para);
-    }
 
     protected override bool _turnEndHandle(ITriggerHandlePara para) {
         string logic = para.getAssembleCard().getTrigger().getLogic();
@@ -55,7 +51,7 @@ public class CustomEventHandle : TriggerHandleObject
         if (logic.IndexOf(str) != 0){
             return false;
         }
-        float number = GameCardMgr.Instance.getBaseEffectValue(para.getAttackUser(), BaseEffectType.rtMagicTotal);
+        float number = GameEffectMgr.Instance.getBaseEffectValue(para.getAttackUser(), BaseEffectType.rtMagicTotal);
         string compareStr = logic.Replace(str, "");
         return this.compareLogic(compareStr, number);
     }

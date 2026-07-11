@@ -32,7 +32,6 @@ public class FightPokerMgr : Singleton<FightPokerMgr>
         IExtraInfo extra = new ExtraInfoObject();
         user.setExtraInfo(extra);
 
-        extra.setRtFreezeArmorValue(info.Extra.RtFreezeArmorValue);
         extra.setRtAddDefenseValue(info.Extra.RtAddDefenseValue);
         extra.setBaseEffectDataInstance((int id) =>{
             IBaseEffectData baseEffectData = new BaseEffectDataObject(id);
@@ -69,7 +68,6 @@ public class FightPokerMgr : Singleton<FightPokerMgr>
         info.Defense = user.getDefense();
         info.State = (int)user.getState();
 
-        info.Extra.RtFreezeArmorValue = user.getExtraInfo().getRtFreezeArmorValue();
         info.Extra.RtAddDefenseValue = user.getExtraInfo().getRtAddDefenseValue();
         info.Extra.BaseEffectDatas.Clear();
 

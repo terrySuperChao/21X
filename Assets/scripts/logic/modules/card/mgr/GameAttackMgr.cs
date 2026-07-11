@@ -3,7 +3,6 @@ public class GameAttackMgr : Singleton<GameAttackMgr>
     public float handle(IUser attackUser, float addValue,out float outValue)
     {
         outValue = addValue;
-
         return attackUser.addAttack(outValue);
     }
 
@@ -13,7 +12,7 @@ public class GameAttackMgr : Singleton<GameAttackMgr>
 
         IUICommonPara attackPara = new UICommonParaObject(attackUser, ValueType.attack, addValue, finalValue);
         GameMessage.Instance.addMsg(GameConst.ADDCARDVALUE, attackPara);
-
+        
         GameRunTimeMgr.Instance.runTimeCountAttack(para, addValue);
     }
 }

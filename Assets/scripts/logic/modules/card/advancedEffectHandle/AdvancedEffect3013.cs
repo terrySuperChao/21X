@@ -3,6 +3,7 @@ public class AdvancedEffect3013 : BaseEffectHandleObject
 {
     private readonly int _initValue = 8;
     private readonly int _id = GameCardConst.advancedEffectId3013;
+    private ITriggerHandlePara _paras = new TriggerHandleParaObject();
     protected override int _getId()
     {
         return this._id;
@@ -20,6 +21,7 @@ public class AdvancedEffect3013 : BaseEffectHandleObject
         else {
             baseEffectValue.addValue(this._initValue);
         }
+        GameDefenseMgr.Instance.refreshTemporaryArmor(para, this._initValue);
     }
 
     protected override void _effect(IBaseEffectHandlePara para)
@@ -35,7 +37,9 @@ public class AdvancedEffect3013 : BaseEffectHandleObject
             return;
         }
 
-        //IBaseEffectValue baseEffectValue = data.getBaseEffectValue(BaseEffectType.temporaryArmor);
-        //GameDefenseMgr.Instance.handle(para.getAttackUser(),para.getDefenseUser(),baseEffectValue.getValue());
+        this._paras.setAttackUser(para.getAttackUser());
+        this._paras.setDefenseUser(para.getDefenseUser());
+        IBaseEffectValue baseEffectValue = data.getBaseEffectValue(BaseEffectType.temporaryArmor);
+        GameDefenseMgr.Instance.handle(this._paras,baseEffectValue.getValue());
     }
 }

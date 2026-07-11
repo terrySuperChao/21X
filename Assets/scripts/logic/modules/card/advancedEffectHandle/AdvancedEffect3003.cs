@@ -1,5 +1,4 @@
 //下次普通攻击无视对手护甲；不可叠加，普通攻击后清空。
-
 public class AdvancedEffect3003 : BaseEffectHandleObject
 {
     private readonly int _id = GameCardConst.advancedEffectId3003;
@@ -10,6 +9,8 @@ public class AdvancedEffect3003 : BaseEffectHandleObject
     protected override void _handle(ITriggerHandlePara para)
     {
         IBaseEffectData data = para.getAttackUser().getExtraInfo().getBaseEffectData(this._id);
+        IBaseEffectValue baseEffectValue = data.getBaseEffectValue(BaseEffectType.ignoreArmor);
         data.setState(1);
+        baseEffectValue.setValue(1);
     }
 }

@@ -27,7 +27,7 @@ public class GameMagicMgr : Singleton<GameMagicMgr>
     }
 
     public float handle(IUser attackUser, float addValue,out float outValue) {
-        float magicDouble = GameCardMgr.Instance.getBaseEffectValue(attackUser, BaseEffectType.magicDouble);
+        float magicDouble = GameEffectMgr.Instance.getBaseEffectValue(attackUser, BaseEffectType.magicDouble);
         if (magicDouble > 0)
         {
             outValue = addValue * magicDouble;

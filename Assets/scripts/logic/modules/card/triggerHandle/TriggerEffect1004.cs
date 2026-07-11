@@ -25,7 +25,7 @@ public class TriggerEffect1004 : TriggerHandleObject
         {
             return false;
         }
-
+        
         return para.getDefenseUser().getBlood() / para.getDefenseUser().getMaxBlood() * 100.0f < this._max;
     }
 }

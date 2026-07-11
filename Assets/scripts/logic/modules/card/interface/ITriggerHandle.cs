@@ -1,7 +1,6 @@
 public interface ITriggerHandle
 {
     public int getId();
-    public TriggerEvent getTrigger();
     //战斗开始
     public bool battleStartHandle(ITriggerHandlePara para);
     //回合开始

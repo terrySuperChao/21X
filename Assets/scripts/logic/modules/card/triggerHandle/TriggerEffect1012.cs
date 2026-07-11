@@ -9,16 +9,17 @@ public class TriggerEffect1012 : TriggerHandleObject
 
     protected override bool _postBasicAttackHandle(ITriggerHandlePara para)
     {
-        if (GameRunTimeMgr.Instance.getRunTimeConsumeDefense(para.getDefenseUser()))
+        //触发印记是攻击者的方式触发的
+        if (GameRunTimeMgr.Instance.getRunTimeConsumeDefense(para.getAttackUser()))
         {
             //0:npc 1:player
             if (para.getGameSettlePara().getWinIndex() == 0)
             {
-                return !para.getDefenseUser().isNpc();
+                return !para.getAttackUser().isNpc();
             }
             else
             {
-                return para.getDefenseUser().isNpc();
+                return para.getAttackUser().isNpc();
             }
         }
         else

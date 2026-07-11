@@ -10,7 +10,13 @@ public class TriggerEffect1005 : TriggerHandleObject
 
     protected override bool _customEventHandle(ITriggerHandlePara para)
     {
-        float number = GameRunTimeMgr.Instance.getRunTimeCountAttack(para);
-        return number >= this._max;
+        if (para.getTemporaryValue() >= this._max)
+        {
+            GameRunTimeMgr.Instance.lessRunTimeCountAttack(para, -this._max);
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 }

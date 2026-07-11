@@ -102,16 +102,12 @@ public class GameCardMgr : Singleton<GameCardMgr>
             para.setAssembleCard(cards[i]);
             para.setTemporaryValue(temporaryValue);
 
-            if (triggerId == 0)
-            {
-                triggerId = cards[i].getTriggerId();
-            }
-
-            ITriggerHandle handle = TriggerHandleMgr.Instance.getTriggerHandle(triggerId);
+            int tempTriggerId = triggerId == 0 ? cards[i].getTriggerId() : triggerId;
+            ITriggerHandle handle = TriggerHandleMgr.Instance.getTriggerHandle(tempTriggerId);
             if (handle == null) {
                 continue;
             }
-
+            
             Type objType = handle.GetType();
             string methodName = Enum.GetName(typeof(TriggerEvent), type);
             MethodInfo method = objType.GetMethod(this.snakeToCamel(methodName) + "Handle");
@@ -196,41 +192,5 @@ public class GameCardMgr : Singleton<GameCardMgr>
             }
         }
         return str;
-    }
-
-    public float getBaseEffectValue(IUser user,BaseEffectType type) {
-        float value = 0;
-        List<IAssembleCard> cards = ImprintDataMgr.Instance.getAssembleCard(user.isNpc());
-        for (int i = 0; i < cards.Count; i++) {
-            IBaseEffectData data = user.getExtraInfo().getBaseEffectData(cards[i].getBaseEffectId());
-            if (!data.isState()) continue;
-
-            IBaseEffectValue baseEffectValue = data.getBaseEffectValues().Find(value=> value.getType() == type);
-            if (baseEffectValue != null) {
-                value += baseEffectValue.getValue();
-            }
-        }
-        return value;
-    }
-
-    public float clearBaseEffectValue(IUser user, BaseEffectType type)
-    {
-        //移除
-        FightPokerMgr.Instance.getBuffEffect().removeBuffType(user, type);
-
-        float value = 0;
-        List<IAssembleCard> cards = ImprintDataMgr.Instance.getAssembleCard(user.isNpc());
-        for (int i = 0; i < cards.Count; i++)
-        {
-            IBaseEffectData data = user.getExtraInfo().getBaseEffectData(cards[i].getBaseEffectId());
-            if (!data.isState()) continue;
-
-            IBaseEffectValue baseEffectValue = data.getBaseEffectValues().Find(value => value.getType() == type);
-            if (baseEffectValue != null) {
-                data.setState(0);
-                baseEffectValue.clearValue();
-            }
-        }
-        return value;
     }
 }

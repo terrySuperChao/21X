@@ -10,7 +10,7 @@ public class GameDefenseMgr : Singleton<GameDefenseMgr>
         IUICommonPara defensePara = new UICommonParaObject(para.getAttackUser(), ValueType.defense, addValue, finalValue);
         GameMessage.Instance.addMsg(GameConst.ADDCARDVALUE, defensePara);
 
-        this.execAdvancedEffectHandle(para,addValue);
+        this.execAdvancedEffectHandle(para, addValue);
     }
 
     //进阶效果
@@ -22,5 +22,11 @@ public class GameDefenseMgr : Singleton<GameDefenseMgr>
         paras.setEffectType(AdvancedEffectType.addDefense);
         paras.setExtralValue(addValue);
         GameCardMgr.Instance.handle(paras);
+    }
+
+    //临时护甲
+    public void refreshTemporaryArmor(ITriggerHandlePara para,float addValue) {
+        IUICommonPara defensePara = new UICommonParaObject(para.getAttackUser(), ValueType.defense, addValue, para.getAttackUser().getDefense());
+        GameMessage.Instance.addMsg(GameConst.ADDCARDVALUE, defensePara);
     }
 }

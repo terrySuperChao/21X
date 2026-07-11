@@ -4,6 +4,7 @@ public class AdvancedEffect3032 : BaseEffectHandleObject
     private readonly float _initValue = 2;
     private readonly float _initHurt = 0.5f;
     private readonly int _id = GameCardConst.advancedEffectId3032;
+    private ITriggerHandlePara _paras = new TriggerHandleParaObject();
     protected override int _getId()
     {
         return this._id;
@@ -39,15 +40,12 @@ public class AdvancedEffect3032 : BaseEffectHandleObject
         IBaseEffectValue baseEffectValue1 = data.getBaseEffectValue(BaseEffectType.magicDouble);
         IBaseEffectValue baseEffectValue2 = data.getBaseEffectValue(BaseEffectType.magicHurt);
 
-        //创建
-        ITriggerHandlePara handlePara = new TriggerHandleParaObject();
-        handlePara.setAttackUser(para.getAttackUser());
-        handlePara.setDefenseUser(para.getDefenseUser());
-
         float addValue = para.getExtralValue();
-        float magicHurt = GameCardMgr.Instance.getBaseEffectValue(para.getAttackUser(),BaseEffectType.magicHurt);
+        float magicHurt = GameEffectMgr.Instance.getBaseEffectValue(para.getAttackUser(),BaseEffectType.magicHurt);
+        this._paras.setAttackUser(para.getAttackUser());
+        this._paras.setDefenseUser(para.getDefenseUser());
 
-        GameBloodMgr.Instance.handle(handlePara, addValue * magicHurt);
+        GameBloodMgr.Instance.handle(_paras, addValue * magicHurt);
         data.setState(0);
         baseEffectValue1.setValue(0);
         baseEffectValue2.setValue(0);

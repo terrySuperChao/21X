@@ -2,10 +2,10 @@ public class GameRunTimeMgr : Singleton<GameRunTimeMgr>
 {
     //1005
     private readonly int _id1005 = GameCardConst.TriggerEffectId1005;
-    private readonly int _maxValue1005 = 20;//每累计获得攻击力20点
-
     //1012
     private readonly int _id1012 = GameCardConst.TriggerEffectId1012;
+    //1022
+    private readonly int _id1022 = GameCardConst.TriggerEffectId1022;
 
     //运行时:获得攻击力
     public void runTimeCountAttack(ITriggerHandlePara para, float addValue) {
@@ -20,24 +20,14 @@ public class GameRunTimeMgr : Singleton<GameRunTimeMgr>
         {
             baseEffectValue.addValue(addValue);
         }
-
-        //每累计获得攻击力20点
-        if (baseEffectValue.getValue() >= this._maxValue1005)
-        {
-            GameCardMgr.Instance.handle(para, TriggerEvent.CUSTOM_EVENT,this._id1005);
-        }
+        GameCardMgr.Instance.handle(para, TriggerEvent.CUSTOM_EVENT,this._id1005, baseEffectValue.getValue());        
     }
 
     //符合条件
-    public float getRunTimeCountAttack(ITriggerHandlePara para) {
+    public void lessRunTimeCountAttack(ITriggerHandlePara para, float addValue) {
         IBaseEffectData data = para.getAttackUser().getExtraInfo().getBaseEffectData(this._id1005);
         IBaseEffectValue baseEffectValue = data.getBaseEffectValue(BaseEffectType.rtCountAttack);
-
-        float value = baseEffectValue.getValue();
-        if (baseEffectValue.getValue() >= this._maxValue1005) {
-            baseEffectValue.addValue(-this._maxValue1005);
-        }
-        return value;
+        baseEffectValue.addValue(addValue);
     }
 
     //符合条件
@@ -70,5 +60,30 @@ public class GameRunTimeMgr : Singleton<GameRunTimeMgr>
     public void clearRunTimeConsumeDefense(IUser defenseUser) {
         IBaseEffectData data = defenseUser.getExtraInfo().getBaseEffectData(this._id1012);
         data.setState(0);
+    }
+
+    //受到伤害
+    public void runTimeRoundGetHurt(IUser defenseUser)
+    {
+        IBaseEffectData data = defenseUser.getExtraInfo().getBaseEffectData(this._id1022);
+        if (!data.isState())
+        {
+            data.setState(1);
+        }
+    }
+
+    public bool getRunTimeRoundGetHurt(IUser defenseUser)
+    {
+        IBaseEffectData data = defenseUser.getExtraInfo().getBaseEffectData(this._id1022);
+        return data.isState();
+    }
+
+    public void clearRunTimeRoundGetHurt(IUser defenseUser)
+    {
+        IBaseEffectData data = defenseUser.getExtraInfo().getBaseEffectData(this._id1022);
+        if (!data.isState())
+        {
+            data.setState(1);
+        }
     }
 }

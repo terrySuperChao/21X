@@ -40,7 +40,7 @@ public class BaseEffect2022 : BaseEffectHandleObject
         }
 
         //使用真实血量
-        float lifeSteal = GameCardMgr.Instance.getBaseEffectValue(para.getAttackUser(), BaseEffectType.lifeSteal);
+        float lifeSteal = GameEffectMgr.Instance.getBaseEffectValue(para.getAttackUser(), BaseEffectType.lifeSteal);
         float addValue = lifeSteal * para.getExtralValue();
         GameBloodMgr.Instance.handle(para.getAttackUser(), addValue);
     }

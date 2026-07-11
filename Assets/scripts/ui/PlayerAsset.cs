@@ -451,16 +451,21 @@ public class PlayerAsset : MonoBehaviour
         switch (type)
         {
             case ValueType.defense: // 方
-            value = this._user.getDefense().ToString();
+                value = this._user.getDefense().ToString();
+                //添加临时护甲
+                float temporaryArmor = GameEffectMgr.Instance.getBaseEffectValue(this._user, BaseEffectType.temporaryArmor);
+                if (temporaryArmor > 0) {
+                    value += "<color=green>(+" + temporaryArmor + ")</color>";
+                }
                 break;
             case ValueType.blood: // 红
-            value = this._user.getBlood() + "/" + this._user.getMaxBlood();
+                value = this._user.getBlood() + "/" + this._user.getMaxBlood();
                 break;
             case ValueType.attack: // 黑
-            value = this._user.getAttack().ToString();
+                value = this._user.getAttack().ToString();
                 break;
             case ValueType.magic: // 梅
-            value = this._user.getMagic() + "/" + this._user.getMaxMagic();
+                value = this._user.getMagic() + "/" + this._user.getMaxMagic();
                 break;
             default:
                 break;

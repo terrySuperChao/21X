@@ -3,10 +3,6 @@ public abstract class TriggerHandleObject : ITriggerHandle
     public int getId() {
         return this._getId();
     }
-    public TriggerEvent getTrigger() {
-        return this._getTrigger();
-    }
-
     //战斗开始
     public bool battleStartHandle(ITriggerHandlePara para) {
         return this._battleEndHandle(para);
@@ -72,8 +68,6 @@ public abstract class TriggerHandleObject : ITriggerHandle
     }
 
     protected virtual int _getId() { return 0; }
-
-    protected virtual TriggerEvent _getTrigger() { return 0; }
     //战斗开始
     protected virtual bool _battleStartHandle(ITriggerHandlePara para) { return false; }
     //回合开始

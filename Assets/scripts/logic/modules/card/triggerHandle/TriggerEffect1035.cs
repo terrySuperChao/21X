@@ -14,6 +14,6 @@ public class TriggerEffect1035 : TriggerHandleObject
     {
         //通过手牌确定要了几次牌
         List<IPoker> pokers = FightPokerMgr.Instance.getUserHandPoker(para.getAttackUser());
-        return pokers.Count - 2 > this._max;
+        return pokers.Count - 2 >= this._max;
     }
 }

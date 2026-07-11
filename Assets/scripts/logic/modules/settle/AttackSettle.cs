@@ -21,26 +21,26 @@ public class AttackSettle: IAttackSettle
         //暴击伤害加+50%
         float addCrit = 0;
         float number = RandomMgr.Instance.getRangeInt(1, 101) / 100.0f;//[1,100]
-        if (number <= GameCardMgr.Instance.getBaseEffectValue(attackUser,BaseEffectType.addCrit)) {
+        if (number <= GameEffectMgr.Instance.getBaseEffectValue(attackUser,BaseEffectType.addCrit)) {
             addCrit = 0.5f;
         }
 
-        float multATK = GameCardMgr.Instance.getBaseEffectValue(attackUser, BaseEffectType.multATK);
+        float multATK = GameEffectMgr.Instance.getBaseEffectValue(attackUser, BaseEffectType.multATK);
         float attack = attackUser.getAttack() * (1 + multATK + addCrit);
 
         //保留
-        float retainATK = GameCardMgr.Instance.getBaseEffectValue(attackUser, BaseEffectType.retainATK);
+        float retainATK = GameEffectMgr.Instance.getBaseEffectValue(attackUser, BaseEffectType.retainATK);
         attackUser.setAttack(attack * retainATK);
        
         IUICommonPara attackPara = new UICommonParaObject(attackUser, ValueType.attack, attack, attackUser.getAttack());
         GameMessage.Instance.addMsg(GameConst.COMMONATTACK, attackPara);
 
         float remainAttack = this.getRemainAttack(para, attack);
-        GameRunTimeMgr.Instance.runTimeConsumeDefense(para.getDefenseUser());
         GameBloodMgr.Instance.handle(para, remainAttack);
+        GameRunTimeMgr.Instance.runTimeConsumeDefense(para.getDefenseUser());
 
         //反弹
-        float reflectDMG = GameCardMgr.Instance.getBaseEffectValue(defenseUser,BaseEffectType.reflectDMG);
+        float reflectDMG = GameEffectMgr.Instance.getBaseEffectValue(defenseUser,BaseEffectType.reflectDMG);
         if (reflectDMG > 0) {
             SwitchParaMgr.Instance.handle(para, () => {
                 GameBloodMgr.Instance.handle(para, reflectDMG);
@@ -50,11 +50,11 @@ public class AttackSettle: IAttackSettle
         //普通攻击后
         SwitchParaMgr.Instance.handle(para, () => {
             GameCardMgr.Instance.handle(para, TriggerEvent.POST_BASIC_ATTACK);
-        }, true);
+        }, false);
 
         //清空
-        GameCardMgr.Instance.clearBaseEffectValue(attackUser, BaseEffectType.multATK);
-        GameCardMgr.Instance.clearBaseEffectValue(attackUser, BaseEffectType.retainATK);
+        GameEffectMgr.Instance.clearBaseEffectValue(attackUser, BaseEffectType.multATK);
+        GameEffectMgr.Instance.clearBaseEffectValue(attackUser, BaseEffectType.retainATK);
     }
 
     //魔法攻击
@@ -75,7 +75,7 @@ public class AttackSettle: IAttackSettle
 
         //减去50血量
         float attack = 50.0f;
-        float skillDamageUp = GameCardMgr.Instance.getBaseEffectValue(attackUser, BaseEffectType.skillDamageUp);
+        float skillDamageUp = GameEffectMgr.Instance.getBaseEffectValue(attackUser, BaseEffectType.skillDamageUp);
         float remainAttack = attack * (1 + skillDamageUp);
         attackUser.getExtraInfo().setMagicAttack(true);
         
@@ -100,23 +100,21 @@ public class AttackSettle: IAttackSettle
     private float getRemainAttack(ITriggerHandlePara para,float attack) {
         IUser attackUser = para.getAttackUser();
         IUser defenseUser = para.getDefenseUser();
-        
+
         //忽略护甲
-        IBaseEffectData advancedEffectData = attackUser.getExtraInfo().getBaseEffectData(GameCardConst.advancedEffectId3003);
-        if (advancedEffectData.isState()) {
-            advancedEffectData.setState(0);
+        float ignoreArmor = GameEffectMgr.Instance.getBaseEffectValue(attackUser, BaseEffectType.ignoreArmor);
+        if (ignoreArmor > 0) {
+            GameEffectMgr.Instance.clearBaseEffectValue(attackUser, BaseEffectType.ignoreArmor);
             return attack;
         }
 
-        float rtFreezeArmorValue = defenseUser.getExtraInfo().getRtFreezeArmorValue();
-        if (rtFreezeArmorValue > 0) {
-            SwitchParaMgr.Instance.handle(para, () =>{
-                GameDefenseMgr.Instance.handle(para, rtFreezeArmorValue);
-            }, true);
-            defenseUser.getExtraInfo().clearRtFreezeArmorValue();   
+        //扣除临时护甲
+        attack = GameEffectMgr.Instance.subtractBaseEffectValue(defenseUser, BaseEffectType.temporaryArmor, attack);
+        if (attack <= 0) {
+            return attack;
         }
-
-        //
+        
+        //护甲
         float defense = defenseUser.getDefense();
         if (defense <= 0)
         {
@@ -141,5 +139,4 @@ public class AttackSettle: IAttackSettle
          
         return attack;
     }
-    
 }

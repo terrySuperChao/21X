@@ -10,6 +10,11 @@ public class TriggerEffect1022 : TriggerHandleObject
 
     protected override bool _turnEndHandle(ITriggerHandlePara para)
     {
-        return para.getAttackUser().getBlood() / para.getAttackUser().getMaxBlood() * 100.0f < this._max;
+        if (para.getAttackUser().getBlood() / para.getAttackUser().getMaxBlood() * 100.0f < this._max) {
+            return GameRunTimeMgr.Instance.getRunTimeRoundGetHurt(para.getAttackUser());
+        }
+        else {
+            return false;
+        }
     }
 }

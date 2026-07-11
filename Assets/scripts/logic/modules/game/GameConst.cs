@@ -71,19 +71,6 @@ public enum GameMode {
     Card
 }
 
-public enum CardType { 
-    cardType1=1,//���Ҵ�ʦ
-    cardType2,//������ʹ
-    cardType3,//÷����ʦ
-    cardType4,//���黤��
-    cardType5,// �����ع�
-    cardType6,//��սʿ֮ŭ
-    cardType7,//ħ������
-    cardType8,//����֮��
-    cardType9,//��Ѫ��
-    cardType10,//��������
-}
-
 public enum PokerSuit {
     /**
     * 方块
@@ -230,6 +217,7 @@ public enum BaseEffectType
     skillDamageUp,//技能效果提升
     mpRegen,
     addCrit,
+    ignoreArmor,//忽略护甲
     temporaryArmor,//临时护甲
     healOverTime,
     addMPPer,

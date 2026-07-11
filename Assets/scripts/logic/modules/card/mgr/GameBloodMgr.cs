@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using Google.Protobuf.WellKnownTypes;
 
 public class GameBloodMgr : Singleton<GameBloodMgr>
 {
@@ -74,6 +73,9 @@ public class GameBloodMgr : Singleton<GameBloodMgr>
 
         IUICommonPara attackPara = new UICommonParaObject(defenseUser, ValueType.blood, -bloodValue, defenseUser.getBlood());
         GameMessage.Instance.addMsg(GameConst.ADDCARDVALUE, attackPara);
+
+        //
+        GameRunTimeMgr.Instance.runTimeRoundGetHurt(defenseUser);
 
         //单次造成伤害
         GameCardMgr.Instance.handle(para, TriggerEvent.CUSTOM_EVENT, GameCardConst.TriggerEffectId1023, bloodValue);
