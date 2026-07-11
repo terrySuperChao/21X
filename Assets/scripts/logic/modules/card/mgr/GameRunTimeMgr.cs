@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 public class GameRunTimeMgr : Singleton<GameRunTimeMgr>
 {
     //1005
@@ -9,6 +11,10 @@ public class GameRunTimeMgr : Singleton<GameRunTimeMgr>
 
     //运行时:获得攻击力
     public void runTimeCountAttack(ITriggerHandlePara para, float addValue) {
+        List<IAssembleCard> cards = ImprintDataMgr.Instance.getAssembleCard(para.getAttackUser().isNpc());
+        int index = cards.FindIndex(card => card.getTriggerId() == this._id1005);
+        if (index == -1) return;
+
         IBaseEffectData data = para.getAttackUser().getExtraInfo().getBaseEffectData(this._id1005);
         IBaseEffectValue baseEffectValue = data.getBaseEffectValue(BaseEffectType.rtCountAttack);
         if (!data.isState())

@@ -58,7 +58,7 @@ public class CardFlow : GameFlowObject
     }
 
     override
-    protected bool _gameSettle(IGameSettlePara para) {
+    protected bool _gameSettle(IGameSettlePara para) {        
         ITriggerHandlePara handlePara = this._handlePara;
 
         //关键数据

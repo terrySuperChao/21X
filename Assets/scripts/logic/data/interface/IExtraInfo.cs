@@ -17,5 +17,6 @@ public interface IExtraInfo
     public IBaseEffectData getBaseEffectData(int id);
     public List<IBaseEffectData> getBaseEffectDatas();
     public void addBaseEffectData(Pb.BaseEffectData value);
+    public void clearBaseEffectData();
     public void setBaseEffectDataInstance(Func<int,IBaseEffectData> func);
 }

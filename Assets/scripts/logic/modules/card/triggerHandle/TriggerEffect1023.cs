@@ -10,7 +10,6 @@ public class TriggerEffect1023 : TriggerHandleObject
 
     protected override bool _customEventHandle(ITriggerHandlePara para)
     {
-        string compareStr = para.getAssembleCard().getTrigger().getLogic();
         float number = para.getTemporaryValue();
         return number >= this._max;
     }

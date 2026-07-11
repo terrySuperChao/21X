@@ -71,7 +71,6 @@
     <Compile Include="Assets/scripts/logic/modules/pokerPile/BasePokerPile.cs" />
     <Compile Include="Assets/scripts/logic/modules/card/instance/UIPokerPara.cs" />
     <Compile Include="Assets/scripts/logic/modules/game/RandomMgr.cs" />
-    <Compile Include="Assets/scripts/logic/modules/card/triggerHandle/PostBattleResultHandle.cs" />
     <Compile Include="Assets/scripts/logic/modules/card/baseEffectHandle/BaseEffect2033.cs" />
     <Compile Include="Assets/scripts/logic/modules/card/instance/CardHandleParaObject.cs" />
     <Compile Include="Assets/scripts/Main.cs" />
@@ -108,7 +107,6 @@
     <Compile Include="Assets/scripts/logic/modules/card/interface/IUIBuffPara.cs" />
     <Compile Include="Assets/scripts/logic/modules/card/instance/BaseEffectHandleObject.cs" />
     <Compile Include="Assets/scripts/logic/modules/card/instance/HandPokerSuitObject.cs" />
-    <Compile Include="Assets/scripts/logic/modules/card/triggerHandle/PreActionHandle.cs" />
     <Compile Include="Assets/scripts/logic/modules/card/mgr/GameRunTimeMgr.cs" />
     <Compile Include="Assets/scripts/logic/modules/pokerPile/PokerPointMgr.cs" />
     <Compile Include="Assets/scripts/logic/modules/game/BarrierDataMgr.cs" />
@@ -135,7 +133,6 @@
     <Compile Include="Assets/scripts/logic/modules/npc/NpcMgr.cs" />
     <Compile Include="Assets/scripts/logic/modules/card/instance/BaseEffectValueObject.cs" />
     <Compile Include="Assets/scripts/logic/modules/card/interface/IBaseEffectData.cs" />
-    <Compile Include="Assets/scripts/logic/modules/card/triggerHandle/PostBasicAttackHandle.cs" />
     <Compile Include="Assets/scripts/logic/modules/user/UserMgr.cs" />
     <Compile Include="Assets/scripts/logic/modules/card/triggerHandle/TriggerEffect1011.cs" />
     <Compile Include="Assets/scripts/logic/modules/card/interface/ICardHandlePara.cs" />
@@ -169,7 +166,6 @@
     <Compile Include="Assets/scripts/logic/modules/card/triggerHandle/TriggerEffect1002.cs" />
     <Compile Include="Assets/scripts/logic/modules/card/instance/BaseEffectDataObject.cs" />
     <Compile Include="Assets/scripts/logic/modules/card/advancedEffectHandle/AdvancedEffect3023.cs" />
-    <Compile Include="Assets/scripts/logic/modules/card/triggerHandle/CustomEventHandle.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/TMP_DigitValidator.cs" />
     <Compile Include="Assets/scripts/logic/modules/config/ConfigMgr.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/TMP_FrameRateCounter.cs" />
@@ -207,7 +203,6 @@
     <Compile Include="Assets/scripts/logic/data/static/CardPartConfig.cs" />
     <Compile Include="Assets/scripts/logic/modules/card/triggerHandle/TriggerEffect1005.cs" />
     <Compile Include="Assets/scripts/logic/modules/card/mgr/AdvancedEffectHandleMgr.cs" />
-    <Compile Include="Assets/scripts/logic/modules/card/triggerHandle/PostMainSkillHandle.cs" />
     <Compile Include="Assets/scripts/logic/data/instance/PokerObject.cs" />
     <Compile Include="Assets/scripts/logic/modules/card/advancedEffectHandle/AdvancedEffect3012.cs" />
     <Compile Include="Assets/scripts/logic/modules/card/advancedEffectHandle/AdvancedEffect3904.cs" />
@@ -220,7 +215,6 @@
     <Compile Include="Assets/scripts/logic/modules/card/baseEffectHandle/BaseEffect2025.cs" />
     <Compile Include="Assets/scripts/logic/data/interface/IPoker.cs" />
     <Compile Include="Assets/conframework/base/ISerialization.cs" />
-    <Compile Include="Assets/scripts/logic/modules/card/triggerHandle/PostSuitAttributeConversionHandle.cs" />
     <Compile Include="Assets/scripts/logic/modules/card/mgr/SwitchParaMgr.cs" />
     <Compile Include="Assets/scripts/logic/modules/card/triggerHandle/TriggerEffect1032.cs" />
     <Compile Include="Assets/scripts/logic/modules/card/baseEffectHandle/BaseEffect2014.cs" />
@@ -235,7 +229,6 @@
     <Compile Include="Assets/scripts/logic/modules/card/interface/IBaseEffectValue.cs" />
     <Compile Include="Assets/scripts/logic/modules/card/interface/ITriggerHandlePara.cs" />
     <Compile Include="Assets/scripts/ui/BuffPart.cs" />
-    <Compile Include="Assets/scripts/logic/modules/card/triggerHandle/PostCardDrawHandle.cs" />
     <Compile Include="Assets/scripts/logic/modules/card/mgr/GameDefenseMgr.cs" />
     <Compile Include="Assets/scripts/logic/modules/card/triggerHandle/TriggerEffect1031.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/SkewTextExample.cs" />
@@ -261,11 +254,9 @@
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/CameraController.cs" />
     <Compile Include="Assets/scripts/logic/modules/card/baseEffectHandle/BaseEffect2015.cs" />
     <Compile Include="Assets/scripts/logic/modules/settle/suit/SuitSettle.cs" />
-    <Compile Include="Assets/scripts/logic/modules/card/triggerHandle/TurnEndHandle.cs" />
     <Compile Include="Assets/scripts/logic/data/static/ChapterConfig.cs" />
     <Compile Include="Assets/scripts/logic/modules/game/GameStaticConfigMgr.cs" />
     <Compile Include="Assets/conframework/ui/AutoText.cs" />
-    <Compile Include="Assets/scripts/logic/modules/card/triggerHandle/PostStandOrFinalScore.cs" />
     <Compile Include="Assets/scripts/ui/CloneDragController.cs" />
     <Compile Include="Assets/scripts/ui/ImprintView.cs" />
     <Compile Include="Assets/scripts/logic/modules/game/PlayerDataMgr.cs" />

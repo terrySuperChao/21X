@@ -269,6 +269,9 @@ public class FightPokerMgr : Singleton<FightPokerMgr>
 
         bool isOver = this._gameFlow.gameSettle(new GameSettlePara(this._players, index, isBlackJack));
         if (isOver){
+            for (int i = 0; i < this._players.Count; i++) {
+                this._players[i].getExtraInfo().clearBaseEffectData();
+            }
             GameMessage.Instance.addMsg(GameConst.FIGHTFLOWSTATE, FightFlowState.fightOver);
             GameMessage.Instance.addMsg(GameConst.GAMEOVER);
         }

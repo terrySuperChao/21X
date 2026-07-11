@@ -69,16 +69,16 @@ public class AttackSettle: IAttackSettle
             return;
         }
         attackUser.setMagic(0);
-        
-        IUICommonPara attackPara = new UICommonParaObject(attackUser, ValueType.magic, attackUser.getMaxMagic(), attackUser.getMagic());
-        GameMessage.Instance.addMsg(GameConst.COMMONATTACK, attackPara);
 
         //减去50血量
         float attack = 50.0f;
         float skillDamageUp = GameEffectMgr.Instance.getBaseEffectValue(attackUser, BaseEffectType.skillDamageUp);
         float remainAttack = attack * (1 + skillDamageUp);
         attackUser.getExtraInfo().setMagicAttack(true);
-        
+
+        IUICommonPara attackPara = new UICommonParaObject(attackUser, ValueType.magic, remainAttack, attackUser.getMagic());
+        GameMessage.Instance.addMsg(GameConst.COMMONATTACK, attackPara);
+
         GameBloodMgr.Instance.handle(para, remainAttack);
         
         //魔法攻击后

@@ -99,11 +99,13 @@ public class GameCardMgr : Singleton<GameCardMgr>
     public void handle(ITriggerHandlePara para, TriggerEvent type,int triggerId = 0, float temporaryValue = 0) {
         List<IAssembleCard> cards = ImprintDataMgr.Instance.getAssembleCard(para.getAttackUser().isNpc());
         for (int i = 0; i < cards.Count; i++) {
+            if (triggerId != 0 && triggerId != cards[i].getTriggerId()) {
+                continue;
+            }
             para.setAssembleCard(cards[i]);
             para.setTemporaryValue(temporaryValue);
 
-            int tempTriggerId = triggerId == 0 ? cards[i].getTriggerId() : triggerId;
-            ITriggerHandle handle = TriggerHandleMgr.Instance.getTriggerHandle(tempTriggerId);
+            ITriggerHandle handle = TriggerHandleMgr.Instance.getTriggerHandle(cards[i].getTriggerId());
             if (handle == null) {
                 continue;
             }

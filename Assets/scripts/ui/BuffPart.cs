@@ -63,6 +63,6 @@ public class BuffPart : MonoBehaviour
         this._buffDic.Add(BaseEffectType.skillDamageUp, "技能效果");
         this._buffDic.Add(BaseEffectType.mpRegen, "回复法力");
         this._buffDic.Add(BaseEffectType.addBleeding, "获得法力值");
-        this._buffDic.Add(BaseEffectType.rtCountAttack, "每累攻击力");
+        this._buffDic.Add(BaseEffectType.rtCountAttack, "累计攻击力");
     }
 }   

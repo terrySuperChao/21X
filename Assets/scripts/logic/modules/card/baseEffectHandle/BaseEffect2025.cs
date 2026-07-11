@@ -1,4 +1,4 @@
-//首次触发回复 %s 点生命值，之后每次触发回复少量生命
+//首次触发回复 %s 点生命值，之后每次触发回复 %s 点生命值
 public class BaseEffect2025 : BaseEffectHandleObject
 {
     private readonly int _id = GameCardConst.baseEffectId2025;

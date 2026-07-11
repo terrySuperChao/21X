@@ -11,6 +11,8 @@ public class BaseEffect2015 : BaseEffectHandleObject
     {
         float addValue = this.getAddValue(para);
         float defenseValue = para.getAttackUser().getDefense() * addValue;
+        if (defenseValue <= 0) return;
+
         IBaseEffectData data = para.getAttackUser().getExtraInfo().getBaseEffectData(this._id);
         IBaseEffectValue baseEffectValue = data.getBaseEffectValue(BaseEffectType.temporaryArmor);
         if (!data.isState())

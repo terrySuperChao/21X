@@ -3,8 +3,8 @@ public class BaseEffect2033 : BaseEffectHandleObject
 {
     private readonly int _initValue = 1;
     private readonly int _stepValue = 1;
-    private readonly int _maxValue = 3;
-    private readonly int _id = GameCardConst.baseEffectId2023;
+    private readonly int _maxValue = 4;
+    private readonly int _id = GameCardConst.baseEffectId2033;
     protected override int _getId()
     {
         return this._id;
@@ -37,7 +37,7 @@ public class BaseEffect2033 : BaseEffectHandleObject
 
         IBaseEffectValue baseEffectValue1 = data.getBaseEffectValue(BaseEffectType.addLevel);
         IBaseEffectValue baseEffectValue2 = data.getBaseEffectValue(BaseEffectType.mpRegen);
-        if (baseEffectValue1.getValue() <= baseEffectValue1.getMaxValue())
+        if (baseEffectValue1.getValue() < baseEffectValue1.getMaxValue())
         {
             baseEffectValue1.addValue(this._stepValue);
             GameMagicMgr.Instance.handle(para.getAttackUser(), baseEffectValue2.getValue());

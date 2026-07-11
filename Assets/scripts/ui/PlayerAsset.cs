@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Google.Protobuf.WellKnownTypes;
+using Newtonsoft.Json.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -78,7 +80,7 @@ public class PlayerAsset : MonoBehaviour
     // Update is called once per frame
 
 
-    public void initUserInfo(IUser user,Vector3 pokerPos)
+    public void initUserInfo(IUser user, Vector3 pokerPos)
     {
         this._user = user;
         this._pokerPos = pokerPos;
@@ -100,14 +102,14 @@ public class PlayerAsset : MonoBehaviour
 
     private void initPokers() {
         List<IPoker> pokers = FightPokerMgr.Instance.getUserHandPoker(this._user);
-        foreach (var poker in pokers){
-            this.addPoker(new DealPokerPara(this._user, poker,0));
+        foreach (var poker in pokers) {
+            this.addPoker(new DealPokerPara(this._user, poker, 0));
         }
     }
 
     private void initCards() {
         List<IAssembleCard> cards = FightPokerMgr.Instance.getUserAssembleCards(this._user);
-        foreach (var card in cards){
+        foreach (var card in cards) {
             this.addCard(card);
         }
     }
@@ -135,21 +137,21 @@ public class PlayerAsset : MonoBehaviour
 
         Vector3 pos = new Vector3(0, 0, 0);
         float count = this.pokers.childCount;
-        
+
         float index = count - 1;
         float scalex = pokerObject.transform.localScale.x;
         float width = pokerObject.GetComponent<RectTransform>().rect.width * scalex;
         float maxWidth = this.pokers.gameObject.GetComponent<RectTransform>().rect.width;
         float offX = count <= 1 ? 120 : Math.Min((maxWidth - width * count) / (count - 1), 120);
         float startX = pos.x - index * (width * scalex + offX) / 2;
-        
+
         for (int i = 0; i < count; i++)
         {
             Vector3 localPos = new Vector3(startX + (width * scalex + offX) * i, pos.y, pos.z);
             moveTo(this.pokers.GetChild(i).gameObject, localPos);
         }
     }
-    public void addCard(IAssembleCard card){
+    public void addCard(IAssembleCard card) {
         Transform cardChild = this.cards.GetChild(0); //
         GameObject cardObject = Instantiate(this.cartPartPrefab, this.cards);
         cardObject.GetComponent<CardPart>().loadPartImage(card.getTrigger());
@@ -168,7 +170,7 @@ public class PlayerAsset : MonoBehaviour
         GameObject buffObject = Instantiate(this.buffPartPrefab, this.buffs);
         buffObject.GetComponent<BuffPart>().setUser(this._user);
         buffObject.GetComponent<BuffPart>().setBuffType(buffType);
-        
+
         HoverBuffPopup hover = buffObject.AddComponent<HoverBuffPopup>();
         hover.popup = this.buffPartPopup.GetComponent<RectTransform>();
     }
@@ -184,7 +186,7 @@ public class PlayerAsset : MonoBehaviour
             }
         }
     }
-    
+
 
     // ------》》》》 1发卡牌
     public void dealCard(params System.Object[] obj)
@@ -202,7 +204,7 @@ public class PlayerAsset : MonoBehaviour
     private void dealPoker(params System.Object[] obj)
     {
         IDealPokerPara para = (IDealPokerPara)obj[0];
-        if (para.getUser() == this._user){
+        if (para.getUser() == this._user) {
             StartCoroutine(dealPokerHandle(para));
         }
     }
@@ -243,7 +245,7 @@ public class PlayerAsset : MonoBehaviour
         List<IPoker> pokers = FightPokerMgr.Instance.getUserHandPoker(this._user);
         int index = pokers.FindIndex(poker => poker.isBack());
         bool isBlackJack = FightPokerMgr.Instance.isUserHandPokerBlackJack(this._user);
-        int point = currentPoint > 0 ? currentPoint :FightPokerMgr.Instance.getUserHandPokerPoint(this._user, index != -1);
+        int point = currentPoint > 0 ? currentPoint : FightPokerMgr.Instance.getUserHandPokerPoint(this._user, index != -1);
 
         if (isBlackJack)
         {
@@ -253,13 +255,13 @@ public class PlayerAsset : MonoBehaviour
 
         }
 
-       if (point > 21)
-       {
+        if (point > 21)
+        {
             this.tipsText.text = "爆牌";
             this.tipsText.color = Color.red;
             this.tipsPanel.SetActive(true);
         }
-         
+
         if (this._user.getState() == UserState.end)
         {
             this.tipsText.text = "停牌";
@@ -347,7 +349,7 @@ public class PlayerAsset : MonoBehaviour
     public void addPokerValue(params System.Object[] obj)
     {
         IUIPokerPara para = (IUIPokerPara)obj[0];
-        if (para.getUser() == this._user) { 
+        if (para.getUser() == this._user) {
             StartCoroutine(addPokerValueHandle(obj));
         }
     }
@@ -361,8 +363,8 @@ public class PlayerAsset : MonoBehaviour
 
         for (int i = 0; i < pokers.Count; i++) {
             Transform pokerChild = this.getPokerIdTransform(pokers[i]);
-            if (pokerChild != null){
-                iTween.ScaleTo(pokerChild.gameObject, new Vector3(0.5f, 0.5f, 0.5f), 0.5f);   
+            if (pokerChild != null) {
+                iTween.ScaleTo(pokerChild.gameObject, new Vector3(0.5f, 0.5f, 0.5f), 0.5f);
             }
         }
 
@@ -371,7 +373,7 @@ public class PlayerAsset : MonoBehaviour
         for (int i = 0; i < pokers.Count; i++)
         {
             Transform pokerChild = this.getPokerIdTransform(pokers[i]);
-            if (pokerChild != null){
+            if (pokerChild != null) {
                 iTween.ScaleTo(pokerChild.gameObject, new Vector3(0.6f, 0.6f, 0.6f), 0.1f);
             }
         }
@@ -395,7 +397,7 @@ public class PlayerAsset : MonoBehaviour
             textChild.text = this.getFinalContent(valueType, para.getFinalValue());
         }
     }
-    
+
 
     public void addCardValue(params System.Object[] obj)
     {
@@ -410,7 +412,7 @@ public class PlayerAsset : MonoBehaviour
     {
         IUICommonPara para = (IUICommonPara)obj[0];
         Text text = this._texts[(int)para.getValueType()];
-        if (text == null){
+        if (text == null) {
             yield return 0;
         }
 
@@ -423,7 +425,7 @@ public class PlayerAsset : MonoBehaviour
         addText.color = (bl ? Color.green : Color.red);
         Vector3 localPos = addText.transform.localPosition;
         this.moveTo(addText.gameObject, new Vector3(localPos.x, localPos.y + ((bl ? 1 : -1) * 50.0f), localPos.z));
-        
+
         yield return new WaitForSeconds(0.51f);
         Destroy(addText.gameObject);
         text.text = getFinalContent(para.getValueType(), para.getFinalValue());
@@ -446,17 +448,23 @@ public class PlayerAsset : MonoBehaviour
         }
     }
 
+    private string getTemporaryArmor(){
+        float temporaryArmor = GameEffectMgr.Instance.getBaseEffectValue(this._user, BaseEffectType.temporaryArmor);
+        if (temporaryArmor > 0)
+        {
+            return "<color=green>(+" + temporaryArmor + ")</color>";
+        }
+        else {
+            return "";
+        }
+    }
+
     private void setUserInfo(ValueType type) {
         string value = "";
         switch (type)
         {
             case ValueType.defense: // 方
-                value = this._user.getDefense().ToString();
-                //添加临时护甲
-                float temporaryArmor = GameEffectMgr.Instance.getBaseEffectValue(this._user, BaseEffectType.temporaryArmor);
-                if (temporaryArmor > 0) {
-                    value += "<color=green>(+" + temporaryArmor + ")</color>";
-                }
+                value = this._user.getDefense() + this.getTemporaryArmor();
                 break;
             case ValueType.blood: // 红
                 value = this._user.getBlood() + "/" + this._user.getMaxBlood();
@@ -479,30 +487,24 @@ public class PlayerAsset : MonoBehaviour
 
     private string getFinalContent(ValueType type, float finalValue)
     {
-        float maxValue = -1;
+        string value = finalValue.ToString();
         switch (type)
         {
             case ValueType.defense: // 方
+                value += this.getTemporaryArmor();
                 break;
             case ValueType.blood: // 红
-                maxValue = this._user.getMaxBlood();
+                value += "/" + this._user.getMaxBlood();
                 break;
             case ValueType.attack: // 黑
                 break;
             case ValueType.magic: // 梅
-                maxValue = this._user.getMaxMagic();
-                break;
-            case ValueType.maxMagic: // 梅
-                maxValue = this._user.getMaxMagic();
+                value += "/" + this._user.getMaxMagic();
                 break;
             default:
                 break;
         }
-        if (maxValue == -1){
-            return finalValue.ToString();
-        }else {
-            return finalValue + "/" + maxValue;
-        }
+        return value;
     }
 
     public void clearHandPoker(params System.Object[] obj)

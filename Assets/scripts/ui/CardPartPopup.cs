@@ -51,11 +51,12 @@ public class CardPartPopup : MonoBehaviour
             str += string.Format("{0}\n{1}\n", baseEffect.getName(), this.getDescription(baseEffect,advanceEffect));
 
             IBaseEffectData data = this._user.getExtraInfo().getBaseEffectData(baseEffect.getId());
-            IBaseEffectValue baseEffectValue = data.getBaseEffectValue(BaseEffectType.addLevel);
-            if (baseEffectValue != null && baseEffectValue.getValue() > 0) {
-                str += string.Format("当前{0}/{1}层\n", baseEffectValue.getValue(), baseEffectValue.getMaxValue());
+            if (data.isState()) {
+                IBaseEffectValue baseEffectValue = data.getBaseEffectValue(BaseEffectType.addLevel);
+                if (baseEffectValue != null && baseEffectValue.getValue() > 0) {
+                    str += string.Format("当前{0}/{1}层\n", baseEffectValue.getValue(), baseEffectValue.getMaxValue());
+                }
             }
-
             if (data.getId() == GameCardConst.baseEffectId2025) {
                 if (data.isState()) {
                     str += "<color=red>首次已触发</color>\n";

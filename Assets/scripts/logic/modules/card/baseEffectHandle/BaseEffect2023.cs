@@ -3,7 +3,7 @@ public class BaseEffect2023 : BaseEffectHandleObject
 {
     private readonly int _initValue = 1;
     private readonly int _stepValue = 1;
-    private readonly int _maxValue = 2;
+    private readonly int _maxValue = 3;
     private readonly int _id = GameCardConst.baseEffectId2023;
     protected override int _getId()
     {
@@ -36,7 +36,7 @@ public class BaseEffect2023 : BaseEffectHandleObject
 
         IBaseEffectValue baseEffectValue1 = data.getBaseEffectValue(BaseEffectType.addLevel);
         IBaseEffectValue baseEffectValue2 = data.getBaseEffectValue(BaseEffectType.healOverTime);
-        if (baseEffectValue1.getValue() <= baseEffectValue1.getMaxValue()) {
+        if (baseEffectValue1.getValue() < baseEffectValue1.getMaxValue()) {
             baseEffectValue1.addValue(this._stepValue);
             GameBloodMgr.Instance.handle(para.getAttackUser(), baseEffectValue2.getValue());
         }

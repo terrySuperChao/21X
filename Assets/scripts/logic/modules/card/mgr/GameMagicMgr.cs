@@ -66,7 +66,7 @@ public class GameMagicMgr : Singleton<GameMagicMgr>
             return;
         }
         attackUser.addMaxMagic(addValue);
-        this.addMagicMessage(attackUser, ValueType.maxMagic, attackUser.getMagic(), attackUser.getMaxMagic());
+        this.addMagicMessage(attackUser, ValueType.magic, addValue, attackUser.getMagic());
     }
 
     private void addMagicMessage(IUser user, ValueType type, float value, float finalValue) {

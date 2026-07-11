@@ -93,4 +93,8 @@ public class ExtraInfoObject : IExtraInfo
     public void setBaseEffectDataInstance(Func<int,IBaseEffectData> func) {
         this._baseEffectDataInstance = func;
     }
+
+    public void clearBaseEffectData() {
+        this._baseEffect.Clear();
+    }
 }

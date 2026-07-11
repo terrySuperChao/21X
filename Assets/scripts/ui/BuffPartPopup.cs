@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Pb;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -41,11 +42,27 @@ public class BuffPartPopup : MonoBehaviour
         float value = 0;
         if (buffType == BaseEffectType.healOverTime)
         {
-            //desc = string.Format(desc, this._user.getExtraInfo().getHealOverTimes().Count);
+            float level = 2;
+            IBaseEffectData data = this._user.getExtraInfo().getBaseEffectData(GameCardConst.baseEffectId2023);
+            if (data.isState())
+            {
+                IBaseEffectValue baseEffectValue1 = data.getBaseEffectValue(BaseEffectType.addLevel);
+                level = baseEffectValue1.getMaxValue() - baseEffectValue1.getValue();
+            }
+            desc = string.Format(desc, level);
+            value = GameEffectMgr.Instance.getBaseEffectValue(this._user, buffType);
         }
         else if (buffType == BaseEffectType.mpRegen)
         {
-            //desc = string.Format(desc, this._user.getExtraInfo().getMpRegens().Count);
+            float level = 3;
+            IBaseEffectData data = this._user.getExtraInfo().getBaseEffectData(GameCardConst.baseEffectId2033);
+            if (data.isState())
+            {
+                IBaseEffectValue baseEffectValue1 = data.getBaseEffectValue(BaseEffectType.addLevel);
+                level = baseEffectValue1.getMaxValue() - baseEffectValue1.getValue();
+            }
+            desc = string.Format(desc, level);
+            value = GameEffectMgr.Instance.getBaseEffectValue(this._user, buffType);
         }
         else if (buffType == BaseEffectType.rtCountAttack)
         {

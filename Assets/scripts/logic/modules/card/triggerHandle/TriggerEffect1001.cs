@@ -9,6 +9,7 @@ public class TriggerEffect1001 : TriggerHandleObject
 
     protected override bool _postSuitAttributeConversionHandle(ITriggerHandlePara para)
     {
+        UnityEngine.Debug.Log(para.getPokerSuit() + "=======" + PokerSuit.spade);
         return para.getPokerSuit() == PokerSuit.spade;
     }
 }
