@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6d37c4d096e89940902e57177510e8d, type: 3}
+  m_Name: HallRainSettings
+  m_EditorClassIdentifier: 
+  seed: 1997
+  density: 0.38
+  nearRatio: 0.28
+  length: 24
+  speed: 460
+  angleDeg: 9
+  wind: 35
+  opacity: 0.24
+  glow: 1.5
+  menuProtect: 0.76
+  coreProtect: 0.48
+  gustChance: 0.18
+  gustStrength: 0.3

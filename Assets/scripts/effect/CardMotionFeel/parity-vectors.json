@@ -1,0 +1,71 @@
+{
+  "schemaVersion": 1,
+  "description": "Browser samples plus Unity top-left UI expectations. Float tolerance: 0.00001.",
+  "coordinateConvention": {
+    "browser": "x right, y down, positive rotation clockwise",
+    "unityTopLeftUI": "x right, y up, positive rotation counter-clockwise",
+    "conversion": "Negate browser Y coordinates/vectors and signed rotation values; scalar lengths, easing and hashes stay unchanged."
+  },
+  "easing": {
+    "inputs": [0.25, 0.5, 0.75],
+    "easeOutCubic": [0.578125, 0.875, 0.984375],
+    "easeInOutCubic": [0.0625, 0.5, 0.9375],
+    "easeInOutSine": [0.14644661, 0.5, 0.85355339]
+  },
+  "quadraticBezier": {
+    "p0": [0, 0],
+    "p1": [50, -100],
+    "p2": [200, 50],
+    "samples": [
+      { "t": 0.25, "value": [31.25, -34.375] },
+      { "t": 0.5, "value": [75, -37.5] },
+      { "t": 0.75, "value": [131.25, -9.375] }
+    ]
+  },
+  "landingDrift": {
+    "seed": "player:0:Q:diamonds",
+    "hash": 3632658238,
+    "unit": 0.8457941557280719,
+    "normalized": [-0.8383156228810549, -0.8305029352195561, -0.760188746266067]
+  },
+  "impactInertia": {
+    "player": {
+      "impact": [872.0491167875238, 665.128992478629],
+      "control": [527.3279519773713, 547.272238228923],
+      "curveOffset": [-12.796606416390503, -146.7922580103915],
+      "tangent": [0.9962217855750962, -0.08684557527915289],
+      "travelDistance": 666.3667934186952,
+      "terminalProgressSlope": 0.09710049494301548,
+      "impactRotation": 2.8,
+      "terminalAngularDelta": -17.13886836977102,
+      "angularLandingSlope": 3,
+      "unityExpected": {
+        "impact": [872.0491167875238, -665.128992478629],
+        "control": [527.3279519773713, -547.272238228923],
+        "curveOffset": [-12.796606416390503, 146.7922580103915],
+        "tangent": [0.9962217855750962, 0.08684557527915289],
+        "impactRotation": -2.8,
+        "terminalAngularDelta": 17.13886836977102
+      }
+    },
+    "npc": {
+      "impact": [897.8890678094165, 194.30532274333274],
+      "control": [1248.8737952498952, 295.001672658826],
+      "curveOffset": [18.979261345187176, 144.3490112871596],
+      "tangent": [-0.9914667545704944, 0.1303597889744039],
+      "travelDistance": 669.7258673874896,
+      "terminalProgressSlope": 0.09661347814882702,
+      "impactRotation": -2.8,
+      "terminalAngularDelta": 17.146660638478036,
+      "angularLandingSlope": 3,
+      "unityExpected": {
+        "impact": [897.8890678094165, -194.30532274333274],
+        "control": [1248.8737952498952, -295.001672658826],
+        "curveOffset": [18.979261345187176, -144.3490112871596],
+        "tangent": [-0.9914667545704944, -0.1303597889744039],
+        "impactRotation": 2.8,
+        "terminalAngularDelta": -17.146660638478036
+      }
+    }
+  }
+}

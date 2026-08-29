@@ -8,5 +8,30 @@
 		"zh_CN": "继续游戏",
 		"zh_TW": "繼續遊戲",
 		"en_US": "Continue Game"
+	},
+	"btn_rune": {
+		"zh_CN": "花色符文",
+		"zh_TW": "花色符文",
+		"en_US": "Rune"
+	},
+	"btn_gallery": {
+		"zh_CN": "图鉴",
+		"zh_TW": "图鉴",
+		"en_US": "gallery"
+	},
+	"btn_help": {
+		"zh_CN": "帮助",
+		"zh_TW": "帮助",
+		"en_US": "Help"
+	},
+	"btn_settings": {
+		"zh_CN": "设置",
+		"zh_TW": "设置",
+		"en_US": "settings"
+	},
+	"btn_quit": {
+		"zh_CN": "退出",
+		"zh_TW": "退出",
+		"en_US": "quit"
 	}
 }

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Duel21.FeelLab;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -18,6 +19,7 @@ public class FightCardView : MonoBehaviour
     public GameObject attackImage;
 
     public Transform rootTransform;
+    public Duel21.FeelLab.CardMotionFeel cardMotionFeel;
 
     // Start is called before the first frame update
     void Start()

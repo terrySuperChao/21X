@@ -22,18 +22,17 @@ public class UIMgr : Singleton<UIMgr>
         this._view = this.newCreateObject("view");
         this._alert = this.newCreateObject("alert");
         this._tip = this.newCreateObject("tip");
-        this._view.transform.SetParent(this._scene.transform);
-        this._alert.transform.SetParent(this._scene.transform);
-        this._tip.transform.SetParent(this._scene.transform);
+        this._view.transform.SetParent(this._scene.transform, false);
+        this._alert.transform.SetParent(this._scene.transform, false);
+        this._tip.transform.SetParent(this._scene.transform, false);
     }
 
     private GameObject newCreateObject(string name) {
         GameObject newObject = new GameObject(name);
-        // �´����Ķ����Զ�����Transform���
-        Transform newTransform = newObject.transform; // ��ȡ��Transform���
-        // ����ͨ��Transform�������λ�á���ת������
-        newTransform.position = new Vector3(0, 0, 0);
-        newTransform.rotation = Quaternion.Euler(0, 0, 0);
+        Transform newTransform = newObject.transform;
+        newTransform.position = Vector3.zero;
+        newTransform.rotation = Quaternion.identity;
+        newTransform.localScale = Vector3.one;
         return newObject;
     }
 
@@ -63,17 +62,27 @@ public class UIMgr : Singleton<UIMgr>
             GameObject prefab = Resources.Load<GameObject>(tempInfo.resPath);
             GameObject gameObject = UnityEngine.Object.Instantiate(prefab, new Vector3(0, 0, 0), Quaternion.identity);
             gameObject.name = name;
+            Transform parent = null;
             if (tempInfo.viewType == (int)ViewType.view)
             {
-                gameObject.transform.SetParent(this._view.transform);
+                parent = this._view.transform;
             }
             else if (tempInfo.viewType == (int)ViewType.alert)
             {
-                gameObject.transform.SetParent(this._alert.transform);
+                parent = this._alert.transform;
             }
-            else if (tempInfo.viewType == (int)ViewType.alert)
+            else if (tempInfo.viewType == (int)ViewType.tip)
             {
-                gameObject.transform.SetParent(this._tip.transform);
+                parent = this._tip.transform;
+            }
+
+            if (parent != null)
+            {
+                Transform viewTransform = gameObject.transform;
+                viewTransform.SetParent(parent, false);
+                viewTransform.localPosition = Vector3.zero;
+                viewTransform.localRotation = Quaternion.identity;
+                viewTransform.localScale = Vector3.one;
             }
             
             IBaseView baseView = gameObject.GetComponent<IBaseView>();

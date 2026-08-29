@@ -107,21 +107,20 @@ public class LangMgr : Singleton<LangMgr>
     }
 
     public string getText(string key) {
-        return this.getText(this._configDic[key], this._curLanguageStr);
+        if (this._configDic == null || !this._configDic.ContainsKey(key)){
+            return key;
+        }
+        else {
+            return this.getText(this._configDic[key], this._curLanguageStr);
+        }
     }
 
     public Dictionary<string, string> getLanguageMap() {
         if (this._languageMap == null) {
             this._languageMap = new Dictionary<string, string>();
-            this._languageMap.Add(LanguageList.zh_CN, "ÖĞÎÄ¼òÌå");
-            this._languageMap.Add(LanguageList.zh_TW, "ÖĞÎÄ·±Ìå");
+            this._languageMap.Add(LanguageList.zh_CN, "ç®€ä½“ä¸­æ–‡");
+            this._languageMap.Add(LanguageList.zh_TW, "ç¹ä½“ä¸­æ–‡");
             this._languageMap.Add(LanguageList.en_US, "English");
-            //this._languageMap.Add("ÆÏÌÑÑÀÓï");
-            //this._languageMap.Add("µÂÓï");
-            //this._languageMap.Add("·¨Óï");
-            //this._languageMap.Add("Î÷°àÑÀÓï");
-            //this._languageMap.Add("ÈÕÓï");
-            //this._languageMap.Add("º«Óï");
         }
         return this._languageMap;
     }

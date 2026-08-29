@@ -34,6 +34,7 @@ public class PlayerAsset : MonoBehaviour
     private List<Text> _texts = new List<Text>();
     private IUser _user;
     private Vector3 _pokerPos;
+    public Duel21.FeelLab.CardMotionDustBinder cardMotionFeel;
 
     // Start is called before the first frame update
     void Start()
@@ -132,7 +133,11 @@ public class PlayerAsset : MonoBehaviour
 
     private void addPoker(IDealPokerPara para) {
         GameObject pokerObject = Instantiate(this.pokerPrefab, this.pokers);
-        pokerObject.GetComponent<Poker>().loadPokerRes(para.getPoker());
+        Poker poker = pokerObject.GetComponent<Poker>();
+        // 绑定牌数据，然后先显示背面
+        poker.loadPokerRes(para.getPoker());
+        poker.loadBackPoker();
+
         pokerObject.transform.position = this._pokerPos;
 
         Vector3 pos = new Vector3(0, 0, 0);
@@ -145,11 +150,30 @@ public class PlayerAsset : MonoBehaviour
         float offX = count <= 1 ? 120 : Math.Min((maxWidth - width * count) / (count - 1), 120);
         float startX = pos.x - index * (width * scalex + offX) / 2;
 
+        Vector2 newPokerTarget = Vector2.zero;
         for (int i = 0; i < count; i++)
         {
             Vector3 localPos = new Vector3(startX + (width * scalex + offX) * i, pos.y, pos.z);
-            moveTo(this.pokers.GetChild(i).gameObject, localPos);
+            Transform child = this.pokers.GetChild(i);
+            if (child.gameObject == pokerObject)
+            {
+                newPokerTarget = localPos;
+            }
+            else
+            {
+                moveTo(child.gameObject, localPos);
+            }
         }
+
+        RectTransform rect = pokerObject.GetComponent<RectTransform>();
+        Vector2 start = rect.anchoredPosition;
+        cardMotionFeel.PlayDeal(
+            rect,
+            start,
+            newPokerTarget,
+            playerSide: !_user.isNpc(),
+            revealFace: !para.getPoker().isBack(),
+            swapToFace: () => poker.loadPokerRes(para.getPoker()));
     }
     public void addCard(IAssembleCard card) {
         Transform cardChild = this.cards.GetChild(0); //

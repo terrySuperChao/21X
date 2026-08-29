@@ -1,3 +1,5 @@
+using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,8 +9,13 @@ public class LanguageCom : MonoBehaviour
     void Start()
     {
         Text text = this.GetComponent<Text>();
-        if (text != null) {
+        if (text != null)
+        {
             text.text = LangMgr.Instance.getText(this.textkey);
+        }
+        else {
+            TextMeshProUGUI textMesh = this.GetComponent<TextMeshProUGUI>();
+            textMesh.text = LangMgr.Instance.getText(this.textkey);
         }
     }
 

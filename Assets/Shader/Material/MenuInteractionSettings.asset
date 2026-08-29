@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80b2b98edc20041b6b60c1a013cae2e2, type: 3}
+  m_Name: MenuInteractionSettings
+  m_EditorClassIdentifier: 
+  hitPaddingX: 12
+  hoverTextScale: 1.35
+  hoverOutlineWidthPx: 5
+  hoverEnterSeconds: 0.120000005
+  hoverExitSeconds: 0.120000005
+  pressScale: 0.92
+  confirmDurationSeconds: 0.080000006
+  glowBreathAmount: 0.9
+  glowBreathPeriodSeconds: 2.7
+  highlightPromptMinSeconds: 2.5
+  highlightPromptMaxSeconds: 5
+  highlightPromptOffset: 6
+  highlightPromptDurationSeconds: 0.36
+  highlightCyan: {r: 0.14509805, g: 0.93333334, b: 0.9411765, a: 1}
+  highlightMagenta: {r: 0.75686276, g: 0.14509805, b: 0.90588236, a: 1}
+  hoverOutlineColor: {r: 0.019607844, g: 0.015686275, b: 0.02745098, a: 1}

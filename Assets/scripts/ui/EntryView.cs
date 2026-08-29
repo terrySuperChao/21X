@@ -56,7 +56,25 @@ public class EntryView : MonoBehaviour,IBaseView
         UIMgr.Instance.showView(pageName);
     }
 
-    public void onSettingViewClick() {
+    public void onRuneClick() {
+
+    }
+
+    public void onGalleryClick() {
+
+    }
+
+    public void onHelpClick()
+    {
+
+    }
+
+    public void onSettingClick() {
         UIMgr.Instance.showView("SettingView");
+    }
+
+    public void onQuitClick()
+    {
+
     }
 }
