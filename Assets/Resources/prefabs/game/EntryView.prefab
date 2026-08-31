@@ -671,7 +671,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 400, y: 100}
+  m_SizeDelta: {x: 470, y: 76}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7503328599257713396
 CanvasRenderer:
@@ -780,7 +780,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   button: {fileID: 4142125729718659606}
-  variant: 1
+  variant: 0
   interactionSettings: {fileID: 11400000, guid: a93e777cec40e44f8b375e4dfdf9b890, type: 2}
   drawOnStart: 0
   reducedMotion: 0
@@ -2063,7 +2063,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 400, y: 100}
+  m_SizeDelta: {x: 470, y: 76}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1898381718672888766
 CanvasRenderer:
@@ -2172,7 +2172,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   button: {fileID: 6384412185817833344}
-  variant: 1
+  variant: 0
   interactionSettings: {fileID: 11400000, guid: a93e777cec40e44f8b375e4dfdf9b890, type: 2}
   drawOnStart: 0
   reducedMotion: 0
@@ -2452,7 +2452,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 400, y: 100}
+  m_SizeDelta: {x: 470, y: 76}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4498961871993448421
 CanvasRenderer:
@@ -2561,7 +2561,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   button: {fileID: 4906579966476789267}
-  variant: 1
+  variant: 0
   interactionSettings: {fileID: 11400000, guid: a93e777cec40e44f8b375e4dfdf9b890, type: 2}
   drawOnStart: 0
   reducedMotion: 0
@@ -2622,7 +2622,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 400, y: 100}
+  m_SizeDelta: {x: 470, y: 76}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5714745419307362629
 CanvasRenderer:
@@ -2731,7 +2731,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   button: {fileID: 8391116687817110241}
-  variant: 1
+  variant: 0
   interactionSettings: {fileID: 11400000, guid: a93e777cec40e44f8b375e4dfdf9b890, type: 2}
   drawOnStart: 0
   reducedMotion: 0
@@ -3050,7 +3050,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 400, y: 100}
+  m_SizeDelta: {x: 470, y: 76}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6362368533154738012
 CanvasRenderer:
@@ -3159,7 +3159,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   button: {fileID: 2695823406407713700}
-  variant: 1
+  variant: 0
   interactionSettings: {fileID: 11400000, guid: a93e777cec40e44f8b375e4dfdf9b890, type: 2}
   drawOnStart: 0
   reducedMotion: 0
@@ -3459,7 +3459,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 400, y: 100}
+  m_SizeDelta: {x: 470, y: 76}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1146824240724533405
 CanvasRenderer:
@@ -3568,7 +3568,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   button: {fileID: 7488609381206082406}
-  variant: 1
+  variant: 0
   interactionSettings: {fileID: 11400000, guid: a93e777cec40e44f8b375e4dfdf9b890, type: 2}
   drawOnStart: 0
   reducedMotion: 0
@@ -3961,11 +3961,11 @@ RectTransform:
   - {fileID: 1335432584516883396}
   m_Father: {fileID: 2211025897814303776}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 1}
-  m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -535.356, y: -620.75}
-  m_SizeDelta: {x: 429.288, y: 855.51}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 0, y: 0.5}
+  m_AnchoredPosition: {x: 86, y: -40}
+  m_SizeDelta: {x: 590, y: 855.51}
+  m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &3240134857365971957
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4245,7 +4245,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 400, y: 100}
+  m_SizeDelta: {x: 470, y: 76}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5397964162990796456
 CanvasRenderer:
