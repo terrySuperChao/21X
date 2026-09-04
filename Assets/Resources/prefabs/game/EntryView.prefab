@@ -131,7 +131,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7abe395dd70f84cab841ff241ec56d07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 2100000, guid: 2e366743ecafa44b29a6e5aaddd4abd2, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -139,7 +139,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  settings: {fileID: 0}
+  settings: {fileID: 11400000, guid: 6648a208f86904b1d894d2db7d50f85f, type: 2}
   rainEnabled: 1
   reducedMotion: 0
   useUnscaledTime: 1
@@ -794,6 +794,7 @@ MonoBehaviour:
   autoCreateHighlightEchoes: 1
   cyanEcho: {fileID: 0}
   magentaEcho: {fileID: 0}
+  shadowEcho: {fileID: 0}
   onScribbleDrawn:
     m_PersistentCalls:
       m_Calls: []
@@ -1993,7 +1994,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1344c3c82d62a2a41a3576d8abb8e3ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 2100000, guid: 1340186abbb8d4633bcaecc307ec968c, type: 2}
+  m_Material: {fileID: 2100000, guid: 8592e02b52aca4066b65f4a7188a1bbf, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -2021,9 +2022,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   settings: {fileID: 11400000, guid: 840b7cc0e3ba242c9b4de54486dbdd2b, type: 2}
-  sourceMaterial: {fileID: 2100000, guid: 1340186abbb8d4633bcaecc307ec968c, type: 2}
+  sourceMaterial: {fileID: 2100000, guid: 8592e02b52aca4066b65f4a7188a1bbf, type: 2}
   artTexture: {fileID: 2800000, guid: 90d33007d9b704490b9019b94054d188, type: 3}
   useUnscaledTime: 1
+  sampleLegacyMousePosition: 1
   randomSeed: 1997
 --- !u!1 &4103784411519223904
 GameObject:
@@ -2186,6 +2188,7 @@ MonoBehaviour:
   autoCreateHighlightEchoes: 1
   cyanEcho: {fileID: 0}
   magentaEcho: {fileID: 0}
+  shadowEcho: {fileID: 0}
   onScribbleDrawn:
     m_PersistentCalls:
       m_Calls: []
@@ -2575,6 +2578,7 @@ MonoBehaviour:
   autoCreateHighlightEchoes: 1
   cyanEcho: {fileID: 0}
   magentaEcho: {fileID: 0}
+  shadowEcho: {fileID: 0}
   onScribbleDrawn:
     m_PersistentCalls:
       m_Calls: []
@@ -2745,6 +2749,7 @@ MonoBehaviour:
   autoCreateHighlightEchoes: 1
   cyanEcho: {fileID: 0}
   magentaEcho: {fileID: 0}
+  shadowEcho: {fileID: 0}
   onScribbleDrawn:
     m_PersistentCalls:
       m_Calls: []
@@ -3173,6 +3178,7 @@ MonoBehaviour:
   autoCreateHighlightEchoes: 1
   cyanEcho: {fileID: 0}
   magentaEcho: {fileID: 0}
+  shadowEcho: {fileID: 0}
   onScribbleDrawn:
     m_PersistentCalls:
       m_Calls: []
@@ -3582,6 +3588,7 @@ MonoBehaviour:
   autoCreateHighlightEchoes: 1
   cyanEcho: {fileID: 0}
   magentaEcho: {fileID: 0}
+  shadowEcho: {fileID: 0}
   onScribbleDrawn:
     m_PersistentCalls:
       m_Calls: []
@@ -4368,6 +4375,7 @@ MonoBehaviour:
   autoCreateHighlightEchoes: 1
   cyanEcho: {fileID: 0}
   magentaEcho: {fileID: 0}
+  shadowEcho: {fileID: 0}
   onScribbleDrawn:
     m_PersistentCalls:
       m_Calls: []

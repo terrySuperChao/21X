@@ -1,6 +1,6 @@
 {
   "schema": "com.miscalculation.hall-motion/v3",
-  "motionVersion": "1.0.7",
+  "motionVersion": "1.0.13",
   "renderer": "Unity URP / WebGL2",
   "aspectRatio": "16:9",
   "masterIntensity": 0.82,
@@ -49,12 +49,11 @@
     "accentColor": "#f4f0ea",
     "sampleCount": 64,
     "singleStrokePointCount": 2,
-    "algorithm": "xorshift32-neon-scribble-v10-soft-lift-fibers"
+    "algorithm": "xorshift32-neon-scribble-v11-balanced-soft-lift"
   },
   "menuInteraction": {
     "hitPaddingX": 12,
     "hoverTextScale": 1.12,
-    "hoverOutlineWidth": 2.2,
     "hoverEnterMs": 110,
     "hoverExitMs": 150,
     "pressScale": 0.98,
@@ -83,6 +82,6 @@
     "coreProtect": 0.48,
     "gustChance": 0.18,
     "gustStrength": 0.30,
-    "algorithm": "xorshift32-dual-rain-v1"
+    "algorithm": "xorshift32-dual-rain-v2-monotonic-gust"
   }
 }

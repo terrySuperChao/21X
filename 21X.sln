@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp-Editor", "A
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Miscalculation.HallMotion", "Miscalculation.HallMotion.csproj", "{B2ABA106-3AA9-271B-799E-6DEF619E2F09}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Miscalculation.HallMotion.Editor", "Miscalculation.HallMotion.Editor.csproj", "{D4E1AC04-6842-E5E0-4B56-6D3C9A20496E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -31,6 +33,10 @@ Global
 		{B2ABA106-3AA9-271B-799E-6DEF619E2F09}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B2ABA106-3AA9-271B-799E-6DEF619E2F09}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B2ABA106-3AA9-271B-799E-6DEF619E2F09}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D4E1AC04-6842-E5E0-4B56-6D3C9A20496E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D4E1AC04-6842-E5E0-4B56-6D3C9A20496E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D4E1AC04-6842-E5E0-4B56-6D3C9A20496E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D4E1AC04-6842-E5E0-4B56-6D3C9A20496E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -21,10 +21,13 @@ namespace Miscalculation.HallMotion
         [SerializeField] private Texture artTexture;
         [Tooltip("开启时在暂停菜单也继续播放主界面环境动效；标准接入保持开启。")]
         [SerializeField] private bool useUnscaledTime = true;
+        [Tooltip("旧输入管理器可用时，每帧以零分配方式补采鼠标位置。它让背景视差在指针越过按钮、Game 视图刚获得焦点等情况下仍连续；使用纯新 Input System 的项目会自动只走 IPointerMove。")]
+        [SerializeField] private bool sampleLegacyMousePosition = true;
         [Tooltip("低频精神异象的固定随机序列种子，便于回归同一节奏。")]
         [SerializeField] private int randomSeed = 1997;
 
         private RawImage targetImage;
+        private Canvas targetCanvas;
         private Material runtimeMaterial;
         private Vector2 pointerTarget;
         private Vector2 pointerCurrent;
@@ -55,12 +58,16 @@ namespace Miscalculation.HallMotion
 
         public HallMotionSettings Settings => settings;
 
+        /// <summary>当前平滑前的归一化指针目标，供验证场景和诊断面板只读检查。</summary>
+        public Vector2 PointerTarget => pointerTarget;
+
         private float Clock => useUnscaledTime ? Time.unscaledTime : Time.time;
         private float DeltaTime => useUnscaledTime ? Time.unscaledDeltaTime : Time.deltaTime;
 
         private void Awake()
         {
             targetImage = GetComponent<RawImage>();
+            targetCanvas = targetImage.canvas;
             if (settings == null)
             {
                 settings = HallMotionSettings.CreateRuntimeDefault();
@@ -110,6 +117,12 @@ namespace Miscalculation.HallMotion
             }
 
             float reduction = settings.reducedMotion ? 0.18f : 1f;
+#if ENABLE_LEGACY_INPUT_MANAGER
+            if (sampleLegacyMousePosition && Input.mousePresent)
+            {
+                TrySetPointerTarget(Input.mousePosition, ResolveEventCamera());
+            }
+#endif
             float smoothing = 1f - Mathf.Exp(-DeltaTime * 3.6f);
             pointerCurrent = Vector2.Lerp(pointerCurrent, pointerTarget, smoothing);
 
@@ -140,21 +153,47 @@ namespace Miscalculation.HallMotion
 
         public void OnPointerMove(PointerEventData eventData)
         {
-            RectTransform rect = (RectTransform)transform;
-            if (!RectTransformUtility.ScreenPointToLocalPointInRectangle(rect, eventData.position, eventData.pressEventCamera, out Vector2 local))
-            {
-                return;
-            }
-
-            Rect bounds = rect.rect;
-            pointerTarget = new Vector2(
-                Mathf.Clamp(local.x / Mathf.Max(1f, bounds.width) * 2f, -1f, 1f),
-                Mathf.Clamp(local.y / Mathf.Max(1f, bounds.height) * 2f, -1f, 1f));
+            Camera eventCamera = eventData.pressEventCamera != null ? eventData.pressEventCamera : ResolveEventCamera();
+            TrySetPointerTarget(eventData.position, eventCamera);
         }
 
         public void OnPointerExit(PointerEventData eventData)
         {
-            pointerTarget = Vector2.zero;
+            // A full-screen background receives PointerExit when the cursor merely crosses onto
+            // a Button above it. Preserve parallax in that case; only reset after leaving the
+            // actual background rectangle/window.
+            Camera eventCamera = eventData.pressEventCamera != null ? eventData.pressEventCamera : ResolveEventCamera();
+            if (!TrySetPointerTarget(eventData.position, eventCamera))
+            {
+                pointerTarget = Vector2.zero;
+            }
+        }
+
+        private Camera ResolveEventCamera()
+        {
+            if (targetCanvas == null) targetCanvas = targetImage != null ? targetImage.canvas : null;
+            return targetCanvas == null || targetCanvas.renderMode == RenderMode.ScreenSpaceOverlay
+                ? null
+                : targetCanvas.worldCamera;
+        }
+
+        private bool TrySetPointerTarget(Vector2 screenPosition, Camera eventCamera)
+        {
+            if (!HallMotionRuntimeGuards.IsFinite(screenPosition)) return false;
+            RectTransform rect = transform as RectTransform;
+            if (rect == null
+                || !HallMotionRuntimeGuards.HasUsableScale(rect)
+                || !RectTransformUtility.RectangleContainsScreenPoint(rect, screenPosition, eventCamera)
+                || !RectTransformUtility.ScreenPointToLocalPointInRectangle(rect, screenPosition, eventCamera, out Vector2 local))
+            {
+                return false;
+            }
+
+            Rect bounds = rect.rect;
+            pointerTarget = new Vector2(
+                Mathf.Clamp((local.x - bounds.center.x) / Mathf.Max(0.5f, bounds.width * 0.5f), -1f, 1f),
+                Mathf.Clamp((local.y - bounds.center.y) / Mathf.Max(0.5f, bounds.height * 0.5f), -1f, 1f));
+            return HallMotionRuntimeGuards.IsFinite(pointerTarget);
         }
 
         public void TriggerAnomaly()

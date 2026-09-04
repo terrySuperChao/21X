@@ -1,11 +1,14 @@
 {
-  "name": "Miscalculation.HallMotion",
-  "rootNamespace": "Miscalculation.HallMotion",
+  "name": "Miscalculation.HallMotion.Editor",
+  "rootNamespace": "Miscalculation.HallMotion.Editor",
   "references": [
+    "Miscalculation.HallMotion",
     "Unity.TextMeshPro",
     "Unity.ugui"
   ],
-  "includePlatforms": [],
+  "includePlatforms": [
+    "Editor"
+  ],
   "excludePlatforms": [],
   "allowUnsafeCode": false,
   "overrideReferences": false,

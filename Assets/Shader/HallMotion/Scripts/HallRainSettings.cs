@@ -6,6 +6,8 @@ namespace Miscalculation.HallMotion
     [CreateAssetMenu(fileName = "HallRainSettings", menuName = "Miscalculation/Hall Rain Settings")]
     public sealed class HallRainSettings : ScriptableObject
     {
+        public const string AlgorithmVersion = "xorshift32-dual-rain-v2-monotonic-gust";
+
         [Tooltip("雨丝固定随机种子；相同 Seed、密度和近景比例生成同一基础集合。")]
         [Range(1, 9999)] public int seed = 1997;
         [Tooltip("雨丝密度 0..1，对应总数约 24..220 条，只有变化时才重建集合。")]

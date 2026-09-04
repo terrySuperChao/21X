@@ -40,6 +40,9 @@ namespace Miscalculation.HallMotion
         /// <summary>没有 TMP 时显式配置的边界回退；两者都为空时删除线不会绘制。</summary>
         public RectTransform TextBoundsFallback => textBoundsFallback;
 
+        /// <summary>当前业务禁用状态已请求显示，且 Graphic 没有因非法绑定被安全剔除。</summary>
+        public bool IsVisuallyVisible => requestedVisible && !canvasRenderer.cull;
+
         protected override void Awake()
         {
             base.Awake();
@@ -292,8 +295,15 @@ namespace Miscalculation.HallMotion
                     return;
                 }
                 vertex.position = point + normal;
+                // NeonScribbleUI 的旧式条带 AA 使用 uv.y 表示横截面位置：
+                // 两侧分别必须是 0/1，光栅插值后条带中心才会得到完整覆盖。
+                // 如果保留 UIVertex.simpleVert 的 (0,0)，整个删除线都会被 Shader
+                // 误判为外缘而变成完全透明。uv.z 保持 0，继续走条带 AA，
+                // 不影响 v1.0.9 霓虹线与墨点使用的显式覆盖路径。
+                vertex.uv0 = new Vector4(t, 0f, 0f, 0f);
                 helper.AddVert(vertex);
                 vertex.position = point - normal;
+                vertex.uv0 = new Vector4(t, 1f, 0f, 0f);
                 helper.AddVert(vertex);
             }
             for (int i = 0; i < segmentCount; i++)

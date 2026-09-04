@@ -20,7 +20,7 @@ MonoBehaviour:
   regionHeight: 90
   lineCount: 6
   drawDurationMs: 240
-  thickness: 3
+  thickness: 4
   pressureVariation: 1
   tipResidualWidth: 0.65
   entryLengthRatio: 0.42

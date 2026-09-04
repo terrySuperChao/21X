@@ -17,9 +17,7 @@ namespace Miscalculation.HallMotion
         [Tooltip("真实 Button 命中框在常态文字左右各增加的留白像素。它不改变霓虹线的左右延伸。")]
         [Range(0f, 32f)] public float hitPaddingX = 12f;
         [Tooltip("鼠标悬停或键盘/手柄聚焦时的文字缩放倍率，只作用于 LabelVisualRoot。")]
-        [Range(1f, 1.35f)] public float hoverTextScale = 1.12f;
-        [Tooltip("悬停文字黑色描边的目标像素值；运行时会按 TMP 字号换算为 outlineWidth。")]
-        [Range(0f, 5f)] public float hoverOutlineWidthPx = 2.2f;
+        [Range(1f, 2f)] public float hoverTextScale = 1.12f;
         [Tooltip("进入悬停/焦点状态的过渡时间，使用 Unscaled Time，不受暂停影响。")]
         [Range(0.04f, 0.26f)] public float hoverEnterSeconds = 0.11f;
         [Tooltip("离开悬停/焦点状态的过渡与霓虹淡出时间，使用 Unscaled Time。")]
@@ -50,9 +48,6 @@ namespace Miscalculation.HallMotion
         public Color highlightCyan = new Color32(37, 238, 240, 255);
         [Tooltip("长期高亮按钮的紫色文字回声颜色。")]
         public Color highlightMagenta = new Color32(193, 37, 231, 255);
-        [Tooltip("悬停/焦点状态的 TMP 文字描边颜色；标准预设为接近黑色。")]
-        public Color hoverOutlineColor = new Color32(5, 4, 7, 255);
-
         public void ApplyWebJson(string json)
         {
             if (string.IsNullOrWhiteSpace(json))
@@ -69,7 +64,6 @@ namespace Miscalculation.HallMotion
             MenuInteractionJson data = root.menuInteraction;
             hitPaddingX = data.hitPaddingX;
             hoverTextScale = data.hoverTextScale;
-            hoverOutlineWidthPx = data.hoverOutlineWidth;
             hoverEnterSeconds = data.hoverEnterMs * 0.001f;
             hoverExitSeconds = data.hoverExitMs * 0.001f;
             pressScale = data.pressScale;
@@ -93,8 +87,7 @@ namespace Miscalculation.HallMotion
         private void ClampValues()
         {
             hitPaddingX = Mathf.Clamp(hitPaddingX, 0f, 32f);
-            hoverTextScale = Mathf.Clamp(hoverTextScale, 1f, 1.35f);
-            hoverOutlineWidthPx = Mathf.Clamp(hoverOutlineWidthPx, 0f, 5f);
+            hoverTextScale = Mathf.Clamp(hoverTextScale, 1f, 2f);
             hoverEnterSeconds = Mathf.Clamp(hoverEnterSeconds, 0.04f, 0.26f);
             hoverExitSeconds = Mathf.Clamp(hoverExitSeconds, 0.06f, 0.32f);
             pressScale = Mathf.Clamp(pressScale, 0.92f, 1f);
@@ -119,7 +112,6 @@ namespace Miscalculation.HallMotion
     {
         public float hitPaddingX;
         public float hoverTextScale;
-        public float hoverOutlineWidth;
         public float hoverEnterMs;
         public float hoverExitMs;
         public float pressScale;

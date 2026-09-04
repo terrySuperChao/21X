@@ -12,19 +12,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6671cbc955fc47ec9ddffd069375ccb, type: 3}
   m_Name: HallMotionSettings
   m_EditorClassIdentifier: 
-  masterIntensity: 0.82
-  motionSpeed: 0.38
-  swirlStrength: 0.64
-  swirlRadius: 0.31
+  masterIntensity: 1.35
+  motionSpeed: 0.35
+  swirlStrength: 2.37
+  swirlRadius: 0.85
   coreBreathStrength: 0.54
-  coreMotionPixels: 3.2
+  coreMotionPixels: 8.4
   inkWarpPixels: 0.75
-  leftUiProtectWidth: 0.3
-  energyStrength: 0.67
-  parallaxPixels: 3.2
+  leftUiProtectWidth: 0.2
+  energyStrength: 1.5
+  parallaxPixels: 6
   grainStrength: 0.52
   printDriftPixels: 0.9
-  anomalyFrequency: 0.48
+  anomalyFrequency: 1
   swirlCenter: {x: 0.54, y: 0.45}
   anomalyEnabled: 1
   reducedMotion: 0

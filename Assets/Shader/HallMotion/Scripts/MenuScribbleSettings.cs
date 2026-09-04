@@ -14,6 +14,7 @@ namespace Miscalculation.HallMotion
     [CreateAssetMenu(fileName = "MenuScribbleSettings", menuName = "Miscalculation/Menu Scribble Settings")]
     public sealed class MenuScribbleSettings : ScriptableObject
     {
+        public const string AlgorithmVersion = "xorshift32-neon-scribble-v11-balanced-soft-lift";
         [Header("Web lab parity")]
         [Tooltip("绘制方式。两种模式共享区域、数量、速度、粗细和颜色，但各自只读取对应模式的专属参数。")]
         public MenuScribbleDrawMode drawMode = MenuScribbleDrawMode.Parallel;
@@ -105,7 +106,8 @@ namespace Miscalculation.HallMotion
                 && (data.algorithm.IndexOf("v7", StringComparison.OrdinalIgnoreCase) >= 0
                     || data.algorithm.IndexOf("v8", StringComparison.OrdinalIgnoreCase) >= 0
                     || data.algorithm.IndexOf("v9", StringComparison.OrdinalIgnoreCase) >= 0
-                    || data.algorithm.IndexOf("v10", StringComparison.OrdinalIgnoreCase) >= 0);
+                    || data.algorithm.IndexOf("v10", StringComparison.OrdinalIgnoreCase) >= 0
+                    || string.Equals(data.algorithm, AlgorithmVersion, StringComparison.Ordinal));
             if (supportsPressureAndSplatter)
             {
                 pressureVariation = data.pressureVariation;
@@ -114,7 +116,8 @@ namespace Miscalculation.HallMotion
                 splatterSpread = data.splatterSpread;
             }
             bool supportsSoftLift = !string.IsNullOrEmpty(data.algorithm)
-                && data.algorithm.IndexOf("v10", StringComparison.OrdinalIgnoreCase) >= 0;
+                && (data.algorithm.IndexOf("v10", StringComparison.OrdinalIgnoreCase) >= 0
+                    || string.Equals(data.algorithm, AlgorithmVersion, StringComparison.Ordinal));
             if (supportsSoftLift)
             {
                 tipResidualWidth = data.tipResidualWidth;
@@ -131,7 +134,8 @@ namespace Miscalculation.HallMotion
                      || data.algorithm.IndexOf("v7", StringComparison.OrdinalIgnoreCase) >= 0
                      || data.algorithm.IndexOf("v8", StringComparison.OrdinalIgnoreCase) >= 0
                      || data.algorithm.IndexOf("v9", StringComparison.OrdinalIgnoreCase) >= 0
-                     || data.algorithm.IndexOf("v10", StringComparison.OrdinalIgnoreCase) >= 0);
+                     || data.algorithm.IndexOf("v10", StringComparison.OrdinalIgnoreCase) >= 0
+                     || string.Equals(data.algorithm, AlgorithmVersion, StringComparison.Ordinal));
             if (data.turnAngleDeg > 0f || supportsZeroTurnAngle)
             {
                 turnAngleDeg = data.turnAngleDeg;

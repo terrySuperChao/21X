@@ -48,14 +48,14 @@ Shader "Miscalculation/UI/Neon Scribble"
             {
                 float4 positionOS : POSITION;
                 half4 color : COLOR;
-                float2 uv : TEXCOORD0;
+                float4 uv : TEXCOORD0;
             };
 
             struct Varyings
             {
                 float4 positionCS : SV_POSITION;
                 half4 color : COLOR;
-                float2 uv : TEXCOORD0;
+                float4 uv : TEXCOORD0;
             };
 
             Varyings Vert(Attributes input)
@@ -69,6 +69,14 @@ Shader "Miscalculation/UI/Neon Scribble"
 
             half4 Frag(Varyings input) : SV_Target
             {
+                // uv.z == 1 is the v1.0.9 explicit-coverage path. The CPU mesh already
+                // provides a one-screen-pixel alpha feather (and the wider glow falloff),
+                // so the shader must preserve the authored vertex alpha. Legacy rain and
+                // disabled-slash meshes keep uv.z == 0 and retain their original strip AA.
+                if (input.uv.z > 0.5h)
+                {
+                    return input.color;
+                }
                 half edge = 1.0h - smoothstep(0.58h, 1.0h, abs(input.uv.y * 2.0h - 1.0h));
                 return half4(input.color.rgb, input.color.a * edge);
             }

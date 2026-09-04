@@ -45,6 +45,10 @@ namespace Miscalculation.HallMotion
 
         private readonly List<StrokeData> strokes = new List<StrokeData>(16);
         private readonly List<SplatterData> splatters = new List<SplatterData>(30);
+        // Generation-only scratch storage. Fixed hard caps; no allocations or
+        // balance work are added to Update / OnPopulateMesh / TMP callbacks.
+        private readonly Vector2[] singleStrokeNodes = new Vector2[17];
+        private readonly Vector2[] singleStrokeInkSamples = new Vector2[16 * 24];
         private float animationStart;
         private bool animating;
         private bool instant;
@@ -57,9 +61,12 @@ namespace Miscalculation.HallMotion
         private uint currentSeed;
         private float collapseProgress = -1f;
         private Coroutine layoutRefreshRoutine;
+        private Coroutine visibilityRoutine;
         private bool queuedRegeneratePath;
         private bool refreshingLayout;
         private bool warnedInvalidLayout;
+        private float validationElapsedMilliseconds = -1f;
+        private Vector3 authoredLocalScale = Vector3.one;
 
         /// <summary>当前路径配置资产，仅供接入检查或工具读取。</summary>
         public MenuScribbleSettings Settings => settings;
@@ -84,6 +91,31 @@ namespace Miscalculation.HallMotion
 
         /// <summary>当前缓存的短寿命墨点数；标准配置受 30 颗硬上限约束。</summary>
         public int CurrentSplatterCount => splatters.Count;
+
+        /// <summary>最近一次 Canvas 重建生成的总顶点数，供性能与可见像素回归读取。</summary>
+        public int LastPopulatedVertexCount { get; private set; }
+
+        /// <summary>最近一次 Canvas 重建中属于可见墨点的顶点数；生成数量不再代替可见性验收。</summary>
+        public int LastVisibleSplatterVertexCount { get; private set; }
+
+        /// <summary>最近一次 Canvas 重建中处于生命周期可见区间的墨点数。</summary>
+        public int LastVisibleSplatterCount { get; private set; }
+
+        /// <summary>最近一次可见墨点的最大最终 Alpha，仅供固定帧视觉回归诊断。</summary>
+        public float LastVisibleSplatterMaxAlpha { get; private set; }
+
+        /// <summary>最近一次可见墨点的最大长轴直径，单位与 Web 控制台像素一致。</summary>
+        public float LastVisibleSplatterMaxDiameter { get; private set; }
+
+        /// <summary>
+        /// 固定程序化效果的取样毫秒，用于 Web/Unity 同 Seed、同时间点的视觉验收。
+        /// 传入负值恢复正常 Unscaled Time；该值不参与存档或正式交互。
+        /// </summary>
+        public void SetValidationElapsedMilliseconds(float value)
+        {
+            validationElapsedMilliseconds = HallMotionRuntimeGuards.IsFinite(value) ? value : -1f;
+            if (visible) SetVerticesDirty();
+        }
 
         /// <summary>
         /// 检查当前缓存路径和墨点是否全部为有限值。正式渲染前仍会逐顶点检查；该方法用于
@@ -132,7 +164,9 @@ namespace Miscalculation.HallMotion
             base.Awake();
             raycastTarget = false;
             color = Color.white;
+            authoredLocalScale = rectTransform.localScale;
             canvasRenderer.SetAlpha(0f);
+            canvasRenderer.cull = true;
         }
 
         protected override void OnEnable()
@@ -162,6 +196,14 @@ namespace Miscalculation.HallMotion
                 StopCoroutine(layoutRefreshRoutine);
                 layoutRefreshRoutine = null;
             }
+            if (visibilityRoutine != null)
+            {
+                StopCoroutine(visibilityRoutine);
+                visibilityRoutine = null;
+            }
+            rectTransform.localScale = authoredLocalScale;
+            canvasRenderer.SetAlpha(0f);
+            canvasRenderer.cull = true;
             base.OnDisable();
         }
 
@@ -223,7 +265,7 @@ namespace Miscalculation.HallMotion
             animationStart = Time.unscaledTime;
             animating = true;
             canvasRenderer.cull = false;
-            canvasRenderer.SetAlpha(1f);
+            StartVisibilityTransition(true, drawInstantly ? 0f : ResolveVisibilityDuration());
             SetVerticesDirty();
         }
 
@@ -231,10 +273,70 @@ namespace Miscalculation.HallMotion
         public void Hide(float duration = 0.12f)
         {
             animating = false;
-            visible = false;
             monochrome = false;
             collapseProgress = -1f;
-            CrossFadeAlpha(0f, Mathf.Max(0f, duration), true);
+            StartVisibilityTransition(false, Mathf.Max(0f, duration));
+        }
+
+        private float ResolveVisibilityDuration()
+        {
+            return interactionSettings != null ? interactionSettings.hoverExitSeconds : 0.15f;
+        }
+
+        /// <summary>
+        /// Mirrors the Web canvas transition exactly: the scribble enters from 86% horizontal
+        /// scale while fading from transparent, and leaves by reversing that same motion. The
+        /// effect RectTransform is never a raycast target, so this visual scale cannot alter the
+        /// Button hitbox.
+        /// </summary>
+        private void StartVisibilityTransition(bool show, float duration)
+        {
+            if (visibilityRoutine != null)
+            {
+                StopCoroutine(visibilityRoutine);
+                visibilityRoutine = null;
+            }
+
+            canvasRenderer.cull = false;
+            if (duration <= 0f || !isActiveAndEnabled)
+            {
+                ApplyVisibility(show ? 1f : 0f);
+                visible = show;
+                canvasRenderer.cull = !show;
+                return;
+            }
+
+            visibilityRoutine = StartCoroutine(VisibilityTween(show, duration));
+        }
+
+        private IEnumerator VisibilityTween(bool show, float duration)
+        {
+            float from = Mathf.Clamp01(canvasRenderer.GetAlpha());
+            float to = show ? 1f : 0f;
+            float elapsed = 0f;
+            while (elapsed < duration)
+            {
+                float t = Mathf.Clamp01(elapsed / duration);
+                float eased = 1f - Mathf.Pow(1f - t, 3f);
+                ApplyVisibility(Mathf.LerpUnclamped(from, to, eased));
+                elapsed += Time.unscaledDeltaTime;
+                yield return null;
+            }
+
+            ApplyVisibility(to);
+            visible = show;
+            canvasRenderer.cull = !show;
+            visibilityRoutine = null;
+        }
+
+        private void ApplyVisibility(float amount)
+        {
+            float value = Mathf.Clamp01(amount);
+            canvasRenderer.SetAlpha(value);
+            rectTransform.localScale = new Vector3(
+                authoredLocalScale.x * Mathf.Lerp(0.86f, 1f, value),
+                authoredLocalScale.y,
+                authoredLocalScale.z);
         }
 
         /// <summary>
@@ -252,7 +354,6 @@ namespace Miscalculation.HallMotion
             collapseProgress = -1f;
             visible = true;
             canvasRenderer.cull = false;
-            canvasRenderer.SetAlpha(1f);
             SetVerticesDirty();
         }
 
@@ -268,7 +369,6 @@ namespace Miscalculation.HallMotion
             visible = true;
             animating = false;
             canvasRenderer.cull = false;
-            canvasRenderer.SetAlpha(1f);
             SetVerticesDirty();
         }
 
@@ -508,6 +608,11 @@ namespace Miscalculation.HallMotion
         protected override void OnPopulateMesh(VertexHelper vertexHelper)
         {
             vertexHelper.Clear();
+            LastPopulatedVertexCount = 0;
+            LastVisibleSplatterVertexCount = 0;
+            LastVisibleSplatterCount = 0;
+            LastVisibleSplatterMaxAlpha = 0f;
+            LastVisibleSplatterMaxDiameter = 0f;
             if (settings == null
                 || strokes.Count == 0
                 || !HallMotionRuntimeGuards.IsFinite(currentWidth)
@@ -518,21 +623,30 @@ namespace Miscalculation.HallMotion
                 return;
             }
 
-            float elapsedMs = instant ? animationDurationSeconds * 1000f + 1f : (Time.unscaledTime - animationStart) * 1000f;
+            float elapsedMs = validationElapsedMilliseconds >= 0f
+                ? validationElapsedMilliseconds
+                : instant ? animationDurationSeconds * 1000f + 1f : (Time.unscaledTime - animationStart) * 1000f;
             float collapse = collapseProgress >= 0f ? collapseProgress : 0f;
             AddVisibleStrips(vertexHelper, elapsedMs, true, collapse);
-            if (collapseProgress < 0f && !monochrome) AddVisibleSplatters(vertexHelper, elapsedMs);
+            if (collapseProgress < 0f && !monochrome)
+            {
+                int beforeSplatters = vertexHelper.currentVertCount;
+                AddVisibleSplatters(vertexHelper, elapsedMs);
+                LastVisibleSplatterVertexCount = vertexHelper.currentVertCount - beforeSplatters;
+            }
             AddVisibleStrips(vertexHelper, elapsedMs, false, collapse);
+            LastPopulatedVertexCount = vertexHelper.currentVertCount;
         }
 
         private void AddVisibleStrips(VertexHelper vertexHelper, float elapsedMs, bool glowPass, float collapse)
         {
-            float breathMultiplier = 1f;
+            float brightness = 1f;
             if (!animating && !monochrome && interactionSettings != null && interactionSettings.glowBreathAmount > 0f)
             {
                 float period = Mathf.Max(0.1f, interactionSettings.glowBreathPeriodSeconds);
-                float phase = (Time.unscaledTime - settledAt) / period * Mathf.PI * 2f;
-                breathMultiplier += interactionSettings.glowBreathAmount * (0.5f + 0.5f * Mathf.Sin(phase));
+                float cycle = Mathf.Repeat((Time.unscaledTime - settledAt) / period, 1f);
+                float triangle = cycle <= 0.5f ? cycle * 2f : (1f - cycle) * 2f;
+                brightness += interactionSettings.glowBreathAmount * SmoothStep01(triangle);
             }
 
             for (int i = 0; i < strokes.Count; i++)
@@ -548,13 +662,23 @@ namespace Miscalculation.HallMotion
                 if (progress <= 0.0001f || collapse >= 0.999f) continue;
                 if (glowPass)
                 {
-                    Color glowColor = ResolveStrokeColor(stroke);
+                    Color glowColor = ApplyBrightness(ResolveStrokeColor(stroke), brightness);
                     glowColor.a *= 0.12f;
-                    AddPressureStrip(vertexHelper, stroke, 0f, progress, stroke.width + settings.glow * 0.28f * breathMultiplier, glowColor, collapse, 1f + settings.glowFadeAdvance);
+                    AddPressureStrip(
+                        vertexHelper,
+                        stroke,
+                        0f,
+                        progress,
+                        stroke.width + settings.glow * 0.28f,
+                        glowColor,
+                        collapse,
+                        1f + settings.glowFadeAdvance,
+                        true,
+                        settings.glow);
                 }
                 else
                 {
-                    Color coreColor = ResolveStrokeColor(stroke);
+                    Color coreColor = ApplyBrightness(ResolveStrokeColor(stroke), brightness);
                     if (monochrome)
                     {
                         float outlineWidth = stroke.width + Mathf.Max(2.4f, stroke.width * 0.8f);
@@ -580,9 +704,26 @@ namespace Miscalculation.HallMotion
                 float fade = 1f - Mathf.Max(0f, (progress - 0.42f) / 0.58f);
                 Color splatterColor = ResolveColor(splatter.color, splatter.colorRole);
                 splatterColor.a *= Mathf.Pow(Mathf.Max(0f, appear * fade), 0.72f) * 0.92f;
-                float animatedRadius = splatter.radius * (0.92f + 0.08f * Mathf.Sin(progress * Mathf.PI));
-                AddEllipse(vertexHelper, splatter.position, animatedRadius, splatter.stretch, splatter.rotation, splatterColor);
+                // Match Canvas2D exactly: X keeps the authored radius and stretch; only the
+                // short axis breathes from 0.58R to 0.76R over the splatter lifetime.
+                float radiusX = splatter.radius * splatter.stretch;
+                float radiusY = splatter.radius * (0.58f + 0.18f * Mathf.Sin(progress * Mathf.PI));
+                float splatterBlur = Mathf.Min(5f, settings.glow * 0.28f);
+                LastVisibleSplatterCount++;
+                LastVisibleSplatterMaxAlpha = Mathf.Max(LastVisibleSplatterMaxAlpha, splatterColor.a);
+                LastVisibleSplatterMaxDiameter = Mathf.Max(
+                    LastVisibleSplatterMaxDiameter,
+                    Mathf.Max(radiusX, radiusY) * 2f + splatterBlur * 2.5f);
+                AddFeatheredEllipse(vertexHelper, splatter.position, radiusX, radiusY, splatter.rotation, splatterColor, splatterBlur);
             }
+        }
+
+        private static Color ApplyBrightness(Color color, float brightness)
+        {
+            color.r *= brightness;
+            color.g *= brightness;
+            color.b *= brightness;
+            return color;
         }
 
         private void Generate(uint seed)
@@ -724,7 +865,7 @@ namespace Miscalculation.HallMotion
 
         private void GenerateSingleStroke(ref XorShift32 random, float width, float height)
         {
-            int passCount = Mathf.Max(2, settings.lineCount);
+            int passCount = Mathf.Clamp(settings.lineCount, 2, 16);
             float startDelayMs = settings.drawDurationMs * 0.02f;
             float passDurationMs = settings.drawDurationMs * 0.96f / passCount;
             float leftMin = width * 0.02f;
@@ -736,26 +877,38 @@ namespace Miscalculation.HallMotion
             float angleReach = Mathf.Tan(maxAngleRadians) * minimumHorizontalSpan;
             float activeHalfHeight = Mathf.Min(height * 0.36f, Mathf.Max(0f, angleReach));
             float centerY = height * 0.5f;
-            float activeTop = centerY - activeHalfHeight;
-            float activeBottom = centerY + activeHalfHeight;
-            Vector2 previousEnd = new Vector2(
-                leftMin + (float)random.Next() * (leftMax - leftMin),
-                activeTop
-            );
+            // v11 / scribble.js: stratify the complete path before applying the
+            // angle constraint. Work in Web coordinates (Y down) until the final
+            // conversion below. The first left point is highest, not necessarily
+            // farthest left or at the top boundary of the configured rectangle.
+            for (int i = 0; i <= passCount; i++)
+            {
+                bool left = i % 2 == 0;
+                singleStrokeNodes[i] = new Vector2(
+                    (left ? leftMin : rightMin) + (float)random.Next() * (leftMax - leftMin),
+                    centerY + ((i + 0.2f + (float)random.Next() * 0.6f) / (passCount + 1) * 2f - 1f) * activeHalfHeight);
+            }
+            // Shuffle interior heights only. X always alternates between sides;
+            // first/last strata stay at the extremes, so no vertical connector.
+            for (int i = passCount - 1; i > 1; i--)
+            {
+                int j = 1 + (int)(random.Next() * i);
+                float y = singleStrokeNodes[i].y;
+                singleStrokeNodes[i].y = singleStrokeNodes[j].y;
+                singleStrokeNodes[j].y = y;
+            }
+            float angleScale = 1f;
+            for (int i = 1; i <= passCount; i++)
+            {
+                float dy = Mathf.Abs(singleStrokeNodes[i].y - singleStrokeNodes[i - 1].y);
+                if (dy > 1e-9f) angleScale = Mathf.Min(angleScale,
+                    Mathf.Tan(maxAngleRadians) * Mathf.Abs(singleStrokeNodes[i].x - singleStrokeNodes[i - 1].x) / dy);
+            }
+            for (int i = 0; i <= passCount; i++)
+                singleStrokeNodes[i].y = centerY + (singleStrokeNodes[i].y - centerY) * angleScale;
 
             for (int passIndex = 0; passIndex < passCount; passIndex++)
             {
-                bool movingRight = passIndex % 2 == 0;
-                float targetX = movingRight
-                    ? rightMin + (float)random.Next() * (rightMax - rightMin)
-                    : leftMin + (float)random.Next() * (leftMax - leftMin);
-                float maxDeltaY = Mathf.Tan(maxAngleRadians) * Mathf.Abs(targetX - previousEnd.x);
-                float allowedTop = Mathf.Max(activeTop, previousEnd.y - maxDeltaY);
-                float allowedBottom = Mathf.Min(activeBottom, previousEnd.y + maxDeltaY);
-                float desiredTargetY = passIndex < 2
-                    ? centerY + ((float)random.Next() - 0.5f) * activeHalfHeight * 0.24f
-                    : centerY + ((float)random.Next() + (float)random.Next() - 1f) * activeHalfHeight;
-                float targetY = Mathf.Clamp(desiredTargetY, allowedTop, allowedBottom);
                 Color strokeColor = PickColor(ref random, out StrokeColorRole colorRole);
                 StrokeData stroke = new StrokeData
                 {
@@ -768,17 +921,72 @@ namespace Miscalculation.HallMotion
                     taperEnd = passIndex == passCount - 1,
                     points = new List<Vector2>(2)
                 };
-                stroke.points.Add(new Vector2(previousEnd.x - width * 0.5f, height * 0.5f - previousEnd.y));
-                stroke.points.Add(new Vector2(targetX - width * 0.5f, height * 0.5f - targetY));
+                stroke.points.Add(singleStrokeNodes[passIndex]);
+                stroke.points.Add(singleStrokeNodes[passIndex + 1]);
                 stroke.pressurePhase = (float)random.Next() * Mathf.PI * 2f;
                 stroke.pressureFrequency = 1.25f + (float)random.Next() * 2.25f;
-                previousEnd = new Vector2(targetX, targetY);
                 if (HallMotionRuntimeGuards.IsFinite(stroke.points[0])
                     && HallMotionRuntimeGuards.IsFinite(stroke.points[1]))
                 {
                     strokes.Add(stroke);
                 }
             }
+            BalanceSingleStroke(centerY, activeHalfHeight, 0.47f + (float)random.Next() * 0.06f);
+            for (int i = 0; i < strokes.Count; i++)
+                for (int p = 0; p < 2; p++)
+                {
+                    Vector2 point = strokes[i].points[p];
+                    strokes[i].points[p] = new Vector2(point.x - width * 0.5f, centerY - point.y);
+                }
+        }
+
+        /// <summary>
+        /// Match Web balanceSingleStroke: at most 384 weighted samples and 12
+        /// bounded searches per generation. Include thickness, segment length
+        /// and soft-lift opacity, not just endpoint counts. This is not a pixel
+        /// analysis and does not depend on text/font/language or change hitboxes.
+        /// </summary>
+        private void BalanceSingleStroke(float centerY, float activeHalfHeight, float upperShare)
+        {
+            int count = 0;
+            float total = 0f, low = float.PositiveInfinity, high = float.NegativeInfinity;
+            for (int i = 0; i < strokes.Count; i++)
+            {
+                StrokeData stroke = strokes[i];
+                Vector2 a = stroke.points[0], b = stroke.points[1];
+                float length = Vector2.Distance(a, b);
+                low = Mathf.Min(low, Mathf.Min(a.y, b.y));
+                high = Mathf.Max(high, Mathf.Max(a.y, b.y));
+                for (int s = 0; s < 24; s++)
+                {
+                    float t = (s + 0.5f) / 24f;
+                    float weight = length * stroke.width * PressureAt(stroke, t) * TipOpacityAt(stroke, t);
+                    singleStrokeInkSamples[count++] = new Vector2(a.y + (b.y - a.y) * t, weight);
+                    total += weight;
+                }
+            }
+            if (!(total > 0f) || !(high > low)) return;
+            float originalLow = low, originalHigh = high;
+            for (int step = 0; step < 12; step++)
+            {
+                float middle = (low + high) * 0.5f, above = 0f;
+                for (int s = 0; s < count; s++)
+                    if (singleStrokeInkSamples[s].x < middle) above += singleStrokeInkSamples[s].y;
+                if (above < total * upperShare) low = middle;
+                else high = middle;
+            }
+            float balanceY = (low + high) * 0.5f;
+            float radius = Mathf.Max(balanceY - originalLow, originalHigh - balanceY);
+            float fit = radius > 1e-9f ? Mathf.Min(1f, activeHalfHeight / radius) : 1f;
+            // One affine translation + shrink preserves all angles, continuity
+            // and the highest-left start. Never clamp individual Y coordinates.
+            for (int i = 0; i < strokes.Count; i++)
+                for (int p = 0; p < 2; p++)
+                {
+                    Vector2 point = strokes[i].points[p];
+                    point.y = centerY + (point.y - balanceY) * fit;
+                    strokes[i].points[p] = point;
+                }
         }
 
         private void GenerateSplatters(uint seed)
@@ -860,7 +1068,17 @@ namespace Miscalculation.HallMotion
             return Vector2.Lerp(stroke.points[Mathf.Max(0, index)], stroke.points[Mathf.Min(stroke.points.Count - 1, index + 1)], fraction);
         }
 
-        private void AddPressureStrip(VertexHelper vertexHelper, StrokeData stroke, float startProgress, float endProgress, float width, Color color, float collapse, float tipFadeScale = 1f)
+        private void AddPressureStrip(
+            VertexHelper vertexHelper,
+            StrokeData stroke,
+            float startProgress,
+            float endProgress,
+            float width,
+            Color color,
+            float collapse,
+            float tipFadeScale = 1f,
+            bool glowPass = false,
+            float glowBlurPixels = 0f)
         {
             if (stroke == null
                 || stroke.points == null
@@ -878,6 +1096,8 @@ namespace Miscalculation.HallMotion
             if (collapseScale <= 0.001f) return;
             int sampleCount = Mathf.Max(8, Mathf.CeilToInt((endProgress - startProgress) * 96f) + 1);
             int baseVertex = vertexHelper.currentVertCount;
+            int laneCount = glowPass ? 8 : 4;
+            float screenPixel = ScreenPixelInLocalUnits();
             UIVertex vertex = UIVertex.simpleVert;
 
             for (int i = 0; i < sampleCount; i++)
@@ -903,32 +1123,108 @@ namespace Miscalculation.HallMotion
                 }
                 Color vertexColor = color;
                 vertexColor.a *= TipOpacityAt(stroke, progress, tipFadeScale);
-                vertex.color = vertexColor;
-                vertex.position = point + normal * halfWidth;
-                vertex.uv0 = new Vector2(local, 0f);
-                vertexHelper.AddVert(vertex);
-                vertex.position = point - normal * halfWidth;
-                vertex.uv0 = new Vector2(local, 1f);
-                vertexHelper.AddVert(vertex);
+                if (glowPass)
+                {
+                    float blur = Mathf.Max(screenPixel, glowBlurPixels);
+                    AddCoverageVertex(vertexHelper, ref vertex, point, normal, halfWidth + blur * 1.25f, ClearAlpha(vertexColor), local, 0f);
+                    AddCoverageVertex(vertexHelper, ref vertex, point, normal, halfWidth + blur * 0.72f, ScaleAlpha(vertexColor, 0.10f), local, 0.14f);
+                    AddCoverageVertex(vertexHelper, ref vertex, point, normal, halfWidth + blur * 0.32f, ScaleAlpha(vertexColor, 0.38f), local, 0.28f);
+                    AddCoverageVertex(vertexHelper, ref vertex, point, normal, halfWidth, vertexColor, local, 0.42f);
+                    AddCoverageVertex(vertexHelper, ref vertex, point, normal, -halfWidth, vertexColor, local, 0.58f);
+                    AddCoverageVertex(vertexHelper, ref vertex, point, normal, -(halfWidth + blur * 0.32f), ScaleAlpha(vertexColor, 0.38f), local, 0.72f);
+                    AddCoverageVertex(vertexHelper, ref vertex, point, normal, -(halfWidth + blur * 0.72f), ScaleAlpha(vertexColor, 0.10f), local, 0.86f);
+                    AddCoverageVertex(vertexHelper, ref vertex, point, normal, -(halfWidth + blur * 1.25f), ClearAlpha(vertexColor), local, 1f);
+                }
+                else
+                {
+                    // Canvas2D lineWidth describes the complete visible core. Keep the one-pixel
+                    // coverage ramp centered on that boundary so a 3px Web stroke remains a 3px
+                    // Unity stroke instead of losing 42% of its width inside the shader.
+                    float innerHalf = Mathf.Max(0f, halfWidth - screenPixel * 0.5f);
+                    float outerHalf = halfWidth + screenPixel * 0.5f;
+                    AddCoverageVertex(vertexHelper, ref vertex, point, normal, outerHalf, ClearAlpha(vertexColor), local, 0f);
+                    AddCoverageVertex(vertexHelper, ref vertex, point, normal, innerHalf, vertexColor, local, 0.333f);
+                    AddCoverageVertex(vertexHelper, ref vertex, point, normal, -innerHalf, vertexColor, local, 0.667f);
+                    AddCoverageVertex(vertexHelper, ref vertex, point, normal, -outerHalf, ClearAlpha(vertexColor), local, 1f);
+                }
             }
 
             for (int i = 0; i < sampleCount - 1; i++)
             {
-                int start = baseVertex + i * 2;
-                vertexHelper.AddTriangle(start, start + 2, start + 1);
-                vertexHelper.AddTriangle(start + 2, start + 3, start + 1);
+                int current = baseVertex + i * laneCount;
+                int next = current + laneCount;
+                for (int lane = 0; lane < laneCount - 1; lane++)
+                {
+                    vertexHelper.AddTriangle(current + lane, next + lane, current + lane + 1);
+                    vertexHelper.AddTriangle(next + lane, next + lane + 1, current + lane + 1);
+                }
             }
 
-            if (!stroke.taperStart && startProgress <= 0.0001f)
+            // Canvas2D uses round caps, but its shadow is composited as part of the same stroke.
+            // Drawing a second full blurred disc at every Unity single-stroke turnaround makes
+            // those shared endpoints brighter and wider than the Web reference. Keep round core
+            // joins (the next pass starts at the exact same point), while only giving the glow a
+            // cap at the currently advancing pen head. Settled interior turns therefore stay
+            // smooth without becoming a row of luminous beads.
+            if (!glowPass && !stroke.taperStart && startProgress <= 0.0001f)
             {
                 float radius = width * PressureAt(stroke, startProgress) * 0.5f * collapseScale;
-                AddCircle(vertexHelper, SampleStrokePoint(stroke, startProgress) * collapseScale, radius, color);
+                AddFeatheredCircle(vertexHelper, SampleStrokePoint(stroke, startProgress) * collapseScale, radius, color, 0f);
             }
-            if (endProgress < 0.999f || !stroke.taperEnd)
+            bool advancingHead = endProgress < 0.999f;
+            if (advancingHead || (!glowPass && !stroke.taperEnd))
             {
                 float radius = width * PressureAt(stroke, endProgress) * 0.5f * collapseScale;
-                AddCircle(vertexHelper, SampleStrokePoint(stroke, endProgress) * collapseScale, radius, color);
+                AddFeatheredCircle(vertexHelper, SampleStrokePoint(stroke, endProgress) * collapseScale, radius, color, glowPass ? glowBlurPixels : 0f);
             }
+        }
+
+        private float ScreenPixelInLocalUnits()
+        {
+            float canvasScale = canvas != null ? Mathf.Abs(canvas.scaleFactor) : 1f;
+            float scaleInsideCanvas = 1f;
+            if (canvas != null)
+            {
+                // Canvas root world scale is an implementation detail in Screen Space Camera
+                // mode and must not be counted as UI pixel scaling. Convert one local Y unit to
+                // Canvas space so only authored parent/press scaling remains. Scribble paths are
+                // predominantly horizontal, therefore their AA feather lies on this Y axis.
+                Vector3 canvasSpaceUnit = canvas.transform.InverseTransformVector(rectTransform.TransformVector(Vector3.up));
+                if (HallMotionRuntimeGuards.IsFinite(canvasSpaceUnit))
+                {
+                    scaleInsideCanvas = Mathf.Max(0.0001f, canvasSpaceUnit.magnitude);
+                }
+            }
+            float pixelsPerLocalUnit = Mathf.Max(0.0001f, canvasScale * scaleInsideCanvas);
+            return 1f / pixelsPerLocalUnit;
+        }
+
+        private static void AddCoverageVertex(
+            VertexHelper helper,
+            ref UIVertex vertex,
+            Vector2 point,
+            Vector2 normal,
+            float offset,
+            Color color,
+            float along,
+            float across)
+        {
+            vertex.position = point + normal * offset;
+            vertex.color = color;
+            vertex.uv0 = new Vector4(along, across, 1f, 0f);
+            helper.AddVert(vertex);
+        }
+
+        private static Color ScaleAlpha(Color color, float multiplier)
+        {
+            color.a *= multiplier;
+            return color;
+        }
+
+        private static Color ClearAlpha(Color color)
+        {
+            color.a = 0f;
+            return color;
         }
 
         private void AddDryBrushFibers(VertexHelper vertexHelper, StrokeData stroke, float progress, float width, Color color, float collapse)
@@ -980,7 +1276,7 @@ namespace Miscalculation.HallMotion
             if (stroke.taperEnd && progress > 1f - endRange) AddEndpointFibers(false);
         }
 
-        private static void AddFiberQuad(VertexHelper helper, Vector2 start, Vector2 end, float width, Color startColor, Color endColor)
+        private void AddFiberQuad(VertexHelper helper, Vector2 start, Vector2 end, float width, Color startColor, Color endColor)
         {
             if (!HallMotionRuntimeGuards.IsFinite(start)
                 || !HallMotionRuntimeGuards.IsFinite(end)
@@ -990,28 +1286,28 @@ namespace Miscalculation.HallMotion
             }
             Vector2 direction = (end - start).normalized;
             if (direction.sqrMagnitude < 0.001f || width <= 0.01f) return;
-            Vector2 normal = new Vector2(-direction.y, direction.x) * (width * 0.5f);
+            Vector2 normalDirection = new Vector2(-direction.y, direction.x);
+            float screenPixel = ScreenPixelInLocalUnits();
+            float innerHalf = Mathf.Max(0f, width * 0.5f - screenPixel * 0.5f);
+            float outerHalf = width * 0.5f + screenPixel * 0.5f;
             int baseVertex = helper.currentVertCount;
             UIVertex vertex = UIVertex.simpleVert;
-            vertex.color = startColor;
-            vertex.position = start + normal;
-            vertex.uv0 = new Vector2(0f, 0f);
-            helper.AddVert(vertex);
-            vertex.position = start - normal;
-            vertex.uv0 = new Vector2(0f, 1f);
-            helper.AddVert(vertex);
-            vertex.color = endColor;
-            vertex.position = end + normal;
-            vertex.uv0 = new Vector2(1f, 0f);
-            helper.AddVert(vertex);
-            vertex.position = end - normal;
-            vertex.uv0 = new Vector2(1f, 1f);
-            helper.AddVert(vertex);
-            helper.AddTriangle(baseVertex, baseVertex + 2, baseVertex + 1);
-            helper.AddTriangle(baseVertex + 2, baseVertex + 3, baseVertex + 1);
+            AddCoverageVertex(helper, ref vertex, start, normalDirection, outerHalf, ClearAlpha(startColor), 0f, 0f);
+            AddCoverageVertex(helper, ref vertex, start, normalDirection, innerHalf, startColor, 0f, 0.333f);
+            AddCoverageVertex(helper, ref vertex, start, normalDirection, -innerHalf, startColor, 0f, 0.667f);
+            AddCoverageVertex(helper, ref vertex, start, normalDirection, -outerHalf, ClearAlpha(startColor), 0f, 1f);
+            AddCoverageVertex(helper, ref vertex, end, normalDirection, outerHalf, ClearAlpha(endColor), 1f, 0f);
+            AddCoverageVertex(helper, ref vertex, end, normalDirection, innerHalf, endColor, 1f, 0.333f);
+            AddCoverageVertex(helper, ref vertex, end, normalDirection, -innerHalf, endColor, 1f, 0.667f);
+            AddCoverageVertex(helper, ref vertex, end, normalDirection, -outerHalf, ClearAlpha(endColor), 1f, 1f);
+            for (int lane = 0; lane < 3; lane++)
+            {
+                helper.AddTriangle(baseVertex + lane, baseVertex + 4 + lane, baseVertex + lane + 1);
+                helper.AddTriangle(baseVertex + 4 + lane, baseVertex + 5 + lane, baseVertex + lane + 1);
+            }
         }
 
-        private static void AddCircle(VertexHelper helper, Vector2 center, float radius, Color color)
+        private void AddFeatheredCircle(VertexHelper helper, Vector2 center, float radius, Color color, float blurPixels)
         {
             if (!HallMotionRuntimeGuards.IsFinite(center)
                 || !HallMotionRuntimeGuards.IsFinite(radius)
@@ -1019,48 +1315,99 @@ namespace Miscalculation.HallMotion
             {
                 return;
             }
-            const int sides = 12;
-            int centerIndex = helper.currentVertCount;
-            UIVertex vertex = UIVertex.simpleVert;
-            vertex.color = color;
-            vertex.position = center;
-            helper.AddVert(vertex);
-            for (int i = 0; i <= sides; i++)
+            float screenPixel = ScreenPixelInLocalUnits();
+            if (blurPixels > 0f)
             {
-                float angle = i / (float)sides * Mathf.PI * 2f;
-                vertex.position = center + new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)) * radius;
-                helper.AddVert(vertex);
+                AddRadialDisc(helper, center, radius, radius, 0f, color, Mathf.Max(screenPixel, blurPixels), 18);
             }
-            for (int i = 0; i < sides; i++) helper.AddTriangle(centerIndex, centerIndex + i + 1, centerIndex + i + 2);
+            else
+            {
+                AddRadialDisc(helper, center, radius, radius, 0f, color, screenPixel, 16);
+            }
         }
 
-        private static void AddEllipse(VertexHelper helper, Vector2 center, float radius, float stretch, float rotation, Color color)
+        private void AddFeatheredEllipse(VertexHelper helper, Vector2 center, float radiusX, float radiusY, float rotation, Color color, float blurPixels)
         {
             if (!HallMotionRuntimeGuards.IsFinite(center)
-                || !HallMotionRuntimeGuards.IsFinite(radius)
-                || !HallMotionRuntimeGuards.IsFinite(stretch)
+                || !HallMotionRuntimeGuards.IsFinite(radiusX)
+                || !HallMotionRuntimeGuards.IsFinite(radiusY)
                 || !HallMotionRuntimeGuards.IsFinite(rotation)
-                || radius <= 0f
-                || stretch <= 0f)
+                || radiusX <= 0f
+                || radiusY <= 0f)
             {
                 return;
             }
-            const int sides = 10;
+            AddRadialDisc(
+                helper,
+                center,
+                radiusX,
+                radiusY,
+                rotation,
+                color,
+                Mathf.Max(ScreenPixelInLocalUnits(), blurPixels),
+                18);
+        }
+
+        private static void AddRadialDisc(
+            VertexHelper helper,
+            Vector2 center,
+            float radiusX,
+            float radiusY,
+            float rotation,
+            Color color,
+            float featherOrBlur,
+            int sides)
+        {
             int centerIndex = helper.currentVertCount;
             UIVertex vertex = UIVertex.simpleVert;
             vertex.color = color;
             vertex.position = center;
+            vertex.uv0 = new Vector4(0.5f, 0.5f, 1f, 0f);
             helper.AddVert(vertex);
+
+            bool wideGlow = featherOrBlur > 1.05f;
+            int ringCount = wideGlow ? 4 : 2;
+            int firstRingStart = helper.currentVertCount;
             float cos = Mathf.Cos(rotation);
             float sin = Mathf.Sin(rotation);
-            for (int i = 0; i <= sides; i++)
+
+            for (int ring = 0; ring < ringCount; ring++)
             {
-                float angle = i / (float)sides * Mathf.PI * 2f;
-                Vector2 local = new Vector2(Mathf.Cos(angle) * radius * stretch, Mathf.Sin(angle) * radius * 0.68f);
-                vertex.position = center + new Vector2(local.x * cos - local.y * sin, local.x * sin + local.y * cos);
-                helper.AddVert(vertex);
+                float ringFactor = wideGlow
+                    ? ring == 0 ? 0f : ring == 1 ? 0.32f : ring == 2 ? 0.72f : 1.25f
+                    : ring == 0 ? -0.5f : 0.5f;
+                float alphaFactor = wideGlow
+                    ? ring == 0 ? 1f : ring == 1 ? 0.38f : ring == 2 ? 0.10f : 0f
+                    : ring == 0 ? 1f : 0f;
+                float ringX = Mathf.Max(0f, radiusX + featherOrBlur * ringFactor);
+                float ringY = Mathf.Max(0f, radiusY + featherOrBlur * ringFactor);
+                Color ringColor = ScaleAlpha(color, alphaFactor);
+                for (int side = 0; side <= sides; side++)
+                {
+                    float angle = side / (float)sides * Mathf.PI * 2f;
+                    Vector2 local = new Vector2(Mathf.Cos(angle) * ringX, Mathf.Sin(angle) * ringY);
+                    vertex.position = center + new Vector2(local.x * cos - local.y * sin, local.x * sin + local.y * cos);
+                    vertex.color = ringColor;
+                    vertex.uv0 = new Vector4(side / (float)sides, ring / (float)Mathf.Max(1, ringCount - 1), 1f, 0f);
+                    helper.AddVert(vertex);
+                }
             }
-            for (int i = 0; i < sides; i++) helper.AddTriangle(centerIndex, centerIndex + i + 1, centerIndex + i + 2);
+
+            for (int side = 0; side < sides; side++)
+            {
+                helper.AddTriangle(centerIndex, firstRingStart + side, firstRingStart + side + 1);
+            }
+            int verticesPerRing = sides + 1;
+            for (int ring = 0; ring < ringCount - 1; ring++)
+            {
+                int inner = firstRingStart + ring * verticesPerRing;
+                int outer = inner + verticesPerRing;
+                for (int side = 0; side < sides; side++)
+                {
+                    helper.AddTriangle(inner + side, outer + side, inner + side + 1);
+                    helper.AddTriangle(outer + side, outer + side + 1, inner + side + 1);
+                }
+            }
         }
 
         private sealed class StrokeData

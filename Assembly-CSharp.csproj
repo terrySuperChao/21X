@@ -1404,6 +1404,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Assembly-CSharp-firstpass.csproj" />
+    <ProjectReference Include="Miscalculation.HallMotion.Editor.csproj" />
     <ProjectReference Include="Miscalculation.HallMotion.csproj" />
   </ItemGroup>
   <Import Project="Sdk.targets" Sdk="Microsoft.NET.Sdk" />

@@ -6,7 +6,7 @@ namespace Miscalculation.HallMotion
     [CreateAssetMenu(fileName = "HallMotionSettings", menuName = "Miscalculation/Hall Motion Settings")]
     public sealed class HallMotionSettings : ScriptableObject
     {
-        public const string MotionVersion = "1.0.7";
+        public const string MotionVersion = "1.0.13";
 
         [Header("Web lab parity")]
         [Tooltip("所有背景连续动效的总体幅度倍率，不改变菜单或雨层。")]

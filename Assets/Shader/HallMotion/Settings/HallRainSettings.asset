@@ -9,19 +9,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f6d37c4d096e89940902e57177510e8d, type: 3}
+  m_Script: {fileID: 11500000, guid: 90135de2f51a0497683baec3520b36d5, type: 3}
   m_Name: HallRainSettings
   m_EditorClassIdentifier: 
   seed: 1997
-  density: 0.38
+  density: 0.3
   nearRatio: 0.28
   length: 24
-  speed: 460
+  speed: 300
   angleDeg: 9
-  wind: 35
+  wind: 30
   opacity: 0.24
   glow: 1.5
-  menuProtect: 0.76
+  menuProtect: 0.3
   coreProtect: 0.48
-  gustChance: 0.18
-  gustStrength: 0.3
+  gustChance: 0.03
+  gustStrength: 0.09

@@ -38,6 +38,13 @@ namespace Miscalculation.HallMotion.Editor
         public static Result ValidateOpenScenes(bool logToConsole)
         {
             Result result = new Result();
+            // Web Canvas2D 使用 sRGB 色值和浏览器混合。v1.0.9 的逐像素比对工程
+            // 因此固定为 Gamma；Linear 项目仍可运行，但必须单独确认辉光与半透明
+            // 叠加的色彩空间差异，不应把该差异误判为 JSON 未导入。
+            if (PlayerSettings.colorSpace != ColorSpace.Gamma)
+            {
+                result.warnings.Add("Player Color Space 不是 Gamma；Web 逐像素基准为 sRGB/Gamma，Linear 项目需额外验收霓虹辉光和半透明叠加。");
+            }
             MenuScribbleHover[] adapters = Object.FindObjectsOfType<MenuScribbleHover>(true);
             for (int i = 0; i < adapters.Length; i++)
             {
@@ -93,7 +100,6 @@ namespace Miscalculation.HallMotion.Editor
             TMP_Text label = adapter.Label;
             RectTransform interactionRoot = adapter.InteractionVisualRoot;
             ProceduralNeonScribbleGraphic scribble = adapter.Scribble;
-            ProceduralDisabledSlashGraphic slash = adapter.DisabledSlash;
 
             if (button == null)
             {
@@ -151,26 +157,6 @@ namespace Miscalculation.HallMotion.Editor
                 if (scribble.Settings == null || scribble.InteractionSettings == null)
                 {
                     result.errors.Add($"{path}: Scribble Settings 或 Interaction Settings 未绑定。");
-                }
-            }
-
-            if (slash == null)
-            {
-                result.warnings.Add($"{path}: DisabledSlash 未显式绑定；运行时会自动创建，但正式 Prefab 建议保存明确引用。");
-            }
-            else
-            {
-                if (slash.raycastTarget)
-                {
-                    result.errors.Add($"{path}: DisabledSlash Raycast Target 必须关闭。");
-                }
-                if (slash.TextTarget == null && slash.TextBoundsFallback == null)
-                {
-                    result.errors.Add($"{path}: DisabledSlash 同时缺少 Text Target 和 Text Bounds Fallback。");
-                }
-                else if (label != null && slash.TextTarget != null && slash.TextTarget != label)
-                {
-                    result.errors.Add($"{path}: DisabledSlash Text Target 与按钮 Label 不一致。");
                 }
             }
 

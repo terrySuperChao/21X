@@ -13,18 +13,16 @@ MonoBehaviour:
   m_Name: MenuInteractionSettings
   m_EditorClassIdentifier: 
   hitPaddingX: 12
-  hoverTextScale: 1.12
-  hoverOutlineWidthPx: 2.2
-  hoverEnterSeconds: 0.11
-  hoverExitSeconds: 0.15
-  pressScale: 0.98
-  confirmDurationSeconds: 0.16
-  glowBreathAmount: 0.07
-  glowBreathPeriodSeconds: 1.7
+  hoverTextScale: 1.5
+  hoverEnterSeconds: 0.09
+  hoverExitSeconds: 0.09
+  pressScale: 0.92
+  confirmDurationSeconds: 0.080000006
+  glowBreathAmount: 0.9
+  glowBreathPeriodSeconds: 2.7
   highlightPromptMinSeconds: 2.5
   highlightPromptMaxSeconds: 5
-  highlightPromptOffset: 3
+  highlightPromptOffset: 6
   highlightPromptDurationSeconds: 0.36
   highlightCyan: {r: 0.14509805, g: 0.93333334, b: 0.9411765, a: 1}
   highlightMagenta: {r: 0.75686276, g: 0.14509805, b: 0.90588236, a: 1}
-  hoverOutlineColor: {r: 0.019607844, g: 0.015686275, b: 0.02745098, a: 1}

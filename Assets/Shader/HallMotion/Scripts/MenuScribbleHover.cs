@@ -13,7 +13,7 @@ namespace Miscalculation.HallMotion
     ///
     /// 业务层仍然使用原 Button.onClick、Button.interactable 和 Navigation；本组件只负责：
     /// 1. 将鼠标悬停、键盘/手柄选择统一为同一套 Hover/Focus 反馈；
-    /// 2. 驱动文字放大/描边、霓虹划线、黑白按下态、确认收束和禁用斜线；
+    /// 2. 驱动文字放大/固定投影、霓虹划线、黑白按下态和确认收束；
     /// 3. 用整段 TMP 渲染边界计算命中宽度和特效宽度，不读取具体字符，因此可复用于多语言。
     ///
     /// 接入时必须让 InteractionVisualRoot 成为 Button 的子级视觉根节点，绝不能指向
@@ -31,6 +31,15 @@ namespace Miscalculation.HallMotion
         IDeselectHandler,
         ISubmitHandler
     {
+        // Fixed hover shadow from the approved art reference. These values are intentionally
+        // constants rather than designer parameters: distance 2px, spread 98%, size 3px,
+        // angle -3 degrees, #000000 at 100% opacity.
+        private const float HoverShadowDistancePixels = 2f;
+        private const float HoverShadowSizePixels = 3f;
+        private const float HoverShadowAngleDegrees = -3f;
+        private const float HoverShadowSoftness = 0.02f;
+        private const float WebPixelToTmpOutlineScale = 1.6f;
+
         [Header("State")]
         [Tooltip("现有业务 Button。留空时自动读取同物体上的 Button；不会替换或清空原有 onClick。")]
         [SerializeField] private Button button;
@@ -54,11 +63,11 @@ namespace Miscalculation.HallMotion
         [SerializeField] private TMP_Text label;
         [Tooltip("只负责悬停时放大文字的根节点。建议是 Label 外单独包的一层，不要与 InteractionVisualRoot 使用同一个 RectTransform。")]
         [SerializeField] private RectTransform labelVisualRoot;
-        [Tooltip("负责按下/确认时整体缩放的独立子级视觉根节点。它应包含 Scribble、LabelVisualRoot 与 DisabledSlash，且绝不能是 Button 自己的 RectTransform。")]
+        [Tooltip("负责按下/确认时整体缩放的独立子级视觉根节点。它应包含 Scribble 与 LabelVisualRoot，且绝不能是 Button 自己的 RectTransform。")]
         [SerializeField] private RectTransform interactionVisualRoot;
         [Tooltip("放在文字后方的 ProceduralNeonScribbleGraphic。该 Graphic 必须关闭 Raycast Target。")]
         [SerializeField] private ProceduralNeonScribbleGraphic scribble;
-        [Tooltip("禁用态手绘删除线。可留空，运行时会在 InteractionVisualRoot 下自动创建。")]
+        [Tooltip("历史版本的禁用删除线引用。v1.0.11 起永久隐藏，仅为旧 Prefab 反序列化兼容保留。")]
         [SerializeField] private ProceduralDisabledSlashGraphic disabledSlash;
 
         [Header("Highlighted text echoes")]
@@ -68,6 +77,8 @@ namespace Miscalculation.HallMotion
         [SerializeField] private TMP_Text cyanEcho;
         [Tooltip("Highlighted 常态的紫色错位文字回声；可留空自动创建，不参与射线和布局。")]
         [SerializeField] private TMP_Text magentaEcho;
+        [Tooltip("正文后方的黑色投影；可留空自动创建。它只复制整段 TMP，不读取字符或扩大命中框。")]
+        [SerializeField] private TMP_Text shadowEcho;
 
         [Header("Events")]
         [Tooltip("每次真正生成一条新霓虹路径时触发，适合播放悬停短音；重复 Select/PointerEnter 不会重复触发。")]
@@ -81,9 +92,19 @@ namespace Miscalculation.HallMotion
         private System.Random random;
         private Vector3 labelBaseScale;
         private Vector3 visualBaseScale;
+        private Vector2 labelVisualBasePosition;
+        private Vector2 visualBasePosition;
+        private Quaternion visualBaseRotation;
         private Color labelBaseColor;
         private float labelBaseOutlineWidth;
         private Color32 labelBaseOutlineColor;
+        private Material labelBaseSharedMaterial;
+        private Material shadowOutlineMaterial;
+        private int shadowMaterialFontInstanceId;
+        private int baseMaterialFontInstanceId;
+        private float hoverVisualProgress;
+        private float highlightPromptProgress;
+        private bool warnedUnsupportedOutlineMaterial;
         private bool pointerInside;
         private bool focused;
         private bool selectedByPointer;
@@ -175,6 +196,8 @@ namespace Miscalculation.HallMotion
         public RectTransform LabelVisualRoot => labelVisualRoot;
         public RectTransform InteractionVisualRoot => interactionVisualRoot;
         public ProceduralNeonScribbleGraphic Scribble => scribble;
+        public TMP_Text HoverShadow => shadowEcho;
+        // Legacy read-only access lets old diagnostics confirm the object is inactive.
         public ProceduralDisabledSlashGraphic DisabledSlash => disabledSlash;
         public bool AutoSizesHitboxToText => autoSizeHitboxToText;
 
@@ -212,21 +235,33 @@ namespace Miscalculation.HallMotion
             random = new System.Random(unchecked(Environment.TickCount * 397) ^ seedSalt ^ GetInstanceID());
             labelBaseScale = labelVisualRoot != null ? labelVisualRoot.localScale : Vector3.one;
             visualBaseScale = interactionVisualRoot != null ? interactionVisualRoot.localScale : Vector3.one;
+            labelVisualBasePosition = labelVisualRoot != null ? labelVisualRoot.anchoredPosition : Vector2.zero;
+            visualBasePosition = interactionVisualRoot != null ? interactionVisualRoot.anchoredPosition : Vector2.zero;
+            visualBaseRotation = interactionVisualRoot != null ? interactionVisualRoot.localRotation : Quaternion.identity;
             if (label != null)
             {
                 labelBaseColor = label.color;
                 labelBaseOutlineWidth = label.outlineWidth;
                 labelBaseOutlineColor = label.outlineColor;
+                labelBaseSharedMaterial = label.fontSharedMaterial;
+                baseMaterialFontInstanceId = label.font != null ? label.font.GetInstanceID() : 0;
             }
+
+            EnsureTextShadow();
 
             if (variant == MenuButtonVariant.Highlighted && autoCreateHighlightEchoes)
             {
                 EnsureHighlightEchoes();
             }
+            SyncEchoAppearance();
+            ApplyEchoAndShadowPositions();
 
-            if (disabledSlash == null)
+            // v1.0.11 removes the disabled strike. Existing scenes may still deserialize the
+            // historical object; deactivate it instead of destroying user-authored hierarchy.
+            if (disabledSlash != null)
             {
-                disabledSlash = CreateDisabledSlash();
+                disabledSlash.SetDisabledVisible(false);
+                disabledSlash.gameObject.SetActive(false);
             }
 
             previousInteractable = button == null || button.interactable;
@@ -481,10 +516,10 @@ namespace Miscalculation.HallMotion
             synchronizingTextAndLayout = true;
             try
             {
+                EnsureTextShadow();
                 SyncEchoAppearance();
                 ApplyFixedHitboxSize();
                 scribble?.RefreshLayoutImmediately(regenerateCurrentPath);
-                disabledSlash?.RefreshLayoutImmediately();
                 previousInteractable = button == null || button.interactable;
                 ApplyInteractable(previousInteractable);
                 lastLayoutSignature = CaptureLayoutSignature();
@@ -637,6 +672,24 @@ namespace Miscalculation.HallMotion
             scribble?.Hide(reducedMotion ? 0f : Settings.hoverExitSeconds);
         }
 
+        private void ForceInactiveImmediately()
+        {
+            // Disabling a Button is a state change, not a hover-exit animation. A running hover
+            // tween would otherwise write the normal label colour back after ApplyInteractable
+            // dims it, and could leave stale pressed/confirm visuals behind the disabled slash.
+            if (current == this) current = null;
+            confirming = false;
+            if (hoverRoutine != null) StopCoroutine(hoverRoutine);
+            if (pressRoutine != null) StopCoroutine(pressRoutine);
+            if (confirmRoutine != null) StopCoroutine(confirmRoutine);
+            hoverRoutine = null;
+            pressRoutine = null;
+            confirmRoutine = null;
+            scribble?.SetMonochrome(false);
+            scribble?.Hide(0f);
+            RestoreBaseVisuals();
+        }
+
         private void AnimateHover(bool active)
         {
             if (hoverRoutine != null) StopCoroutine(hoverRoutine);
@@ -648,34 +701,79 @@ namespace Miscalculation.HallMotion
             float duration = reducedMotion ? 0f : (active ? Settings.hoverEnterSeconds : Settings.hoverExitSeconds);
             Vector3 fromScale = labelVisualRoot != null ? labelVisualRoot.localScale : labelBaseScale;
             Vector3 toScale = labelBaseScale * (active ? Settings.hoverTextScale : 1f);
-            float fromOutline = label != null ? label.outlineWidth : 0f;
-            float targetOutline = active && label != null
-                ? Mathf.Clamp01(Settings.hoverOutlineWidthPx / Mathf.Max(1f, label.fontSize))
-                : labelBaseOutlineWidth;
-            Color32 fromOutlineColor = label != null ? label.outlineColor : labelBaseOutlineColor;
-            Color32 toOutlineColor = active ? Settings.hoverOutlineColor : labelBaseOutlineColor;
+            Vector2 fromVisualPosition = interactionVisualRoot != null ? interactionVisualRoot.anchoredPosition : visualBasePosition;
+            Vector2 toVisualPosition = visualBasePosition + (active ? new Vector2(18f, 0f) : Vector2.zero);
+            Quaternion fromVisualRotation = interactionVisualRoot != null ? interactionVisualRoot.localRotation : visualBaseRotation;
+            float buttonTilt = transform is RectTransform buttonRect ? NormalizeSignedAngle(buttonRect.localEulerAngles.z) : 0f;
+            Quaternion hoverRotation = visualBaseRotation * Quaternion.Euler(0f, 0f, -2f - buttonTilt);
+            Quaternion toVisualRotation = active ? hoverRotation : visualBaseRotation;
+            float fromShadowOutline = shadowEcho != null ? shadowEcho.outlineWidth : 0f;
+            float targetShadowOutline = active ? CalculateHoverShadowOutlineWidth() : 0f;
+            Color fromColor = label != null ? label.color : labelBaseColor;
+            Color toColor = active ? Color.white : labelBaseColor;
+            float fromHoverProgress = hoverVisualProgress;
+            float toHoverProgress = active ? 1f : 0f;
             float elapsed = 0f;
             do
             {
                 float t = duration <= 0f ? 1f : Mathf.Clamp01(elapsed / duration);
                 float eased = 1f - Mathf.Pow(1f - t, 3f);
                 ApplyLabelScale(Vector3.LerpUnclamped(fromScale, toScale, eased));
+                hoverVisualProgress = Mathf.LerpUnclamped(fromHoverProgress, toHoverProgress, eased);
+                if (interactionVisualRoot != null)
+                {
+                    interactionVisualRoot.anchoredPosition = Vector2.LerpUnclamped(fromVisualPosition, toVisualPosition, eased);
+                    interactionVisualRoot.localRotation = Quaternion.SlerpUnclamped(fromVisualRotation, toVisualRotation, eased);
+                }
                 if (label != null)
                 {
-                    label.outlineWidth = Mathf.Lerp(fromOutline, targetOutline, eased);
-                    label.outlineColor = Color32.Lerp(fromOutlineColor, toOutlineColor, eased);
+                    label.color = Color.LerpUnclamped(fromColor, toColor, eased);
                 }
+                if (shadowEcho != null)
+                {
+                    shadowEcho.outlineWidth = Mathf.Lerp(fromShadowOutline, targetShadowOutline, eased);
+                    shadowEcho.outlineColor = Color.black;
+                }
+                ApplyEchoAndShadowPositions();
                 elapsed += Time.unscaledDeltaTime;
                 yield return null;
             }
             while (elapsed < duration);
             ApplyLabelScale(toScale);
+            hoverVisualProgress = toHoverProgress;
+            if (interactionVisualRoot != null)
+            {
+                interactionVisualRoot.anchoredPosition = toVisualPosition;
+                interactionVisualRoot.localRotation = toVisualRotation;
+            }
             if (label != null)
             {
-                label.outlineWidth = targetOutline;
-                label.outlineColor = toOutlineColor;
+                label.color = toColor;
             }
+            if (shadowEcho != null)
+            {
+                shadowEcho.outlineWidth = targetShadowOutline;
+                shadowEcho.outlineColor = Color.black;
+            }
+            ApplyEchoAndShadowPositions();
             hoverRoutine = null;
+        }
+
+        private float CalculateHoverShadowOutlineWidth()
+        {
+            if (label == null) return 0f;
+            // Parent scaling would otherwise enlarge the effect together with the label.
+            // Divide by the final hover scale so the approved 3px size stays a screen-pixel
+            // value at every designer-selected text scale, including the new 2x maximum.
+            float finalScale = Mathf.Max(1f, Settings.hoverTextScale);
+            return Mathf.Clamp01(
+                HoverShadowSizePixels * WebPixelToTmpOutlineScale
+                / (Mathf.Max(1f, label.fontSize) * finalScale));
+        }
+
+        private static float NormalizeSignedAngle(float degrees)
+        {
+            return degrees > 180f ? degrees - 360f : degrees;
         }
 
         private void AnimatePress(bool active)
@@ -758,20 +856,32 @@ namespace Miscalculation.HallMotion
 
         private void ApplyInteractable(bool interactable)
         {
-            disabledSlash?.SetDisabledVisible(!interactable);
+            if (!interactable)
+            {
+                pointerInside = false;
+                focused = false;
+                selectedByPointer = false;
+                ForceInactiveImmediately();
+            }
+
+            // Disabled buttons keep only the dimmed text state. The historical slash remains
+            // permanently inactive even when an old Prefab still serializes the reference.
+            if (disabledSlash != null)
+            {
+                disabledSlash.SetDisabledVisible(false);
+                if (disabledSlash.gameObject.activeSelf) disabledSlash.gameObject.SetActive(false);
+            }
             if (label != null)
             {
                 label.color = interactable
                     ? labelBaseColor
                     : new Color(labelBaseColor.r, labelBaseColor.g, labelBaseColor.b, labelBaseColor.a * 0.28f);
             }
-            SetEchoesVisible(interactable && variant == MenuButtonVariant.Highlighted);
-            if (!interactable)
+            if (shadowEcho != null)
             {
-                pointerInside = false;
-                focused = false;
-                ForceInactive();
+                shadowEcho.color = new Color(0f, 0f, 0f, interactable ? 1f : 0.28f);
             }
+            SetEchoesVisible(interactable && variant == MenuButtonVariant.Highlighted);
         }
 
         private IEnumerator HighlightPromptLoop()
@@ -795,11 +905,13 @@ namespace Miscalculation.HallMotion
                     }
                     float t = Mathf.Clamp01(elapsed / duration);
                     float pulse = Mathf.Sin(t * Mathf.PI);
-                    ApplyEchoOffsets(Mathf.Lerp(1f, Settings.highlightPromptOffset, pulse));
+                    highlightPromptProgress = pulse;
+                    ApplyEchoAndShadowPositions();
                     elapsed += Time.unscaledDeltaTime;
                     yield return null;
                 }
-                ApplyEchoOffsets(1f);
+                highlightPromptProgress = 0f;
+                ApplyEchoAndShadowPositions();
             }
         }
 
@@ -815,12 +927,89 @@ namespace Miscalculation.HallMotion
         private void RestoreBaseVisuals()
         {
             if (labelVisualRoot != null) labelVisualRoot.localScale = labelBaseScale;
-            if (interactionVisualRoot != null) interactionVisualRoot.localScale = visualBaseScale;
+            if (interactionVisualRoot != null)
+            {
+                interactionVisualRoot.localScale = visualBaseScale;
+                interactionVisualRoot.anchoredPosition = visualBasePosition;
+                interactionVisualRoot.localRotation = visualBaseRotation;
+            }
+            hoverVisualProgress = 0f;
+            highlightPromptProgress = 0f;
             if (label != null)
             {
                 label.color = labelBaseColor;
                 label.outlineWidth = labelBaseOutlineWidth;
                 label.outlineColor = labelBaseOutlineColor;
+            }
+            if (shadowEcho != null)
+            {
+                shadowEcho.outlineWidth = 0f;
+                shadowEcho.outlineColor = Color.black;
+            }
+            ApplyEchoAndShadowPositions();
+        }
+
+        private void RefreshBaseFontMaterial()
+        {
+            if (label == null) return;
+            int currentFontId = label.font != null ? label.font.GetInstanceID() : 0;
+            if (labelBaseSharedMaterial != null && baseMaterialFontInstanceId == currentFontId)
+            {
+                return;
+            }
+            labelBaseSharedMaterial = label.fontSharedMaterial != null
+                ? label.fontSharedMaterial
+                : label.font != null ? label.font.material : null;
+            baseMaterialFontInstanceId = currentFontId;
+        }
+
+        private void EnsureShadowOutlineMaterial()
+        {
+            if (label == null || shadowEcho == null) return;
+            int currentFontId = label.font != null ? label.font.GetInstanceID() : 0;
+            if (shadowOutlineMaterial != null && shadowMaterialFontInstanceId == currentFontId) return;
+
+            RefreshBaseFontMaterial();
+            shadowEcho.fontSharedMaterial = labelBaseSharedMaterial;
+
+            // The main label keeps its authored material. Only the hidden black duplicate owns
+            // a private OUTLINE_ON instance, so the fixed shadow can expand without mutating
+            // shared fonts or emitting label-layout change callbacks every hover frame.
+            shadowOutlineMaterial = shadowEcho.fontMaterial;
+            shadowMaterialFontInstanceId = currentFontId;
+            if (shadowOutlineMaterial == null
+                || !shadowOutlineMaterial.HasProperty(ShaderUtilities.ID_OutlineWidth)
+                || !shadowOutlineMaterial.HasProperty(ShaderUtilities.ID_OutlineColor))
+            {
+                if (!warnedUnsupportedOutlineMaterial)
+                {
+                    warnedUnsupportedOutlineMaterial = true;
+                    Debug.LogWarning("Menu hover shadow requires a TMP SDF material with _OutlineWidth and _OutlineColor. The label remains usable but the fixed shadow expansion is unavailable.", this);
+                }
+                return;
+            }
+
+            shadowOutlineMaterial.EnableKeyword(ShaderUtilities.Keyword_Outline);
+            if (shadowOutlineMaterial.HasProperty(ShaderUtilities.ID_OutlineSoftness))
+            {
+                shadowOutlineMaterial.SetFloat(ShaderUtilities.ID_OutlineSoftness, HoverShadowSoftness);
+            }
+            shadowEcho.outlineColor = Color.black;
+            shadowEcho.outlineWidth = 0f;
+            shadowEcho.UpdateMeshPadding();
+        }
+
+        private void EnsureTextShadow()
+        {
+            if (label == null) return;
+            if (shadowEcho == null)
+            {
+                shadowEcho = CreateEcho("MenuTextShadow", new Color32(3, 2, 5, 255));
+            }
+            if (shadowEcho != null)
+            {
+                shadowEcho.transform.SetSiblingIndex(0);
+                EnsureShadowOutlineMaterial();
             }
         }
 
@@ -830,7 +1019,7 @@ namespace Miscalculation.HallMotion
             if (cyanEcho == null) cyanEcho = CreateEcho("HighlightEcho_Cyan", Settings.highlightCyan);
             if (magentaEcho == null) magentaEcho = CreateEcho("HighlightEcho_Magenta", Settings.highlightMagenta);
             SyncEchoAppearance();
-            ApplyEchoOffsets(1f);
+            ApplyEchoAndShadowPositions();
         }
 
         private TMP_Text CreateEcho(string objectName, Color echoColor)
@@ -846,33 +1035,36 @@ namespace Miscalculation.HallMotion
             return echo;
         }
 
-        private ProceduralDisabledSlashGraphic CreateDisabledSlash()
-        {
-            RectTransform parent = interactionVisualRoot != null ? interactionVisualRoot : transform as RectTransform;
-            if (parent == null) return null;
-            GameObject slashObject = new GameObject("DisabledSlash", typeof(RectTransform), typeof(CanvasRenderer), typeof(ProceduralDisabledSlashGraphic), typeof(LayoutElement));
-            slashObject.transform.SetParent(parent, false);
-            slashObject.transform.SetAsLastSibling();
-            LayoutElement layout = slashObject.GetComponent<LayoutElement>();
-            layout.ignoreLayout = true;
-            ProceduralDisabledSlashGraphic graphic = slashObject.GetComponent<ProceduralDisabledSlashGraphic>();
-            graphic.BindText(label);
-            return graphic;
-        }
-
         private void SyncEchoAppearance()
         {
             if (label == null) return;
+            RefreshBaseFontMaterial();
+            CopyLabelToEcho(shadowEcho, new Color32(3, 2, 5, 255));
             CopyLabelToEcho(cyanEcho, Settings.highlightCyan);
             CopyLabelToEcho(magentaEcho, Settings.highlightMagenta);
+            EnsureShadowOutlineMaterial();
+            ApplyEchoAndShadowPositions();
         }
 
         private void CopyLabelToEcho(TMP_Text echo, Color echoColor)
         {
             if (echo == null) return;
             echo.text = label.text;
+            bool fontChanged = echo.font != label.font;
             echo.font = label.font;
-            echo.fontSharedMaterial = label.fontSharedMaterial;
+            bool isHoverShadow = echo == shadowEcho;
+            // Cyan/magenta echoes always use the authored material. The black hover shadow keeps
+            // one private OUTLINE_ON material while the font is unchanged, preventing repeated
+            // material allocation during text/layout synchronization.
+            if (!isHoverShadow || fontChanged || shadowOutlineMaterial == null)
+            {
+                echo.fontSharedMaterial = labelBaseSharedMaterial != null ? labelBaseSharedMaterial : label.fontSharedMaterial;
+                if (isHoverShadow)
+                {
+                    shadowOutlineMaterial = null;
+                    shadowMaterialFontInstanceId = 0;
+                }
+            }
             echo.fontSize = label.fontSize;
             echo.fontStyle = label.fontStyle;
             echo.fontWeight = label.fontWeight;
@@ -898,6 +1090,10 @@ namespace Miscalculation.HallMotion
         private void ApplyLabelScale(Vector3 scale)
         {
             if (labelVisualRoot != null) labelVisualRoot.localScale = scale;
+            if (shadowEcho != null && (labelVisualRoot == null || !shadowEcho.transform.IsChildOf(labelVisualRoot)))
+            {
+                shadowEcho.rectTransform.localScale = scale;
+            }
             if (cyanEcho != null && (labelVisualRoot == null || !cyanEcho.transform.IsChildOf(labelVisualRoot)))
             {
                 cyanEcho.rectTransform.localScale = scale;
@@ -908,12 +1104,46 @@ namespace Miscalculation.HallMotion
             }
         }
 
-        private void ApplyEchoOffsets(float offset)
+        private void ApplyEchoAndShadowPositions()
         {
             if (label == null) return;
-            Vector2 basePosition = label.rectTransform.anchoredPosition;
-            if (cyanEcho != null) cyanEcho.rectTransform.anchoredPosition = basePosition + new Vector2(-offset, -offset * 0.35f);
-            if (magentaEcho != null) magentaEcho.rectTransform.anchoredPosition = basePosition + new Vector2(offset, offset * 0.35f);
+            Vector2 basePosition = labelVisualRoot == label.rectTransform
+                ? labelVisualBasePosition
+                : label.rectTransform.anchoredPosition;
+            Vector2 idleCyan = new Vector2(-1f, 1f);
+            Vector2 hoverCyan = new Vector2(-2f, 1f);
+            Vector2 promptCyan = new Vector2(-Settings.highlightPromptOffset, 1f);
+            Vector2 idleMagenta = new Vector2(2f, -2f);
+            Vector2 hoverMagenta = new Vector2(3f, -2f);
+            Vector2 promptMagenta = new Vector2(Settings.highlightPromptOffset, -1f);
+            Vector2 cyanOffset = Vector2.LerpUnclamped(idleCyan, hoverCyan, hoverVisualProgress);
+            Vector2 magentaOffset = Vector2.LerpUnclamped(idleMagenta, hoverMagenta, hoverVisualProgress);
+            cyanOffset = Vector2.LerpUnclamped(cyanOffset, promptCyan, highlightPromptProgress);
+            magentaOffset = Vector2.LerpUnclamped(magentaOffset, promptMagenta, highlightPromptProgress);
+            if (cyanEcho != null) cyanEcho.rectTransform.anchoredPosition = basePosition + cyanOffset;
+            if (magentaEcho != null) magentaEcho.rectTransform.anchoredPosition = basePosition + magentaOffset;
+
+            Vector2 idleShadow = variant == MenuButtonVariant.Highlighted
+                ? new Vector2(3f, -4f)
+                : new Vector2(2f, -3f);
+            float shadowRadians = HoverShadowAngleDegrees * Mathf.Deg2Rad;
+            // 蓝湖的投影角度以“左”为 0°，与常规数学/CSS 的“右”为 0° 相差
+            // 180°。因此 -3° 必须落在文字左侧并略微向下；Unity UI 本地 Y 轴
+            // 向上，所以屏幕空间向下最终对应负的本地 Y。
+            Vector2 fixedScreenOffset = new Vector2(
+                -Mathf.Cos(shadowRadians) * HoverShadowDistancePixels,
+                Mathf.Sin(shadowRadians) * HoverShadowDistancePixels);
+            float currentHoverScale = Mathf.LerpUnclamped(1f, Mathf.Max(1f, Settings.hoverTextScale), hoverVisualProgress);
+            bool offsetIsScaledByParent = labelVisualRoot != null && shadowEcho != null
+                && shadowEcho.transform.IsChildOf(labelVisualRoot);
+            Vector2 fixedLocalOffset = fixedScreenOffset / (offsetIsScaledByParent ? currentHoverScale : 1f);
+            Vector2 shadowOffset = Vector2.LerpUnclamped(idleShadow, fixedLocalOffset, hoverVisualProgress);
+            shadowOffset = Vector2.LerpUnclamped(shadowOffset, new Vector2(4f, -5f), highlightPromptProgress);
+            if (shadowEcho != null) shadowEcho.rectTransform.anchoredPosition = basePosition + shadowOffset;
+            if (labelVisualRoot != null)
+            {
+                labelVisualRoot.anchoredPosition = labelVisualBasePosition + new Vector2(highlightPromptProgress, 0f);
+            }
         }
 
         private void SetEchoesVisible(bool value)

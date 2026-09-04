@@ -23,6 +23,22 @@ namespace Miscalculation.HallMotion
         /// <summary>当前受 220 条硬上限约束的雨丝数量，供性能验收和调试面板只读显示。</summary>
         public int GeneratedDropCount => drops.Count;
 
+        /// <summary>当前雨参数资产，仅供接入校验和 Editor 导入工具读取。</summary>
+        public HallRainSettings Settings => settings;
+
+        /// <summary>当前雨层开关，供导入回归确认；业务层仍应通过 SetRainEnabled 修改。</summary>
+        public bool RainEnabled => rainEnabled;
+
+        /// <summary>
+        /// 返回指定时间的累计下落/横风时间。两者只会增加，不会在阵风退场时倒退；
+        /// 验证场景用它直接检查雨丝不会短暂向上回弹。
+        /// </summary>
+        public Vector2 EvaluateTravelSeconds(float elapsed)
+        {
+            float motionReduction = reducedMotion ? 0.18f : 1f;
+            return CalculateTravelSeconds(settings, elapsed, motionReduction);
+        }
+
         private float Clock => useUnscaledTime ? Time.unscaledTime : Time.time;
 
         protected override void Awake()
@@ -123,21 +139,25 @@ namespace Miscalculation.HallMotion
             float alphaReduction = reducedMotion ? 0.62f : 1f;
             float referenceScale = height / 1080f;
             float angle = settings.angleDeg * Mathf.Deg2Rad;
-            float gust = GustAt(elapsed) * motionReduction;
-            float speedBoost = 1f + gust * settings.gustStrength;
-            float windBoost = 1f + gust * settings.gustStrength * 1.45f;
+            Vector2 travelSeconds = CalculateTravelSeconds(settings, elapsed, motionReduction);
             float margin = Mathf.Max(40f, settings.length * referenceScale * 3f);
 
             for (int index = 0; index < drops.Count; index++)
             {
                 RainDrop drop = drops[index];
-                float dropSpeed = settings.speed * referenceScale * drop.speedScale * motionReduction * speedBoost;
+                float dropSpeed = settings.speed * referenceScale * drop.speedScale * motionReduction;
                 float dropLength = settings.length * referenceScale * drop.lengthScale;
-                float drift = (settings.wind * referenceScale * windBoost + Mathf.Tan(angle) * dropSpeed * 0.32f) * motionReduction;
+                float windSpeed = settings.wind * referenceScale * motionReduction;
+                float angledDriftSpeed = Mathf.Tan(angle) * dropSpeed * 0.32f * motionReduction;
                 float spanY = height + margin * 2f;
                 float spanX = width + margin * 2f;
-                float y = Mod(drop.y * spanY + elapsed * dropSpeed + drop.phase * margin, spanY) - margin;
-                float x = Mod(drop.x * spanX + elapsed * drift + drop.phase * width * 0.13f, spanX) - margin;
+                float y = Mod(drop.y * spanY + travelSeconds.x * dropSpeed + drop.phase * margin, spanY) - margin;
+                float x = Mod(
+                    drop.x * spanX
+                    + travelSeconds.y * windSpeed
+                    + travelSeconds.x * angledDriftSpeed
+                    + drop.phase * width * 0.13f,
+                    spanX) - margin;
                 float dx = Mathf.Sin(angle) * dropLength + (settings.wind / Mathf.Max(80f, settings.speed)) * dropLength * 0.38f;
                 float dy = Mathf.Cos(angle) * dropLength;
                 float protect = ProtectionAt(x / width, y / height);
@@ -169,15 +189,57 @@ namespace Miscalculation.HallMotion
             return Mathf.Max(0.08f, (1f - menuMask * settings.menuProtect) * (1f - coreMask * settings.coreProtect));
         }
 
-        private float GustAt(float elapsed)
+        private static Vector2 CalculateTravelSeconds(HallRainSettings source, float elapsed, float motionReduction)
         {
-            if (settings.gustChance <= 0f) return 0f;
-            float period = 18f - settings.gustChance * 14f;
-            float phase = (settings.seed % 997) / 997f * Mathf.PI * 2f;
-            float wave = Mathf.Sin(elapsed / Mathf.Max(2f, period) * Mathf.PI * 2f + phase);
-            float threshold = 0.92f - settings.gustChance * 0.30f;
-            float normalized = Mathf.Max(0f, (wave - threshold) / Mathf.Max(0.01f, 1f - threshold));
-            return normalized * normalized;
+            float safeElapsed = Mathf.Max(0f, elapsed);
+            if (source == null || source.gustChance <= 0f || source.gustStrength <= 0f)
+            {
+                return new Vector2(safeElapsed, safeElapsed);
+            }
+
+            float gustAreaSeconds = GustIntegralSeconds(source, safeElapsed);
+            float reducedGust = Mathf.Clamp01(motionReduction);
+            float speedTravel = safeElapsed + gustAreaSeconds * source.gustStrength * reducedGust;
+            float windTravel = safeElapsed + gustAreaSeconds * source.gustStrength * 1.45f * reducedGust;
+            return new Vector2(speedTravel, windTravel);
+        }
+
+        private static float GustIntegralSeconds(HallRainSettings source, float elapsed)
+        {
+            float period = Mathf.Max(2f, 18f - source.gustChance * 14f);
+            float threshold = Mathf.Clamp(0.92f - source.gustChance * 0.30f, -0.999f, 0.999f);
+            float phase = (source.seed % 997) / 997f * Mathf.PI * 2f;
+            float angularSpeed = Mathf.PI * 2f / period;
+            float startAngle = phase;
+            float endAngle = phase + elapsed * angularSpeed;
+            float areaRadians = CumulativeGustArea(endAngle, threshold) - CumulativeGustArea(startAngle, threshold);
+            return Mathf.Max(0f, areaRadians / angularSpeed);
+        }
+
+        private static float CumulativeGustArea(float angle, float threshold)
+        {
+            const float tau = Mathf.PI * 2f;
+            int cycles = Mathf.Max(0, Mathf.FloorToInt(angle / tau));
+            float remainder = angle - cycles * tau;
+            float activeStart = Mathf.Asin(threshold);
+            float activeEnd = Mathf.PI - activeStart;
+            float fullArea = GustPrimitive(activeEnd, threshold) - GustPrimitive(activeStart, threshold);
+            float partialArea = 0f;
+            if (remainder > activeStart)
+            {
+                float partialEnd = Mathf.Min(remainder, activeEnd);
+                partialArea = GustPrimitive(partialEnd, threshold) - GustPrimitive(activeStart, threshold);
+            }
+            return cycles * fullArea + Mathf.Max(0f, partialArea);
+        }
+
+        private static float GustPrimitive(float angle, float threshold)
+        {
+            float denominator = Mathf.Max(0.0001f, (1f - threshold) * (1f - threshold));
+            float numerator = (0.5f + threshold * threshold) * angle
+                - 0.25f * Mathf.Sin(2f * angle)
+                + 2f * threshold * Mathf.Cos(angle);
+            return numerator / denominator;
         }
 
         private static float SmoothStep(float edge0, float edge1, float value)
