@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d639c22452123924593726cfaca1caab, type: 3}
+  m_Name: DefaultLobbySettings
+  m_EditorClassIdentifier: 
+  parameters:
+    smokeDensity: 0.92
+    smokeRise: 1
+    smokeVisibility: 1
+    smokeStrandWidth: 1
+    smokeEnabled: 1
+    emberIntensity: 1
+    emberSize: 1
+    sparkIntensity: 1
+    rainDensity: 0.72
+    rainSpeed: 0.48
+    rainMaskTopLeftX: 144
+    rainMaskTopRightX: 552
+    rainMaskBottomX: 193
+    rainMaskBottomY: 143
+    rainMaskDebug: 0
+    dustDensity: 0.72
+    dustBrightness: 1.15
+    dustSize: 1.1
+    lampTransition: 420
+    sceneLampStrength: 1
+    sceneFarBrightness: 0.48
+    sceneOffBrightness: 0.32
+    sceneMoonStrength: 0.46
+    rainEnabled: 1
+    dustEnabled: 1
+    reducedMotion: 0
+    lampOn: 1
+    seed: 539363360

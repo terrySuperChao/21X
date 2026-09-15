@@ -1,0 +1,56 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 483498da3a375dc44992c6e22468807c, type: 3}
+  m_Name: LobbyArt
+  m_EditorClassIdentifier: 
+  lampOff: {fileID: 2800000, guid: 462d343f7cbcbde409791add8e5d69fa, type: 3}
+  lampOn: {fileID: 2800000, guid: 49b8dfb439035434d82e1f1b97f63b30, type: 3}
+  lampOffWindowShadow: {fileID: 2800000, guid: 5a8d2104ce6d4ac1a60fa0bb2db967f2, type: 3}
+  lightField: {fileID: 2800000, guid: b143d13cdbdb42d3a6255d4cb453e9ea, type: 3}
+  rainOcclusionMask: {fileID: 2800000, guid: 9aa59146d53eb0546a4642846324de1c, type: 3}
+  smokeAtlases:
+  - {fileID: 2800000, guid: 6241cd86ded2ed243bff6a79e4c438a9, type: 3}
+  - {fileID: 2800000, guid: 00d1a9ca1fe881f4d878dfdc5259ce86, type: 3}
+  - {fileID: 2800000, guid: 86ce0b74bdfdeac499941f9094d6f2b7, type: 3}
+  - {fileID: 2800000, guid: eda1f769e8eaedd409c8f1ae54a52d60, type: 3}
+  anchors:
+  - {x: 313.676, y: 474}
+  - {x: 254.70134, y: 473}
+  - {x: 188.93938, y: 473}
+  - {x: 316.08066, y: 463}
+  - {x: 258.03036, y: 463}
+  - {x: 191.84602, y: 462}
+  - {x: 313.66772, y: 462}
+  - {x: 253.36469, y: 463}
+  - {x: 183.6811, y: 460}
+  - {x: 318.6493, y: 459}
+  - {x: 256.10547, y: 454}
+  - {x: 188.13943, y: 458}
+  - {x: 314.37796, y: 483}
+  - {x: 253.44206, y: 482}
+  - {x: 205.43161, y: 504}
+  - {x: 313.2576, y: 474}
+  - {x: 246.18929, y: 485}
+  - {x: 191.60065, y: 485}
+  - {x: 315.6305, y: 483}
+  - {x: 239.23788, y: 477}
+  - {x: 206.6552, y: 480}
+  - {x: 319.91315, y: 463}
+  - {x: 237.228, y: 465}
+  - {x: 198.32964, y: 464}
+  assetVersion: lobby-window-shadow-v1-lightfield-v1-rain-occlusion-v1-smoke-v4
+  contentHash: 7c35c67278f8ed91fe8d0ef8fa0e3c72019cc737a670299cbf0afa22c605c0bc
+  sourceHash: e70bbc48ca7222a5f9d4d39d6194bf97bdfdd063292e80c6091f7848e7cacd3c
+  backgroundMaterial: {fileID: 2100000, guid: 46ca002415e04c04e9fd76d7d6b96dea, type: 2}
+  screenMaterial: {fileID: 2100000, guid: 96fee22668a571940ae9e4b05e79c2df, type: 2}
+  particleMaterial: {fileID: 2100000, guid: 128f9682611da524c8fd9d6cf7efb48a, type: 2}
+  sceneItemMaterial: {fileID: 2100000, guid: 89177caf1f9242c79e896a697e1a3d5c, type: 2}

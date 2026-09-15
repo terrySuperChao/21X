@@ -1,0 +1,9 @@
+{
+  "name": "Miscalculation.Motion.DebugConsole.Editor",
+  "rootNamespace": "Miscalculation.Motion.DebugConsole",
+  "references": ["Miscalculation.Motion.DebugConsole"],
+  "includePlatforms": ["Editor"],
+  "autoReferenced": true,
+  "overrideReferences": false,
+  "noEngineReferences": false
+}

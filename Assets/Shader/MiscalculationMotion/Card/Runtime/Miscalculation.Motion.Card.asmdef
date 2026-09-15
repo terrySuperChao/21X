@@ -1,0 +1,8 @@
+{
+  "name": "Miscalculation.Motion.Card",
+  "rootNamespace": "Miscalculation.Motion.Card",
+  "references": ["Miscalculation.Motion.Common"],
+  "autoReferenced": true,
+  "overrideReferences": false,
+  "noEngineReferences": false
+}

@@ -1,41 +1,46 @@
-﻿using Pb;
+﻿using Miscalculation.CharacterLobby;
+using Miscalculation.Motion.Common;
+using Pb;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class LobbyView : MonoBehaviour,IBaseView
+public class LobbyView : MonoBehaviour, IBaseView
 {
     public GameObject tabContainer;
     public GameObject mainSkillName;
     public GameObject mainSkillDesc;
     public GameObject secondSkillContainer;
-    public GameObject diffContainer;
     public GameObject playerRoleDesc;
     public GameObject secondSkillPop;
     public GameObject secondSkillPopDesc;
     public Sprite tabClickSprite;
     public Sprite tabNormalSprite;
-
+    public LobbyController controller;
+    public SelectionDoodleGraphic[] chapterSelections;
+    public SelectionDoodleGraphic[] difficultySelections;
+   
     private PlayerRole _selectRole = null;
 
     public void init()
     {
-        
+        this.controller.PlayEntrance();
     }
 
     public void beforeShow()
     {
-        
+
     }
 
     public void refresh()
     {
-        
+
     }
 
     public void afterShow()
     {
-        this.switchTab(0);         
+        this.switchTab(0);
     }
 
     private void switchTab(int index) {
@@ -56,18 +61,16 @@ public class LobbyView : MonoBehaviour,IBaseView
                 if (i == index)
                 {
                     gameObject.GetComponent<Button>().interactable = false;
-                    gameObject.GetComponent<Image>().sprite = this.tabClickSprite;
                     this.updatePlayerRole(playerRoles[i]);
                     this.updateDiff(playerRoles[i].id);
                 }
                 else
                 {
                     gameObject.GetComponent<Button>().interactable = true;
-                    gameObject.GetComponent<Image>().sprite = this.tabNormalSprite;
                 }
             }
         }
-        
+
     }
 
     private void updatePlayerRole(PlayerRole playerRole) {
@@ -105,24 +108,10 @@ public class LobbyView : MonoBehaviour,IBaseView
         GameProperty gameProperty = GamePropertyMgr.Instance.getGameProperty();
 
         int index = 0;
-        for (int i = 0; i < gameProperty.GameData.DefeatRoles.Count; i++){
+        for (int i = 0; i < gameProperty.GameData.DefeatRoles.Count; i++) {
             if (gameProperty.GameData.DefeatRoles[i].Id == playerRoleId) {
                 index = i;
                 break;
-            }
-        }
-
-        int childCount = this.diffContainer.transform.childCount;
-        for (int i = 0; i < childCount; i++)
-        {
-            GameObject gameObject = this.diffContainer.transform.GetChild(i).gameObject;
-            if (i > index)
-            {
-                
-            }
-            else
-            {
-                
             }
         }
     }
@@ -136,7 +125,7 @@ public class LobbyView : MonoBehaviour,IBaseView
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     public void onReturnClick() {
@@ -165,7 +154,7 @@ public class LobbyView : MonoBehaviour,IBaseView
         this.switchTab(parameter);
     }
 
-    public void onSecondSkillClick(int parameter) { 
+    public void onSecondSkillClick(int parameter) {
         this.secondSkillPop.SetActive(true);
         if (parameter < this._selectRole.secondSkills.Count) {
             Skill skill = this._selectRole.secondSkills[parameter];
@@ -183,5 +172,19 @@ public class LobbyView : MonoBehaviour,IBaseView
     private void gotoBarrierView() {
         GameReqMgr.Instance.requestNewGame(this._selectRole.id);
         UIMgr.Instance.showView("BarrierView");
+    }
+
+    public void onSwitchLight(){
+        this.controller.SetLamp(!this.controller.Current.lampOn);
+    }
+
+    public void onHardClick(int index) {
+        this.SelectOne(difficultySelections, index);
+    }
+
+    void SelectOne(SelectionDoodleGraphic[] values, int index)
+    {
+        if (values == null) return;
+        for (int i = 0; i < values.Length; i++) if (values[i]) { if (i == index) values[i].Play(); else values[i].Hide(); }
     }
 }

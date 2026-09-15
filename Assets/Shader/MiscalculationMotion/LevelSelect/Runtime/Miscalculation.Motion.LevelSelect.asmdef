@@ -1,0 +1,8 @@
+{
+  "name": "Miscalculation.Motion.LevelSelect",
+  "rootNamespace": "Miscalculation.Motion.LevelSelect",
+  "references": ["Miscalculation.Motion.Common", "Unity.UGUI"],
+  "autoReferenced": true,
+  "overrideReferences": false,
+  "noEngineReferences": false
+}

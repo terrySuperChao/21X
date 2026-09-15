@@ -1,0 +1,8 @@
+{
+  "name": "Miscalculation.Motion.DebugConsole",
+  "rootNamespace": "Miscalculation.Motion.DebugConsole",
+  "references": ["Miscalculation.Motion.Common", "Miscalculation.Motion.Card", "Miscalculation.Motion.LevelSelect", "Unity.ugui", "Unity.TextMeshPro"],
+  "autoReferenced": true,
+  "overrideReferences": false,
+  "noEngineReferences": false
+}

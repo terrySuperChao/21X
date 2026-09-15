@@ -1,0 +1,1 @@
+{"name":"Miscalculation.CharacterLobby.Editor","references":["Miscalculation.CharacterLobby.Runtime","Unity.ugui"],"includePlatforms":["Editor"]}
