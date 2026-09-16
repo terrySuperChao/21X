@@ -47,14 +47,14 @@
 	},
 	{
 		"id": 4,
-		"name":"黑帮成员",
+		"name":"黑帮",
 		"desc":"",
 		"mainSkills":[],
 		"secondSkills":[]
 	},
 	{
 		"id": 5,
-		"name":"乐队成员",
+		"name":"乐队",
 		"desc":"",
 		"mainSkills":[],
 		"secondSkills":[]

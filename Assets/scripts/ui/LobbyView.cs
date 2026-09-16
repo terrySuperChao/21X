@@ -8,18 +8,21 @@ using UnityEngine.UI;
 
 public class LobbyView : MonoBehaviour, IBaseView
 {
-    public GameObject tabContainer;
+    public GameObject[] tabGameObject;
     public GameObject mainSkillName;
     public GameObject mainSkillDesc;
     public GameObject secondSkillContainer;
     public GameObject playerRoleDesc;
     public GameObject secondSkillPop;
     public GameObject secondSkillPopDesc;
-    public Sprite tabClickSprite;
-    public Sprite tabNormalSprite;
     public LobbyController controller;
     public SelectionDoodleGraphic[] chapterSelections;
     public SelectionDoodleGraphic[] difficultySelections;
+
+    public Texture[] tabNormalTextures;//正常
+    public Texture[] tabSelectTextures;//选择
+    public Texture[] tabFloatTextures;//悬浮
+
    
     private PlayerRole _selectRole = null;
 
@@ -46,29 +49,25 @@ public class LobbyView : MonoBehaviour, IBaseView
     private void switchTab(int index) {
         PlayerRoleConfig playerRoleConfig = GameStaticConfigMgr.Instance.getPlayerRoleConfig();
         List<PlayerRole> playerRoles = playerRoleConfig.getPlayerRole();
-        int childCount = this.tabContainer.transform.childCount;
-        for (int i = 0; i < childCount; i++)
+        for (int i = 0; i < this.tabGameObject.Length; i++)
         {
-            GameObject gameObject = this.tabContainer.transform.GetChild(i).gameObject;
-            if (i >= playerRoles.Count)
-            {
-                gameObject.SetActive(false);
+            GameObject gameObject = this.tabGameObject[i].gameObject;
+            Text text = gameObject.GetComponentInChildren<Text>();
+            Button button = gameObject.GetComponentInChildren<Button>();
+            RawImage rawImage = gameObject.GetComponentInChildren<RawImage>();
+            text.text = playerRoles[i].name;
+            button.interactable = (i != index);
+
+            if (i == index){
+                rawImage.texture = this.tabSelectTextures[i];
+                this.updatePlayerRole(playerRoles[i]);
+                this.updateDiff(playerRoles[i].id);
+            }else{
+                rawImage.texture = this.tabNormalTextures[i];
             }
-            else
-            {
-                gameObject.SetActive(true);
-                gameObject.GetComponentInChildren<Text>().text = playerRoles[i].name;
-                if (i == index)
-                {
-                    gameObject.GetComponent<Button>().interactable = false;
-                    this.updatePlayerRole(playerRoles[i]);
-                    this.updateDiff(playerRoles[i].id);
-                }
-                else
-                {
-                    gameObject.GetComponent<Button>().interactable = true;
-                }
-            }
+
+            RectTransform rawRect = rawImage.gameObject.GetComponent<RectTransform>();
+            rawRect.sizeDelta = new Vector2(rawImage.texture.width, rawImage.texture.height);
         }
 
     }
@@ -151,6 +150,7 @@ public class LobbyView : MonoBehaviour, IBaseView
     }
 
     public void onTabClick(int parameter) {
+        Debug.Log("1111111");
         this.switchTab(parameter);
     }
 
@@ -175,6 +175,11 @@ public class LobbyView : MonoBehaviour, IBaseView
     }
 
     public void onSwitchLight(){
+        for (int i = 4; i < this.tabGameObject.Length; i++)
+        {
+            Text text = this.tabGameObject[i].GetComponentInChildren<Text>();
+            text.color = this.controller.Current.lampOn ? Color.gray : Color.white;
+        }
         this.controller.SetLamp(!this.controller.Current.lampOn);
     }
 
