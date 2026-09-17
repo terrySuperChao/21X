@@ -15,6 +15,7 @@ public class LobbyView : MonoBehaviour, IBaseView
     public GameObject playerRoleDesc;
     public GameObject secondSkillPop;
     public GameObject secondSkillPopDesc;
+    public GameObject windowShadow;
     public LobbyController controller;
     public SelectionDoodleGraphic[] chapterSelections;
     public SelectionDoodleGraphic[] difficultySelections;
@@ -56,8 +57,8 @@ public class LobbyView : MonoBehaviour, IBaseView
             Button button = gameObject.GetComponentInChildren<Button>();
             RawImage rawImage = gameObject.GetComponentInChildren<RawImage>();
             text.text = playerRoles[i].name;
-            button.interactable = (i != index);
-
+            //button.interactable = (i != index);
+            
             if (i == index){
                 rawImage.texture = this.tabSelectTextures[i];
                 this.updatePlayerRole(playerRoles[i]);
@@ -150,7 +151,6 @@ public class LobbyView : MonoBehaviour, IBaseView
     }
 
     public void onTabClick(int parameter) {
-        Debug.Log("1111111");
         this.switchTab(parameter);
     }
 
@@ -175,12 +175,9 @@ public class LobbyView : MonoBehaviour, IBaseView
     }
 
     public void onSwitchLight(){
-        for (int i = 4; i < this.tabGameObject.Length; i++)
-        {
-            Text text = this.tabGameObject[i].GetComponentInChildren<Text>();
-            text.color = this.controller.Current.lampOn ? Color.gray : Color.white;
-        }
-        this.controller.SetLamp(!this.controller.Current.lampOn);
+        bool lampOn = this.controller.Current.lampOn;
+        this.windowShadow.SetActive(lampOn);
+        this.controller.SetLamp(!lampOn);
     }
 
     public void onHardClick(int index) {
@@ -190,6 +187,13 @@ public class LobbyView : MonoBehaviour, IBaseView
     void SelectOne(SelectionDoodleGraphic[] values, int index)
     {
         if (values == null) return;
-        for (int i = 0; i < values.Length; i++) if (values[i]) { if (i == index) values[i].Play(); else values[i].Hide(); }
+        for (int i = 0; i < values.Length; i++)
+            if (values[i])
+            {
+                if (i == index)
+                    values[i].Play();
+                else
+                    values[i].Hide();
+            }
     }
 }

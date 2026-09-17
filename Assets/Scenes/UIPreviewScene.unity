@@ -407,22 +407,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 268397411}
     m_Modifications:
-    - target: {fileID: 877404963921948566, guid: 0aa6845027e88fa4f832293cc0904d6e, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 208
-      objectReference: {fileID: 0}
-    - target: {fileID: 3400144569145350254, guid: 0aa6845027e88fa4f832293cc0904d6e, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5276026395270716291, guid: 0aa6845027e88fa4f832293cc0904d6e, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6185411643554171417, guid: 0aa6845027e88fa4f832293cc0904d6e, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6497107375530993869, guid: 0aa6845027e88fa4f832293cc0904d6e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -466,14 +450,6 @@ PrefabInstance:
     - target: {fileID: 8105682527857957194, guid: 0aa6845027e88fa4f832293cc0904d6e, type: 3}
       propertyPath: m_Name
       value: LobbyView
-      objectReference: {fileID: 0}
-    - target: {fileID: 8122145998825604210, guid: 0aa6845027e88fa4f832293cc0904d6e, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8680998456297590994, guid: 0aa6845027e88fa4f832293cc0904d6e, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
