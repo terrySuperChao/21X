@@ -57,13 +57,18 @@ public class LobbyView : MonoBehaviour, IBaseView
             Button button = gameObject.GetComponentInChildren<Button>();
             RawImage rawImage = gameObject.GetComponentInChildren<RawImage>();
             text.text = playerRoles[i].name;
-            //button.interactable = (i != index);
-            
+
             if (i == index){
+                button.interactable = false;
+                button.GetComponent<Text>().fontSize = 36;
+                button.GetComponent<RectTransform>().localPosition = new Vector3(0, 35, 0);
                 rawImage.texture = this.tabSelectTextures[i];
                 this.updatePlayerRole(playerRoles[i]);
                 this.updateDiff(playerRoles[i].id);
             }else{
+                button.interactable = true;
+                button.GetComponent<Text>().fontSize = 25;
+                button.GetComponent<RectTransform>().localPosition = new Vector3(0, 0, 0);
                 rawImage.texture = this.tabNormalTextures[i];
             }
 
