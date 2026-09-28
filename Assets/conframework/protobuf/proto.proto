@@ -127,11 +127,21 @@ message GameData{
   repeated DefeatRole defeatRoles = 9;    //击败的
 }
 
+message RoleStatistics{
+  optional int32 roleId = 1;
+  optional int32 exp = 2;
+}
+
+message GameStatistics{
+  repeated RoleStatistics roleStatistics = 1;
+}
+
 //游戏财产
 message GameProperty{
   optional Account account = 1;
   optional Setting setting = 2;
   optional GameData gameData = 3;
+  optional GameStatistics gameStatistics = 4;
 }
 
 //protoc --proto_path=. --csharp_out=. proto.proto

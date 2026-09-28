@@ -1,7 +1,6 @@
 ﻿using Miscalculation.CharacterLobby;
 using Miscalculation.Motion.Common;
 using Pb;
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -24,7 +23,9 @@ public class LobbyView : MonoBehaviour, IBaseView
     public Texture[] tabSelectTextures;//选择
     public Texture[] tabFloatTextures;//悬浮
 
-   
+    public Texture[] skillTextures; //技能
+    public Texture skillLockTexture;//锁住
+
     private PlayerRole _selectRole = null;
 
     public void init()
@@ -94,14 +95,17 @@ public class LobbyView : MonoBehaviour, IBaseView
         for (int i = 0; i < childCount; i++)
         {
             GameObject gameObject = this.secondSkillContainer.transform.GetChild(i).gameObject;
-            if (i >= playerRole.secondSkills.Count)
+            if (playerRole.secondSkills[i].unLockLevel > 0)
             {
-                gameObject.SetActive(false);
+                gameObject.GetComponent<Button>().interactable = true;
+                gameObject.GetComponent<RawImage>().texture = this.skillTextures[playerRole.id - 1];
+                gameObject.GetComponentInChildren<Text>().text = playerRole.secondSkills[i].name;
             }
             else
             {
-                gameObject.SetActive(true);
-                gameObject.GetComponentInChildren<Text>().text = playerRole.secondSkills[i].name;
+                gameObject.GetComponent<Button>().interactable = false;
+                gameObject.GetComponent<RawImage>().texture = this.skillLockTexture;
+                gameObject.GetComponentInChildren<Text>().text = "Lv"+ playerRole.secondSkills[i].unLockLevel+"解锁";
             }
         }
 
