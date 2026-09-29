@@ -12,7 +12,7 @@
 			{
 				"name":"稳重",
 				"desc":"每次牌局，初始护甲+10",
-				"unLockLevel":2
+				"unLockLevel":1
 			},
 			{
 				"name":"材料回收",
@@ -29,41 +29,47 @@
 				"desc":"生命低于30%时，自动恢复30%的生命值，每次牌局战斗最多触发1次",
 				"unLockLevel":10
 			}
-		]
+		],
+		"exp":[10,20,30,40,50,60,70,80,90,100]
 	},
 	{
 		"id": 2,
 		"name":"侦探",
 		"desc":"",
 		"mainSkills":[],
-		"secondSkills":[]
+		"secondSkills":[],
+		"exp":[10,20,30,40,50,60,70,80,90,100]
 	},
 	{
 		"id": 3,
 		"name":"医生",
 		"desc":"",
 		"mainSkills":[],
-		"secondSkills":[]
+		"secondSkills":[],
+		"exp":[10,20,30,40,50,60,70,80,90,100]
 	},
 	{
 		"id": 4,
 		"name":"黑帮",
 		"desc":"",
 		"mainSkills":[],
-		"secondSkills":[]
+		"secondSkills":[],
+		"exp":[10,20,30,40,50,60,70,80,90,100]
 	},
 	{
 		"id": 5,
 		"name":"乐队",
 		"desc":"",
 		"mainSkills":[],
-		"secondSkills":[]
+		"secondSkills":[],
+		"exp":[10,20,30,40,50,60,70,80,90,100]
 	},
 	{
 		"id": 6,
 		"name":"赌徒",
 		"desc":"",
 		"mainSkills":[],
-		"secondSkills":[]
+		"secondSkills":[],
+		"exp":[10,20,30,40,50,60,70,80,90,100]
 	}
 ]

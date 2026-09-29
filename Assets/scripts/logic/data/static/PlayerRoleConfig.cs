@@ -19,6 +19,7 @@ public class PlayerRole
     public string desc;
     public List<Skill> mainSkills;
     public List<Skill> secondSkills;
+    public List<int> exp;
 }
 
 public class PlayerRoleConfig

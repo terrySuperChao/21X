@@ -87,16 +87,16 @@ namespace Pb {
             "RmlnaHRIBogBARIhCgdpbXByaW50GAggASgLMgsucGIuSW1wcmludEgHiAEB",
             "EiMKC2RlZmVhdFJvbGVzGAkgAygLMg4ucGIuRGVmZWF0Um9sZUILCglfaW5p",
             "dFNlZWRCDAoKX2dhbWVTdGF0ZUIMCgpfcGFnZUluZGV4QgkKB19wbGF5ZXJC",
-            "CgoIX2JhcnJpZXJCBwoFX3Nob3BCCAoGX2ZpZ2h0QgoKCF9pbXByaW50IkoK",
-            "DlJvbGVTdGF0aXN0aWNzEhMKBnJvbGVJZBgBIAEoBUgAiAEBEhAKA2V4cBgC",
-            "IAEoBUgBiAEBQgkKB19yb2xlSWRCBgoEX2V4cCI8Cg5HYW1lU3RhdGlzdGlj",
-            "cxIqCg5yb2xlU3RhdGlzdGljcxgBIAMoCzISLnBiLlJvbGVTdGF0aXN0aWNz",
-            "IuIBCgxHYW1lUHJvcGVydHkSIQoHYWNjb3VudBgBIAEoCzILLnBiLkFjY291",
-            "bnRIAIgBARIhCgdzZXR0aW5nGAIgASgLMgsucGIuU2V0dGluZ0gBiAEBEiMK",
-            "CGdhbWVEYXRhGAMgASgLMgwucGIuR2FtZURhdGFIAogBARIvCg5nYW1lU3Rh",
-            "dGlzdGljcxgEIAEoCzISLnBiLkdhbWVTdGF0aXN0aWNzSAOIAQFCCgoIX2Fj",
-            "Y291bnRCCgoIX3NldHRpbmdCCwoJX2dhbWVEYXRhQhEKD19nYW1lU3RhdGlz",
-            "dGljc2IGcHJvdG8z"));
+            "CgoIX2JhcnJpZXJCBwoFX3Nob3BCCAoGX2ZpZ2h0QgoKCF9pbXByaW50ImgK",
+            "DlJvbGVTdGF0aXN0aWNzEhMKBnJvbGVJZBgBIAEoBUgAiAEBEhIKBWxldmVs",
+            "GAIgASgFSAGIAQESEAoDZXhwGAMgASgFSAKIAQFCCQoHX3JvbGVJZEIICgZf",
+            "bGV2ZWxCBgoEX2V4cCI8Cg5HYW1lU3RhdGlzdGljcxIqCg5yb2xlU3RhdGlz",
+            "dGljcxgBIAMoCzISLnBiLlJvbGVTdGF0aXN0aWNzIuIBCgxHYW1lUHJvcGVy",
+            "dHkSIQoHYWNjb3VudBgBIAEoCzILLnBiLkFjY291bnRIAIgBARIhCgdzZXR0",
+            "aW5nGAIgASgLMgsucGIuU2V0dGluZ0gBiAEBEiMKCGdhbWVEYXRhGAMgASgL",
+            "MgwucGIuR2FtZURhdGFIAogBARIvCg5nYW1lU3RhdGlzdGljcxgEIAEoCzIS",
+            "LnBiLkdhbWVTdGF0aXN0aWNzSAOIAQFCCgoIX2FjY291bnRCCgoIX3NldHRp",
+            "bmdCCwoJX2dhbWVEYXRhQhEKD19nYW1lU3RhdGlzdGljc2IGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
@@ -114,7 +114,7 @@ namespace Pb {
             new pbr::GeneratedClrTypeInfo(typeof(global::Pb.AssembleCard), global::Pb.AssembleCard.Parser, new[]{ "TriggerId", "BaseEffectId", "AdvancedEffectId", "TriggerNumber", "UpgradeNumber" }, new[]{ "TriggerId", "BaseEffectId", "AdvancedEffectId", "TriggerNumber", "UpgradeNumber" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Pb.Imprint), global::Pb.Imprint.Parser, new[]{ "AssembleObject", "NpcCards", "PlayerCards" }, new[]{ "AssembleObject" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Pb.GameData), global::Pb.GameData.Parser, new[]{ "InitSeed", "GameState", "PageIndex", "Player", "Barrier", "Shop", "Fight", "Imprint", "DefeatRoles" }, new[]{ "InitSeed", "GameState", "PageIndex", "Player", "Barrier", "Shop", "Fight", "Imprint" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Pb.RoleStatistics), global::Pb.RoleStatistics.Parser, new[]{ "RoleId", "Exp" }, new[]{ "RoleId", "Exp" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Pb.RoleStatistics), global::Pb.RoleStatistics.Parser, new[]{ "RoleId", "Level", "Exp" }, new[]{ "RoleId", "Level", "Exp" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Pb.GameStatistics), global::Pb.GameStatistics.Parser, new[]{ "RoleStatistics" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Pb.GameProperty), global::Pb.GameProperty.Parser, new[]{ "Account", "Setting", "GameData", "GameStatistics" }, new[]{ "Account", "Setting", "GameData", "GameStatistics" }, null, null, null)
           }));
@@ -6132,6 +6132,7 @@ namespace Pb {
     public RoleStatistics(RoleStatistics other) : this() {
       _hasBits0 = other._hasBits0;
       roleId_ = other.roleId_;
+      level_ = other.level_;
       exp_ = other.exp_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
@@ -6169,17 +6170,44 @@ namespace Pb {
       _hasBits0 &= ~1;
     }
 
+    /// <summary>Field number for the "level" field.</summary>
+    public const int LevelFieldNumber = 2;
+    private readonly static int LevelDefaultValue = 0;
+
+    private int level_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int Level {
+      get { if ((_hasBits0 & 2) != 0) { return level_; } else { return LevelDefaultValue; } }
+      set {
+        _hasBits0 |= 2;
+        level_ = value;
+      }
+    }
+    /// <summary>Gets whether the "level" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasLevel {
+      get { return (_hasBits0 & 2) != 0; }
+    }
+    /// <summary>Clears the value of the "level" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearLevel() {
+      _hasBits0 &= ~2;
+    }
+
     /// <summary>Field number for the "exp" field.</summary>
-    public const int ExpFieldNumber = 2;
+    public const int ExpFieldNumber = 3;
     private readonly static int ExpDefaultValue = 0;
 
     private int exp_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int Exp {
-      get { if ((_hasBits0 & 2) != 0) { return exp_; } else { return ExpDefaultValue; } }
+      get { if ((_hasBits0 & 4) != 0) { return exp_; } else { return ExpDefaultValue; } }
       set {
-        _hasBits0 |= 2;
+        _hasBits0 |= 4;
         exp_ = value;
       }
     }
@@ -6187,13 +6215,13 @@ namespace Pb {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public bool HasExp {
-      get { return (_hasBits0 & 2) != 0; }
+      get { return (_hasBits0 & 4) != 0; }
     }
     /// <summary>Clears the value of the "exp" field</summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public void ClearExp() {
-      _hasBits0 &= ~2;
+      _hasBits0 &= ~4;
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -6212,6 +6240,7 @@ namespace Pb {
         return true;
       }
       if (RoleId != other.RoleId) return false;
+      if (Level != other.Level) return false;
       if (Exp != other.Exp) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
@@ -6221,6 +6250,7 @@ namespace Pb {
     public override int GetHashCode() {
       int hash = 1;
       if (HasRoleId) hash ^= RoleId.GetHashCode();
+      if (HasLevel) hash ^= Level.GetHashCode();
       if (HasExp) hash ^= Exp.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
@@ -6244,8 +6274,12 @@ namespace Pb {
         output.WriteRawTag(8);
         output.WriteInt32(RoleId);
       }
-      if (HasExp) {
+      if (HasLevel) {
         output.WriteRawTag(16);
+        output.WriteInt32(Level);
+      }
+      if (HasExp) {
+        output.WriteRawTag(24);
         output.WriteInt32(Exp);
       }
       if (_unknownFields != null) {
@@ -6262,8 +6296,12 @@ namespace Pb {
         output.WriteRawTag(8);
         output.WriteInt32(RoleId);
       }
-      if (HasExp) {
+      if (HasLevel) {
         output.WriteRawTag(16);
+        output.WriteInt32(Level);
+      }
+      if (HasExp) {
+        output.WriteRawTag(24);
         output.WriteInt32(Exp);
       }
       if (_unknownFields != null) {
@@ -6278,6 +6316,9 @@ namespace Pb {
       int size = 0;
       if (HasRoleId) {
         size += 1 + pb::CodedOutputStream.ComputeInt32Size(RoleId);
+      }
+      if (HasLevel) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Level);
       }
       if (HasExp) {
         size += 1 + pb::CodedOutputStream.ComputeInt32Size(Exp);
@@ -6296,6 +6337,9 @@ namespace Pb {
       }
       if (other.HasRoleId) {
         RoleId = other.RoleId;
+      }
+      if (other.HasLevel) {
+        Level = other.Level;
       }
       if (other.HasExp) {
         Exp = other.Exp;
@@ -6324,6 +6368,10 @@ namespace Pb {
             break;
           }
           case 16: {
+            Level = input.ReadInt32();
+            break;
+          }
+          case 24: {
             Exp = input.ReadInt32();
             break;
           }
@@ -6351,6 +6399,10 @@ namespace Pb {
             break;
           }
           case 16: {
+            Level = input.ReadInt32();
+            break;
+          }
+          case 24: {
             Exp = input.ReadInt32();
             break;
           }

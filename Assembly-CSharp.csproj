@@ -151,6 +151,7 @@
     <Compile Include="Assets/scripts/logic/modules/card/interface/ITriggerHandle.cs" />
     <Compile Include="Assets/scripts/logic/modules/player/FightPokerMgr.cs" />
     <Compile Include="Assets/scripts/logic/modules/card/baseEffectHandle/BaseEffect2034.cs" />
+    <Compile Include="Assets/scripts/logic/modules/game/GameStatisticsMgr.cs" />
     <Compile Include="Assets/scripts/logic/modules/card/triggerHandle/TriggerEffect1024.cs" />
     <Compile Include="Assets/scripts/ui/CardPart.cs" />
     <Compile Include="Assets/scripts/logic/modules/card/baseEffectHandle/BaseEffect2004.cs" />

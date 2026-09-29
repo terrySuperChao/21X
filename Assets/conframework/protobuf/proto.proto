@@ -129,7 +129,8 @@ message GameData{
 
 message RoleStatistics{
   optional int32 roleId = 1;
-  optional int32 exp = 2;
+  optional int32 level = 2;
+  optional int32 exp = 3;
 }
 
 message GameStatistics{

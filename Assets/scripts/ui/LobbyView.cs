@@ -15,6 +15,8 @@ public class LobbyView : MonoBehaviour, IBaseView
     public GameObject secondSkillPop;
     public GameObject secondSkillPopDesc;
     public GameObject windowShadow;
+    public GameObject expScrollbar;
+    public GameObject expLevel;
     public LobbyController controller;
     public SelectionDoodleGraphic[] chapterSelections;
     public SelectionDoodleGraphic[] difficultySelections;
@@ -46,6 +48,7 @@ public class LobbyView : MonoBehaviour, IBaseView
     public void afterShow()
     {
         this.switchTab(0);
+        this.onHardClick(0);
     }
 
     private void switchTab(int index) {
@@ -91,11 +94,11 @@ public class LobbyView : MonoBehaviour, IBaseView
             this.mainSkillDesc.GetComponent<Text>().text = playerRole.mainSkills[0].desc;
         }
 
-        int childCount = this.secondSkillContainer.transform.childCount;
-        for (int i = 0; i < childCount; i++)
+        IRoleStatistics roleStatistics = GameStatisticsMgr.Instance.getRoleStatistics(playerRole.id);
+        for (int i = 0; i < playerRole.secondSkills.Count; i++)
         {
             GameObject gameObject = this.secondSkillContainer.transform.GetChild(i).gameObject;
-            if (playerRole.secondSkills[i].unLockLevel > 0)
+            if (roleStatistics.level >= playerRole.secondSkills[i].unLockLevel)
             {
                 gameObject.GetComponent<Button>().interactable = true;
                 gameObject.GetComponent<RawImage>().texture = this.skillTextures[playerRole.id - 1];
@@ -105,11 +108,20 @@ public class LobbyView : MonoBehaviour, IBaseView
             {
                 gameObject.GetComponent<Button>().interactable = false;
                 gameObject.GetComponent<RawImage>().texture = this.skillLockTexture;
-                gameObject.GetComponentInChildren<Text>().text = "Lv"+ playerRole.secondSkills[i].unLockLevel+"解锁";
+                gameObject.GetComponentInChildren<Text>().text = "Lv."+ playerRole.secondSkills[i].unLockLevel+"解锁";
             }
         }
 
+        int expConfig = 0;
+        if (playerRole.exp.Count > roleStatistics.level) {
+            expConfig = playerRole.exp[roleStatistics.level];
+        }else{
+            expConfig = playerRole.exp[playerRole.exp.Count - 1];
+        }
+
         this.playerRoleDesc.GetComponent<Text>().text = playerRole.desc;
+        this.expLevel.GetComponent<Text>().text = "Lv." + roleStatistics.level;
+        this.expScrollbar.GetComponent<Scrollbar>().value = roleStatistics.exp / expConfig;
         this._selectRole = playerRole;
     }
 
@@ -190,7 +202,7 @@ public class LobbyView : MonoBehaviour, IBaseView
     }
 
     public void onHardClick(int index) {
-        this.SelectOne(difficultySelections, index);
+        this.SelectOne(this.difficultySelections, index);
     }
 
     void SelectOne(SelectionDoodleGraphic[] values, int index)

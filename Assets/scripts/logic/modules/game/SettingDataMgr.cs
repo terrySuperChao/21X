@@ -1,6 +1,4 @@
-using Google.Protobuf.WellKnownTypes;
 using Pb;
-using UnityEngine;
 public class SettingDataMgr : Singleton<SettingDataMgr>
 {
     private GameProperty _gameProperty;

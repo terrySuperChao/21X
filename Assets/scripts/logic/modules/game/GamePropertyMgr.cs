@@ -25,6 +25,9 @@ public class GamePropertyMgr : Singleton<GamePropertyMgr>
         if (this._gameProperty.Setting == null) {
             this._gameProperty.Setting = SettingDataMgr.Instance.newSetting();
         }
+        if (this._gameProperty.GameStatistics == null) {
+            this._gameProperty.GameStatistics = GameStatisticsMgr.Instance.newGameStatistics();
+        }
         this.deserialized();
     }
 
@@ -44,13 +47,17 @@ public class GamePropertyMgr : Singleton<GamePropertyMgr>
         SettingDataMgr.Instance.init(this._gameProperty);
         SettingDataMgr.Instance.deserialized();
 
+        GameStatisticsMgr.Instance.init(this._gameProperty);
+        GameStatisticsMgr.Instance.deserialized();
+
         LangMgr.Instance.setCurLanguage(SettingDataMgr.Instance.getLanguage());
     }
 
     private void serialized() {
         GameDataMgr.Instance.serialized();
         SettingDataMgr.Instance.serialized();
-        //����
+        GameStatisticsMgr.Instance.serialized();
+
         ProtobufMgr.Instance.serializeToFile(_fileName, this._gameProperty.ToByteArray());
     }
 }
