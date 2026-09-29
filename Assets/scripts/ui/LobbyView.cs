@@ -17,15 +17,22 @@ public class LobbyView : MonoBehaviour, IBaseView
     public GameObject windowShadow;
     public GameObject expSlider;
     public GameObject expLevel;
+    public GameObject secondSkillContent;
+    public GameObject secondSkillDesc;
+    public GameObject startButton;
+
     public LobbyController controller;
     public SelectionDoodleGraphic[] chapterSelections;
     public SelectionDoodleGraphic[] difficultySelections;
 
     public Texture[] tabNormalTextures;//正常
     public Texture[] tabSelectTextures;//选择
-    
+
     public Texture[] skillTextures; //技能
     public Texture skillLockTexture;//锁住
+
+    public Texture[] startNormalTextures;
+    public Texture[] startHoverTextures;
 
     private PlayerRole _selectRole = null;
 
@@ -61,7 +68,7 @@ public class LobbyView : MonoBehaviour, IBaseView
             RawImage rawImage = gameObject.GetComponentInChildren<RawImage>();
             text.text = playerRoles[i].name;
 
-            if (i == index){
+            if (i == index) {
                 button.interactable = false;
                 button.GetComponent<Text>().fontSize = 36;
                 button.GetComponent<RectTransform>().localPosition = new Vector3(0, 35, 0);
@@ -69,7 +76,7 @@ public class LobbyView : MonoBehaviour, IBaseView
                 rawImage.texture = this.tabSelectTextures[i];
                 this.updatePlayerRole(playerRoles[i]);
                 this.updateDiff(playerRoles[i].id);
-            }else{
+            } else {
                 button.interactable = true;
                 button.GetComponent<Text>().fontSize = 25;
                 button.GetComponent<RectTransform>().localPosition = new Vector3(0, 0, 0);
@@ -109,14 +116,14 @@ public class LobbyView : MonoBehaviour, IBaseView
             {
                 gameObject.GetComponent<Button>().interactable = false;
                 gameObject.GetComponent<RawImage>().texture = this.skillLockTexture;
-                gameObject.GetComponentInChildren<Text>().text = "Lv."+ playerRole.secondSkills[i].unLockLevel+"解锁";
+                gameObject.GetComponentInChildren<Text>().text = "Lv." + playerRole.secondSkills[i].unLockLevel + "解锁";
             }
         }
 
         int expConfig = 0;
         if (playerRole.exp.Count > roleStatistics.level) {
             expConfig = playerRole.exp[roleStatistics.level];
-        }else{
+        } else {
             expConfig = playerRole.exp[playerRole.exp.Count - 1];
         }
 
@@ -196,17 +203,18 @@ public class LobbyView : MonoBehaviour, IBaseView
         UIMgr.Instance.showView("BarrierView");
     }
 
-    public void onSwitchLight(){
+    public void onSwitchLight() {
         bool lampOn = this.controller.Current.lampOn;
         this.windowShadow.SetActive(lampOn);
         this.controller.SetLamp(!lampOn);
     }
 
     public void onHardClick(int index) {
-        this.SelectOne(this.difficultySelections, index);
+        this.selectOne(this.difficultySelections, index);
+        this.selectHover(index);
     }
 
-    void SelectOne(SelectionDoodleGraphic[] values, int index)
+    void selectOne(SelectionDoodleGraphic[] values, int index)
     {
         if (values == null) return;
         for (int i = 0; i < values.Length; i++)
@@ -217,5 +225,17 @@ public class LobbyView : MonoBehaviour, IBaseView
                 else
                     values[i].Hide();
             }
+    }
+
+    void selectHover(int index) {
+        if (index < 0 || index >= this.startNormalTextures.Length || index >= this.startHoverTextures.Length) {
+            return;
+        }
+        Texture texture = this.startNormalTextures[index];
+        this.startButton.GetComponent<RawImage>().texture = texture;
+        RectTransform rawRect = this.startButton.GetComponent<RectTransform>();
+        rawRect.sizeDelta = new Vector2(texture.width, texture.height);
+        HoverImage hoverImage = this.startButton.GetComponent<HoverImage>();
+        hoverImage.updateHover(this.startHoverTextures[index]);
     }
 }

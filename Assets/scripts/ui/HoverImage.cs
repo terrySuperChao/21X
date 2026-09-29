@@ -41,4 +41,9 @@ public class HoverImage : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
             this.rawImage.texture = this._normalTexture;
         }
     }
+
+    public void updateHover(Texture hoverTexture) {
+        this.hoverTexture = hoverTexture;
+        this._normalTexture = this.rawImage.texture;
+    }
 }
