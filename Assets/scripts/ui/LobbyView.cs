@@ -15,7 +15,7 @@ public class LobbyView : MonoBehaviour, IBaseView
     public GameObject secondSkillPop;
     public GameObject secondSkillPopDesc;
     public GameObject windowShadow;
-    public GameObject expScrollbar;
+    public GameObject expSlider;
     public GameObject expLevel;
     public LobbyController controller;
     public SelectionDoodleGraphic[] chapterSelections;
@@ -23,8 +23,7 @@ public class LobbyView : MonoBehaviour, IBaseView
 
     public Texture[] tabNormalTextures;//正常
     public Texture[] tabSelectTextures;//选择
-    public Texture[] tabFloatTextures;//悬浮
-
+    
     public Texture[] skillTextures; //技能
     public Texture skillLockTexture;//锁住
 
@@ -66,6 +65,7 @@ public class LobbyView : MonoBehaviour, IBaseView
                 button.interactable = false;
                 button.GetComponent<Text>().fontSize = 36;
                 button.GetComponent<RectTransform>().localPosition = new Vector3(0, 35, 0);
+                button.GetComponent<HoverImage>().enabled = false;
                 rawImage.texture = this.tabSelectTextures[i];
                 this.updatePlayerRole(playerRoles[i]);
                 this.updateDiff(playerRoles[i].id);
@@ -73,6 +73,7 @@ public class LobbyView : MonoBehaviour, IBaseView
                 button.interactable = true;
                 button.GetComponent<Text>().fontSize = 25;
                 button.GetComponent<RectTransform>().localPosition = new Vector3(0, 0, 0);
+                button.GetComponent<HoverImage>().enabled = true;
                 rawImage.texture = this.tabNormalTextures[i];
             }
 
@@ -121,7 +122,7 @@ public class LobbyView : MonoBehaviour, IBaseView
 
         this.playerRoleDesc.GetComponent<Text>().text = playerRole.desc;
         this.expLevel.GetComponent<Text>().text = "Lv." + roleStatistics.level;
-        this.expScrollbar.GetComponent<Scrollbar>().value = roleStatistics.exp / expConfig;
+        this.expSlider.GetComponent<Slider>().value = roleStatistics.exp / expConfig;
         this._selectRole = playerRole;
     }
 
