@@ -265,6 +265,7 @@
     <Compile Include="Assets/scripts/logic/modules/card/mgr/GameEffectMgr.cs" />
     <Compile Include="Assets/scripts/logic/modules/game/GameReqMgr.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/TMP_TextSelector_B.cs" />
+    <Compile Include="Assets/scripts/ui/HoverSecondSkill.cs" />
     <Compile Include="Assets/scripts/logic/data/interface/IPoker.cs" />
     <Compile Include="Assets/conframework/base/ISerialization.cs" />
     <Compile Include="Assets/scripts/logic/modules/card/mgr/SwitchParaMgr.cs" />

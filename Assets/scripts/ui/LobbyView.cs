@@ -10,15 +10,11 @@ public class LobbyView : MonoBehaviour, IBaseView
     public GameObject[] tabGameObject;
     public GameObject mainSkillName;
     public GameObject mainSkillDesc;
-    public GameObject secondSkillContainer;
     public GameObject playerRoleDesc;
-    public GameObject secondSkillPop;
-    public GameObject secondSkillPopDesc;
+    public GameObject secondSkillList;
     public GameObject windowShadow;
     public GameObject expSlider;
     public GameObject expLevel;
-    public GameObject secondSkillContent;
-    public GameObject secondSkillDesc;
     public GameObject startButton;
 
     public LobbyController controller;
@@ -28,11 +24,16 @@ public class LobbyView : MonoBehaviour, IBaseView
     public Texture[] tabNormalTextures;//正常
     public Texture[] tabSelectTextures;//选择
 
-    public Texture[] skillTextures; //技能
-    public Texture skillLockTexture;//锁住
-
     public Texture[] startNormalTextures;
     public Texture[] startHoverTextures;
+
+    public Texture[] secondSkillTextures1; //技能1
+    public Texture[] secondSkillTextures2; //技能2
+    public Texture[] secondSkillTextures3; //技能3
+    public Texture[] secondSkillTextures4; //技能4
+    public Texture[] secondSkillTextures5; //技能5
+    public Texture[] secondSkillTextures6; //技能6
+    public Texture secondSkillLockTexture; //锁住
 
     private PlayerRole _selectRole = null;
 
@@ -62,11 +63,12 @@ public class LobbyView : MonoBehaviour, IBaseView
         List<PlayerRole> playerRoles = playerRoleConfig.getPlayerRole();
         for (int i = 0; i < this.tabGameObject.Length; i++)
         {
+            PlayerRole playerRole = playerRoles[i];
             GameObject gameObject = this.tabGameObject[i].gameObject;
             Text text = gameObject.GetComponentInChildren<Text>();
             Button button = gameObject.GetComponentInChildren<Button>();
             RawImage rawImage = gameObject.GetComponentInChildren<RawImage>();
-            text.text = playerRoles[i].name;
+            text.text = playerRole.name;
 
             if (i == index) {
                 button.interactable = false;
@@ -74,8 +76,9 @@ public class LobbyView : MonoBehaviour, IBaseView
                 button.GetComponent<RectTransform>().localPosition = new Vector3(0, 35, 0);
                 button.GetComponent<HoverImage>().enabled = false;
                 rawImage.texture = this.tabSelectTextures[i];
-                this.updatePlayerRole(playerRoles[i]);
-                this.updateDiff(playerRoles[i].id);
+                this.updatePlayerRole(playerRole);
+                this.updateDiff(playerRole.id);
+                this._selectRole = playerRole;
             } else {
                 button.interactable = true;
                 button.GetComponent<Text>().fontSize = 25;
@@ -91,7 +94,6 @@ public class LobbyView : MonoBehaviour, IBaseView
     }
 
     private void updatePlayerRole(PlayerRole playerRole) {
-
         if (playerRole.mainSkills.Count == 0)
         {
             this.mainSkillName.GetComponent<Text>().text = "";
@@ -102,22 +104,52 @@ public class LobbyView : MonoBehaviour, IBaseView
             this.mainSkillDesc.GetComponent<Text>().text = playerRole.mainSkills[0].desc;
         }
 
+        Texture[] textures;
+        switch (playerRole.id) {
+            case 1:
+                textures = this.secondSkillTextures1;
+                break;
+            case 2:
+                textures = this.secondSkillTextures2;
+                break;
+            case 3:
+                textures = this.secondSkillTextures3;
+                break;
+            case 4:
+                textures = this.secondSkillTextures4;
+                break;
+            case 5:
+                textures = this.secondSkillTextures5;
+                break;
+            case 6:
+                textures = this.secondSkillTextures6;
+                break;
+            default:
+                textures = this.secondSkillTextures1;
+                break;
+        }
+
         IRoleStatistics roleStatistics = GameStatisticsMgr.Instance.getRoleStatistics(playerRole.id);
         for (int i = 0; i < playerRole.secondSkills.Count; i++)
         {
-            GameObject gameObject = this.secondSkillContainer.transform.GetChild(i).gameObject;
-            if (roleStatistics.level >= playerRole.secondSkills[i].unLockLevel)
+            Skill skill = playerRole.secondSkills[i];
+            GameObject gameObject = this.secondSkillList.transform.GetChild(i).gameObject;
+            gameObject.GetComponent<HoverSecondSkill>().setSecondSkill(skill);
+
+            Text text = gameObject.GetComponentInChildren<Text>();
+            RawImage rawImage = gameObject.GetComponent<RawImage>();
+
+            if (roleStatistics.level >= skill.unLockLevel)
             {
-                gameObject.GetComponent<Button>().interactable = true;
-                gameObject.GetComponent<RawImage>().texture = this.skillTextures[playerRole.id - 1];
-                gameObject.GetComponentInChildren<Text>().text = playerRole.secondSkills[i].name;
+                rawImage.texture = textures[i];
+                text.text = skill.name;
+            }else{
+                rawImage.texture = this.secondSkillLockTexture;
+                text.text = "Lv." + skill.unLockLevel + "解锁";
             }
-            else
-            {
-                gameObject.GetComponent<Button>().interactable = false;
-                gameObject.GetComponent<RawImage>().texture = this.skillLockTexture;
-                gameObject.GetComponentInChildren<Text>().text = "Lv." + playerRole.secondSkills[i].unLockLevel + "解锁";
-            }
+
+            RectTransform rawRect = rawImage.gameObject.GetComponent<RectTransform>();
+            rawRect.sizeDelta = new Vector2(rawImage.texture.width, rawImage.texture.height);
         }
 
         int expConfig = 0;
@@ -130,7 +162,6 @@ public class LobbyView : MonoBehaviour, IBaseView
         this.playerRoleDesc.GetComponent<Text>().text = playerRole.desc;
         this.expLevel.GetComponent<Text>().text = "Lv." + roleStatistics.level;
         this.expSlider.GetComponent<Slider>().value = roleStatistics.exp / expConfig;
-        this._selectRole = playerRole;
     }
 
     private void updateDiff(int playerRoleId) {
@@ -181,21 +212,6 @@ public class LobbyView : MonoBehaviour, IBaseView
 
     public void onTabClick(int parameter) {
         this.switchTab(parameter);
-    }
-
-    public void onSecondSkillClick(int parameter) {
-        this.secondSkillPop.SetActive(true);
-        if (parameter < this._selectRole.secondSkills.Count) {
-            Skill skill = this._selectRole.secondSkills[parameter];
-            this.secondSkillPopDesc.GetComponent<Text>().text = skill.name + "\n" + skill.desc;
-
-            Transform obj1Transform = this.secondSkillContainer.transform.GetChild(parameter);
-            Transform obj2Transform = this.secondSkillPop.transform.parent.transform;
-
-            Vector3 vector = this.secondSkillPop.transform.position;
-            vector.x = obj1Transform.transform.position.x;
-            this.secondSkillPop.transform.position = vector;
-        }
     }
 
     private void gotoBarrierView() {
